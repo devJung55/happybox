@@ -1,14 +1,141 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="header">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/static/css/global/global.css" />
+        <link rel="stylesheet" href="/static/css/component/header.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="header_inner">
+                <!-- header_logo -->
+                <h1 class="logo">
+                    <a href="/">
+                        <span class="blind">랭킹닭컴</span>
+                    </a>
+                </h1>
+                <!-- header_util -->
+                <div class="util">
+                    <ul>
+                        <li><a href="javascript:void(0)">로그아웃</a></li>
+                        <li><a href="javascript:void(0)">정보수정</a></li>
+                        <li><a href="javascript:void(0)">주문조회</a></li>
+                        <li><a href="javascript:void(0)">고객센터</a></li>
+                    </ul>
+                </div>
+                <!-- header_search -->
+                <div class="header-search">
+                    <div class="top-search">
+                        <input
+                            type="search"
+                            class="input-search"
+                            id="rankKeyword"
+                            name="rankKeyword"
+                            autocomplete="off"
+                            placeholder="탱글한 식감 UP! 맛있닭 소시지"
+                            maxlength="100"
+                        />
 
-    </div>
-</body>
+                        <button
+                            type="button"
+                            class="btn-top-search"
+                            id="btnTopSearch"
+                            name="btnTopSearch"
+                        >
+                            <span class="blind">검색</span>
+                        </button>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="my-menu">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" class="btn-util-coupon" title=""
+                                ><span class="blind">쿠폰</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="btn-util-mypage" title=""
+                                ><span class="blind">마이페이지</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="btn-util-cart" title="">
+                                <span class="blind">장바구니</span>
+                                <em class="count">0</em>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gnb-wrap">
+                <div class="inner">
+                    <div class="category-wrap">
+                        <a href="javascript:void(0)" class="btn-menu-all">
+                            <span>카테고리</span>
+                        </a>
+                        <nav id="all-category" class="category-menu">
+                            <ul class="cate-dep1" style="display: none";>
+                                <li>
+                                    <a href="javascript:void(0)" data-cd1="R254">
+                                        <i class="ico-cate-gnb">
+                                            <img
+                                                src="https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20220523/IMG1653WAC282333226.png"
+                                                alt=""
+                                            />
+                                        </i>
+                                        <span class="menu">신상품</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <nav id="gnb" class="gnb">
+                        <ul>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span>랭킹</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span>이달의 특가</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span>혜택정리</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span>1팩 담기</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span>브랜드관</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span>이벤트</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <em class="ico-txt-gnb">
+                                        <span class="blind">특급배송</span>
+                                    </em>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
