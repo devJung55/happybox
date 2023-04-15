@@ -17,9 +17,12 @@
 
 section.container {
     position: relative;
-    width: calc(1920px * 10);
     margin: 0 auto;
     overflow: hidden;
+}
+
+div.banner {
+    width: calc(1920px * 10);
 }
 
 div.banner div {
@@ -149,7 +152,7 @@ div.banner div {
     position: relative;
     overflow: hidden;
     list-style: none;
-    padding: 0;
+    padding: 0 20px;
     z-index: 1;
 }
 
@@ -160,12 +163,13 @@ div.banner div {
     z-index: 1;
     display: flex;
     box-sizing: content-box;
+    transition: 0.3s ease-in-out;
 }
 .md-recomm-sec .main-md-recomm-swiper-btn.swiper-button-prev {
     width: 40px;
     height: 40px;
     background: rgba(255, 255, 255, 0.7);
-    border: 1px solid #E1E1E1;
+    border: 1px solid #e1e1e1;
     border-radius: 100%;
     top: calc(256px / 2);
     margin: 0;
@@ -198,6 +202,56 @@ div.banner div {
     width: calc(256.25px * 12);
 }
 
+.swiper-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #e1e1e1;
+    border-radius: 100%;
+    top: calc(256px / 2);
+    margin: 0;
+    transform: translateY(-50%);
+    position: absolute;
+    z-index: 10;
+}
+
+.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: auto;
+}
+.swiper-button-prev {
+    left: 0;
+    right: auto;
+}
+
+.swiper-button-next {
+    right: 0;
+    left: auto;
+}
+
+.swiper-button-prev svg {
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+    pointer-events: none;
+    transform: rotate(180deg);
+    z-index: 1;
+}
+
+.swiper-button-next svg {
+    width: 15px;
+    height: 15px;
+    pointer-events: none;
+    margin-top: 2px;
+    z-index: 1;
+}
+
+.swiper-button-next svg polygon,
+.swiper-button-prev svg polygon {
+    pointer-events: none;
+    z-index: 1;
+}
+
 .text-elps {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -205,17 +259,220 @@ div.banner div {
     word-break: break-all;
 }
 
-.main-article .main-article-tit {
+.main-article {
     text-align: center;
     margin-bottom: 26px;
 }
 
-.main-article.md-recomm-sec .main-article-tit {
+.frame-slide-overlap .main-article-tit {
     margin-bottom: 30px;
+    text-align: center;
+}
+
+.main-article .frame-sm .time-sales-container {
+    display: flex;
+}
+
+.main-article .time-sales-title-area {
+    width: calc(100% - 720px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .main-article-tit {
     font-size: 28px;
     font-weight: 700;
     line-height: 30px;
+    text-align: left;
+    margin-bottom: 26px;
+}
+
+.main-article .time-sales-title-area h2 span {
+    display: block;
+}
+
+.main-article .time-sales-title-area h2 span:first-child {
+    padding-left: 38px;
+    background: url(https://www.rankingdak.com/resources/pc/images/icon/ico_timesale_title.png)
+        no-repeat 0 center / 34px;
+    line-height: 36px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.main-article .time-sales-title-area p {
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+}
+
+.main-article .time-sales-content-area {
+    width: 720px;
+    position: relative;
+}
+
+.swiper-container .swiper-button-displayCount2 {
+    position: absolute;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+}
+
+.prd-item,
+.prd-item .desc-bottom {
+    margin-top: 6px;
+    position: relative;
+}
+
+.main-article .time-sales-content-area .img {
+    width: 320px;
+    height: 169px;
+}
+
+.prd-item .img a img {
+    width: 100%;
+    max-width: 100%;
+    vertical-align: top;
+    border: 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.lozad {
+    border-radius: 8px 8px 8px 8px !important;
+}
+
+.main-article .time-sales-content-area .timer {
+    height: 36px;
+    line-height: 36px;
+    border-radius: 0 0 8px 8px;
+    margin: 0;
+    background: #f79960;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.main-article .time-sales-content-area .timer .timer-title {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.prd-item .top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    min-height: 20px;
+    margin: 3px 0 5px;
+}
+
+.imgbadge-dlv {
+    display: inline-block;
+    width: 58px;
+    height: 20px;
+    font-weight: 700;
+    text-align: left;
+    color: #13a7b8;
+}
+
+.rating-simply {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.rating-simply .rating-star {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url(https://www.rankingdak.com/resources/pc/images/icon/ico_bullet.png) no-repeat -90px -160px;
+}
+
+.rating-simply span {
+    font-weight: 700;
+}
+.rating-simply .score::after {
+    content: "/";
+    margin-left: 2px;
+}
+
+.main-article .time-sales-content-area .desc-bottom .tit {
+    margin: 6px 0 8px;
+    font-size: 16px;
+    display: block;
+    line-height: 22px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.price-info {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.prd-item .sale {
+    font-size: 13px;
+    padding: 0 4px 0 0;
+    line-height: 20px;
+    font-weight: 600;
+    color: #f15220;
+}
+
+.prd-item .sale strong {
+    font-size: 20px !important;
+}
+
+.prd-item .price {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 13px;
+    color: #333;
+}
+
+.prd-item .price em {
+    font-size: 20px !important;
+    font-weight: 700;
+}
+
+.main-personalization {
+    margin-top: 90px !important;
+}
+
+.personalization-title {
+    margin-bottom: 25px;
+}
+
+.personalization-title p {
+    font-size: 16px;
+    color: #666666;
+    font-weight: 400;
+    text-align: center;
+}
+
+.personalization-title .main-article-tit {
+    margin-bottom: 10px;
+}
+
+.text-elps2 {
+    display: block;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prd-item .tit {
+    display: block;
+    font-size: 15px;
+    line-height: 22px;
+    margin: 3px 0 6px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
 }
