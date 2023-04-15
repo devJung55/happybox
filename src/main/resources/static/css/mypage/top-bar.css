@@ -205,11 +205,6 @@ p {
     border: 2px solid #ddd;
 }
 
-.btn-rud-sm, .btn-rud-sm2 {
-    height: 36px;
-    padding: 5px 15px;
-}
-
 [class*="btn-rud-"] {
     border-radius: 20px;
 }
