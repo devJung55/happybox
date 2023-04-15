@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/mypage/top-bar.css">
+</head>
+<body>
+    <div class="frame-full head-mypage">
+        <h2 class="blind">마이페이지</h2>
+        <div class="user-info-box">
+            <div class="inner">
+                <div class="column user-info">
+                    <span class="img"><i class="ico-cou-level01"></i></span>
+                    <div class="txt">
+                        <p class="greeting"><strong class="name">sk8955</strong>님 반갑습니다.</p>
+                        <ul class="sep-list user-info-list type3">
+                            <li><!--<i class="ico-bl-crown"></i>--> 닭대리</li>
+                                    <li id="groupPointRateText">1% 적립</li>
+                                    <li class="orange-entryItem">
+                                        <a href="/mypage/orangeMember">
+                                            <span class="entry-tooltip">+3% 추가적립!</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                        <p class="level-tip" id="levelUpText">100,000원 더 구매 시, 닭과장 진급!</p>
+                                            </div>
+                    <a href="/mypage/memberBenefitsInfo" class="btn-rud-sm btn-default-ex"><span>멤버십 혜택</span></a>
+                </div><!--// user-info -->
+
+                <!--// order -->
+                <dl class="column order">
+                    <dt>주문/배송</dt>
+                    <dd><a href="/mypage/orderlist"><strong class="num" id="orderCountText">0</strong>건</a></dd>
+                </dl>
+
+                <!--// coupon -->
+                <dl class="column coupon">
+                    <dt>쿠폰</dt>
+                    <dd><a href="/mypage/myCoupon"><strong class="num" id="couponCountText">0</strong>개</a></dd>
+                </dl>
+
+                <!--// point -->
+                <dl class="column point">
+                    <dt>포인트</dt>
+                    <dd class="text-primary"><a href="/mypage/myPoint"><strong class="num" id="totalUnusedPointText">1,000</strong>P</a></dd>
+                </dl>
+
+
+            </div><!--// inner -->
+        </div><!--// user-info-box -->
+
+    </div>
+</body>
+</html>
