@@ -1,0 +1,102 @@
+/* member-login.css */
+
+
+/*  공통 요소  */
+button, input {
+    overflow: visible;
+}
+
+button, input, optgroup, select, textarea {
+    font: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+label, select, input, textarea {
+    vertical-align: middle;
+}
+
+input[type="hidden" i] {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    display: none !important;
+    padding: initial;
+    border: initial;
+}
+
+input[type="hidden" i] {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    display: none !important;
+    padding: initial;
+    border: initial;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+legend, caption {
+    position: absolute;
+    left: -99999px;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -99999px;
+    clip: rect(0,0,0,0);
+}
+
+button {
+    background: none;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+input::placeholder {
+    color: #999;
+  }
+
+  input[type="checkbox"], input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+    appearance: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-image: none;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+}
