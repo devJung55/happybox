@@ -17,6 +17,7 @@
 
 section.container {
     position: relative;
+    width: 1920px;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -412,12 +413,12 @@ div.banner div {
 .price-info {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .prd-item .sale {
     font-size: 13px;
     padding: 0 4px 0 0;
-    line-height: 20px;
     font-weight: 600;
     color: #f15220;
 }
@@ -439,22 +440,22 @@ div.banner div {
     font-weight: 700;
 }
 
-.main-personalization {
+.main-recommend {
     margin-top: 90px !important;
 }
 
-.personalization-title {
+.recommend-title {
     margin-bottom: 25px;
 }
 
-.personalization-title p {
+.recommend-title p {
     font-size: 16px;
     color: #666666;
     font-weight: 400;
     text-align: center;
 }
 
-.personalization-title .main-article-tit {
+.recommend-title .main-article-tit {
     margin-bottom: 10px;
 }
 
@@ -475,4 +476,33 @@ div.banner div {
     font-weight: 400;
     letter-spacing: 0.02em;
     margin-bottom: 4px;
+}
+
+.main-mid-bnr {
+    position: relative;
+    max-width: 1100px;
+    margin: 90px auto 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.main-mid-bnr a img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.best-list .main-article-tit {
+    text-align: center;
+}
+
+.best-list-item a img{
+    border-radius: 10px;
+}
+
+.best-list-item .txt-area {
+    height: 42px;
+    max-height: 42px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
 }

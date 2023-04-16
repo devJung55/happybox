@@ -4,6 +4,7 @@ for (let i = 0; i < 7; i++) {
     // 임시 함수들
     appendIndex1();
     appendIndex2();
+    appendIndex3();
 }
 
 function appendIndex1() {
@@ -107,5 +108,54 @@ function appendIndex2() {
     `;
 
     $(".swiperDataContainer").eq(2).append(text);
+}
+function appendIndex3() {
+    let text;
+
+    text = `
+        <li
+            class="ext-li colum swiper-slide swiper-slide-active"
+            style="width: 256.25px; margin-right: 25px"
+        >
+            <div class="prd-item type-sm">
+                <div class="img w200">
+                    <a href="/product/view?productCd=9005&amp;RC_Rview">
+                        <img
+                            class="lozad"
+                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230405/IMG1680Lig659554866_330_330.jpg"
+                        />
+                    </a>
+                </div>
+                <div class="desc-bottom">
+                    <div class="top">
+                        <em class="imgbadge-dlv">
+                            <span>특급배송</span>
+                        </em>
+                        <div class="rating-simply">
+                            <span class="rating-star"></span>
+                            <span class="score">4.8</span>
+                            <span class="total-num">5</span>
+                        </div>
+                    </div>
+
+                    <p class="tit">
+                        <a
+                            href="javascript:void(0)"
+                            class="text-elps2"
+                            >맛있닭 NEW 더담은 닭가슴살 도시락 시즌2
+                            다섯가지나물밥 &amp; 한입소스닭가슴살 짬뽕
+                            275g</a
+                        >
+                    </p>
+                    <span class="price"
+                        ><em class="num">26,450</em>원
+                    </span>
+                </div>
+                <!--// desc-bottom -->
+            </div>
+        </li>
+    `;
+
+    $(".swiperDataContainer").eq(3).append(text);
 }
 

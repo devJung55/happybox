@@ -3,7 +3,9 @@ let nextCheck;
 
 let itemListIndex = 0;
 let timerListIndex = 0;
-let personalItemIndex = 0;
+let recommendIndex = 0;
+// 임시
+let recommendIndex2 = 0;
 
 const $swiperBtnNext = $(".swiper-button-next");
 const $swiperBtnPrev = $(".swiper-button-prev");
@@ -75,7 +77,10 @@ function setitemListIndex(e) {
             globalIndex = nextCheck ? ++timerListIndex : --timerListIndex;
             break;
         case 2:
-            globalIndex = nextCheck ? ++personalItemIndex : --personalItemIndex;
+            globalIndex = nextCheck ? ++recommendIndex : --recommendIndex;
+            break;
+        case 3:
+            globalIndex = nextCheck ? ++recommendIndex2 : --recommendIndex2;
             break;
         default:
             break;
