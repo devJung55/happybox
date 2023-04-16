@@ -166,6 +166,11 @@ div.banner div {
     box-sizing: content-box;
     transition: 0.3s ease-in-out;
 }
+
+.best-list .frame-sm .swiper-container .swiper-wrapper {
+    justify-content: space-between;
+}
+
 .md-recomm-sec .main-md-recomm-swiper-btn.swiper-button-prev {
     width: 40px;
     height: 40px;
@@ -495,7 +500,7 @@ div.banner div {
     text-align: center;
 }
 
-.best-list-item a img{
+.best-list-item a img {
     border-radius: 10px;
 }
 
@@ -506,3 +511,368 @@ div.banner div {
     width: 100%;
     text-align: left;
 }
+
+.side-quick-area {
+    position: fixed;
+    top: 0;
+    right: 50%;
+    z-index: 11;
+    width: 100%;
+    min-width: 1400px;
+    max-width: 1440px;
+    transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+}
+.side-quick-area .side-quick {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 90px;
+}
+.side-quick-area.fixed {
+    position: fixed;
+}
+.side-quick-area.fixed > .side-quick {
+    top: 78px;
+}
+.side-quick-area.fixed.type2 > .side-quick {
+    top: 120px;
+}
+.side-quick-area.fixed.static {
+    position: relative;
+    top: 0;
+    bottom: -30px;
+    margin: 0 auto;
+    transform: none;
+    right: 0;
+    transition: none;
+}
+.side-quick .bnrs li {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #e6e6e6;
+}
+.side-quick .bnrs li + li {
+    margin-top: 10px;
+}
+.side-quick .recent-list {
+    margin: 10px 0;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    border-radius: 6px;
+    padding: 11px 9px;
+}
+.recent-list .recent-info {
+    padding: 0 13px;
+}
+.recent-list .recent-info .txt {
+    margin-top: 10px;
+    padding-bottom: 3px;
+    font-size: 13px;
+    border-bottom: 1px solid #666;
+    overflow: hidden;
+}
+.recent-list .recent-info .num {
+    float: right;
+    color: #fd5f01;
+}
+.recent-list .recent-info .num .ico-arr-right {
+    width: 10px;
+    height: 10px;
+    margin-left: 2px;
+}
+.recent-list .btn-move-group {
+    display: flex;
+    padding: 10px 0;
+    margin: 0 -10px;
+}
+.recent-list .btn-move-group:last-child {
+    padding-bottom: 0;
+}
+.recent-list .btn-move-group [class^="btn-"] {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    border: 0;
+    align-items: center;
+    height: 10px;
+    justify-content: center;
+    background-color: transparent;
+}
+.recent-list .btn-move-group [class^="btn-"] + [class^="btn-"] {
+    position: relative;
+}
+.recent-list .btn-move-group [class^="btn-"] + [class^="btn-"]::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1px;
+    height: 10px;
+    background-color: #e6e6e6;
+    transform: translateY(-50%);
+}
+.recent-list .btn-move-group [class^="btn-"].disabled {
+    pointer-events: none;
+}
+.recent-list .btn-move-group [class^="btn-"].disabled [class*="ico-arr-"] {
+    opacity: 1;
+    color: #ccc;
+}
+.recent-info .num .ico-arr-right:after,
+.recent-info .num .ico-arr-right:before {
+    box-shadow: none;
+}
+/* 배너 위치 */
+.wrap.main .side-quick-area .side-quick {
+    top: 489px;
+}
+.wrap.main .side-quick-area.fixed > .side-quick {
+    top: 78px;
+}
+.content-wrap.benefit-content ~ .side-quick-area .side-quick {
+    top: 630px;
+}
+.content-wrap.benefit-content ~ .side-quick-area.fixed > .side-quick {
+    top: 78px;
+}
+
+/*#recent-prod-list{height:236px}*/
+.recent-prd-item {
+    position: relative;
+    padding: 0;
+}
+.recent-prd-item ul li {
+    width: 70px;
+    height: 70px;
+}
+.recent-prd-item ul li.on {
+    display: block;
+}
+.recent-prd-item ul li:nth-child(3n) + li {
+    margin-top: 0;
+}
+.recent-prd-item ul li:nth-child(3n) ~ li {
+    display: none;
+}
+.recent-prd-item ul li + li {
+    margin-top: 10px;
+}
+.recent-prd-item ul li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.recent-prd-item ul li .img {
+    display: block;
+    position: relative;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    z-index: 2;
+    border-radius: 4px;
+}
+.recent-prd-item ul li .detail {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    width: 200px;
+    height: 100%;
+    border: 1px solid #999;
+    font-size: 12px;
+    padding: 10px 75px 10px 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.recent-prd-item ul li .detail:before {
+    display: block;
+    width: calc(100% - 72px);
+    height: 100%;
+    background: #fff;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.recent-prd-item ul li > a:hover .detail {
+    display: block;
+}
+.recent-prd-item ul li .detail .tit {
+    display: block;
+    margin-bottom: 2px;
+    color: #333;
+    line-height: 16px;
+}
+.recent-prd-item ul li .detail .recent-price-info {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 700;
+}
+.recent-prd-item ul li .detail .recent-price-info i {
+    font-weight: 400;
+    font-style: normal;
+}
+.recent-prd-item .btn-move-group {
+    position: absolute;
+    bottom: 10px;
+    left: 25px;
+}
+.recent-prd-item .btn-move-group .disabled {
+    pointer-events: none;
+}
+
+.no-recent {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 12px;
+}
+.no-recent .no-recent-txt {
+    font-size: 13px;
+    line-height: 17px;
+    color: #aaa;
+    padding-top: 24px;
+    background-image: url("/resources/pc/images/icon/ico-norecent.png");
+    background-repeat: no-repeat;
+    background-position: center 0;
+}
+.recent-list .sidebnr-link {
+    display: block;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+    padding: 5px 0;
+    border-top: 1px solid #ddd;
+}
+.recent-list .recent-heading .recent-title {
+    font-size: 13px;
+    line-height: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+.recent-list .recent-heading .recent-cnt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #ff8004;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 11px auto;
+}
+.side-quick .side-btns {
+    margin-top: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0;
+}
+.side-btns {
+    width: 50px;
+    margin: 0 auto;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid #e6e6e6;
+}
+/* btn */
+.btn-side-func {
+    border: 1px solid #ddd;
+    min-width: 32px;
+    height: 32px;
+    background-color: #f8f8f8;
+}
+.side-btns .btn-side-func {
+    width: 100%;
+    display: block;
+    height: 25px;
+    width: 100%;
+    background-image: none;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+}
+.side-btns .btn-side-func + .btn-side-func {
+    border-top: 1px solid #e6e6e6;
+}
+.side-btns .btn-side-func::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    left: 50%;
+    background-image: url("	https://www.rankingdak.com/resources/pc/images/icon/ico_sidebtn.png");
+    background-repeat: no-repeat;
+    background-size: auto 32px;
+    transform: translate(-50%, -50%);
+}
+.side-btns .btn-side-func.up::before {
+    background-position: -39px 0;
+}
+.side-btns .btn-side-func.down::before {
+    background-position: -79px 0;
+}
+
+.side-event-area {
+    position: absolute;
+    top: 640px;
+    left: 50%;
+    z-index: 8;
+    margin-left: -710px;
+}
+.side-event-area .side-event {
+    opacity: 0;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: 120px;
+}
+.side-event-area.fixed {
+    position: fixed;
+}
+.side-event-area.fixed > .side-event {
+    top: 60px;
+}
+.side-event-area .btn-open {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background: url(/resources/pc/images/icon/btn_wide.png) no-repeat;
+    opacity: 0;
+}
+.side-event-area .side-event-wide {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin-left: -550px;
+    width: 500px;
+    height: 220px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.4);
+}
+.side-event-area .side-event-wide a {
+    display: block;
+}
+.side-event-area .side-event-wide .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    text-indent: -9999px;
+    background: url(/resources/pc/images/icon/btn_close.png);
+    background-size: 40px;
+    cursor: pointer;
+}
+
