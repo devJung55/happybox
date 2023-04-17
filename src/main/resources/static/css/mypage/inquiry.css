@@ -219,3 +219,34 @@ img {
 .border-bottom {
     border-top: 1px solid #bbb;
 }
+
+.ui-accordion-view .question ~ .answer {
+    margin-top: 2px;
+}
+
+.accordion-list .answer {
+    position: relative;
+    padding: 30px 25px 30px 50px;
+    background: #F8F8F8;
+}
+
+.accordion-list .answer:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 34px;
+    left: 30px;
+    width: 10px;
+    height: 16px;
+    background: url(../../pc/images/icon/ico_bullet.png) -150px 0;
+}
+
+.accordion-list .answer .txt {
+    color: #666;
+    line-height: 24px;
+    margin-top: 5px;
+}
+
+.txt, .txt span {
+    word-break: break-all;
+}
