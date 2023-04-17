@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+		margin: 0;
+		padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+li {
+	list-style: none;
+}
+
+body {
+	background-color: #f1f1f1;
+	font-family: 'GmarketSansMedium';
+}
+
+button {
+	cursor: pointer;
+}
+
+.wrap {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.side-menu {
+	display: block;
+	position: fixed;
+	top: 0px;
+	bottom: 0;
+	z-index: 99;
+	width: 250px;
+	background-color: #4e4e4e;
+}
+
+.menu-space {
+	height: 15px;
+    border-bottom: 1px dashed gray;
+}
+
+.menu-bar li span {
+	margin: 10px;
+}
+
+.menu-bar .menu .menu-flex {
+	font-size: 14px;
+	color: #fff;
+	display: flex;
+	justify-content: flex-start;
+	margin: 20px 45px 0px;
+}
+
+.menus .select-menu {
+	font-size: 11px;
+	color: #fff;
+	margin-left: 67px;
+	margin-top: 5px;
+}
+
+.menus .select-menu span {
+	margin-left: 5px;
+}
+
+
+.menu-title {
+	display: flex;
+    justify-content: flex-start;
+    position: relative;
+    font-size: 21px;
+    color: #fff;
+    height: 32px;
+}
+
+.icon {
+	padding-top: 2px;
+    width: 16px;
+	filter: invert(71%) sepia(59%) saturate(0%) hue-rotate(176deg)
+		brightness(91%) contrast(94%);
+}
+
+.triangle {
+	padding-top: 5px;
+	width: 12px;
+}
+
+.menu .triangle-acitve {
+	transform: rotate(180deg);
+	width: 12px;
+}
+
+.menu-title div img {
+	padding-top: 5px;
+	width: 20px;
+}
+
+.select-menu {
+	font-size: 10px;
+}
+
+.menu-title-layout {
+	margin: 8px 18px 0px 44px;
+}
+
+.menus2, .menu1 {
+	display: none;
+}
+
+.menu-name {
+	color:#fff;
+	font-size: 20px;
+	margin-top: 6px;
+	font-weight: bold;
+}
+
+.info-margin-bottom {
+	margin-bottom: 10px;
+	
+}
+
