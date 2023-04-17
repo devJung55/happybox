@@ -1,0 +1,254 @@
+/* top-bar.html */
+
+html, body {
+    height: 100%;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    /* line-height: 1.4; */
+    font-family: 'Pretendard', sans-serif;
+    word-break: break-all;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+.head-mypage {
+    background: #F7F7F7;
+}
+
+.frame-full {
+    position: relative;
+    width: 100%;
+}
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.user-info-box {
+    width: 1100px;
+    margin: 0 auto;
+    background: #F8F8F8;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.user-info-box .inner {
+    display: table;
+    table-layout: auto;
+    width: 100%;
+}
+
+.user-info-box .inner > .column.user-info {
+    position: relative;
+    padding: 25px;
+}
+
+.user-info-box .inner > .column {
+    display: table-cell;
+    vertical-align: middle;
+    background: #fff;
+    padding: 0 25px;
+    text-align: left;
+}
+
+.user-info-box .user-info .img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12px;
+    padding: 8px 0 7px;
+}
+
+.ico-cou-level01 {
+    background-position: 0 0;
+}
+
+[class*="ico-cou-level"] {
+    display: inline-block;
+    width: 60px;
+    height: 62px;
+    background: url(../../img/mypage/profile.png) 0 0;
+
+    background-size: cover;
+}
+
+.user-info-box .user-info .txt {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.txt, .txt span {
+    word-break: break-all;
+}
+
+.user-info-box .user-info .txt .greeting {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.user-info-box .user-info .txt .greeting ~ .sep-list.type3 {
+    margin-top: 10px;
+}
+
+.user-info-box .user-info .sep-list.type3 li {
+    font-size: 14px;
+}
+
+.sep-list.type3 li {
+    padding: 0 10px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.sep-list li {
+    float: left;
+    position: relative;
+    padding: 0 13px 0 0;
+    color: #555;
+    font-size: 13px;
+    letter-spacing: -0.5px;
+}
+
+.user-info-box .user-info .sep-list.type3 li:before {
+    margin-top: -3px;
+}
+
+.sep-list.type3 li:before {
+    height: 10px;
+    background: #e6e6e6;
+    margin: 2px 10px 0 0;
+}
+
+#groupPointRateText:before {
+    display: inline-block;
+    content: '';
+    width: 1px;
+    height: 10px;
+    vertical-align: middle;
+    background: #C4C4C4;
+    margin: -1px 11px 0 0;
+}
+
+.user-info-box .user-info .user-info-list.type3 li.orange-entryItem {
+    padding-left: 3px;
+    margin: -3px 0 0 4px;
+}
+
+.user-info-box .user-info .user-info-list.type3 li.orange-entryItem .entry-tooltip {
+    padding: 3px 10px 4px;
+    border-radius: 30px;
+    display: inline-block;
+    font-size: 13px;
+    color: #fff;
+    background: #ff8137;
+}
+
+.user-info-box .user-info .user-info-list.type3 li.orange-entryItem .entry-tooltip:before {
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-right: 10px solid #ff8137;
+    display: block;
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    content: "";
+}
+
+.user-info-box .user-info .txt .sep-list.type3 ~ .level-tip {
+    margin-top: 5px;
+}
+
+.user-info-box .user-info .level-tip {
+    color: #ff6001;
+    font-size: 13px;
+}
+
+.user-info-box .user-info .btn-default-ex {
+    position: absolute;
+    top: 50%;
+    right: 35px;
+    transform: translateY(-50%);
+    border: 2px solid #ddd;
+}
+
+[class*="btn-rud-"] {
+    border-radius: 20px;
+}
+
+.user-info-box .user-info .btn-default-ex > span {
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.user-info-box .inner > .column + .column {
+    border-left: 4px solid #F8F8F8;
+}
+
+.user-info-box .inner > .column.order, .user-info-box .inner > .column.coupon, .user-info-box .inner > .column.point {
+    width: 15.45%;
+}
+
+.user-info-box .inner > .column {
+    display: table-cell;
+    vertical-align: middle;
+    background: #fff;
+    padding: 0 25px;
+    text-align: left;
+}
+
+.user-info-box .column > dt {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.user-info-box .column > dd {
+    color: #333;
+    font-size: 22px;
+    font-weight: 700;
+    word-break: keep-all;
+    max-width: 200px;
+    display: block;
+}
+
+.user-info-box .column > dd .num {
+    font-size: 28px;
+}
+
+.text-primary {
+    color: #FF6001 !important;
+}

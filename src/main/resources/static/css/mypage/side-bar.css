@@ -1,0 +1,79 @@
+/* side-bar.html */
+
+html, body {
+    height: 100%;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    /* line-height: 1.4; */
+    font-family: 'Pretendard', sans-serif;
+    word-break: break-all;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+.frame-left {
+    float: left;
+}
+
+.aside-menu-wrap {
+    width: 220px;
+}
+
+.aside-menu {
+    padding: 10px 24px;
+    border: 1px solid #E6E6E6;
+}
+
+.aside-menu .menu-list > li:first-child {
+    border-top: 0;
+}
+
+.aside-menu .menu-list > li {
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+}
+
+.aside-menu .menu-list > li .menu {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
+.aside-menu .menu-list > li .depth2 {
+    margin-top: 8px;
+}
+
+.aside-menu .menu-list > li .depth2 > li {
+    font-size: 14px;
+    color: #666;
+}
+
+.aside-menu .menu-list > li .depth2 > li + li {
+    margin-top: 8px;
+}
+
+.aside-menu .menu-list > li .menu {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}

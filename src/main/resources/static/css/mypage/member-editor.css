@@ -1,0 +1,141 @@
+/* member-editor.html */
+
+input::placeholder {
+    font: inherit;
+    color: #ccc;
+}
+
+.wrap {
+    position: relative;
+    min-width: 1300px;
+}
+
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+.content-wrap {
+    min-height: 700px;
+}
+
+.head-mypage ~ .frame-sm {
+    margin-top: 45px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.frame-right {
+    float: right;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+.board-form.type3 {
+    border-bottom: 0;
+}
+
+.board-form {
+    width: 100%;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #ccc;
+}
+
+.input-guide-box {
+    background: #F9F9F9;
+    padding: 100px 0;
+}
+
+.input-guide-box .inner {
+    padding: 0 175px;
+}
+
+.input-guide-box .inner .box-tit {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.input-guide-box .inner .txt {
+    color: #666;
+    line-height: 22px;
+    margin-bottom: 20px;
+}
+
+.input-guide-box .input-group {
+    width: 466px;
+}
+
+.input-group.type-lg {
+    height: 50px;
+}
+
+.input-group {
+    position: relative;
+    /* display: table; */
+    display: flex;
+    border-collapse: collapse;
+    height: 40px;
+    /* width: 100%; */
+}
+
+.input-group.type-lg .input-text, .input-text.type-lg {
+    /* height: 50px; */
+    padding: 3px 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.input-group > .input-text {
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+
+.input-group.type-lg > .input-text + .input-group-btn:last-child {
+    padding: 0 0 0 6px;
+}
+
+.input-guide-box .input-group.type-lg .input-group-btn .btn-form {
+    width: 100px;
+    font-size: 15px;
+}
+
+.input-group.type-lg .input-group-btn .btn-form {
+    height: 50px;
+    padding: 0 10px;
+    min-width: auto;
+}
+
+.btn-primary {
+    background: #ff6001;
+    color: #fff;
+    border: 1px solid #ff6001;
+    border-radius: 3px;
+}

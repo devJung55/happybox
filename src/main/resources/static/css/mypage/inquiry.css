@@ -1,0 +1,221 @@
+/* inquiry.html */
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.wrap {
+    position: relative;
+    min-width: 1300px;
+}
+
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+.content-wrap {
+    min-height: 700px;
+}
+
+.head-mypage ~ .frame-sm {
+    margin-top: 45px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.frame-right {
+    float: right;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+.board-list {
+    width: 100%;
+    border-top: 1px solid #666;
+}
+
+.accordion-list {
+    border-bottom: 1px solid #bbb;
+}
+
+.accordion-list > li > .title-div {
+    position: relative;
+    display: block;
+    padding: 24px 150px 20px 0;
+    cursor: pointer;
+}
+
+.state-end, .state-wait {
+    background: #999;
+    color: #fff;
+}
+
+.state-wait {
+    padding: 0 7px;
+    height: 22px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.8;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.accordion-list .title-div .classify {
+    vertical-align: top;
+    margin: 0 3px;
+}
+
+.accordion-list > li > .title-div .right {
+    position: absolute;
+    top: 24px;
+    right: 15px;
+    color: #999;
+}
+
+.accordion-list .title-div .right .date {
+    color: #666;
+    margin-right: 30px;
+}
+
+.arrow-0deg {
+    transform: rotate(0deg);/* arrow 시작 방향 */
+    filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
+}
+
+.arrow-180deg {
+    transform: rotate(180deg);/* arrow 상세보기 방향 */
+    filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
+}
+
+
+/* vvvvvvvvvvvvvvvvvvvinquiry 상세보기vvvvvvvvvvvvvvvvvvv  */
+
+
+.ui-accordion-view {
+    position: relative;
+}
+
+.accordion-list .question .detail-div {
+    padding: 30px 25px;
+    background: #F8F8F8;
+    border-top: 1px solid #E9E9E9;
+}
+
+.question .detail-div .bottom {
+    overflow: hidden;
+    margin-top: 20px;
+    position: relative;
+    min-height: 18px;
+}
+
+.question .detail-div .bottom .added-file {
+    float: left;
+    color: #666;
+}
+
+.question .detail-div .bottom .added-file .thum-list > li {
+    vertical-align: top;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    margin-right: 5px;
+}
+
+.question .detail-div .bottom .sep-list {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.question .detail-div .bottom .sep-list li {
+    font-size: 12px;
+    color: #666;
+}
+
+.sep-list.type3 li {
+    padding: 0 10px 0 0;
+}
+
+.sep-list li {
+    float: left;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+
+/* ^^^^^^^^^^^^^^^^^^^^^^inquiry 상세보기^^^^^^^^^^^^^^^^^^^^^^  */
+
+.page-bottom {
+    position: relative;
+}
+
+.board-list ~ .page-bottom {
+    margin-top: 30px;
+}
+
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.pagination > a {
+    height: 25px;
+    padding: 0 1px;
+    margin: 0 8px 0;
+    color: #999;
+}
+
+.pagination > a.current, .pagination > a.on {
+    border-bottom: 2px solid #FB5001;
+    color: #FB5001;
+    font-weight: 700;
+}
+
+.page-bottom .right-area {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+} 
+
+.btn-default {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-basic-md2 {
+    min-width: 67px;
+    height: 38px;
+    padding: 5px 18px;
+}
+
+.border-bottom {
+    border-top: 1px solid #bbb;
+}

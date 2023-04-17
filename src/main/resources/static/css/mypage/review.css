@@ -1,0 +1,116 @@
+/* review-list.html */
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.wrap {
+    position: relative;
+    min-width: 1300px;
+}
+
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+.content-wrap {
+    min-height: 700px;
+}
+
+.head-mypage ~ .frame-sm {
+    margin-top: 45px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.frame-right {
+    float: right;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+.grid-list-wrap {
+    border-top: 1px solid #666;
+    padding: 20px 0 0;
+    position: relative;
+}
+
+.ext-li {
+    width: 25%;
+}
+
+[class*="grid-area-"] > .colum, .grid-area > .colum {
+    float: left;
+    margin-bottom: 30px;
+}
+
+.prd-item .img.w180 {
+    width: 180px;
+    height: 180px;
+}
+
+.prd-item .img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5f5f5;
+}
+
+.prd-item .img + .desc-bottom, .prd-item .timer ~ .desc-bottom {
+    margin-top: 6px;
+}
+
+.prd-item .brand-name {
+    color: #3A4C67;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.prd-item .origin {
+    font-size: 13px;
+    line-height: 20px;
+    color: #3A4C67;
+}
+
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.pagination > a {
+    display: inline-block;
+    height: 25px;
+    padding: 0 1px;
+    margin: 0 8px 0;
+    color: #999;
+}
+
+.pagination > a.current, .pagination > a.on {
+    border-bottom: 2px solid #FB5001;
+    color: #FB5001;
+    font-weight: 700;
+}
