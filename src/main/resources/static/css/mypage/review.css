@@ -96,6 +96,10 @@ img {
     color: #3A4C67;
 }
 
+p.origin {
+    margin: 0;
+}
+
 .pagination {
     margin-top: 60px;
     text-align: center;
