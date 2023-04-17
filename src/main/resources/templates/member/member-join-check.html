@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 선택</title>
+    <link rel="stylesheet" href="../../static/css/global/global.css" />
+    <link rel="stylesheet" href="../../static/css/member/member.css" />
+    <link rel="stylesheet" href="../../static/css/member/join-check.css" />
+  </head>
+  <body>
+    <section id="contents" class="container" style="padding-bottom: 0px">
+      <div class="join-easyGeneral">
+        <div class="dimd">
+          <!-- 가입된 계정이 있다는 모달창 -->
+          <div class="layer-box">
+            <div class="title">
+              <span>회원가입된 계정이 있습니다.</span>
+            </div>
+            <div class="login-btn-wrap">
+              <div class="password-btn" onclick="location.href='/auth/findpw'">
+                <p>비밀번호 찾기</p>
+              </div>
+              <div class="login-btn" onclick="location.href='/auth/login'">
+                <span>로그인</span>
+              </div>
+              <a href="javascript:void(0)">신규 회원가입 &gt;</a>
+            </div>
+            <div class="xbox">
+              <i class="ico-x-black"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="join-certified frame-full">
+        <div class="frame-sm">
+          <div class="certified-wrap">
+            <div class="certified-title">
+              <h2>회원가입</h2>
+              <p>본인인증</p>
+              <span>랭킹닭컴 가입을 위해 본인인증을 진행해주세요.</span>
+            </div>
+            <div class="certified-btn-wrap text-center">
+              <button class="certified-btn">
+                휴대폰 인증
+              </button>
+            </div>
+            <div class="sns-certified-wrap">
+              <div class="sns-certified-title text-center">
+                <p>SNS 간편 회원가입</p>
+              </div>
+              <div class="sns-login">
+                <ul class="sns-login-list">
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="ico-sns-loin naver"></i><span class="blind">네이버 로그인</span></a
+                    >
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"
+                      ><i class="ico-sns-loin kakao"></i><span class="blind">카카오 로그인</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

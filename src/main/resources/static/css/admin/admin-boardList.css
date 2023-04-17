@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+.container {
+	width: 100%;
+	margin-left: 250px;
+	margin-top: 55px;
+}
+
+tr {
+	border-bottom: 0.5px solid #c60a164d;
+	line-height: 50px;
+}
+
+table th, table td {
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+.checkbox-line {
+	line-height: 1px;
+}
+
+table td {
+	font-weight: 300;
+}
+
+table {
+	text-align : center;
+	width: 100%;
+	border-collapse: collapse
+}
+
+.board-info-box {
+	border: 0.0625rem solid #f2f2f2;
+    box-shadow: 11px 13px 11px -14px grey;
+    background: #fff;
+}
+
+.info-title-box-flex {
+	display: flex;
+    position: fixed;
+	justify-content: flex-start;
+}
+
+.info-title-box {
+	width: 100%;
+	height: 55px;
+	border-radius: 3px;
+	background: #fff;
+	box-shadow: 11px 13px 11px -14px grey;
+}
+
+.info-table {
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.board-info-title-box {
+	padding: 20px 27px 0;
+}
+
+.board-info-title-box {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.logo-box img {
+	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
+	width: 80px;
+}
+
+.logo-box {
+	padding: 4px 10px 0px 25px;
+}
+
+.logo-box-layout {
+	display: flex;
+	width: 250px;	
+}
+
+.logo-title {
+	color: #EAE847;
+	padding-top: 10px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.select-name {
+	padding-top : 17px;
+	padding-left: 10px;
+}
+
+.delete-box {
+	text-align: right;
+}
+
+.delete-button {
+	box-shadow: 2px 2px 7px -2px grey;
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 120px;
+    height: 50px;
+    background-color: #fff;
+    font-weight: bold;
+}
+
+.container-margin {
+	margin: 40px 100px 0px;
+}
+
+.board-info-box-layout {
+	margin-top: 30px;	
+}
+
+.page-button-box-layout {
+	text-align: center;	
+	margin-top: 50px;
+}
+
+.page-button-box {
+	display: flex;
+	justify-content:center;
+}
+
+.page-button-active {
+	width: 20px;
+	height: 20px;
+	background-color: #818298;
+	color : #fff;	
+	border-radius: 2px;	
+}
+
+.page-button {
+	width: 20px;
+	cursor: pointer;
+} 
+
+.page-button-box {
+	font-size: 13px;
+}
+
+.page-button-margin {
+	margin:0 auto;
+}
+
+.modify-button {
+	padding-right: 20px;
+}
+
+.info-table .modify-button {
+	width: 10%;
+	font-weight: 500;
+}
+
+.modify-button button {
+	border: none;
+	background: none;
+	font-size: inherit;
+	font-family: 'GmarketSansMedium';
+	font-weight: 500;
+	margin-left: 5px;
+}
+
+.update-button-flex {
+	display: flex;
+	justify-content: flex-end;	
+}
+
+.register-button {
+	margin-right: 10px;
+	box-shadow: 2px 2px 7px -2px grey;
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 120px;
+    height: 50px;
+    background-color: #fff ;
+    font-weight: bold;
+}
+
+.page-button-margin div {
+	margin-top: 3px;
+}
+
+.right-button {
+	margin-left: 10px;
+	cursor : pointer;
+	width: 15px;	
+} 	
+
+.left-button {
+	margin-right: 10px;
+	width: 15px;	
+	cursor: pointer;
+}

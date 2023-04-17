@@ -101,6 +101,11 @@ a {
     color: inherit;
 }
 
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
 /* Font  */
 @font-face {
     font-family: 'Pretendard';

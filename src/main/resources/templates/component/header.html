@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/static/css/global/global.css" />
-        <link rel="stylesheet" href="/static/css/component/header.css" />
+        <link rel="stylesheet" href="../../static/css/global/global.css" />
+        <link rel="stylesheet" href="../../static/css/component/header.css" />
     </head>
     <body>
         <div class="header">
@@ -44,29 +44,20 @@
                             class="btn-top-search"
                             id="btnTopSearch"
                             name="btnTopSearch"
-                        >
-                            <span class="blind">검색</span>
-                        </button>
+                        ></button>
                     </div>
                 </div>
                 <!--  -->
                 <div class="my-menu">
                     <ul>
                         <li>
-                            <a href="javascript:void(0)" class="btn-util-coupon" title=""
-                                ><span class="blind">쿠폰</span></a
-                            >
+                            <a href="javascript:void(0)" class="btn-util-coupon" title=""></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" class="btn-util-mypage" title=""
-                                ><span class="blind">마이페이지</span></a
-                            >
+                            <a href="javascript:void(0)" class="btn-util-mypage" title=""></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" class="btn-util-cart" title="">
-                                <span class="blind">장바구니</span>
-                                <em class="count">0</em>
-                            </a>
+                            <a href="javascript:void(0)" class="btn-util-cart" title=""></a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +69,7 @@
                             <span>카테고리</span>
                         </a>
                         <nav id="all-category" class="category-menu">
-                            <ul class="cate-dep1" style="display: none";>
+                            <ul class="cate-dep1" style="display: none" ;>
                                 <li>
                                     <a href="javascript:void(0)" data-cd1="R254">
                                         <i class="ico-cate-gnb">
@@ -138,4 +129,18 @@
             </div>
         </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $("document").ready(function () {
+            $(window).scroll(function () {
+                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+
+                if (position >= 120) {
+                    $(".gnb-wrap").addClass("fixed");
+                } else {
+                    $(".gnb-wrap").removeClass("fixed");
+                }
+            });
+        });
+    </script>
 </html>
