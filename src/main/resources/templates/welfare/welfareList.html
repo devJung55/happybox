@@ -318,15 +318,17 @@
                                             class="btn-search btn_brandSearch"
                                             title="검색"
                                         >
-                                        <img src="../../static/img/search-icon.png" alt="">    
-                                        <span class="blind">검색하기</span>
+                                            <img src="../../static/img/search-icon.png" alt="" />
+                                            <span class="blind">검색하기</span>
                                         </button>
                                     </span>
                                 </div>
                             </div>
                         </div>
+                        <!-- 검색 부분 -->
                         <div class="sorting-search-box">
                             <div class="inner">
+                                <!-- 지역별 정렬 -->
                                 <fieldset>
                                     <legend class="sort-tit">지역</legend>
                                     <ul class="sorting-class-list">
@@ -397,6 +399,7 @@
                                         </li>
                                     </ul>
                                 </fieldset>
+                                <!-- 카테고리별 정렬 -->
                                 <fieldset>
                                     <legend class="sort-tit">카테고리</legend>
                                     <ul class="sorting-class-list">
@@ -423,9 +426,7 @@
                                                     value="BC00000003"
                                                     data-type="search_cate"
                                                 />
-                                                <label for="radio-search-BC00000003"
-                                                    >닭가슴살</label
-                                                >
+                                                <label for="radio-search-BC00000003">인기순</label>
                                             </div>
                                         </li>
                                         <li>
@@ -438,230 +439,25 @@
                                                     value="BC00000002"
                                                     data-type="search_cate"
                                                 />
-                                                <label for="radio-search-BC00000002">샐러드</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC00000004"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC00000004"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC00000004">도시락</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC00000005"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC00000005"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC00000005"
-                                                    >소고기/연어</label
-                                                >
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC00000006"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC00000006"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC00000006"
-                                                    >건강/간식</label
-                                                >
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC00000007"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC00000007"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC00000007"
-                                                    >과일/음료</label
-                                                >
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC00000008"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC00000008"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC00000008">간편식</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="sorting-class-list">
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-401"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    data-type="search_sort"
-                                                    value="100"
-                                                    checked=""
-                                                />
-                                                <label for="radio-search-401">인기순</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-402"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    data-type="search_sort"
-                                                    value="200"
-                                                />
-                                                <label for="radio-search-402">판매량순</label>
+                                                <label for="radio-search-BC00000002">판매순</label>
                                             </div>
                                         </li>
                                     </ul>
                                 </fieldset>
                             </div>
-                            <!--// inner -->
                         </div>
-                        <!--// sorting-search-box -->
+                        <!-- 복지관 리스트 뿌려지는 곳 -->
                         <div class="brand-list-wrap frame-sm" id="div_showBrand">
-                            <script type="text/javascript">
-                                $(document).ready(function () {
-                                    const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-                                    observer.observe();
-
-                                    $('.goView').on('click', fnView);
-                                });
-
-                                function CmBrandPageMove(pg, size) {
-                                    var frm = document.listForm;
-                                    frm['nowPageNo'].value = pg;
-
-                                    if (size != undefined) {
-                                        frm['pageSize'].value = size;
-                                    }
-
-                                    fnListAjax();
-                                    // fnMoveScroll('#div_showBrand');
-                                }
-
-                                function fnView() {
-                                    let brandCd = $(this).data('target');
-                                    document.location.href =
-                                        '/display/brand/view?brandCd=' + brandCd;
-                                }
-                            </script>
-
-                            <form
-                                id="listForm"
-                                name="listForm"
-                                action="/display/brand/list/ajax"
-                                method="get"
-                            >
-                                <input type="hidden" name="nowPageNo" value="1" />
-                            </form>
-                            <ul class="grid-area-span4 gap20">
-                                <li class="colum">
-                                    <div class="brand-list-item">
-                                        <div class="img w260">
-                                            <a
-                                                href="javascript:void(0);"
-                                                class="goView"
-                                                data-target="1046"
-                                            >
-                                                <img
-                                                    data-src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220329/IMG1648xfO549504279.jpg"
-                                                    alt="잇메이트"
-                                                    class="lozad"
-                                                    onerror="fnNoImage(this);"
-                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220329/IMG1648xfO549504279.jpg"
-                                                    data-loaded="true"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div class="txt-area">
-                                            <strong class="tit text-elps">잇메이트</strong>
-                                            <p class="slogan text-elps">
-                                                매일 손이 가는 나만의 식단친구!
-                                            </p>
-                                            <div class="custom-checkbox">
-                                                <input
-                                                    type="checkbox"
-                                                    id="wish-1046"
-                                                    class="checkbox-wish btn_wish"
-                                                    value="1046"
-                                                    name="wish-1046"
-                                                />
-                                                <label for="wish-1046">
-                                                    <span class="blind">찜하기</span></label
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--// brand-list-item -->
-                                </li>
+                            <ul class="welfare-list-wrap gap20">
+                                <!-- 리스트 1 -->
                             </ul>
                             <!--// grid-area-span4 -->
                             <div class="page-bottom">
-                                <div class="pagination">
-                                    <div class="pagging-wrap page-area">
-                                        <div class="page-number">
-                                            <div class="pagination mt20">
-                                                <a
-                                                    href="javascript:CmBrandPageMove('0')"
-                                                    data-page="0"
-                                                    class="btn-page prev"
-                                                    ><span class="blind">이전</span></a
-                                                >
-                                                <a href="#" class="current"><span>1</span></a>
-                                                <a
-                                                    href="javascript:CmBrandPageMove('2')"
-                                                    data-page="2"
-                                                    ><span>2</span></a
-                                                >
-                                                <a
-                                                    href="javascript:CmBrandPageMove('3')"
-                                                    data-page="3"
-                                                    ><span>3</span></a
-                                                >
-                                                <a
-                                                    href="javascript:CmBrandPageMove('4')"
-                                                    data-page="4"
-                                                    ><span>4</span></a
-                                                >
-                                                <a
-                                                    href="javascript:CmBrandPageMove('5')"
-                                                    data-page="5"
-                                                    class="btn-page next"
-                                                    ><span class="blind">다음</span></a
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="pagination mt20" style="margin-top: 30px;"><!-- // 페이징 -->
+                                    <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
+                                    <a href="javascript:void(0)" class="current"><span>1</span></a>
+                                    <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
+                                </div><!--// pagination -->
                             </div>
                         </div>
                         <!--// brand-list-wrap  -->
@@ -670,4 +466,6 @@
             </div>
         </section>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../static/js/welfare/welfareList.js"></script>
 </html>
