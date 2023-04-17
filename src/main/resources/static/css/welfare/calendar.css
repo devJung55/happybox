@@ -1,0 +1,101 @@
+/* 복지관 달력 */
+
+/* common */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, select, button, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr, textarea {
+    margin: 0;
+    padding: 0;
+}
+
+/* =================================== */
+
+.sche-cal {
+    margin-bottom: 30px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.sche-cal .date > a.prev {
+    background-image: url(https://www.habitat.or.kr/images/sub/cal-prev.jpg);
+}
+
+.sche-cal .date > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sche-cal .date h5 {
+    margin: 0 40px;
+    font-size: 34px;
+    color: #333333;
+    letter-spacing: -1px;
+    font-weight: 600;
+}
+
+a:link {
+    text-decoration: none;
+    color: #666666;
+}
+
+.sche-cal .date > a {
+    width: 38px;
+    height: 38px;
+    background-position: center center;
+    background-size: contain;
+}
+
+.sche-cal .date > a.next {
+    background-image: url(https://www.habitat.or.kr/images/sub/cal-next.jpg);
+}
+
+.sche-cal .tblWrap {
+    margin-top: 30px;
+}
+
+.sche-cal .tblWrap table {
+    width: 100%;
+    border-top: 2px solid #333;
+    table-layout: fixed;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.sche-cal .tblWrap table thead th {
+    text-align: center;
+    background: #f7f7f7;
+    border: none;
+    font-size: 16px;
+    color: #333333;
+    letter-spacing: -1px;
+    padding: 15px 0;
+    font-weight: 300;
+}
+
+.sche-cal .tblWrap table tr > * {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.sche-cal .tblWrap table tr > * {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.sche-cal .tblWrap table .wrap {
+    position: relative;
+    min-height: 130px;
+    box-sizing: border-box;
+    padding-top: 25px;
+    text-align: left;
+}
+
+.sche-cal .tblWrap table .wrap .date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 14px;
+    color: #555555;
+}
