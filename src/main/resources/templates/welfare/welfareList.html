@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../../static/css/global/global.css" />
+        <link rel="stylesheet" href="../../static/css/welfare/welfareList.css" />
+    </head>
+    <body>
+        <section class="welfare-container">
+            <div class="welfare-content">
+                <!-- 복지관리스트 -->
+                <div class="page-head">
+                    <div class="title-area">
+                        <h2 class="title">복지관 리스트</h2>
+                    </div>
+                </div>
+                <article class="frame-full-bar">
+                    <!-- 인기 복지관 탑4 -->
+                    <div class="article-title-div">
+                        <h3 class="title">인기브랜드</h3>
+                    </div>
+                    <!-- 인기 복지관 슬라이드 -->
+                    <div class="frame-slide-overlap">
+                        <div class="brand-swiper-list">
+                            <ul class="swiper-wrapper">
+                                <!-- 복지관 리스트 1 -->
+                                <li class="swiper-slide swiper-slide-active">
+                                    <div class="brand-list-item">
+                                        <div class="welfare-img">
+                                            <a href="">
+                                                <img
+                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                                    alt="맛있닭"
+                                                />
+                                                <span class="brand-logo">
+                                                    <img
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO2_PC/20220401/IMG1648lhC789791068.png"
+                                                        alt="맛있닭"
+                                                    />
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="txt-area">
+                                            <strong class="welfare-name text-elps">맛있닭</strong>
+                                            <p class="welfare-info text-elps">Life is Delicious!</p>
+                                            <span class="welfare-location text-elps"
+                                                >서울 관악구</span
+                                            >
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- 복지관 리스트 2 -->
+                                <li class="swiper-slide swiper-slide-active">
+                                    <div class="brand-list-item">
+                                        <div class="welfare-img">
+                                            <a href="">
+                                                <img
+                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                                    alt="맛있닭"
+                                                />
+                                                <span class="brand-logo">
+                                                    <img
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO2_PC/20220401/IMG1648lhC789791068.png"
+                                                        alt="맛있닭"
+                                                    />
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="txt-area">
+                                            <strong class="welfare-name text-elps">맛있닭</strong>
+                                            <p class="welfare-info text-elps">Life is Delicious!</p>
+                                            <span class="welfare-location text-elps"
+                                                >서울 관악구</span
+                                            >
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- 복지관 리스트 3 -->
+                                <li class="swiper-slide swiper-slide-active">
+                                    <div class="brand-list-item">
+                                        <div class="welfare-img">
+                                            <a href="">
+                                                <img
+                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                                    alt="맛있닭"
+                                                />
+                                                <span class="brand-logo">
+                                                    <img
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO2_PC/20220401/IMG1648lhC789791068.png"
+                                                        alt="맛있닭"
+                                                    />
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="txt-area">
+                                            <strong class="welfare-name text-elps">맛있닭</strong>
+                                            <p class="welfare-info text-elps">Life is Delicious!</p>
+                                            <span class="welfare-location text-elps"
+                                                >서울 관악구</span
+                                            >
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- 복지관 리스트 4 -->
+                                <li class="swiper-slide swiper-slide-active">
+                                    <div class="brand-list-item">
+                                        <div class="welfare-img">
+                                            <a href="">
+                                                <img
+                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                                    alt="맛있닭"
+                                                />
+                                                <span class="brand-logo">
+                                                    <img
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO2_PC/20220401/IMG1648lhC789791068.png"
+                                                        alt="맛있닭"
+                                                    />
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="txt-area">
+                                            <strong class="welfare-name text-elps">맛있닭</strong>
+                                            <p class="welfare-info text-elps">Life is Delicious!</p>
+                                            <span class="welfare-location text-elps"
+                                                >서울 관악구</span
+                                            >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <!-- 이달의 복지관 -->
+                <article class="frame-sm">
+                    <div class="article-title-div">
+                        <h3 class="title">이달의 복지관</h3>
+                    </div>
+                    <div class="month-welfare-list gap20">
+                        <div class="colum">
+                            <div class="brand-box">
+                                <div class="top-title">
+                                    <h4 class="tit">
+                                        <img
+                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO1_PC/20220401/IMG1648sfu789775259.png"
+                                            alt="맛있닭"
+                                        />
+                                        <span class="txt">맛있닭</span>
+                                    </h4>
+                                    <a
+                                        href="javascript:void(0);"
+                                        class="btn-link-txt4 goView"
+                                        data-target="1042"
+                                    >
+                                        <span>더보기</span><i class="ico-arr-right"></i>
+                                    </a>
+                                </div>
+                                <!--// top-title -->
+                                <ul class="welfare-list-ul gap16">
+                                    <li class="colum">
+                                        <div class="welfare-in-box">
+                                            <a
+                                                href="/product/view?productCd=923&amp;siteCd=RANK"
+                                                data-target="923"
+                                            >
+                                                <span class="welfare-img w156"
+                                                    ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                                <span class="price"><em>15,900</em>원</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="colum">
+                                        <div class="welfare-in-box">
+                                            <a
+                                                href="/product/view?productCd=923&amp;siteCd=RANK"
+                                                data-target="923"
+                                            >
+                                                <span class="welfare-img w156"
+                                                    ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                                <span class="price"><em>15,900</em>원</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="colum">
+                                        <div class="welfare-in-box">
+                                            <a
+                                                href="/product/view?productCd=923&amp;siteCd=RANK"
+                                                data-target="923"
+                                            >
+                                                <span class="welfare-img w156"
+                                                    ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                                <span class="price"><em>15,900</em>원</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="colum">
+                            <div class="brand-box">
+                                <div class="top-title">
+                                    <h4 class="tit">
+                                        <img
+                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO1_PC/20220401/IMG1648sfu789775259.png"
+                                            alt="맛있닭"
+                                        />
+                                        <span class="txt">맛있닭</span>
+                                    </h4>
+                                    <a
+                                        href="javascript:void(0);"
+                                        class="btn-link-txt4 goView"
+                                        data-target="1042"
+                                    >
+                                        <span>더보기</span><i class="ico-arr-right"></i>
+                                    </a>
+                                </div>
+                                <ul class="welfare-list-ul gap16">
+                                    <li class="colum">
+                                        <div class="welfare-in-box">
+                                            <a
+                                                href="/product/view?productCd=923&amp;siteCd=RANK"
+                                                data-target="923"
+                                            >
+                                                <span class="welfare-img w156"
+                                                    ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                                <span class="price"><em>15,900</em>원</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="colum">
+                                        <div class="welfare-in-box">
+                                            <a
+                                                href="/product/view?productCd=923&amp;siteCd=RANK"
+                                                data-target="923"
+                                            >
+                                                <span class="welfare-img w156"
+                                                    ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                                <span class="price"><em>15,900</em>원</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="colum">
+                                        <div class="welfare-in-box">
+                                            <a
+                                                href="/product/view?productCd=923&amp;siteCd=RANK"
+                                                data-target="923"
+                                            >
+                                                <span class="welfare-img w156"
+                                                    ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                                <span class="price"><em>15,900</em>원</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <form id="searchForm" name="searchForm" action="/display/brand/list" method="get">
+                    <input type="hidden" name="returnUrl" value="/display/brand/list" />
+                    <input type="hidden" name="searchType" value="" />
+                    <div class="welfare-search-wrap">
+                        <div class="search-head">
+                            <div class="input-group-wrap line-type">
+                                <div class="input-group">
+                                    <label for="" class="blind">검색</label>
+                                    <input
+                                        type="text"
+                                        id=""
+                                        class="input-text"
+                                        name="searchKeyword"
+                                        value=""
+                                        placeholder="복지관을 검색해보세요"
+                                    />
+                                    <span class="input-group-btn">
+                                        <button
+                                            type="button"
+                                            class="btn-search btn_brandSearch"
+                                            title="검색"
+                                        >
+                                        <img src="../../static/img/search-icon.png" alt="">    
+                                        <span class="blind">검색하기</span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sorting-search-box">
+                            <div class="inner">
+                                <fieldset>
+                                    <legend class="sort-tit">지역</legend>
+                                    <ul class="sorting-class-list">
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-200"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="all"
+                                                    data-type="search_hangul"
+                                                />
+                                                <label for="radio-search-200">전체</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-201"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="강동구"
+                                                    data-type="search_hangul"
+                                                />
+                                                <label for="radio-search-201">강동구</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-202"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="강북구"
+                                                    data-type="search_hangul"
+                                                />
+                                                <label for="radio-search-202">강북구</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-203"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="강남구"
+                                                    data-type="search_hangul"
+                                                />
+                                                <label for="radio-search-203">강남구</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-etc"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="etc"
+                                                    data-type="search_hangul"
+                                                />
+                                                <label for="radio-search-etc">기타</label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                                <fieldset>
+                                    <legend class="sort-tit">카테고리</legend>
+                                    <ul class="sorting-class-list">
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC99999999"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC99999999"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC99999999">전체</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC00000003"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC00000003"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC00000003"
+                                                    >닭가슴살</label
+                                                >
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC00000002"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC00000002"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC00000002">샐러드</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC00000004"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC00000004"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC00000004">도시락</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC00000005"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC00000005"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC00000005"
+                                                    >소고기/연어</label
+                                                >
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC00000006"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC00000006"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC00000006"
+                                                    >건강/간식</label
+                                                >
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC00000007"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC00000007"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC00000007"
+                                                    >과일/음료</label
+                                                >
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-BC00000008"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    value="BC00000008"
+                                                    data-type="search_cate"
+                                                />
+                                                <label for="radio-search-BC00000008">간편식</label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="sorting-class-list">
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-401"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    data-type="search_sort"
+                                                    value="100"
+                                                    checked=""
+                                                />
+                                                <label for="radio-search-401">인기순</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="radio-search-402"
+                                                    class="radio-box-type1"
+                                                    name="searchVal"
+                                                    data-type="search_sort"
+                                                    value="200"
+                                                />
+                                                <label for="radio-search-402">판매량순</label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <!--// inner -->
+                        </div>
+                        <!--// sorting-search-box -->
+                        <div class="brand-list-wrap frame-sm" id="div_showBrand">
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+                                    observer.observe();
+
+                                    $('.goView').on('click', fnView);
+                                });
+
+                                function CmBrandPageMove(pg, size) {
+                                    var frm = document.listForm;
+                                    frm['nowPageNo'].value = pg;
+
+                                    if (size != undefined) {
+                                        frm['pageSize'].value = size;
+                                    }
+
+                                    fnListAjax();
+                                    // fnMoveScroll('#div_showBrand');
+                                }
+
+                                function fnView() {
+                                    let brandCd = $(this).data('target');
+                                    document.location.href =
+                                        '/display/brand/view?brandCd=' + brandCd;
+                                }
+                            </script>
+
+                            <form
+                                id="listForm"
+                                name="listForm"
+                                action="/display/brand/list/ajax"
+                                method="get"
+                            >
+                                <input type="hidden" name="nowPageNo" value="1" />
+                            </form>
+                            <ul class="grid-area-span4 gap20">
+                                <li class="colum">
+                                    <div class="brand-list-item">
+                                        <div class="img w260">
+                                            <a
+                                                href="javascript:void(0);"
+                                                class="goView"
+                                                data-target="1046"
+                                            >
+                                                <img
+                                                    data-src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220329/IMG1648xfO549504279.jpg"
+                                                    alt="잇메이트"
+                                                    class="lozad"
+                                                    onerror="fnNoImage(this);"
+                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220329/IMG1648xfO549504279.jpg"
+                                                    data-loaded="true"
+                                                />
+                                            </a>
+                                        </div>
+                                        <div class="txt-area">
+                                            <strong class="tit text-elps">잇메이트</strong>
+                                            <p class="slogan text-elps">
+                                                매일 손이 가는 나만의 식단친구!
+                                            </p>
+                                            <div class="custom-checkbox">
+                                                <input
+                                                    type="checkbox"
+                                                    id="wish-1046"
+                                                    class="checkbox-wish btn_wish"
+                                                    value="1046"
+                                                    name="wish-1046"
+                                                />
+                                                <label for="wish-1046">
+                                                    <span class="blind">찜하기</span></label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--// brand-list-item -->
+                                </li>
+                            </ul>
+                            <!--// grid-area-span4 -->
+                            <div class="page-bottom">
+                                <div class="pagination">
+                                    <div class="pagging-wrap page-area">
+                                        <div class="page-number">
+                                            <div class="pagination mt20">
+                                                <a
+                                                    href="javascript:CmBrandPageMove('0')"
+                                                    data-page="0"
+                                                    class="btn-page prev"
+                                                    ><span class="blind">이전</span></a
+                                                >
+                                                <a href="#" class="current"><span>1</span></a>
+                                                <a
+                                                    href="javascript:CmBrandPageMove('2')"
+                                                    data-page="2"
+                                                    ><span>2</span></a
+                                                >
+                                                <a
+                                                    href="javascript:CmBrandPageMove('3')"
+                                                    data-page="3"
+                                                    ><span>3</span></a
+                                                >
+                                                <a
+                                                    href="javascript:CmBrandPageMove('4')"
+                                                    data-page="4"
+                                                    ><span>4</span></a
+                                                >
+                                                <a
+                                                    href="javascript:CmBrandPageMove('5')"
+                                                    data-page="5"
+                                                    class="btn-page next"
+                                                    ><span class="blind">다음</span></a
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// brand-list-wrap  -->
+                    </div>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

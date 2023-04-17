@@ -1,0 +1,499 @@
+/* 복지관 리스트 */
+
+
+/* 인기 복지관 리스트 top4 */
+.welfare-content {
+    min-height: 700px;
+}
+
+.page-head {
+    position: relative;
+    padding-top: 70px;
+    background: #fff;
+}
+
+.title-area {
+    position: relative;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    z-index: 11;
+}
+
+.title {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.frame-full-bar {
+    padding-top: 30px;
+    position: relative;
+    min-height: 300px;
+    padding-bottom: 30px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    background: #f8f8f8;
+}
+
+.frame-full-bar:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 280px;
+    background: #f8f8f8;
+    z-index: -1;
+}
+
+
+.article-title-div {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto 20px;
+}
+
+.article-title-div .title {
+    font-size: 20px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.frame-slide-overlap {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.brand-swiper-list {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0 20px;
+    z-index: 1;
+}
+
+.swiper-wrapper {
+    transform: translate3d(0px, 0px, 0px);
+    transition-duration: 0ms;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform,-webkit-transform;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.swiper-slide {
+    width: 260px;
+    margin-right: 20px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform,-webkit-transform;
+}
+
+.brand-list-item {
+    position: relative;
+}
+
+.welfare-img {
+    width: 260px;
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.welfare-img img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.brand-logo {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    text-align: center;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    z-index: 2;
+    vertical-align: middle;
+}
+
+.brand-logo img {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+}
+
+.brand-list-item a:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(17, 17, 17, 0.12);
+}
+
+.txt-area {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    max-height: 70px;
+    margin-top: 10px;
+}
+
+.welfare-name {
+    color: #222;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: 500;
+}
+
+.text-elps{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.welfare-info {
+    color: #666;
+    font-size: 13px;
+    line-height: 23px;
+}
+
+/* 이달의 복지관 */
+
+.frame-sm {
+    margin-top: 90px;
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.gap20 {
+    margin: 0 -10px;
+}
+
+.month-welfare-list {
+    position: relative;
+    font-size: 0;
+    text-align: left;
+    display: flex;
+}
+
+.colum {
+    margin-top: 0;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.brand-box {
+    background: #f8f8f8;
+    border-radius: 5px;
+    padding: 18px 20px 20px 20px;
+    height: 290px;
+}
+
+.top-title {
+    display: table;
+    width: 100%;
+    position: relative;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.top-title .tit {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.top-title .tit img {
+    display: inline-block;
+    vertical-align: middle;
+    max-height: 60px;
+    max-width: 100%;
+}
+
+.top-title .tit .txt {
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    word-break: break-all;
+}
+
+.btn-link-txt4 {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+
+    display: inline-block;
+    vertical-align: top;
+    color: #666;
+    font-size: 12px;
+}
+
+.btn-link-txt4 > span + i {
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.ico-arr-right {
+    width: 8px;
+    height: 8px;
+    position: relative;
+    display: inline-block;
+    transition: .2s;
+    -webkit-transition: .2s;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+}
+
+.gap16 {
+    margin: 0 -8px;
+}
+
+.welfare-list-ul {
+    position: relative;
+    font-size: 0;
+    text-align: left;
+    display: flex;
+}
+
+.welfare-in-box .welfare-img {
+    display: block;
+    width: 156px;
+    height: 156px;
+    border-radius: 6px;
+    position: relative;
+    border: 1px solid #E1E1E1;
+    overflow: hidden;
+}
+
+.welfare-in-box .price{
+    display: block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.price em{
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* 복지관 검색 */
+
+.welfare-search-wrap {
+    margin-top: 90px;
+}
+
+.search-head {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.input-group-wrap {
+    width: 526px;
+    margin: 0 auto;
+    border: 1px solid transparent;
+}
+
+.line-type {
+    border-bottom: 2px solid #333;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    height: 40px;
+}
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.input-group-wrap .input-group .input-text {
+    border: 0;
+}
+
+.input-group .input-text {
+    height: 100%;
+    height: 40px;
+    padding: 3px 15px;
+}
+
+.input-group > .input-text{
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.input-group-wrap .input-group > .input-text + .input-group-btn:last-child {
+    padding: 0;
+    height: 100%;
+}
+
+.input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    border: 0;
+    padding: 0 5px;
+}
+
+input-group-wrap.line-type .btn-search {
+    padding: 12px;
+}
+
+.btn-search img{
+    width: 23px;
+    height: 23px;
+    vertical-align: middle;
+}
+
+.sorting-search-box {
+    margin-top: 50px;
+    padding: 30px 0;
+    background: #F8F8F8;
+}
+
+.inner {
+    width: 1100px;
+    margin: 0 auto;
+    padding: 0 35px;   
+}
+
+.inner fieldset{
+    overflow: hidden;
+    border: 0;
+    margin-bottom: 20px;
+}
+
+.sort-tit {
+    float: left;
+    position: static;
+    display: inline-block;
+    width: 55px;
+    height: 30px;
+    text-indent: inherit;
+    line-height: 30px;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.sorting-class-list{
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    display: flex;
+}
+
+.sorting-class-list > li{
+    float: left;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.custom-radio {
+    position: relative;
+    display: inline-block;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.custom-radio input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.custom-radio .radio-box-type1 + label{
+    display: inline-block;
+    position: relative;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 7px;
+    cursor: pointer;
+    color: #666;
+    font-size: 13px;
+    line-height: 28px;
+    background: #fff;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
