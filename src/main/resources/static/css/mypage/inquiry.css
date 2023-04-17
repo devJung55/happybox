@@ -100,9 +100,14 @@ img {
     margin-right: 30px;
 }
 
-.inquiry__arrow {
-    transform: rotate(180deg);  /* arrow 시작 방향 */
-    /* transform: rotate(0deg); */    /* arrow 상세보기 방향 */
+.arrow-0deg {
+    transform: rotate(0deg);/* arrow 시작 방향 */
+    filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
+}
+
+.arrow-180deg {
+    transform: rotate(180deg);/* arrow 상세보기 방향 */
+    filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
 }
 
 
@@ -209,4 +214,8 @@ img {
     min-width: 67px;
     height: 38px;
     padding: 5px 18px;
+}
+
+.border-bottom {
+    border-top: 1px solid #bbb;
 }

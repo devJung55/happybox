@@ -35,19 +35,51 @@
                                 <div class="board-list ui-accordion">
                                     <ul class="accordion-list ui-accordion-list">
 
-                                        <li class="">
+                                        <li class="border-bottom"><!-- // 문의 리스트 첫 시작 -->
                                             <!-- 질문 영역 -->
-                                            <a href="javascript:;" class="title-div ui-accordion-click">
+                                            <a href="javascript:void(0)" class="title-div ui-accordion-click">
                                                 <div class="subject">
                                                     <span class="state-wait">답변대기</span>
                                                     <span class="classify inquiry__title">회원가입포인트</span><!-- 문의내역 타이틀 -->
                                                 </div>
                                                 <div class="right">
                                                     <span class="date">2023.04.15</span>
-                                                    <img class="inquiry__arrow" src="../../static/img/mypage/inquiry-arrow.png" width="18" height="18">
+                                                    <img class="arrow-0deg" src="../../static/img/mypage/inquiry-arrow.png" width="18" height="18">
                                                 </div>
                                             </a><!-- title-div -->
-                                            <div class="ui-accordion-view hide">
+                                            <div class="ui-accordion-view hide" style="display: none;">
+                                                <div class="question">
+                                                    <div class="detail-div">
+                                                        <p class="txt"><span style="white-space:pre-wrap">회원가입 포인트는 언제 소멸하나요? 감사합니다.</span></p>
+                                                        <div class="bottom">
+                                                            <div class="added-file thumDtlQuestion">
+                                                                <ul class="thum-list">
+                                                                    <li><a href="javascript:void(0)"><img src="https://file.rankingdak.com/image/RANK/REVIEW/US_RV_IMG1/20230415/IMG1681Teg570545730.png" onerror="fnNoImage(this);"></a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <ul class="sep-list type3">
+                                                                <li><a href="javascript:void(0)" class="btn_update">수정</a></li>
+                                                                <li><a href="javascript:void(0)" class="btn_delete">삭제</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><!--// detail-div -->
+                                                </div><!--// question :: 질문 영역 -->
+                                            </div><!--// ui-accordion-view -->
+                                        </li>
+
+                                        <li class="border-bottom">
+                                            <!-- 질문 영역 -->
+                                            <a href="javascript:void(0)" class="title-div ui-accordion-click">
+                                                <div class="subject">
+                                                    <span class="state-wait">답변대기</span>
+                                                    <span class="classify inquiry__title">회원가입포인트</span><!-- 문의내역 타이틀 -->
+                                                </div>
+                                                <div class="right">
+                                                    <span class="date">2023.04.15</span>
+                                                    <img class="arrow-0deg" src="../../static/img/mypage/inquiry-arrow.png" width="18" height="18">
+                                                </div>
+                                            </a><!-- title-div -->
+                                            <div class="ui-accordion-view hide" style="display: none;">
                                                 <div class="question">
                                                     <div class="detail-div">
                                                         <p class="txt"><span style="white-space:pre-wrap">회원가입 포인트는 언제 소멸하나요? 감사합니다.</span></p>
@@ -79,7 +111,7 @@
                                         <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
                                     </div><!--// pagination -->
 
-
+                                    
                                     <div class="right-area">
                                         <a href="javascript:void(0)" class="btn-basic-md2 btn-default w150"><span>문의하기</span></a>
                                     </div>
