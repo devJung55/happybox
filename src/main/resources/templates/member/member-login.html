@@ -19,19 +19,6 @@
               <i class="ico-logo-login"></i><span class="blind">해피박스</span>입니다.
             </p>
           </div>
-          <!--// login-greeting -->
-
-          <form
-            id="login_form"
-            name="login_form"
-            action="/auth/login"
-            method="post"
-            onsubmit="return onSubmitLogin();"
-            data-gtm-form-interact-id="0"
-          >
-            <input type="hidden" name="encId" value="" />
-            <input type="hidden" name="endPw" value="" />
-
             <fieldset>
               <legend>아이디/비밀번호 입력</legend>
               <div class="input-group w-full">
@@ -83,19 +70,12 @@
 
             <div class="page-guide-center find-con">
               <ul class="txt-link-list">
-                <li><a href="/auth/findid" class="text-black2">아이디 찾기</a></li>
-                <li><a href="/auth/findpw" class="text-black2">비밀번호 찾기</a></li>
+                <li><a href="/member/findid" class="text-black2">아이디 찾기</a></li>
+                <li><a href="/member/findpw" class="text-black2">비밀번호 찾기</a></li>
               </ul>
             </div>
 
             <div id="member-login-error-text" style="display: none"></div>
-
-            <input type="hidden" name="cartType" value="" />
-            <input type="hidden" name="nonmemberYn" value="" />
-
-            <div>
-              <input type="hidden" name="_csrf" value="1f4700f6-0501-46c8-b409-143ae32a734e" />
-            </div>
           </form>
           <div class="sns-login">
             <ul class="sns-login-list">
@@ -109,11 +89,6 @@
                   ><i class="ico-sns-loin kakao"></i><span class="blind">카카오 로그인</span></a
                 >
               </li>
-              <!-- [Dev] 20220304 카카오 페이스북 로그인 추가 -->
-              <!--
-                    <li><a href="/oauth2/authorization/facebook"><i class="ico-sns-loin facebook"></i><span class="blind">페이스북 로그인</span></a></li>
-                    -->
-              <!-- // [Dev] 20220304 카카오 페이스북 로그인 추가 -->
             </ul>
           </div>
           <!--// sns-login -->
@@ -141,11 +116,6 @@
                 >
               </li>
             </ul>
-            <!--// [Dev] 20211007 수정 -->
-
-            <!-- [Dev] 20211007 기존 삭제 :
-                    <a href="#" class="btn-link-txt6 text-grey3"><u>비회원주문조회</u></a>
-                -->
           </div>
         </div>
         <!--// login-area -->
