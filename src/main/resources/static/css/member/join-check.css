@@ -1,0 +1,276 @@
+/* join-check.html */
+
+.container {
+    position: relative;
+    min-height: 700px;
+}
+
+.join-easyGeneral .dimd {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+
+.join-easyGeneral .layer-box {
+    width: 376px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    border-radius: 14px;
+    padding: 36px 0 30px 0;
+}
+
+.join-easyGeneral .layer-box .title {
+    text-align: center;
+    padding-bottom: 26px;
+}
+
+.join-easyGeneral .layer-box .title span {
+    color: #333333;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 600;
+}
+
+.join-easyGeneral .layer-box .login-btn-wrap {
+    text-align: center;
+}
+
+.join-easyGeneral .layer-box .login-btn-wrap div {
+    cursor: pointer;
+}
+
+.join-easyGeneral .layer-box .password-btn {
+    border: 1px solid #FF6001;
+    width: 134px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.join-easyGeneral .layer-box .password-btn p {
+    color: #FF6001;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 50px;
+}
+
+.join-easyGeneral .layer-box .login-btn {
+    background-color: #FF6001;
+    width: 134px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.join-easyGeneral .layer-box .login-btn span {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 50px;
+}
+
+.join-easyGeneral .layer-box .login-btn-wrap a {
+    display: none;
+}
+
+.join-easyGeneral .xbox {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.join-easyGeneral .xbox i {
+    width: 15px;
+    height: 15px;
+}
+
+.ico-x-black {
+    color: #333;
+}
+
+[class^="ico-x-"] {
+    position: relative;
+    display: block;
+}
+
+.frame-full {
+    position: relative;
+    width: 100%;
+}
+
+.join-certified .frame-sm {
+    background-color: #ffffff;
+    width: 720px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+}
+
+.join-certified .frame-sm .certified-wrap {
+    padding-top: 60px;
+}
+
+.join-certified .certified-title {
+    padding-left: 100px;
+}
+
+.join-certified .certified-title h2 {
+    font-size: 28px;
+    line-height: 32px;
+    color: #333333;
+    font-weight: 700;
+    padding-bottom: 40px;
+}
+
+.join-certified .certified-title p {
+    font-size: 20px;
+    line-height: 24px;
+    color: #333333;
+    font-weight: 500;
+    padding-bottom: 6px;
+}
+
+.join-certified .certified-title span {
+    font-size: 16px;
+    color: #999999;
+}
+
+.join-certified .certified-btn-wrap {
+    padding-top: 24px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.join-certified .certified-btn {
+    background-color: #FF6001;
+    width: 520px;
+    height: 60px;
+    color: #ffffff;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 6px;
+}
+
+.join-certified .sns-certified-title {
+    padding-top: 47px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.join-certified .sns-certified-title p {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 500;
+    position: relative;
+}
+
+.join-certified .sns-certified-title p:before {
+    content: "";
+    width: 160px;
+    background-color: #cccccc;
+    height: 1px;
+    position: absolute;
+    left: 100px;
+    top: 4px;
+}
+
+.join-certified .sns-certified-title p {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 500;
+}
+
+.join-certified .sns-certified-title p:after {
+    content: "";
+    width: 160px;
+    background-color: #cccccc;
+    height: 1px;
+    position: absolute;
+    right: 100px;
+    top: 4px;
+}
+
+.join-certified .sns-login {
+    margin: 0;
+    padding: 24px 0 94px;
+}
+
+.sns-login-list {
+    text-align: center;
+}
+
+.sns-login-list > li {
+    display: inline-block;
+    margin: 0 9px;
+}
+
+/* 네이버 로고 */
+.sns-login-list .ico-sns-loin.naver {
+    background-position: left top;
+}
+
+/* 카카오 로고 */
+.sns-login-list .ico-sns-loin.kakao {
+    background: url('https://www.rankingdak.com/resources/pc/images/icon/ico_sns_kakao_m.png') no-repeat 0 0;
+}
+
+/* sns 로그인 공통 */
+.sns-login-list .ico-sns-loin {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    overflow: hidden;
+    background: url('https://www.rankingdak.com/resources/pc/images/icon/ico_sns_login_m.png') no-repeat;
+    background-size: auto 46px;
+}
+
+[class^="ico-sns-"] {
+    vertical-align: top;
+}
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.frame-wrap, .clear:after, [class*="frame-"]:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.join-certified {
+    background-color: #f7f7f7;
+    padding-top: 100px;
+    padding-bottom: 147px;
+}
+
+.frame-full {
+    position: relative;
+    width: 100%;
+}
