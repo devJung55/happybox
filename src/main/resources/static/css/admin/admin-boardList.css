@@ -1,9 +1,20 @@
 @charset "UTF-8";
 
+.wrap {
+	display: flex;
+	justify-content: flex-start;
+}
+
 .container {
 	width: 100%;
 	margin-left: 250px;
 	margin-top: 55px;
+}
+
+.check-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 tr {
@@ -51,7 +62,6 @@ table {
 }
 
 .info-table {
-	margin: 0 auto;
 	padding: 20px;
 }
 
@@ -90,18 +100,47 @@ table {
 	padding-left: 10px;
 }
 
+.button-wrap {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    align-items: center;
+}
+
+.create-box {
+	text-align: right;
+}
+
+.create-button {
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 120px;
+    height: 35px;
+    background-color: #31de92;
+	border-radius: 3px;
+    font-weight: bold;
+}
+
+.create-button:hover {
+	background-color: #3cb47f;
+}
+
 .delete-box {
 	text-align: right;
 }
 
 .delete-button {
-	box-shadow: 2px 2px 7px -2px grey;
     font-family: 'GmarketSansMedium';
     border: none;
     width: 120px;
-    height: 50px;
-    background-color: #fff;
+    height: 35px;
+    background-color: #e35461;
+	border-radius: 3px;
     font-weight: bold;
+}
+
+.delete-button:hover {
+	background-color: #ba4651;
 }
 
 .container-margin {
@@ -109,12 +148,13 @@ table {
 }
 
 .board-info-box-layout {
-	margin-top: 30px;	
+	margin-top: 30px;
+	margin-bottom: 30px;	
 }
 
 .page-button-box-layout {
 	text-align: center;	
-	margin-top: 50px;
+	margin-top: 25px;
 }
 
 .page-button-box {
