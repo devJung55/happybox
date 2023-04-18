@@ -155,39 +155,14 @@
   color: #999;
 }
 
-.btn-box-link1 > [class*='ico-arr-'] {
-  width: 10px;
-  height: 10px;
+.arrow-0deg {
+  transform: rotate(0deg);/* arrow 시작 방향 */
+  filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
 }
 
-[class*='ico-arr-'] {
-  position: relative;
-  display: inline-block;
-}
-
-.ico-arr-toggle:before {
-  top: 50%;
-  right: 0;
-  width: 60%;
-  height: 1px;
-  transform: rotate(-45deg);
-}
-
-.ico-arr-toggle:after {
-  top: 50%;
-  left: 0;
-  width: 60%;
-  height: 1px;
-  transform: rotate(45deg);
-}
-
-[class*='ico-arr-']:after,
-[class*='ico-arr-']:before {
-  position: absolute;
-  display: block;
-  content: '';
-  background-color: #000;
-  box-shadow: inset 0 0 0 32px;
+.arrow-180deg {
+  transform: rotate(180deg);/* arrow 상세보기 방향 */
+  filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
 }
 
 .inner-flex:after {
@@ -396,9 +371,14 @@ button[disabled] {
 }
 
 .input-text {
+  height: 40px;
+  padding: 5px 15px;
   background: #fff;
   color: #333;
+  border: 1px solid #ccc;
   box-sizing: border-box;
+  font-size: 13px;
+  border-radius: 0;
 }
 
 .input-group.type-lg > .input-text + .input-group-form:last-child,
@@ -574,6 +554,7 @@ button[disabled] {
 }
 
 .input-group {
+  height: 40px;
   position: relative;
   display: table;
   border-collapse: collapse;
@@ -675,4 +656,346 @@ button[disabled] {
 [class*='btn-rud-'] > span {
   display: inline-block;
   vertical-align: top;
+}
+
+.join-area .form-group .form-horiz-list {
+  padding-top: 10px;
+}
+
+.form-horiz-list {
+  overflow: hidden;
+}
+
+.join-area .form-group .form-horiz-list > li {
+  margin-right: 40px;
+}
+
+.form-horiz-list > li {
+  float: left;
+  margin-right: 15px;
+  padding: 5px 0px;
+  vertical-align: top;
+}
+
+.custom-radio {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-radio input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.custom-radio .radio + label {
+  display: inline-block;
+  color: #333;
+  position: relative;
+  padding-left: 28px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.4;
+  vertical-align: top;
+}
+
+.custom-radio .radio + label:before {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
+
+.custom-radio .radio:checked + label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: #FF6001;
+  border-radius: 100%;
+}
+
+.bl-list-type2 {
+  padding-top: 10px;
+}
+
+/* 휴대폰 인증 모달창 */
+.layer-wrap, .layer-wrap2 {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10001;
+}
+
+.layer-wrap:before, .layer-wrap2:before{
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.layer-wrap .layer-pop.login-certi-pop,
+.layer-wrap2 .layer-pop.login-certi-pop {
+  width: 375px;
+  min-height: 246px;
+}
+
+.layer-wrap .layer-pop,
+.layer-wrap2 .layer-pop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  background-color: #fff;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -webkit-backface-visibility: hidden;
+}
+
+.layer-pop.login-certi-pop .layer-inner {
+  height: 100%;
+}
+
+.layer-pop .layer-inner {
+  position: relative;
+}
+
+.layer-pop.login-certi-pop .layer-inner .layer-head {
+  padding: 30px 30px 35px;
+}
+
+.layer-pop.login-certi-pop .layer-pop-title {
+  text-align: center;
+  font-size: 16px;
+}
+
+.layer-head .layer-pop-title {
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.layer-pop .layer-inner .layer-content {
+  padding: 0 30px;
+}
+
+.layer-pop.login-certi-pop .layer-content .message {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.input-group > .input-group-txt:first-child, .input-group > .input-group-form:first-child {
+  padding-left: 0 !important;
+}
+
+.w90 {
+  width: 90px !important;
+}
+
+.input-group .select-box, .input-group .btn-form {
+  height: 40px;
+}
+
+.layer-pop.login-certi-pop .layer-content .input-group .select-box {
+  min-width: 90px;
+}
+
+.input-group > .input-group-txt {
+  display: table-cell;
+  position: relative;
+  white-space: nowrap;
+  width: 1%;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+
+.input-group > .input-group-form:first-child + .input-group-form, .input-group > .input-group-form:first-child + .input-group-txt {
+  padding: 0 5px 0 0;
+}
+
+.input-group .input-text {
+  height: 100%;
+  padding: 3px 15px;
+}
+
+.layer-pop.login-certi-pop .layer-content .btn-area {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.btn-navy {
+  color: #fff;
+  background: #3a4c67;
+  border: 1px solid #3a4c67;
+}
+
+.btn-basic-md {
+  height: 44px;
+  padding: 8px 20px;
+}
+
+.btn-basic-md > span {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+[class*="btn-basic-"] > span, [class*="btn-option"] > span, [class*="btn-rud-"] > span {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.btn-x-sm2 {
+  padding: 5px;
+  height: 26px;
+}
+
+.layer-pop .layer-inner .ui-close-pop {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+}
+
+.layer-pop.login-certi-pop .layer-inner .ui-close-pop {
+  top: 25px;
+}
+
+[class^="ico-x-"] {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.ico-x-black {
+  color: #333;
+}
+
+.btn-x-sm2 [class^="ico-x-"] {
+  width: 16px;
+  height: 16px;
+}
+
+[class^="ico-x-"]:before, [class^="ico-x-"]:after {
+  position: absolute;
+  top: 50%;
+  left: -3px;
+  display: block;
+  content: '';
+  width: 130%;
+  height: 1px;
+  /* background: #666; */
+  box-shadow: inset 0 0 0 32px;
+}
+
+[class^="ico-x-"]:before {
+  transform: rotate(45deg);
+}
+[class^="ico-x-"]:after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+button .blind {
+  position: relative;
+  font-size: 0;
+  color: transparent;
+}
+
+.input-group > .input-group-form, .input-group > .input-group-btn {
+  display: table-cell;
+  position: relative;
+  white-space: nowrap;
+  width: 1%;
+  vertical-align: middle;
+  border: 0;
+  padding: 0 5px;
+}
+
+.input-group-wrap.box-type3.type-dim {
+  border: 1px solid #ccc;
+}
+
+.input-group-wrap.box-type3 .input-group .input-text {
+  border: 0;
+}
+
+.input-group-wrap .input-group > .input-text + .input-group-btn:last-child {
+  padding: 0;
+  height: 100%;
+}
+
+.input-group-wrap.box-type3 .input-group .input-group-btn > .btn-form {
+  border-radius: 0;
+  padding: 0 25px;
+  position: relative;
+  height: calc(100% + 2px);
+}
+
+.input-group-wrap.box-type3.type-dim .btn-navy {
+  background: #ccc;
+  border: 1px solid #ccc;
+  color: #fff;
+}
+
+button span {
+  position: relative;
+}
+
+.layer-pop.login-certi-pop .bottom-txt-area {
+  background: #F8F8F8;
+  padding: 25px 30px 40px;
+  margin-top: 30px;
+}
+
+.bottom-txt-area .tit {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.dot-list-type1 > li {
+  position: relative;
+  color: #666;
+  font-size: 14px;
+  padding-left: 10px;
+  word-break: break-word;
+}
+
+.bottom-txt-area .dot-list-type1 > li {
+  font-size: 13px;
+}
+
+.dot-list-type1 > li:before {
+  display: inline-block;
+  content: '';
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #666;
+  vertical-align: top;
+  margin: 5px 7px 0 -10px;
 }

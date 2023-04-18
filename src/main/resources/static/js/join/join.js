@@ -1,7 +1,5 @@
 /* join.html */
 
-
-
   function onClickMemberJoinCheckAll() {
     const checked = $('#member-join-general-agree-all-check').is(':checked');
     if (checked) {
@@ -43,6 +41,26 @@
     }
 
   }
+  const $arrows = $(".arrow-0deg");
+  const $terms = $('.ui-slide-content');
+  $arrows.each((i, e) =>{
+    let $term = $terms.eq(i);
+      $(e).click(function(){
+        console.log($term);
+        if($(e).hasClass('arrow-0deg')){
+            $term.slideDown();
+            $(e).removeClass("arrow-0deg");
+            $(e).addClass("arrow-180deg");
+        } else {
+            $term.slideUp();
+            $(e).removeClass("arrow-180deg");
+            $(e).addClass("arrow-0deg");
+        }
+      })
+  });
+
+
+  
 
   /* 이메일 selectBox */
 
@@ -131,3 +149,164 @@ selectList.addEventListener('mouseleave', function() {
       }
     }
   }
+
+  // 휴대폰 인증 모달창
+const $inputPhone = $('#member-general-join-phone-text');
+const $modal = $('.layer-wrap');
+const $modal2 = $('.layer-wrap2');
+const $phoeBtn = $('.btn-basic-md');
+
+
+$inputPhone.on('click', function(){
+    $modal.css('display', 'block');
+})
+
+
+  // 휴대폰 유효성 검사
+  $(document).ready(function () {
+    $('#popup-member-join-certi-sms-phone-no-error').html('');
+});
+
+function nextModal(){
+    $modal.css('display', 'none');
+    $modal2.css('display', 'block');
+}
+
+function closeMemberJoinCertiSmsPop() {
+    $modal.css('display', 'none');
+}
+
+function closeMemberJoinInputCertiNoPop() {
+    $modal2.css('display', 'none');
+}
+
+function onClickLoginCertiPopSendSms() {
+  const phonePrefix = $('#popup-member-join-certi-sms-pre-phone-no').data('value');
+  const phoneMid = $('#popup-member-join-certi-sms-mid-phone-no').val();
+  const phonePostfix = $('#popup-member-join-certi-sms-post-phone-no').val();
+    if (phoneMid.search(/^\d{3,4}$/) === -1) {
+        $('#popup-member-join-certi-sms-phone-no-error').html('<p class="valid error">중간 자리는 3자 또는 4자의 숫자입니다.</p>');
+        return;
+    }
+
+    if (phonePostfix.search(/^\d{4}$/) === -1) {
+        $('#popup-member-join-certi-sms-phone-no-error').html('<p class="valid error">끝 자리는 4자의 숫자입니다.</p>');
+        return;
+    }
+
+    $('#popup-member-join-certi-sms-phone-no-error').html('');
+
+    const phoneNo = phonePrefix + '-' + phoneMid + '-' + phonePostfix;
+   
+    nextModal();
+}
+
+
+// 인증번호 체크
+
+function setDimMemberJoinCertiNoBtn(isDim) {
+  if (isDim) {
+      if (!$('#member-join-input-certi-no-pop-input').hasClass('type-dim')) {
+          $('#member-join-input-certi-no-pop-input').addClass('type-dim').prop('disabled', true);
+      }
+  } else {
+      if ($('#member-join-input-certi-no-pop-input').hasClass('type-dim')) {
+          $('#member-join-input-certi-no-pop-input').removeClass('type-dim').prop('disabled', false);
+      }
+  }
+}
+
+function onKeyUpMemberJoinCertiNoText() {
+  const certiNo = $('#member-join-input-certi-no-pop-text').val();
+  let isDim = true;
+
+  if (certiNo.length > 6) {
+      $('#member-join-input-certi-no-pop-text').val(certiNo.substring(0, 6));
+      setDimMemberJoinCertiNoBtn(false);
+      return;
+  }
+
+  if (certiNo.search(/^\d{6}$/) === -1) {
+      $('#popup-member-join-input-certi-no-pop-error').html('<p class="valid error">6자리 숫자만 사용 가능합니다.</p>');
+      setDimMemberJoinCertiNoBtn(true);
+      return;
+  } else {
+      setDimMemberJoinCertiNoBtn(false);
+  }
+
+  $('#popup-member-join-input-certi-no-pop-error').html('');
+}
+
+function onClickCertiNoComfirmBtn() {
+  const certiNo = $('#member-join-input-certi-no-pop-text').val();
+  // 임시 인증번호
+  const code = 123456;
+
+  if (certiNo.length > 6) {
+      $('#member-join-input-certi-no-pop-text').val(certiNo.substring(0, 6));
+      return;
+  }
+
+  if (!certiNo.match(/^\d{6}$/)) {
+      $('#popup-member-join-input-certi-no-pop-error').html('<p class="valid error">6자리 숫자만 사용 가능합니다.</p>');
+      return;
+  }
+
+  if(certiNo != code){
+    $('#popup-member-join-input-certi-no-pop-error').html('<p class="valid error">인증번호를 확인하세요.</p>');
+    return;
+  }
+
+  //     getCertificationNoCallbackFunc = 'getCertificationNo';
+  
+  //     setSmsTalkCertifiedCallbackFunc = 'setSmsTalkCertified';
+  
+
+  // if (getCertificationNoCallbackFunc === '' || setSmsTalkCertifiedCallbackFunc === '') {
+  //     alert("에러: callback is null");
+  //     return;
+  // }
+
+  // if(fnCheckCertiNoAjax(certiNo) == false){
+  //     return;
+  // }
+
+  $('#popup-member-join-input-certi-no-pop-error').html('');
+
+  // setSmsTalkCertified(true);
+  
+
+  alert('인증이 완료되었습니다.');
+  closeMemberJoinInputCertiNoPop();
+}
+
+// 휴대폰 인증하는 ajax인데 뭔가 쓸만 할 거 같아서 일단 가져옴
+/* function fnCheckCertiNoAjax(certiNo){
+  let isValid = false;
+
+  cmAjax({
+      url : '/member/join/checkCertiNoAjax'
+      , type: "post"
+      , data: {
+          phoneNo: '010-1234-1234',
+          certiNo: certiNo
+      }
+      , dataType: "json"
+      , async : false
+      , success : function(data) {
+          if(data.status == 'succ'){
+              isValid = true;
+          }else{
+              isValid = false;
+              const alertMsg = (isEmpty(data.message) ? '잘못된 인증번호입니다.\n인증번호를 확인한 다음에 다시 입력해 주세요.' : data.message);
+              alert(alertMsg.replace(/<br\/>/ig, '\n'));
+              return;
+          }
+      }
+      , error : function() {
+          alert("시스템 오류입니다. 잠시후 다시 시도해주세요.");
+      }
+  });
+
+  return isValid;
+} */

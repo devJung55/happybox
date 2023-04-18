@@ -70,11 +70,16 @@
                         >
                       </div>
                       <button type="button" class="btn-box-link1 ui-slide-btn">
-                        <i class="ico-arr-toggle"></i>
+                        <img
+                          class="arrow-0deg"
+                          src="../../static/img/mypage/inquiry-arrow.png"
+                          width="18"
+                          height="18"
+                        />
                       </button>
                     </div>
                     <!--// inner-flex -->
-                    <div class="terms-inner-box ui-slide-content">
+                    <div class="terms-inner-box ui-slide-content" height="0">
                       <!-- 내용 -->
                       &nbsp;제1조(목적)<br />
                       이 약관은 주식회사 (주)푸드나무(이하 “회사”라 한다)가 운영하는 랭킹닭컴 사이버
@@ -651,7 +656,12 @@
                         >
                       </div>
                       <button type="button" class="btn-box-link1 ui-slide-btn">
-                        <i class="ico-arr-toggle"></i>
+                        <img
+                          class="arrow-0deg"
+                          src="../../static/img/mypage/inquiry-arrow.png"
+                          width="18"
+                          height="18"
+                        />
                       </button>
                     </div>
                     <!--// inner-flex -->
@@ -730,7 +740,12 @@
                         >
                       </div>
                       <button type="button" class="btn-box-link1 ui-slide-btn">
-                        <i class="ico-arr-toggle"></i>
+                        <img
+                          class="arrow-0deg"
+                          src="../../static/img/mypage/inquiry-arrow.png"
+                          width="18"
+                          height="18"
+                        />
                       </button>
                     </div>
                     <!--// inner-flex -->
@@ -917,18 +932,50 @@
                     onkeyup="onEventMemberJoinPasswords();"
                   />
                 </div>
-                <p class="text-guide-sm2" id="pw-guide-text1" style="display: none">
-                  ※ 6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수.
-                </p>
-                <p class="text-guide-sm2" id="pw-guide-text2" style="display: none">
-                  ※ 특수문자는 !, @, #, $, %, ^, &amp;, * 만 사용 가능.
-                </p>
                 <p class="valid error" id="pw-error-text1" style="display: none">
                   비밀번호가 일치하지 않습니다.
                 </p>
               </div>
               <!--// form-group -->
-
+              <div class="form-group">
+                <div class="form-head">
+                  <label for="member-general-join-name-text" class="form-label"
+                    >이름<i class="es2"></i
+                  ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <input
+                    type="text"
+                    id="member-general-join-name-text"
+                    name="member-general-join-name-text"
+                    class="input-text w571"
+                    placeholder="2자 이상 입력"
+                    value=""
+                  />
+                </div>
+                <div id="member-general-join-name-text-error"></div>
+              </div>
+              <div class="form-group">
+                <div class="form-head">
+                  <label for="member-general-join-phone-text" class="form-label"
+                    >휴대폰 번호<i class="es2"></i
+                  ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <input
+                    type="text"
+                    id="member-general-join-phone-text"
+                    name="member-general-join-phone-text"
+                    class="input-text w571"
+                    placeholder="휴대폰 번호"
+                    value=""
+                    readonly
+                  />
+                </div>
+                <div id="member-general-join-name-text-error"></div>
+              </div>
               <div class="form-group">
                 <div class="form-head">
                   <label for="member-join-general-email-text" class="form-label"
@@ -947,34 +994,80 @@
                     onblur="onFocusOutMemberJoinEmailText();"
                   />
                   <div class="input-group-form">
-                    <div class="ui-select select-box w135" id="member-join-general-email-domain" name="member-join-general-email-domain" data-value="">
-                        <a href="javascript:void(0)" title="선택" class="select-value"><span>직접입력</span></a>
-                        <div class="select-list">
-                            <ul>
-                                <li data-name=""><a href="javascript:void(0)"><span>직접입력</span></a></li>
-                                <li data-name="naver.com"><a href="javascript:void(0)"><span>naver.com</span></a></li>
-                                <li data-name="daum.net"><a href="javascript:void(0)"><span>daum.net</span></a></li>
-                                <li data-name="hanmail.net"><a href="javascript:void(0)"><span>hanmail.net</span></a></li>
-                                <li data-name="gmail.com"><a href="javascript:void(0)"><span>gmail.com</span></a></li>
-                                <li data-name="hotmail.com"><a href="javascript:void(0)"><span>hotmail.com</span></a></li>
-                                <li data-name="yahoo.co.kr"><a href="javascript:void(0)"><span>yahoo.co.kr</span></a></li>
-                                <li data-name="chollian.net"><a href="javascript:void(0)"><span>chollian.net</span></a></li>
-                                <li data-name="empal.com"><a href="javascript:void(0)"><span>empal.com</span></a></li>
-                                <li data-name="freechal.com"><a href="javascript:void(0)"><span>freechal.com</span></a></li>
-                                <li data-name="hitel.net"><a href="javascript:void(0)"><span>hitel.net</span></a></li>
-                                <li data-name="hanmir.com"><a href="javascript:void(0)"><span>hanmir.com</span></a></li>
-                                <li data-name="hanafos.com"><a href="javascript:void(0)"><span>hanafos.com</span></a></li>
-                                <li data-name="korea.com"><a href="javascript:void(0)"><span>korea.com</span></a></li>
-                                <li data-name="lycos.co.kr"><a href="javascript:void(0)"><span>lycos.co.kr</span></a></li>
-                                <li data-name="nate.com"><a href="javascript:void(0)"><span>nate.com</span></a></li>
-                                <li data-name="netian.com"><a href="javascript:void(0)"><span>netian.com</span></a></li>
-                                <li data-name="paran.com"><a href="javascript:void(0)"><span>paran.com</span></a></li>
-                                <li data-name="unitel.co.kr"><a href="javascript:void(0)"><span>unitel.co.kr</span></a></li>
-                                </ul>
-                        </div>
+                    <div
+                      class="ui-select select-box w135"
+                      id="member-join-general-email-domain"
+                      name="member-join-general-email-domain"
+                      data-value=""
+                    >
+                      <a href="javascript:void(0)" title="선택" class="select-value"
+                        ><span>직접입력</span></a
+                      >
+                      <div class="select-list">
+                        <ul>
+                          <li data-name="">
+                            <a href="javascript:void(0)"><span>직접입력</span></a>
+                          </li>
+                          <li data-name="naver.com">
+                            <a href="javascript:void(0)"><span>naver.com</span></a>
+                          </li>
+                          <li data-name="daum.net">
+                            <a href="javascript:void(0)"><span>daum.net</span></a>
+                          </li>
+                          <li data-name="hanmail.net">
+                            <a href="javascript:void(0)"><span>hanmail.net</span></a>
+                          </li>
+                          <li data-name="gmail.com">
+                            <a href="javascript:void(0)"><span>gmail.com</span></a>
+                          </li>
+                          <li data-name="hotmail.com">
+                            <a href="javascript:void(0)"><span>hotmail.com</span></a>
+                          </li>
+                          <li data-name="yahoo.co.kr">
+                            <a href="javascript:void(0)"><span>yahoo.co.kr</span></a>
+                          </li>
+                          <li data-name="chollian.net">
+                            <a href="javascript:void(0)"><span>chollian.net</span></a>
+                          </li>
+                          <li data-name="empal.com">
+                            <a href="javascript:void(0)"><span>empal.com</span></a>
+                          </li>
+                          <li data-name="freechal.com">
+                            <a href="javascript:void(0)"><span>freechal.com</span></a>
+                          </li>
+                          <li data-name="hitel.net">
+                            <a href="javascript:void(0)"><span>hitel.net</span></a>
+                          </li>
+                          <li data-name="hanmir.com">
+                            <a href="javascript:void(0)"><span>hanmir.com</span></a>
+                          </li>
+                          <li data-name="hanafos.com">
+                            <a href="javascript:void(0)"><span>hanafos.com</span></a>
+                          </li>
+                          <li data-name="korea.com">
+                            <a href="javascript:void(0)"><span>korea.com</span></a>
+                          </li>
+                          <li data-name="lycos.co.kr">
+                            <a href="javascript:void(0)"><span>lycos.co.kr</span></a>
+                          </li>
+                          <li data-name="nate.com">
+                            <a href="javascript:void(0)"><span>nate.com</span></a>
+                          </li>
+                          <li data-name="netian.com">
+                            <a href="javascript:void(0)"><span>netian.com</span></a>
+                          </li>
+                          <li data-name="paran.com">
+                            <a href="javascript:void(0)"><span>paran.com</span></a>
+                          </li>
+                          <li data-name="unitel.co.kr">
+                            <a href="javascript:void(0)"><span>unitel.co.kr</span></a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
+                  </div>
+                  <div id="member-join-general-email-text-error"></div>
                 </div>
-                <div id="member-join-general-email-text-error"></div>
               </div>
               <!--// form-group -->
 
@@ -995,10 +1088,7 @@
                     placeholder="추천아이디 입력"
                   />
                   <span class="input-group-btn"
-                    ><button
-                      type="button"
-                      class="btn-form btn-default-ex"
-                    >
+                    ><button type="button" class="btn-form btn-default-ex">
                       <span>확인하기</span>
                     </button></span
                   >
@@ -1022,10 +1112,7 @@
                         class="radio"
                         name="member-join-general-forever"
                         value="Y"
-                        onclick="checkSubmitBtnState();"
-                      /><label for="member-join-general-forever-Y" onclick="checkSubmitBtnState();"
-                        >동의</label
-                      >
+                      /><label for="member-join-general-forever-Y">동의</label>
                     </div>
                   </li>
                   <li>
@@ -1036,10 +1123,7 @@
                         class="radio"
                         name="member-join-general-forever"
                         value="N"
-                        onclick="checkSubmitBtnState();"
-                      /><label for="member-join-general-forever-N" onclick="checkSubmitBtnState();"
-                        >동의안함</label
-                      >
+                      /><label for="member-join-general-forever-N">동의안함</label>
                     </div>
                   </li>
                 </ul>
@@ -1061,11 +1145,183 @@
             <!--// btn-bottom-area -->
           </div>
           <!--// join-area -->
-          <div id="member-join-general-popup-content"></div>
+          <div id="member-join-general-popup-content">
+            <!--
+            * 팝업 버튼에 ui-open-pop 클래스, 팝업 ID 작성 필요
+            ex) <a href="#popupSample-01" class=".... ui-open-pop"> ~ </a>
+            ex) <button type="button" data-layer="#popupSample-02" class="... ui-open-pop"> ~ </button>
+            -->
+            <div class="layer-wrap" id="member-join-certi-sms-pop">
+              <div class="layer-pop login-certi-pop">
+                <div class="layer-inner">
+                  <div class="layer-head">
+                    <h4 class="layer-pop-title">휴대폰번호 가입인증</h4>
+                  </div>
+
+                  <div class="layer-content">
+                    <p class="message">휴대폰 번호 입력 후 인증번호 받기 버튼을 클릭해 주세요.</p>
+
+                    <fieldset>
+                      <legend>휴대폰 번호 입력 후 인증번호 받기</legend>
+                      <div class="input-group w-full">
+                        <div class="input-group-form">
+                          <div
+                            class="ui-select select-box w90"
+                            id="popup-member-join-certi-sms-pre-phone-no"
+                            data-value="010"
+                            onclick="return false;"
+                          >
+                            <a href="#none" title="선택" class="select-value"><span>010</span></a>
+                            <div class="select-list">
+                              <ul>
+                                <li data-name="010">
+                                  <a href="#none" onclick="return false;"><span>010</span></a>
+                                </li>
+                                <li data-name="011">
+                                  <a href="#none" onclick="return false;"><span>011</span></a>
+                                </li>
+                                <li data-name="017">
+                                  <a href="#none" onclick="return false;"><span>017</span></a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <!--// input-group-cell -->
+                        <span class="input-group-txt">-</span>
+                        <input
+                          type="text"
+                          id="popup-member-join-certi-sms-mid-phone-no"
+                          class="input-text"
+                          title="휴대폰번호 중간자리"
+                          value=""
+                          maxlength="4"
+                        />
+                        <span class="input-group-txt">-</span>
+                        <input
+                          type="text"
+                          id="popup-member-join-certi-sms-post-phone-no"
+                          class="input-text"
+                          title="휴대폰번호 뒷자리"
+                          value=""
+                          maxlength="4"
+                        />
+                      </div>
+                      <div id="popup-member-join-certi-sms-phone-no-error"></div>
+                      <div class="btn-area">
+                        <button
+                          type="button"
+                          class="btn-basic-md btn-navy w-full"
+                          onclick="onClickLoginCertiPopSendSms()"
+                        >
+                          <span>인증번호 받기</span>
+                        </button>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <!--// layer-content -->
+
+                  <button
+                    type="button"
+                    class="btn-x-sm2 ui-close-pop"
+                    title="닫기"
+                    onclick="closeMemberJoinCertiSmsPop();"
+                  >
+                    <i class="ico-x-black"></i><span class="blind">닫기</span>
+                  </button>
+                </div>
+                <!--// layer-inner -->
+              </div>
+              <!--// layer-pop  -->
+            </div>
+            <!--// layer-pop-wrap #main-event -->
+            <div class="layer-wrap2" id="member-join-input-certi-no-pop">
+              <div class="layer-pop login-certi-pop">
+                <div class="layer-inner">
+                  <div class="layer-head">
+                    <h4 class="layer-pop-title">휴대폰번호 가입인증</h4>
+                  </div>
+
+                  <div class="layer-content">
+                    <p class="message">
+                      010-1234-1234로 인증번호가 발송되었습니다.<br />인증번호 입력 후 확인버튼을
+                      눌러주세요.
+                    </p>
+
+                    <fieldset>
+                      <legend>휴대폰 번호 입력 후 인증번호 받기</legend>
+                      <div
+                        id="member-join-input-certi-no-pop-input"
+                        class="input-group-wrap box-type3 type-dim"
+                      >
+                        <!-- 활성화시 removeClass type-dim -->
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            id="member-join-input-certi-no-pop-text"
+                            class="input-text"
+                            placeholder="인증번호 입력"
+                            onkeyup="onKeyUpMemberJoinCertiNoText();"
+                          />
+                          <span class="input-group-btn">
+                            <button
+                              type="button"
+                              class="btn-form btn-navy"
+                              onclick="onClickCertiNoComfirmBtn();"
+                            >
+                              <span>확인</span>
+                            </button>
+                          </span>
+                        </div>
+                        <!--// input-group -->
+                      </div>
+                      <div id="popup-member-join-input-certi-no-pop-error"></div>
+                      <div class="btn-area">
+                        <a
+                          href="javascript:void(0);"
+                          class="btn-link-txt4"
+                          onclick="onClickResendCertiNo();"
+                          ><i class="ico-btn-refresh2"></i><u>인증번호 재발송</u></a
+                        >
+                      </div>
+                    </fieldset>
+                  </div>
+                  <!--// layer-content -->
+
+                  <div class="bottom-txt-area">
+                    <h5 class="tit">인증번호 수신이 안되시나요?</h5>
+                    <ul class="dot-list-type1">
+                      <li>휴대폰 번호를 정확히 입력하셨는지 확인해 주세요.</li>
+                      <li>스팸차단 또는 일시적 장애로 수신이 지연될 수 있습니다.</li>
+                      <li>재발송 요청하여 인증번호를 카카오톡으로 받으실 수 있습니다.</li>
+                      <li>
+                        문제가 지속되는 경우 고객센터로 문의해 주세요. <br /><span
+                          class="text-black2"
+                          >[랭킹닭컴 고객센터 02-6405-8088]</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <!--// bottom-txt-area -->
+
+                  <button
+                    type="button"
+                    class="btn-x-sm2 ui-close-pop"
+                    title="닫기"
+                    onclick="closeMemberJoinInputCertiNoPop();"
+                  >
+                    <i class="ico-x-black"></i><span class="blind">닫기</span>
+                  </button>
+                </div>
+                <!--// layer-inner -->
+              </div>
+              <!--// layer-pop  -->
+            </div>
+          </div>
         </div>
       </form>
     </section>
   </body>
-  <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="../../static/js/join/join.js"></script>
 </html>
