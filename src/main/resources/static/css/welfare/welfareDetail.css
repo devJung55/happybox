@@ -1,0 +1,614 @@
+/* 복지관 상세페이지 */
+
+.detail-container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+.detail-content-wrap {
+    min-height: 700px;
+}
+
+/*============================공통===========================  */
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.img {
+    position: relative;
+    width: 480px;
+    height: 480px;
+    overflow: hidden;
+}
+
+img{
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.tit {
+    display: block;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+/* ========================================================== */
+
+/* 상단 */
+
+.detail-top-wrap {
+    padding-top: 70px;
+}
+
+.welfare-img-area {
+    float: left;
+    width: 480px;
+}
+
+.welfare-top {
+    position: relative;
+}
+
+.welfare-badge {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+.welfare-badge img{
+    height: 60px;
+    vertical-align: top;
+}
+
+.timeSale-area {
+    width: 100%;
+    padding: 0 20px 0 23px;
+    margin-bottom: 15px;
+    background: #f79960;
+}
+
+.refrig-banner {
+    margin-top: 15px;
+}
+
+.welfare-info-area {
+    float: right;
+    width: 560px;
+    padding-right: 40px;
+}
+
+.detail-top-wrap:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.welfare-title {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+
+.rating-point {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 23px;
+    height: 23px;
+}
+.rating-point img {
+    width: 23px;
+    height: 23px;
+    align-items: center;
+}
+
+.score {
+    font-size: 16px;
+    color: #555;
+}
+
+.num {
+    font-size: 14px;
+    color: #999;
+}
+
+.welfare-profile {
+    margin-top: 18px;
+    position: relative;
+    display: flex;
+    gap: 10px;
+}
+
+.welfare-name-tag {
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.welfare-name {
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+}
+
+.welfare-location {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 220%;
+}
+
+.like-btn {
+    position: absolute;
+    right: 60px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.welfare-subs {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.box-head {
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    background: #FAFAFA;
+}
+
+.ico-bl-orgmem {
+    vertical-align: middle;
+    margin: -3px 5px 0 0;
+    font-size: 13px;
+}
+
+.text-primary {
+    color: #FF6001 !important;
+}
+
+.txt {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 20px;
+    color: #999;
+    font-size: 13px;
+}
+
+.sale-desc {
+    border-top: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.sale-desc li {
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+.sale-desc li > span {
+    float: left;
+    line-height: 23px;
+    font-weight: 500;
+}
+
+.sale-desc li .price {
+    color: #ff6001;
+    font-size: 14px;
+}
+
+.sale-desc li .number {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.sale-desc li > em {
+    float: right;
+}
+
+.welfare-table {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 17px;
+    border-top: 1px solid #EDEDED;
+}
+
+.dl-row {
+    display: table-row;
+}
+
+.dl-row > dt{
+    display: table-cell;
+    vertical-align: top;
+    width: 100px;
+    border-bottom: 1px solid #EDEDED;
+    padding: 17px 0;
+    color: #666;
+}
+
+.dl-row > dd {
+    display: table-cell;
+    position: relative;
+    vertical-align: top;
+    border-bottom: 1px solid #EDEDED;
+    padding: 17px 0;
+    color: #333;
+}
+
+.dl-row > dd .delivery-how {
+    display: inline-block;
+    width: 64px;
+    height: 20px;
+    vertical-align: middle;
+    color: salmon;
+}
+
+.dl-row > dd .const-div {
+    position: relative;
+}
+
+.dl-row > dd .txt-list {
+    line-height: 20px;
+}
+
+.const-div .txt-list {
+    padding-right: 50px;
+}
+
+.option-select-area {
+    padding-top: 15px;
+}
+
+.option-select-area .drop-box {
+    height: auto;
+}
+
+.drop-box {
+    display: inline-block;
+    position: relative;
+    min-width: 260px;
+    height: 50px;
+    vertical-align: top;
+    z-index: 2;
+    text-align: left;
+    max-width: 100%;
+}
+
+.drop-list {
+    margin-top: -3px;
+    position: absolute;
+    display: none;
+    overflow-y: auto;
+    position: absolute;
+    top: 49px;
+    width: 100%;
+    max-height: 300px;
+    padding: 0;
+    border: 1px solid #666;
+    background: #fff;
+    z-index: 1;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+.drop-box .dropdown-value {
+    padding: 12px 40px 12px 15px;
+}
+
+.drop-box .dropdown-value {
+    display: block;
+    position: relative;
+    height: 100%;
+    padding: 12px 40px 9px 15px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    color: #666;
+    box-sizing: border-box;
+    background: #fff;
+    line-height: 24px;
+}
+
+.drop-list li:first-child {
+    border-top: 0;
+}
+
+.drop-list li {
+    position: relative;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.add-fee a:not(.text-primary){
+    padding: 17px 14px;
+}
+
+.add-fee a {
+    position: relative;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.drop-list li a:not(.text-primary) {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 14px 15px;
+    font-size: 14px;
+}
+
+.add-fee-name {
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    color: #333;
+    font-weight: 400;
+}
+
+.add-fee-name + .add-fee-bottom {
+    margin-top: 7px;
+}
+
+.add-fee-bottom{
+    font-size: 0;
+}
+
+.add-fee-num {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 20px;
+    vertical-align: middle;
+    color: #333;
+}
+
+.add-fee-num strong {
+    font-size: 15px;
+    vertical-align: 0;
+}
+
+.add-fee-bottom .text-primary {
+    display: inline-block;
+    position: static;
+    font-size: 13px;
+    line-height: 20px;
+    font-style: normal;
+    text-decoration: none;
+    margin-left: 4px;
+    transform: none;
+    -webkit-transform: none;
+    top: auto;
+    vertical-align: middle;
+}
+
+.drop-box .dropdown-value:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 17px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #999;
+    border-left: 2px solid #999;
+    transform: rotate(225deg);
+    -webkit-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+}
+
+.option-select-area .total-area {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.radio-check {
+    text-align: left;
+}
+
+.radio-check ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.radio-check ul li:first-child{
+    margin-bottom: 10px;
+}
+
+.custom-radio {
+    position: relative;
+    display: inline-block;
+} 
+
+input[type="checkbox"], input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.custom-radio input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.custom-radio .radio + label {
+    display: inline-block;
+    color: #333;
+    position: relative;
+    padding-left: 28px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.4;
+    vertical-align: top;
+}
+
+.custom-radio .radio:checked + label:before {
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.custom-radio .radio + label:before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    box-sizing: border-box;
+}
+
+.custom-radio .radio + label {
+    display: inline-block;
+    color: #333;
+    position: relative;
+    padding-left: 28px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.4;
+    vertical-align: top;
+}
+
+.custom-radio .radio:checked + label:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    background: #FFA5CD;
+    border-radius: 100%;
+}
+
+.custom-radio .radio + label {
+    display: inline-block;
+    color: #333;
+    position: relative;
+    padding-left: 28px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.4;
+    vertical-align: top;
+}
+
+.normal-price {
+    display: flex;
+    align-items: center;
+}
+
+.subs-price {
+    display: inline-block;
+    margin-top: 5px;
+    cursor: default;
+}
+
+.normal-price .price {
+    font-size: 15px;
+    display: inline-block;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.total-price {
+    font-size: 20px;
+}
+
+.special-price {
+    display: inline-block;
+    max-width: 223px;
+    background: #FFF2E2;
+    padding: 5px 9px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.special-price p {
+    color: #ff6001;
+}
+
+.arr-right {
+    widtH: 10px;
+    height: 10px;
+    color: #ff6001;
+}
+
+.arr-right:before {
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 59.45%;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.ico-arr-right:after {
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    height: 59.45%;
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.special-total-price {
+    font-size: 26px;
+}
+
+.total-area .txts {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.txts, .txts span {
+    word-break: break-all;
+}
+
+.total-area .price {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.total-area .price strong{
+    font-size: 26px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

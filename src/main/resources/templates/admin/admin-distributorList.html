@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유통업자 목록</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+</head>
+<body>
+	<!-- 임시 사이드바 -->
+	<div id="side-bar"></div>
+	<!-- 임시 사이드바 끝 -->
+	<section>
+		<div class="info-title-box info-title-box-flex">
+			<div class="logo-box-layout"></div>
+			<div>
+				<div class="select-name">
+					<span>유통업자 관리</span>	
+				</div>
+			</div>
+		</div>
+		<div class="wrap"> 
+			<div class="container">
+				<div class="container-margin">
+					<!-- 헤더 -->
+					<!-- 내용 섹션 -->
+					<section class="board-info-box-layout">
+						<div class="board-info-box">
+							<div class="board-info-title-box">
+								<span>유통업자 목록</span>
+								<div class="delete-box">
+									<button class="delete-button">업자 삭제</button>
+								</div>
+							</div>
+							
+							<div class="info-table">
+								<table>
+									<thead>
+										<tr>
+											<th>
+                                                <label class="check-label">
+												    <input type="checkbox" id="allSelect">
+                                                </label>
+											</th>
+											<th>No</th>
+											<th>센터명</th>
+											<th>업자 이름</th>
+											<th>등록 날짜</th>
+											<th>진행 상태</th>
+										</tr>
+									</thead>
+									<!-- <tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td>4</td>
+										<td>사용을 어떤식으로 해야 되는 건가요??</td>
+										<td>멋쟁이</td>
+										<td>2023.03.23</td>
+										<td>대기중</td>
+									</tr> -->
+								</table>
+								<!-- 페이지 버튼 -->
+								<div class="page-button-box-layout">
+									<div class="page-button-box">
+										<!-- 페이지 번호 -->
+										<div class="">
+											<div class="page-button-margin">
+												<div>
+													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
+												</div>
+											</div>
+										</div>
+										<div class="page-button-active page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>1</span>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>2</span>
+												</div>
+											</div>
+										</div>
+										<div class="page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>3</span>
+												</div>
+											</div>
+										</div> -->
+										<div class="">
+											<div class="page-button-margin">
+												<div>
+													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 페이지 버튼 끝 -->
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../static/js/admin/menuLoad.js"></script>
+<script src="../../static/js/admin/checkbox.js"></script>
+<script src="../../static/js/admin/page.js"></script>
+</html>

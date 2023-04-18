@@ -31,11 +31,6 @@ button {
 	cursor: pointer;
 }
 
-.wrap {
-	display: flex;
-	justify-content: flex-start;
-}
-
 .side-menu {
 	display: block;
 	position: fixed;
@@ -43,12 +38,12 @@ button {
 	bottom: 0;
 	z-index: 99;
 	width: 250px;
-	background-color: #4e4e4e;
+	background-color: #fff;
 }
 
 .menu-space {
 	height: 15px;
-    border-bottom: 1px dashed gray;
+    border-bottom: 1px dashed #4e4e4e;
 }
 
 .menu-bar li span {
@@ -57,7 +52,7 @@ button {
 
 .menu-bar .menu .menu-flex {
 	font-size: 14px;
-	color: #fff;
+	color: #4e4e4e;
 	display: flex;
 	justify-content: flex-start;
 	margin: 20px 45px 0px;
@@ -65,7 +60,7 @@ button {
 
 .menus .select-menu {
 	font-size: 11px;
-	color: #fff;
+	color: #4e4e4e;
 	margin-left: 67px;
 	margin-top: 5px;
 }
@@ -87,8 +82,7 @@ button {
 .icon {
 	padding-top: 2px;
     width: 16px;
-	filter: invert(71%) sepia(59%) saturate(0%) hue-rotate(176deg)
-		brightness(91%) contrast(94%);
+	filter: opacity(0.5) drop-shadow(0 0 0 #4e4e4e);
 }
 
 .triangle {
@@ -119,7 +113,7 @@ button {
 }
 
 .menu-name {
-	color:#fff;
+	color:#4e4e4e;
 	font-size: 20px;
 	margin-top: 6px;
 	font-weight: bold;

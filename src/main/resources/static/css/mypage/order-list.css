@@ -1,0 +1,480 @@
+/* order-list.html */
+
+.wrap {
+    position: relative;
+    min-width: 1300px;
+}
+
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+.content-wrap {
+    min-height: 700px;
+}
+
+.head-mypage ~ .frame-sm {
+    margin-top: 45px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.frame-right {
+    float: right;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.menu-title-area .right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    /* z-index: 1; */
+}
+
+.menu-title-area .input-group-wrap.box-type {
+    margin-top: -4px;
+    border-radius: 3px;
+}
+
+.input-group-wrap.box-type {
+    border: 1px solid #ccc;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+}
+
+.menu-title-area .input-group-wrap.box-type .input-group {
+    height: 36px;
+}
+
+.blind {
+    display: contents;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.input-group > .input-text {
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+
+.input-group-wrap .input-group .input-text {
+    border: 0;
+}
+
+.input-group .input-text {
+    height: 100%;
+    padding: 3px 15px;
+}
+
+.input-group > .input-group-form, .input-group > .input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    border: 0;
+}
+
+.input-group-wrap .input-group > .input-text + .input-group-btn:last-child {
+    padding: 0;
+    height: 100%;
+}
+
+.ico-btn-search {
+    filter: invert(39%) sepia(0%) saturate(2%) hue-rotate(68deg) brightness(99%);
+    position: absolute;
+    top: 2px;
+    right: 0;
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.search-box {
+    padding: 5px 18px 15px 18px;
+    background: #F8F8F8;
+    border: 1px solid #ECECEC;
+    margin-top: 10px;
+}
+
+.search-box .search-detail {
+    padding-top: 18px;
+}
+
+.search-detail .radio-list {
+    font-size: 0;
+}
+
+.search-detail .radio-list li {
+    display: inline-block;
+}
+
+.custom-radio {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-radio input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.custom-radio .radio-btn-type2 + label {
+    display: block;
+    width: 120px;
+    height: 36px;
+    border: 1px solid #ccc;
+    padding: 5px 0;
+    text-align: center;
+    background: #fff;
+    line-height: 1.6;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 100px;
+}
+
+.search-detail .radio-list li + li {
+    margin-left: 12px;
+}
+
+.default {
+    color: #FF6001;
+    border: 1px solid #FF6001;
+    border-radius: 100px;
+}
+
+.no-data-type1 {
+    text-align: center;
+    padding: 160px 0;
+}
+
+.no-data-type1 .message {
+    color: #333;
+    font-size: 15px;
+}
+
+.cart-list {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-list > li {
+    position: relative;
+    border-top: 0;
+    padding: 10px 0 10px 0;
+    border-top: 1px solid #ECECEC;
+}
+
+.prd-info-area {
+    position: relative;
+}
+
+.cart-list > li .cart-info-area:not(.option-line) {
+    padding: 0 25px 0 15px;
+}
+
+.prd-info-area .inner {
+    display: table;
+    table-layout: auto;
+    width: 100%;
+}
+
+.prd-info-area .column.check {
+    width: 35px;
+    vertical-align: top;
+    padding: 0 0 0 1px;
+    text-align: left;
+}
+
+.prd-info-area .column {
+    display: table-cell;
+}
+
+.prd-info-area .column.img {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+}
+
+.prd-info-area .column {
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+}
+
+.prd-info-area .column.tit {
+    padding: 0 10px 0 15px;
+    text-align: left;
+}
+
+.prd-info-area .column {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.prd-info-area .column.tit .tit {
+    font-size: 15px;
+    color: #333;
+    margin-top: 31px;
+}
+
+.prd-info-area .column.price {
+    width: 130px;
+    vertical-align: middle;
+    text-align: right;
+    word-break: keep-all;
+}
+
+.prd-info-area .column {
+    display: table-cell;
+}
+
+.prd-info-area .column.btn {
+    width: 50px;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.btn-x-sm {
+    padding: 10px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.btn-x-sm [class^="ico-x-"] {
+    width: 14px;
+    height: 14px;
+}
+
+.ico-x-black {
+    color: #333;
+}
+
+[class^="ico-x-"] {
+    position: relative;
+    display: block;
+}
+
+[class^="ico-x-"]:before {
+    transform: rotate(45deg);
+}
+
+[class^="ico-x-"]:before, [class^="ico-x-"]:after {
+    position: absolute;
+    top: 50%;
+    left: -3px;
+    display: block;
+    content: '';
+    width: 130%;
+    height: 1px;
+    /* background: #666; */
+    box-shadow: inset 0 0 0 32px;
+}
+
+.ico-x-black {
+    color: #333;
+}
+
+[class^="ico-x-"]:after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+[class^="ico-x-"]:before, [class^="ico-x-"]:after {
+    position: absolute;
+    top: 50%;
+    left: -3px;
+    display: block;
+    content: '';
+    width: 130%;
+    height: 1px;
+    /* background: #666; */
+    box-shadow: inset 0 0 0 32px;
+}
+
+.ico-x-black {
+    color: #333;
+}
+
+.dis-inb {
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+}
+
+.ico-btn-refresh {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    filter: invert(46%) sepia(21%) saturate(0%) hue-rotate(272deg) brightness(80%)
+}
+
+.reset {
+    cursor: pointer;
+}
+
+.btn-form {
+    display: inline-block;
+    height: 26px;
+    width: 77px;
+    padding: 3px 13px 0px 13px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.btn-black {
+    color: #fff;
+    background: #333;
+    border: 1px solid #333;
+}
+
+.input-group.type-sm .input-group-btn .btn-form {
+    height: 30px;
+    padding: 0 10px;
+    min-width: auto;
+    font-size: 13px;
+    vertical-align: top;
+}
+
+.input-group.type-sm .btn-form > span {
+    line-height: 2.2;
+}
+
+.btn-form > span {
+    display: inline-block;
+    height: 100%;
+}
+
+.input-group.type-sm .input-group-btn .btn-form {
+    height: 30px;
+    padding: 0 10px;
+    min-width: auto;
+    font-size: 13px;
+    vertical-align: top;
+}
+
+.period-setting .btn-link-txt5 {
+    margin-left: 10px;
+}
+
+.btn-link-txt5 i {
+    vertical-align: middle;
+    margin-top: -3px;
+    margin-right: 5px;
+}
+
+.input-group.type-sm .btn-form > span {
+    line-height: 2.2;
+}
+
+.btn-form > i + span {
+    margin-left: 5px;
+}
+
+.btn-form > span {
+    display: inline-block;
+    height: 100%;
+}
+
+.input-group-form.text-right.w-full {
+    margin-top: 6px;
+}
+
+.page-bottom {
+    position: relative;
+}
+
+.board-list ~ .page-bottom {
+    margin-top: 30px;
+}
+
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.pagination > a {
+    height: 25px;
+    padding: 0 1px;
+    margin: 0 8px 0;
+    color: #999;
+}
+
+.pagination > a.current, .pagination > a.on {
+    border-bottom: 2px solid #FB5001;
+    color: #FB5001;
+    font-weight: 700;
+}
+
+.page-bottom .right-area {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+}

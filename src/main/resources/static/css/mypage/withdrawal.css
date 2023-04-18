@@ -1,0 +1,191 @@
+/* withdrawal.html */
+
+textarea::placeholder {
+    color: #999999;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.wrap {
+    position: relative;
+    min-width: 1300px;
+}
+
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+.content-wrap {
+    min-height: 700px;
+}
+
+.head-mypage ~ .frame-sm {
+    margin-top: 45px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.frame-right {
+    float: right;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+.board-form.type3 {
+    border-bottom: 0;
+}
+
+.board-form {
+    width: 100%;
+    border-top: 1px solid #666;
+}
+
+.input-guide-box.type2 {
+    padding: 50px 0;
+}
+
+.input-guide-box {
+    background: #F9F9F9;
+}
+
+.input-guide-box.type2 .inner {
+    padding: 0 0 0 130px;
+}
+
+.input-guide-box .inner .box-tit {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.frame-sm .admin-txt {
+    color: #888;
+    font-size: 13px;
+    line-height: 26px;
+}
+
+.board-form .secess-area {
+    padding: 50px 100px 90px;
+}
+
+.form-group-area {
+    padding: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+.form-group .form-tit.type2 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.form-group .form-tit, .form-group .form-label {
+    color: #333;
+    text-align: left;
+}
+
+.form-group .form-head ~ .form-box, .form-group .form-head ~ .textarea-box, .form-group .form-head ~ .input-group-wrap, .form-group .form-head ~ .input-group, .form-group .form-label ~ .input-group, .form-group .input-group ~ .input-group {
+    margin-top: 6px;
+}
+
+.form-group .form-head ~ .textarea-box, .form-group .form-head ~ .input-group-wrap, .form-group .form-head ~ .input-group, .form-group .form-label ~ .input-group, .form-group .input-group ~ .input-group {
+    margin-top: 6px;
+}
+
+.h160 {
+    height: 160px;
+}
+
+.textarea-box {
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 15px 20px;
+}
+
+.textarea-box textarea {
+    border: 0;
+    width: 100%;
+    min-height: 60px;
+    height: 100%;
+    resize: none;
+    font-size: 14px;
+}
+
+#frm .btn-bottom-area {
+    margin-top: 40px;
+}
+
+.btn-bottom-area {
+    position: relative;
+    text-align: center;
+}
+
+.btn-bottom-area > [class*="btn-"]:not(.w-full) {
+    margin: 0 3px;
+    vertical-align: top;
+}
+
+.btn-default-ex {
+    background: #fff;
+    color: #333;
+    border: 1px solid #666;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}
+
+[class*="btn-basic-"], [class*="btn-option"] {
+    border-radius: 6px;
+}
+
+.btn-basic-lg2 > span {
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.btn-bottom-area > [class*="btn-"]:last-child:not(.w-full):not(:only-child) {
+    margin: 0 0 0 2px;
+}
+
+.btn-black {
+    color: #fff;
+    background: #333;
+    border: 1px solid #333;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}

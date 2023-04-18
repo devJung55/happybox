@@ -96,13 +96,24 @@ img {
     color: #3A4C67;
 }
 
+p.origin {
+    margin: 0;
+}
+
+.page-bottom {
+    position: relative;
+}
+
+.board-list ~ .page-bottom {
+    margin-top: 30px;
+}
+
 .pagination {
     margin-top: 60px;
     text-align: center;
 }
 
 .pagination > a {
-    display: inline-block;
     height: 25px;
     padding: 0 1px;
     margin: 0 8px 0;
@@ -113,4 +124,25 @@ img {
     border-bottom: 2px solid #FB5001;
     color: #FB5001;
     font-weight: 700;
+}
+
+.page-bottom .right-area {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+}
+
+.prd-item.type-sm2 {
+    position: relative;
+}
+
+.like__wrap {
+    position: absolute;
+    top: 5px;
+    right: 31px;
+}
+
+.like__button {
+    filter: invert(100%) sepia(7%) saturate(722%) hue-rotate(198deg) brightness(118%);
+    cursor: pointer;
 }

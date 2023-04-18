@@ -41,6 +41,7 @@ a {
 }
 
 .blind {
+    display: contents;
     position: absolute;
     width: 1px;
     height: 1px;
@@ -98,16 +99,16 @@ a {
     background-size: cover;
 }
 
-.user-info-box .user-info .txt {
+.user-info-box .user-info .top-bar-txt {
     display: inline-block;
     vertical-align: middle;
 }
 
-.txt, .txt span {
+.top-bar-txt, .top-bar-txt span {
     word-break: break-all;
 }
 
-.user-info-box .user-info .txt .greeting {
+.user-info-box .user-info .top-bar-txt .greeting {
     font-size: 20px;
     font-weight: 400;
 }
