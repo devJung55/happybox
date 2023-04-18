@@ -250,3 +250,7 @@ img {
 .txt, .txt span {
     word-break: break-all;
 }
+
+.complete {
+    background: #556180;
+}
