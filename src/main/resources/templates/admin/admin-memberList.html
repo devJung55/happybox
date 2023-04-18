@@ -4,50 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시물 목록</title>
+    <title>회원 목록</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
 </head>
 <body>
-	<div>
-		<!-- 임시 사이드바 -->
-		<div id="side-bar"></div>
-		<!-- 임시 사이드바 끝 -->
+	<!-- 임시 사이드바 -->
+	<div id="side-bar"></div>
+	<!-- 임시 사이드바 끝 -->
+	<section>
 		<div class="info-title-box info-title-box-flex">
 			<div class="logo-box-layout"></div>
 			<div>
 				<div class="select-name">
-					<span>게시판 관리</span>	
+					<span>회원 관리</span>	
 				</div>
 			</div>
 		</div>
-		<div class="wrap">
+		<div class="wrap"> 
 			<div class="container">
 				<div class="container-margin">
 					<!-- 헤더 -->
+					<!-- 내용 섹션 -->
 					<section class="board-info-box-layout">
 						<div class="board-info-box">
 							<div class="board-info-title-box">
-								<span>게시물 목록</span>
+								<span>회원 목록</span>
 								<div class="delete-box">
-									<button class="delete-button">게시물 삭제</button>
+									<button class="delete-button">회원 삭제</button>
 								</div>
 							</div>
+							
 							<div class="info-table">
 								<table>
 									<thead>
 										<tr>
-											<th><label class="check-label">
+											<th>
+                                                <label class="check-label">
 												    <input type="checkbox" id="allSelect">
                                                 </label>
 											</th>
 											<th>No</th>
-											<th>카테고리</th>
-											<th>게시글 제목</th>
-											<th>작성자 명</th>
-											<th>작성 날짜</th>
+											<th>이름</th>
+											<th>닉네임</th>
+											<th>전화번호</th>
+											<th>이메일</th>
+											<th>생년월일</th>
+											<th>평생회원</th>
 										</tr>
 									</thead>
 									<tr>
@@ -57,10 +62,12 @@
                                             </label>
 										</td>
 										<td>1</td>
-										<td>리뷰 게시판</td>
-										<td><a href="">이 복지센터 아주 괜찮은거 같아요.</a></td>
-										<td>임**</td>
-										<td>2023.01.11</td>
+										<td>한동석</td>
+										<td>멋쟁이</td>
+										<td>010-1234-1234</td>
+										<td>hds123@gmail.com</td>
+										<td>2000.12.04</td>
+										<td>평생회원</td>
 									</tr>
 									<tr>
 										<td>
@@ -69,10 +76,12 @@
                                             </label>
 										</td>
 										<td>2</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
+										<td>이순신</td>
+										<td>장군님</td>
+										<td>010-0000-0000</td>
+										<td>lss123@naver.com</td>
+										<td>1995.02.12</td>
+										<td>평생회원</td>
 									</tr>
 									<tr>
 										<td>
@@ -81,10 +90,12 @@
                                             </label>
 										</td>
 										<td>3</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
+										<td>홍길동</td>
+										<td>서자</td>
+										<td>010-0123-0123</td>
+										<td>hgd123@naver.com</td>
+										<td>1999.04.27</td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>
@@ -93,82 +104,12 @@
                                             </label>
 										</td>
 										<td>4</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td>5</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td>6</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td>7</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td>8</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td>9</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td>10</td>
-										<td>레시피 게시판</td>
-										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td>이**</td>
-										<td>2023.02.11</td>
+										<td>을지문덕</td>
+										<td>지휘관</td>
+										<td>010-1111-2222</td>
+										<td>uzmd123@naver.com</td>
+										<td>1991.08.16</td>
+										<td></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -219,7 +160,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="../../static/js/admin/menuLoad.js"></script>
