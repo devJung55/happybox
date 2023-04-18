@@ -7,7 +7,6 @@ const $inquiryDetail = $(".ui-accordion-view");
 
 $arrows.each((i, arrow) => {
     $(arrow).on("click", function() {
-        
         if($(arrow).hasClass("arrow-0deg")) {
             $(arrow).closest("a").next().css("display", "block");
             $(arrow).removeClass("arrow-0deg");
