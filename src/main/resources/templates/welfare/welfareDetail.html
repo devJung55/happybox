@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>복지관 상세페이지</title>
+        <link rel="stylesheet" href="../../static/css/welfare/welfareDetail.css" />
+        <link rel="stylesheet" href="../../static/css/global/global.css" />
+    </head>
+    <body>
+        <section class="detail-container">
+            <div class="detail-content-wrap">
+                <!-- 상단 복지관 소개 -->
+                <div class="detail-top-wrap frame-sm">
+                    <div class="welfare-img-area">
+                        <div class="welfare-top">
+                            <!-- 대표 이미지 -->
+                            <div class="img">
+                                <img
+                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg"
+                                    alt=""
+                                />
+                                <div class="welfare-badge">
+                                    <img
+                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/ICONTHUMB/20220406/IMG1649RCM228742248.png"
+                                        alt=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="timeSale-area"></div>
+                        </div>
+                        <div class="refrig-banner">
+                            <a href="">
+                                <img
+                                    src="https://www.rankingdak.com/resources/pc/images/img/pc_delivery_banner2.jpg"
+                                    alt=""
+                                />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="welfare-info-area">
+                        <h2 class="welfare-title">[관악복지관] 복지관 맛집 No.1 할머니 손맛</h2>
+                        <div class="rating-div">
+                            <a href="" class="rating-point">
+                                <img src="../../static/img/welfare/rating-star.png" alt="" />
+                            </a>
+                            <a href="" class="score"> 4.9점 </a>
+                            <a href="" class="num"> (76,356) </a>
+                        </div>
+                        <div class="welfare-profile">
+                            <p class="welfare-name">관악복지관</p>
+                            <p class="welfare-location">관악구</p>
+                            <div class="like-btn">
+                                <img src="../../static/img/mypage/heart.png" alt="" />
+                                <img src="../../static/img/welfare/cart.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="welfare-subs">
+                            <a href="" class="box-head">
+                                <i class="ico-bl-orgmem"></i>
+                                <strong class="text-primary">오렌지멤버스 혜택</strong>
+                                <span class="txt">바로가기 <i class="ico-arr-right"></i></span>
+                            </a>
+                            <ul class="sale-desc">
+                                <li>
+                                    <span>멤버스 할인가</span>
+                                    <em class="price number"> <strong> 15,590</strong>원</em>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="welfare-table">
+                            <dl class="dl-row">
+                                <dt>구독</dt>
+                                <dd>
+                                    <strong>7,777</strong>
+                                    명
+                                </dd>
+                            </dl>
+                            <dl class="dl-row">
+                                <dt>배송방법</dt>
+                                <dd>
+                                    <div class="delivery-how">정기 배송</div>
+                                </dd>
+                            </dl>
+                            <dl class="dl-row">
+                                <dt>상품구성</dt>
+                                <dd>
+                                    <div class="const-div">
+                                        <ul class="txt-list configSite">
+                                            <li>🧡 1개월 구독 서비스</li>
+                                            <li>🧡 3개월 구독 서비스</li>
+                                            <li>🧡 6개월 구독 서비스</li>
+                                            <li>🧡 12개월 구독 서비스</li>
+                                        </ul>
+                                    </div>
+                                </dd>
+                            </dl>
+                            <dl class="dl-row">
+                                <dt>혜택</dt>
+                                <dd>
+                                    <div class="const-div">
+                                        <ul class="txt-list configSite">
+                                            <li>1. 계란 후라이 무료 제공</li>
+                                            <li>2. 계란 후라이 무료 제공</li>
+                                            <li>3. 계란 후라이 무료 제공</li>
+                                            <li>4. 계란 후라이 무료 제공</li>
+                                        </ul>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="option-select-area new">
+                            <strong class="tit">옵션 선택</strong>
+                            <div class="drop-box w-full">
+                                <a href="" class="dropdown-value">
+                                    <span class="oneDepthValue">상품옵션선택</span>
+                                </a>
+                                <div class="drop-list">
+                                    <ul class="selected-opt">
+                                        <li class="optListSel add-fee">
+                                            <a href="">
+                                                <span class="add-fee-name"
+                                                    >오리지널 100g X 10팩</span
+                                                >
+                                                <p class="add-fee-bottom">
+                                                    <span class="add-fee-num">
+                                                        <strong>15,900</strong>
+                                                        원
+                                                    </span>
+                                                    <span class="text-primary"
+                                                        >(1팩당&nbsp;1,590원)</span
+                                                    >
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="total-area">
+                                <div class="radio-check">
+                                    <ul class="">
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input type="radio" class="radio prdPriceRadio">
+                                                <label for="">
+                                                    일반회원가
+                                                </label>
+                                            </div>
+                                            <div class="normal-price">
+                                                <div class="subs-price"></div>
+                                                <p class="price">
+                                                    <strong class="total-price">45,900</strong>
+                                                    원
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input type="radio" class="radio prdPriceRadio" checked>
+                                                <label for="">
+                                                    Happy멤버스
+                                                </label>
+                                            </div>
+                                            <div class="normal-price">
+                                                <div class="special-price">
+                                                    <a href="">
+                                                        <p>
+                                                            <strong>
+                                                                <span class="discount">910</span>
+                                                                원
+                                                            </strong>
+                                                            할인 받기 >
+                                                            <i class="arr-right"></i>
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                                <p class="price">
+                                                    <strong class="special-total-price">45,900</strong>
+                                                    원
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="routineDlvPrice hide">
+                                    <span class="txts">총 상품금액</span>
+                                    <p class="price">
+                                        <strong class="orderNormalTotalPrice">45,900</strong>
+                                        원
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
