@@ -22,12 +22,6 @@
                                     src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg"
                                     alt=""
                                 />
-                                <div class="welfare-badge">
-                                    <img
-                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/ICONTHUMB/20220406/IMG1649RCM228742248.png"
-                                        alt=""
-                                    />
-                                </div>
                             </div>
                             <div class="timeSale-area"></div>
                         </div>
@@ -41,7 +35,8 @@
                         </div>
                     </div>
                     <div class="welfare-info-area">
-                        <h2 class="welfare-title">[관악복지관] 복지관 맛집 No.1 할머니 손맛</h2>
+                        <h2 class="welfare-location">서울 특별시 관악구</h2>
+                        <h2 class="welfare-title">복지관 맛집 No.1</h2>
                         <div class="rating-div">
                             <a href="" class="rating-point">
                                 <img src="../../static/img/welfare/rating-star.png" alt="" />
@@ -51,10 +46,17 @@
                         </div>
                         <div class="welfare-profile">
                             <p class="welfare-name">관악복지관</p>
-                            <p class="welfare-location">관악구</p>
-                            <div class="like-btn">
-                                <img src="../../static/img/mypage/heart.png" alt="" />
-                                <img src="../../static/img/welfare/cart.png" alt="" />
+                            <div class="like-cart-btn">
+                                <a href="javascript:void(0)">
+                                    <span class="like-btn">
+                                        <img src="../../static/img/mypage/heart.png" alt="" />
+                                    </span>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <span class="cart-btn">
+                                        <img src="../../static/img/welfare/cart.png" alt="" />
+                                    </span>
+                                </a>
                             </div>
                         </div>
                         <div class="welfare-subs">
@@ -102,41 +104,29 @@
                                 <dd>
                                     <div class="const-div">
                                         <ul class="txt-list configSite">
-                                            <li>1. 계란 후라이 무료 제공</li>
-                                            <li>2. 계란 후라이 무료 제공</li>
-                                            <li>3. 계란 후라이 무료 제공</li>
-                                            <li>4. 계란 후라이 무료 제공</li>
+                                            <li>1.계란 후라이 무료제공</li>
+                                            <li>2.계란 후라이 무료제공</li>
+                                            <li>3.계란 후라이 무료제공</li>
+                                            <li>4.계란 후라이 무료제공</li>
                                         </ul>
                                     </div>
                                 </dd>
                             </dl>
                         </div>
+                        <!--  옵션 선택 -->
                         <div class="option-select-area new">
                             <strong class="tit">옵션 선택</strong>
-                            <div class="drop-box w-full">
-                                <a href="" class="dropdown-value">
-                                    <span class="oneDepthValue">상품옵션선택</span>
-                                </a>
-                                <div class="drop-list">
-                                    <ul class="selected-opt">
-                                        <li class="optListSel add-fee">
-                                            <a href="">
-                                                <span class="add-fee-name"
-                                                    >오리지널 100g X 10팩</span
-                                                >
-                                                <p class="add-fee-bottom">
-                                                    <span class="add-fee-num">
-                                                        <strong>15,900</strong>
-                                                        원
-                                                    </span>
-                                                    <span class="text-primary"
-                                                        >(1팩당&nbsp;1,590원)</span
-                                                    >
-                                                </p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="w-full">
+                                <form action="">
+                                    <select name="option" id="" class="drop-box w-full">
+                                        <option value="0">상품 옵션 선택</option>
+                                        <option value="korea">한식 전용 식단</option>
+                                        <option value="diet">다이어트 전용 식단</option>
+                                        <option value="health">헬스인 식단(정지영)</option>
+                                        <option value="pig">Gradle 식단(강민구)</option>
+                                        <option value="kebap">캐밥만 먹자</option>
+                                    </select>
+                                </form>
                             </div>
                             <div class="total-area">
                                 <div class="radio-check">
@@ -158,38 +148,52 @@
                                         </li>
                                         <li>
                                             <div class="custom-radio">
-                                                <input type="radio" class="radio prdPriceRadio" checked>
+                                                <input type="radio" class="radio prdPriceRadio">
                                                 <label for="">
-                                                    Happy멤버스
+                                                    Happy
                                                 </label>
                                             </div>
                                             <div class="normal-price">
-                                                <div class="special-price">
-                                                    <a href="">
-                                                        <p>
-                                                            <strong>
-                                                                <span class="discount">910</span>
-                                                                원
-                                                            </strong>
-                                                            할인 받기 >
-                                                            <i class="arr-right"></i>
-                                                        </p>
-                                                    </a>
-                                                </div>
                                                 <p class="price">
-                                                    <strong class="special-total-price">45,900</strong>
+                                                    <strong class="special-total-price">30,900</strong>
                                                     원
                                                 </p>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="routineDlvPrice hide">
+                                <div class="get-total-price">
                                     <span class="txts">총 상품금액</span>
                                     <p class="price">
-                                        <strong class="orderNormalTotalPrice">45,900</strong>
+                                        <strong class="orderNormalTotalPrice"></strong>
                                         원
                                     </p>
+                                </div>
+                                <div class="btn-area">
+                                    <button type="button" class="save-btn">
+                                        <span>찜하기</span>
+                                    </button>
+                                    <!-- 모달 -->
+                                    <!-- <div class="cart-pop">
+                                        <div class="inner-box">
+                                            <p clas="txt">장바구니에 추가하였습니다.<br>장바구니로 이동하시겠습니까?</p>
+                                            <div class="btns">
+                                                <button type="button" class="btn-basic-sm2 btn-default ui-cart-close" onclick="cartPopClose(this);">
+                                                    <span>아니오</span>
+                                                </button>
+                                                <a href="/order/cart" class="btn-basic-sm2 btn-primary-ex">
+                                                    <span>예</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <button type="button" class="subscribe-btn">
+                                        <span>구독</span>
+                                    </button>
+                                    <!-- 모달 -->
+                                    <!-- <a href="/mypage/orangeMember" class="btn-basic-lg btn-primary-ex orangeMembersJoinBtn hide" data-type="00">
+                                        <span>오렌지멤버스 가입하고 할인받기</span>
+                                    </a> -->
                                 </div>
                             </div>
                         </div>
@@ -198,4 +202,6 @@
             </div>
         </section>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../static/js/welfare/welfareDetail.js"></script>
 </html>

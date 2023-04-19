@@ -18,16 +18,13 @@
     margin: 0 auto;
 }
 
-.img {
+.welfare-top .img {
     position: relative;
-    width: 480px;
-    height: 480px;
+    width: 750px;
+    height: 100%;
     overflow: hidden;
-}
-
-img{
-    max-width: 100%;
-    vertical-align: top;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .tit {
@@ -47,23 +44,11 @@ img{
 
 .welfare-img-area {
     float: left;
-    width: 480px;
+    width: 750px;
 }
 
 .welfare-top {
     position: relative;
-}
-
-.welfare-badge {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    z-index: 1;
-}
-
-.welfare-badge img{
-    height: 60px;
-    vertical-align: top;
 }
 
 .timeSale-area {
@@ -75,12 +60,19 @@ img{
 
 .refrig-banner {
     margin-top: 15px;
+    text-align: center;
 }
 
 .welfare-info-area {
     float: right;
-    width: 560px;
-    padding-right: 40px;
+    width: 280px;
+    padding: 20px;
+    border: 1px solid #80808014;
+    border-style: outset;
+    position: fixed;
+    display: initial;
+    z-index: 10;
+    background-color: white;
 }
 
 .detail-top-wrap:after{
@@ -123,7 +115,7 @@ img{
     margin-top: 18px;
     position: relative;
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
 }
 
 .welfare-name-tag {
@@ -144,13 +136,31 @@ img{
     line-height: 220%;
 }
 
-.like-btn {
-    position: absolute;
-    right: 60px;
-    width: 30px;
+.like-cart-btn {
+    width: 70px;
     height: 30px;
     display: flex;
-    gap: 15px;
+    gap: 10px;
+}
+
+.like-btn{
+    display: block;
+    width: 100%;
+}
+
+.like-btn img{
+    width: 30px;
+    height: 30px;
+}
+
+.cart-btn {
+    display: block;
+    width: 100%;
+}
+
+.cart-btn img {
+    width: 30px;
+    height: 30px;
 }
 
 .welfare-subs {
@@ -276,60 +286,38 @@ img{
 }
 
 .drop-box {
-    display: inline-block;
-    position: relative;
-    min-width: 260px;
-    height: 50px;
-    vertical-align: top;
-    z-index: 2;
-    text-align: left;
-    max-width: 100%;
+    width: 200px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 12px 13px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
 }
 
-.drop-list {
-    margin-top: -3px;
-    position: absolute;
-    display: none;
-    overflow-y: auto;
-    position: absolute;
-    top: 49px;
+.drop-box:focus{
+    border: 1.5px solid #FFA5CD;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+select {
+    -webkit-appearance:none; 
+    appearance:none;
+    background: url('../../img/welfare/down.png') no-repeat 97% 50%/15px auto;
+}
+
+option {
+    padding: 3px;
+    margin-top: 3px;
     width: 100%;
-    max-height: 300px;
-    padding: 0;
-    border: 1px solid #666;
-    background: #fff;
-    z-index: 1;
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
 .w-full {
     width: 100% !important;
-}
-
-.drop-box .dropdown-value {
-    padding: 12px 40px 12px 15px;
-}
-
-.drop-box .dropdown-value {
-    display: block;
-    position: relative;
-    height: 100%;
-    padding: 12px 40px 9px 15px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    color: #666;
-    box-sizing: border-box;
-    background: #fff;
-    line-height: 24px;
-}
-
-.drop-list li:first-child {
-    border-top: 0;
-}
-
-.drop-list li {
-    position: relative;
-    background: #fff;
-    border-top: 1px solid #ddd;
 }
 
 .add-fee a:not(.text-primary){
@@ -421,6 +409,7 @@ img{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 40px;
 }
 
 .radio-check ul li:first-child{
@@ -578,6 +567,7 @@ input[type="checkbox"], input[type="radio"] {
 
 .special-total-price {
     font-size: 26px;
+    color: #f6599f;
 }
 
 .total-area .txts {
@@ -600,6 +590,65 @@ input[type="checkbox"], input[type="radio"] {
     font-size: 26px;
 }
 
+.get-total-price {
+    border-top: 1px solid rgba(0, 0, 0, 0.459);
+}
+
+/* 버튼 + 모달 */
+.btn-area {
+    position: relative;
+    text-align: center;
+    align-items: stretch;
+    display: -webkit-box;
+    margin-top: 15px;
+    -webkit-align-items: stretch;
+}
+
+.btn-area .save-btn {
+    vertical-align: top;
+    flex-grow: 1;
+    -webkit-box-flex: 1;
+    width: 50%;
+    margin: 0 3px 0 0;
+    background: #fff;
+    color: #f6599f;
+    border: 1px solid #FFA5CD;
+    min-width: 280px;
+    height: 56px;
+    padding: 10px 25px 11px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-area .subscribe-btn{
+    vertical-align: top;
+    flex-grow: 1;
+    -webkit-box-flex: 1;
+    width: 50%;
+    margin: 10px 3px 0 0;
+    min-width: 280px;
+    background: #FFA5CD;
+    color: #fff;
+    border: 1px solid #FFA5CD;
+    padding: 10px 25px 11px;
+    border-radius: 6px;
+}
+
+.btn-area .save-btn span {
+    font-size: 18px;
+    line-height: 1.8;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.btn-area .subscribe-btn span{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.8;
+    display: inline-block;
+    vertical-align: top;
+}
 
 
 
