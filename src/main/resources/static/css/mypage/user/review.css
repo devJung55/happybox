@@ -1,0 +1,217 @@
+/* review.html */
+
+/* review-list.html */
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.wrap {
+    position: relative;
+    min-width: 1300px;
+}
+
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+.content-wrap {
+    min-height: 700px;
+}
+
+.head-mypage ~ .frame-sm {
+    margin-top: 45px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.frame-right {
+    float: right;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+    margin-bottom: 5px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+ul.grid-area-span2.gap60 {
+    width: 100%;
+    border-top: 1px solid #666666;
+}
+
+.grid-wrap, .grid-area, .grid-wrap-inline, [class*="grid-area-"] {
+    position: relative;
+    font-size: 0;
+    text-align: left;
+}
+
+.best-review-area .grid-area-span2 > li:nth-child(1), .best-review-area .grid-area-span2 > li:nth-child(2) {
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+[class*="grid-area-"].gap60 > .colum {
+    padding-right: 30px;
+}
+
+.best-review-area .grid-area-span2 > li {
+    position: relative;
+    max-height: 120px;
+    height: 120px;
+}
+
+.grid-area-span2 > .colum {
+    width: 50%;
+}
+
+[class*="grid-area-"] > .colum, .grid-area > .colum {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+}
+
+.best-review-area .review-detail {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.best-review-area .review-detail .img {
+    position: relative;
+    float: right;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.best-review-area .review-detail .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rating-point {/* // 별점 */
+    position: relative;
+    display: inline-block;
+    width: 105px;
+    height: 12px;
+    margin: 10px 0 10px 0;
+}
+
+.best-review-area .rating-point + .sep-list {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -6px;
+    margin-left: 20px;
+}
+
+.sep-list.type3 li {
+    padding: 0 10px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.sep-list li {
+    float: left;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+.sep-list li:last-child {
+    padding-right: 0;
+}
+
+.sep-list.type3 li {
+    padding: 0 10px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.sep-list li {
+    float: left;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+.best-review-area .review-detail .txt .detail {
+    margin-top: 10px;
+    line-height: 24px;
+}
+
+img.lozad {
+    float: right;
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 8px;
+}
+
+.border__bottom {
+    border-bottom: 1px solid #bbb;
+}
+
+.detail__item {
+    position: absolute;
+    bottom: 7px;
+    color: #666666;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.arrow-0deg {
+    transform: rotate(90deg);
+    filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
+}
+
+
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.pagination > a {
+    height: 25px;
+    padding: 0 1px;
+    margin: 0 8px 0;
+    color: #999;
+}
+
+.pagination > a.current, .pagination > a.on {
+    border-bottom: 2px solid #FB5001;
+    color: #FB5001;
+    font-weight: 700;
+}
+
+.page-bottom .right-area {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+}
+
+.prd-item.type-sm2 {
+    position: relative;
+}
