@@ -68,7 +68,7 @@ a {
 
 .user-info-box .inner > .column.user-info {
     position: relative;
-    padding: 25px;
+    /* padding: 25px; */
 }
 
 .user-info-box .inner > .column {
