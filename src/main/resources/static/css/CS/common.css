@@ -1,0 +1,363 @@
+.content-wrap {
+    min-height: 700px;
+}
+
+.disNone {
+    display: none !important;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.content-wrap.frame-sm .page-title-area:first-child {
+    padding-top: 70px;
+}
+
+.title-page {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.page-title-area ~ .frame-wrap {
+    margin-top: 20px;
+}
+
+.frame-wrap,
+.clear:after,
+[class*="frame-"]:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.frame-left {
+    float: left;
+}
+
+.frame-right {
+    float: right;
+}
+
+.aside-menu-wrap {
+    width: 220px;
+}
+
+.aside-menu {
+    padding: 10px 24px;
+    border: 1px solid #e6e6e6;
+}
+
+.aside-menu .menu-list > li {
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+}
+
+.aside-menu .menu-list > li:first-child {
+    border-top: 0;
+}
+
+.aside-menu .menu-list > li .menu {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
+.aside-guide-box {
+    padding: 30px 24px;
+    border: 1px solid #E6E6E6;
+    margin-top: 15px;
+}
+
+.aside-guide-box dl dt {
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.aside-guide-box dd {
+    color: #666;
+    line-height: 19px;
+}
+
+.aside-guide-box .phone-num {
+    color: #333;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.text-num-md {
+    font-weight: 400;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area .input-group-wrap.box-type {
+    margin-top: -4px;
+    border-radius: 3px;
+}
+
+.menu-title-area .input-group-wrap.box-type .input-group {
+    height: 36px
+}
+
+.menu-title-area .input-group-wrap.box-type .input-group .select-box {
+    min-width: 80px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.menu-title-area .right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+}
+
+.input-group-wrap.box-type {
+    border: 1px solid #ccc;
+}
+
+.w225 {
+    width: 225px !important;
+}
+
+.input-group > .input-group-txt:first-child,
+.input-group > .input-group-form:first-child {
+    padding-left: 0 !important;
+}
+
+.input-group > .input-group-form,
+.input-group > .input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    border: 0;
+    padding: 0 5px;
+}
+
+.input-group .select-box,
+.input-group .btn-form {
+    height: 40px;
+}
+
+.select-box {
+    display: inline-block;
+    min-width: 120px;
+    position: relative;
+    height: 40px;
+    vertical-align: top;
+    z-index: 2;
+    text-align: left;
+    max-width: 100%;
+}
+
+.input-group-wrap .input-group .input-text {
+    border: 0;
+}
+
+.input-group-wrap.box-type .select-box {
+    margin: 0;
+}
+
+.select-box .select-value {
+    display: block;
+    position: relative;
+    height: 100%;
+    padding: 0 36px 0 15px;
+    border-right: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.select-box .select-value > span {
+    position: relative;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    word-break: break-all;
+    color: #999;
+    user-select:none
+}
+
+.select-box .select-value:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid #555;
+    border-left: 1px solid #555;
+    transform: rotate(225deg) translateY(100%);
+}
+
+.select-box .select-list {
+    display: block;
+    max-height: 300px;
+    padding: 0;
+    border: 1px solid #ddd;
+    background: #fff;
+    z-index: 1;
+}
+
+.select-box .select-list li:first-child {
+    margin-top: 0;
+}
+
+.select-box .select-list a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 17px 10px;
+    background: #fff;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.select-box .select-list li + li {
+    border-top: 1px solid #ddd;
+}
+
+.input-group-wrap .input-group .input-text {
+    border: 0;
+}
+
+.input-group .input-text {
+    height: 100%;
+    padding: 3px 15px;
+}
+
+.input-group > .input-text {
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.input-group > .input-group-form,
+.input-group > .input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    border: 0;
+    padding: 0 5px;
+}
+
+.input-group-wrap .input-group > .input-text + .input-group-btn:last-child {
+    padding: 0;
+    height: 100%;
+}
+
+[class*="btn-icon-"] {
+    display: inline-block;
+}
+
+.input-group-wrap.box-type .input-group-btn > .btn-icon-search {
+    padding: 0 10px;
+    margin-top: 2px;
+}
+
+[class^="ico-btn-"] {
+    display: inline-block;
+    background-image: url(https://www.rankingdak.com/resources/pc/images/icon/ico_btns.png);
+}
+
+.ico-btn-search {
+    background-position: 0 0;
+    width: 18px;
+    height: 18px;
+}
+
+.board-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #666;
+    margin-top: 10px;
+}
+
+.board-wrap {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.board-wrap div {
+    padding: 16px 10px;
+    line-height: 20px;
+}
+
+.board-wrap .number {
+    width: 50px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.board-wrap div span {
+    color: #999;
+}
+
+.use-info {
+    cursor: pointer;
+}
+
+.use-info .arrow-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.answer-wrap .answer {
+    padding: 25px 40px 30px 30px;
+    background: #F8F8F8;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>고객센터</title>
+        <link rel="stylesheet" href="../../static/css/global/global.css" />
+        <link rel="stylesheet" href="../../static/css/CS/common.css" />
+        <link rel="stylesheet" href="../../static/css/CS/notice.css" />
+    </head>
+    <body>
+        <section class="container">
+            <div class="content-wrap frame-sm">
+                <div class="page-title-area">
+                    <h2 class="title-page">
+                        <a href="javascript:void(0)">고객센터</a>
+                    </h2>
+                </div>
+                <div class="frame-wrap">
+                    <!-- 사이드바는 타임리프 fragment로 묶을것. 임시로 list.js에 load() 사용 -->
+                    <div class="frame-right">
+                        <div class="frame-cnt-inner">
+                            <div class="form-wrap">
+                                <div class="menu-title-area">
+                                    <h3 class="title-menu">공지사항</h3>
+                                    <div class="right">
+                                        <div class="input-group-wrap box-type">
+                                            <div class="input-group w225">
+                                                <div class="input-group-form">
+                                                    <div class="ui-select select-box" data-value="">
+                                                        <a class="select-value">
+                                                            <span id="value">제목</span>
+                                                        </a>
+                                                        <!-- 검색조건 -->
+                                                        <input name="srchType" type="hidden" />
+                                                        <div class="select-list disNone">
+                                                            <ul>
+                                                                <li class="srchOpt" data-value="전체">
+                                                                    <a><span>전체</span></a>
+                                                                </li>
+                                                                <li class="srchOpt" data-value="제목">
+                                                                    <a class="selected"
+                                                                        ><span>제목</span></a
+                                                                    >
+                                                                </li>
+                                                                <li class="srchOpt" data-value="내용">
+                                                                    <a><span>내용</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--// input-group-form -->
+                                                <input
+                                                    type="text"
+                                                    id="item1-1"
+                                                    class="input-text"
+                                                    name="keyword"
+                                                />
+                                                <span class="input-group-btn">
+                                                    <button
+                                                        type="button"
+                                                        class="btn-icon-search"
+                                                        id="noticeSrch"
+                                                    >
+                                                        <i class="ico-btn-search"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                            <!--// input-group -->
+                                        </div>
+                                        <!--// input-group-wrap -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="board-list notice-list">
+                                <div class="board-wrap">
+                                    <div class="text-center number">
+                                        <span>152</span>
+                                    </div>
+                                    <div class="text-left flex1">
+                                        <a href="javascript:void(0)" class="title-elps">
+                                            영양성분 전수조사 결과 입장문
+                                        </a>
+                                    </div>
+                                    <div class="text-center">
+                                        <span>2023.02.03</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../static/js/CS/list.js"></script>
+    <script src="../../static/js/CS/search.js"></script>
+</html>
