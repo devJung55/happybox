@@ -12,6 +12,18 @@
 
 /*============================공통===========================  */
 
+.fixed-img {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+.fixed-img img{
+    width: 50px;
+    height: auto;
+}
+
 .frame-sm {
     position: relative;
     max-width: 1100px;
@@ -20,11 +32,15 @@
 
 .welfare-top .img {
     position: relative;
-    width: 750px;
+    width: 100%;
     height: 100%;
     overflow: hidden;
     margin: 0 auto;
     text-align: center;
+}
+
+.welfare-top .img img{
+    width: 750px;
 }
 
 .tit {
@@ -44,7 +60,7 @@
 
 .welfare-img-area {
     float: left;
-    width: 750px;
+    width: 770px;
 }
 
 .welfare-top {
@@ -59,8 +75,18 @@
 }
 
 .refrig-banner {
+    width: 100%;
+    height: 100%;
     margin-top: 15px;
     text-align: center;
+}
+
+.refrig-banner a img{
+    width: 750px;
+}
+
+.fixed {
+    position: fixed;
 }
 
 .welfare-info-area {
@@ -69,8 +95,6 @@
     padding: 20px;
     border: 1px solid #80808014;
     border-style: outset;
-    position: fixed;
-    display: initial;
     z-index: 10;
     background-color: white;
 }
@@ -192,7 +216,6 @@
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    right: 20px;
     color: #999;
     font-size: 13px;
 }
@@ -650,14 +673,422 @@ input[type="checkbox"], input[type="radio"] {
     vertical-align: top;
 }
 
+/* ======================복지관 상세페이지 중간 부분 =======================================*/
+
+.welfare-middle-wrap {
+    padding-top: 70px;
+}
+
+.left-position {
+    width: 770px;
+}
+
+
+/* 리뷰 */
+
+.review-tit {
+    padding: 4px 10px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.review-area .review-tit {
+    margin-left: 4px;
+}
+
+.review-tit .text-primary{
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.review-list-wrap {
+    position: relative;
+    font-size: 0;
+    text-align: left;
+}
+
+.review-list-wrap .colum {
+    margin-top: 0;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    width: 47%;
+    padding-left: 10px;
+    margin-right: 10px;
+}
+
+.review-detail {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    border-right: 1px solid #80808061;
+}
+
+.review-detail .img{
+    position: relative;
+    float: right;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.review-detail .img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.review-detail .img .added{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    background: rgba(0, 0, 0, 0.5);
+    min-width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 2.2;
+}
+
+.review-detail .rating-point {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 17px;
+}
+
+.review-detail .rating-point img {
+    width: 13px;
+    height: 17px;
+    align-items: center;
+}
+
+.review-detail .rating-point .point50 {
+    width: 100%;
+}
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.review-area .rating-point + .sep-list {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -6px;
+    margin-left: 20px;
+    overflow: inherit;
+}
+
+.sep-list.type3 li {
+    padding: 0 10px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.sep-list li {
+    float: left;
+    position: relative;
+    padding: 0 13px 0 0;
+    color: #555;
+    font-size: 13px;
+    letter-spacing: -0.5px;
+}
+
+.sep-list li:last-child {
+    padding-right: 0;
+}
+
+.sep-list.type3 li:before {
+    height: 10px;
+    background: #e6e6e6;
+    margin: 2px 10px 0 0;
+}
+
+.sep-list li:before {
+    display: inline-block;
+    content: '';
+    width: 1px;
+    height: 10px;
+    vertical-align: middle;
+    background: #C4C4C4;
+    margin: -1px 11px 0 0;
+}
+
+.sep-list li span {
+    vertical-align: middle;
+}
+
+.sep-list:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.detail {
+    padding-right: 35px;
+    margin-top: 10px;
+    max-height: 72px;
+    line-height: 24px;
+    width: 250px;
+}
+
+.text-elps3 {
+    display: block;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+}
+
+.detail span {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
 
 
 
 
+/* ==========================================카카오맵================================== */
+.placeMapSection-container{
+    padding: 13px;
+}
+
+.placeMapSection-container > div:last-child {
+    margin: 0px 0px 20px;
+}
+
+.placeMapContainer {
+    height: auto;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+}
+
+.place-container {
+    height: auto;
+    padding: 0px 14px;
+}
+
+.placeLocation-container {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 14px 0px;
+}
+
+.placeLocationTitle-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.placeLocationTitle {
+    margin: 0px 0px 8px;
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 22px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.placeLocationTitleDetail {
+    color: rgb(119, 119, 119);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
 
 
+/*========================================== 음식 정보 ===================================*/
+
+.food-info-area {
+    padding: 14px;
+}
+
+.main-article {
+}
+
+.frame-sm {
+    position: relative;
+    margin: 0 auto;
+}
+
+.category-btn-list {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+}
+
+.category-btn-item-ico-wrap {
+    background-color: #f8f8f8;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-btn-item-ico-wrap i {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-size: 500%;
+}
+
+.category-btn-item-subject {
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    margin-top: 7px;
+    color: #666;
+    word-break: keep-all;
+}
+
+.main-article ~ .recommend-sec {
+    margin-top: 80px;
+}
+
+.frame-slide-overlap {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.frame-slide-overlap .swiper-container {
+    padding: 0 20px;
+}
+
+.swiper-container {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0 20px;
+    z-index: 1;
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    box-sizing: content-box;
+    transition: 0.3s ease-in-out;
+}
+
+.best-list .frame-sm .swiper-container .swiper-wrapper {
+    justify-content: space-between;
+}
+
+.swiper-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #e1e1e1;
+    border-radius: 100%;
+    top: calc(256px / 2);
+    margin: 0;
+    transform: translateY(-50%);
+    position: absolute;
+    z-index: 10;
+}
+
+.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: auto;
+}
+.swiper-button-prev {
+    left: 0;
+    right: auto;
+}
+
+.swiper-button-next {
+    right: 0;
+    left: auto;
+}
+
+.swiper-button-prev svg {
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+    pointer-events: none;
+    transform: rotate(180deg);
+    z-index: 1;
+}
+
+.swiper-button-next svg {
+    width: 15px;
+    height: 15px;
+    pointer-events: none;
+    margin-top: 2px;
+    z-index: 1;
+}
+
+.swiper-button-next svg polygon,
+.swiper-button-prev svg polygon {
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bnr-item {
+    position: relative;
+}
+
+.bnr-item .img {
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+}
+
+.bnr-item .img > img {
+    width: 100%;
+    height: 100%;
+}
+
+.bnr-item .tit {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.bnr-item-list {
+    width: calc(221.3px * 12);
+}
 
 
+/*============= 복지관 소개 ========================*/
+.welfare-intro-area {
+    padding: 14px;
+}
 
+.welfare-info-list{
+    margin: 0px auto;
+    width: 100%;
+    text-align: center;
+}
 
-
+.welfare-info-list img{
+    padding-top: 30px;
+    max-width: 100%;
+    vertical-align: top;
+}
