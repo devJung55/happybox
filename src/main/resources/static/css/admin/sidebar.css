@@ -1,42 +1,16 @@
 @charset "UTF-8";
 
-@font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-* {
-		margin: 0;
-		padding: 0;
-}
-
-a {
-	text-decoration: none;
-	color: inherit;
-	cursor: pointer;
-}
-
-li {
-	list-style: none;
-}
-
-body {
-	background-color: #f1f1f1;
-	font-family: 'GmarketSansMedium';
-}
-
-button {
-	cursor: pointer;
+.side-menu-section {
+    width: 250px;
+    height: 100%;
 }
 
 .side-menu {
 	display: block;
 	position: fixed;
-	top: 0px;
+	top:56px;
 	bottom: 0;
-	z-index: 99;
+/* 	z-index: 99; */
 	width: 250px;
 	background-color: #fff;
 }
@@ -70,19 +44,15 @@ button {
 }
 
 
-.menu-title {
-	display: flex;
-    justify-content: flex-start;
-    position: relative;
-    font-size: 21px;
-    color: #fff;
-    height: 32px;
-}
-
 .icon {
 	padding-top: 2px;
     width: 16px;
 	filter: opacity(0.5) drop-shadow(0 0 0 #4e4e4e);
+}
+
+.triangle-button {
+	position:absolute;
+	right: 15px;
 }
 
 .triangle {
@@ -104,19 +74,8 @@ button {
 	font-size: 10px;
 }
 
-.menu-title-layout {
-	margin: 8px 18px 0px 44px;
-}
-
 .menus2, .menu1 {
 	display: none;
-}
-
-.menu-name {
-	color:#4e4e4e;
-	font-size: 20px;
-	margin-top: 6px;
-	font-weight: bold;
 }
 
 .info-margin-bottom {
