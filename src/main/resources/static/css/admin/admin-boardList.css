@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+.logo-box img {
+	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
+	width: 80px;
+}
+
+/* 기존 */
+
 .wrap {
 	display: flex;
 	justify-content: flex-start;
@@ -7,14 +14,96 @@
 
 .container {
 	width: 100%;
-	margin-left: 250px;
-	margin-top: 55px;
+	/* margin-left: 250px;
+	margin-top: 55px; */
 }
 
-.check-label {
+.container-margin {
+	margin: 40px 100px 0px;
+}
+
+
+.board-info-box-layout {
+	margin-top: 30px;
+	margin-bottom: 30px;	
+}
+
+.board-info-box {
+	border: 0.0625rem solid #f2f2f2;
+    box-shadow: 11px 13px 11px -14px grey;
+    background: #fff;
+}
+
+.board-info-title-box {
+	padding: 20px 27px 0;
+}
+
+.board-info-title-box {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+/* 버튼 영역 =============== */
+
+.button-wrap {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+}
+
+.register-button {
+    font-family: 'GmarketSansMedium';
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 20px;
+    background-color: #fff;
+	border-radius: 3px;
+    font-weight: bold;
+}
+
+.register-button:hover {
+    color: #c97793;
+}
+
+.delete-box {
+	text-align: right;
+}
+
+.delete-button {
+    font-family: 'GmarketSansMedium';
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 20px;
+    background-color: #fff;
+	border-radius: 3px;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+	color: #c97793;
+}
+
+/* 상세보기 */
+
+.show-detail {
+	cursor: pointer;
+}
+
+.show-detail:hover {
+	color: #c97793;
+}
+
+/* 테이블 */
+
+.info-table {
+	padding: 20px;
+}
+
+table {
+	text-align : center;
+	width: 100%;
+	border-collapse: collapse
 }
 
 tr {
@@ -27,130 +116,16 @@ table th, table td {
 	padding-left: 10px;
 }
 
-.checkbox-line {
-	line-height: 1px;
-}
-
 table td {
 	font-weight: 300;
+	text-overflow: ellipsis;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-table {
-	text-align : center;
-	width: 100%;
-	border-collapse: collapse
-}
 
-.board-info-box {
-	border: 0.0625rem solid #f2f2f2;
-    box-shadow: 11px 13px 11px -14px grey;
-    background: #fff;
-}
-
-.info-title-box-flex {
-	display: flex;
-    position: fixed;
-	justify-content: flex-start;
-}
-
-.info-title-box {
-	width: 100%;
-	height: 55px;
-	border-radius: 3px;
-	background: #fff;
-	box-shadow: 11px 13px 11px -14px grey;
-}
-
-.info-table {
-	padding: 20px;
-}
-
-.board-info-title-box {
-	padding: 20px 27px 0;
-}
-
-.board-info-title-box {
-	font-size: 15px;
-	font-weight: bold;
-}
-
-.logo-box img {
-	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
-	width: 80px;
-}
-
-.logo-box {
-	padding: 4px 10px 0px 25px;
-}
-
-.logo-box-layout {
-	display: flex;
-	width: 250px;	
-}
-
-.logo-title {
-	color: #EAE847;
-	padding-top: 10px;
-    font-size: 26px;
-    font-weight: 700;
-}
-
-.select-name {
-	padding-top : 17px;
-	padding-left: 10px;
-}
-
-.button-wrap {
-    display: flex;
-    justify-content: flex-end;
-    gap: 6px;
-    align-items: center;
-}
-
-.create-box {
-	text-align: right;
-}
-
-.create-button {
-    font-family: 'GmarketSansMedium';
-    border: none;
-    width: 120px;
-    height: 35px;
-    background-color: #31de92;
-	border-radius: 3px;
-    font-weight: bold;
-}
-
-.create-button:hover {
-	background-color: #3cb47f;
-}
-
-.delete-box {
-	text-align: right;
-}
-
-.delete-button {
-    font-family: 'GmarketSansMedium';
-    border: none;
-    width: 120px;
-    height: 35px;
-    background-color: #e35461;
-	border-radius: 3px;
-    font-weight: bold;
-}
-
-.delete-button:hover {
-	background-color: #ba4651;
-}
-
-.container-margin {
-	margin: 40px 100px 0px;
-}
-
-.board-info-box-layout {
-	margin-top: 30px;
-	margin-bottom: 30px;	
-}
+/* 페이지 버튼 */
 
 .page-button-box-layout {
 	text-align: center;	
@@ -162,6 +137,23 @@ table {
 	justify-content:center;
 }
 
+.page-button-box {
+	font-size: 13px;
+}
+
+.page-button-margin {
+	margin:0 auto;
+}
+
+.page-button-margin div {
+	margin-top: 3px;
+}
+
+.page-button {
+	width: 20px;
+	cursor: pointer;
+} 
+
 .page-button-active {
 	width: 20px;
 	height: 20px;
@@ -170,18 +162,8 @@ table {
 	border-radius: 2px;	
 }
 
-.page-button {
-	width: 20px;
-	cursor: pointer;
-} 
 
-.page-button-box {
-	font-size: 13px;
-}
-
-.page-button-margin {
-	margin:0 auto;
-}
+/* 그 외 */
 
 .modify-button {
 	padding-right: 20px;
@@ -204,21 +186,6 @@ table {
 .update-button-flex {
 	display: flex;
 	justify-content: flex-end;	
-}
-
-.register-button {
-	margin-right: 10px;
-	box-shadow: 2px 2px 7px -2px grey;
-    font-family: 'GmarketSansMedium';
-    border: none;
-    width: 120px;
-    height: 50px;
-    background-color: #fff ;
-    font-weight: bold;
-}
-
-.page-button-margin div {
-	margin-top: 3px;
 }
 
 .right-button {

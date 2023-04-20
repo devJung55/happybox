@@ -8,22 +8,34 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/admin/admin-default.css">
+    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
     <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
 </head>
 <body>
-	<!-- 임시 사이드바 -->
-	<div id="side-bar"></div>
-	<!-- 임시 사이드바 끝 -->
-	<section>
+	<section class="header-section">
 		<div class="info-title-box info-title-box-flex">
-			<div class="logo-box-layout"></div>
+			<div class="logo-box-layout">
+				<div class="logo-title-layout">
+					<div class="logo-title">
+						<div class="logo-name">
+							Happy Box
+						</div>
+					</div>
+				</div>
+			</div>
 			<div>
 				<div class="select-name">
 					<span>회원 관리</span>	
 				</div>
 			</div>
 		</div>
-		<div class="wrap"> 
+	</section>
+	<main class="main-section">
+		<!-- 임시 사이드바 -->
+		<div id="side-bar"></div>
+		<!-- 임시 사이드바 끝 -->
+		<section class="content-section">
 			<div class="container">
 				<div class="container-margin">
 					<!-- 헤더 -->
@@ -33,18 +45,15 @@
 							<div class="board-info-title-box">
 								<span>회원 목록</span>
 								<div class="delete-box">
-									<button class="delete-button">회원 삭제</button>
+									<button type="button" class="delete-button">회원 삭제</button>
 								</div>
 							</div>
-							
 							<div class="info-table">
 								<table>
 									<thead>
 										<tr>
 											<th>
-                                                <label class="check-label">
-												    <input type="checkbox" id="allSelect">
-                                                </label>
+												<input type="checkbox" id="allSelect">
 											</th>
 											<th>No</th>
 											<th>이름</th>
@@ -52,14 +61,12 @@
 											<th>전화번호</th>
 											<th>이메일</th>
 											<th>생년월일</th>
-											<th>평생회원</th>
+											<th>상세보기</th>
 										</tr>
 									</thead>
 									<tr>
 										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+											<input type="checkbox" name="check">
 										</td>
 										<td>1</td>
 										<td>한동석</td>
@@ -67,13 +74,11 @@
 										<td>010-1234-1234</td>
 										<td>hds123@gmail.com</td>
 										<td>2000.12.04</td>
-										<td>평생회원</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+											<input type="checkbox" name="check">
 										</td>
 										<td>2</td>
 										<td>이순신</td>
@@ -81,13 +86,11 @@
 										<td>010-0000-0000</td>
 										<td>lss123@naver.com</td>
 										<td>1995.02.12</td>
-										<td>평생회원</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+											<input type="checkbox" name="check">
 										</td>
 										<td>3</td>
 										<td>홍길동</td>
@@ -95,13 +98,11 @@
 										<td>010-0123-0123</td>
 										<td>hgd123@naver.com</td>
 										<td>1999.04.27</td>
-										<td></td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+											<input type="checkbox" name="check">
 										</td>
 										<td>4</td>
 										<td>을지문덕</td>
@@ -109,7 +110,7 @@
 										<td>010-1111-2222</td>
 										<td>uzmd123@naver.com</td>
 										<td>1991.08.16</td>
-										<td></td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -159,6 +160,99 @@
 					</section>
 				</div>
 			</div>
+		</section>
+	</main>
+    <section class="delete-modal">
+		<div class="delete-modal-shape">
+			<div class="modal-header">
+				<h4>삭제 확인</h4>
+			</div>
+			<div class="modal-body">
+				<p>정말로 삭제하겠습니까?</p>
+			</div>
+			<div class="modal-footer">
+				<span class="confirm-delete">확인</span>
+				<span class="cancel-delete">취소</span>
+			</div>
+		</div>
+	</section>
+	<section class="user-modal">
+		<div class="user-modal-shape">
+			<div class="modal-header">
+				<h4>회원 상세보기</h4>
+				<a class="modal-close">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						data-name="Capa 1"
+						id="Capa_1"
+						viewBox="0 0 20 19.84"
+					>
+						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+					</svg>
+				</a>
+			</div>
+			<form class="user-info" action>
+				<main class="user-detail">
+					<h5 class="detail-title">회원 상세정보</h5>
+					<div class="profile-img-wrapper">
+						<label>
+							<div class="content-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+					</div>
+					<ul class="content-list-wrap">
+						<li class="content-list">
+							<span>아이디</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>이름</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>닉네임</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>휴대전화</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>이메일</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>생년월일</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>성별</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+					</ul>
+					<div class="update-box">
+						<button type="button" class="update-button">수정하기</button>
+					</div>
+				</main>
+			</form>
 		</div>
 	</section>
 </body>
@@ -166,4 +260,5 @@
 <script src="../../static/js/admin/menuLoad.js"></script>
 <script src="../../static/js/admin/checkbox.js"></script>
 <script src="../../static/js/admin/page.js"></script>
+<script src="../../static/js/admin/modal.js"></script>
 </html>
