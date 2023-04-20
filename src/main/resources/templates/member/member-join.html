@@ -4,27 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원가입</title>
+    <title>일반회원 회원가입</title>
     <link rel="stylesheet" href="../../static/css/global/global.css" />
     <link rel="stylesheet" href="../../static/css/member/member.css" />
     <link rel="stylesheet" href="../../static/css/member/join.css" />
   </head>
   <body>
     <section id="contents" class="container">
-      <form
-        id="join-general-form"
-        name="join-general-form"
-        action="/member/join/actionJoinGeneral"
-        method="post"
-        onsubmit="return onSubmitJoinGeneral();"
-        accept-charset="UTF-8"
-      >
-        <input type="hidden" name="_csrf" value="228b654b-378c-4c5d-a01d-f733ee073c65" /><input
-          type="hidden"
-          id="member-join-general-email-domain-text"
-          name="member-join-general-email-domain-text"
-          value=""
-        />
+      <form id="join-general-form" name="join-general-form" method="post" accept-charset="UTF-8">
         <input type="hidden" id="member-easy-join" name="member-easy-join" value="Y" />
         <div class="frame-full terms-section">
           <div class="frame-sm">
@@ -880,7 +867,7 @@
                     type="text"
                     id="member-join-general-id-text"
                     name="member-join-general-id-text"
-                    class="input-text w571"
+                    class="input-text w571 join-input"
                     placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
                     value=""
                   />
@@ -889,13 +876,13 @@
                       type="button"
                       id="btn-id-check"
                       class="btn-form btn-default-ex"
-                      onclick="onClickMemberJoinVerifyLoginIdBtn();"
                     >
                       <span>중복확인</span>
                     </button></span
                   >
                 </div>
-                <div id="member-join-general-id-text-error"></div>
+                <p class="valid error help" id="pw-error-text1" style="display: none">
+                </p>
               </div>
               <!--// form-group -->
 
@@ -912,12 +899,12 @@
                     type="password"
                     id="member-join-general-pw-text"
                     name="member-join-general-pw-text"
-                    class="input-text w571"
+                    class="input-text w571 join-input"
                     placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
-                    onblur="onEventMemberJoinPasswords();"
-                    onkeyup="onEventMemberJoinPasswords();"
                   />
                 </div>
+                <p class="valid error help" id="pw-error-text1" style="display: none">
+                </p>
                 <div class="input-group type-lg w-full">
                   <label for="member-join-general-pw-confirm-text" class="blind"
                     >비밀번호 확인</label
@@ -926,14 +913,11 @@
                     type="password"
                     id="member-join-general-pw-confirm-text"
                     name="member-join-general-pw-confirm-text"
-                    class="input-text w571"
+                    class="input-text w571 join-input"
                     placeholder="비밀번호 확인"
-                    onblur="onEventMemberJoinPasswords();"
-                    onkeyup="onEventMemberJoinPasswords();"
                   />
                 </div>
-                <p class="valid error" id="pw-error-text1" style="display: none">
-                  비밀번호가 일치하지 않습니다.
+                <p class="valid error help" id="pw-error-text1" style="display: none">
                 </p>
               </div>
               <!--// form-group -->
@@ -949,12 +933,13 @@
                     type="text"
                     id="member-general-join-name-text"
                     name="member-general-join-name-text"
-                    class="input-text w571"
+                    class="input-text w571 join-input"
                     placeholder="2자 이상 입력"
                     value=""
                   />
                 </div>
-                <div id="member-general-join-name-text-error"></div>
+                <p class="valid error help" id="pw-error-text1" style="display: none">
+                </p>
               </div>
               <div class="form-group">
                 <div class="form-head">
@@ -974,7 +959,8 @@
                     readonly
                   />
                 </div>
-                <div id="member-general-join-name-text-error"></div>
+                <p class="valid error" id="pw-error-text1" style="display: none">
+                </p>
               </div>
               <div class="form-group">
                 <div class="form-head">
@@ -988,119 +974,38 @@
                     type="text"
                     id="member-join-general-email-text"
                     name="member-join-general-email-text"
-                    class="input-text w571"
+                    class="input-text w571 join-input"
                     placeholder="이메일 주소"
                     value=""
-                    onblur="onFocusOutMemberJoinEmailText();"
                   />
-                  <div class="input-group-form">
-                    <div
-                      class="ui-select select-box w135"
-                      id="member-join-general-email-domain"
-                      name="member-join-general-email-domain"
-                      data-value=""
-                    >
-                      <a href="javascript:void(0)" title="선택" class="select-value"
-                        ><span>직접입력</span></a
-                      >
-                      <div class="select-list">
-                        <ul>
-                          <li data-name="">
-                            <a href="javascript:void(0)"><span>직접입력</span></a>
-                          </li>
-                          <li data-name="naver.com">
-                            <a href="javascript:void(0)"><span>naver.com</span></a>
-                          </li>
-                          <li data-name="daum.net">
-                            <a href="javascript:void(0)"><span>daum.net</span></a>
-                          </li>
-                          <li data-name="hanmail.net">
-                            <a href="javascript:void(0)"><span>hanmail.net</span></a>
-                          </li>
-                          <li data-name="gmail.com">
-                            <a href="javascript:void(0)"><span>gmail.com</span></a>
-                          </li>
-                          <li data-name="hotmail.com">
-                            <a href="javascript:void(0)"><span>hotmail.com</span></a>
-                          </li>
-                          <li data-name="yahoo.co.kr">
-                            <a href="javascript:void(0)"><span>yahoo.co.kr</span></a>
-                          </li>
-                          <li data-name="chollian.net">
-                            <a href="javascript:void(0)"><span>chollian.net</span></a>
-                          </li>
-                          <li data-name="empal.com">
-                            <a href="javascript:void(0)"><span>empal.com</span></a>
-                          </li>
-                          <li data-name="freechal.com">
-                            <a href="javascript:void(0)"><span>freechal.com</span></a>
-                          </li>
-                          <li data-name="hitel.net">
-                            <a href="javascript:void(0)"><span>hitel.net</span></a>
-                          </li>
-                          <li data-name="hanmir.com">
-                            <a href="javascript:void(0)"><span>hanmir.com</span></a>
-                          </li>
-                          <li data-name="hanafos.com">
-                            <a href="javascript:void(0)"><span>hanafos.com</span></a>
-                          </li>
-                          <li data-name="korea.com">
-                            <a href="javascript:void(0)"><span>korea.com</span></a>
-                          </li>
-                          <li data-name="lycos.co.kr">
-                            <a href="javascript:void(0)"><span>lycos.co.kr</span></a>
-                          </li>
-                          <li data-name="nate.com">
-                            <a href="javascript:void(0)"><span>nate.com</span></a>
-                          </li>
-                          <li data-name="netian.com">
-                            <a href="javascript:void(0)"><span>netian.com</span></a>
-                          </li>
-                          <li data-name="paran.com">
-                            <a href="javascript:void(0)"><span>paran.com</span></a>
-                          </li>
-                          <li data-name="unitel.co.kr">
-                            <a href="javascript:void(0)"><span>unitel.co.kr</span></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="member-join-general-email-text-error"></div>
+                  <p class="valid error help" id="pw-error-text1" style="display: none">
+                  </p>
                 </div>
               </div>
               <!--// form-group -->
-
-              <div class="form-group reco-check">
+              <div class="form-group">
                 <div class="form-head">
-                  <label for="member-join-general-recomender-text" class="form-label"
-                    >추천 아이디</label
-                  >
+                  <label for="member-join-general-email-text" class="form-label"
+                    >생년월일<i class="es2"></i>
+                  </label>
                 </div>
                 <!--// form-head -->
                 <div class="input-group type-lg w-full">
                   <input
                     type="text"
-                    id="member-join-general-recomender-text"
-                    name="member-join-general-recomender-text"
-                    class="input-text"
+                    id="member-join-general-birthday-text"
+                    name="member-join-general-birthday-text"
+                    class="input-text w571 join-input"
+                    placeholder="생년월일 8자리"
                     value=""
-                    placeholder="추천아이디 입력"
                   />
-                  <span class="input-group-btn"
-                    ><button type="button" class="btn-form btn-default-ex">
-                      <span>확인하기</span>
-                    </button></span
-                  >
+                  <p class="valid error help" id="pw-error-text1" style="display: none">
+                  </p>
                 </div>
               </div>
-              <!--// form-group -->
-
               <div class="form-group">
                 <div class="form-head">
-                  <label for="member-join-general-forever-Y" class="form-label"
-                    >평생회원<i class="es2"></i
-                  ></label>
+                  <label for="member-join-general-gender" class="form-label">성별</label>
                 </div>
                 <!--// form-head -->
                 <ul class="form-horiz-list">
@@ -1108,36 +1013,46 @@
                     <div class="custom-radio">
                       <input
                         type="radio"
-                        id="member-join-general-forever-Y"
+                        id="member-join-general-gender-N"
                         class="radio"
-                        name="member-join-general-forever"
-                        value="Y"
-                      /><label for="member-join-general-forever-Y">동의</label>
+                        name="member-join-general-gender"
+                        value="male"
+                        checked
+                      /><label for="member-join-general-gender-N">선택안함</label>
                     </div>
                   </li>
                   <li>
                     <div class="custom-radio">
                       <input
                         type="radio"
-                        id="member-join-general-forever-N"
+                        id="member-join-general-gender-M"
                         class="radio"
-                        name="member-join-general-forever"
-                        value="N"
-                      /><label for="member-join-general-forever-N">동의안함</label>
+                        name="member-join-general-gender"
+                        value="male"
+                      /><label for="member-join-general-gender-M">남자</label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="custom-radio">
+                      <input
+                        type="radio"
+                        id="member-join-general-gender-F"
+                        class="radio"
+                        name="member-join-general-gender"
+                        value="female"
+                      /><label for="member-join-general-gender-F">여자</label>
                     </div>
                   </li>
                 </ul>
-                <ul class="bl-list-type2">
-                  <li>평생회원은 회원탈퇴 전까지 휴면회원으로 전환되지 않습니다.</li>
-                </ul>
               </div>
+              <!--// form-group -->
             </fieldset>
-
             <div class="btn-bottom-area">
               <button
-                type="submit"
+                type="button"
                 id="member-join-general-submit-btn"
-                class="btn-basic-lg2 btn-dim"
+                class="btn-basic-lg2 btn-dim btn-primary"
+                onclick="send()"
               >
                 <span>회원가입</span></button
               ><!-- 활성화시 removeClass btn-dim -->
@@ -1171,20 +1086,7 @@
                             data-value="010"
                             onclick="return false;"
                           >
-                            <a href="#none" title="선택" class="select-value"><span>010</span></a>
-                            <div class="select-list">
-                              <ul>
-                                <li data-name="010">
-                                  <a href="#none" onclick="return false;"><span>010</span></a>
-                                </li>
-                                <li data-name="011">
-                                  <a href="#none" onclick="return false;"><span>011</span></a>
-                                </li>
-                                <li data-name="017">
-                                  <a href="#none" onclick="return false;"><span>017</span></a>
-                                </li>
-                              </ul>
-                            </div>
+                            <a href="#none" class="select-value"><span>010</span></a>
                           </div>
                         </div>
                         <!--// input-group-cell -->

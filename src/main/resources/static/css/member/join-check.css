@@ -110,7 +110,7 @@
 
 .join-certified .frame-sm {
     background-color: #ffffff;
-    width: 720px;
+    width: 640px;
     margin: 0 auto;
     border-radius: 20px;
 }
@@ -129,7 +129,7 @@
 }
 
 .join-certified .certified-title h2 {
-    font-size: 28px;
+    font-size: 26px;
     line-height: 32px;
     color: #333333;
     font-weight: 700;
@@ -137,7 +137,7 @@
 }
 
 .join-certified .certified-title p {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     color: #333333;
     font-weight: 500;
@@ -145,7 +145,7 @@
 }
 
 .join-certified .certified-title span {
-    font-size: 16px;
+    font-size: 14px;
     color: #999999;
 }
 
@@ -159,11 +159,11 @@
 
 .join-certified .certified-btn {
     background-color: #FF6001;
-    width: 520px;
+    width: 435px;
     height: 60px;
     color: #ffffff;
     line-height: 60px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     border-radius: 6px;
 }
@@ -177,7 +177,7 @@
 }
 
 .join-certified .sns-certified-title p {
-    font-size: 16px;
+    font-size: 14px;
     color: #333333;
     font-weight: 500;
     position: relative;
@@ -194,7 +194,7 @@
 }
 
 .join-certified .sns-certified-title p {
-    font-size: 16px;
+    font-size: 14px;
     color: #333333;
     font-weight: 500;
 }
@@ -266,8 +266,7 @@
 
 .join-certified {
     background-color: #f7f7f7;
-    padding-top: 100px;
-    padding-bottom: 147px;
+    padding: 60px 0;
 }
 
 .frame-full {

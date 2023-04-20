@@ -254,6 +254,7 @@ button[disabled] {
   background: #ff6001;
   color: #fff;
   border: 1px solid #ff6001;
+  cursor: pointer;
 }
 
 .frame-wrap,
@@ -447,19 +448,7 @@ button[disabled] {
   overflow: hidden;
   word-break: break-all;
   color: #999;
-}
-
-.select-box .select-value:after {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  -webkit-transform: rotate(225deg) translateY(100%);
-  border-top: 1px solid #555;
-  border-left: 1px solid #555;
+  margin-left: 14px;
 }
 
 .select-box.on .select-value:after {
@@ -667,7 +656,7 @@ button[disabled] {
 }
 
 .join-area .form-group .form-horiz-list > li {
-  margin-right: 40px;
+  margin-right: 30px;
 }
 
 .form-horiz-list > li {
@@ -998,4 +987,9 @@ button span {
   background: #666;
   vertical-align: top;
   margin: 5px 7px 0 -10px;
+}
+
+.input-group.type-lg > .input-group-cell {
+    display: table-cell;
+    padding: 0 3px;
 }
