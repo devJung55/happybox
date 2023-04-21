@@ -14,3 +14,15 @@ $radios.on("click", function() {
         $(this).addClass("default");
     }
 });
+
+/* 초기화 클릭 이벤트 */
+const $reset = $(".reset");
+
+$reset.on("click", function() {
+    $radios.each((i, radio) => {
+        if($(radio).hasClass("default")) {
+            $(radio).removeClass("default");
+        }
+    });
+    $(".select__all").addClass("default");
+});

@@ -18,3 +18,22 @@ $arrows.each((i, arrow) => {
         }
     })
 });
+
+/* 이미지 모달 이벤트 */
+
+const $imgModal = $(".layer-wrap");
+const $imgFiles = $(".added-file");
+const $closeButton = $(".btn-x-md2");
+const $inquiryTitle = $(".inquiry__title");
+
+$imgFiles.on("click", function() {
+    if($imgModal.css("display") == "none") {
+        $imgModal.css("display", "block");
+    }
+});
+
+$closeButton.on("click", function() {
+    if($imgModal.css("display") == "block") {
+        $imgModal.css("display", "none");
+    }
+});

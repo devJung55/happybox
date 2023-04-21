@@ -94,7 +94,7 @@ a {
     display: inline-block;
     width: 60px;
     height: 62px;
-    background: url(../../img/mypage/profile.png) 0 0;
+    background: url(../../../img/mypage/profile.png) 0 0;
 
     background-size: cover;
 }
