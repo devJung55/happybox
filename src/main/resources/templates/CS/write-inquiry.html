@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>1:1 문의</title>
+        <link rel="stylesheet" href="../../static/css/global/global.css" />
+        <link rel="stylesheet" href="../../static/css/CS/common.css" />
+        <link rel="stylesheet" href="../../static/css/CS/write-inquiry.css" />
+    </head>
+    <body>
+        <section class="container">
+            <div class="content-wrap frame-sm">
+                <div class="page-title-area">
+                    <h2 class="title-page">
+                        <a href="javascript:void(0)">고객센터</a>
+                    </h2>
+                </div>
+                <div class="frame-wrap">
+                    <!-- 사이드바는 타임리프 fragment로 묶을것. 임시로 list.js에 load() 사용 -->
+                    <div class="frame-right">
+                        <div class="frame-cnt-inner">
+                            <div class="form-wrap">
+                                <div class="menu-title-area">
+                                    <h3 class="title-menu">1:1 문의하기</h3>
+                                </div>
+                            </div>
+                            <div class="board-form">
+                                <table>
+                                    <tr>
+                                        <th class="text-left">
+                                            <div class="in-tb">
+                                                문의 유형
+                                                <em class="es"></em>
+                                            </div>
+                                        </th>
+                                        <td class="text-left">
+                                            <div class="input-group w-full">
+                                                <div class="input-group-form">
+                                                    <div
+                                                        class="ui-select select-box w150"
+                                                        id="vCounselType"
+                                                        data-value=""
+                                                    >
+                                                        <a
+                                                            href="javascript:void(0)"
+                                                            class="select-value placeholder"
+                                                            ><span id="value">유형선택</span></a
+                                                        >
+                                                        <div class="select-list disNone">
+                                                            <ul></ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    name="inquiry_title"
+                                                    class="input-text h40"
+                                                    placeholder="제목을 입력해주세요"
+                                                    value=""
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">
+                                            <div class="in-tb">복지관 선택</div>
+                                        </th>
+                                        <td class="text-left">
+                                            <div class="input-group w-full">
+                                                <input
+                                                    type="text"
+                                                    name="welfare-selection"
+                                                    class="input-text h40"
+                                                    placeholder="복지관 문의"
+                                                    value=""
+                                                    readonly="true"
+                                                />
+                                                <span class="input-group-btn">
+                                                    <button
+                                                        type="button"
+                                                        id="btn_orderProduct"
+                                                        class="btn-form btn-ex-white w150 welfareSearchBtn"
+                                                    >
+                                                        <span>복지관 검색</span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">
+                                            <div class="in-tb">
+                                                문의 내용
+                                                <em class="es"></em>
+                                            </div>
+                                        </th>
+                                        <td class="text-left">
+                                            <div class="textarea-box-count h230">
+                                                <textarea
+                                                    id="vQuestionCont"
+                                                    placeholder="문의내용을 입력하세요"
+                                                    name="vQuestionCont"
+                                                ></textarea>
+                                                <div class="txt-count">
+                                                    <span id="counter"></span> /
+                                                    <span class="total"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="attach-file-line">
+                                        <th class="text-left"></th>
+                                        <td class="text-left file-box-wrap">
+                                            <div class="file-add-boxes">
+                                                <div class="div-attach-thumb">
+                                                    <button class="btn-attach-thumb">
+                                                        <i class="ico-plus-xlg">
+                                                            <svg
+                                                                height="26px"
+                                                                viewBox="0 0 512 512"
+                                                                width="26px"
+                                                            >
+                                                                <g>
+                                                                    <path
+                                                                        d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
+                                                                    />
+                                                                </g>
+                                                            </svg>
+                                                        </i>
+                                                    </button>
+                                                    <input
+                                                        type="file"
+                                                        name="imgFile"
+                                                        style="display: none"
+                                                        accept="image/*"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="file-add-boxes">
+                                                <div class="div-attach-thumb">
+                                                    <button class="btn-attach-thumb">
+                                                        <i class="ico-plus-xlg">
+                                                            <svg
+                                                                height="26px"
+                                                                viewBox="0 0 512 512"
+                                                                width="26px"
+                                                            >
+                                                                <g>
+                                                                    <path
+                                                                        d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
+                                                                    />
+                                                                </g>
+                                                            </svg>
+                                                        </i>
+                                                    </button>
+                                                    <input
+                                                        type="file"
+                                                        name="imgFile"
+                                                        style="display: none"
+                                                        accept="image/*"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="file-add-boxes">
+                                                <div class="div-attach-thumb">
+                                                    <button class="btn-attach-thumb">
+                                                        <i class="ico-plus-xlg">
+                                                            <svg
+                                                                height="26px"
+                                                                viewBox="0 0 512 512"
+                                                                width="26px"
+                                                            >
+                                                                <g>
+                                                                    <path
+                                                                        d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
+                                                                    />
+                                                                </g>
+                                                            </svg>
+                                                        </i>
+                                                    </button>
+                                                    <input
+                                                        type="file"
+                                                        name="imgFile"
+                                                        style="display: none"
+                                                        accept="image/*"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <p class="text-guide-md">
+                                                - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지
+                                                첨부 가능합니다.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="btn-bottom-area">
+                                    <button
+                                        type="button"
+                                        class="btn-basic-lg2 btn-grey3"
+                                    >
+                                        <span>취소하기</span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn-basic-lg2 btn-primary"
+                                    >
+                                        <span>문의하기</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="search-modal-wrap disNone">
+            <div class="layer-pop order-search-pop">
+                <div class="layer-inner">
+                    <div class="layer-head">
+                        <h4 class="layer-pop-title">복지관 검색</h4>
+                    </div>
+                    <div class="layer-content">
+                        <!-- 검색바 -->
+                        <div class="search-box ui-toggle on">
+                            <div class="input-group w-full">
+                                <input
+                                    type="text"
+                                    name="welfare-selection"
+                                    class="input-text h40"
+                                    placeholder="제목을 입력해주세요"
+                                    value=""
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn-form btn-ex-white w150">
+                                        <span>복지관 검색</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="productPop">
+                            <div class="board-list">
+                                <ul class="select-form-list">
+                                    <!-- 데이터 없으면 disNone으로 -->
+                                    <li>
+                                        <div class="no-data">
+                                            <p class="message">내역이 없습니다.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-area">
+                        <button type="button" class="btn-basic-md btn-grey3 modalClose">
+                            <span>취소</span>
+                        </button>
+                        <button type="button" class="btn-basic-md btn-black welfareSelect">
+                            <span>선택</span>
+                        </button>
+                    </div>
+                    <!--// layer-content -->
+                    <button type="button" class="btn-x-md2 ui-close-pop modalClose" title="닫기">
+                        <i class="ico-x-black">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                id="Layer_1"
+                                style="enable-background: new 0 0 64 64"
+                                version="1.1"
+                                viewBox="0 0 64 64"
+                                xml:space="preserve"
+                            >
+                                <style type="text/css">
+                                    .st0 {
+                                        fill: #333;
+                                    }
+                                </style>
+                                <g>
+                                    <g
+                                        id="Icon-Close"
+                                        transform="translate(381.000000, 231.000000)"
+                                    >
+                                        <polyline
+                                            class="st0"
+                                            id="Fill-16"
+                                            points="-370.7,-174.7 -373,-177 -327,-223 -324.7,-220.7 -370.7,-174.7    "
+                                        />
+                                        <polyline
+                                            class="st0"
+                                            id="Fill-17"
+                                            points="-327,-174.7 -373,-220.7 -370.7,-223 -324.7,-177 -327,-174.7    "
+                                        />
+                                    </g>
+                                </g>
+                            </svg>
+                        </i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- 임시 사이드바 js 이후 th fragment로 대체 -->
+    <script src="../../static/js/CS/sidebar.js"></script>
+    <script src="../../static/js/CS/inquiry-write.js"></script>
+</html>
