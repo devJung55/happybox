@@ -1,3 +1,7 @@
+.container {
+    padding-bottom: 100px;
+}
+
 .content-wrap {
     min-height: 700px;
 }
@@ -33,12 +37,9 @@
     content: "";
 }
 
-.frame-left {
-    float: left;
-}
-
-.frame-right {
-    float: right;
+.frame-wrap{
+    display: flex !important;
+    gap: 30px;
 }
 
 .aside-menu-wrap {
