@@ -113,16 +113,15 @@ const $fixedDiv = $('.welfare-info-area');
 const $fixedPosition = 300; // 고정시킬 위치 값
 const initialPosition = $fixedDiv.offset();
 const initialTop = initialPosition.top;
-const initialRight = $(window).width() - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
+const initialRight = $(window).width()*1.24 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
 
 $(window).scroll(function() {
   const currentPosition = $(window).scrollTop();
-
   // 스크롤 위치가 고정시킬 위치보다 크거나 같을 때
   if (currentPosition >= $fixedPosition) {
     $fixedDiv.addClass('fixed');
     $fixedDiv.css({
-      'top': 10,
+      'top': 30,
       'right': initialRight
     });
   } else {
@@ -130,8 +129,9 @@ $(window).scroll(function() {
     $fixedDiv.removeAttr('style');
   }
 
-  if (currentPosition == ($(document).height() - $(window).height())) {
-    $fixedDiv.css({'top':-400, 'right':initialRight});
+  if (Math.floor(currentPosition) == Math.floor(($(document).height()*0.8 - $(window).height()))) {
+    console.log("아래닸냐");
+    $fixedDiv.css({'top':-100, 'right':initialRight});
   }
 });
 
