@@ -67,7 +67,7 @@
 
 .aside-guide-box {
     padding: 30px 24px;
-    border: 1px solid #E6E6E6;
+    border: 1px solid #e6e6e6;
     margin-top: 15px;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .menu-title-area .input-group-wrap.box-type .input-group {
-    height: 36px
+    height: 36px;
 }
 
 .menu-title-area .input-group-wrap.box-type .input-group .select-box {
@@ -207,7 +207,7 @@
     overflow: hidden;
     word-break: break-all;
     color: #999;
-    user-select:none
+    user-select: none;
 }
 
 .select-box .select-value:after {
@@ -244,6 +244,14 @@
     background: #fff;
     box-sizing: border-box;
     font-size: 14px;
+}
+
+.srchOpt a {
+    cursor: pointer;
+}
+
+.srchOpt a span {
+    user-select: none;
 }
 
 .select-box .select-list li + li {
@@ -337,7 +345,13 @@
 }
 
 .text-center {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-left {
+    text-align: left !important;
 }
 
 .flex1 {
@@ -359,5 +373,68 @@
 
 .answer-wrap .answer {
     padding: 25px 40px 30px 30px;
-    background: #F8F8F8;
+    background: #f8f8f8;
+}
+
+.notice-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.notice-title {
+    display: flex;
+    border-top: 1px solid #666;
+    background: #f8f8f8;
+}
+
+.notice-title .text-center {
+    width: 100px;
+    padding: 20px;
+}
+
+.notice-title .answer {
+    flex: 1;
+    padding: 20px !important;
+}
+
+.inner-text {
+    padding: 40px 20px 0;
+}
+
+.arti span {
+    font-weight: 700 !important;
+    color: #333333 !important;
+}
+
+.prev-article {
+    margin-top: 80px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+
+.prev-article div,
+.next-article div {
+    padding: 20px !important;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+.btn-ex-white {
+    display: inline-block;
+    background-color: #fff;
+    font-size: 13px;
+    min-width: 100px;
+    height: 40px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #333;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
 }
