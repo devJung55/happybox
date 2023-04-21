@@ -1,53 +1,5 @@
 /* subscribe.html */
 
-.wrap {
-    position: relative;
-    min-width: 1300px;
-}
-
-.container {
-    position: relative;
-    min-height: 700px;
-    padding-bottom: 100px;
-}
-
-.content-wrap {
-    min-height: 700px;
-}
-
-.head-mypage ~ .frame-sm {
-    margin-top: 45px;
-}
-
-.frame-sm {
-    position: relative;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.frame-right {
-    float: right;
-}
-
-.frame-cnt-inner {
-    width: 820px;
-}
-
-.menu-title-area {
-    position: relative;
-    min-height: 30px;
-    margin-bottom: 5px;
-}
-
-.menu-title-area .title-menu {
-    font-size: 24px;
-    font-weight: 500;
-}
-
-.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
-    margin-top: 10px;
-}
-
 .subscribe-wrap {
     border-top: 1px solid #666;
 }
