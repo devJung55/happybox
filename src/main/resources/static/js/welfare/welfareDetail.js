@@ -129,6 +129,10 @@ $(window).scroll(function() {
     $fixedDiv.removeClass('fixed');
     $fixedDiv.removeAttr('style');
   }
+
+  if (currentPosition == ($(document).height() - $(window).height())) {
+    $fixedDiv.css({'top':-400, 'right':initialRight});
+  }
 });
 
 
