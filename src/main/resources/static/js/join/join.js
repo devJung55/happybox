@@ -314,28 +314,28 @@ function termsBtn() {
 function termsBtnClick() {
   if ($('.terms-btn-wrap button').hasClass('btn-primary')) {
     // 이메일, SMS 수신 미동의 시 처리
-    if (
-      !$('#member-join-general-agree-email-check').is(':checked') ||
-      !$('#member-join-general-agree-sms-check').is(':checked')
-    ) {
-      if (
-        confirm(
-          '이메일, SMS 수신에 동의하지 않으시는 경우, 할인쿠폰의 발급 또는 이벤트 참여가 제한될 수 있습니다. 이메일, SMS 수신에 동의하시겠습니까?'
-        )
-      ) {
-        $('#member-join-general-agree-sms-check').prop('checked', true);
-        $('#member-join-general-agree-email-check').prop('checked', true);
-      }
-    }
-    if (!$('#member-join-general-agree2-user-info-check').is(':checked')) {
-      if (
-        confirm(
-          '(선택) 개인정보 수집 및 이용 동의하지 않으시는 경우, 추천아이디를 제한될 수 있습니다. (선택) 개인정보 수집 및 이용 동의하시겠습니까?'
-        )
-      ) {
-        $('#member-join-general-agree2-user-info-check').prop('checked', true);
-      }
-    }
+    // if (
+    //   !$('#member-join-general-agree-email-check').is(':checked') ||
+    //   !$('#member-join-general-agree-sms-check').is(':checked')
+    // ) {
+    //   if (
+    //     confirm(
+    //       '이메일, SMS 수신에 동의하지 않으시는 경우, 할인쿠폰의 발급 또는 이벤트 참여가 제한될 수 있습니다. 이메일, SMS 수신에 동의하시겠습니까?'
+    //     )
+    //   ) {
+    //     $('#member-join-general-agree-sms-check').prop('checked', true);
+    //     $('#member-join-general-agree-email-check').prop('checked', true);
+    //   }
+    // }
+    // if (!$('#member-join-general-agree2-user-info-check').is(':checked')) {
+    //   if (
+    //     confirm(
+    //       '(선택) 개인정보 수집 및 이용 동의하지 않으시는 경우, 추천아이디를 제한될 수 있습니다. (선택) 개인정보 수집 및 이용 동의하시겠습니까?'
+    //     )
+    //   ) {
+    //     $('#member-join-general-agree2-user-info-check').prop('checked', true);
+    //   }
+    // }
     $('.terms-section').css('display', 'none');
     $('.join-container2').css('display', 'block');
     if (!$('#member-join-general-agree2-user-info-check').is(':checked')) {
