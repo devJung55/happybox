@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원정보수정</title>
+    <link rel="stylesheet" href="../../../static/css/global/global.css">
+    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/user/address-editor-form.css">
+</head>
+<body>
+    <div class="wrap">
+        <section id="contents" class="container">
+            <div class="content-wrap">
+
+
+                <!-- // top-bar.html -->
+
+                
+                <div class="frame-sm">
+
+
+                    <!-- // side-bar.html -->
+
+
+                    <div class="frame-right">
+                        <div class="frame-cnt-inner">
+                            <div class="menu-title-area" style="margin-bottom: 6px;">
+                                <h3 class="title-menu">배송지정보수정</h3>
+                            </div><!--// menu-title-area -->
+                            <form id="ordFrm" name="addressForm" action="">
+                                <div class="order-info" id="orderUserInfo">
+                                    <div class="list-head">
+                                        <h3 class="title-list">주문자 정보</h3>
+                                    </div>
+                                </div>
+                                <div class="order-address">
+                                    <ul class="info-txt">
+                                        <li>정지영</li>
+                                        <li>01071228966</li>
+                                        <li>jung_7122@naver.com</li>
+                                    </ul>
+                                    <!-- <a href="/mypage/info/mypage" class="text-primary">
+                                        <span>주문자 정보변경</span>
+                                        <i class="ico-arr-right"></i>
+                                    </a> -->
+                                </div>
+                                <div class="list-head-sub">
+                                    <h3 class="title-list">배송지 정보</h3>
+                                </div>
+                                <div class="lineless-table type2">
+                                    <table>
+                                        <caption>정보 입력</caption>
+                                        <colgroup>
+                                            <col style="width:100px"><col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">받는분</th>
+                                                <td>
+                                                    <input type="text" name="receiverName" title="" class="input-text w-full removeEmoji" value="">
+                                                </td>
+                                            </tr>
+                                            <tr class="row-th-top">
+                                                <th scope="row">주소</th>
+                                                <td>
+                                                    <div class="input-group-wrap box-type">
+                                                        <div class="input-group">
+                                                            <div class="input-group-cell w160">
+                                                                <input type="text" id="receiverZipcode" name="receiverPost" title="" class="input-text" placeholder="우편번호" value="" readonly>
+                                                            </div>
+                                                            <div class="input-group-cell">
+                                                                <input type="text" id="receiverAddr" name="receiverAddr" title="" class="input-text" placeholder="기본주소" value="" readonly>
+                                                            </div>
+                                                            <span class="input-group-btn">
+                                                                <a href="javascript:void(0)" class="btn-ex-white">
+                                                                    <span>우편번호 찾기</span>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="receiverAddrDtl" title="" class="input-text w-full removeEmoji" placeholder="상세주소" value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">전화번호</th>
+                                                <td>
+                                                    <input type="text" name="receiverPhone" title="" class="input-text w-full" maxlength="11" placeholder="ex) 01099991234">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="btn-bottom-area">
+                                        <button type="button" class="btn-basic-lg2 btn-grey3"><span>취소하기</span></button>
+                                        <button type="button" class="btn-basic-lg2 btn-primary btn_update"><span>수정완료</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- // frame-sm -->
+            </div><!-- // content-wrap -->
+        </section>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="../../../static/js/join/join.js"></script>
+</html>

@@ -94,7 +94,11 @@ img {
     width: 70px;
     height: 70px;
     overflow: hidden;
-    margin-right: 5px;
+    margin-right: 7px;
+}
+
+ul.thum-list {
+    display: flex;
 }
 
 .question .detail-div .bottom .sep-list {
@@ -280,3 +284,7 @@ button.btn-x-md2.ui-close-pop {
     width: 20px;
 }
 
+img.thumnail {
+    width: 100%;
+    height: 100%;
+}
