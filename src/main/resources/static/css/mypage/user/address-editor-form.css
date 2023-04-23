@@ -1,0 +1,275 @@
+/* address-editor-form.html */
+
+.order-info {
+    position: relative;
+    /* padding: 0 0 60px; */
+}
+
+.order-info .list-head {
+    position: relative;
+    padding: 30px 0 20px;
+    border-top: 1px solid #666;
+}
+
+.order-info .title-list {
+    font-size: 16px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.info-txt {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin-right: 15px;
+}
+
+.info-txt li {
+    float: left;
+}
+
+.info-txt li:after {
+    display: inline-block;
+    content: '/';
+    margin: 0 3px;
+    vertical-align: top;
+}
+
+.list-head-sub {
+    position: relative;
+    padding: 30px 0 5px;
+    border-top: 1px solid #ccc;
+    margin: 30px 0 15px;
+}
+
+.order-address ~ .lineless-table {
+    margin-top: 20px;
+}
+
+.lineless-table table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+legend, caption {
+    position: absolute;
+    left: -99999px;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -99999px;
+    clip: rect(0,0,0,0);
+}
+
+.lineless-table.type2 th {
+    padding: 3px 0;
+}
+
+.lineless-table th {
+    text-align: left;
+    font-weight: normal;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.wp100, .w-full {
+    width: 100% !important;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+button, input {
+    overflow: visible;
+}
+
+.lineless-table .row-th-top th {
+    vertical-align: top;
+    padding-top: 17px;
+}
+
+.lineless-table.type2 th {
+    padding: 3px 0;
+}
+
+.lineless-table th {
+    text-align: left;
+    font-weight: normal;
+    padding: 10px 0;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.input-group-wrap.box-type {
+    border: 1px solid #ccc;
+}
+
+.input-group {
+    height: 40px;
+}
+
+.input-group {
+    position: relative;
+    /* display: table; */
+    display: flex;
+    border-collapse: collapse;
+    /* width: 100%; */
+}
+
+.lineless-table .row-th-top .input-group > .input-group-cell {
+    padding: 0;
+}
+
+.w160 {
+    width: 160px !important;
+}
+
+.input-group > .input-group-cell > .input-text {
+    width: 100%;
+}
+
+.input-group-wrap .input-group .input-text {
+    border: 0;
+}
+
+.input-group .input-text {
+    height: 100%;
+    /* height: 40px; */
+    padding: 3px 15px;
+}
+
+input[readonly] {
+    background-color: #F3F8FF;
+    border: 1px solid #ccc;
+    opacity: 1;
+    color: #333;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.lineless-table .row-th-top .input-group > .input-group-cell {
+    padding: 0;
+}
+
+.input-group-wrap.box-type .input-group-cell + .input-group-cell {
+    border-left: 1px solid #ddd;
+    width: 460px;
+}
+
+.input-group > .input-group-form, .input-group > .input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    border: 0;
+    /* padding: 0 5px; */
+}
+
+.input-group-wrap.box-type .input-group-btn > .btn-ex-white {
+    position: relative;
+    margin: -1px;
+    height: 42px;
+    line-height: 44px;
+}
+
+.btn-ex-white {
+    display: inline-block;
+    background-color: #fff;
+    font-size: 13px;
+    min-width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #333;
+}
+
+.lineless-table.type2 td {
+    padding: 3px 0;
+}
+
+.lineless-table .input-group-wrap + .input-text, .lineless-table .input-group + .input-group {
+    margin-top: 6px;
+}
+
+/* // 버튼 */
+
+#ordFrm .btn-bottom-area {
+    margin-top: 40px;
+}
+
+.join-area .form-group-area + .btn-bottom-area {
+    margin-top: 24px;
+}
+
+.join-area .btn-bottom-area {
+    margin-top: 40px;
+}
+
+.btn-bottom-area {
+    position: relative;
+    text-align: center;
+}
+
+.btn-bottom-area > [class*="btn-"]:first-child:not(.w-full):not(:only-child) {
+    margin: 0 2px 0 0;
+}
+
+.board-form .join-area .btn-bottom-area > [class*="btn-"] {
+    width: 255px;
+}
+
+.join-area .btn-bottom-area .btn-basic-lg2 {
+    height: 50px;
+    border-radius: 6px;
+    font-weight: 400;
+}
+
+.btn-grey3 {
+    background: #ccc;
+    color: #fff;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+    border-radius: 6px;
+}
+
+.btn-primary {
+    background: #ff6001;
+    color: #fff;
+    border: 1px solid #ff6001;
+}
