@@ -448,7 +448,7 @@ button[disabled] {
   overflow: hidden;
   word-break: break-all;
   color: #999;
-  margin-left: 14px;
+  margin-left: 13px;
 }
 
 .select-box.on .select-value:after {
