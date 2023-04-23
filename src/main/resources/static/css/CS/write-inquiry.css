@@ -211,6 +211,7 @@
 }
 
 input[name="welfare-selection"] {
+    background: #eee;
     z-index: 1 !important;
 }
 

@@ -120,3 +120,26 @@ $imgFile.on("change", function () {
 function changeThumbnail(attachBtn, imgTag) {
     attachBtn.html(imgTag);
 }
+
+/* 문의내용 글자수 세기 */
+const $textArea = $("#vQuestionCont");
+const $maxLength = $(".total");
+const $counter = $("#counter");
+
+const maxLength = 1500;
+
+$maxLength.text(maxLength);
+
+$textArea.on("input", function () {
+    let text = $(this).val();
+    let textLength = text.length;
+    let check = textLength > maxLength;
+
+    if (check) {
+        let max = text;
+        $(this).val(max.slice(0, maxLength));
+        textLength = $(this).val().length;
+    }
+
+    $counter.text(textLength);
+});

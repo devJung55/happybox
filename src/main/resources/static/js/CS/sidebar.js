@@ -18,7 +18,7 @@ $(".frame-wrap").prepend(
             <!--// aside-menu -->
             <div class="aside-guide-box">
                 <dl>
-                    <dt>랭킹닭컴 고객센터</dt>
+                    <dt>HappyBox 고객센터</dt>
                     <dd class="phone-num">02-6405-8088</dd>
                     <dd>평일 <span class="text-num-md">09:00 ~ 18:00</span></dd>
                     <dd>주말, 공휴일 휴무</dd>
