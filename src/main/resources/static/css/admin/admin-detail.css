@@ -1,0 +1,62 @@
+
+.go-list-box {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.go-list {
+    margin-left: 65px;
+    cursor: pointer;
+}
+
+.go-list:hover {
+    color: #c97793;
+}
+
+.detail-box-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.detail-box {
+    width: 500px;
+    height: 420px;
+    background-color: #fff;
+}
+
+.detail-list {
+    width: 520px;
+    height: 600px;
+    background-color: #fff;
+}
+
+.board-info-detail-box {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 27px 15px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.detail-table {
+    overflow-y: scroll;
+    height: 525px;
+}
+
+  /* 스크롤바  */
+.detail-table::-webkit-scrollbar {
+    width: 10px;  /* 스크롤바의 너비 */
+}
+.detail-table::-webkit-scrollbar-thumb {
+    height: 10%; /* 스크롤바의 길이 */
+    background: #ea9bb642; /* 스크롤바의 색상 */
+    border-radius: 3px;
+}
+  
+.detail-table::-webkit-scrollbar-track {
+    background: #fafafa;  /*스크롤바 뒷 배경 색상*/
+    border-radius: 10px;
+}
