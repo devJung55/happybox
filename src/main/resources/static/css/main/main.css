@@ -1,3 +1,11 @@
+html {
+    zoom: 80%;
+}
+
+body {
+    overflow-x: hidden
+}
+
 .wrap {
     position: relative;
     min-width: 1300px;
@@ -877,4 +885,3 @@ div.banner div {
     background-size: 40px;
     cursor: pointer;
 }
-

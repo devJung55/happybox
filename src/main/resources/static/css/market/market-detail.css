@@ -1,0 +1,358 @@
+html {
+    zoom: 80%;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 1100px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.content {
+    width: 770px;
+}
+
+.content .fixed-img {
+    width: 100%;
+}
+
+.item-info-wrap {
+    flex: 1;
+    position: relative;
+}
+
+.item-info {
+    width: 280px;
+    padding: 20px;
+    border: 1px solid #80808014;
+    border-style: outset;
+    background-color: white;
+    top: 0;
+    right: -360px;
+}
+
+.fixed {
+    position: sticky;
+    z-index: 10;
+}
+
+.title-info-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.supplier-name {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 19px;
+    margin-bottom: 8px;
+    color: #757575;
+}
+
+.item-name-wrap .item-name {
+    font-size: 22px;
+    line-height: 26px;
+    margin: 3px 0 3px;
+    display: block;
+    font-weight: 500;
+    color: #000;
+}
+
+.item-personlize {
+    display: flex;
+    justify-content: center;
+}
+
+.item-personlize .cart-btn {
+    width: 38px;
+    height: 38px;
+    margin-top: 5px;
+}
+
+.item-personlize button {
+    margin: 0 3px;
+    padding: 5px 4px 0;
+    background: none;
+    border: none;
+    text-align: center;
+    transition: opacity 0.1s;
+    line-height: 0;
+    z-index: 2;
+    vertical-align: top;
+}
+
+.item-personlize button svg {
+    fill: transparent;
+    stroke: #424242;
+    stroke-width: 1px;
+    transition: fill 0.1s, stroke 0.1s;
+}
+
+.item-personlize .count {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    color: #424242;
+    line-height: 14px;
+    letter-spacing: -0.3px;
+    text-align: center;
+}
+
+.rating-div {
+    margin-top: 8px;
+}
+
+.rating-div .rating-point {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 23px;
+    height: 23px;
+}
+
+.rating-div .score {
+    font-size: 16px;
+    color: #555;
+}
+
+.rating-div .num {
+    font-size: 14px;
+    color: #999;
+}
+
+.item-price-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 1;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.item-price-wrap .number {
+    font-size: 32px;
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.item-price-wrap svg.icon {
+    margin: 4px 0 0 6px;
+}
+
+.order-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(47, 52, 56);
+    font-weight: 700;
+    margin-top: 40px;
+}
+
+.order-price span:first-child {
+    font-size: 23px;
+    line-height: 20px;
+}
+
+.order-price span:nth-child(2) {
+    font-size: 19px;
+    line-height: 20px;
+}
+
+.btn-area .subscribe-btn {
+    margin-top: 25px;
+    height: 48px;
+    min-width: 100%;
+    background: #ffa5cd;
+    color: #fff;
+    border: none;
+    padding: 10px 25px 11px;
+    border-radius: 6px;
+}
+
+.subscribe-btn span {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.order-option-wrap {
+    border-top: 1px solid #f4f4f4;;
+    margin-top: 25px;
+}
+
+.order-option-wrap hr {
+    margin-bottom: 25px;
+}
+
+.order-option-wrap p {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.order-option-wrap .drop-box {
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 12px 13px;
+    font-weight: 400;
+    width: 100%;
+    font-size: 14px;
+    line-height: 16px;
+    margin-top: 15px;
+    background: url(../../img/welfare/down.png) no-repeat 97% 50%/15px auto;
+}
+
+option {
+    padding: 3px;
+    margin-top: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.main-category-list {
+    display: flex;
+    flex-wrap: wrap;
+    height: 60px;
+}
+
+.refrig-banner {
+    width: 100%;
+    height: 100%;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.refrig-banner a img {
+    width: 100%;
+}
+
+.item-main {
+    margin-top: 80px;
+}
+
+.main-category-list .list-normal {
+    display: flex;
+    flex: 1 1 0%;
+    border-width: 1px 0px 1px 1px;
+    border-color: rgb(238, 238, 238);
+    border-style: solid;
+    background-color: rgb(250, 250, 250);
+}
+
+.main-category-list .list-normal:last-child {
+    border-width: 1px;
+}
+
+.list-normal a {
+    display: flex;
+    flex: 1 1 0%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.section-wrap {
+    padding: 72px 0px;
+    border-top: 1px solid rgb(238, 238, 238);
+}
+
+.section-wrap:first-child {
+    border-top: none;
+}
+
+.section-title {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 41px;
+    text-align: center;
+    padding-bottom: 36px;
+    letter-spacing: -0.5px;
+    color: rgb(102, 102, 102);
+}
+
+.supplier-info-list {
+    display: flex;
+    width: 100%;
+    font-size: 13px;
+    color: rgb(51, 51, 51);
+    line-height: 18px;
+    letter-spacing: -0.5px;
+}
+
+.supplier-info-list li {
+    padding: 18px;
+    word-break: break-all;
+    white-space: pre-line;
+}
+
+.info-category {
+    width: 30%;
+    background-color: rgb(247, 247, 247);
+}
+
+.detail-info-wrap {
+    margin-top: 20px;
+}
+
+.detail-info {
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+    width: 100%;
+    padding: 17px 0 18px;
+    border-top: 1px solid #f4f4f4;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+.detail-info-category {
+    width: 30%;
+    height: 100%;
+    color: #666;
+    font-weight: 400;
+    line-height: 19px;
+}
+
+.detail-info dd {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.item-info-section h3 span {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 36px;
+    background: #fff;
+    text-shadow: 2px 0;
+}
+
+
+.tip_box .context {
+    margin: 0 60px 60px;
+}
+
+.tip_box .context .words {
+    margin: 0;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+.tip_box strong {
+    display: block;
+    font-size: 25px;
+    line-height: 38px;
+    margin-bottom: 10px;
+}
