@@ -1,0 +1,82 @@
+/* sales-list.html */
+
+.tit {
+    margin-top: 8px;
+}
+
+.user__profile__wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+img.user__profile {
+    margin-right: 8px;    
+    border-radius: 50%;
+    width: 30px;
+}
+
+/* // 회원정보 모달 */
+
+.layer-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+}
+
+.layer-wrap .layer-pop.img-view-popup {
+    width: 510px;
+    background: transparent;
+    background-color: #fff;
+    height: 101px;
+    /* height: 160px; */
+    padding: 15px;
+    position: relative;
+}
+
+.layer-wrap .layer-pop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -webkit-backface-visibility: hidden;
+}
+
+.layer-wrap .layer-pop.img-view-popup .layer-content {
+    padding: 0;
+}
+
+.layer-wrap:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+
+.layer-content li {
+    margin-bottom: 8px;
+}
+
+button.btn-x-md2.ui-close-pop {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+    filter: invert(41%) sepia(1%) saturate(255%) hue-rotate(55deg) brightness(95%);
+    /* background: rgb(0 0 0 / 46%); */
+    width: 20px;
+}
+
+img.thumnail {
+    width: 100%;
+    height: 100%;
+}
