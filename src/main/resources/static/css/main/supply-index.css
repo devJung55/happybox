@@ -50,6 +50,7 @@
 }
 
 .image-container {
+    overflow: hidden;
     height: 320px;
 }
 
@@ -61,7 +62,6 @@
     font-size: 16px;
     line-height: 1.45;
     font-weight: 400;
-    margin-bottom: 8px;
     overflow: hidden;
     text-align: start;
     text-overflow: ellipsis;
@@ -103,6 +103,7 @@
 
 .image-container img {
     max-height: 100%;
+    transition: 0.5s ease;
 }
 
 .flex-between {
@@ -119,14 +120,120 @@
     word-break: break-word;
 }
 
-.product-info .product-name {
-    margin-bottom: 7px;
-    font-size: 16px;
-    line-height: 1.45;
-    color: rgb(51, 51, 51);
-    font-weight: 400;
-}
-
 .font20 {
     font-size: 20px !important;
+}
+
+.recipie-top-wrap {
+    display: flex;
+    gap: 36px;
+}
+
+.recipie-top-img-container {
+    height: 308px;
+    overflow: hidden;
+}
+
+.recipie-top-img-container img {
+    max-height: 100%;
+    transition: 0.5s ease;
+}
+
+.image-container img:hover {
+    scale: 1.05;
+}
+
+.recipie-top-img-container img:hover {
+    scale: 1.05;
+}
+
+.recipe-top-title-wrap {
+    width: 40%;
+}
+
+.text_center {
+    text-align: center !important;
+}
+
+.recipe-top-title-wrap h3 {
+    margin-top: 12px;
+}
+.recipe-top-title-wrap .recipie-top-content {
+    padding-top: 23px;
+    font-size: 16px;
+    color: rgb(76, 76, 76);
+    line-height: 26px;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: normal;
+    -webkit-line-clamp: 7;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical
+}
+
+ul.recipie-top-others {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+ul.recipie-top-others li {
+    margin-top: 30px;
+    width: 48%;
+}
+
+.recipie-top-others li a {
+    display: flex;
+    gap: 8px;
+}
+
+.recipie-img-container {
+    height: 72px;
+    width: 72px;
+}
+.recipie-img-container img {
+    height: 100%;
+    width: 100%;
+}
+
+.recipie-content-wrap {
+    height: 100%;
+    overflow: hidden;
+    flex: 1;
+}
+
+.recipe-title {
+    text-align: left;
+    font-weight: 700;
+    padding-top: 4px;
+    font-size: 16px;
+    line-height: 23px;
+    cursor: pointer;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: normal;
+    -webkit-line-clamp: 1;
+}
+
+.recipie-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    margin-top: 3px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.recipie-detail-btn {
+    display: block;
+    font-size: 13px;
+    flex-shrink: 0;
+    width: 104px;
+    height: 36px;
+    margin-top: 18px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 4px;
 }
