@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>결제 페이지</title>
+        <link rel="stylesheet" href="../../static/css/global/global.css" />
+        <link rel="stylesheet" href="../../static/css/welfare/payment.css" />
+    </head>
+    <body style="zoom: 80%">
+        <section class="payment-container">
+            <div class="payment-wrap">
+                <div class="page-title-area">
+                    <h2 class="page-title">주문/결제</h2>
+                </div>
+                <div class="payment-area">
+                    <form action="" name="payment">
+                        <div class="delivery-info-area">
+                            <div class="list-title-wrap">
+                                <h3 class="list-title">주문자 정보</h3>
+                            </div>
+                            <div class="order-info-wrap">
+                                <ul class="info-txt">
+                                    <li class="order-name">오태양</li>
+                                    <li class="order-phone">010-6484-4195</li>
+                                    <li class="order-email">oty7942@naver.com</li>
+                                </ul>
+                                <a href="" class="text-primary">
+                                    <span>주문자 정보변경 ></span>
+                                </a>
+                            </div>
+                            <div class="list-title-sub">
+                                <h3 class="list-title">배송지 정보</h3>
+                                <div class="custom-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name=""
+                                        id="orderCheck"
+                                        class="checkbox"
+                                    />
+                                    <label for="orderCheck"> 주문자 정보와 동일 </label>
+                                </div>
+                            </div>
+                            <div class="delivery-input-wrap">
+                                <table>
+                                    <caption>
+                                        정보 입력
+                                    </caption>
+                                    <colgroup>
+                                        <col style="width: 150px" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                받는분
+                                                <em class="es">
+                                                    <span class="blind">필수입력</span>
+                                                </em>
+                                            </th>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    name="memberName"
+                                                    id=""
+                                                    class="input-text w-full"
+                                                    value="오태양"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr class="row-th-top">
+                                            <th scope="row">
+                                                주소
+                                                <em class="es"
+                                                    ><span class="blind">필수입력</span></em
+                                                >
+                                            </th>
+                                            <td>
+                                                <div class="input-group-wrap box-type">
+                                                    <div class="input-group">
+                                                        <div class="input-group-cell w160">
+                                                            <input
+                                                                type="text"
+                                                                id="receiverZipcode"
+                                                                name="receiverPost"
+                                                                title=""
+                                                                class="input-text"
+                                                                placeholder="우편번호"
+                                                                value=""
+                                                                readonly=""
+                                                            />
+                                                        </div>
+                                                        <div class="input-group-cell">
+                                                            <input
+                                                                type="text"
+                                                                id="receiverAddr"
+                                                                name="receiverAddr"
+                                                                title=""
+                                                                class="input-text"
+                                                                placeholder="기본주소"
+                                                                value=""
+                                                                readonly=""
+                                                            />
+                                                        </div>
+                                                        <span class="input-group-btn">
+                                                            <a
+                                                                href="#"
+                                                                class="btn-ex-white"
+                                                                onclick="fnPostFind(event)"
+                                                                ><span>우편번호 찾기</span></a
+                                                            >
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    name="receiverAddrDtl"
+                                                    title=""
+                                                    class="input-text w-full removeEmoji"
+                                                    placeholder="상세주소"
+                                                    value=""
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

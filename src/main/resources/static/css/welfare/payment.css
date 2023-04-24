@@ -1,0 +1,253 @@
+/* 결제 페이지 */
+
+
+/* ================================== 공통 ============================ */
+
+.payment-wrap {
+    min-height: 700px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-title-area {
+    padding-top: 70px;
+    position: relative;
+}
+
+.page-title {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.payment-area {
+    margin-top: 35px;
+    position: relative;
+}
+
+.list-title-wrap {
+    position: relative;
+    padding: 30px 0 20px;
+    border-top: 1px solid #666;
+}
+
+.list-title-wrap .list-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.text-primary {
+    color: #FA0101 !important;
+}
+
+/* 체크박스 */
+
+.custom-checkbox{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+    vertical-align: top;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.custom-checkbox input[type="checkbox"] + label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.custom-checkbox .checkbox + label {
+    padding-left: 26px;
+    min-height: 18px;
+}
+
+.custom-checkbox .checkbox:checked + label:before {
+    background: #FF6001 url(https://www.rankingdak.com/resources/pc/images/icon/ico_form.png?ver=20220511) -50px -30px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #FA0101;
+}
+
+.custom-checkbox .checkbox + label:before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+legend, caption {
+    position: absolute;
+    left: -99999px;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -99999px;
+    clip: rect(0,0,0,0);
+    *display: none;
+}
+
+colgroup {
+    display: table-column-group;
+}
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+
+/* ================================== 배송지 ============================ */
+
+.delivery-info-area{
+    position: relative;
+    padding: 0 0 60px;
+}
+
+.order-info-wrap .info-txt {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin-right: 15px;
+}
+
+.order-info-wrap .info-txt li{
+    float: left;
+}
+
+.order-info-wrap .info-txt li:not(:last-child):after{
+    display: inline-block;
+    content: '/';
+    margin: 0 3px;
+    vertical-align: top;
+}
+
+.text-primary .right-icon{
+    width: 16px;
+    height: 16px;
+}
+
+.list-title-sub {
+    position: relative;
+    padding: 30px 0 5px;
+    border-top: 1px solid #ccc;
+    margin: 30px 0 15px;
+}
+
+.list-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.list-title-sub .custom-checkbox {
+    position: absolute;
+    top: 32px;
+    right: 0;
+}
+
+.delivery-input-wrap {
+    margin-top: 20px;
+}
+
+
+.delivery-input-wrap table{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.delivery-input-wrap table th{
+    padding: 3px 0;
+    text-align: left;
+    font-weight: normal;
+    padding: 10px 0;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.delivery-input-wrap table th .es{
+    vertical-align: top;
+}
+
+.es:after {
+    display: inline-block;
+    content: "";
+    margin-top: 5px;
+    margin-left: 2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    vertical-align: top;
+    background: #FA0101;
+}
+
+.delivery-input-wrap table tr td{
+    padding: 3px 0;
+    text-align: left;
+    font-weight: normal;
+    padding: 10px 0;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+
+
+/* ============================================================== */
+/* ============================================================== */
+/* ============================================================== */
+/* ============================================================== */
+/* ============================================================== */
+/* ============================================================== */

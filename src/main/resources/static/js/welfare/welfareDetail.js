@@ -131,7 +131,7 @@ $(window).scroll(function() {
 
   if (Math.floor(currentPosition) == Math.floor(($(document).height()*0.8 - $(window).height()))) {
     console.log("아래닸냐");
-    $fixedDiv.css({'top':-100, 'right':initialRight});
+    $fixedDiv.css({'top':-250, 'right':initialRight});
   }
 });
 
