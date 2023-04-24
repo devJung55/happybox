@@ -93,4 +93,13 @@ button {
 .select-name {
 	padding-top : 17px;
 	padding-left: 10px;
+	align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+.depth1-icon {
+	transform: rotate(270deg);
+	width: 12px;
+	filter: opacity(0.5) drop-shadow(0 0 0 #4e4e4e);
 }

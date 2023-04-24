@@ -1,0 +1,147 @@
+/* confirm-id.html */
+
+.join-container {
+    background: #f7f7f7;
+    padding: 100px 0;
+}
+
+.join-area {
+    width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 60px 100px 90px;
+}
+
+.join-area.type2 {
+    padding: 70px 150px 90px;
+}
+
+.join-area.type2 {
+    border-radius: 20px;
+}
+
+.result-cnt {
+    text-align: center;
+}
+
+[class^="ico-img-"] {
+    display: inline-block;
+    background-image: url('https://www.rankingdak.com/resources/pc/images/icon/ico_img.png');
+
+}
+
+.ico-img-info {
+    width: 62px;
+    height: 40px;
+    background-position: -380px 0;
+}
+
+.result-cnt > i {
+    margin: 0 auto;
+}
+
+.result-cnt .message {
+    font-size: 20px;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.text-primary {
+    color: #FF6001 !important;
+}
+
+.btn-bottom-area {
+    position: relative;
+    text-align: center;
+}
+
+.join-container .btn-bottom-area {
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.result-cnt ~ .btn-bottom-area {
+    margin-top: 45px;
+}
+
+[class*="btn-basic-"], [class*="btn-option"], [class*="btn-rud-"] {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}
+
+.btn-primary-line {
+    background: #fff;
+    color: #ff6001;
+    border: 1px solid #ff6001;
+}
+
+.btn-bottom-area > [class*="btn-"]:not(.w-full) {
+    margin: 0 3px;
+    vertical-align: top;
+}
+
+.login-area .btn-bottom-area .btn-basic-lg2, .join-area .btn-bottom-area .btn-basic-lg2 {
+    width: calc(50% - 5px);
+    height: 50px;
+    border-radius: 6px;
+    font-weight: 400;
+}
+
+.btn-bottom-area > [class*="btn-"]:first-child:not(.w-full):not(:only-child) {
+    margin: 0 2px 0 0;
+}
+
+[class*="btn-basic-"] > span, [class*="btn-option"] > span, [class*="btn-rud-"] > span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.btn-basic-lg2 > span {
+    font-size: 15px;
+}
+
+.login-area .btn-bottom-area .btn-basic-lg2 span, .join-area .btn-bottom-area .btn-basic-lg2 span {
+    line-height: 2;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}
+
+.btn-primary {
+    background: #ff6001;
+    color: #fff;
+    border: 1px solid #ff6001;
+}
+
+.btn-bottom-area > [class*="btn-"]:not(.w-full) {
+    vertical-align: top;
+}
+
+.login-area .btn-bottom-area .btn-basic-lg2, .join-area .btn-bottom-area .btn-basic-lg2 {
+    width: calc(50% - 5px);
+    height: 50px;
+    border-radius: 6px;
+    font-weight: 400;
+}
+
+.btn-bottom-area > [class*="btn-"]:last-child:not(.w-full):not(:only-child) {
+    margin: 0 0 0 2px;
+}
+
+.btn-bottom-area:after {
+    display: block;
+    content: '';
+    clear: both;
+}

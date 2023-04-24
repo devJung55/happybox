@@ -3,14 +3,14 @@
 const $showDetail = $(".show-detail");
 
 $showDetail.on('click', function(e){
-    $(".user-modal").show();
+    $(".modal").show();
 })
 
 /* 상세 모달 닫기 */
 const $modalCancel = $("#Capa_1");
 
 $modalCancel.on("click", function(e) {
-    $(".user-modal").hide();
+    $(".modal").hide();
 });
 
 

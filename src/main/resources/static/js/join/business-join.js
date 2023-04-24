@@ -1,4 +1,5 @@
 /* welfare-join.html */
+/* company-join.html */
 
 window.onload = function(){
     document.getElementById("address-kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
