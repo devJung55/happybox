@@ -251,7 +251,7 @@ div.banner div {
 .swiper-button-prev svg {
     width: 15px;
     height: 15px;
-    margin-top: 2px;
+    margin-top: 4px;
     pointer-events: none;
     transform: rotate(180deg);
     z-index: 1;
@@ -261,7 +261,7 @@ div.banner div {
     width: 15px;
     height: 15px;
     pointer-events: none;
-    margin-top: 2px;
+    margin-top: 4px;
     z-index: 1;
 }
 
