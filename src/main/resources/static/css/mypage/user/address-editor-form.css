@@ -28,12 +28,19 @@
     float: left;
 }
 
-.info-txt li:after {
+.info__after::after {
     display: inline-block;
     content: '/';
     margin: 0 3px;
     vertical-align: top;
 }
+
+/* .info-txt li:after {
+    display: inline-block;
+    content: '/';
+    margin: 0 3px;
+    vertical-align: top;
+} */
 
 .list-head-sub {
     position: relative;
