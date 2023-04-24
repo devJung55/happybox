@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
     <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
     <link rel="stylesheet" href="../../../static/css/mypage/user/order-list.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/user/sales-list.css">
 </head>
 <body>
     <div class="wrap">
@@ -29,6 +30,35 @@
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <form action="" name="myPageOrderForm">
+                                
+                                <div id="thumDtlPop"><!-- // 이미지 모달 -->
+                                    <div class="layer-wrap" id="popup-sample01" style="display:none">
+                                        <div class="layer-pop img-view-popup">
+                                            <div class="layer-inner">
+                                                <div class="layer-content">
+                                                    <ul>
+                                                        <li>이름 : <span>정지영</span></li>
+                                                        <li>주소 : <span>서울시 00구 00로 49 현대아파트</span></li>
+                                                        <li>휴대폰 번호 : <span>01055551234</span></li>
+                                                        <!-- <li>
+                                                            이름<div>정지영</div>
+                                                        </li>
+                                                        <li>
+                                                            주소<div>서울시 00구 00로 49 현대아파트</div>
+                                                        </li>
+                                                        <li>
+                                                            배송메모<div>빠른 배송 부탁드립니다.</div>
+                                                        </li> -->
+                                                    </ul>
+                                                </div><!--// layer-content -->
+                                                <button type="button" class="btn-x-md2 ui-close-pop">
+                                                    <img class="close__modal" src="../../../static/img/mypage/close-button.webp" width="30">
+                                                </button>
+                                            </div><!--// layer-inner -->
+                                        </div><!--// layer-pop  -->
+                                    </div><!--// layer-pop-wrap #main-event -->
+                                </div>
+
                                 <div class="menu-title-area">
                                     <div class="title-menu">
                                         <h3 class="title-menu">판매내역</h3>
@@ -88,7 +118,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="custom-radio default">
+                                                    <div class="custom-radio default select__all">
                                                         <input type="radio" id="mypage-order-search-radio-period" class="radio-btn-type2" name="mypage-order-search-radio" value="ALL">
                                                         <label for="mypage-order-search-radio-period">전체조회</label>
                                                     </div>
@@ -116,8 +146,12 @@
                                                 </label>
                                             </div>
                                             <div class="column tit">
-                                                <p class="tit">
-                                                    <a href="javascript:void(0)" class="productNm">맛있닭 저염 스팀 닭가슴살 100g</a>
+                                                <p class="tit" style="margin-top: 8px;">
+                                                    <div class="user__profile__wrap">
+                                                        <img class="user__profile" src="../../../static/img/mypage/profile.png">
+                                                        <a class="user__name" href="javascript:void(0)">정지영</a>
+                                                    </div>
+                                                    <a href="javascript:void(0)" class="productNm" style="display: block;">맛있닭 저염 스팀 닭가슴살 100g</a>
                                                 </p>
                                             </div>
                                             <div class="column price">
@@ -144,8 +178,12 @@
                                                 </label>
                                             </div>
                                             <div class="column tit">
-                                                <p class="tit">
-                                                    <a href="javascript:void(0)" class="productNm">맛있닭 저염 스팀 닭가슴살 100g</a>
+                                                <p class="tit" style="margin-top: 8px;">
+                                                    <div class="user__profile__wrap">
+                                                        <img class="user__profile" src="../../../static/img/mypage/profile.png">
+                                                        <a class="user__name" href="javascript:void(0)">정지영</a>
+                                                    </div>
+                                                    <a href="javascript:void(0)" class="productNm" style="display: block;">맛있닭 저염 스팀 닭가슴살 100g</a>
                                                 </p>
                                             </div>
                                             <div class="column price">
@@ -181,4 +219,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
 <script src="../../../static/js/mypage/user/order-list.js"></script>
+<script src="../../../static/js/mypage/user/sales-list.js"></script>
 </html>
