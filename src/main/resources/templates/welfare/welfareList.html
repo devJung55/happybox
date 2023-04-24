@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="../../static/css/welfare/welfareList.css" />
     </head>
     <body style="zoom: 80%;">
+        <header></header>
         <section class="welfare-container">
             <div class="welfare-content">
                 <!-- 복지관리스트 -->
@@ -297,121 +298,85 @@
                         <div class="sorting-search-box">
                             <div class="inner">
                                 <!-- 지역별 정렬 -->
-                                <fieldset>
-                                    <legend class="sort-tit">지역</legend>
-                                    <ul class="sorting-class-list">
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-200"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="all"
-                                                    data-type="search_hangul"
-                                                />
-                                                <label for="radio-search-200">전체</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-201"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="강동구"
-                                                    data-type="search_hangul"
-                                                />
-                                                <label for="radio-search-201">강동구</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-202"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="강북구"
-                                                    data-type="search_hangul"
-                                                />
-                                                <label for="radio-search-202">강북구</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-203"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="강남구"
-                                                    data-type="search_hangul"
-                                                />
-                                                <label for="radio-search-203">강남구</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-etc"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="etc"
-                                                    data-type="search_hangul"
-                                                />
-                                                <label for="radio-search-etc">기타</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </fieldset>
+                                <button type="button" class="category-btn">
+                                    <div>전체</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>강남구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>송파구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>서초구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>강동구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>광진구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>성동구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>동대문구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>중랑구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>노원구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>도봉구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>강북구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>성북구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>종로구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>중구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>용산구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>서대문구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>마포구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>은평구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>강서구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>양천구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>구로구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>금천구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>영등포구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>동작구</div>
+                                </button>
+                                <button type="button" class="category-btn">
+                                    <div>관악구</div>
+                                </button>
                                 <!-- 카테고리별 정렬 -->
-                                <fieldset>
-                                    <legend class="sort-tit">카테고리</legend>
-                                    <ul class="sorting-class-list">
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC99999999"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC99999999"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC99999999">전체</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC00000003"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC00000003"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC00000003">인기순</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-radio">
-                                                <input
-                                                    type="radio"
-                                                    id="radio-search-BC00000002"
-                                                    class="radio-box-type1"
-                                                    name="searchVal"
-                                                    value="BC00000002"
-                                                    data-type="search_cate"
-                                                />
-                                                <label for="radio-search-BC00000002">판매순</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </fieldset>
                             </div>
                         </div>
                         <!-- 복지관 리스트 뿌려지는 곳 -->
@@ -433,7 +398,12 @@
                 </form>
             </div>
         </section>
+        <footer></footer>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $('header').load('../../templates/component/header.html');
+        $('footer').load('../../templates/component/footer.html');
+    </script>
     <script src="../../static/js/welfare/welfareList.js"></script>
 </html>

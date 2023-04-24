@@ -98,11 +98,15 @@
     position: fixed;
 }
 
+.rating-div {
+    margin-bottom: 15px;
+}
+
 .welfare-info-area {
     float: right;
     width: 280px;
     padding: 20px;
-    border: 1px solid #80808014;
+    border: 2px solid #80808014;
     border-style: outset;
     z-index: 10;
     background-color: white;
@@ -264,7 +268,6 @@
     width: 100%;
     table-layout: fixed;
     margin-top: 17px;
-    border-top: 1px solid #EDEDED;
 }
 
 .dl-row {
@@ -311,6 +314,8 @@
 
 .option-select-area {
     padding-top: 15px;
+    border-bottom: 2px solid #8080809c;
+    padding-bottom: 20px;
 }
 
 .option-select-area .drop-box {
@@ -329,7 +334,7 @@
 }
 
 .drop-box:focus{
-    border: 1.5px solid #FFA5CD;
+    border: 1.5px solid #FA0101;
     box-sizing: border-box;
     border-radius: 4px;
 }
@@ -599,7 +604,7 @@ input[type="checkbox"], input[type="radio"] {
 
 .special-total-price {
     font-size: 26px;
-    color: #f6599f;
+    color: #FA0101;
 }
 
 .total-area .txts {
@@ -643,8 +648,8 @@ input[type="checkbox"], input[type="radio"] {
     width: 50%;
     margin: 0 3px 0 0;
     background: #fff;
-    color: #f6599f;
-    border: 1px solid #FFA5CD;
+    color: #FA0101;
+    border: 1px solid #FA0101;
     min-width: 280px;
     height: 56px;
     padding: 10px 25px 11px;
@@ -659,9 +664,9 @@ input[type="checkbox"], input[type="radio"] {
     width: 50%;
     margin: 10px 3px 0 0;
     min-width: 280px;
-    background: #FFA5CD;
+    background: #fa0101d6;
     color: #fff;
-    border: 1px solid #FFA5CD;
+    border: 1px solid #fa0101d6;
     padding: 10px 25px 11px;
     border-radius: 6px;
 }
@@ -1085,6 +1090,18 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 
+
+
+/*============= 복지관 사진 ========================*/
+.welfare-info-img{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.welfare-info-img img {
+    width: 100px;
+    height: 100px;
+}
+/*=====================================*/
 /*============= 복지관 소개 ========================*/
 .welfare-intro-area {
     padding: 14px;

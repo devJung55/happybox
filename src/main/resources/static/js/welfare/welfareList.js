@@ -14,7 +14,7 @@ $(document).ready(function() {
     intervalId = setInterval(function() {
       $(element).attr('src', imageArray[index]);
       index = (index + 1) % imageArray.length;
-    }, 1000);
+    }, 500);
   }
 
   $('.welfare-img img').each(function() {
@@ -31,6 +31,39 @@ $(document).ready(function() {
     );
   });
 });
+
+/* ================================================================================================================================================ */
+
+$(function() {
+  // 지역별 정렬 버튼
+  $('.category-btn').on('click', function() {
+    if ($(this).hasClass('selected')) {
+      // 이미 선택된 버튼을 다시 클릭한 경우
+      $(this).removeClass('selected');
+      $('.category-btn:first-child').addClass('selected'); // 전체 버튼을 선택한 것과 동일하게 처리
+    } else {
+      // 새로운 버튼을 클릭한 경우
+      $('.category-btn').removeClass('selected');
+      $(this).addClass('selected');
+    }
+  });
+
+  // 전체 버튼
+  $('.category-btn:first-child').on('click', function() {
+    $('.category-btn').removeClass('selected');
+    $(this).addClass('selected');
+  });
+});
+
+//  전체 버튼 Default
+$(function() {
+  $('.sorting-search-box .category-btn:first-child').addClass('selected');
+});
+
+
+/* ================================================================================================================================================ */
+
+
 
   /* 화면에 출력 */
 const $welfareList = $('.welfare-list-wrap');
