@@ -10,126 +10,381 @@
         <link rel="stylesheet" href="../../static/css/welfare/payment.css" />
     </head>
     <body style="zoom: 80%">
+        <header></header>
         <section class="payment-container">
             <div class="payment-wrap">
                 <div class="page-title-area">
-                    <h2 class="page-title">주문/결제</h2>
+                    <h2 class="page-title">구독/결제</h2>
                 </div>
                 <div class="payment-area">
-                    <form action="" name="payment">
-                        <div class="delivery-info-area">
-                            <div class="list-title-wrap">
-                                <h3 class="list-title">주문자 정보</h3>
+                    <form id="ordFrm" name="addressForm" action="">
+                        <div class="order-info" id="orderUserInfo">
+                            <div class="list-head">
+                                <h3 class="title-list">구독자 정보</h3>
                             </div>
-                            <div class="order-info-wrap">
-                                <ul class="info-txt">
-                                    <li class="order-name">오태양</li>
-                                    <li class="order-phone">010-6484-4195</li>
-                                    <li class="order-email">oty7942@naver.com</li>
-                                </ul>
-                                <a href="" class="text-primary">
-                                    <span>주문자 정보변경 ></span>
-                                </a>
+                        </div>
+                        <div class="order-address">
+                            <ul class="info-txt">
+                                <li class="info__after">오태양</li>
+                                <li class="info__after">01071228966</li>
+                                <li>jung_7122@naver.com</li>
+                            </ul>
+                        </div>
+                        <div class="list-head-sub">
+                            <h3 class="title-list">배송지 정보</h3>
+                            <div class="custom-checkbox">
+                                <input
+                                    type="checkbox"
+                                    name=""
+                                    id="orderCheck"
+                                    class="checkbox"
+                                />
+                                <label for="orderCheck"> 주문자 정보와 동일 </label>
                             </div>
-                            <div class="list-title-sub">
-                                <h3 class="list-title">배송지 정보</h3>
-                                <div class="custom-checkbox">
-                                    <input
-                                        type="checkbox"
-                                        name=""
-                                        id="orderCheck"
-                                        class="checkbox"
-                                    />
-                                    <label for="orderCheck"> 주문자 정보와 동일 </label>
+                        </div>
+                        <div class="lineless-table type2">
+                            <table>
+                                <caption>
+                                    정보 입력
+                                </caption>
+                                <colgroup>
+                                    <col style="width: 100px" />
+                                    <col />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">받는분</th>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name=""
+                                                title=""
+                                                class="input-text w-full removeEmoji"
+                                                value=""
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr class="row-th-top">
+                                        <th scope="row">주소</th>
+                                        <td>
+                                            <div class="input-group-wrap box-type">
+                                                <div class="input-group">
+                                                    <div class="input-group-cell w160">
+                                                        <input
+                                                            type="text"
+                                                            id="postcode"
+                                                            name="receiverPost"
+                                                            class="input-text"
+                                                            placeholder="우편번호"
+                                                            value=""
+                                                            readonly
+                                                        />
+                                                    </div>
+                                                    <div class="input-group-cell">
+                                                        <input
+                                                            type="text"
+                                                            id="address"
+                                                            name="receiverAddr"
+                                                            class="input-text"
+                                                            placeholder="기본주소"
+                                                            value=""
+                                                            readonly
+                                                        />
+                                                    </div>
+                                                    <span
+                                                        class="input-group-btn"
+                                                        onclick="sample6_execDaumPostcode()"
+                                                    >
+                                                        <a
+                                                            href="javascript:void(0)"
+                                                            class="btn-ex-white"
+                                                        >
+                                                            <span>우편번호 찾기</span>
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                id="detailAddress"
+                                                name="receiverAddrDtl"
+                                                class="input-text w-full removeEmoji"
+                                                placeholder="상세주소"
+                                                value=""
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">휴대폰 번호</th>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name=""
+                                                title=""
+                                                class="input-text w-full"
+                                                maxlength="11"
+                                                placeholder="휴대폰 번호를 입력해 주세요."
+                                            />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="order-info-area">
+                            <div class="order-item-box">
+                                <div class="userOrderList">
+                                    <div class="delivery-state normal">
+                                        <h4 class="tit">구독한 복지관</h4>
+                                        <div class="right-dlv-info">
+                                            <img src="../../static/img/welfare/delivery.png" alt="">
+                                            <p class="txt">
+                                                <span class="dlvPrice">정기 배송</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <ul class="cart-list">
+                                        <li>
+                                            <div class="prd-info-area">
+                                                <div class="inner">
+                                                    <div class="column img">
+                                                        <a href="javascript:void(0);">
+                                                            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="column tit">
+                                                        <p class="tit">
+                                                            관악복지관
+                                                        </p>
+                                                        <p class="desc">
+                                                            서울시 관악구 봉천동
+                                                        </p>
+                                                        <ul class="price-item">
+                                                            <li>
+                                                                <span class="num">18,900</span>
+                                                                원
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="column price w70">
+                                                        <span class="num">18,900</span>
+                                                        원
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="coldAddLi">
+                                            <div class="added-btn">
+                                                <div class="subscribe-btn">
+                                                    <!-- <img src="../../static/img/welfare/like.png" alt=""> -->
+                                                    <span class="subscribe">1개월 구독</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="delivery-input-wrap">
+                        </div>
+                        <div class="order-info">
+                            <div class="list-head">
+                                <div class="order-banner text-center">
+                                    <p>
+                                        <strong>기부 포인트</strong>
+                                        <em>
+                                            <span>1000P</span>
+                                            이상 사용가능
+                                        </em>
+                                    </p>
+                                </div>
+                                <h3 class="title-list">기부 포인트 사용</h3>
+                            </div>
+                            <div class="lineless-table type1">
                                 <table>
-                                    <caption>
-                                        정보 입력
-                                    </caption>
+                                    <caption>기부 포인트 사용</caption>
                                     <colgroup>
-                                        <col style="width: 150px" />
+                                        <col style="width: 190px;">
                                     </colgroup>
                                     <tbody>
                                         <tr>
                                             <th scope="row">
-                                                받는분
-                                                <em class="es">
-                                                    <span class="blind">필수입력</span>
-                                                </em>
+                                                <span class="tit">
+                                                    포인트 사용
+                                                </span>
                                             </th>
                                             <td>
-                                                <input
-                                                    type="text"
-                                                    name="memberName"
-                                                    id=""
-                                                    class="input-text w-full"
-                                                    value="오태양"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr class="row-th-top">
-                                            <th scope="row">
-                                                주소
-                                                <em class="es"
-                                                    ><span class="blind">필수입력</span></em
-                                                >
-                                            </th>
-                                            <td>
-                                                <div class="input-group-wrap box-type">
-                                                    <div class="input-group">
-                                                        <div class="input-group-cell w160">
-                                                            <input
-                                                                type="text"
-                                                                id="receiverZipcode"
-                                                                name="receiverPost"
-                                                                title=""
-                                                                class="input-text"
-                                                                placeholder="우편번호"
-                                                                value=""
-                                                                readonly=""
-                                                            />
+                                                <div class="order-point">
+                                                    <div class="input-group-wrap box-type">
+                                                        <div class="input-group">
+                                                            <input type="text" class="input-text ui-point-input" placeholder="1,000P부터 사용가능">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn-x-xs btn-input-del">
+                                                                    <i class="ico-x-normal"></i>
+                                                                    <span class="blind">삭제</span>
+                                                                </button>
+                                                                <button type="button" class="btn-ex-grey">
+                                                                    <span>전액사용</span>
+                                                                </button>
+                                                            </span>
                                                         </div>
-                                                        <div class="input-group-cell">
-                                                            <input
-                                                                type="text"
-                                                                id="receiverAddr"
-                                                                name="receiverAddr"
-                                                                title=""
-                                                                class="input-text"
-                                                                placeholder="기본주소"
-                                                                value=""
-                                                                readonly=""
-                                                            />
-                                                        </div>
-                                                        <span class="input-group-btn">
-                                                            <a
-                                                                href="#"
-                                                                class="btn-ex-white"
-                                                                onclick="fnPostFind(event)"
-                                                                ><span>우편번호 찾기</span></a
-                                                            >
-                                                        </span>
                                                     </div>
+                                                    <p class="point-guide">사용 가능 기부 포인트 <em class="text-num-bold">1,000</em>P</p>
                                                 </div>
-                                                <input
-                                                    type="text"
-                                                    name="receiverAddrDtl"
-                                                    title=""
-                                                    class="input-text w-full removeEmoji"
-                                                    placeholder="상세주소"
-                                                    value=""
-                                                />
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <div class="order-info">
+                            <div class="list-head">
+                                <h3 class="title-list">결제방법</h3>
+                            </div>
+                            <div class="payment-select">
+                                <div class="grid-area-span2">
+                                    <div class="colum col12">
+                                        <ul class="radio-grid-span4">
+                                            <li>
+                                                <div class="custom-radio">
+                                                    <input type="radio" id="" class="radio-box-grid" name="" value="">
+                                                    <label for="radio-grid-8">
+                                                            <img src="../../static/img/welfare/kakao.png" alt="">
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-btn-wrap">
+                                <div class="btn-area">
+                                    <button type="button" class="save-btn">
+                                        <span>결제</span>
+                                    </button>
+                                    <button type="button" class="subscribe-btn">
+                                        <span>취소</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
         </section>
+        <input type="hidden" id="sample6_postcode" placeholder="우편번호" />
+        <input type="hidden" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" /><br />
+        <input type="hidden" id="sample6_address" placeholder="주소" /><br />
+        <input type="hidden" id="sample6_detailAddress" placeholder="상세주소" />
+        <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" />
+        <footer></footer>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- <script>
+        $("header").load("../../templates/component/header.html");
+        $("footer").load("../../templates/component/footer.html");
+    </script> -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="../../static/js/welfare/payment.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".cpn_select_btn").on('click', function (event) {
+                let couponCnt = fnOnlyNumber($('#userCouponCount').text()).number;
+                if (couponCnt > 0) {
+                    if (!$(this).hasClass('ui-open-pop')) {
+                        $(this).addClass("ui-open-pop");
+                        layerPop();
+                        getUserOrderPrice();
+                        $(this).click();
+                        $(this).removeClass("ui-open-pop");
+                    }
+                } else {
+                    alert("사용할 수 있는 쿠폰이 없습니다.");
+                }
+            });
+    
+            $('.ui-point-input').keyup(function (e) {
+                if (!$(this).val()) {
+                    $(this).siblings('.input-group-btn').find('.btn-input-del').hide();
+                } else if ($(this).val()) {
+                    $(this).siblings('.input-group-btn').find('.btn-input-del').show();
+                }
+            });
+    
+            $('.btn-input-del').on('click', function (e) {
+                $(this).parent('.input-group-btn').prev('.ui-point-input').val(0);
+                $(this).hide();
+                fnUsePoint('');
+            });
+    
+        });
+    
+        //포인트 사용
+        function fnUsePoint(type) {
+            $('.btn-input-del').show();
+            const currentPoint = fnOnlyNumber($("#currentPoint").val()).number;
+            if (currentPoint == 0) {
+                return;
+            }
+    
+            $("#textUsePoint").val($("#textUsePoint").val().replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'));
+    
+            let usePointTemp = fnOnlyNumber($("#textUsePoint").val()).number;
+    
+            const txtTotPrice = fnOnlyNumber($('#txt_tot_price').text()).number;
+            const txtSaleCoupon = Math.abs(fnOnlyNumber($('#txt_sale_coupon').text()).number);
+            const txtSaleOrderCoupon = Math.abs(fnOnlyNumber($('#txt_sale_order_coupon').text()).number);
+            const txtSaleDlvCoupon = Math.abs(fnOnlyNumber($('#txt_sale_dlv_coupon').text()).number);
+            let txtSaleGrade = Math.abs(fnOnlyNumber($('#txt_sale_grade').text()).number);
+            const txtTotDlvPrice = fnOnlyNumber($('#txt_tot_dlv_price').text()).number;
+    
+            const sYn = $('input[name="orangeMembersP"]:checked').val();
+            if(sYn === 'point') {
+                txtSaleGrade = 0;
+            }
+    
+            const totPgPrice = txtTotPrice - txtSaleCoupon - txtSaleOrderCoupon - txtSaleDlvCoupon - txtSaleGrade + txtTotDlvPrice;
+    
+            if (type == 'all') {
+                usePointTemp = currentPoint;
+                if (totPgPrice < usePointTemp) {
+                    usePointTemp = totPgPrice;
+                }
+            }
+    
+            if (0 < usePointTemp && usePointTemp < 2000) {
+                alert('적립금은 2000P 부터 사용 가능합니다.');
+                $("#usePoint").val(0);
+                $("#textUsePoint").val(0);
+                getUserOrderPrice();
+                return;
+            }
+            
+    
+            let usePoint = Math.floor(usePointTemp / 10) * 10;
+    
+            if (usePoint <= 0) {
+                usePoint = 0;
+            }
+    
+            if (totPgPrice < usePoint) {
+    
+                usePoint = totPgPrice;
+    
+                if (currentPoint < usePoint) {
+                    usePoint = currentPoint;
+                    usePoint = Math.floor(usePoint / 10) * 10;
+                }
+            }
+    
+            if (0 < usePoint && usePoint < 2000) {
+                alert('적립금은 2000P 부터 사용 가능합니다.');
+                $("#usePoint, #textUsePoint").val(0);
+                getUserOrderPrice();
+                return;
+            }
+    
+            $("#usePoint").val(usePoint);
+            getUserOrderPrice();
+        }
+    
+    </script>
 </html>

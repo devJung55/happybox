@@ -633,6 +633,7 @@ input[type="checkbox"], input[type="radio"] {
 
 /* 버튼 + 모달 */
 .btn-area {
+    
     position: relative;
     text-align: center;
     align-items: stretch;
