@@ -10,6 +10,34 @@
     <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
     <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
     <link rel="stylesheet" href="../../../static/css/mypage/welfare/subscriber.css">
+    <style>
+        [class^="badge-sm-"] {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 5px;
+        height: 18px;
+        font-size: 12px;
+        font-weight: 500;
+        text-align: center;
+        line-height: 1.4;
+        border-radius: 0;
+        cursor: pointer;
+        }
+        
+        .badge-sm-primary {
+        border: 1px solid #FF6001;
+        color: #FF6001;
+        }
+
+        .user__name span {
+            margin-right: 5px;
+        }
+
+        .delivery__done {
+            border: 1px solid #666666;
+            color: #666666;
+        }
+    </style>
 </head>
 <body>
     <div class="wrap">
@@ -46,41 +74,6 @@
                                     <div class="welfare__name">
                                         <span>노원복지관</span>
                                     </div>
-                                    <!-- <div class="input-group-form text-right w-full">
-                                        <div class="input-group-btn dis-inb">
-                                            <a href="javascript:void(0)" class="btn-form btn-black"><span>조회하기</span></a>
-                                        </div>
-                                        <div class="input-group-btn dis-inb reset">
-                                            <button type="button" id="btnInit" class="btn-form btn-link-txt5">
-                                                <span>초기화</span>
-                                            </button>
-                                            <img class="ico-btn-refresh" src="../../../static/img/mypage/reset.png" width="15">
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="search-detail ui-toggle-content">
-                                        <fieldset>
-                                            <ul class="radio-list">
-                                                <li>
-                                                    <div class="custom-radio">
-                                                        <input type="radio" id="mypage-order-search-radio-2weeks" class="radio-btn-type2" name="mypage-order-search-radio" value="2WEEKS">
-                                                        <label for="mypage-order-search-radio-2weeks" class="this__month">이번달</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="custom-radio">
-                                                        <input type="radio" id="mypage-order-search-radio-1month" class="radio-btn-type2" name="mypage-order-search-radio" value="1MONTH">
-                                                        <label for="mypage-order-search-radio-1month">다음달</label>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="custom-radio default select__all">
-                                                        <input type="radio" id="mypage-order-search-radio-period" class="radio-btn-type2" name="mypage-order-search-radio" value="ALL">
-                                                        <label for="mypage-order-search-radio-period">전체조회</label>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </fieldset>
-                                    </div> -->
                                 </div>
                             </form>
 
@@ -98,9 +91,34 @@
                                             <div class="user__info">
                                                 <div class="user__name rider__name">
                                                     <span>정지영</span>
+                                                    <span class="badge-sm-primary delivery__done">배달완료</span>
                                                 </div>
                                                 <div class="user__address welfare__name">
-                                                    <span>노원 복지관</span>
+                                                    <span>서울특별시 00구 00로 현대아파트 105동 1504호</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column btn">
+                                            <button type="button" class="btn-x-sm deleteUserCart">
+                                                <i class="ico-x-black"></i>
+                                            </button>
+                                        </div>  
+                                    </div>
+                                </li>
+
+                                <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
+                                    <div class="prd-info-area cart-info-area">
+                                        <div class="inner">
+                                            <div class="user__img">
+                                                <img src="../../../static/img/mypage/user__profile.jpg">
+                                            </div>
+                                            <div class="user__info">
+                                                <div class="user__name rider__name">
+                                                    <span>정지영</span>
+                                                    <span class="badge-sm-primary">배달중</span>
+                                                </div>
+                                                <div class="user__address welfare__name">
+                                                    <span>서울특별시 00구 00로 현대아파트 105동 1504호</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,5 +148,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
-<script src="../../../static/js/mypage/user/order-list.js"></script>
+<script src="../../../static/js/mypage/user/rider.js"></script>
 </html>

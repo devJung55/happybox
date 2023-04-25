@@ -139,34 +139,15 @@ img.lozad {
     cursor: pointer;
 }
 
+.detail__item a {
+    position: relative;
+}
+
 .arrow-0deg {
-    transform: rotate(90deg);
+    transform: rotate(270deg);
     filter: invert(38%) sepia(11%) saturate(18%) hue-rotate(13deg) brightness(98%);
-}
-
-
-.pagination {
-    margin-top: 60px;
-    text-align: center;
-}
-
-.pagination > a {
-    height: 25px;
-    padding: 0 1px;
-    margin: 0 8px 0;
-    color: #999;
-}
-
-.pagination > a.current, .pagination > a.on {
-    border-bottom: 2px solid #FB5001;
-    color: #FB5001;
-    font-weight: 700;
-}
-
-.page-bottom .right-area {
     position: absolute;
-    bottom: 4px;
-    right: 0;
+    bottom: 0;
 }
 
 .prd-item.type-sm2 {
