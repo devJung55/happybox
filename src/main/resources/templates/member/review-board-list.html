@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리뷰 게시판 목록</title>
+    <link rel="stylesheet" href="../../static/css/global/global.css" />
+    <link rel="stylesheet" href="../../static/css/component/header.css" />
+    <link rel="stylesheet" href="../../static/css/component/footer.css" />
+    <link rel="stylesheet" href="../../static/css/member/member.css" />
+    <link rel="stylesheet" href="../../static/css/member/board.css" />
+  </head>
+  <body>
+    <root>
+      <div class="header">
+        <div class="header_inner">
+          <!-- header_logo -->
+          <h1 class="logo">
+            <a href="/">
+              <span class="blind">랭킹닭컴</span>
+            </a>
+          </h1>
+          <!-- header_util -->
+          <div class="util">
+            <ul>
+              <li><a href="javascript:void(0)">로그아웃</a></li>
+              <li><a href="javascript:void(0)">정보수정</a></li>
+              <li><a href="javascript:void(0)">주문조회</a></li>
+              <li><a href="javascript:void(0)">고객센터</a></li>
+            </ul>
+          </div>
+          <!-- header_search -->
+          <div class="header-search">
+            <div class="top-search">
+              <input
+                type="search"
+                class="input-search"
+                id="rankKeyword"
+                name="rankKeyword"
+                autocomplete="off"
+                placeholder="탱글한 식감 UP! 맛있닭 소시지"
+                maxlength="100"
+              />
+
+              <button
+                type="button"
+                class="btn-top-search"
+                id="btnTopSearch"
+                name="btnTopSearch"
+              ></button>
+            </div>
+          </div>
+          <!--  -->
+          <div class="my-menu">
+            <ul>
+              <li>
+                <a href="javascript:void(0)" class="btn-util-coupon" title=""></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="btn-util-mypage" title=""></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="btn-util-cart" title=""></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="gnb-wrap">
+          <div class="inner">
+            <div class="category-wrap">
+              <a href="javascript:void(0)" class="btn-menu-all">
+                <span>카테고리</span>
+              </a>
+              <nav id="all-category" class="category-menu">
+                <ul class="cate-dep1" style="display: none" ;>
+                  <li>
+                    <a href="javascript:void(0)" data-cd1="R254">
+                      <i class="ico-cate-gnb">
+                        <img
+                          src="https://file.rankingdak.com/image/RANK/BANNER/CATE_PC1_1/20220523/IMG1653WAC282333226.png"
+                          alt=""
+                        />
+                      </i>
+                      <span class="menu">신상품</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <nav id="gnb" class="gnb">
+              <ul>
+                <li class="">
+                  <a href="javascript:void(0)">
+                    <span>랭킹</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="javascript:void(0)">
+                    <span>이달의 특가</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="javascript:void(0)">
+                    <span>혜택정리</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="javascript:void(0)">
+                    <span>1팩 담기</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="javascript:void(0)">
+                    <span>브랜드관</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="javascript:void(0)">
+                    <span>이벤트</span>
+                  </a>
+                </li>
+                <li class="">
+                  <a href="javascript:void(0)">
+                    <em class="ico-txt-gnb">
+                      <span class="blind">특급배송</span>
+                    </em>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <section id="board-container">
+        <main class="boardList-content-box">
+          <div class="boardList-title-box">
+            <div class="boardList-title-box-layout">
+              <ul>
+                <li class="sort-btn">
+                  <a href="" class="tit-type active">전체</a>
+                </li>
+                <li class="sort-btn">
+                  <a href="" class="tit-type">레시피</a>
+                </li>
+                <li class="sort-btn">
+                  <a href="" class="tit-type">리뷰</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="boardList-content-section-box">
+            <section class="write-button-box">
+              <div class="write-button-layout">
+                <button type="button" class="write-button">
+                  커리어와 라이프스타일에 대해 자유롭게 이야기 해주세요!
+                  <span>
+                    <span class="write-button-icon-box">
+                      <svg viewBox="0 0 24 24" class="write-button-icon">
+                        <!--모달  버튼-->
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M17.9338 2.08059C17.5629 1.80534 17.0366 1.83583 16.7002 2.17212L3.43579 15.4323L3.33867 15.5461C3.22211 15.7068 3.1582 15.9013 3.1582 16.1023V19.8947L3.16685 20.0233C3.22958 20.4857 3.62596 20.8421 4.10558 20.8421H7.2678L7.39635 20.8335C7.85877 20.7707 8.21517 20.3744 8.21517 19.8947L8.20652 19.7662C8.14379 19.3038 7.74742 18.9474 7.2678 18.9474H5.05168V16.4956L13.2631 8.28674L15.7123 10.7359L9.7494 16.6985L9.65767 16.8047C9.38244 17.1756 9.41297 17.7019 9.74927 18.0383C10.1192 18.4083 10.719 18.4083 11.0891 18.0384L21.8281 7.30155L21.9198 7.1953C22.195 6.82447 22.1645 6.29818 21.8283 5.96181L18.04 2.17233L17.9338 2.08059ZM17.0521 9.39616L19.8181 6.63032L17.3688 4.18232L14.6031 6.94717L17.0521 9.39616Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </section>
+            <section class="boardList-content">
+              <div id="listContainer">
+                <div class="last-pop-btn">
+                  <a class="on">최신순</a>
+                  <a class="">인기순</a>
+                </div>
+                <article class="board-item-wrap">
+                  <div class="profile-area">
+                    <a href="javascript:void(0)"
+                      ><div class="profile-wrap">
+                        <div class="writer-image rw">
+                          <img
+                            src="https://static.wanted.co.kr/oneid-user/profile_default.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="writer-info-wrap">
+                          <div class="writer-info">
+                            <div class="writer-name">나는야우주최강요리사정지영</div>
+                          </div>
+                          <span class="write-date">2023.04.21</span>
+                          <em class="rating-point">
+                            <img
+                              class="rating__point one"
+                              src="../../static/img/mypage/rating-pull.png"
+                            />
+                            <img
+                              class="rating__point two"
+                              src="../../static/img/mypage/rating-pull.png"
+                            />
+                            <img
+                              class="rating__point three"
+                              src="../../static/img/mypage/rating-pull.png"
+                            />
+                            <img
+                              class="rating__point four"
+                              src="../../static/img/mypage/rating-pull.png"
+                            />
+                            <img
+                              class="rating__point five"
+                              src="../../static/img/mypage/rating.png"
+                            />
+                          </em>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <a href="javascript:void(0)"
+                    ><h3 class="board-title">(구인공고) 투잡-알바</h3>
+                    <p class="board-content">
+                      안녕하세요. 온라인쇼핑몰에서 구인합니다. [투잡가능] [재택근무가능] 모집업무는:
+                      온라인 주문관리 주문서작성 주문서확인 등등 간편업무에요. 근무시간:본인편한
+                      시간대에 업무진행가능합니다 근무조건: 25세이상+ 여성분(지역무관) 수당:일급
+                      평균9만원+ 폰/PC 하나만으로 시간장소 제한없이 일하실수 있어요. 상세한건
+                      카카오톡으로 편하게 문의바랍니다. 카카오톡: 010 6815 8541 카카오톡 친추하여
+                      문의 부탁드립니다
+                    </p>
+                    <picture>
+                      <img
+                        src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2FImageTargetTypeEnum.COMMUNITY%2F2023%2F4%2Fcc499f657b5f0ace6f13f6a3e1d0926e0aac8fa0afe4168b85d11dfa251dd359&amp;w=310&amp;q=90"
+                        class="board-image"
+                    /></picture>
+                    <div class="board-item-bottom">
+                      <div class="recommend-btn">
+                        <svg width="18" height="18" viewBox="0 0 18 18">
+                          <path
+                            fill="currentColor"
+                            d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"
+                          ></path></svg
+                        ><span class="recommend-count">0</span>
+                      </div>
+                      <div class="reply-btn">
+                        <svg width="18" height="18" viewBox="0 0 18 18">
+                          <path
+                            fill="currentColor"
+                            transform="matrix(-1 0 0 1 18 0)"
+                            d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"
+                          ></path></svg
+                        ><span class="reply-count">1</span>
+                      </div>
+                    </div></a
+                  >
+                </article>
+                <article class="board-item-wrap">
+                    <div class="profile-area">
+                      <a href="javascript:void(0)"
+                        ><div class="profile-wrap">
+                          <div class="writer-image rw">
+                            <img
+                              src="https://static.wanted.co.kr/oneid-user/profile_default.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="writer-info-wrap">
+                            <div class="writer-info">
+                              <div class="writer-name">나는야우주최강요리사정지영</div>
+                            </div>
+                            <span class="write-date">2023.04.21</span>
+                            <em class="rating-point">
+                              <img
+                                class="rating__point one"
+                                src="../../static/img/mypage/rating-pull.png"
+                              />
+                              <img
+                                class="rating__point two"
+                                src="../../static/img/mypage/rating-pull.png"
+                              />
+                              <img
+                                class="rating__point three"
+                                src="../../static/img/mypage/rating-pull.png"
+                              />
+                              <img
+                                class="rating__point four"
+                                src="../../static/img/mypage/rating-pull.png"
+                              />
+                              <img
+                                class="rating__point five"
+                                src="../../static/img/mypage/rating.png"
+                              />
+                            </em>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <a href="javascript:void(0)"
+                      ><h3 class="board-title">(구인공고) 투잡-알바</h3>
+                      <p class="board-content">
+                        안녕하세요. 온라인쇼핑몰에서 구인합니다. [투잡가능] [재택근무가능] 모집업무는:
+                        온라인 주문관리 주문서작성 주문서확인 등등 간편업무에요. 근무시간:본인편한
+                        시간대에 업무진행가능합니다 근무조건: 25세이상+ 여성분(지역무관) 수당:일급
+                        평균9만원+ 폰/PC 하나만으로 시간장소 제한없이 일하실수 있어요. 상세한건
+                        카카오톡으로 편하게 문의바랍니다. 카카오톡: 010 6815 8541 카카오톡 친추하여
+                        문의 부탁드립니다
+                      </p>
+                      <picture>
+                        <img
+                          src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2FImageTargetTypeEnum.COMMUNITY%2F2023%2F4%2Fcc499f657b5f0ace6f13f6a3e1d0926e0aac8fa0afe4168b85d11dfa251dd359&amp;w=310&amp;q=90"
+                          class="board-image"
+                      /></picture>
+                      <div class="board-item-bottom">
+                        <div class="recommend-btn">
+                          <svg width="18" height="18" viewBox="0 0 18 18">
+                            <path
+                              fill="currentColor"
+                              d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"
+                            ></path></svg
+                          ><span class="recommend-count">0</span>
+                        </div>
+                        <div class="reply-btn">
+                          <svg width="18" height="18" viewBox="0 0 18 18">
+                            <path
+                              fill="currentColor"
+                              transform="matrix(-1 0 0 1 18 0)"
+                              d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"
+                            ></path></svg
+                          ><span class="reply-count">1</span>
+                        </div>
+                      </div></a
+                    >
+                  </article>
+              </div>
+            </section>
+          </div>
+        </main>
+      </section>
+      <footer id="footer" class="footer">
+        <div class="footer-menu">
+          <div class="frame-sm">
+            <ul class="footer-menu-list">
+              <li><a href="/etc/footer/company">회사소개</a></li>
+              <li><a href="/service/notice">공지사항</a></li>
+              <li><a href="/product/storeInquiry">입점 · 제휴 · 광고문의</a></li>
+              <li><a href="/etc/footer/uselaw">이용약관</a></li>
+              <li>
+                <a href="/etc/footer/privacy" class="text-black2 text-md">개인정보처리방침</a>
+              </li>
+            </ul>
+          </div>
+          <!--// footer-info-list -->
+        </div>
+        <!--// frame-sm -->
+        <div class="footer-info">
+          <strong class="footer-logo"></strong>
+          <div class="colum-info">
+            <ul class="footer-biz-info">
+              <li><span class="company-name">(주)푸드나무</span></li>
+              <li>대표 : 김영문</li>
+              <li>
+                주소 : 서울특별시 마포구 월드컵북로 396, 15층(상암동, 누리꿈스퀘어 비지니스타워)
+              </li>
+              <li>
+                사업자등록번호 : 105-87-81968
+                <span class="biz-information">
+                  <a href="javascript:bizPop();">사업자정보 확인</a>
+                </span>
+              </li>
+              <li>통신판매업신고번호 : 제2015-서울마포-1058호</li>
+              <li>개인정보보호책임자 : 박상필</li>
+            </ul>
+            <p class="copyright">Copyright©랭킹닭컴 All rights reserved.</p>
+          </div>
+          <!--// colum -->
+          <div class="colum-info">
+            <ul class="customer-info">
+              <li class="cscenter">고객센터 <em class="footer-tel">02-6405-8088</em></li>
+              <li>FAX. 02-6351-8088</li>
+              <li>E-mail. admin@foodnamoo.com</li>
+            </ul>
+            <div class="customer-btns">
+              <a href="#" onclick="footerCheckLogin('/service/voc')"><span>고객의소리</span></a>
+              <a href="#" onclick="footerCheckLogin('/mypage/userCounsel/regCouncel')"
+                ><span>1:1문의</span></a
+              >
+            </div>
+            <ul class="footer-sns-list">
+              <li>
+                <a href="https://www.facebook.com/rankingdakcom" title="" target="_blank"
+                  ><i class="ico-sns-facebook"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/rankingdak_official" title="" target="_blank"
+                  ><i class="ico-sns-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://blog.naver.com/rankingdak" title="" target="_blank"
+                  ><i class="ico-sns-blog"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://post.naver.com/my.nhn?memberNo=9267177" title="" target="_blank"
+                  ><i class="ico-sns-post"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://pf.kakao.com/_ltFRl" title="" target="_blank"
+                  ><i class="ico-sns-kakaotalk"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/c/rankingdakcom" title="" target="_blank"
+                  ><i class="ico-sns-youtube"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <!--// colum -->
+        </div>
+        <!--// footer-info -->
+        <div class="footer-bottom">
+          <ul class="service-txt">
+            <li>
+              <a href="javascript:void(0);"
+                ><i class="ico-footer-service01"></i>정보보호 관리체계 ISMS 인증 획득</a
+              >
+            </li>
+            <li>
+              <a href="javascript:void(0);"
+                ><i class="ico-footer-service02"></i>우리은행 구매 안전 서비스 가입사실 확인</a
+              >
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </root>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="../../static/js/member/board.js"></script>
+</html>
