@@ -99,6 +99,5 @@ p.origin {
 }
 
 .like__button {
-    filter: invert(100%) sepia(7%) saturate(722%) hue-rotate(198deg) brightness(118%);
     cursor: pointer;
 }

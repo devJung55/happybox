@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원탈퇴</title>
+    <link rel="stylesheet" href="../../../static/css/global/global.css">
+    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="../../../static/css/mypage/user/withdrawal.css">
+</head>
+<body>
+    <div class="wrap">
+        <section id="contents" class="container">
+            <div class="content-wrap">
+
+
+                <!-- // top-bar.html -->
+
+
+                <div class="frame-sm">
+
+
+                    <!-- // side-bar.html -->
+
+
+                    <div class="frame-right">
+                        <div class="frame-cnt-inner">
+                            <div class="menu-title-area">
+                                <h3 class="title-menu">회원 탈퇴</h3>
+                            </div><!--// menu-title-area -->
+
+                            <div class="board-form type3">
+                                <div class="input-guide-box type2">
+                                    <div class="inner">
+                                        <h4 class="box-tit">탈퇴 유의사항</h4>
+                                        <div class="admin-txt">
+                                            * 탈퇴하실 경우 구매내역 확인은 물론 로그인 후 가능한 모든 기능은 사용하실 수 없습니다.<br>
+                                            * 탈퇴하신 후에 회원 정보의 복구는 불가능하며, 보유하신 쿠폰이나 적립금도 모두 무효화됩니다.<br>
+                                            * 탈퇴하신 후 동일한 이메일, 휴대폰 번호로 재 가입은 탈퇴일로부터 90일 이후 가능합니다.
+                                        </div>
+                                    </div>
+                                </div><!--// input-guide-box -->
+                                <form id="frm" name="withdrawalForm" action="">
+                                    <div class="secess-area">
+                                        <fieldset class="form-group-area">
+                                            <div class="form-group">
+                                                <div class="form-head">
+                                                    <strong class="form-tit type2">탈퇴사유 및 개선점</strong>
+                                                </div><!--// form-head -->
+                                                <div class="textarea-box h160">
+                                                    <textarea id="withdrawCont" name="withdrawCont" placeholder="HappyBox에게 해주고 싶은 말씀을 자유롭게 입력해 주세요."></textarea>
+                                                </div>
+                                            </div><!--// form-group -->
+                                        </fieldset>
+                    
+                                        <div class="btn-bottom-area">
+                                            <button type="button" class="btn-basic-lg2 btn-default-ex btn_cancel">
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-basic-lg2 btn-black btn_submit">
+                                                <span>확인</span>
+                                            </button>
+                                        </div><!--// btn-bottom-area -->
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!--// frame-cnt-inner -->
+                    </div><!-- // frame-right -->
+                </div><!-- // frame-sm -->
+            </div>
+        </section>
+    </div>
+</body>
+</html>
