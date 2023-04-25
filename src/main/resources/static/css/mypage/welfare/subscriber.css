@@ -233,16 +233,10 @@
     align-items: center;
 }
 
-/* .prd-info-area .inner {
-    display: table;
-    table-layout: auto;
-    width: 100%;
-} */
-
 .inner {
     display: flex;
-    /* align-items: center;| */
-}
+    align-items: center;
+}   
 
 .prd-info-area .column.check {
     width: 35px;
