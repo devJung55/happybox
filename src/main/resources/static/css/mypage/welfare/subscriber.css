@@ -1,4 +1,4 @@
-/* order-list.html */
+/* subscriber.html */
 
 .menu-title-area {
     position: relative;
@@ -101,16 +101,23 @@
     cursor: pointer;
 }
 
+.search-box.ui-toggle.on {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .search-box {
-    padding: 5px 18px 15px 18px;
+    /* padding: 5px 18px 15px 18px; */
+    padding: 10px;
     background: #F8F8F8;
     border: 1px solid #ECECEC;
     margin-top: 10px;
 }
 
-.search-box .search-detail {
+/* .search-box .search-detail {
     padding-top: 18px;
-}
+} */
 
 .search-detail .radio-list {
     font-size: 0;
@@ -138,8 +145,8 @@
 
 .custom-radio .radio-btn-type2 + label {
     display: block;
-    width: 120px;
-    height: 36px;
+    width: 77px;
+    height: 26px;
     border: 1px solid #ccc;
     padding: 5px 0;
     text-align: center;
@@ -148,6 +155,7 @@
     font-size: 14px;
     cursor: pointer;
     border-radius: 100px;
+    line-height: 116%;
 }
 
 .search-detail .radio-list li + li {
@@ -158,6 +166,34 @@
     color: #FF6001;
     border: 1px solid #FF6001;
     border-radius: 100px;
+}
+
+.btn-form {
+    display: inline-block;
+    height: 26px;
+    width: 77px;
+    padding: 3px 13px 0px 13px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.btn-black {
+    color: #fff;
+    background: #333;
+    border: 1px solid #333;
+}
+
+.dis-inb {
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+}
+
+.ico-btn-refresh {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    filter: invert(46%) sepia(21%) saturate(0%) hue-rotate(272deg) brightness(80%)
 }
 
 .no-data-type1 {
@@ -191,10 +227,21 @@
     padding: 0 25px 0 15px;
 }
 
-.prd-info-area .inner {
+.prd-info-area.cart-info-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .prd-info-area .inner {
     display: table;
     table-layout: auto;
     width: 100%;
+} */
+
+.inner {
+    display: flex;
+    /* align-items: center;| */
 }
 
 .prd-info-area .column.check {
@@ -215,6 +262,12 @@
     position: relative;
 }
 
+.prd-info-area .column {
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+}
+
 .prd-info-area .column.tit {
     padding: 0 10px 0 15px;
     text-align: left;
@@ -223,7 +276,6 @@
 .prd-info-area .column {
     display: table-cell;
     vertical-align: top;
-    text-align: center;
 }
 
 .prd-info-area .column.tit .tit {
@@ -239,11 +291,31 @@
     word-break: keep-all;
 }
 
+.prd-info-area .column {
+    display: table-cell;
+}
 
 .prd-info-area .column.btn {
     width: 50px;
     vertical-align: middle;
     text-align: right;
+}
+
+.user__name {
+    font-size: 14px;
+}
+
+.user__info {
+    font-size: 12px;
+}
+
+.user__img {
+    margin-right: 10px;
+}
+
+.user__img img {
+    border-radius: 50%;
+    width: 45px;
 }
 
 .btn-x-sm {
@@ -305,91 +377,6 @@
 
 .ico-x-black {
     color: #333;
-}
-
-.dis-inb {
-    display: inline-block;
-    position: relative;
-    margin-right: 5px;
-}
-
-.ico-btn-refresh {
-    position: absolute;
-    left: 0;
-    top: 5px;
-    filter: invert(46%) sepia(21%) saturate(0%) hue-rotate(272deg) brightness(80%)
-}
-
-.reset {
-    cursor: pointer;
-}
-
-.btn-form {
-    display: inline-block;
-    height: 26px;
-    width: 77px;
-    padding: 3px 13px 0px 13px;
-    text-align: center;
-    border-radius: 3px;
-}
-
-.btn-black {
-    color: #fff;
-    background: #333;
-    border: 1px solid #333;
-}
-
-.input-group.type-sm .input-group-btn .btn-form {
-    height: 30px;
-    padding: 0 10px;
-    min-width: auto;
-    font-size: 13px;
-    vertical-align: top;
-}
-
-.input-group.type-sm .btn-form > span {
-    line-height: 2.2;
-}
-
-.btn-form > span {
-    display: inline-block;
-    height: 100%;
-}
-
-.input-group.type-sm .input-group-btn .btn-form {
-    height: 30px;
-    padding: 0 10px;
-    min-width: auto;
-    font-size: 13px;
-    vertical-align: top;
-}
-
-.period-setting .btn-link-txt5 {
-    margin-left: 10px;
-}
-
-.btn-link-txt5 i {
-    vertical-align: middle;
-    margin-top: -3px;
-    margin-right: 5px;
-}
-
-.input-group.type-sm .btn-form > span {
-    line-height: 2.2;
-}
-
-.btn-form > i + span {
-    margin-left: 5px;
-}
-
-.btn-form > span {
-    display: inline-block;
-    height: 100%;
-}
-
-.input-group-form.text-right.w-full {
-    margin-top: 6px;
-    /* text-align: right; */
 }
 
 .page-bottom {
