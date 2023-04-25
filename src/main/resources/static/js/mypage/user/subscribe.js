@@ -35,5 +35,4 @@ $subscribeButton.on("click", function() {
         $subscribeButton.css("border", "1px solid #FF6001");
         $subscribeButton.css("color", "#FF6001");
     }
-    
 });
