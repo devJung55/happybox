@@ -55,7 +55,16 @@
 }
 
 .product-info {
-    padding-top: 20px;
+    padding-top: 4px;
+    margin-left: 3px;
+    text-align: left;
+}
+
+.product-info .distributer-name {
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+    line-height: 19px;
+    letter-spacing: -0.5px;
 }
 
 .product-info .product-name {
