@@ -1,0 +1,349 @@
+/* recipe-board-insert */
+
+.container {
+    position: relative;
+    min-height: 700px;
+    padding-bottom: 100px;
+    padding-top: 70px;
+}
+
+.content-wrap {
+    min-height: 580px;
+}
+
+.frame-sm {
+    position: relative;
+    max-width: 1100px;
+    display: flex;
+    justify-content: center;
+}
+
+.frame-right {
+    float: right;
+}
+
+.frame-cnt-inner {
+    width: 820px;
+}
+
+.menu-title-area {
+    position: relative;
+    min-height: 30px;
+}
+
+.menu-title-area .title-menu {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.board-form {
+    width: 100%;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
+    margin-top: 10px;
+}
+
+.board-form table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+table td, table th {
+    word-wrap: break-word;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.board-form table th, .board-form table td {
+    vertical-align: middle;
+    word-break: break-all;
+}
+
+.board-form table tbody th {
+    font-size: 14px;
+}
+
+.board-form.type2 table th, .board-form.type2 table td {
+    padding: 18px 0;
+}
+
+.board-form.type2 table tbody th {
+    border-right: 0;
+    font-weight: 400;
+}
+
+.board-form table tbody tr:first-child th, .board-form table tbody tr:first-child td {
+    border-top: 0;
+}
+
+.board-form table .in-tb {
+    padding: 3px 0 4px;
+    word-break: break-all;
+}
+
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.es:after {
+    display: inline-block;
+    content: "";
+    margin-top: 5px;
+    margin-left: 2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    vertical-align: top;
+    background: #FF6001;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+}
+
+.input-group {
+    height: 50px;
+}
+
+.wp100, .w-full {
+    width: 100% !important;
+}
+
+.input-text {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.input-group > .input-text {
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+
+.input-group .input-text {
+    height: 100%;
+    padding: 3px 15px;
+}
+
+.textarea-box-count {
+    position: relative;
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 15px 20px 40px;
+}
+
+.h230 {
+    height: 230px;
+}
+
+input::placeholder {
+    color: #ccc;
+}
+
+textarea::placeholder {
+    color: #ccc;
+  }
+
+.textarea-box-count textarea {
+    border: 0;
+    width: 100%;
+    min-height: 60px;
+    height: 100%;
+    resize: none;
+    font-size: 13px;
+    appearance: none;
+}
+
+.textarea-box-count .txt-count {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    font-size: 12px;
+    color: #333;
+}
+
+.textarea-box-count .txt-count .total {
+    color: #999;
+}
+
+.div-attach-thumb {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 70px;
+    height: 70px;
+    background: #f8f8f8;
+    border: 1px solid #e6e6e6;
+}
+
+.btn-attach-thumb {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 68px;
+    height: 68px;
+}
+
+.ico-plus-xlg {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+}
+
+.ico-plus-xlg:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #333;
+}
+
+.ico-plus-xlg:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 12px;
+    width: 1px;
+    height: 100%;
+    background: #333;
+}
+
+.blind {
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+button .blind {
+    position: relative;
+    font-size: 0;
+    color: transparent;
+}
+
+.text-guide-md {
+    font-size: 13px;
+    color: #666;
+    font-weight: normal;
+}
+
+.file-add-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.file-add-boxes .div-attach-thumb ~ .text-guide-md {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 25px 0;
+}
+
+.btn-bottom-area {
+    position: relative;
+    text-align: center;
+}
+
+.reply-area ~ .pagination, .banner-list-wrap ~ .pagination, .board-list ~ .pagination, .board-list ~ .btn-bottom-area, .board-form ~ .btn-bottom-area, .list-lately-wrap ~ .btn-bottom-area, .order-list-area ~ .pagination {
+    margin-top: 20px;
+}
+
+[class*="btn-basic-"], [class*="btn-option"], [class*="btn-rud-"] {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}
+
+.btn-grey3 {
+    background: #ccc;
+    color: #fff;
+}
+
+.btn-bottom-area > [class*="btn-"]:not(.w-full) {
+    vertical-align: top;
+}
+
+.board-form + .btn-bottom-area [class*="btn-basic-"], .board-form + .btn-bottom-area [class*="btn-option"] {
+    border-radius: 6px;
+}
+
+.btn-bottom-area > [class*="btn-"]:first-child:not(.w-full):not(:only-child) {
+    margin: 0 2px 0 0;
+}
+
+button span {
+    position: relative;
+}
+
+[class*="btn-basic-"] > span, [class*="btn-option"] > span, [class*="btn-rud-"] > span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.btn-basic-lg2 > span {
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.btn-grey3 > span {
+    font-weight: 400;
+}
+
+.btn-bottom-area > [class*="btn-"]:last-child:not(.w-full):not(:only-child) {
+    margin: 0 0 0 2px;
+}
+
+.btn-primary {
+    background: #FFA5CD;
+    color: #fff;
+    border: 1px solid #FFA5CD;
+}
+
+.btn-bottom-area:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.frame-wrap, .clear:after, [class*="frame-"]:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+
