@@ -45,3 +45,35 @@
 .search-box ~ .board-list, .menu-title-area ~ .board-form, .menu-title-area ~ .board-list, .menu-title-area ~ .coupon-box, .menu-title-area ~ .top-search-box, .menu-title-area ~ .grid-list-wrap {
     margin-top: 5px;
 }
+
+.page-bottom {
+    position: relative;
+}
+
+.board-list ~ .page-bottom {
+    margin-top: 30px;
+}
+
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.pagination > a {
+    height: 25px;
+    padding: 0 1px;
+    margin: 0 8px 0;
+    color: #999;
+}
+
+.pagination > a.current, .pagination > a.on {
+    border-bottom: 2px solid #FB5001;
+    color: #FB5001;
+    font-weight: 700;
+}
+
+.page-bottom .right-area {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+}
