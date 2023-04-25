@@ -2,7 +2,7 @@
 
 .delete-modal {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0%;
   z-index: 1;
   width: 100%;
@@ -60,13 +60,13 @@
   }
   
 
-  /* 회원 정보 모달창 ================== */
+  /* 전반적인 모달창 ================== */
 
   .modal {
     display: none;
     position: absolute;
-    left: 37%;
-    top: 10%;
+    left: 40%;
+    top: 20%;
   }
 
   .modal-shape {
@@ -109,7 +109,7 @@
     width: 27px;
   }
 
-  .user-detail {
+  .content-detail {
     margin-bottom: 6px;
   }
 
@@ -117,13 +117,19 @@
     margin: 12px;
   }
 
-  .profile-img-wrapper {
+  .content-img-wrapper {
     display: flex;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
+    flex-flow: row wrap;
+    gap: 10px;
     margin-bottom: 15px;
     margin-top: 15px;
+    justify-content: center;
+  }
+
+  .content-img-wrapper label {
+    display: flex;
+    height: 100%;
+    margin-bottom: 10px;
   }
 
   .content-img {
@@ -178,7 +184,19 @@
     padding: 3px 12px;
   }
 
-  .update-box {
+  .normal-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 3px 12px;
+    font-family: inherit;
+    color: #777777;
+    font-weight: 600;
+    white-space: pre;
+  }
+
+  .button-box {
     text-align: right;
     margin-top: 5px;
     margin-right: 12px;
@@ -196,4 +214,99 @@
 
 .update-button:hover {
   color: #c97793;
+}
+
+/* 모달 이미지 ============================== */
+
+.one-img {
+  width: 150px;
+}
+
+.list-img {
+  width: 130px;
+}
+
+/* 공지사항 작성 모달창  =================== */
+
+.add-modal {
+  display: none;
+  position: absolute;
+  left: 37%;
+  top: 10%;
+}
+
+.notice-form-box {
+  margin-left: 12px;
+}
+
+.notice-form-box h5 {
+  margin-bottom: 5px;
+}
+
+.notice-form-box input {
+  width: 408px;
+  height: 22px;
+  border: 1px solid #f1f1f1;
+  padding: 3px 8px;
+  outline: none;
+  font-family: inherit;
+  color: #777777;
+  margin-bottom: 10px;
+}
+
+.notice-form-box textarea {
+  height: 180px;
+  border: 1px solid #f1f1f1;
+  outline: none;
+  padding: 3px 8px;
+  width: 408px;
+  font-family: inherit;
+  color: #777777;
+  resize: none;
+}
+
+.regist-button {
+  font-family: 'GmarketSansMedium';
+  border: none;
+  outline: none;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.regist-button:hover {
+color: #c97793;
+}
+
+/* 댓글 모달 ======================= */
+
+.reply-position {
+  top: 30%;
+}
+
+.reply-shape {
+  height: 320px;
+}
+
+.content-textarea {
+  width: 288px;
+  height: 74px;
+  resize: none;
+  color: rgb(119, 119, 119);
+  font-family: inherit;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  padding: 3px 12px;
+}
+
+/* 게시글 모달 ==================== */
+
+.board-shape {
+  width: 580px;
+}
+
+.board-wrapper {
+  gap: 5px;
 }

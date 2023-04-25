@@ -61,6 +61,7 @@
 											<th>게시글 제목</th>
 											<th>작성자 명</th>
 											<th>작성 날짜</th>
+											<th>상세보기</th>
 										</tr>
 									</thead>
 									<tr>
@@ -71,9 +72,10 @@
 										</td>
 										<td>1</td>
 										<td>리뷰 게시판</td>
-										<td><a href="">이 복지센터 아주 괜찮은거 같아요.</a></td>
+										<td>이 복지센터 아주 괜찮은거 같아요.</td>
 										<td>임**</td>
 										<td>2023.01.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -86,6 +88,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -98,6 +101,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -110,6 +114,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -122,6 +127,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -134,6 +140,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -146,6 +153,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -158,6 +166,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -170,6 +179,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
@@ -182,6 +192,7 @@
 										<td>혼자서도 만들어 먹을 수 있는 메뉴!!</td>
 										<td>이**</td>
 										<td>2023.02.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -247,10 +258,125 @@
 			</div>
 		</div>
 	</section>
+	<section class="modal">
+		<div class="modal-shape board-shape">
+			<div class="modal-header">
+				<h4>게시글 상세보기</h4>
+				<a class="modal-close">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						data-name="Capa 1"
+						id="Capa_1"
+						viewBox="0 0 20 19.84"
+					>
+						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+					</svg>
+				</a>
+			</div>
+			<form class="content-info" action>
+				<main class="content-detail">
+					<div class="content-img-wrapper board-wrapper">
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" style="display: none" />
+						</label>
+					</div>
+					<ul class="content-list-wrap">
+						<li class="content-list">
+							<span>제목</span>
+							<div class="content-input">
+								<input type="text" value="혼자서도 만들어 먹을 수 있는 메뉴!!" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>닉네임</span>
+							<div class="content-input">
+								<input type="text" value="장군님" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>카테고리</span>
+							<div class="content-input">
+								<input type="text" value="레시피 게시판" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>작성날짜</span>
+							<div class="content-input">
+								<input type="text" value="2023.01.11" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>내용</span>
+							<div class="content-input">
+								<textarea class="normal-textarea" cols="30" rows="10" name="" >
+메론 비쉬시아즈와 킹크랩, 아보카도의 조화가 좋은 요리입니다.
+아몬드 젤리를 더해 시각과 식감에 특별함을 더했으며, 사과를 넣어 입 안이 깔끔하게 마무리될 수 있도록 하였습니다.
+아주 맛있게 잘 됐습니다.</textarea>
+							</div>
+						</li>
+					</ul>
+					<div class="button-box">
+						<button type="button" class="update-button">수정하기</button>
+					</div>
+				</main>
+			</form>
+		</div>
+	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/checkbox.js"></script>
-<script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/modal.js"></script>
+<script src="../../static/js/admin/event.js"></script>
 </html>

@@ -39,18 +39,17 @@
 		<section class="content-section">
 			<div class="container">
 				<div class="container-margin">
-					<!-- 헤더 -->
 					<!-- 내용 섹션 -->
 					<section class="board-info-box-layout">
 						<div class="board-info-box">
 							<div class="board-info-title-box">
 								<span>회원 목록</span>
 								<div class="delete-box">
-									<button type="button" class="delete-button">회원 삭제</button>
+									<button class="delete-button">회원 삭제</button>
 								</div>
 							</div>
 							<div class="info-table">
-								<table>
+								<table class="table">
 									<thead>
 										<tr>
 											<th>
@@ -163,7 +162,7 @@
 			</div>
 		</section>
 	</main>
-    <section class="delete-modal">
+	<section class="delete-modal">
 		<div class="delete-modal-shape">
 			<div class="modal-header">
 				<h4>삭제 확인</h4>
@@ -192,17 +191,17 @@
 					</svg>
 				</a>
 			</div>
-			<form class="user-info" action>
-				<main class="user-detail">
+			<form class="content-info" action>
+				<main class="content-detail">
 					<h5 class="detail-title">회원 상세정보</h5>
-					<div class="profile-img-wrapper">
+					<div class="content-img-wrapper">
 						<label>
-							<div class="content-img">
+							<div class="content-img one-img">
 								<img
 									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
 								/>
 							</div>
-							<input type="file" name="file" style="display: none" />
+							<input type="file" name="file" accept="image/*" style="display: none" />
 						</label>
 					</div>
 					<ul class="content-list-wrap">
@@ -243,7 +242,7 @@
 							</div>
 						</li>
 					</ul>
-					<div class="update-box">
+					<div class="button-box">
 						<button type="button" class="update-button">수정하기</button>
 					</div>
 				</main>
@@ -253,7 +252,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/checkbox.js"></script>
-<script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/modal.js"></script>
+<script src="../../static/js/admin/event.js"></script>
 </html>
