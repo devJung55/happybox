@@ -81,7 +81,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .custom-checkbox .checkbox:checked + label:before {
-    background: #FF6001 url(https://www.rankingdak.com/resources/pc/images/icon/ico_form.png?ver=20220511) -50px -30px;
+    background: #FA0101 url(https://www.rankingdak.com/resources/pc/images/icon/ico_form.png?ver=20220511) -50px -30px;
     width: 18px;
     height: 18px;
     border: 1px solid #FA0101;
@@ -133,102 +133,116 @@ colgroup {
     border: 0;
 }
 
-
-/* ================================== 배송지 ============================ */
-
-.delivery-info-area{
-    position: relative;
-    padding: 0 0 60px;
+.input-group-wrap.box-type .input-group-cell + .input-group-cell {
+    border-left: 1px solid #ddd ;
+    width: 439px;
 }
 
-.order-info-wrap .info-txt {
+.input-group-wrap.box-type .input-group-btn > .btn-ex-white {
+    position: relative;
+    margin: -1px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.list-head-sub {
+    position: relative;
+    padding: 30px 0 5px;
+    border-top: 1px solid #ccc;
+    margin: 30px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ============================================================== */
+/* address-editor-form.html */
+
+.order-info {
+    position: relative;
+    /* padding: 0 0 60px; */
+}
+
+.order-info .list-head {
+    position: relative;
+    padding: 30px 0 20px;
+    border-top: 1px solid #666;
+}
+
+.order-info .title-list {
+    font-size: 16px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.info-txt {
     display: inline-block;
     overflow: hidden;
     vertical-align: top;
     margin-right: 15px;
 }
 
-.order-info-wrap .info-txt li{
+.info-txt li {
     float: left;
 }
 
-.order-info-wrap .info-txt li:not(:last-child):after{
+.info__after::after {
     display: inline-block;
     content: '/';
     margin: 0 3px;
     vertical-align: top;
 }
 
-.text-primary .right-icon{
-    width: 16px;
-    height: 16px;
-}
-
-.list-title-sub {
-    position: relative;
-    padding: 30px 0 5px;
-    border-top: 1px solid #ccc;
-    margin: 30px 0 15px;
-}
-
-.list-title {
-    font-size: 16px;
-    font-weight: 700;
+/* .info-txt li:after {
     display: inline-block;
-}
+    content: '/';
+    margin: 0 3px;
+    vertical-align: top;
+} */
 
-.list-title-sub .custom-checkbox {
-    position: absolute;
-    top: 32px;
-    right: 0;
-}
-
-.delivery-input-wrap {
+.order-address ~ .lineless-table {
     margin-top: 20px;
 }
 
-
-.delivery-input-wrap table{
+.lineless-table table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
 }
 
-.delivery-input-wrap table th{
+legend, caption {
+    position: absolute;
+    left: -99999px;
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -99999px;
+    clip: rect(0,0,0,0);
+}
+
+.lineless-table.type2 th {
     padding: 3px 0;
+}
+
+.lineless-table th {
     text-align: left;
     font-weight: normal;
-    padding: 10px 0;
-    font-size: 14px;
+    font-size: 13px;
     vertical-align: middle;
 }
 
-.delivery-input-wrap table th .es{
-    vertical-align: top;
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
 }
 
-.es:after {
-    display: inline-block;
-    content: "";
-    margin-top: 5px;
-    margin-left: 2px;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    vertical-align: top;
-    background: #FA0101;
-}
-
-.delivery-input-wrap table tr td{
-    padding: 3px 0;
-    text-align: left;
-    font-weight: normal;
-    padding: 10px 0;
-    font-size: 15px;
-    vertical-align: middle;
-}
-
-.w-full {
+.wp100, .w-full {
     width: 100% !important;
 }
 
@@ -243,11 +257,782 @@ colgroup {
     border-radius: 0;
 }
 
+button, input {
+    overflow: visible;
+}
+
+.lineless-table .row-th-top th {
+    vertical-align: top;
+    padding-top: 17px;
+}
+
+.lineless-table.type2 th {
+    padding: 3px 0;
+}
+
+.lineless-table th {
+    text-align: left;
+    font-weight: normal;
+    padding: 10px 0;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.input-group-wrap.box-type {
+    border: 1px solid #ccc;
+}
+
+.input-group {
+    height: 40px;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    display: flex;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.lineless-table .row-th-top .input-group > .input-group-cell {
+    padding: 0;
+}
+
+.w160 {
+    width: 160px !important;
+}
+
+.input-group > .input-group-cell > .input-text {
+    width: 100%;
+}
+
+.input-group-wrap .input-group .input-text {
+    border: 0;
+}
+
+.input-group .input-text {
+    height: 100%;
+    height: 40px;
+    padding: 3px 15px;
+}
+
+input[readonly] {
+    background-color: #F3F8FF;
+    border: 1px solid #ccc;
+    opacity: 1;
+    color: #333;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.lineless-table .row-th-top .input-group > .input-group-cell {
+    padding: 0;
+}
 
 
+.input-group > .input-group-form, .input-group > .input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 0;
+}
+
+
+.btn-ex-white {
+    display: inline-block;
+    background-color: #fff;
+    font-size: 13px;
+    min-width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #333;
+}
+
+.lineless-table.type2 td {
+    padding: 3px 0;
+}
+
+.lineless-table .input-group-wrap + .input-text, .lineless-table .input-group + .input-group {
+    margin-top: 6px;
+}
+
+/* // 버튼 */
+
+#ordFrm .btn-bottom-area {
+    margin-top: 40px;
+}
+
+.join-area .form-group-area + .btn-bottom-area {
+    margin-top: 24px;
+}
+
+.join-area .btn-bottom-area {
+    margin-top: 40px;
+}
+
+.btn-bottom-area {
+    position: relative;
+    text-align: center;
+}
+
+.btn-bottom-area > [class*="btn-"]:first-child:not(.w-full):not(:only-child) {
+    margin: 0 2px 0 0;
+}
+
+.board-form .join-area .btn-bottom-area > [class*="btn-"] {
+    width: 255px;
+}
+
+.join-area .btn-bottom-area .btn-basic-lg2 {
+    height: 50px;
+    border-radius: 6px;
+    font-weight: 400;
+}
+
+.btn-grey3 {
+    background: #ccc;
+    color: #fff;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+    border-radius: 6px;
+}
+
+.btn-primary {
+    background: #ff6001;
+    color: #fff;
+    border: 1px solid #ff6001;
+}
+
+
+
 /* ============================================================== */
-/* ============================================================== */
-/* ============================================================== */
-/* ============================================================== */
-/* ============================================================== */
+.order-info-area {
+    position: relative;
+    padding: 0 0 60px;
+    margin-top: 30px;
+}
+
+.order-item-box {
+    padding-top: 11px;
+}
+
+.userOrderList {
+
+}
+
+.delivery-state.normal {
+    background: #93a0b5;
+}
+
+.delivery-state {
+    position: relative;
+    padding: 16px 30px;
+}
+
+.delivery-state .tit {
+    color: #fff;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.delivery-state .right-dlv-info {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+
+.delivery-state .right-dlv-info .txt {
+    color: #fff;
+}
+
+.right-dlv-info .txt {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.txt, .txt span {
+    word-break: break-all;
+}
+
+.right-dlv-info .txt > span {
+    font-weight: 500;
+}
+
+.right-dlv-info img {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    top: -16px;
+    right: 2px;
+    filter: invert(1);
+}
+
+.order-item-box .cart-list {
+    padding: 0;
+}
+
+.delivery-state + .cart-list {
+    border-top: 0;
+}
+
+.cart-list {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-list > li .prd-info-area {
+    padding: 25px 25px;
+}
+
+.prd-info-area {
+    position: relative;
+}
+
+.prd-info-area .inner {
+    display: table;
+    table-layout: auto;
+    width: 100%;
+}
+
+.prd-info-area .column.img {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+}
+
+.prd-info-area .column.img img {
+    width: 80px;
+    height: 80px;
+}
+
+.prd-info-area .column.tit {
+    padding: 0 10px 0 15px;
+    text-align: left;
+}
+
+.prd-info-area .column {
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+}
+
+.prd-info-area .column.w70 {
+    width: 70px;
+    vertical-align: middle;
+}
+
+.prd-info-area .column.price {
+    width: 130px;
+    vertical-align: middle;
+    text-align: right;
+    word-break: keep-all;
+}
+
+.prd-info-area .column.price .num {
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+}
+
+.prd-info-area .column.tit .tit {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.prd-info-area .column.tit .desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.prd-info-area .column.tit .price-item > li {
+    font-size: 14px;
+    color: #333;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.cart-list .prd-info-area .column.tit .price-item > li:first-child .num {
+    font-size: 16px;
+}
+
+.cart-list .coldAddLi {
+    display: block;
+}
+
+.cart-list .added-btn {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid #E5E5E5;
+}
+
+.cart-list .added-btn .subscribe-btn {
+    background: #eef7ff;
+    color: #3c89fd;
+    border: 1px solid #3c89fd;
+    height: 25px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    width: 85px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.subscribe-btn span {
+    margin-left: 5px;
+    font-size: 13px;
+    line-height: 1.8;
+    font-weight: bold;
+}
+
+.subscribe-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.order-banner{
+    background-color: #030000d1;
+    padding: 15px 0;
+    margin: 10px 0 48px 0;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.order-banner p{
+    color: #cccccc;
+    font-size: 14px;
+}
+
+.order-banner p strong{
+    font-weight: 700;
+}
+
+.order-banner p span{
+    color: #fa0101;
+    font-weight: 700;
+}
+
+
+/* ======================== 포인트사용 ====================================== */
+.order-info .lineless-table.type1 {
+    margin-bottom: 30px;
+}
+
+.lineless-table td {
+    text-align: left;
+    font-weight: normal;
+    padding: 10px 0;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.order-point .input-group-wrap {
+    display: inline-block;
+    width: 340px;
+    vertical-align: middle;
+}
+
+.input-group-wrap .input-group .input-text {
+    border: 0;
+}
+
+.input-group .input-text {
+    height: 100%;
+    /* height: 40px; */
+    padding: 3px 15px;
+}
+
+.input-group > .input-text {
+    position: relative;
+    display: table-cell;
+    float: left;
+    width: 100%;
+    z-index: 2;
+}
+
+.input-text {
+    height: 40px;
+    padding: 5px 15px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.input-group-wrap .input-group > .input-text + .input-group-btn:last-child {
+    padding: 0;
+    height: 100%;
+}
+
+.input-group > .input-text + .input-group-form:last-child, .input-group > .input-text + .input-group-btn:last-child {
+    padding: 0 0 0 5px;
+}
+
+.input-group-wrap .input-group > .input-group-btn:last-child {
+    padding: 0;
+}
+
+.input-group > .input-group-form:last-child, .input-group > .input-group-btn:last-child {
+    padding: 0;
+}
+
+.input-group > .input-group-form, .input-group > .input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 0;
+    padding: 0 5px;
+}
+
+.btn-ex-grey {
+    display: inline-block;
+    background-color: #F7F7F7;
+    font-size: 13px;
+    min-width: 100px;
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+}
+
+.order-point .btn-ex-grey {
+    width: 100px;
+    height: 100%;
+    border-left: 1px solid #ddd;
+}
+
+button span {
+    position: relative;
+}
+
+.input-group > .input-group-btn .btn-input-del {
+    vertical-align: middle;
+    margin-right: 7px;
+    /* display: none; */
+}
+
+.btn-input-del {
+    width: 16px;
+    height: 16px;
+    background: #E6E6E6;
+    border-radius: 100%;
+    padding: 0 7px;
+}
+
+.btn-x-xs {
+    padding: 11px;
+}
+
+.btn-input-del [class^="ico-x-"] {
+    width: 6px;
+    height: 6px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.ico-x-normal {
+    color: #666;
+}
+
+[class^="ico-x-"] {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.btn-input-del [class^="ico-x-"]:before, .btn-input-del [class^="ico-x-"]:after {
+    left: -1px;
+}
+
+[class^="ico-x-"]:before {
+    transform: rotate(45deg);
+}
+
+[class^="ico-x-"]:before, [class^="ico-x-"]:after {
+    position: absolute;
+    top: 50%;
+    left: -3px;
+    display: block;
+    content: '';
+    width: 130%;
+    height: 1px;
+    background: #666;
+    box-shadow: inset 0 0 0 32px;
+}
+
+.btn-input-del [class^="ico-x-"]:before, .btn-input-del [class^="ico-x-"]:after {
+    left: -1px;
+}
+
+[class^="ico-x-"]:after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+.order-point .point-guide {
+    display: inline-block;
+    margin-left: 10px;
+    color: #FA0101;
+}
+
+.text-num-bold {
+    font-weight: 700;
+}
+
+
+
+/* ============================ 결제 ================================== */
+[class*="grid-area-"] {
+    position: relative;
+    font-size: 0;
+    text-align: left;
+}
+
+[class*="grid-area-"] .colum.col12 {
+    width: 100%;
+}
+
+.grid-area-span2 > .colum:nth-child(-n+2){
+    margin-top: 0 !important;
+}
+
+.payment-select .colum {
+    position: relative;
+    min-height: 50px;
+}
+
+.grid-area-span2 > .colum {
+    width: 50%;
+}
+
+[class*="grid-area-"] > .colum, .grid-area > .colum {
+    float: left;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+}
+
+[class*="grid-area-"]:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+[class*="radio-grid-"] {
+    border-left: 0;
+}
+
+[class*="radio-grid-"] {
+    position: relative;
+    border-left: 1px solid #ccc;
+}
+
+[class*="radio-grid-"] li:nth-child(4n-3) {
+    margin-left: 0;
+}
+
+.radio-grid-span2 li:nth-child(-n+2), .radio-grid-span3 li:nth-child(-n+3), .radio-grid-span4 li:nth-child(-n+4) {
+    border-top: 1px solid #ccc;
+}
+
+[class*="radio-grid-"] li {
+    width: calc(25% - 6px);
+    height: 60px;
+    margin: 0 0 8px 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.radio-grid-span4 li {
+    width: 25%;
+}
+
+[class*="radio-grid-"] li {
+    position: relative;
+    float: left;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+[class*="radio-grid-"] .custom-radio {
+    width: 100%;
+    height: 100%;
+}
+
+[class*="radio-grid-"] .custom-radio {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-radio {
+    position: relative;
+    display: inline-block;
+    background-color: #ffe227;
+}
+
+.custom-radio input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.custom-radio .radio-box-grid + label {
+    display: block;
+    position: relative;
+    top: -1px;
+    left: -1px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-sizing: content-box;
+}
+
+[class*="radio-grid-"] li .custom-radio .radio-box-grid + label {
+    border-width: 2px;
+    border-radius: 6px;
+    left: -2px;
+    top: -2px;
+    text-align: center;
+}
+
+[class*="radio-grid-"] li .custom-radio .radio-box-grid + label > .txt {
+    height: 100%;
+    line-height: 60px;
+}
+
+.custom-radio .radio-box-grid + label > .txt {
+    display: block;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    line-height: 48px;
+}
+
+.txt, .txt span {
+    word-break: break-all;
+}
+
+.radio-grid-8 {
+    background-color: yellow;
+}
+
+.custom-radio img{
+    width: 100px;
+    height: 50px;
+}
+
+/* [class*="radio-grid-"]:after {
+    display: block;
+    content: '';
+    clear: both;
+} */
+
+
+/* ==========================  버튼 부분 ==================================== */
+.payment-btn-wrap {
+    margin-top: 20px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.btn-area {
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 50px;
+    padding: 20px;
+}
+
+.btn-area .save-btn {
+    vertical-align: top;
+    flex-grow: 1;
+    margin: 0 3px 0 0;
+    background: #FA0101;
+    color: #fff;
+    border: 1px solid #FA0101;
+    min-width: 280px;
+    height: 56px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-area .subscribe-btn{
+    vertical-align: top;
+    flex-grow: 1;
+    margin: 0 3px 0 0;
+    background: #fff;
+    color: #333;
+    border: 1px solid #333;
+    min-width: 280px;
+    height: 56px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-area .save-btn span {
+    font-size: 18px;
+    line-height: 1.8;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.btn-area .subscribe-btn span{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.8;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+
 /* ============================================================== */
