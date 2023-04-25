@@ -14,120 +14,126 @@
 </head>
 <body>
 	<section class="header-section">
-        <div class="info-title-box info-title-box-flex">
-            <div class="logo-box-layout">
-                <div class="logo-title-layout">
-                    <div class="logo-title">
-                        <div class="logo-name">
-                            Happy Box
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="select-name">
+		<div class="info-title-box info-title-box-flex">
+			<div class="logo-box-layout">
+				<div class="logo-title-layout">
+					<div class="logo-title">
+						<div class="logo-name">
+							Happy Box
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="select-name">
 					<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
-                    <span>공지사항 관리</span>	
-                </div>
-            </div>
-        </div>
-    </section>
-    <main class="main-section">
-        <!-- 임시 사이드바 -->
-        <div id="side-bar"></div>
-        <!-- 임시 사이드바 끝 -->
-        <section class="content-section">
-            <div class="container">
+					<span>공지사항 관리</span>	
+				</div>
+			</div>
+		</div>
+	</section>
+	<main class="main-section">
+		<!-- 임시 사이드바 -->
+		<div id="side-bar"></div>
+		<!-- 임시 사이드바 끝 -->
+		<section class="content-section">
+			<div class="container">
 				<div class="container-margin">
 					<!-- 헤더 -->
 					<section class="board-info-box-layout">
 						<div class="board-info-box">
 							<div class="board-info-title-box">
 								<span>공지사항 목록</span>
-                                <div class="button-wrap">
-                                    <div class="register-box">
-                                        <button class="register-button">공지사항 추가</button>
-                                    </div>
-                                    <div class="delete-box">
-                                        <button class="delete-button">공지사항 삭제</button>
-                                    </div>
-                                </div>
+								<div class="button-wrap">
+									<div class="add-box">
+										<button class="add-button">공지사항 추가</button>
+									</div>
+									<div class="delete-box">
+										<button class="delete-button">공지사항 삭제</button>
+									</div>
+								</div>
 							</div>
 							<div class="info-table">
 								<table>
 									<thead>
 										<tr>
 											<th>
-                                                <label class="check-label">
-												    <input type="checkbox" id="allSelect">
-                                                </label>
+												<label class="check-label">
+													<input type="checkbox" id="allSelect">
+												</label>
 											</th>
 											<th>No</th>
 											<th>제목</th>
 											<th>내용</th>
 											<th>작성자</th>
 											<th>작성 날짜</th>
+											<th>상세보기</th>
 										</tr>
 									</thead>
 									<tr>
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+												<input type="checkbox" name="check">
+											</label>
 										</td>
 										<td>1</td>
 										<td>[필독]HappyBox 이용방법</td>
 										<td><a href="">안녕하세요. HappyBox 이용방법에 대해서...</a></td>
 										<td>관리자</td>
 										<td>2023.01.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+												<input type="checkbox" name="check">
+											</label>
 										</td>
 										<td>2</td>
 										<td>HappyBox가 진행하는 이벤트!</td>
 										<td><a href="">안녕하세요. HappyBox에서 진행하는 이벤트...</a></td>
 										<td>관리자</td>
 										<td>2023.01.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+												<input type="checkbox" name="check">
+											</label>
 										</td>
 										<td>3</td>
 										<td>[필독]HappyBox 이용방법</td>
 										<td><a href="">안녕하세요. HappyBox 이용방법에 대해서...</a></td>
 										<td>관리자</td>
 										<td>2023.01.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+												<input type="checkbox" name="check">
+											</label>
 										</td>
 										<td>4</td>
 										<td>[필독]HappyBox 이용방법</td>
 										<td><a href="">안녕하세요. HappyBox 이용방법에 대해서...</a></td>
 										<td>관리자</td>
 										<td>2023.01.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr>
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+												<input type="checkbox" name="check">
+											</label>
 										</td>
 										<td>5</td>
 										<td>[필독]HappyBox 이용방법</td>
 										<td><a href="">안녕하세요. HappyBox 이용방법에 대해서...</a></td>
 										<td>관리자</td>
 										<td>2023.01.11</td>
+										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -177,9 +183,9 @@
 					</section>
 				</div>
 			</div>
-        </section>
-    </main>
-    <section class="delete-modal">
+		</section>
+	</main>
+	<section class="delete-modal">
 		<div class="delete-modal-shape">
 			<div class="modal-header">
 				<h4>삭제 확인</h4>
@@ -193,10 +199,227 @@
 			</div>
 		</div>
 	</section>
+	<section class="add-modal">
+		<div class="modal-shape">
+			<div class="modal-header">
+				<h4>공지사항 작성</h4>
+				<a class="modal-close">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						data-name="Capa 1"
+						id="Capa_2"
+						viewBox="0 0 20 19.84"
+					>
+						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+					</svg>
+				</a>
+			</div>
+			<form class="make-notice" action>
+				<div class="notice-form-box">
+					<h5>공지사항 제목</h5>
+					<input type="text" name="" placeholder="제목을 작성해주세요">
+					<h5>공지사항 내용</h5>
+					<textarea name="" placeholder="내용을 작성해주세요"></textarea>
+				</div>
+				<div class="file-box-wrap box-margin">
+					<div class="file-add-boxes">
+						<div class="div-attach-thumb">
+							<label>
+								<div class="btn-attach-thumb">
+									<i class="ico-plus-xlg">
+										<svg
+											height="26px"
+											viewBox="0 0 512 512"
+											width="26px"
+										>
+											<g>
+												<path
+													d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
+												/>
+											</g>
+										</svg>
+									</i>
+								</div>
+								<input
+									type="file"
+									name="imgFile"
+									style="display: none"
+									accept="image/*"
+								/>
+							</label>
+							<span class="cancel-image">x</span>
+						</div>
+					</div>
+					<div class="file-add-boxes">
+						<div class="div-attach-thumb">
+							<label>
+								<div class="btn-attach-thumb">
+									<i class="ico-plus-xlg">
+										<svg
+											height="26px"
+											viewBox="0 0 512 512"
+											width="26px"
+										>
+											<g>
+												<path
+													d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
+												/>
+											</g>
+										</svg>
+									</i>
+								</div>
+								<input
+									type="file"
+									name="imgFile"
+									style="display: none"
+									accept="image/*"
+								/>
+							</label>
+							<span class="cancel-image">x</span>
+						</div>
+					</div>
+					<div class="file-add-boxes">
+						<div class="div-attach-thumb">
+							<label>
+								<div class="btn-attach-thumb">
+									<i class="ico-plus-xlg">
+										<svg
+											height="26px"
+											viewBox="0 0 512 512"
+											width="26px"
+										>
+											<g>
+												<path
+													d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
+												/>
+											</g>
+										</svg>
+									</i>
+								</div>
+								<input
+									type="file"
+									name="imgFile"
+									style="display: none"
+									accept="image/*"
+								/>
+							</label>
+							<span class="cancel-image">x</span>
+						</div>
+					</div>
+					<p class="text-guide-md">
+						- 파일 3장까지 첨부 가능
+					</p>
+				</div>
+				<div class="button-box">
+					<button type="button" class="regist-button">작성하기</button>
+				</div>
+			</form>
+		</div>
+	</section>
+	<section class="modal">
+		<div class="modal-shape">
+			<div class="modal-header">
+				<h4>공지사항 상세보기</h4>
+				<a class="modal-close">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						data-name="Capa 1"
+						id="Capa_1"
+						viewBox="0 0 20 19.84"
+					>
+						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+					</svg>
+				</a>
+			</div>
+			<form class="content-info" action>
+				<main class="content-detail">
+					<h5 class="detail-title">공지사항 상세정보</h5>
+					<div class="content-img-wrapper">
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" accept="image/*" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" accept="image/*" style="display: none" />
+						</label>
+						<label>
+							<div class="content-img list-img">
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input type="file" name="file" accept="image/*" style="display: none" />
+						</label>
+					</div>
+					<ul class="content-list-wrap">
+						<li class="content-list">
+							<span>제목</span>
+							<div class="content-input">
+								<input type="text" value="[필독] 태풍 피해에 대한 반응조치" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>날짜</span>
+							<div class="content-input">
+								<input type="text" value="2023.01.11" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>내용</span>
+							<div class="content-input">
+								<textarea class="normal-textarea" cols="30" rows="10" name="" >
+안녕하세요, 랭킹닭컴입니다.&nbsp;
+태풍 힌남노로 인한 기상 악화로 인해 일부 도서 지역의 배송이
+조기 마감되었습니다.
+배송 마감 지역 및 배송 재개 일정 확인하시어 주문, 상품
+수령에 불편함이 없으시길 바랍니다.&nbsp;
+
+또한 상황에 따라 일부 지역의 특급배송 지연 및 제한이 될 수
+있습니다.
+이용에 불편을 드리게 된 점 양해 부탁드립니다.
+
+랭킹닭컴은 빠른 배송 정상화를 위해 노력하겠습니다.
+고객님의 너그러운 양해 부탁드리며 부디 피해 없으시길
+바랍니다.
+감사합니다.
+
+■ 배송 마감 지역의
+[제주] 전 지역 (9월 12일 집하 재개)
+
+■ 배송 지연 및 마감 지역의
+- 9월 5~6일 배송 지연, 9월 12일 집하 재개
+[울릉도] 전 지역
+[경상남도]&nbsp;
+- 통영시 한산면, 욕지면
+[전라남도]&nbsp;
+- 여수시 화정면, 남면, 삼산면 전 지역
+- 신안군 (임자면, 자은면, 암태면, 팔금면, 안좌면, 장산면,
+신의면, 하의면, 도초면, 비금면, 흑산면)
+- 완도군 (노화읍, 금일읍, 보길면, 청산면, 생일면, 금당면)
+- 진도군 (조도면)
+- 고흥군 수락도, 죽도, 시산도, 연홍도
+								</textarea>
+							</div>
+						</li>
+					</ul>
+					<div class="button-box">
+						<button type="button" class="update-button">수정하기</button>
+					</div>
+				</main>
+			</form>
+		</div>
+	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/checkbox.js"></script>
-<script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/modal.js"></script>
+<script src="../../static/js/admin/event.js"></script>
 </html>

@@ -1,4 +1,6 @@
 
+/* 게시물 리스트  */
+
 .go-list-box {
     height: 80px;
     display: flex;
@@ -60,3 +62,97 @@
     background: #fafafa;  /*스크롤바 뒷 배경 색상*/
     border-radius: 10px;
 }
+
+/* 문의 상세 */
+.inquire-img-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.inquire-img-wrapper label {
+    display: flex;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.inquire-img {
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    border: none;
+}
+
+.write-inquire {
+    width: 520px;
+    height: 420px;
+    background-color: #fff;
+}
+
+.write-inquire-box {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 27px 15px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.content-input textarea {
+    width: 330px;
+    height: 69px;
+    resize: none;
+    border: none;
+    outline: none;
+    color: #777777;
+    font-family: inherit;
+    font-weight: 600;
+    padding: 3px 12px;
+}
+
+.answer-wrap {
+    margin: 10px 0px 0px 27px;
+}
+
+.answer-wrap h5 {
+    margin-bottom: 10px;
+}
+
+.answer-wrap textarea {
+    width: 441px;
+    height: 200px;
+    resize: none;
+    outline: none;
+    color: #777777;
+    font-family: inherit;
+    font-weight: 600;
+    padding: 3px 12px;
+    border: 1px solid #f1f1f1;
+    border-radius: 3px;
+}
+
+.button-box {
+    text-align: right;
+    margin-top: 5px;
+    margin-right: 26px;
+}
+
+.button-margin {
+    margin-right: 10px;
+}
+
+.regist-button {
+    font-family: 'GmarketSansMedium';
+    border: none;
+    outline: none;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.regist-button:hover {
+  color: #c97793;
+}
+

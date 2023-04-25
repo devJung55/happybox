@@ -1,4 +1,4 @@
-@charset "UTF-8";
+
 
 .logo-box img {
 	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
@@ -43,25 +43,23 @@
 	font-weight: bold;
 }
 
-/* 버튼 영역 =============== */
-
 .button-wrap {
     display: flex;
     justify-content: flex-end;
+	gap: 15px
 }
 
-.register-button {
+.add-button {
     font-family: 'GmarketSansMedium';
     border: none;
     outline: none;
-    width: 100px;
     height: 20px;
     background-color: #fff;
 	border-radius: 3px;
     font-weight: bold;
 }
 
-.register-button:hover {
+.add-button:hover {
     color: #c97793;
 }
 
@@ -72,8 +70,6 @@
 .delete-button {
     font-family: 'GmarketSansMedium';
     border: none;
-    outline: none;
-    width: 100px;
     height: 20px;
     background-color: #fff;
 	border-radius: 3px;
@@ -91,6 +87,16 @@
 }
 
 .show-detail:hover {
+	color: #c97793;
+}
+
+/* 수정하기 */
+
+.modify-content {
+	cursor: pointer;
+}
+
+.modify-content:hover {
 	color: #c97793;
 }
 
