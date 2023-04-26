@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리뷰 게시판 목록</title>
+    <link rel="stylesheet" href="../../static/css/global/global.css" />
+    <link rel="stylesheet" href="../../static/css/component/header.css" />
+    <link rel="stylesheet" href="../../static/css/component/footer.css" />
+    <link rel="stylesheet" href="../../static/css/member/recipe-board-detail.css" />
+  </head>
+  <body>
+    <section id="whole-container" style="zoom: 80%">
+      <div class="detail-container">
+        <div class="slider__sec">
+          <div class="slider slick-initialized slick-slider">
+            <button class="swiper-button-prev swiper-btn swiper-button-disabled">
+              <svg viewBox="0 0 512 512">
+                <polygon
+                  points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                ></polygon>
+              </svg>
+            </button>
+            <div class="slick-list draggable">
+              <div class="slick-track" style="opacity: 1; width: 1200px; height: 100%">
+                <div
+                  class="slick-slide"
+                  data-slick-index="0"
+                  aria-hidden="true"
+                  style="
+                    width: 400px;
+                    height: 400px;
+                    position: relative;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 1;
+                  "
+                  tabindex="-1"
+                >
+                  <div>
+                    <div class="slider__list" style="width: 100%; display: inline-block">
+                      <figure>
+                        <img
+                          src="https://image.greating.co.kr/IL/item/202302/09/557C80D49618484DBC52172A35185514.jpg"
+                        />
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="slick-slide"
+                  data-slick-index="0"
+                  aria-hidden="true"
+                  style="
+                    width: 400px;
+                    height: 400px;
+                    position: relative;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 1;
+                  "
+                  tabindex="-1"
+                >
+                  <div>
+                    <div class="slider__list" style="width: 100%; display: inline-block">
+                      <figure>
+                        <img
+                          src="https://image.greating.co.kr/IL/item/202302/09/557C80D49618484DBC52172A35185514.jpg"
+                        />
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="slick-slide slide"
+                  data-slick-index="0"
+                  aria-hidden="true"
+                  style="
+                    width: 400px;
+                    height: 400px;
+                    position: relative;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 1;
+                  "
+                  tabindex="-1"
+                >
+                  <div>
+                    <div class="slider__list" style="width: 100%; display: inline-block">
+                      <figure>
+                        <img
+                          src="https://image.greating.co.kr/IL/item/202302/09/557C80D49618484DBC52172A35185514.jpg"
+                        />
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="swiper-button-next swiper-btn">
+              <svg viewBox="0 0 512 512">
+                <polygon
+                  points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                ></polygon>
+              </svg>
+            </button>
+            <div class="slick-counter">
+              <span class="current">1</span> / <span class="total">3</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-area">
+          <div class="info-area__btn">
+            <button class="btn-heart" onclick="fnComnWishItem(136163);">
+              <span>제품 찜하기</span>
+            </button>
+          </div>
+          <p class="writer-name">요리사정정짱</p>
+          <h3 class="info-area__name">
+            <span class="strong">제육볶음 맛있게 하는 법!</span>
+          </h3>
+          <div class="info-area__box">
+            <div class="info-area__box-list" id="divCardEvent" style="display: none">
+              <div class="info-area__box-tit">추가 혜택</div>
+              <div class="info-area__box-cont">
+                <a
+                  href="#;"
+                  class="info-area__box-button btn__modal-open"
+                  data-login="n"
+                  data-popup-name="popup_cardEvent"
+                  >카드 무이자 행사 안내</a
+                >
+              </div>
+            </div>
+
+            <div class="info-area__box-list">
+              <div class="info-area__box-cont">
+                <div class="detail-content">안녕하세요? 요리사 정정짱입니다. 오늘은 제육볶음 맛있게 하는 레시피를
+                  소개해드리겠습니다! 
+                  1. 재료를 준비한다. (고기, 양파, 고추장 등등) 
+                  재료는 신선한 재료를 준비할수록 좋습니다. 해피박스 사이트에 유통마켓에 신선한 재료들을 많이 판매하고 있으니 한 번 구매해보세요! 
+                  2. 재료를 손질한다. (칼로 삭삭) 
+                  칼이 무서우신 분들은 엄마한테 부탁하세요. 칼은 위험하니까 어린 분들은 꼭 조심해서 사용해주세요!!
+                  3. 약불로 익힌다. 
+                  강불은 절대 안됩니다. 요리의 핵심은 바로 인내입니다. 성질이 급한 한국인 특) 약불 싫어함. 하지만 약불로 천천히 익혀야해요. 안그러면 겉은 타고 속은 덜 익어서 장염 걸립니다. 괜히 강불로 요리하다 요리도 망치고 후라이팬도 태워서 엄마한테 혼나지말고 천천히 해보세요! 
+                  4. 접시에 담는다. 
+                  이쁜 접시에 담아서 셋팅합니다. 
+                  5. 완성 
+
+                  맛있게 드십쇼!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="bottom-area">
+      <div class="like-icon">
+        <button
+          type="button"
+          class="like-btn"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M12.563 2.5c0-2.424 3.201-3.043 4.521-.974.446.7.62 1.499.56 2.358-.07 1.008-.451 2.047-1.039 3.081-.055.097-.11.192-.167.285H22a.75.75 0 0 1 .75.75v7a.75.75 0 0 1-.08.335l-3 6a.75.75 0 0 1-.67.415h-7a.75.75 0 1 1 0-1.5h6.536l2.714-5.427V8.75H15a.75.75 0 0 1-.574-1.232 10.286 10.286 0 0 0 .875-1.293c.486-.857.795-1.697.847-2.445.039-.555-.066-1.035-.328-1.447-.564-.883-1.758-.652-1.758.167 0 .875-.302 1.666-.798 2.357-.292.409-.588.7-.88.923C10.712 6.786 9.66 7.677 9.1 8.426l.067-.082a.752.752 0 0 1-.137.186l-.016.014c-.21.298-.264.453-.264.467a.75.75 0 0 1-1.5 0c0-.079.01-.165.029-.26L2.75 8.75v11.5h4.5v-8.125a.75.75 0 1 1 1.5 0V21a.75.75 0 0 1-.75.75H2a.75.75 0 0 1-.75-.75V8A.75.75 0 0 1 2 7.25h6.12c.71-.844 1.838-1.76 3.414-2.702.113-.089.31-.284.511-.564.327-.456.518-.955.518-1.484z"
+            ></path></svg
+          ><span class="like-count">0</span>
+        </button>
+      </div>
+      <div class="comment-icon">
+        <button
+          type="button"
+          class="comment-btn"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              transform="matrix(-1 0 0 1 24 0)"
+              d="M9.826 19.561c.71.125 1.438.189 2.174.189 5.912 0 10.75-4.112 10.75-9.25S17.912 1.25 12 1.25c-5.913 0-10.75 4.112-10.75 9.25 0 3.273 1.841 6.389 4.882 7.747a.75.75 0 0 0 .611-1.37C4.267 15.772 2.75 13.205 2.75 10.5c0-4.251 4.116-7.75 9.25-7.75 5.133 0 9.25 3.5 9.25 7.75s-4.117 7.75-9.25 7.75c-.747 0-1.482-.074-2.194-.22a.75.75 0 0 0-.578.12l-4.656 3.234a.75.75 0 0 0 .856 1.232l4.398-3.055z"
+            ></path></svg
+          ><span class="comment-count">1</span>
+        </button>
+      </div>
+    </div> -->
+      </div>
+      <section class="reply-wrap">
+        <h3 class="reply-title">댓글</h3>
+        <div class="review-count-wrap">
+          <div class="review-orders">
+            <button class="fontW700">최신순</button>
+            <button>추천순</button>
+          </div>
+        </div>
+        <!--  -->
+        <div class="reply-write-wrap">
+          <div class="reply-writer-info">
+            <span class="user-type">일반</span>
+            <span class="user-id">kjp1234</span>
+          </div>
+          <div class="write-content-wrap">
+            <form>
+              <textarea class="write-textarea" placeholder="댓글 남기기"></textarea
+              ><button class="write-regist-btn" type="button" disabled="">
+                <span class="regist">등록</span>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="review-list-wrap">
+          <div class="review-list">
+            <div class="user-info-wrap">
+              <div class="user-info">
+                <span class="user-type">일반</span>
+                <span class="user-id">kjp1234</span>
+              </div>
+            </div>
+            <div class="review-wrap">
+              <div class="css-18pn4xv e36z05c1">
+                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
+              </div>
+              <p class="review-content">
+                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
+                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
+              </p>
+              <div class="review-footer">
+                <span class="review-date">2022.11.12</span>
+                <button class="review-rec-btn">
+                  <span>도움돼요</span>
+                  <span class="rec-count">1</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-list">
+            <div class="user-info-wrap">
+              <div class="user-info">
+                <span class="user-type">일반</span>
+                <span class="user-id">kjp1234</span>
+              </div>
+            </div>
+            <div class="review-wrap">
+              <div class="css-18pn4xv e36z05c1">
+                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
+              </div>
+              <p class="review-content">
+                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
+                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
+              </p>
+              <div class="review-footer">
+                <span class="review-date">2022.11.12</span>
+                <button class="review-rec-btn">
+                  <span>도움돼요</span>
+                  <span class="rec-count">1</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="review-list">
+            <div class="user-info-wrap">
+              <div class="user-info">
+                <span class="user-type">일반</span>
+                <span class="user-id">kjp1234</span>
+              </div>
+            </div>
+            <div class="review-wrap">
+              <div class="css-18pn4xv e36z05c1">
+                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
+              </div>
+              <p class="review-content">
+                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
+                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
+              </p>
+              <div class="review-footer">
+                <span class="review-date">2022.11.12</span>
+                <button class="review-rec-btn">
+                  <span>도움돼요</span>
+                  <span class="rec-count">1</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-list">
+            <div class="user-info-wrap">
+              <div class="user-info">
+                <span class="user-type">일반</span>
+                <span class="user-id">kjp1234</span>
+              </div>
+            </div>
+            <div class="review-wrap">
+              <div class="css-18pn4xv e36z05c1">
+                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
+              </div>
+              <p class="review-content">
+                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
+                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
+              </p>
+              <div class="review-footer">
+                <span class="review-date">2022.11.12</span>
+                <button class="review-rec-btn">
+                  <span>도움돼요</span>
+                  <span class="rec-count">1</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-list">
+            <div class="user-info-wrap">
+              <div class="user-info">
+                <span class="user-type">일반</span>
+                <span class="user-id">kjp1234</span>
+              </div>
+            </div>
+            <div class="review-wrap">
+              <div class="css-18pn4xv e36z05c1">
+                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
+              </div>
+              <p class="review-content">
+                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
+                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
+              </p>
+              <div class="review-footer">
+                <span class="review-date">2022.11.12</span>
+                <button class="review-rec-btn">
+                  <span>도움돼요</span>
+                  <span class="rec-count">1</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-list">
+            <div class="user-info-wrap">
+              <div class="user-info">
+                <span class="user-type">일반</span>
+                <span class="user-id">kjp1234</span>
+              </div>
+            </div>
+            <div class="review-wrap">
+              <div class="css-18pn4xv e36z05c1">
+                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
+              </div>
+              <p class="review-content">
+                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
+                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
+              </p>
+              <div class="review-footer">
+                <span class="review-date">2022.11.12</span>
+                <button class="review-rec-btn">
+                  <span>도움돼요</span>
+                  <span class="rec-count">1</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-list">
+            <div class="user-info-wrap">
+              <div class="user-info">
+                <span class="user-type">일반</span>
+                <span class="user-id">kjp1234</span>
+              </div>
+            </div>
+            <div class="review-wrap">
+              <div class="css-18pn4xv e36z05c1">
+                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
+              </div>
+              <p class="review-content">
+                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
+                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
+              </p>
+              <div class="review-footer">
+                <span class="review-date">2022.11.12</span>
+                <button class="review-rec-btn">
+                  <span>도움돼요</span>
+                  <span class="rec-count">1</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </body>
+</html>
