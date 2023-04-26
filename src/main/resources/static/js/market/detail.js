@@ -80,3 +80,19 @@ $("document").ready(function () {
         }
     });
 });
+
+/* 북마크 저장 */
+const $itemAddFavorBtn = $(".item-personlize button");
+
+$itemAddFavorBtn.on("click", function() {
+    $(this).find("svg path").attr("fill", "#ffa5cd");
+});
+
+/* 최신순, 추천순 정렬 */
+const $reviewOrder = $(".review-orders button");
+
+$reviewOrder.on('click', function() {
+    $(this).addClass("fontW700");
+
+    $reviewOrder.not($(this)).removeClass("fontW700");
+});

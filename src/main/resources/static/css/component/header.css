@@ -88,16 +88,16 @@ img {
     position: relative;
     padding: 0 12px 0 0;
     font-size: 13px;
-    color: #4D4D4D;
+    color: #4d4d4d;
 }
 
 .util > ul > li:not(:first-child):before {
     display: inline-block;
-    content: '';
+    content: "";
     width: 1px;
     height: 10px;
     vertical-align: middle;
-    background: #E6E6E6;
+    background: #e6e6e6;
     margin: -2px 11px 0 0;
 }
 
@@ -115,7 +115,7 @@ img {
     display: inline-block;
     width: 380px;
     height: 40px;
-    border: 1px solid #FFA751;
+    border: 1px solid #ffa751;
     border-radius: 6px;
     background: #fff;
     padding: 0 45px 0 15px;
@@ -130,7 +130,7 @@ img {
     color: #555;
     text-align: left;
     background: transparent;
-    font-family: 'Pretendard';
+    font-family: "Pretendard";
 }
 
 .top-search .btn-top-search {
@@ -142,17 +142,17 @@ img {
     transform: translateY(-50%);
 }
 
-.blind{
+.blind {
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
 }
 
 .btn-top-search:after {
     display: inline-block;
-    content: '';
+    content: "";
     width: 18px;
     height: 18px;
     background: url(https://www.rankingdak.com/resources/pc/images/icon/ico_header_search.svg);
@@ -237,7 +237,7 @@ img {
     color: #333;
     font-size: 17px;
     font-weight: 500;
-    transition: .1s;
+    transition: 0.1s;
     padding: 19px 0;
     line-height: 20px;
 }
@@ -246,15 +246,14 @@ img {
     display: inline-block;
     width: 14px;
     height: 12px;
-    content: '';
+    content: "";
     vertical-align: middle;
-    background: url(	https://www.rankingdak.com/resources/pc/images/icon/ico_gnb_all.png) 0 0;
     margin: -3px 10px 0 20px;
 }
 
 .btn-menu-all:after {
     display: block;
-    content: '';
+    content: "";
     position: absolute;
     top: 21px;
     right: 0;
@@ -291,7 +290,9 @@ img {
     justify-content: space-between;
 }
 
-.gnb-wrap .inner:after, .gnb-wrap:after, .gnb-wrap .gnb > ul {
+.gnb-wrap .inner:after,
+.gnb-wrap:after,
+.gnb-wrap .gnb > ul {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -314,7 +315,8 @@ img {
     width: 90px;
     height: 17px;
     overflow: hidden;
-    background: url(https://file.rankingdak.com/image/RANK/BANNER/GNB_ICON/20220330/IMG1648CEL614146730.png) center right no-repeat;
+    background: url(https://file.rankingdak.com/image/RANK/BANNER/GNB_ICON/20220330/IMG1648CEL614146730.png)
+        center right no-repeat;
     background-size: cover;
     position: relative;
     top: 3px;

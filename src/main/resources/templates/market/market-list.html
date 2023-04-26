@@ -14,7 +14,30 @@
                 <section class="side-menu-wrap">
                     <div class="filter-menu-wrap">
                         <span class="filter-menu">필터</span>
-                        <button>초기화</button>
+                        <button id="reset-filter">
+                            <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                            >
+                                <path
+                                    d="M13.78 3.96303C12.504 2.16973 10.4086 1 8.04 1C4.15192 1 1 4.15192 1 8.04C1 11.9281 4.15192 15.08 8.04 15.08C11.9281 15.08 15.08 11.9281 15.08 8.04"
+                                    stroke="#ddd"
+                                    stroke-width="1.6"
+                                    stroke-linecap="square"
+                                    stroke-linejoin="round"
+                                ></path>
+                                <path
+                                    d="M14.4933 1L14.4933 4.52H10.9733"
+                                    stroke="#ddd"
+                                    stroke-width="1.6"
+                                    stroke-linecap="square"
+                                    stroke-linejoin="round"
+                                ></path>
+                            </svg>
+                            <span>초기화</span>
+                        </button>
                     </div>
                     <div class="filter-menu-wrap">
                         <button class="nav-control btnH52">
@@ -33,7 +56,7 @@
                         <nav class="filter-nav">
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -44,7 +67,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -60,7 +83,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -71,7 +94,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -87,7 +110,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -98,7 +121,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -114,7 +137,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -125,7 +148,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -141,7 +164,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -152,7 +175,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -168,7 +191,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -179,7 +202,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -195,7 +218,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -206,7 +229,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -239,7 +262,7 @@
                         <nav class="filter-nav">
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -250,7 +273,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -266,7 +289,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -277,7 +300,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -293,7 +316,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -304,7 +327,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -320,7 +343,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -331,7 +354,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -347,7 +370,7 @@
                             </li>
                             <li class="filter-nav-list">
                                 <a href="javascript:void(0)">
-                                    <button>
+                                    <button data-checked="false">
                                         <svg
                                             width="18"
                                             height="18"
@@ -358,7 +381,7 @@
                                             <path
                                                 class="check_path"
                                                 d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
-                                                fill="#5f0080"
+                                                fill="#fff"
                                             ></path>
                                             <path
                                                 d="M7 12.6667L10.3846 16L18 8.5"
@@ -380,47 +403,42 @@
                         <div class="items-count">총 525건</div>
                         <ul class="item-order-list">
                             <li class="item-order">
-                                <a
-                                    href="javascript:void(0)"
-                                    class="css-19ce13b eudxpx30"
+                                <a class="order-selected" href="javascript:void(0)" 
                                     >신상품순</a
                                 >
                             </li>
                             <li class="item-order">
-                                <a
-                                    href="javascript:void(0)"
-                                    class="css-19ce13b eudxpx30"
+                                <a href="javascript:void(0)" 
                                     >판매량순</a
                                 >
                             </li>
                             <li class="item-order">
-                                <a
-                                    href="javascript:void(0)"
-                                    class="css-19ce13b eudxpx30"
+                                <a href="javascript:void(0)" 
                                     >낮은 가격순</a
                                 >
                             </li>
                             <li class="item-order">
-                                <a
-                                    href="javascript:void(0)"
-                                    class="css-19ce13b eudxpx30"
+                                <a href="javascript:void(0)" 
                                     >높은 가격순</a
                                 >
                             </li>
                         </ul>
                     </div>
                     <div class="show-item-wrap">
-                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                        <div
+                            class="bnr-item-slide swiper-slide swiper-slide-active"
+                            style="width: 256.25px"
+                        >
                             <a href="javascript:void(0)">
                                 <div class="image-container">
-                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                    <img
+                                        src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
                                 </div>
                             </a>
                             <div class="product-info">
                                 <span class="distributer-name">김정표</span>
-                                <h3 class="product-name">
-                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                </h3>
+                                <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
                                 <div class="content-row">
                                     <span class="sales-price">
                                         2,900<span class="won">원</span>
@@ -431,17 +449,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                        <div
+                            class="bnr-item-slide swiper-slide swiper-slide-active"
+                            style="width: 256.25px"
+                        >
                             <a href="javascript:void(0)">
                                 <div class="image-container">
-                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                    <img
+                                        src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
                                 </div>
                             </a>
                             <div class="product-info">
                                 <span class="distributer-name">김정표</span>
-                                <h3 class="product-name">
-                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                </h3>
+                                <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
                                 <div class="content-row">
                                     <span class="sales-price">
                                         2,900<span class="won">원</span>
@@ -452,17 +473,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                        <div
+                            class="bnr-item-slide swiper-slide swiper-slide-active"
+                            style="width: 256.25px"
+                        >
                             <a href="javascript:void(0)">
                                 <div class="image-container">
-                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                    <img
+                                        src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
                                 </div>
                             </a>
                             <div class="product-info">
                                 <span class="distributer-name">김정표</span>
-                                <h3 class="product-name">
-                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                </h3>
+                                <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
                                 <div class="content-row">
                                     <span class="sales-price">
                                         2,900<span class="won">원</span>
@@ -473,17 +497,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                        <div
+                            class="bnr-item-slide swiper-slide swiper-slide-active"
+                            style="width: 256.25px"
+                        >
                             <a href="javascript:void(0)">
                                 <div class="image-container">
-                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                    <img
+                                        src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
                                 </div>
                             </a>
                             <div class="product-info">
                                 <span class="distributer-name">김정표</span>
-                                <h3 class="product-name">
-                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                </h3>
+                                <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
                                 <div class="content-row">
                                     <span class="sales-price">
                                         2,900<span class="won">원</span>
@@ -494,17 +521,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                        <div
+                            class="bnr-item-slide swiper-slide swiper-slide-active"
+                            style="width: 256.25px"
+                        >
                             <a href="javascript:void(0)">
                                 <div class="image-container">
-                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                    <img
+                                        src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
                                 </div>
                             </a>
                             <div class="product-info">
                                 <span class="distributer-name">김정표</span>
-                                <h3 class="product-name">
-                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                </h3>
+                                <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
                                 <div class="content-row">
                                     <span class="sales-price">
                                         2,900<span class="won">원</span>

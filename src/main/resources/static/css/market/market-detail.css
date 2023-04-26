@@ -90,7 +90,7 @@ img {
 
 .item-personlize button svg {
     fill: transparent;
-    stroke: #424242;
+    stroke: #eee;
     stroke-width: 1px;
     transition: fill 0.1s, stroke 0.1s;
 }
@@ -235,6 +235,22 @@ option {
 
 .refrig-banner a img {
     width: 100%;
+}
+
+.fixed-btn {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #0000004d;
+    border-radius: 20px;
+    background-color: #80808000;
+    border-style: outset;
 }
 
 .item-main {

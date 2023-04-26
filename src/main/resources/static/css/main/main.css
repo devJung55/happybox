@@ -36,10 +36,6 @@ section.container {
     left: 0;
 }
 
-div.banner {
-    width: calc(1920px * 10);
-}
-
 div.banner div {
     width: 1920px;
     height: 400px;
@@ -134,8 +130,6 @@ div.banner div {
     width: 48px;
     height: 48px;
     margin: auto;
-    background-repeat: no-repeat;
-    background-size: 500%;
 }
 
 .category-btn-item-subject {

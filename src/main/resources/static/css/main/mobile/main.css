@@ -1,0 +1,146 @@
+div.banner div {
+    height: 220px;
+    float: left;
+    background-size: 100%;
+    margin: 0 auto;
+}
+
+section.container {
+    padding-top: 100px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.container .move-arrow {
+    position: absolute;
+    display: inline-block;
+    padding: 0 14px;
+    height: 26px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 60px;
+    z-index: 11;
+    bottom: 15px;
+    right: 18px;
+}
+
+.move-arrow .banner-count {
+    position: relative;
+    width: auto;
+    color: #ccc;
+    font-weight: 700;
+    bottom: auto;
+    left: auto;
+    line-height: 26px;
+    font-size: 9px;
+}
+
+.category-menu {
+    position: relative;
+    margin-top: 15px;
+    padding: 0 15px 24px;
+}
+
+.category-menu .menu-list {
+    overflow: hidden;
+    margin: -6px 0;
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 15px;
+}
+
+.category-menu .menu-list > li {
+    display: block;
+    width: 20%;
+}
+
+.category-menu .menu-list > li > a {
+    padding: 5px 2px;
+    margin: 5px 0;
+}
+
+.menu-list > li > a {
+    display: block;
+    text-align: center;
+}
+
+.fast-forward-icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+
+.category-menu .menu-list > li > a .txt {
+    margin-top: 2px;
+    color: #666;
+}
+
+.menu-list > li > a .txt {
+    display: block;
+    font-size: 10px;
+    line-height: 14px;
+}
+
+.mid-banner a {
+    width: 100%;
+}
+
+.article-title-area.inner-flex {
+    display: flex;
+    align-items: center;
+}
+
+.article-title-area {
+    padding: 50px 15px 10px 15px;
+}
+
+.inner-flex .left-item1 {
+    flex-grow: 1;
+}
+
+.article-title {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.swiper-container {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    padding: 0 15px 0 15px;
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    box-sizing: content-box;
+    transition: transform 0.2s ease-out;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 165px;
+    margin: 15px;
+    height: 100%;
+    position: relative;
+}
+
+.bnr-item .img {
+    width: 100%;
+    height: auto;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.main-article .bnr-item img {
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+}
