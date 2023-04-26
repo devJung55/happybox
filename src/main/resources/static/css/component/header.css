@@ -33,6 +33,35 @@ img {
     height: 100%;
 }
 
+.header_inner .logo .main-swiper-wrap {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 16px;
+    left: 179px;
+    width: 132px;
+}
+
+.fontW700 {
+    font-weight: 700 !important;
+}
+
+.main-swiper-wrap a {
+    font-weight: 500;
+    font-size: 18px;
+    color: #f76464;
+}
+
+.main-swiper-wrap a:first-child:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 14px;
+    margin-top: 5px;
+    margin-left: 11px;
+    background-color: rgb(226, 226, 226);
+}
+
 .blind {
     position: absolute;
     width: 1px;

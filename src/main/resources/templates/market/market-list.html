@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>유통마켓</title>
+        <link rel="stylesheet" href="../../static/css/global/global.css" />
+        <link rel="stylesheet" href="../../static/css/market/market-list.css" />
+    </head>
+    <body>
+        <main class="wrap-main frame-sm">
+            <div class="content-wrap">
+                <section class="side-menu-wrap">
+                    <div class="filter-menu-wrap">
+                        <span class="filter-menu">필터</span>
+                        <button>초기화</button>
+                    </div>
+                    <div class="filter-menu-wrap">
+                        <button class="nav-control btnH52">
+                            <span class="filter-menu">지역별</span>
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 18 18"
+                                fill="none"
+                                stroke="#999"
+                                style="transform: rotate(180deg)"
+                            >
+                                <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+                            </svg>
+                        </button>
+                        <nav class="filter-nav">
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">경기도</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">경기도</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">경기도</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">경기도</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">경기도</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">경기도</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">경기도</span>
+                                </a>
+                            </li>
+                        </nav>
+                    </div>
+                    <div class="filter-menu-wrap">
+                        <button class="nav-control btnH52">
+                            <span class="filter-menu">가격별</span>
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 18 18"
+                                fill="none"
+                                stroke="#999"
+                                style="transform: rotate(180deg)"
+                            >
+                                <path d="M5 11L9 7L13 11" stroke="#999" stroke-width="1.2"></path>
+                            </svg>
+                        </button>
+                        <nav class="filter-nav">
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">1000원 이하</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">1000원 이하</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">1000원 이하</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">1000원 이하</span>
+                                </a>
+                            </li>
+                            <li class="filter-nav-list">
+                                <a href="javascript:void(0)">
+                                    <button>
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                class="check_path"
+                                                d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                                fill="#5f0080"
+                                            ></path>
+                                            <path
+                                                d="M7 12.6667L10.3846 16L18 8.5"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                    <span class="list-name">1000원 이하</span>
+                                </a>
+                            </li>
+                        </nav>
+                    </div>
+                </section>
+                <section class="content">
+                    <div class="items-order-wrap">
+                        <div class="items-count">총 525건</div>
+                        <ul class="item-order-list">
+                            <li class="item-order">
+                                <a
+                                    href="javascript:void(0)"
+                                    class="css-19ce13b eudxpx30"
+                                    >신상품순</a
+                                >
+                            </li>
+                            <li class="item-order">
+                                <a
+                                    href="javascript:void(0)"
+                                    class="css-19ce13b eudxpx30"
+                                    >판매량순</a
+                                >
+                            </li>
+                            <li class="item-order">
+                                <a
+                                    href="javascript:void(0)"
+                                    class="css-19ce13b eudxpx30"
+                                    >낮은 가격순</a
+                                >
+                            </li>
+                            <li class="item-order">
+                                <a
+                                    href="javascript:void(0)"
+                                    class="css-19ce13b eudxpx30"
+                                    >높은 가격순</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="show-item-wrap">
+                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                    <span class="sales-price">
+                                        2,900<span class="won">원</span>
+                                    </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                    <span class="sales-price">
+                                        2,900<span class="won">원</span>
+                                    </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                    <span class="sales-price">
+                                        2,900<span class="won">원</span>
+                                    </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                    <span class="sales-price">
+                                        2,900<span class="won">원</span>
+                                    </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 256.25px;">
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg">
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                    <span class="sales-price">
+                                        2,900<span class="won">원</span>
+                                    </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../static/js/market/market-list.js"></script>
+</html>
