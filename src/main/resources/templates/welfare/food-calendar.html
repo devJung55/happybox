@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>음식 캘린더</title>
+        <link rel="stylesheet" href="../../static/css/welfare/food-calendar.css" />
+        <link
+            rel="stylesheet"
+            href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css"
+        />
+        <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    </head>
+    <body>
+        <div class="calendar-container">
+            <div class="calendar-box">
+                <div style="display: flex">
+                    <h3 class="calendar-year year"></h3>
+                    <h3 class="calendar-year month"></h3>
+                </div>
+                <div style="display: flex">
+                    <div class="calendar-button-box">
+                        <button type="button" class="btn btn-padding" id="today">
+                            <p class="auto-flex">TODAY</p>
+                        </button>
+                    </div>
+                    <div class="calendar-button-box">
+                        <button type="button" id="calender-prev" class="btn">
+                            <span class="auto-flex">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
+                                        fill="#1a1a1a"
+                                    ></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" id="calender-next" class="btn">
+                            <span class="auto-flex">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
+                                        fill="#1a1a1a"
+                                    ></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="calendar" class="calendar-view"></div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
+    <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+    <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+    <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+    <script src="../../static/js/welfare/food-calendar.js"></script>
+</html>

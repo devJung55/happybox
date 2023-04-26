@@ -1,3 +1,14 @@
+.page-title-area{
+    text-align: center !important;
+}
+
+.frame-wrap {
+    display: flex !important;
+    gap: 30px;
+    justify-content: center;
+}
+
+
 .frame-cnt-inner .board-form {
     margin-top: 10px;
 }
@@ -62,7 +73,7 @@
     width: 150px;
     border-radius: 3px;
     padding: 3px;
-    border: 2px solid #FFA5CD;
+    border: 1px solid #666;
 }
 
 .btn-form > span {
@@ -169,9 +180,20 @@
     max-width: 150px;
 }
 
+.input-group > .input-group-form, .input-group > .input-group-btn {
+    display: table-cell;
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    border: 0;
+    padding: 0px 0px !important;
+}
+
 .btn-grey3 {
-    background: #ccc;
-    color: #fff;
+    background: #ccc !important;
+    color: #fff !important;
+    margin-right: 60px;
 }
 
 .btn-basic-md {
@@ -287,10 +309,21 @@ input[name="welfare-selection"] {
     margin-top: 20px;
     position: relative;
     text-align: center;
+    margin-bottom: 60px;
+    border-top: 1px solid #66666669;
+    padding-top: 30px;
 }
 
 .btn-primary {
-    background: #FFA5CD;
+    background: #FFA5CD !important;
     color: #fff;
-    border: 1px solid #FFA5CD;
+    border: 1px solid #FFA5CD !important;
+}
+
+
+.btn-bottom-area button, [type="button"], [type="reset"], [type="submit"] {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-image: none;
 }

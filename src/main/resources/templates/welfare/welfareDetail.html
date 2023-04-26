@@ -21,11 +21,8 @@
                     <div class="welfare-img-area">
                         <div class="welfare-top">
                             <!-- 대표 이미지 -->
-                            <div class="img">
-                                <img
-                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg"
-                                    alt=""
-                                />
+                            <div class="img calendar-import">
+                                <!-- 캘린더 나오는 곳 -->
                             </div>
                             <div class="timeSale-area"></div>
                         </div>
@@ -449,6 +446,13 @@
     <script>
         $(".header").load("../../templates/component/header.html");
         $(".footer").load("../../templates/component/footer.html");
+        $('.calendar-import').load("../../templates/welfare/food-calendar.html");
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
+    <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+    <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+    <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
     <script src="../../static/js/welfare/welfareDetail.js"></script>
 </html>
