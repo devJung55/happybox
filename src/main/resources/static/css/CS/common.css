@@ -403,6 +403,17 @@ html {
     padding: 20px !important;
 }
 
+.plus-info {
+    display: flex;
+    border-top: 1px solid #6666661a;
+    background: #f8f8f8;
+}
+
+.plus-cell {
+    padding: 6px 20px;
+}
+
+
 .inner-text {
     padding: 40px 20px 0;
 }
