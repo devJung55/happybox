@@ -163,6 +163,11 @@ figure {
     font-weight: bold;
 }
 
+.refrig-bnr {
+    margin-top: 15px;
+    width: 400px;
+}
+
 .info-area {
     float: left;
     width: 500px;
@@ -178,10 +183,66 @@ figure {
 .btn-heart {
     display: inline-block;
     margin-right: 32px;
+    margin-left: 5px;
     width: 35px;
     height: 31px;
     font-size: 0;
     background: url('	https://www.greating.co.kr/front_mo/images/btn_heart-off-89773fc26a0d16b9188c85866969bb8e.png') no-repeat center center;
+    background-size: 70%;
+    vertical-align: middle;
+}
+
+.write-button-icon-box {
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+  }
+  
+  .write-button-icon {
+    user-select: none;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+  }
+
+  .delete-button-icon {
+    user-select: none;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+  }
+  
+.writer-button-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-btn {
+    /* margin-right: 20px; */
+    display: inline-block;
+    /* margin-right: 32px; */
+    width: 35px;
+    height: 31px;
+    font-size: 0;
+    background: url(https://www.greating.co.kr/front_mo/images/btn_heart-off-89773fc….png) no-repeat center center;
+    background-size: 70%;
+    vertical-align: middle;
+}
+
+.delete-btn {
+    /* margin-right: 6px; */
+    display: inline-block;
+    /* margin-right: 32px; */
+    width: 35px;
+    height: 31px;
+    font-size: 0;
+    background: url(https://www.greating.co.kr/front_mo/images/btn_heart-off-89773fc….png) no-repeat center center;
     background-size: 70%;
     vertical-align: middle;
 }
@@ -390,7 +451,7 @@ figure {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 40px 17px 20px 17px;
+    padding: 40px 17px 72px 17px;
     border-bottom: 1px solid rgb(244, 244, 244);
     font-size: 16px;
     font-weight: 400;
