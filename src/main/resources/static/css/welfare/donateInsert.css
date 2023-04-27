@@ -308,10 +308,11 @@ input[name="welfare-selection"] {
 .btn-bottom-area {
     margin-top: 20px;
     position: relative;
-    text-align: center;
+    text-align: right;
     margin-bottom: 60px;
     border-top: 1px solid #66666669;
     padding-top: 30px;
+    padding-right: 100px;
 }
 
 .btn-primary {
