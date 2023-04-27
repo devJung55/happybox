@@ -40,9 +40,9 @@ $(".page-button").each((i, e) => {
 
 
 /* 상세보기 모달 */
-const $showDetail = $(".show-detail");
+const $showModal = $(".show-modal");
 
-$showDetail.on('click', function(e){
+$showModal.on('click', function(e){
     $(".modal").show();
 })
 

@@ -91,7 +91,7 @@
 }
 
 .refrig-banner a img{
-    width: 750px;
+    width: 770px;
 }
 
 .fixed {
@@ -628,7 +628,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .get-total-price {
-    border-top: 1px solid rgba(0, 0, 0, 0.459);
+    border-top: 1px solid rgb(0 0 0 / 5%);
 }
 
 /* 버튼 + 모달 */
