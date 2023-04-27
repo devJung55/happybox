@@ -146,6 +146,7 @@ figure {
 .slick-slide img {
     display: block;
     max-width: 100%;
+    height: 100%;
 }
 
 .slick-counter {
@@ -293,6 +294,21 @@ figure {
     letter-spacing: -0.19px;
 }
 
+.rating-point {
+    margin-top: 5px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: 23px;
+  }
+  
+  .rating-point img {
+    width: 23px;
+    height: 23px;
+    align-items: center;
+  }
+
 .info-area__box-button {
     display: block;
     position: relative;
@@ -433,7 +449,7 @@ figure {
 
 .active {
     color: #fff;
-    background-color: #FFA5CD;
+    background-color: #FFA5CD !important;
     border: none;
 }
 

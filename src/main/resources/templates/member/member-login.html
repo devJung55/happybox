@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../static/css/member/login.css" />
   </head>
   <body>
+    <header></header>
     <root style="zoom: 80%">
     <section class="login-section">
       <div class="login-container">
@@ -109,20 +110,16 @@
               ><span>유통업체회원가입</span></a
             >
           </div>
-          <div class="page-guide-center">
-            <ul class="txt-link-list">
-              <li>
-                <a href="javascript:void(0)"
-                  ><span class="text-grey">비회원주문조회</span></a
-                >
-              </li>
-            </ul>
-          </div>
         </div>
         <!--// login-area -->
       </div>
     </section>
   </root>
+  <footer></footer>
   </body>
-  <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $('header').load('../../templates/component/header.html');
+    $('footer').load('../../templates/component/footer.html');
+  </script>
 </html>
