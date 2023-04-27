@@ -144,3 +144,8 @@ section.container {
     height: 100%;
     width: 100%;
 }
+
+.welfare-donation-list .swiper-wrapper .swiper-slide {
+    width: 320px;
+    margin-right: 10px;
+}

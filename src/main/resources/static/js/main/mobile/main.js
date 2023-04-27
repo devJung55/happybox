@@ -1,71 +1,93 @@
-let curPos = 0;
-let postion = 0;
+const $swiperWrapper = $(".swiper-wrapper");
+
+// let postion = $swiperWrapper.data("position");
 let startX, endX;
 let prevX;
-const IMAGE_WIDTH = $(".swiper-slide").eq(0).outerWidth(true);
-const $swiperWrapper = $(".swiper-wrapper");
-const maxCurPos = $swiperWrapper.find(".swiper-slide").length - 1;
 
 $swiperWrapper.on("touchstart", (e) => touchStart(e));
-$swiperWrapper.on("touchmove", (e) => touchMove(e));
-$swiperWrapper.on("touchend", (e) => touchEnd(e));
+$swiperWrapper.on("touchmove", function (e) {
+    touchMove(e, $(this));
+});
+$swiperWrapper.on("touchend", function (e) {
+    touchEnd(e, $(this));
+});
 
 function touchStart(event) {
     startX = event.touches[0].pageX;
     prevX = startX;
+    console.log("앙");
 }
 
-function touchMove(event) {
+function touchMove(event, $slide) {
     let offsetX = event.changedTouches[0].pageX;
     let check = prevX - offsetX;
+    let position = $slide.data("position");
     let positionChange = 0;
-    
-    if(check == 0) return;
+    let imageWidth = $slide.find(".swiper-slide").eq(0).outerWidth(true);
 
-    if(Math.abs(check) > IMAGE_WIDTH / 2) {
+    if (check == 0) return;
+
+    if (Math.abs(check) > imageWidth / 2) {
         check = check / 3;
     }
-    
-    if(check < 0) {
-        positionChange = postion - check;
-    } else positionChange = postion - check;
 
-    $swiperWrapper.css("transform", `translateX(${positionChange}px)`);
+    if (check < 0) {
+        positionChange = position - check;
+    } else positionChange = position - check;
+
+    $slide.css("transform", `translateX(${positionChange}px)`);
 }
 
-function touchEnd(event) {
+function touchEnd(event, $slide) {
     endX = event.changedTouches[0].pageX;
     let absolute = Math.abs(startX - endX);
-    // console.log(endX);
-    console.log(absolute);
+    let imageWidth = $slide.find(".swiper-slide").eq(0).outerWidth(true);
+    let position = $slide.data("position");
+
+    if (absolute < imageWidth / 2) {
+        $slide.css("transform", `translateX(${position}px)`);
+        return;
+    }
+
     if (startX > endX) {
-        nextSlide();
+        nextSlide($slide, position,imageWidth);
     } else {
-        prevSlide();
+        prevSlide($slide, position,imageWidth);
     }
 }
 
-function prevSlide() {
-    if (curPos == 0) {
-        $swiperWrapper.css("transform", `translateX(${postion}px)`);
+function prevSlide($slide, position, imageWidth) {
+    let curpos = $slide.data("curpos");
+    
+    if (curpos == 0) {
+        $slide.css("transform", `translateX(${position}px)`);
         return;
     }
 
-    if (curPos > 0) {
-        postion += IMAGE_WIDTH;
-        $swiperWrapper.css("transform", `translateX(${postion}px)`);
-        curPos = curPos - 1;
+    if (curpos > 0) {
+        position += imageWidth;
+        $slide.css("transform", `translateX(${position}px)`);
+        $slide.data("curpos", curpos - 1);
+        $slide.data("position", position);
     }
 }
-function nextSlide() {
-    if (curPos + 1 == maxCurPos) {
-        $swiperWrapper.css("transform", `translateX(${postion}px)`);
+function nextSlide($slide, position, imageWidth) {
+    let curpos = $slide.data("curpos");
+    let maxcurpos = $slide.find(".swiper-slide").length - 1;
+    let i = $swiperWrapper.index($slide);
+
+    /* 큰 배너는 max 1 추가 */
+    if(i == 2) maxcurpos++;
+
+    if (curpos + 1 == maxcurpos) {
+        $slide.css("transform", `translateX(${position}px)`);
         return;
     }
 
-    if (curPos < maxCurPos) {
-        postion -= IMAGE_WIDTH;
-        $swiperWrapper.css("transform", `translateX(${postion}px)`);
-        curPos = curPos + 1;
+    if (curpos < maxcurpos) {
+        position -= imageWidth;
+        $slide.css("transform", `translateX(${position}px)`);
+        $slide.data("curpos", curpos + 1);
+        $slide.data("position", position);
     }
 }
