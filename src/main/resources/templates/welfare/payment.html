@@ -17,7 +17,7 @@
                     <h2 class="page-title">구독/결제</h2>
                 </div>
                 <div class="payment-area">
-                    <form id="ordFrm" name="addressForm" action="">
+                    <form id="payment" name="payment" action="">
                         <div class="order-info" id="orderUserInfo">
                             <div class="list-head">
                                 <h3 class="title-list">구독자 정보</h3>
@@ -50,12 +50,7 @@
                         <div class="list-head-sub">
                             <h3 class="title-list">배송지 정보</h3>
                             <div class="custom-checkbox">
-                                <input
-                                    type="checkbox"
-                                    name=""
-                                    id="orderCheck"
-                                    class="checkbox"
-                                />
+                                <input type="checkbox" name="" id="orderCheck" class="checkbox" />
                                 <label for="orderCheck"> 주문자 정보와 동일 </label>
                             </div>
                         </div>
@@ -153,7 +148,10 @@
                                     <div class="delivery-state normal">
                                         <h4 class="tit">구독한 복지관</h4>
                                         <div class="right-dlv-info">
-                                            <img src="../../static/img/welfare/delivery.png" alt="">
+                                            <img
+                                                src="../../static/img/welfare/delivery.png"
+                                                alt=""
+                                            />
                                             <p class="txt">
                                                 <span class="dlvPrice">정기 배송</span>
                                             </p>
@@ -165,16 +163,15 @@
                                                 <div class="inner">
                                                     <div class="column img">
                                                         <a href="javascript:void(0);">
-                                                            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg" alt="">
+                                                            <img
+                                                                src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg"
+                                                                alt=""
+                                                            />
                                                         </a>
                                                     </div>
                                                     <div class="column tit">
-                                                        <p class="tit">
-                                                            관악복지관
-                                                        </p>
-                                                        <p class="desc">
-                                                            서울시 관악구 봉천동
-                                                        </p>
+                                                        <p class="tit">관악복지관</p>
+                                                        <p class="desc">서울시 관악구 봉천동</p>
                                                         <ul class="price-item">
                                                             <li>
                                                                 <span class="num">18,900</span>
@@ -208,34 +205,48 @@
                             </div>
                             <div class="lineless-table type1">
                                 <table>
-                                    <caption>기부 포인트 사용</caption>
+                                    <caption>
+                                        기부 포인트 사용
+                                    </caption>
                                     <colgroup>
-                                        <col style="width: 190px;">
+                                        <col style="width: 190px" />
                                     </colgroup>
                                     <tbody>
                                         <tr>
                                             <th scope="row">
-                                                <span class="tit">
-                                                    포인트 사용
-                                                </span>
+                                                <span class="tit"> 포인트 사용 </span>
                                             </th>
                                             <td>
                                                 <div class="order-point">
                                                     <div class="input-group-wrap box-type">
                                                         <div class="input-group">
-                                                            <input type="text" class="input-text ui-point-input" placeholder="1,000P부터 사용가능">
+                                                            <input
+                                                                type="text"
+                                                                id="point"
+                                                                class="input-text ui-point-input"
+                                                                placeholder="1,000P부터 사용가능"
+                                                            />
                                                             <span class="input-group-btn">
-                                                                <button type="button" class="btn-x-xs btn-input-del">
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn-x-xs btn-input-del"
+                                                                >
                                                                     <i class="ico-x-normal"></i>
                                                                     <span class="blind">삭제</span>
                                                                 </button>
-                                                                <button type="button" class="btn-ex-grey">
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn-ex-grey"
+                                                                >
                                                                     <span>전액사용</span>
                                                                 </button>
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <p class="point-guide">사용 가능 기부 포인트 <em class="text-num-bold">1,000</em>P</p>
+                                                    <p class="point-guide">
+                                                        사용 가능 기부 포인트
+                                                        <em class="text-num-bold">2,000</em>P
+                                                    </p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -255,7 +266,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </form>
                 </div>
             </div>
@@ -274,107 +284,4 @@
     </script> -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="../../static/js/welfare/payment.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".cpn_select_btn").on('click', function (event) {
-                let couponCnt = fnOnlyNumber($('#userCouponCount').text()).number;
-                if (couponCnt > 0) {
-                    if (!$(this).hasClass('ui-open-pop')) {
-                        $(this).addClass("ui-open-pop");
-                        layerPop();
-                        getUserOrderPrice();
-                        $(this).click();
-                        $(this).removeClass("ui-open-pop");
-                    }
-                } else {
-                    alert("사용할 수 있는 쿠폰이 없습니다.");
-                }
-            });
-    
-            $('.ui-point-input').keyup(function (e) {
-                if (!$(this).val()) {
-                    $(this).siblings('.input-group-btn').find('.btn-input-del').hide();
-                } else if ($(this).val()) {
-                    $(this).siblings('.input-group-btn').find('.btn-input-del').show();
-                }
-            });
-    
-            $('.btn-input-del').on('click', function (e) {
-                $(this).parent('.input-group-btn').prev('.ui-point-input').val(0);
-                $(this).hide();
-                fnUsePoint('');
-            });
-    
-        });
-    
-        //포인트 사용
-        function fnUsePoint(type) {
-            $('.btn-input-del').show();
-            const currentPoint = fnOnlyNumber($("#currentPoint").val()).number;
-            if (currentPoint == 0) {
-                return;
-            }
-    
-            $("#textUsePoint").val($("#textUsePoint").val().replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'));
-    
-            let usePointTemp = fnOnlyNumber($("#textUsePoint").val()).number;
-    
-            const txtTotPrice = fnOnlyNumber($('#txt_tot_price').text()).number;
-            const txtSaleCoupon = Math.abs(fnOnlyNumber($('#txt_sale_coupon').text()).number);
-            const txtSaleOrderCoupon = Math.abs(fnOnlyNumber($('#txt_sale_order_coupon').text()).number);
-            const txtSaleDlvCoupon = Math.abs(fnOnlyNumber($('#txt_sale_dlv_coupon').text()).number);
-            let txtSaleGrade = Math.abs(fnOnlyNumber($('#txt_sale_grade').text()).number);
-            const txtTotDlvPrice = fnOnlyNumber($('#txt_tot_dlv_price').text()).number;
-    
-            const sYn = $('input[name="orangeMembersP"]:checked').val();
-            if(sYn === 'point') {
-                txtSaleGrade = 0;
-            }
-    
-            const totPgPrice = txtTotPrice - txtSaleCoupon - txtSaleOrderCoupon - txtSaleDlvCoupon - txtSaleGrade + txtTotDlvPrice;
-    
-            if (type == 'all') {
-                usePointTemp = currentPoint;
-                if (totPgPrice < usePointTemp) {
-                    usePointTemp = totPgPrice;
-                }
-            }
-    
-            if (0 < usePointTemp && usePointTemp < 2000) {
-                alert('적립금은 2000P 부터 사용 가능합니다.');
-                $("#usePoint").val(0);
-                $("#textUsePoint").val(0);
-                getUserOrderPrice();
-                return;
-            }
-            
-    
-            let usePoint = Math.floor(usePointTemp / 10) * 10;
-    
-            if (usePoint <= 0) {
-                usePoint = 0;
-            }
-    
-            if (totPgPrice < usePoint) {
-    
-                usePoint = totPgPrice;
-    
-                if (currentPoint < usePoint) {
-                    usePoint = currentPoint;
-                    usePoint = Math.floor(usePoint / 10) * 10;
-                }
-            }
-    
-            if (0 < usePoint && usePoint < 2000) {
-                alert('적립금은 2000P 부터 사용 가능합니다.');
-                $("#usePoint, #textUsePoint").val(0);
-                getUserOrderPrice();
-                return;
-            }
-    
-            $("#usePoint").val(usePoint);
-            getUserOrderPrice();
-        }
-    
-    </script>
 </html>
