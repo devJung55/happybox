@@ -1,5 +1,9 @@
 /* 기부글 리스트 */
 
+html {
+    zoom: 80% !important;
+}
+
 .title-area {
     position: relative;
     max-width: 1100px;
@@ -136,6 +140,7 @@
     padding: 0 10px 0 15px;
     text-align: left;
     height: 45px;
+    width: 120px;
 }
 
 .inner .tit .welfare-name{
@@ -178,7 +183,7 @@
 }
 
 .inner .count .num {
-    font-size: 18px;
+    font-size: 24px;
     color: #333;
     font-weight: 700;
 }

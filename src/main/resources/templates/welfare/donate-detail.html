@@ -8,52 +8,60 @@
         <title>기부 상세</title>
         <link rel="stylesheet" href="../../static/css/global/global.css" />
         <link rel="stylesheet" href="../../static/css/CS/common.css" />
+        <link rel="stylesheet" href="../../static/css/welfare/donate-detail.css" />
     </head>
     <body>
-        <section class="container">
+        <header></header>
+        <section class="container donate-detail">
             <div class="content-wrap frame-sm">
                 <div class="page-title-area">
                     <h2 class="title-page">
-                        <a href="javascript:void(0)">사이드바 위쪽 메뉴</a>
+                        <a href="javascript:void(0)">기부 게시판</a>
                     </h2>
                 </div>
-                <!-- 사이드바 들어오는 곳 -->
-                <div class="frame-wrap">
-                    <!-- 사이드바는 타임리프 fragment로 묶을것. 임시로 list.js에 load() 사용 -->
+                <div class="frame-wrap" style="zoom: 100%">
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="form-wrap">
-                                <div class="menu-title-area">
-                                    <h3 class="title-menu">기부사항</h3>
-                                </div>
                                 <div class="notice-content">
                                     <div class="answer-wrap notice-title">
                                         <!-- 답변 영역 -->
                                         <div class="answer">
                                             <p class="txt">
-                                                제목 : 어디어디로 기부합니다
+                                                기부 장소:
+                                                <span>석계 무료 급식소</span>
                                             </p>
                                         </div>
                                         <div class="text-center">
-                                            <span>2023.02.03</span>
+                                            <span>2023.04.27</span>
                                         </div>
                                     </div>
                                     <div class="plus-info">
-                                        <div class="plus-cell">ㅇㅇ복지관</div>
-                                        <div class="plus-cell">02-000-0000</div>
+                                        <div class="plus-cell">
+                                            복지관 명:
+                                            <span class="welfare-name">관악 복지관</span>
+                                        </div>
+                                        <div class="plus-cell">
+                                            연락처:
+                                            <span class="welfare-phone">010-7122-8966</span>
+                                        </div>
+                                        <div class="plus-cell">
+                                            기부 수량:
+                                            <span class="donate-count">1000개</span>
+                                        </div>
                                     </div>
                                     <div class="inner-text">
-                                        <div style="text-align: center;">
-                                            &nbsp;<br />
-                                            안녕하세요 여러분!<br />
-                                            저희가 이번에 저희 도시락이 필요한 곳을 위해서<br />
-                                            다른 지역으로 기부를 하기로 정했습니다!<br />
-                                            의미있는일에 함께 동참할 수 있어 기쁩니다<br />
-                                            <br />
+                                        <div class="donate-content">
+                                            안녕하세요 여러분!저희가 이번에 저희 도시락이 필요한 곳을 위해서
+                                            다른 지역으로 기부를 하기로 정했습니다!
+                                            의미있는일에 함께 동참할 수 있어 기쁩니다
                                             감사합니다.
                                         </div>
-                                        <div style="margin: 0px auto; width: 100%; text-align: center; max-width: 860px;">
-                                            <img alt="상세" src="https://happyms.or.kr/data/editor/2004/thumb-6869c86297d3c6c190be049dc880bc0e_1587621878_8222_600x600.jpg" style="width: 100%;">
+                                        <div class="donate-img-area">
+                                            <img
+                                                alt="상세"
+                                                src="https://happyms.or.kr/data/editor/2004/thumb-6869c86297d3c6c190be049dc880bc0e_1587621878_8222_600x600.jpg"
+                                            />
                                         </div>
                                     </div>
                                     <div class="board-wrap prev-article">
@@ -62,7 +70,7 @@
                                         </div>
                                         <div class="text-left flex1">
                                             <a href="javascript:void(0)" class="title-elps">
-                                               어쩌고
+                                                정지욱 기부
                                             </a>
                                         </div>
                                         <div class="text-center">
@@ -75,7 +83,7 @@
                                         </div>
                                         <div class="text-left flex1">
                                             <a href="javascript:void(0)" class="title-elps">
-                                                저쩌고
+                                                강민구 기부
                                             </a>
                                         </div>
                                         <div class="text-center">
@@ -89,6 +97,11 @@
                 </div>
             </div>
         </section>
+        <footer></footer>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $('header').load('../../templates/component/header.html');
+        $('footer').load('../../templates/component/footer.html');
+    </script>
 </html>
