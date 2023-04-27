@@ -32,7 +32,7 @@ for (let i = 0; i < imgCount; i++) {
             </div>
         </div>
         <div class="review-wrap">
-            <div class="css-18pn4xv e36z05c1">
+            <div>
                 <h3 class="review-item-name">
                     [4.22원데이] 더라인 순면 피그먼트
                 </h3>
@@ -44,10 +44,15 @@ for (let i = 0; i < imgCount; i++) {
             </p>
             <div class="review-footer">
                 <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                    <span>도움돼요</span>
-                    <span class="rec-count">1</span>
-                </button>
+                <div class="review-btn-wrap">
+                    <button class="review-rec-btn">
+                        <span>도움돼요</span>
+                        <span class="rec-count">1</span>
+                    </button>
+                    <button class="review-rec-btn update_review">
+                        <span>수정하기</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -84,15 +89,64 @@ $("document").ready(function () {
 /* 북마크 저장 */
 const $itemAddFavorBtn = $(".item-personlize button");
 
-$itemAddFavorBtn.on("click", function() {
+$itemAddFavorBtn.on("click", function () {
     $(this).find("svg path").attr("fill", "#ffa5cd");
 });
 
 /* 최신순, 추천순 정렬 */
 const $reviewOrder = $(".review-orders button");
 
-$reviewOrder.on('click', function() {
+$reviewOrder.on("click", function () {
     $(this).addClass("fontW700");
 
     $reviewOrder.not($(this)).removeClass("fontW700");
+});
+
+/* 수정버튼은 session에 있는 유저와 댓글 작성자와 비교하여 */
+/* 서로 일치할 때만 표시할 것 */
+/* 수정버튼 클릭시 수정 textarea 등장 */
+/* Ajax 콜백함수로 받아서 text에 데이터 꽃기 */
+const $updateReviewBtn = $(".update_review");
+
+$updateReviewBtn.on("click", function () {
+    /* 수정 중임을 의미하는 클래스 */
+    const ON_UPDATE = "review-on-update";
+
+    let parent = $(this).parent().parent().parent();
+
+    if(parent.hasClass(ON_UPDATE)) return;
+
+    let text = `
+    <div class="write-content-wrap">
+        <form>
+            <textarea
+                class="write-textarea"
+                placeholder="댓글 남기기"
+            ></textarea
+            ><button class="write-regist-btn" type="button">
+                <span class="regist">등록</span>
+            </button>
+            <button class="write-cancel-btn" type="button">
+                <span class="regist">취소</span>
+            </button>
+        </form>
+    </div>
+    `;
+
+    /* 수정 form append */
+    parent.append(text);
+    parent.addClass(ON_UPDATE);
+
+    /* 등록버튼 이벤트 걸기 */
+    /* 등록후 ajax 전송 */
+    $(".write-regist-btn").on("click", function () {
+        $(this).parent().parent().remove();
+        parent.removeClass(ON_UPDATE);
+    });
+
+    /* 등록취소 이벤트 걸기 */
+    $(".write-cancel-btn").on("click", function() {
+        $(this).parent().parent().remove();
+        parent.removeClass(ON_UPDATE);
+    })
 });

@@ -51,7 +51,7 @@ function swipe(e, displayCount, button, callback) {
 
     // console.log(itemCount, itemWidth);
 
-    let swipeLimit = itemCount / displayCount;
+    let swipeLimit = itemCount / displayCount - 1;
     let siblingBtn = $(button).siblings('.swiper-btn');
 
     callback(swipeLimit, button);
