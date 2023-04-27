@@ -14,7 +14,7 @@ $('.like-btn').on('click', function () {
     }
 });
 
-/* Radio 버튼활성화 이벤트 */
+/* =================================== Radio 버튼활성화 이벤트 ============================================ */
 /* const $radioLabels = $('.custom-radio label');
 
 $radioLabels.on('click', function() {
@@ -24,6 +24,7 @@ $radioLabels.on('click', function() {
 });
 
 $radioLabels.filter(':has(input[type="radio"]:checked)').trigger('click'); */
+
 
 /* ======================Radio 버튼 활성화 및, 선택된 가격으로 총 상품 가격으로 선택 ========================*/
 const $radioLabels = $('.custom-radio label');
@@ -113,7 +114,7 @@ const $fixedDiv = $('.welfare-info-area');
 const $fixedPosition = 300; // 고정시킬 위치 값
 const initialPosition = $fixedDiv.offset();
 const initialTop = initialPosition.top;
-const initialRight = $(window).width()*1.24 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
+const initialRight = $(window).width()*1.545 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
 
 $(window).scroll(function() {
   const currentPosition = $(window).scrollTop();
@@ -129,7 +130,7 @@ $(window).scroll(function() {
     $fixedDiv.removeAttr('style');
   }
 
-  if (Math.floor(currentPosition) == Math.floor(($(document).height()*0.8 - $(window).height()))) {
+  if (Math.floor(currentPosition) == Math.floor(($(document).height() - $(window).height()))) {
     console.log("아래닸냐");
     $fixedDiv.css({'top':-250, 'right':initialRight});
   }

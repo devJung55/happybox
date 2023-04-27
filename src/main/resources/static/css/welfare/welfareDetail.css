@@ -1116,3 +1116,22 @@ input[type="checkbox"], input[type="radio"] {
     max-width: 100%;
     vertical-align: top;
 }
+
+/* ================================ 수정 삭제 버튼 ================================================ */
+
+.edit-btn-area {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.edit-btn-area button{
+    width: 60px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.edit-btn-area button span {
+    cursor: pointer;
+}
