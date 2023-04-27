@@ -156,6 +156,10 @@
     gap: 20px;
   }
 
+  .txt-align {
+    align-items: baseline;
+  }
+
   .content-list span {
     margin-left: 20px;
     display: block;
@@ -182,6 +186,14 @@
     border: none;
     border-radius: 3px;
     padding: 3px 12px;
+  }
+
+  .show-intro {
+    color: #777777;
+    font-size: 13.5px;
+    padding-left: 12px;
+    line-height: 20px;
+    cursor: pointer;
   }
 
   .normal-textarea {
@@ -309,4 +321,33 @@ color: #c97793;
 
 .board-wrapper {
   gap: 5px;
+  justify-content: flex-start;
+  margin-left: 12px;
+}
+
+/* 상품 모달 ==================== */
+.menu-shape {
+  width: 430px;
+  height: 340px;
+}
+
+/* 복지관 소개 모달 ===================== */
+
+.intro-modal {
+  display: none;
+  position: absolute;
+  left: 40%;
+  top: 20%;
+}
+
+.intro-textarea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+  border: none;
+  outline: none;
+  color: #777777;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 3px 12px;
 }
