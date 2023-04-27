@@ -122,7 +122,7 @@ $(window).scroll(function() {
   if (currentPosition >= $fixedPosition) {
     $fixedDiv.addClass('fixed');
     $fixedDiv.css({
-      'top': 30,
+      'top': 10,
       'right': initialRight
     });
   } else {
@@ -151,6 +151,7 @@ let recommendIndex2 = 0;
 
 const $swiperBtnNext = $(".swiper-button-next");
 const $swiperBtnPrev = $(".swiper-button-prev");
+const THREE = 3;
 
 // 다음 슬라이드 불러옴
 $swiperBtnNext.on("click", function (e) {
@@ -158,8 +159,9 @@ $swiperBtnNext.on("click", function (e) {
     if ($(this).hasClass("swiper-button-disabled")) return;
 
     let displayCount = $(e.target).hasClass("swiper-button-displayCount2") ? 2 : 4;
+    
 
-    swipe(e, displayCount, this, addDisabledClass);
+    swipe(e, THREE, this, addDisabledClass);
 });
 
 $swiperBtnPrev.on("click", function (e) {
@@ -168,7 +170,7 @@ $swiperBtnPrev.on("click", function (e) {
 
     let displayCount = $(e.target).hasClass("swiper-button-displayCount2") ? 2 : 4;
 
-    swipe(e, displayCount, this, addDisabledClass);
+    swipe(e, THREE, this, addDisabledClass);
 });
 
 // itemSwiper 실행 함수
@@ -193,13 +195,13 @@ function swipe(e, displayCount, button, callback) {
 
     // console.log(itemCount, itemWidth);
 
-    let swipeLimit = itemCount / displayCount;
+    let swipeLimit = itemCount / THREE - 1;
     let siblingBtn = $(button).siblings('.swiper-btn');
 
     callback(swipeLimit, button);
 
     // 움직이는 width 길이
-    let transformWidth = itemWidth * displayCount * index * -1;
+    let transformWidth = itemWidth * THREE * index * -1;
     itemSwiper($itemList, siblingBtn, transformWidth);
 }
 
@@ -269,3 +271,25 @@ $(document).ready(function() {
     });
   });
 /* =================================================================================================== */
+
+const $slide = $('.slide-img-wrap');
+
+function showSlideImg() {
+    
+    let text = 
+                `
+                    <li class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 227px; margin-right: 20px">
+                        <div class="bnr-item">
+                            <div class="img">
+                                <img src="" />
+                            </div>
+                            <em class="tit text-elps"> </em>
+                            <span class="desc"> </span>
+                                <a href="" class="btn-blank">
+                                    <span class="blind"> </span>
+                                </a>
+                        </div>
+                    </li>
+                `
+    $slide.append();
+}
