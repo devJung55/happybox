@@ -24,7 +24,7 @@ body {
 .boardList-title-box {
   position: absolute;
   z-index: 1;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .boardList-title-box-layout {
@@ -82,7 +82,7 @@ body {
   }
 
 .boardList-content-section-box {
-  margin-top: 101px;
+  margin-top: 81px;
   width: 790px;
 }
 

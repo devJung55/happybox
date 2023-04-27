@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="wrap">
-        <section id="contents" class="container">
+      <section id="contents" class="container">
             <div class="content-wrap">
 
 
@@ -38,6 +38,8 @@
                                       <div class="join-area" style="margin: 0; padding: 15px 100px 90px;">
                                         <fieldset class="form-group-area">
                                           <legend>회원가입 항목 작성</legend>
+
+
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-join-general-id-text" class="form-label">아이디<i class="es2"></i></label>
@@ -48,13 +50,12 @@
                                             </div>
                                             <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                           </div>
-                                          <!--// form-group -->
-                            
+
+
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-join-general-pw-text" class="form-label">비밀번호<i class="es2"></i></label>
                                             </div>
-                                            <!--// form-head -->
                                             <div class="input-group type-lg w-full">
                                               <input type="password" id="member-join-general-pw-text" name="member-join-general-pw-text" class="input-text w571 join-input" placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"/>
                                             </div>
@@ -64,65 +65,70 @@
                                             </div>
                                             <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                           </div>
-                                          <!--// form-group -->
+
+
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-general-join-name-text" class="form-label">업체명<i class="es2"></i></label>
                                             </div>
-                                            <!--// form-head -->
                                             <div class="input-group type-lg w-full">
                                               <input type="text" id="member-general-join-name-text" name="member-general-join-name-text" class="input-text w571 join-input" placeholder="2자 이상 입력" value=""/>
                                             </div>
-                                            <p class="valid error help" id="pw-error-text1" style="display: none">
-                                            </p>
+                                            <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                           </div>
+
+
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-general-join-tel-text" class="form-label">전화번호<i class="es2"></i></label>
                                             </div>
-                                            <!--// form-head -->
                                             <div class="input-group type-lg w-full">
                                               <input type="text" id="member-general-join-tel-text" name="member-general-join-tel-text" class="input-text w571" placeholder="전화번호" value=""/>
                                             </div>
                                             <p class="valid error" id="pw-error-text1" style="display: none"></p>
                                           </div>
+
+
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-general-join-address-text" class="form-label">주소<i class="es2"></i></label>
                                             </div>
-                                            <!--// form-head -->
                                             <div class="input-group type-lg w-full">
-                                              <input type="text" id="address-kakao" name="member-general-join-address-text" class="input-text w571" placeholder="주소" value=""/>
+                                              <input type="text" id="address-kakao" name="member-general-join-address-text" class="input-text w571" placeholder="주소" value="" readonly />
                                             </div>
-                                            <p class="valid error" id="pw-error-text1" style="display: none">
-                                            </p>
+                                            <p class="valid error" id="pw-error-text1" style="display: none"></p>
                                           </div>
+
+
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-general-join-detail-address-text" class="form-label">상세주소</i></label>
                                             </div>
-                                            <!--// form-head -->
                                             <div class="input-group type-lg w-full">
                                               <input type="text" id="address-kakao" name="member-general-join-detail-address-text" class="input-text w571" placeholder="상세주소" value=""/>
                                             </div>
                                             <p class="valid error" id="pw-error-text1" style="display: none"></p>
                                           </div>
+
+
                                           <div class="form-group">
                                             <div class="form-head">
-                                              <label for="member-join-general-email-text" class="form-label">이메일<i class="es2"></i></label>
+                                              <label for="member-join-general-email-text" class="form-label" >이메일<i class="es2"></i></label>
                                             </div>
-                                            <!--// form-head -->
                                             <div class="input-group type-lg w-full">
                                               <input type="text" id="member-join-general-email-text" name="member-join-general-email-text" class="input-text w571 join-input" placeholder="이메일 주소" value=""/>
                                               <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                             </div>
                                           </div>
-                                          <!--// form-group -->
+
+
                                         </fieldset>
+
                                         <div class="btn-bottom-area">
                                           <button type="button" class="btn-basic-lg2 btn-grey3" style="background-color: #ccc; color: #fff; border-radius: 6px;"><span>취소하기</span></button>
                                           <button type="button" class="btn-basic-lg2 btn-primary btn_update" style="border-radius: 6px;"><span>수정완료</span></button>
                                         </div>
+
                                       </div>
                                     </div>
                                 </form>
@@ -134,6 +140,8 @@
         </section>
     </div>
 </body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../../../static/js/join/join.js"></script>
+<script src="../../../static/js/join/business-join.js"></script>
 </html>

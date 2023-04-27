@@ -1084,7 +1084,11 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .bnr-item-list {
-    width: calc(221.3px * 12);
+    width: 100%;
+}
+
+.bnr-item-slide {
+    flex-shrink: 0;
 }
 
 
