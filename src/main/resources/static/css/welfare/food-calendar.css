@@ -1,0 +1,71 @@
+/* 음식 캘린더 */
+
+.calendar-container {
+    width: 760px; min-height: 769px;
+    padding: 15px auto;
+}
+
+.auto-flex {
+    color: #333;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.calendar-view {
+    width: 100%;
+    height: 800px;
+    border: 1px solid #8080809c;
+}
+
+.btn {
+    border-radius: 25px;
+    height: 30px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    color: #333;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.calendar-year {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+
+.btn-padding {
+    padding: 5px;
+}
+
+.btn-padding p {
+    font-size: 4px;
+    font-weight: bold;
+}
+
+.calendar-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.toastui-calendar-grid-cell-date .toastui-calendar-weekday-grid-date.toastui-calendar-weekday-grid-date-decorator {
+    background-color: #8913e6 !important;
+    border-radius: 50%;
+    display: inline-block;
+    font-weight: 700;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 2px;
+    text-align: center;
+    width: 26px;
+}
+
+
+/* 눌럿을때 색변하는 css */
+/* .toastui-calendar-weekday .toastui-calendar-grid-selection {
+    position: absolute;
+    display: none !important;
+} */
