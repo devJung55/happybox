@@ -6,7 +6,7 @@ const Calendar = tui.Calendar;
 const container = document.getElementById('calendar');
 
 const DEFAULT_MONTH_OPTIONS = {
-    dayNames: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
     visibleWeeksCount: 0,
     workweek: false,
     narrowWeekend: false,
@@ -14,6 +14,8 @@ const DEFAULT_MONTH_OPTIONS = {
     isAlways6Weeks: true,
     visibleEventCount: 6,
   };
+
+
 
 const options = {
     defaultView: 'month',
@@ -37,46 +39,82 @@ const options = {
             },
         ],
     },
+    /* 캘린더에 들어갈 아이디 */
     calendars: [
         {
-            id: 'welfare',
-            name: 'ty',
+            id: '1',
+            UserName: '오태양',
+            name: '정지영',
+            UserCode:'그레이들',
             backgroundColor: '#03bd9e',
         },
         {
-            id: 'cal1',
-            name: 'ty',
+            id: '2',
+            UserName: '오태양',
+            UserCode:'그레이들',
+            name: '강민구',
             backgroundColor: '#00a9ff',
+        },
+        {
+            id: '3',
+            UserName: '오태양',
+            name: '오태양',
+            UserCode:'그레이들',
+            backgroundColor: '#fc0101',
+            color : 'white',
         },
     ],
 };
 
+
+
 /* 백앤드시 작성할것 */
+/* 이벤트 객체 생성 -> 화면으로 Model 객체 보내서 Js로 받은 후 넘겨주는 형식 */
 const event = {
-    id: 'cal1',
-        calendarId: 'cal1',
-        title: '가정식 백반',
-        start: '2023-04-17 13:00',
-        end: '2023-04-21',
-        isReadOnly: true,
+    id: '1',
+    calendarId: '2',
+    body:'안녕하세요 오태양입니다.',
+    title: '가정식 백반',
+    state:'',
+    start: '2023-04-17 13:00',
+    end: '2023-04-21',
+    UserName:'링구',
+    isReadOnly: true,
   };
   
 const event1 = {
-    id: 'cal1',
-        calendarId: 'cal1',
-        title: '헬스 푸드(정지영)',
-        start: '2023-04-24T12:00',
-        end: '2023-04-28',
-        isReadOnly: true,
+    id: '2',
+    calendarId: '1',
+    title: '헬스 푸드(정지영)',
+    start: '2023-04-24T12:00',
+    end: '2023-04-28',
+    state:'',
+    User:'오태양',
+    UserName:'링구',
+    isReadOnly: true,
   };
 
+const event2 = {
+    id: '3',
+    calendarId: '3',
+    title: '캐밥 데이',
+    start: '2023-04-10T12:00',
+    end: '2023-04-14',
+    state:'',
+    UserName:'링구',
+    isReadOnly: true,
+};
+
 const calendar = new Calendar(container, options);
+
+console.log(calendar);
 
 
 /* 이벤트 생성 */
 calendar.createEvents([
       event, // event 객체
       event1,
+      event2,
 ]);
 
 calendar.setTheme({
