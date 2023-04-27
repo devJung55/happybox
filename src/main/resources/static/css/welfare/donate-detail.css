@@ -10,7 +10,7 @@ html {
     display: flex;
     border-top: 1px solid #6666661a;
     background: #f8f8f8;
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid #6666661a;
     padding: 10px 0;
 }
 

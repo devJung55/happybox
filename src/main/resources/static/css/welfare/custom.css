@@ -8,6 +8,7 @@
     height: 100%;
     position: relative;
     box-sizing: border-box;
+    width: 700px;
   }
   .tui-full-calendar-layout * {
     box-sizing: border-box;
@@ -3138,4 +3139,9 @@
       font-size: 25px;
       padding: 15px 40px;
       color: #fff;
+  }
+
+  .calendar-wrap {
+    width: 700px;
+    height: 800px;
   }

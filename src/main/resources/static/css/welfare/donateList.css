@@ -1,7 +1,7 @@
 /* 기부글 리스트 */
 
 html {
-    zoom: 80% !important;
+    zoom: 90% !important;
 }
 
 .title-area {
@@ -15,13 +15,13 @@ html {
     padding-bottom: 30px;
 }
 
-.frame-sm {
+.donate-list-container .frame-sm {
     position: relative;
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
     gap: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 .donate-sort {
@@ -201,4 +201,51 @@ html {
     color: #FA0101;
     font-size: 14px;
     font-weight: 600;
+}
+
+/* ======================================== 페이징 처리 ================================================= */
+
+.page-bottom {
+    position: relative;
+}
+
+.board-list ~ .page-bottom {
+    margin-top: 30px;
+}
+
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.pagination > a {
+    height: 25px;
+    padding: 0 1px;
+    margin: 0 8px 0;
+    color: #999;
+}
+
+.pagination > a.current, .pagination > a.on {
+    border-bottom: 2px solid #FB5001;
+    color: #FB5001;
+    font-weight: 700;
+}
+
+.page-bottom .right-area {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+}
+
+.blind {
+    display: contents;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
 }

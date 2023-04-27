@@ -193,7 +193,7 @@
 .btn-grey3 {
     background: #ccc !important;
     color: #fff !important;
-    margin-right: 60px;
+    margin-right: 20px;
 }
 
 .btn-basic-md {
@@ -308,17 +308,17 @@ input[name="welfare-selection"] {
 .btn-bottom-area {
     margin-top: 20px;
     position: relative;
-    text-align: right;
+    text-align: center;
     margin-bottom: 60px;
     border-top: 1px solid #66666669;
     padding-top: 30px;
-    padding-right: 100px;
+    padding-left: 150px;
 }
 
 .btn-primary {
-    background: #FFA5CD !important;
+    background: #FF5938 !important;
     color: #fff;
-    border: 1px solid #FFA5CD !important;
+    border: 1px solid #FF5938 !important;
 }
 
 
