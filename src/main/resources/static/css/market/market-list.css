@@ -42,6 +42,10 @@ html {
     flex-direction: row;
 }
 
+.filter-menu-wrap:last-child {
+    border-bottom: none;
+}
+
 .filter-menu {
     font-weight: 700;
     font-size: 15px;
@@ -50,7 +54,7 @@ html {
 
 .filter-menu-wrap button {
     font-weight: 500;
-    color: rgb(221, 221, 221);
+    color: #ccc;
 }
 
 .filter-menu-wrap:not(:first-child) button {
@@ -69,6 +73,13 @@ html {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
+    margin-left: 5px;
+}
+
+#reset-filter {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .nav-show {
@@ -82,6 +93,10 @@ html {
     width: 100%;
 }
 
+.filter-nav-list:first-child{
+    margin-top: 8px;
+}
+
 .filter-nav-list a {
     display: flex;
     align-items: center;
@@ -93,6 +108,11 @@ html {
     font-size: 14px;
     line-height: 17px;
     color: rgb(51, 51, 51);
+}
+
+.filter-nav-list a button svg {
+    border: 1px solid #eee;
+    border-radius: 50%;
 }
 
 .content {
@@ -119,6 +139,8 @@ html {
     align-items: center;
 }
 
+
+
 .item-order-list .item-order {
     display: flex;
     align-items: center;
@@ -126,6 +148,11 @@ html {
     margin-left: 8px;
     font-size: 14px;
     color: rgb(153, 153, 153);
+}
+
+.order-selected {
+    color: rgb(51, 51, 51) !important;
+    font-weight: 700 !important;
 }
 
 .item-order:not(:first-child):before {
