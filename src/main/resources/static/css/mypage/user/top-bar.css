@@ -84,6 +84,8 @@ a {
     vertical-align: middle;
     margin-right: 12px;
     padding: 8px 0 7px;
+    position: relative;
+    cursor: pointer;
 }
 
 .ico-cou-level01 {
@@ -252,4 +254,34 @@ p {
 
 .text-primary {
     color: #FF6001 !important;
+}
+
+img.user__profile__img {
+    width: 70px;
+    border-radius: 40%;
+}
+
+.img__editor__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 16px;
+    right: 0px;
+    width: 22px;
+    height: 22px;
+    background: rgb(244, 244, 244);
+    border-radius: 40%;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+img.img__editor {
+    width: 18px;
+    filter: invert(39%) sepia(1%) saturate(288%) hue-rotate(28deg) brightness(100%);
+}
+
+.column span {
+    color: #FF6001;
+    font-size: 28px;
 }
