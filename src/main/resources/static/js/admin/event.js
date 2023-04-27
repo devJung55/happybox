@@ -67,6 +67,19 @@ $cancelAdd.on("click", function(e) {
     $(".add-modal").hide();
 });
 
+/* 복지관 소개글 보기용 모달 */
+const $showIntro = $(".show-intro");
+
+$showIntro.on('click', function(e){
+        $(".intro-modal").show();
+})
+
+const $cancelIntro = $("#Capa_3");
+
+$cancelIntro.on('click', function(e) {
+    $(".intro-modal").hide();
+})
+
 /* 상세보기 <- captain에 있던 것 */
 // globalThis.memberId = "";
 

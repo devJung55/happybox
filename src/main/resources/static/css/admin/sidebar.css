@@ -21,7 +21,7 @@
 }
 
 .menu-bar li span {
-	margin: 10px;
+	margin: 0px 10px;
 }
 
 .menu-bar .menu .menu-flex {
@@ -56,6 +56,7 @@
 }
 
 .triangle {
+	cursor: pointer;
 	padding-top: 5px;
 	width: 12px;
 }
