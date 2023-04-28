@@ -124,11 +124,11 @@ input::placeholder {
     min-width: 180px;
     height: 48px;
     padding: 10px 25px 11px;
-    border-radius: 6px;
 }
 
 .btn-primary {
-    background: #ff6001;
+    background: #FF5938;
     color: #fff;
-    border: 1px solid #ff6001;
+    border: 1px solid #FF5938;
+    border-radius: 6px;
 }
