@@ -1,3 +1,12 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'BRBA_B';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/BRBA_B.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 img {
     max-width: 100%;
     vertical-align: top;
@@ -7,6 +16,7 @@ img {
     position: relative;
     width: 100%;
     z-index: 20;
+    background-color: #fff;
 }
 
 .header_inner {
@@ -44,9 +54,14 @@ img {
     width: 132px;
 }
 
+#product-market {
+    font-family: 'BRBA_B' !important;
+    color: rgb(0 0 255 / 61%);
+    font-size: 17px !important;
+}
+
 .fontW700 {
     font-weight: 700 !important;
-    font-size: 20px !important;
 }
 
 .main-swiper-wrap a {
