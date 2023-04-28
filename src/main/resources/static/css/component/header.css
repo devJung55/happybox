@@ -23,7 +23,6 @@ img {
     left: 0;
     width: 180px;
     height: 46px;
-    background: url("https://www.rankingdak.com/resources/pc/images/logo.png");
     background-repeat: no-repeat;
 }
 
@@ -31,6 +30,9 @@ img {
     display: block;
     width: 100%;
     height: 100%;
+    position: absolute;
+    right: 20px;
+    top: 7px;
 }
 
 .header_inner .logo .main-swiper-wrap {
@@ -44,6 +46,7 @@ img {
 
 .fontW700 {
     font-weight: 700 !important;
+    font-size: 20px !important;
 }
 
 .main-swiper-wrap a {
