@@ -77,3 +77,24 @@ p.origin {
 .like__button {
     cursor: pointer;
 }
+
+.content__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bookmark__wrap {
+    color: #666666;
+    cursor: pointer;
+}
+
+.bookmark__wrap span:nth-child(1) {
+    margin-right: 3px;
+}
+
+.strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
+}

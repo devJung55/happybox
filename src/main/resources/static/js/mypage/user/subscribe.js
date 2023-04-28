@@ -32,7 +32,7 @@ $subscribeButton.on("click", function() {
         $subscribeButton.css("color", "#666666");
     } else {
         $subscribeButton.text("구독취소");
-        $subscribeButton.css("border", "1px solid #FF6001");
-        $subscribeButton.css("color", "#FF6001");
+        $subscribeButton.css("border", "1px solid #FF5938");
+        $subscribeButton.css("color", "#FF5938");
     }
 });

@@ -251,6 +251,9 @@ button[disabled] {
 }
 
 .btn-primary {
+  background: #FF5938;
+  color: #fff;
+  border: 1px solid #FF5938;
   background: #ff1d1d9e !important;
   color: #fff;
   border: 1px solid #ff1d1d9e;
