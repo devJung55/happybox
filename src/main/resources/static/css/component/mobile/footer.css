@@ -1,0 +1,87 @@
+.footer {
+    background: #F7F7F7;
+    padding-bottom: 30px;
+}
+
+.footer-links {
+    overflow: hidden;
+    background: #eee;
+    border-top: 1px solid #ddd;
+    padding: 0 15px;
+}
+
+.footer-links > li {
+    float: left;
+    width: 33.3333%;
+    text-align: center;
+}
+
+.footer-links > li > a {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    font-weight: 400;
+    padding: 10px 0;
+}
+
+.footer-inner {
+    padding: 30px 15px 22px;
+}
+
+.footer-cs-info {
+    text-align: center;
+}
+
+.footer-cs-info .cs-guide {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.footer-cs-info .cs-guide .text-primary {
+    font-weight: bold;
+    font-size: 18px;
+    color: inherit !important;
+    line-height: inherit;
+}
+
+.footer-cs-info p {
+    font-size: 12px;
+    color: #999;
+    line-height: 18px;
+}
+
+.footer-menu-list {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-menu-list > li {
+    display: inline-block;
+    padding: 0 8px 0 0;
+}
+
+.footer-menu-list > li > a {
+    color: #666;
+    font-size: 12px;
+}
+
+.footer-menu-list > li:not(:first-child):before {
+    display: inline-block;
+    content: '';
+    width: 1px;
+    height: 12px;
+    vertical-align: middle;
+    background: #ccc;
+    margin: -2px 10px 0 0;
+}
+
+.copyright {
+    margin-top: 15px;
+    color: #999;
+    font-size: 10px;
+    text-align: center;
+    line-height: 10px;
+}
