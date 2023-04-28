@@ -145,7 +145,58 @@ section.container {
     width: 100%;
 }
 
+.main-article .bnr-item .tit {
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.main-article .bnr-item .desc {
+    margin-top: 2px;
+}
+
+.bnr-item .desc {
+    display: block;
+    font-size: 13px;
+    color: #808080;
+    margin-top: 5px;
+}
+
+.text-elps {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    word-break: break-all;
+}
+
 .welfare-donation-list .swiper-wrapper .swiper-slide {
     width: 320px;
     margin-right: 10px;
+}
+
+.bsb-main-slide .swiper-slide .bsb-item-img-wrap {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bsb-main-slide .swiper-slide .bsb-item-txt {
+    position: static;
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #666;
+    width: 100%;
+    text-align: left;
+    transform: none;
+    margin-top: 10px;
+}
+
+.bsb-main-slide .swiper-slide .bsb-item-txt strong {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 2px;
+    display: block;
+    color: #333;
 }
