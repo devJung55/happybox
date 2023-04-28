@@ -67,6 +67,45 @@ const options = {
 };
 
 
+/* ============================================ 객체 연습=================================================== */
+function Welfare(id, calendarId, body, title,start,end,UserName,isReadOnly){
+	this.id = id;
+	this.calendarId = calendarId;
+	this.body = body;
+	this.title = title;
+	this.start = start;
+	this.end = end;
+	this.UserName = UserName;
+    this.isReadOnly = true;
+};
+
+var id = "2";
+var calendarId = "2";
+var body = "안녕하세요";
+var title = "앙기모띠";
+var start = "2023-05-10";
+var end = "2023-05-15";
+var UserName = "강민구";
+var isReadOnly = true;
+
+/* ======================================= dateFormat  ================================================================== */
+var today = new Date();
+
+var year = today.getFullYear();
+var month = ('0' + (today.getMonth() + 1)).slice(-2);
+var day = ('0' + today.getDate()).slice(-2);
+
+var dateString = year + '-' + month  + '-' + day;
+
+/* ==================== =============================================== ===============================================*/
+
+
+var welfare1 = new Welfare("1","2","아령","청국장","","2023-05-01","2023-05-05","태양");
+var welfare2 = new Welfare(id,calendarId,body,title,start,end,UserName,isReadOnly);
+
+/* =============================================================================================== */
+
+
 
 /* 백앤드시 작성할것 */
 /* 이벤트 객체 생성 -> 화면으로 Model 객체 보내서 Js로 받은 후 넘겨주는 형식 */
@@ -115,6 +154,8 @@ calendar.createEvents([
       event, // event 객체
       event1,
       event2,
+      welfare1,
+      welfare2,
 ]);
 
 calendar.setTheme({

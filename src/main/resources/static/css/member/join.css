@@ -245,7 +245,7 @@
 .btn-dim,
 button[disabled] {
   color: #fff;
-  background: #ccc;
+  background: #ccc !important;
   border: 1px solid #ccc;
   cursor: default;
 }
@@ -254,6 +254,9 @@ button[disabled] {
   background: #FF5938;
   color: #fff;
   border: 1px solid #FF5938;
+  background: #ff1d1d9e !important;
+  color: #fff;
+  border: 1px solid #ff1d1d9e;
   cursor: pointer;
 }
 
@@ -519,7 +522,7 @@ button[disabled] {
 .btn-default-ex {
   background: #fff;
   color: #333;
-  border: 1px solid #666;
+  border: 1px solid #666 !important;
 }
 
 .btn-form {
@@ -584,7 +587,7 @@ button[disabled] {
 }
 
 .error {
-  color: #ff490f;
+  color: #ff1d1d9e;
 }
 
 .join-area .form-group-area + .btn-bottom-area {
@@ -716,7 +719,7 @@ button[disabled] {
   left: 5px;
   width: 10px;
   height: 10px;
-  background: #FF6001;
+  background: #ff1d1d9e;
   border-radius: 100%;
 }
 

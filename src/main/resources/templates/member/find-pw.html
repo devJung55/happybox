@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../static/css/member/find.css" />
   </head>
   <body>
+    <header></header>
     <root style="zoom: 80%">
     <section class="join-container" style="min-height: auto">
       <div class="join-area type2">
@@ -36,11 +37,11 @@
                     data-gtm-form-interact-field-id="1"
                   />
                   <label for="find-member-pw-radio-1">휴대폰번호로 찾기</label>
-                  <button type="button" class="btn-icon-mark" onclick="toolbox()">
+                  <button type="button" class="btn-icon-mark" onmouseover="toolbox()" onmouseout="hide()">
                     <i class="ico-excl2" style="border: 2px solid #d9d9d9"></i
                     ><span class="blind">주의</span>
                   </button>
-                  <div class="tooltip-wrap" onclick="hide($(this))">
+                  <div class="tooltip-wrap">
                     <div class="tool">
                       <span
                         >휴대폰 인증에 문제가 있으신 경우,<br />고객센터로 문의 주시기
@@ -176,7 +177,12 @@
       <!--// join-area -->
     </section>
     </root>
+    <footer></footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $('header').load('../../templates/component/header.html');
+    $('footer').load('../../templates/component/footer.html');
+  </script>
   <script src="../../static/js/join/find.js"></script>
 </html>

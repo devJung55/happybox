@@ -13,12 +13,15 @@ const passwordEnglishRegex = /[a-z]/gi;
 const passwordSpecialCharacterRegex = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
 const emailRegex = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{2,4}$/;
 const $phoneInput = $('#member-general-join-phone-text');
+const $addressInput = $('.address-input');
+const $addressDetailInput = $('.address-detail-input');
 
 let joinBlurMessages = [
   '아이디를 입력하세요.',
   '비밀번호를 입력하세요.',
   '비밀번호 확인을 위해 한번 더 입력하세요.',
   '이름을 입력하세요.',
+  '상세주소를 입력하세요.',
   '이메일을 입력하세요.',
   '생년월일을 입력하세요.',
 ];
@@ -225,6 +228,10 @@ function send() {
     alert('가입 정보를 확인하세요.');
   } else if ($phoneInput.val() == '') {
     alert('휴대폰 번호를 입력하세요.');
+  } else if ($addressInput.val() == '') {
+    alert('주소를 입력하세요.');
+  } else if($addressDetailInput.val() == ''){
+    alert('상세주소를 입력하세요.')
   } else {
     alert('회원가입 성공!');
   }

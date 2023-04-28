@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>레시피 게시글 작성하기</title>
+    <title>리뷰 게시글 작성하기</title>
     <link rel="stylesheet" href="../../static/css/global/global.css" />
     <link rel="stylesheet" href="../../static/css/component/header.css" />
     <link rel="stylesheet" href="../../static/css/component/footer.css" />
@@ -57,16 +57,56 @@
                         </tr>
 
                         <tr>
+                            <th class="text-left" scope="row" style="padding-top: 0;">
+                              <div class="in-tb">
+                                복지관명<em class="es"><span class="blind">필수입력</span></em>
+                              </div>
+                            </th>
+                            <td class="text-left" style="padding-top: 0;">
+                              <div class="input-group w-full">
+                                <input
+                                  type="text"
+                                  name="vQuestionTitle"
+                                  id="vQuestionTitle"
+                                  title=""
+                                  class="input-text"
+                                  placeholder="복지관명을 입력해주세요"
+                                  value=""
+                                />
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <th class="text-left" scope="row" style="padding-top: 0;">
+                                <div class="in-tb">
+                                  별점<em class="es"><span class="blind">필수입력</span></em>
+                                </div>
+                                </th>
+                                <td class="text-left" style="padding-top: 0;">
+                                    <div class="input-group w-full">
+                                        <em class="rating-point">
+                                            <img class="rating__point one" src="../../static/img/mypage/rating-pull.png">
+                                            <img class="rating__point two" src="../../static/img/mypage/rating-pull.png">
+                                            <img class="rating__point three" src="../../static/img/mypage/rating-pull.png">
+                                            <img class="rating__point four" src="../../static/img/mypage/rating-pull.png">
+                                            <img class="rating__point five" src="../../static/img/mypage/rating.png">
+                                          </em>
+                                    </div>
+                                  </td>
+                          </tr>
+
+                        <tr>
                           <th class="text-left" scope="row">
                             <div class="in-tb">
-                              내용 <em class="es"><span class="blind">필수입력</span></em>
+                              문의내용 <em class="es"><span class="blind">필수입력</span></em>
                             </div>
                           </th>
                           <td class="text-left">
                             <div class="textarea-box-count h230">
                               <textarea
                                 id="vQuestionCont"
-                                placeholder="내용을 입력하세요"
+                                placeholder="문의내용을 입력하세요"
                                 name="vQuestionCont"
                               ></textarea>
                               <div class="txt-count">
@@ -127,98 +167,6 @@
                                 </div>
                               </div>
                               <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
-                                <button type="button" class="btn-attach-thumb">
-                                  <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                </button>
-                                <input
-                                  class="input_file"
-                                  name="imgFile"
-                                  type="file"
-                                  accept="image/*"
-                                  style="display: none"
-                                />
-                                <div class="attach-img" style="display: none;">
-                                  <img
-                                    src=""
-                                    style="width: 68px; height: 68px"
-                                  /><button
-                                    type="button"
-                                    class="btn-x-xs2 btn_del"
-                                  >
-                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
-                                  </button>
-                                </div>
-                              </div>
-                              <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
-                                <button type="button" class="btn-attach-thumb">
-                                  <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                </button>
-                                <input
-                                  class="input_file"
-                                  name="imgFile"
-                                  type="file"
-                                  accept="image/*"
-                                  style="display: none"
-                                />
-                                <div class="attach-img" style="display: none;">
-                                  <img
-                                    src=""
-                                    style="width: 68px; height: 68px"
-                                  /><button
-                                    type="button"
-                                    class="btn-x-xs2 btn_del"
-                                  >
-                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
-                                  </button>
-                                </div>
-                              </div>
-                              <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
-                                <button type="button" class="btn-attach-thumb">
-                                  <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                </button>
-                                <input
-                                  class="input_file"
-                                  name="imgFile"
-                                  type="file"
-                                  accept="image/*"
-                                  style="display: none"
-                                />
-                                <div class="attach-img" style="display: none;">
-                                  <img
-                                    src=""
-                                    style="width: 68px; height: 68px"
-                                  /><button
-                                    type="button"
-                                    class="btn-x-xs2 btn_del"
-                                  >
-                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
-                                  </button>
-                                </div>
-                              </div>
-                              <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
-                                <button type="button" class="btn-attach-thumb">
-                                  <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                </button>
-                                <input
-                                  class="input_file"
-                                  name="imgFile"
-                                  type="file"
-                                  accept="image/*"
-                                  style="display: none"
-                                />
-                                <div class="attach-img" style="display: none;">
-                                  <img
-                                    src=""
-                                    style="width: 68px; height: 68px"
-                                  /><button
-                                    type="button"
-                                    class="btn-x-xs2 btn_del"
-                                  >
-                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
-                                  </button>
-                                </div>
-                              </div>
-                              <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
                                 <button type="button" class="btn-attach-thumb">
                                   <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                 </button>

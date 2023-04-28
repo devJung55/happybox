@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../static/css/member/join.css" />
   </head>
   <body>
+    <header></header>
     <root style="zoom: 80%">
     <section id="contents" class="container">
       <form id="join-general-form" name="join-general-form" method="post" accept-charset="UTF-8">
@@ -965,6 +966,47 @@
               </div>
               <div class="form-group">
                 <div class="form-head">
+                  <label for="member-general-join-address-text" class="form-label"
+                    >주소<i class="es2"></i
+                  ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <input
+                    type="text"
+                    id="address-kakao"
+                    name="member-general-join-address-text"
+                    class="input-text w571"
+                    placeholder="주소"
+                    value=""
+                    readonly
+                  />
+                </div>
+                <p class="valid error" id="pw-error-text1" style="display: none">
+                </p>
+              </div>
+              <div class="form-group">
+                <div class="form-head">
+                  <label for="member-general-join-detail-address-text" class="form-label"
+                    >상세주소<i class="es2"></i
+                      ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <input
+                    type="text"
+                    id="address-kakao"
+                    name="member-general-join-detail-address-text"
+                    class="input-text w571"
+                    placeholder="상세주소"
+                    value=""
+                  />
+                </div>
+                <p class="valid error" id="pw-error-text1" style="display: none">
+                </p>
+              </div>
+              <div class="form-group">
+                <div class="form-head">
                   <label for="member-join-general-email-text" class="form-label"
                     >이메일<i class="es2"></i
                   ></label>
@@ -1225,7 +1267,12 @@
       </form>
     </section>
   </root>
+  <footer></footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $('header').load('../../templates/component/header.html');
+    $('footer').load('../../templates/component/footer.html');
+  </script>
   <script src="../../static/js/join/join.js"></script>
 </html>

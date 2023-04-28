@@ -58,5 +58,42 @@ function sample6_execDaumPostcode() {
 }
 
 /* ==================================================================================== */
+$(document).ready(function() {
+    var maxPoint = 2000; // 사용 가능한 최대 포인트
+    var inputPoint = 0; // 입력된 포인트
+    
+    // 전액 사용 버튼 클릭 이벤트
+    $('.btn-ex-grey').on('click', function() {
+      inputPoint = maxPoint; // 입력된 포인트를 최대 포인트로 설정
+      $('#point').val(inputPoint); // input 태그에 입력된 포인트 출력
+      $('.text-num-bold').text(0); // 사용 가능한 기부 포인트 초기화
+    });
+    
+    // 입력된 포인트가 변경될 때마다 발생하는 이벤트
+    $('#point').on('change keyup', function() {
+      var point = parseInt($(this).val().replace(/,/g, '')); // 입력된 포인트를 정수형으로 변환
+      if (!isNaN(point)) { // 입력된 값이 숫자인 경우
+        if (point > maxPoint) { // 입력된 포인트가 최대 포인트보다 큰 경우
+          point = maxPoint; // 최대 포인트로 설정
+          $(this).val(point); // input 태그에 최대 포인트 출력
+        }
+        $('.text-num-bold').text(maxPoint - point); // 사용 가능한 기부 포인트 계산하여 출력
+        inputPoint = point; // 입력된 포인트 저장
+      } else { // 입력된 값이 숫자가 아닌 경우
+        $('.text-num-bold').text(maxPoint); // 사용 가능한 기부 포인트 초기화
+        inputPoint = 0; // 입력된 포인트 초기화
+      }
+    });
+    
+    // 삭제 버튼 클릭 이벤트
+    $('.btn-input-del').on('click', function() {
+      $('#point').val(''); // input 태그 내용 삭제
+      $('.text-num-bold').text(maxPoint); // 사용 가능한 기부 포인트 초기화
+      inputPoint = 0; // 입력된 포인트 초기화
+    });
+    
+  });
+  
+
 
 /* ==================================================================================== */

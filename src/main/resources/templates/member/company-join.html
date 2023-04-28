@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../static/css/member/join.css" />
   </head>
   <body>
+    <header></header>
     <root style="zoom: 80%">
     <section id="contents" class="container">
       <form id="join-general-form" name="join-general-form" method="post" accept-charset="UTF-8">
@@ -97,7 +98,7 @@
                     id="member-general-join-name-text"
                     name="member-general-join-name-text"
                     class="input-text w571 join-input"
-                    placeholder="2자 이상 입력"
+                    placeholder="유통업체명 입력"
                     value=""
                   />
                 </div>
@@ -116,12 +117,12 @@
                     type="text"
                     id="member-general-join-tel-text"
                     name="member-general-join-tel-text"
-                    class="input-text w571"
+                    class="input-text w571 join-input"
                     placeholder="전화번호"
                     value=""
                   />
                 </div>
-                <p class="valid error" id="pw-error-text1" style="display: none">
+                <p class="valid error help" id="pw-error-text1" style="display: none">
                 </p>
               </div>
               <div class="form-group">
@@ -136,7 +137,7 @@
                     type="text"
                     id="address-kakao"
                     name="member-general-join-address-text"
-                    class="input-text w571"
+                    class="input-text w571 address-input"
                     placeholder="주소"
                     value=""
                     readonly
@@ -148,8 +149,8 @@
               <div class="form-group">
                 <div class="form-head">
                   <label for="member-general-join-detail-address-text" class="form-label"
-                    >상세주소</i
-                  ></label>
+                    >상세주소<i class="es2"></i
+                    ></label>
                 </div>
                 <!--// form-head -->
                 <div class="input-group type-lg w-full">
@@ -157,7 +158,7 @@
                     type="text"
                     id="address-kakao"
                     name="member-general-join-detail-address-text"
-                    class="input-text w571"
+                    class="input-text w571 address-detail-input"
                     placeholder="상세주소"
                     value=""
                   />
@@ -204,9 +205,13 @@
       </form>
     </section>
     </root>
+    <footer></footer>
   </body>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="../../static/js/join/join.js"></script>
-  <script src="../../static/js/join/business-join.js"></script>
+  <script>
+    $('header').load('../../templates/component/header.html');
+    $('footer').load('../../templates/component/footer.html');
+  </script>
+  <script src="../../static/js/join/company-join.js"></script>
 </html>
