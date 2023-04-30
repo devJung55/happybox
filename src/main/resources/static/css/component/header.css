@@ -54,9 +54,10 @@ img {
     width: 132px;
 }
 
+
 #product-market {
     font-family: 'BRBA_B' !important;
-    color: rgb(0 0 255 / 61%);
+    color: rgba(31, 94, 211, 0.61);
     font-size: 17px !important;
 }
 
@@ -65,9 +66,12 @@ img {
 }
 
 .main-swiper-wrap a {
-    font-weight: 500;
     font-size: 18px;
     color: #FF5938;
+}
+
+.main-swiper-wrap a:hover {
+    font-weight: 700 !important;
 }
 
 .main-swiper-wrap a:first-child:after {
