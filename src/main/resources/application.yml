@@ -6,17 +6,17 @@ server:
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@localhost:1521:XE
+    url: jdbc:oracle:thin:@3.19.24.179:1521:XE
     username: hr
     password: hr
 
   #jpa
   jpa:
-    database-platform: org.hibernate.dialect.OracleDialect
+    database-platform: org.hibernate.dialect.Oracle10gDialect
     hibernate:
 
       #jpa ddl-auto
-      ddl-auto: create
+      ddl-auto: update
 
     show-sql: true
 
