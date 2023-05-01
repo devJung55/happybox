@@ -20,11 +20,12 @@
 .btn {
     border-radius: 25px;
     height: 30px;
-    border: 1px solid #ddd;
     font-size: 12px;
     color: #333;
     margin-right: 10px;
     cursor: pointer;
+    background-color: #fff;
+    border: none;
 }
 
 .calendar-year {
