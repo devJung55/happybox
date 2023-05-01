@@ -24,13 +24,13 @@ function appendIndex1() {
                 </div>
                 <div class="timer time-desc">
                     <span class="timer-title">
-                        타임세일 기간 만료
+                        노원구 복지관 리뷰
                     </span>
                 </div>
                 <div class="desc-bottom">
                     <div class="top">
                         <em class="imgbadge-dlv">
-                            <span>특급배송</span>
+                            <span>정기배송</span>
                         </em>
                         <div class="rating-simply">
                             <span class="rating-star"></span>
@@ -41,9 +41,9 @@ function appendIndex1() {
                     <p class="tit">
                         <a
                             href="/product/view?productCd=F000005527"
-                            class="text-elps2"
-                            >☎TIME SALE☎ 맛있닭 한입 소스 닭가슴살
-                            8+2</a
+                            class="text-elps2">
+                            노원구 복지관 최고네요!
+                            </a
                         >
                     </p>
                     <div class="price-info">
@@ -80,7 +80,7 @@ function appendIndex2() {
                 <div class="desc-bottom">
                     <div class="top">
                         <em class="imgbadge-dlv">
-                            <span>특급배송</span>
+                            <span>정기배송</span>
                         </em>
                         <div class="rating-simply">
                             <span class="rating-star"></span>
@@ -129,7 +129,7 @@ function appendIndex3() {
                 <div class="desc-bottom">
                     <div class="top">
                         <em class="imgbadge-dlv">
-                            <span>특급배송</span>
+                            <span>정기배송</span>
                         </em>
                         <div class="rating-simply">
                             <span class="rating-star"></span>

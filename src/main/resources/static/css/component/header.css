@@ -56,13 +56,12 @@ img {
 
 
 #product-market {
-    font-family: 'BRBA_B' !important;
     color: rgba(31, 94, 211, 0.61);
-    font-size: 17px !important;
+    font-size: 18px !important;
 }
 
-.fontW700 {
-    font-weight: 700 !important;
+.fontW500 {
+    font-weight: 500 !important;
 }
 
 .main-swiper-wrap a {
@@ -121,6 +120,10 @@ img {
     vertical-align: middle;
     background: #e6e6e6;
     margin: -2px 11px 0 0;
+}
+
+.util > ul > li:last-child {
+    padding: 0;
 }
 
 .header_inner .header-search {
@@ -192,6 +195,9 @@ img {
 
 .my-menu > ul {
     font-size: 0;
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 .my-menu > ul > li {
@@ -199,32 +205,21 @@ img {
     vertical-align: top;
 }
 
-.btn-util-coupon {
-    display: inline-block;
-    width: 48px;
-    height: 48px;
-    background-image: url(https://www.rankingdak.com/resources/pc/images/icon/top-util-compiltaion.png);
-    background-size: auto 48px;
-    background-position: 0% center;
-}
-
 .btn-util-mypage {
     display: inline-block;
-    width: 48px;
-    height: 48px;
-    background-image: url(https://www.rankingdak.com/resources/pc/images/icon/top-util-compiltaion.png);
-    background-size: auto 48px;
-    background-position: 50% center;
+    width: 32px;
+    height: 32px;
+    background-image: url('../../img/header/mypage_icon.png');
+    background-size: contain;
 }
 
 .btn-util-cart {
     display: inline-block;
     position: relative;
-    width: 48px;
-    height: 48px;
-    background-image: url(https://www.rankingdak.com/resources/pc/images/icon/top-util-compiltaion.png);
-    background-size: auto 48px;
-    background-position: 100% center;
+    width: 30px;
+    height: 30px;
+    background-image: url('../../img/welfare/cart.png');
+    background-size: contain;
 }
 
 .gnb-wrap {
@@ -258,10 +253,11 @@ img {
     width: 160px;
     color: #333;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 700;
     transition: 0.1s;
     padding: 19px 0;
     line-height: 20px;
+    user-select: none;
 }
 
 .btn-menu-all:before {

@@ -37,12 +37,10 @@
 
 .footer-info .footer-logo {
     position: absolute;
-    top: 35px;
+    top: 30px;
     left: 0;
     display: block;
-    width: 104px;
-    height: 42px;
-    background: url(https://www.rankingdak.com/resources/pc/images/footer_logo.png) 0 0;
+    height: 32px;
     margin-bottom: 26px;
 }
 

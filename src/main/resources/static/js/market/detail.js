@@ -86,13 +86,6 @@ $("document").ready(function () {
     });
 });
 
-/* 북마크 저장 */
-const $itemAddFavorBtn = $(".item-personlize button");
-
-$itemAddFavorBtn.on("click", function () {
-    $(this).find("svg path").attr("fill", "#ffa5cd");
-});
-
 /* 최신순, 추천순 정렬 */
 const $reviewOrder = $(".review-orders button");
 
@@ -114,15 +107,14 @@ $updateReviewBtn.on("click", function () {
 
     let parent = $(this).parent().parent().parent();
 
-    if(parent.hasClass(ON_UPDATE)) return;
+    if (parent.hasClass(ON_UPDATE)) return;
 
     let text = `
     <div class="write-content-wrap">
         <form>
             <textarea
                 class="write-textarea"
-                placeholder="댓글 남기기"
-            ></textarea
+            >이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로 데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다</textarea
             ><button class="write-regist-btn" type="button">
                 <span class="regist">등록</span>
             </button>
@@ -145,8 +137,8 @@ $updateReviewBtn.on("click", function () {
     });
 
     /* 등록취소 이벤트 걸기 */
-    $(".write-cancel-btn").on("click", function() {
+    $(".write-cancel-btn").on("click", function () {
         $(this).parent().parent().remove();
         parent.removeClass(ON_UPDATE);
-    })
+    });
 });

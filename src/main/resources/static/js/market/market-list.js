@@ -23,7 +23,7 @@ $navBtn.on("click", function () {
     let check = btn.data("checked") === true;
 
     // 버튼의 색깔을 바꾼 후
-    btn.find(".check_path").attr("fill", `${check ? "#fff" : "#5f0080"}`);
+    btn.find(".check_path").attr("fill", `${check ? "#fff" : "#467adc"}`);
 
     // data 속성 바꾸기
     btn.data("checked", !check);
