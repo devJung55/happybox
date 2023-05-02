@@ -1,6 +1,7 @@
 package com.app.happybox.entity.user;
 
 import com.app.happybox.audity.Period;
+import com.app.happybox.entity.product.Order;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
 @Getter @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -36,6 +38,9 @@ public abstract class User extends Period {
     @Enumerated(EnumType.STRING)
     @ColumnDefault(value = "'REGISTERED'")
     private UserStatus userStatus;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user", orphanRemoval = true)
+    private List<Order> orders;
 
     /* 생성자 */
     public User(String userId, String userPassword, Address address, String userEmail, UserStatus userStatus) {

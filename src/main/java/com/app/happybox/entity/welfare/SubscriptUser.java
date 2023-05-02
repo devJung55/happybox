@@ -17,14 +17,17 @@ public class SubscriptUser extends Period {
     @Id @GeneratedValue
     private Long id;
 
+    /* 구독상품 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Subscript subscript;
 
+    /* 구독중인 회원 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Member member;
 
+    /* 구독 상태 */
     @Enumerated(EnumType.STRING)
     @ColumnDefault(value = "'SUBSCRIBED'")
     @NotNull

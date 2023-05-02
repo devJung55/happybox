@@ -14,6 +14,8 @@ import java.util.List;
 @Entity @Table(name = "TBL_MEMBER")
 @Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends User{
+
+    /* 일반회원만 있는 정보 */
     @NotNull
     private String memberName;
     @NotNull

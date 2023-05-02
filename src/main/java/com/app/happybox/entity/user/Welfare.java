@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Welfare extends User {
 
-    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
+    /* 복지관의 구독 상품 기본적으로 복지관 당 하나 (OneToOne) */
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "welfare", orphanRemoval = true)
     private Subscript subscript;
 }
