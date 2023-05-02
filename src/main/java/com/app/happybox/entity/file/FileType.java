@@ -1,5 +1,5 @@
 package com.app.happybox.entity.file;
 
 public enum FileType {
-    REPRESENT, NORMAL
+    MEMBER, WELFARE, DISTRIBUTOR
 }
