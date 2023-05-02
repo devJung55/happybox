@@ -174,6 +174,44 @@ div.banner div {
     transition: 0.3s ease-in-out;
 }
 
+.page-nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: fit-content;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    border-left:  1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.page-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 170px;
+}
+
+.page-nav a:first-child {
+    border-bottom-left-radius: 3px;
+}
+
+.page-nav a:last-child {
+    border-bottom-right-radius: 3px;
+}
+
+.page-nav a {
+    border-right: 1px solid #ccc;
+}
+
+.page-nav a:hover {
+    background-color: #eee;
+}
+
 .best-list .frame-sm .swiper-container .swiper-wrapper {
     justify-content: space-between;
 }
@@ -307,7 +345,7 @@ div.banner div {
 
 .main-article .time-sales-title-area h2 span:first-child {
     padding-left: 38px;
-    background: url(https://www.rankingdak.com/resources/pc/images/icon/ico_timesale_title.png)
+    background: url('../../img/main/recent_icon.png')
         no-repeat 0 center / 34px;
     line-height: 36px;
     font-weight: 600;
@@ -474,6 +512,7 @@ div.banner div {
 .text-elps2 {
     display: block;
     display: -webkit-box !important;
+    text-align: left;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;

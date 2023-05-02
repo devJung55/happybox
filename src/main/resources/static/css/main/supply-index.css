@@ -13,6 +13,10 @@
     padding: 0 20px;
 }
 
+.marginBot100{
+    margin-bottom: 100px !important;
+}
+
 .swiper-container {
     margin: 0 auto;
     position: relative;
