@@ -56,7 +56,7 @@ $radioLabels.filter(':has(input[type="radio"]:checked)').trigger('click');
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
-/* db에 있는 group location이 들어갈 곳 */
+/* db에 있는 location이 들어갈 곳 */
 geocoder.addressSearch("서울시 노원구 석계로 49 현대아파트 105동", function (result, status) {
     // 정상적으로 검색이 완료됐으면
     if (status === kakao.maps.services.Status.OK) {
@@ -271,6 +271,7 @@ $(document).ready(function() {
     });
   });
 /* =================================================================================================== */
+/* ==================================== 슬라이드 이미지 뿌리기   =================================================== */
 
 const $slide = $('.slide-img-wrap');
 

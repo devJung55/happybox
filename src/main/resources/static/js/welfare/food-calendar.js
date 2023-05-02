@@ -1,5 +1,3 @@
-/* import */
-
 // 요소를 직접 전달하는 경우
 const Calendar = tui.Calendar;
 // CSS 선택자를 이용하는 경우
@@ -217,10 +215,10 @@ calendar.on('beforeCreateEvent', (eventObj) => {
     ]);
 });
 
-calendar.on('clickEvent', ({ event }) => {
-    const el = document.getElementById('clicked-event');
-    el.innerText = event.title;
-});
+// calendar.on('clickEvent', ({ event }) => {
+//     const el = document.getElementById('clicked-event');
+//     el.innerText = event.title;
+// });
 
 
 // ==================================================== 캘린더 버튼
