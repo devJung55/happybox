@@ -225,16 +225,14 @@ $joinInputs.on('blur', function () {
 
 function send() {
   if (joinCheckAll.filter((check) => check).length != $joinInputs.length) {
-    alert('가입 정보를 확인하세요.');
+    alertModal('가입 정보를 확인하세요.');
   } else if ($phoneInput.val() == '') {
-    alert('휴대폰 번호를 입력하세요.');
+    alertModal('휴대폰 번호를 입력하세요.');
   } else if ($addressInput.val() == '') {
-    alert('주소를 입력하세요.');
+    alertModal('주소를 입력하세요.');
   } else if($addressDetailInput.val() == ''){
-    alert('상세주소를 입력하세요.')
-  } else {
-    alert('회원가입 성공!');
-  }
+    alertModal('상세주소를 입력하세요.')
+  } 
 }
 
 function onClickMemberJoinCheckAll() {
@@ -482,7 +480,7 @@ function onClickCertiNoComfirmBtn() {
 
   // setSmsTalkCertified(true);
 
-  alert('인증이 완료되었습니다.');
+  alertModal('인증이 완료되었습니다.');
   closeMemberJoinInputCertiNoPop();
 }
 
@@ -516,3 +514,15 @@ function onClickCertiNoComfirmBtn() {
 
   return isValid;
 } */
+
+
+/* 모달창 */
+
+const $alertModal = $('.alert-modal-display');
+function alertModal(errorMsg) {
+  $(".alert").text(errorMsg);
+  $alertModal.fadeIn();
+  setTimeout(function () {
+      $alertModal.fadeOut();
+  }, 2000);
+}
