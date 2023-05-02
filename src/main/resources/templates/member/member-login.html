@@ -13,6 +13,18 @@
     <header></header>
     <root style="zoom: 80%">
     <section class="login-section">
+      <!-- 잠깐 나왓다 사라지는 알람창 -->
+    <div class="alert-modal-display">
+      <div class="diary-modal">
+          <div class="alert-modal-box">
+              <div style="text-align: center;">
+                  <div style="margin-top: 18px;">
+                      <span class="alert"></span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
       <div class="login-container">
         <div class="login-area">
           <div class="login-greeting">
@@ -67,7 +79,7 @@
                   /><label for="remember-me2"> 아이디저장</label>
                 </div>
               </div>
-              <button type="submit" class="btn-basic-lg2 btn-primary w-full">
+              <button type="button" class="btn-basic-lg2 btn-primary w-full" onclick="send()">
                 <span>로그인</span>
               </button>
             </fieldset>
@@ -124,4 +136,5 @@
     $('header').load('../../templates/component/header.html');
     $('footer').load('../../templates/component/footer.html');
   </script>
+  <script src="../../static/js/member/login.js"></script>
 </html>
