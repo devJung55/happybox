@@ -518,11 +518,11 @@ function onClickCertiNoComfirmBtn() {
 
 /* 모달창 */
 
-const $alertModal = $('.alert-modal-display');
 function alertModal(errorMsg) {
-  $(".alert").text(errorMsg);
-  $alertModal.fadeIn();
+  $("div#content-wrap").html(errorMsg)
+  $("div.modal").css("display", "flex").hide().fadeIn(500);
   setTimeout(function () {
-      $alertModal.fadeOut();
-  }, 2000);
+    $("div.modal").fadeOut();
+}, 2000);
 }
+

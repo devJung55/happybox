@@ -241,11 +241,10 @@ function send() {
     } 
   }
 
-  const $alertModal = $('.alert-modal-display');
-function alertModal(errorMsg) {
-  $(".alert").text(errorMsg);
-  $alertModal.fadeIn();
-  setTimeout(function () {
-      $alertModal.fadeOut();
+  function alertModal(errorMsg) {
+    $("div#content-wrap").html(errorMsg)
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function () {
+      $("div.modal").fadeOut();
   }, 2000);
-}
+  }
