@@ -16,7 +16,7 @@
       <div class="detail-container">
         <div class="slider__sec">
           <div class="slider slick-initialized slick-slider">
-            <button class="swiper-button-prev swiper-btn swiper-button-disabled">
+            <button class="swiper-button-prev swiper-btn">
               <svg viewBox="0 0 512 512">
                 <polygon
                   points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
@@ -24,7 +24,7 @@
               </svg>
             </button>
             <div class="slick-list draggable">
-              <div class="slick-track" style="opacity: 1; width: 1200px; height: 100%">
+              <div class="slick-track" style="opacity: 1; height: 100%">
                 <div
                   class="slick-slide"
                   data-slick-index="0"
@@ -74,7 +74,7 @@
                   </div>
                 </div>
                 <div
-                  class="slick-slide slide"
+                  class="slick-slide"
                   data-slick-index="0"
                   aria-hidden="true"
                   style="
@@ -114,7 +114,6 @@
             <a href="javascript:void(0)">
               <img
                 src="https://www.rankingdak.com/resources/pc/images/img/pc_delivery_banner2.jpg"
-                alt="더 편리해진 특급배송 24시 이전 주문 시 내일 도착"
             /></a>
           </div>
         </div>
@@ -122,12 +121,22 @@
         <div class="info-area">
           <div class="info-area__btn">
             <button type="button" class="update-btn">
-              <svg viewBox="0 0 24 24" class="write-button-icon">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M17.9338 2.08059C17.5629 1.80534 17.0366 1.83583 16.7002 2.17212L3.43579 15.4323L3.33867 15.5461C3.22211 15.7068 3.1582 15.9013 3.1582 16.1023V19.8947L3.16685 20.0233C3.22958 20.4857 3.62596 20.8421 4.10558 20.8421H7.2678L7.39635 20.8335C7.85877 20.7707 8.21517 20.3744 8.21517 19.8947L8.20652 19.7662C8.14379 19.3038 7.74742 18.9474 7.2678 18.9474H5.05168V16.4956L13.2631 8.28674L15.7123 10.7359L9.7494 16.6985L9.65767 16.8047C9.38244 17.1756 9.41297 17.7019 9.74927 18.0383C10.1192 18.4083 10.719 18.4083 11.0891 18.0384L21.8281 7.30155L21.9198 7.1953C22.195 6.82447 22.1645 6.29818 21.8283 5.96181L18.04 2.17233L17.9338 2.08059ZM17.0521 9.39616L19.8181 6.63032L17.3688 4.18232L14.6031 6.94717L17.0521 9.39616Z"
-                ></path>
+              <svg
+                class="write-button-icon"
+                style="enable-background: new 0 0 1696.162 1696.143"
+                version="1.1"
+                viewBox="0 0 1696.162 1696.143"
+                width="1696.162px"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g id="pen">
+                  <path
+                    d="M1648.016,305.367L1390.795,48.149C1359.747,17.098,1318.466,0,1274.555,0c-43.907,0-85.188,17.098-116.236,48.148   L81.585,1124.866c-10.22,10.22-16.808,23.511-18.75,37.833L0.601,1621.186c-2.774,20.448,4.161,41.015,18.753,55.605   c12.473,12.473,29.313,19.352,46.714,19.352c2.952,0,5.923-0.197,8.891-0.601l458.488-62.231   c14.324-1.945,27.615-8.529,37.835-18.752L1648.016,537.844c31.049-31.048,48.146-72.33,48.146-116.237   C1696.162,377.696,1679.064,336.415,1648.016,305.367z M493.598,1505.366l-350.381,47.558l47.56-350.376L953.78,439.557   l302.818,302.819L493.598,1505.366z M1554.575,444.404l-204.536,204.533l-302.821-302.818l204.535-204.532   c8.22-8.218,17.814-9.446,22.802-9.446c4.988,0,14.582,1.228,22.803,9.446l257.221,257.218c8.217,8.217,9.443,17.812,9.443,22.799   S1562.795,436.186,1554.575,444.404z"
+                  />
+                </g>
+                <g id="Layer_1" />
               </svg>
             </button>
             <button type="button" class="delete-btn">
@@ -137,8 +146,7 @@
                 />
               </svg>
             </button>
-            <button class="btn-heart" onclick="fnComnWishItem(136163);">
-              <span>제품 찜하기</span>
+            <button type="button" class="btn-heart">
             </button>
           </div>
           <span class="writer-button-wrap">
@@ -195,182 +203,8 @@
             </form>
           </div>
         </div>
-        <div class="review-list-wrap">
-          <div class="review-list">
-            <div class="user-info-wrap">
-              <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
-              </div>
-            </div>
-            <div class="review-wrap">
-              <div class="css-18pn4xv e36z05c1">
-                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
-              </div>
-              <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
-                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
-              </p>
-              <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                  <span>도움돼요</span>
-                  <span class="rec-count">1</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-list">
-            <div class="user-info-wrap">
-              <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
-              </div>
-            </div>
-            <div class="review-wrap">
-              <div class="css-18pn4xv e36z05c1">
-                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
-              </div>
-              <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
-                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
-              </p>
-              <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                  <span>도움돼요</span>
-                  <span class="rec-count">1</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="review-list">
-            <div class="user-info-wrap">
-              <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
-              </div>
-            </div>
-            <div class="review-wrap">
-              <div class="css-18pn4xv e36z05c1">
-                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
-              </div>
-              <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
-                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
-              </p>
-              <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                  <span>도움돼요</span>
-                  <span class="rec-count">1</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-list">
-            <div class="user-info-wrap">
-              <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
-              </div>
-            </div>
-            <div class="review-wrap">
-              <div class="css-18pn4xv e36z05c1">
-                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
-              </div>
-              <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
-                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
-              </p>
-              <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                  <span>도움돼요</span>
-                  <span class="rec-count">1</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-list">
-            <div class="user-info-wrap">
-              <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
-              </div>
-            </div>
-            <div class="review-wrap">
-              <div class="css-18pn4xv e36z05c1">
-                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
-              </div>
-              <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
-                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
-              </p>
-              <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                  <span>도움돼요</span>
-                  <span class="rec-count">1</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-list">
-            <div class="user-info-wrap">
-              <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
-              </div>
-            </div>
-            <div class="review-wrap">
-              <div class="css-18pn4xv e36z05c1">
-                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
-              </div>
-              <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
-                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
-              </p>
-              <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                  <span>도움돼요</span>
-                  <span class="rec-count">1</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-list">
-            <div class="user-info-wrap">
-              <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
-              </div>
-            </div>
-            <div class="review-wrap">
-              <div class="css-18pn4xv e36z05c1">
-                <h3 class="review-item-name">[4.22원데이] 더라인 순면 피그먼트</h3>
-              </div>
-              <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로
-                데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다
-              </p>
-              <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
-                <button class="review-rec-btn">
-                  <span>도움돼요</span>
-                  <span class="rec-count">1</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
+      <div class="review-list-wrap"></div>
     </section>
     <footer></footer>
   </body>
@@ -379,4 +213,5 @@
     $('header').load('../../templates/component/header.html');
     $('footer').load('../../templates/component/footer.html');
   </script>
+  <script src="../../static/js/member/board-detail.js"></script>
 </html>
