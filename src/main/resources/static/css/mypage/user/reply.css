@@ -102,7 +102,7 @@ html {
 
 .user-type {
     display: inline-block;
-    border: 1px solid rgb(95, 0, 128);
+    border: 1px solid #FF5938;
     border-radius: 3px;
     padding: 3px 4px 3px 5px;
     margin-right: 8px;
@@ -112,7 +112,7 @@ html {
     text-align: center;
     word-break: keep-all;
     background-color: rgb(255, 255, 255);
-    color: rgb(95, 0, 128);
+    color: #FF5938;
 }
 
 .user-id {
