@@ -649,8 +649,8 @@ input[type="checkbox"], input[type="radio"] {
     width: 50%;
     margin: 0 3px 0 0;
     background: #fff;
-    color: #FA0101;
-    border: 1px solid #FA0101;
+    color: #ff1d1d9e;
+    border: 1px solid #ff1d1d9e;
     min-width: 280px;
     height: 56px;
     padding: 10px 25px 11px;
@@ -665,9 +665,9 @@ input[type="checkbox"], input[type="radio"] {
     width: 50%;
     margin: 10px 3px 0 0;
     min-width: 280px;
-    background: #fa0101d6;
+    background: #ff1d1d9e;
     color: #fff;
-    border: 1px solid #fa0101d6;
+    border: 1px solid #ff1d1d9e;
     padding: 10px 25px 11px;
     border-radius: 6px;
 }
