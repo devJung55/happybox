@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 게시물 목록</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/admin/admin-default.css">
+    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
+    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+</head>
+<body>
+	<section class="header-section">
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-title-layout">
+					<img class="logo-image" src="../../static/img/header/Logo-main.png" alt="">
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+					<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
+                    <span>게시판 관리</span>	
+                </div>
+            </div>
+        </div>
+    </section>
+    <main class="main-section">
+        <!-- 임시 사이드바 -->
+        <div id="side-bar"></div>
+        <!-- 임시 사이드바 끝 -->
+        <section class="content-section">
+            <div class="container">
+				<div class="container-margin">
+					<!-- 헤더 -->
+					<section class="board-info-box-layout">
+						<div class="board-info-box">
+							<div class="board-info-title-box">
+								<span>리뷰 게시물</span>
+								<div class="delete-box">
+									<button class="delete-button">게시물 삭제</button>
+								</div>
+							</div>
+							<div class="info-table">
+								<table>
+									<thead>
+										<tr>
+											<th><label class="check-label">
+												    <input type="checkbox" id="allSelect">
+                                                </label>
+											</th>
+											<th>No</th>
+											<th>카테고리</th>
+											<th>게시글 제목</th>
+											<th>작성자 명</th>
+											<th>작성 날짜</th>
+										</tr>
+									</thead>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">1</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">임**</td>
+										<td class="show-modal">2023.01.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">2</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">3</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">4</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">5</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">6</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">7</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">8</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">9</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="check-label">
+											    <input type="checkbox" name="check">
+                                            </label>
+										</td>
+										<td class="show-modal">10</td>
+										<td class="show-modal">리뷰 게시판</td>
+										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
+										<td class="show-modal">이**</td>
+										<td class="show-modal">2023.02.11</td>
+									</tr>
+								</table>
+								<!-- 페이지 버튼 -->
+								<div class="page-button-box-layout">
+									<div class="page-button-box">
+										<!-- 페이지 번호 -->
+										<div class="">
+											<div class="page-button-margin">
+												<div>
+													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
+												</div>
+											</div>
+										</div>
+										<div class="page-button-active page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>1</span>
+												</div>
+											</div>
+										</div>
+										<div class="page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>2</span>
+												</div>
+											</div>
+										</div>
+										<div class="page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>3</span>
+												</div>
+											</div>
+										</div>
+										<div class="">
+											<div class="page-button-margin">
+												<div>
+													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 페이지 버튼 끝 -->
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+        </section>
+    </main>
+	<section class="delete-modal">
+		<div class="delete-modal-shape">
+			<div class="modal-header">
+				<h4>삭제 확인</h4>
+			</div>
+			<div class="modal-body">
+				<p>정말로 삭제하겠습니까?</p>
+			</div>
+			<div class="modal-footer">
+				<span class="confirm-delete">확인</span>
+				<span class="cancel-delete">취소</span>
+			</div>
+		</div>
+	</section>
+	<section class="modal">
+		<div class="modal-shape board-shape">
+			<div class="modal-header">
+				<h4>게시글 상세보기</h4>
+				<a class="modal-close">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						data-name="Capa 1"
+						id="Capa_1"
+						viewBox="0 0 20 19.84"
+					>
+						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+					</svg>
+				</a>
+			</div>
+			<form class="content-info" action>
+				<main class="content-detail">
+					<div class="content-img-wrapper">
+                        <div class="content-img list-img">
+                            <img
+                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+                            />
+                        </div>
+                        <div class="content-img list-img">
+                            <img
+                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+                            />
+                        </div>
+                        <div class="content-img list-img">
+                            <img
+                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+                            />
+                        </div>
+					</div>
+					<ul class="content-list-wrap">
+						<li class="content-list">
+							<span>제목</span>
+							<div class="content-input">
+								<input type="text" value="이 복지관 정말 좋은거 같아요!!" readonly/>
+							</div>
+						</li>
+						<li class="content-list">
+							<span>닉네임</span>
+							<div class="content-input">
+								<input type="text" value="장군님" readonly/>
+							</div>
+						</li>
+						<li class="content-list">
+							<span>카테고리</span>
+							<div class="content-input">
+								<input type="text" value="리뷰 게시판" readonly/>
+							</div>
+						</li>
+						<li class="content-list">
+							<span>작성날짜</span>
+							<div class="content-input">
+								<input type="text" value="2023.01.11" readonly/>
+							</div>
+						</li>
+						<li class="content-list txt-align">
+							<span>내용</span>
+							<div class="content-input">
+								<textarea class="normal-textarea" cols="30" rows="10" name="" readonly>
+메론 비쉬시아즈와 킹크랩, 아보카도의 조화가 좋은 요리입니다.
+아몬드 젤리를 더해 시각과 식감에 특별함을 더했으며, 사과를 넣어 입 안이 깔끔하게 마무리될 수 있도록 하였습니다.
+아주 맛있게 잘 됐습니다.</textarea>
+							</div>
+						</li>
+					</ul>
+				</main>
+			</form>
+		</div>
+	</section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../static/js/admin/menuLoad.js"></script>
+<script src="../../static/js/admin/event.js"></script>
+</html>
