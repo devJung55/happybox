@@ -254,9 +254,9 @@ button[disabled] {
   background: #FF5938;
   color: #fff;
   border: 1px solid #FF5938;
-  background: #ff1d1d9e !important;
+  background: #FF5938 !important;
   color: #fff;
-  border: 1px solid #ff1d1d9e;
+  border: 1px solid #FF5938;
   cursor: pointer;
 }
 
@@ -344,7 +344,7 @@ button[disabled] {
 .es2 {
   width: 4px;
   height: 4px;
-  background: #ff6001;
+  background: #FF5938;
   display: inline-block;
   border-radius: 50%;
 }
@@ -719,7 +719,7 @@ button[disabled] {
   left: 5px;
   width: 10px;
   height: 10px;
-  background: #ff1d1d9e;
+  background: #FF5938;
   border-radius: 100%;
 }
 

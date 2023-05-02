@@ -108,7 +108,7 @@ table td, table th {
     height: 5px;
     border-radius: 50%;
     vertical-align: top;
-    background: #FF6001;
+    background: #FF5938;
 }
 
 .input-group {
@@ -345,9 +345,9 @@ button span {
 }
 
 .btn-primary {
-    background: #fa0101d6 !important;
+    background: #FF5938 !important;
     color: #fff;
-    border: 1px solid #fa0101d6;
+    border: 1px solid #FF5938;
 }
 
 .btn-bottom-area:after {

@@ -51,7 +51,7 @@
 }
 
 .join-easyGeneral .layer-box .password-btn {
-    border: 1px solid #ff1d1d9e;
+    border: 1px solid #FF5938;
     width: 134px;
     border-radius: 8px;
     display: inline-block;
@@ -59,14 +59,14 @@
 }
 
 .join-easyGeneral .layer-box .password-btn p {
-    color: #ff1d1d9e;
+    color: #FF5938;
     font-size: 15px;
     font-weight: 400;
     line-height: 50px;
 }
 
 .join-easyGeneral .layer-box .login-btn {
-    background-color: #ff1d1d9e;
+    background-color: #FF5938;
     width: 134px;
     border-radius: 8px;
     display: inline-block;
@@ -160,7 +160,7 @@
 }
 
 .join-certified .certified-btn {
-    background-color: #ff1d1d9e;
+    background-color: #FF5938;
     width: 435px;
     height: 60px;
     color: #ffffff;
