@@ -3,12 +3,13 @@ package com.app.happybox.entity.product;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.User;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity @Table(name = "TBL_ORDER")
+@Getter @ToString(exclude = "user") @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue

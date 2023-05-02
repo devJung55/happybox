@@ -3,10 +3,7 @@ package com.app.happybox.entity.user;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.product.Order;
 import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -14,7 +11,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
-@Getter @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends Period {

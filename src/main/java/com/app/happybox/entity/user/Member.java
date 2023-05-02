@@ -1,5 +1,6 @@
 package com.app.happybox.entity.user;
 
+import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.welfare.SubscriptUser;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
@@ -25,8 +26,13 @@ public class Member extends User{
     @NotNull @Enumerated(EnumType.STRING)
     private Gender memberGender;
 
+    /* 회원 구독 목록 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     private List<SubscriptUser> subscriptUsers;
+
+    /* 회원 게시글 목록 */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true)
+    private List<Board> boards;
 
     /* 생성자 */
     public Member(String userId, String userPassword, Address address, String userEmail, UserStatus userStatus, String memberName, String memberMobile, LocalDate memberBirth, Gender memberGender) {

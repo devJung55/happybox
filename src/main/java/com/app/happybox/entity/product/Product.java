@@ -3,11 +3,12 @@ package com.app.happybox.entity.product;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.user.Distributor;
 import com.sun.istack.NotNull;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_PRODUCT")
+@Getter @ToString(exclude = "distributor") @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue

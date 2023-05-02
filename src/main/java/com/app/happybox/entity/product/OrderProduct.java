@@ -1,7 +1,7 @@
 package com.app.happybox.entity.product;
 
 import com.app.happybox.audity.Period;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -9,6 +9,7 @@ import javax.persistence.*;
  * 주문 시 주문한 상품 내역 (주문 안에 여러 상품이 있기 때문)
  * */
 @Entity @Table(name = "TBL_ORDER_PRODUCT")
+@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderProduct extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
