@@ -1145,3 +1145,92 @@ input[type="checkbox"], input[type="radio"] {
 .edit-btn-area button span {
     cursor: pointer;
 }
+
+/* ==============================================  수정삭제를 위한 모달 ================================= */
+.delete-modal {
+    display: none;
+    position: fixed;
+    top: 0%;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  .delete-modal-shape {
+    border: 1px solid gray;
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    left: 44%;
+    top: 30%;
+    background-color: #fff;
+    /* border-radius: 8px; */
+    animation: fade-in 0.5s ease-out;
+    padding: 20px;
+}
+
+.modal-header .delete-img{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+
+
+.modal-body {
+    padding: 8px 0;
+    text-align: center;
+    font-size: 18px;
+    margin: 30px;
+    font-weight: bold;
+    color: #FF5938;
+}
+
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 20px;
+    border-top: 1px solid #80808061;
+    align-items: center;
+    text-align: center;
+}
+
+
+.confirm-delete {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin: 0 auto;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+  .confirm-delete:hover {
+    background-color: #FF5938;
+    color: white;
+    font-weight: bold;
+  }
+  .cancel-delete {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin: 0 auto;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .cancel-delete:hover {
+    background-color: #FF5938;
+    color: white;
+    font-weight: bold;
+  }
+
+  
+  /* ============================================== ================================= */

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"></html>
-<html lang="en" style="zoom: 80%">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,7 +28,7 @@
         />
         <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
     </head>
-    <body style="zoom: 80%">
+    <body>
         <section class="header"></section>
         <section class="detail-container">
             <div class="fixed-img">
@@ -41,7 +41,7 @@
                         <button type="button" id="modify">
                             <label for="modify">수정</label>
                         </button>
-                        <button type="button" id="delete">
+                        <button type="button" id="delete" class="delete-btn">
                             <label for="delete">삭제</label>
                         </button>
                     </div>
@@ -911,6 +911,20 @@
                 </div>
             </div>
         </section>
+        <section class="delete-modal">
+            <div class="delete-modal-shape">
+                <div class="modal-header">
+                    <img src="../../static/img/welfare/delete-btn.png" class="delete-img">
+                </div>
+                <div class="modal-body">
+                    <p>정말로 삭제하겠습니까?</p>
+                </div>
+                <div class="modal-footer">
+                    <span class="confirm-delete">확인</span>
+                    <span class="cancel-delete">취소</span>
+                </div>
+            </div>
+        </section>
         <section class="footer"></section>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -924,11 +938,11 @@
         // $('.footer').load('../../templates/component/footer.html');
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../static/js/welfare/welfareDetail.js"></script>
     <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
     <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
     <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
     <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
     <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
     <script src="../../static/js/welfare/food-calendar.js"></script>
+    <script src="../../static/js/welfare/welfareDetail.js"></script>
 </html>

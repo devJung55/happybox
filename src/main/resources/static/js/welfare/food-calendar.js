@@ -274,7 +274,8 @@ $('#today').click(() => {
 
 /* ======================================= 이벤트 생성 ========================================== */
 
-// $('.toastui-calendar-daygrid-cell').on('change',function(){
-//     console.log("앙들엉왔다");
-//     $(this).css('background-color','red');
-// })
+$('.toastui-calendar-daygrid-cell').on('change',function(){
+    console.log("앙들엉왔다");
+    $(this).css('background-color','red');
+})
+

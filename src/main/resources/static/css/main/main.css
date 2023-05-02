@@ -918,3 +918,240 @@ div.banner div {
     background-size: 40px;
     cursor: pointer;
 }
+
+
+
+/* ======================================================== 추가 section ====================================================== */
+
+.identityContainer {
+    padding: 80px 0 0;
+}
+
+.identityContainer .inner {
+    margin: 0 auto;
+    padding: 0 24px 120px;
+    max-width: 1140px;
+    height: 400px;
+}
+
+.inner .summary {
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 30px;
+    color: #00b2b2;
+    font-weight: 700;
+}
+
+.inner .title {
+    line-height: 32px;
+    word-break: keep-all;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.inner .titleWrapper .biImage {
+    margin-top: 32px;
+    width: 100%;
+    float: left;
+    width: 410px;
+}
+
+.biImage img {
+    width: 410px;
+    height: 300px;
+}
+
+.inner .descWrapper {
+    padding: 0 24px 0;
+    float: right;
+    width: 500px;
+}
+
+.inner .descWrapper .desc {
+    margin: 0;
+    word-break: break-all;
+}
+
+.identityContainer .inner .desc {
+    display: block;
+    margin-top: 30px;
+    line-height: 28px;
+    word-break: keep-all;
+    font-size: 17px;
+}
+
+.wdButton.bi {
+    margin-top: 65px;
+}
+
+.wdButton {
+    display: inline-block;
+    position: relative;
+    transition-property: background-color,border-color,color,opacity;
+    transition-duration: .15s;
+    border: 1px solid #cdd3d8;
+    border-radius: 4px;
+    background-color: #0000;
+    cursor: pointer;
+    padding: 9px 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    line-height: 1.43;
+    white-space: nowrap;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box!important;
+    -webkit-appearance: none;
+}
+
+.inner .descWrapper .info {
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 10px 0 24px;
+    color: #0000008a;
+}
+
+
+.inner .descWrapper .guideline {
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: 400;
+    
+    color: #495057;
+}
+
+.inner .descWrapper .guideline em {
+    font-weight: 700;
+    color: #FF5938;
+}
+
+.inner:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+
+/* =============================================== 다음 section ======================================================== */
+.principleContainer {
+    border-top: 1px solid #e9ecef;
+}
+
+.section .inner {
+    padding: 120px 0;
+    margin: 0 auto;
+    padding: 60px 24px 60px;
+    max-width: 1140px;
+    height: 400px;
+    margin-top: 30px;
+}
+
+.section .inner .summary {
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 30px;
+    color: #00b2b2;
+    font-weight: 700;
+}
+
+.section .inner .titleWrapper {
+    float: left;
+    width: 410px;
+}
+
+.section .inner .title {
+    line-height: 32px;
+    word-break: keep-all;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.principleContainer .section .inner .descWrapper {
+    float: right;
+    width: 500px;
+}
+
+.principleContainer .section .inner .desc {
+    display: block;
+    margin-top: 0px !important;
+    line-height: 28px;
+    word-break: keep-all;
+    font-size: 17px;
+}
+
+.principleContainer .principleList {
+    padding-top: 120px;
+}
+
+.principleContainer .principleList {
+    clear: both;
+    padding-top: 60px;
+}
+
+.principleContainer .principleItem {
+    position: relative;
+    z-index: -1;
+    margin-top: 24px;
+    font-weight: 700;
+}
+
+.principleContainer .principleItem {
+    float: left;
+    margin-top: 0;
+    border-left: 1px solid #dde2e6;
+    padding: 30px 14px 0;
+    width: 17%;
+    height: 120px;
+}
+
+.principleContainer .principleItem .num {
+    position: absolute;
+    top: 2.5px;
+    left: 0;
+    font-size: 15px;
+}
+
+.principleContainer .principleItem:first-child {
+    border-left: none;
+    padding: 30px 14px 0 0;
+}
+
+.principleContainer .principleItem:first-child .num {
+    left: 0;
+}
+
+
+.principleContainer .principleItem .num {
+    top: 0;
+    left: 14px;
+    font-size: 19px;
+}
+
+.section .inner .desc {
+    display: block;
+    line-height: 28px;
+    word-break: keep-all;
+    font-size: 17px;
+}
+
+.principleContainer .principleItem .desc {
+    display: inline-block;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.principleContainer .principleItem .desc {
+    padding-left: 0;
+    line-height: 30px;
+    font-size: 19px;
+}
+
+
+/* ======================================================================================================= */

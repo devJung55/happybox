@@ -292,3 +292,18 @@ function showSlideImg() {
                 `
     $slide.append();
 }
+
+/* ==============================================  수정삭제를 위한 모달 ================================= */
+
+const $showDelete = $(".delete-btn");
+const $cancelDelete = $(".cancel-delete");
+$showDelete.on('click', function(e){
+    $(".delete-modal").show();
+    $('.confirm-delete').on('click', function(){
+        $(location).attr('href','../../templates/welfare/dontae-list.html');
+    });
+})
+$cancelDelete.on('click', function(e){
+    $(".delete-modal").hide();
+})
+

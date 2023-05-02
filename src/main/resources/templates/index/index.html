@@ -62,24 +62,76 @@
                         </div>
                     </div>
                 </section>
-                <section class="page-nav-section">
-                    <ul class="page-nav-wrap">
-                        <li class="page-nav">
-                            <a href="javascript:void(0)">유저 게시판</a>
-                        </li>
-                        <li class="page-nav">
-                            <a href="javascript:void(0)">복지관</a>
-                        </li>
-                        <li class="page-nav">
-                            <a href="javascript:void(0)">지역마켓</a>
-                        </li>
-                        <li class="page-nav">
-                            <a href="javascript:void(0)">고객센터</a>
-                        </li>
-                        <li class="page-nav">
-                            <a href="javascript:void(0)">About Us</a>
-                        </li>
-                    </ul>
+                <section id="identityContainer" class="identityContainer section">
+                    <div class="inner">
+                        <strong class="summary">청년 귀농 프로젝트</strong>
+                        <div class="titleWrapper">
+                            <h3 class="title">Senior are wants YB</h3>
+                            <div class="biImage">
+                                <img
+                                    src="https://www.jobaba.net/resource/images/web/2018/01/02/1514871987087_6963129548.png"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                        <div class="descWrapper">
+                            <p class="desc">
+                                계속되는 취업난과 바쁘고 빠르게만 돌아가는 사회생활에 지친 청년층의
+                                설자리는 줄어들고 있는 반면, 농촌은 고령화와 청년 인력 부족으로 인해
+                                인력 구조에 대한 미스매치가 심각한 추세입니다. 이에 따라 정부에서는
+                                청년들의 귀농을 권장하고 지원해주는 추세인데요. 청년 농부가 감소함에
+                                따라 정부에서는 2025년 이후 농촌이 심각한 위기를 맞을 것이라고
+                                예측했습니다. 이를 방지하기 위해 청년들의 귀농을 이끌 수 있는 지원
+                                제도를 점차 늘려가고 있는 추세입니다. 2018년부터는 청년 농부에게 월
+                                100만 원 식 3년 동안 정착 자금을 지원해주는 제도가 통과되기도
+                                하였는데요.
+                            </p>
+                            <p class="info">
+                                이렇게 많은 관심을 받고 있는 청년 귀농! 귀농 시 받을 수 있는 지원
+                                혜택과 정보들 함께 알아보는 시간 갖도록 하겠습니다.
+                            </p>
+                            <p class="guideline">
+                                <em>Wanted</em><br />
+                                여러분의 참여를 기다리고 있습니다.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section class="principleContainer section">
+                    <div class="inner">
+                        <strong class="summary">Wadiz 5 Principles</strong>
+                        <div class="titleWrapper">
+                            <h3 class="title">와디즈가 일하는 방식</h3>
+                        </div>
+                        <div class="descWrapper">
+                            <p class="desc">
+                                와디즈는 서로를 지지하고 도전을 즐기는 기업문화 안에서 아래 5가지
+                                원칙을 가지고 일합니다.
+                            </p>
+                        </div>
+                        <ol class="principleList">
+                            <li class="principleItem">
+                                <span class="num">1</span>
+                                <p class="desc">우리는 옳은 일을 합니다.</p>
+                            </li>
+                            <li class="principleItem">
+                                <span class="num">2</span>
+                                <p class="desc">급변의 물살을 즐기며 앞서 나갑니다.</p>
+                            </li>
+                            <li class="principleItem">
+                                <span class="num">3</span>
+                                <p class="desc">팀원간의 필요를 채워줍니다.</p>
+                            </li>
+                            <li class="principleItem">
+                                <span class="num">4</span>
+                                <p class="desc">파트너와 고객에게 긍정적인 기억을 남깁니다.</p>
+                            </li>
+                            <li class="principleItem">
+                                <span class="num">5</span>
+                                <p class="desc">재무적인 이익을 추구합니다.</p>
+                            </li>
+                        </ol>
+                    </div>
                 </section>
                 <section class="main-article recommend-sec">
                     <div class="frame-sm frame-slide-overlap">
@@ -515,29 +567,29 @@
     <script src="../../static/js/main/item-swiper.js"></script>
     <!-- 추후 타임리프 fragment로 변경 -->
     <script>
-        $(".header-stage").load("../../templates/component/header.html");
-        $(".footer-stage").load("../../templates/component/footer.html");
+        $('.header-stage').load('../../templates/component/header.html');
+        $('.footer-stage').load('../../templates/component/footer.html');
 
         /* 오른쪽 fixed 요소 용 JS 코드 */
-        $("document").ready(function () {
+        $('document').ready(function () {
             $(window).scroll(function () {
                 var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 
                 if (position >= 120) {
-                    $(".gnb-wrap").addClass("fixed");
+                    $('.gnb-wrap').addClass('fixed');
                 } else {
-                    $(".gnb-wrap").removeClass("fixed");
+                    $('.gnb-wrap').removeClass('fixed');
                 }
 
                 if (position > 600) {
-                    $(".side-quick-area").css({
-                        position: "fixed",
-                        top: "121px",
+                    $('.side-quick-area').css({
+                        position: 'fixed',
+                        top: '121px',
                     });
                 } else {
-                    $(".side-quick-area").css({
-                        position: "absolute",
-                        top: "670px",
+                    $('.side-quick-area').css({
+                        position: 'absolute',
+                        top: '670px',
                     });
                 }
             });
