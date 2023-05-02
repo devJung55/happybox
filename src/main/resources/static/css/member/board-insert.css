@@ -175,6 +175,7 @@ input::placeholder {
     width: 23px;
     height: 23px;
     align-items: center;
+    cursor: pointer;
   }
 
 textarea::placeholder {
@@ -344,9 +345,9 @@ button span {
 }
 
 .btn-primary {
-    background: #FFA5CD !important;
+    background: #fa0101d6 !important;
     color: #fff;
-    border: 1px solid #FFA5CD;
+    border: 1px solid #fa0101d6;
 }
 
 .btn-bottom-area:after {

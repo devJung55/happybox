@@ -1,5 +1,16 @@
 /* recipe-board-insert.html */
 
+
+$(function() {
+    $(".rating-point img").each(function(index) {
+      $(this).on("click", function() {
+        $(".rating-point img").attr("src", "../../static/img/mypage/rating.png");
+        $(this).prevAll().addBack().attr("src", "../../static/img/mypage/rating-pull.png");
+      });
+    });
+  });
+
+
 /* 파일 등록 */
 const $fileAttachBtn = $(".btn-attach-thumb");
 const $imgFile = $("input[type='file']");

@@ -11,7 +11,7 @@
     position: relative;
     width: 940px;
     margin: 0 auto;
-    padding: 56px 39px 40px;
+    padding: 56px 39px 100px;
 }
 
 .detail-container:after {
@@ -54,6 +54,7 @@
     opacity: 0.35;
     cursor: auto;
 }
+
 .swiper-button-prev {
     left: 0;
     right: auto;
@@ -123,13 +124,13 @@
     display: none;
 }
 
+.slick-current {
+    display: block;
+}
+
 .slide {
     opacity: 1;
     transition: opacity 500ms linear 0s;
-}
-
-.slick-initialized .slick-slide {
-    display: block;
 }
 
 figure {
@@ -185,12 +186,16 @@ figure {
     display: inline-block;
     margin-right: 32px;
     margin-left: 5px;
-    width: 35px;
-    height: 31px;
+    width: 33px;
+    height: 33px;
     font-size: 0;
-    background: url('	https://www.greating.co.kr/front_mo/images/btn_heart-off-89773fc26a0d16b9188c85866969bb8e.png') no-repeat center center;
-    background-size: 70%;
+    background: url('	https://www.greating.co.kr/front_mo/images/btn_heart-off-89773fc26a0d16b9188c85866969bb8e.png') no-repeat center center !important;
+    background-size: 70% !important;
     vertical-align: middle;
+}
+
+.on {
+    filter: invert(18%) sepia(80%) saturate(3478%) hue-rotate(356deg) brightness(92%) contrast(134%);
 }
 
 .write-button-icon-box {
@@ -209,6 +214,11 @@ figure {
     font-size: inherit;
   }
 
+  .write-button-icon:hover{
+    width: 25px;
+    height: 25px;
+  }
+
   .delete-button-icon {
     user-select: none;
     width: 20px;
@@ -217,6 +227,11 @@ figure {
     fill: currentColor;
     flex-shrink: 0;
     font-size: inherit;
+  }
+
+  .delete-button-icon:hover {
+    width: 25px;
+    height: 25px;
   }
   
 .writer-button-wrap {
@@ -231,7 +246,6 @@ figure {
     width: 35px;
     height: 31px;
     font-size: 0;
-    background: url(https://www.greating.co.kr/front_mo/images/btn_heart-off-89773fc….png) no-repeat center center;
     background-size: 70%;
     vertical-align: middle;
 }
@@ -243,7 +257,7 @@ figure {
     width: 35px;
     height: 31px;
     font-size: 0;
-    background: url(https://www.greating.co.kr/front_mo/images/btn_heart-off-89773fc….png) no-repeat center center;
+    background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-heart-outline-256.png) no-repeat center center;
     background-size: 70%;
     vertical-align: middle;
 }
@@ -275,7 +289,20 @@ figure {
 .info-area__box-list {
     border-top: 1px solid #ccc;
     overflow: hidden;
+    height: 397px;
+    position: relative;
 }
+
+.info-area__box-list::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px; /* blur 처리할 영역의 높이 지정 */
+    background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* 배경 그라데이션 추가 */
+    cursor: pointer;
+  }
 
 .info-area__box-tit {
     float: left;
@@ -423,6 +450,7 @@ figure {
     height: 146px;
     position: relative;
     overflow: hidden;
+    margin-top: 17px;
 }
 
 .write-textarea {
@@ -442,8 +470,20 @@ figure {
     position: absolute;
     bottom: 15px;
     right: 15px;
-    background-color: #f2f4f7;
-    color: #c4c4c4;
+    background-color: #ff1d1d9e !important;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.write-cancel-btn {
+    width: 70px;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    bottom: 15px;
+    right: 88px;
+    background-color: #f4f4f4 !important;
+    color: #333;
     border-radius: 6px;
 }
 
@@ -521,6 +561,11 @@ figure {
 .review-date {
     font-size: 14px;
     color: rgb(153, 153, 153);
+}
+
+.review-btn-wrap {
+    display: flex;
+    gap: 8px;
 }
 
 .review-rec-btn {
