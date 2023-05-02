@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity @Table(name = "TBL_SUBSCRIPT_LIKE")
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SubscriptLike extends Period {
+public class SubscriptionLike extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;

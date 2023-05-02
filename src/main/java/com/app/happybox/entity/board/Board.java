@@ -6,6 +6,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_BOARD")
@@ -29,5 +30,5 @@ public class Board extends Period {
     private Member member;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", orphanRemoval = true)
-    private List<BoardLike> boardLikes;
+    private List<BoardLike> boardLikes = new ArrayList<>();
 }
