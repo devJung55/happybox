@@ -996,9 +996,9 @@ input[type="checkbox"], input[type="radio"] {
     vertical-align: top;
     flex-grow: 1;
     margin: 0 3px 0 0;
-    background: #FA0101;
+    background: #FF5938;
     color: #fff;
-    border: 1px solid #FA0101;
+    border: 1px solid #FF5938;
     min-width: 280px;
     height: 56px;
     border-radius: 6px;
