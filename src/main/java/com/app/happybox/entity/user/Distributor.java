@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_DISTRIBUTOR")
@@ -16,5 +17,5 @@ public class Distributor extends User{
 
     /* 유통 상품 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "distributor", orphanRemoval = true)
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 }

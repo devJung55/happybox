@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_SUBSCRIPTION")
@@ -40,13 +41,13 @@ public class Subscription extends Period {
 
     /* 음식 일정 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
-    private List<FoodCalendar> foodCalendars;
+    private List<FoodCalendar> foodCalendars = new ArrayList<>();
 
     /* 구독회원 정보 List (구독 상품과 회원은 N:N 관계여서 구독회원 정보 라는 중간테이블 존재) */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
-    private List<MemberSubscription> memberSubscriptions;
+    private List<MemberSubscription> memberSubscriptions = new ArrayList<>();
 
     /* 구독 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
-    private List<SubscriptLike> subscriptLikes;
+    private List<SubscriptionLike> subscriptionLikes = new ArrayList<>();
 }
