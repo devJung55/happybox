@@ -527,7 +527,7 @@ input[type="checkbox"], input[type="radio"] {
     left: 5px;
     width: 10px;
     height: 10px;
-    background: #FFA5CD;
+    background: #FF5938;
     border-radius: 100%;
 }
 
@@ -626,6 +626,12 @@ input[type="checkbox"], input[type="radio"] {
 .total-area .price strong{
     font-size: 26px;
 }
+.get-total-price .price strong {
+    color: #ff0000;
+    font-size: 28px;
+    font-weight: bold;
+
+}
 
 .get-total-price {
     border-top: 1px solid rgb(0 0 0 / 5%);
@@ -665,9 +671,9 @@ input[type="checkbox"], input[type="radio"] {
     width: 50%;
     margin: 10px 3px 0 0;
     min-width: 280px;
-    background: #ff1d1d9e;
+    background: #FF5938;
     color: #fff;
-    border: 1px solid #ff1d1d9e;
+    border: 1px solid #FF5938;
     padding: 10px 25px 11px;
     border-radius: 6px;
 }

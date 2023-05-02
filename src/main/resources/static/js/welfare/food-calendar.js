@@ -41,23 +41,23 @@ const options = {
     calendars: [
         {
             id: '1',
-            UserName: '오태양',
-            name: '정지영',
-            UserCode:'그레이들',
+            /* UserName: '오태양', */
+            /* name: '정지영', */
+            /* UserCode:'그레이들', */
             backgroundColor: '#03bd9e',
         },
         {
-            id: '2',
-            UserName: '오태양',
+            id: '2', // 필수
+            /* UserName: '오태양', */
             UserCode:'그레이들',
-            name: '강민구',
-            backgroundColor: '#00a9ff',
+            name: '오태양양', // 필수
+            backgroundColor: '#00a9ff', // 필수
         },
         {
             id: '3',
-            UserName: '오태양',
+            /* UserName: '오태양',
             name: '오태양',
-            UserCode:'그레이들',
+            UserCode:'그레이들', */
             backgroundColor: '#fc0101',
             color : 'white',
         },
@@ -108,15 +108,15 @@ var welfare2 = new Welfare(id,calendarId,body,title,start,end,UserName,isReadOnl
 /* 백앤드시 작성할것 */
 /* 이벤트 객체 생성 -> 화면으로 Model 객체 보내서 Js로 받은 후 넘겨주는 형식 */
 const event = {
-    id: '1',
-    calendarId: '2',
-    body:'안녕하세요 오태양입니다.',
-    title: '가정식 백반',
-    state:'',
-    start: '2023-04-17 13:00',
-    end: '2023-04-21',
-    UserName:'링구',
-    isReadOnly: true,
+    id: '1',    // iD번째 스캐줄
+    calendarId: '2',    // 스케쥴의 ID(Random으로 뽑기)
+    body:'안녕하세요 오태양입니다.', // 스케쥴의 설명
+    title: '가정식 백반',   // 화면에 뿌려지는 이름
+    state:'',   // 현재 상태 (별필요없음)
+    start: '2023-04-17 13:00',  // 시작 일
+    end: '2023-04-21',  // 끝일
+    UserName:'링구',    // 이거 필요없음
+    isReadOnly: true,   // 이거 설정 시 편집 불가 우리는 무조건 True로 설정해줘야함
   };
   
 const event1 = {

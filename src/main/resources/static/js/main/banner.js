@@ -30,14 +30,14 @@ const mobileImgURLs = [
 ];
 
 let imgURLs = [
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230331/IMG1680OmE238942115.jpg",
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230411/IMG1681Ykf186708594.jpg",
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230404/IMG1680LmT591459747.jpg",
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230407/IMG1680RoB828036914.jpg",
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230323/IMG1679ktZ531033089.jpg",
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230411/IMG1681mbu203379662.jpg",
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230406/IMG1680fdZ769659131.jpg",
-    "https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20230125/IMG1674bgz638273881.jpg",
+    "../../static/img/main/banner/001.png",
+    "../../static/img/main/banner/002.png",
+    "../../static/img/main/banner/003.png",
+    "../../static/img/main/banner/004.png",
+    "../../static/img/main/banner/005.png",
+    "../../static/img/main/banner/006.png",
+    "../../static/img/main/banner/007.png",
+    "../../static/img/main/banner/008.png",
 ];
 
 /* 배너 수 */

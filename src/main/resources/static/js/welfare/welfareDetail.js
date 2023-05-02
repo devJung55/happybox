@@ -39,13 +39,11 @@ $radioLabels.on('click', function () {
     $radioLabels.siblings('input[type="radio"]').prop('checked', false);
     $clickedRadio.prop('checked', true);
 
-    if ($clickedRadio.parent().text().trim() === '일반회원가') {
+    if ($clickedRadio.parent().text().trim() === '1개월 구독') {
         $totalPrice.show();
         selectedPrice = $totalPrice.text();
-    } else if ($clickedRadio.parent().text().trim() === 'Happy') {
-        $specialTotalPrice.show();
-        selectedPrice = $specialTotalPrice.text();
-    }
+        $clickedRadio.val(selectedPrice);
+    } 
 
     $orderNormalTotalPrice.html(selectedPrice);
 });
