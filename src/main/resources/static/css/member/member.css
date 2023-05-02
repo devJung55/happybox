@@ -101,27 +101,42 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     -webkit-box-sizing: border-box;
 }
 
-.alert-modal-display {
-    display: none;
-    z-index: 100000;
-}
-.alert-modal-box {
-    height: 50px;
-    position: fixed;
-    z-index: 5001;
-    background: #043A44;
-    color : #fff;
-}
-.diary-modal {
-    position: absolute;
-    inset: 0px;
-    z-index: 10000;
+@keyframes popUp {
+    from {scale: 0;}
+    to {scale: 1;}
 }
 
-    .alert-modal-box {
-        bottom: 0;
-        left: 50%;
-        width: 520px;
-        transform: translate(-50%, -50%);
-        animation: 0.25s ease 0s 1 normal none running openModal;
-    }
+@keyframes popDown {
+    from {scale: 1;}
+    to {scale: 0;}
+}
+
+div.modal {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    inset: 0px;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #8586898a;
+}
+
+div.warn-modal {
+    box-sizing: border-box;
+    position: unset;
+    width: 288px;
+    margin: 20vh 0px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(33 35 41 / 12%) 0px 2px 12px;
+    border-radius: 8px;
+}
+
+div.warn-modal {
+    padding: 24px;
+}
+
+div#content-wrap span{
+    display: block;
+}

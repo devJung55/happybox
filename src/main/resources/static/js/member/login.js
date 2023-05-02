@@ -2,14 +2,13 @@
 
 /* 모달창 */
 
-const $alertModal = $('.alert-modal-display');
 function alertModal(errorMsg) {
-  $(".alert").text(errorMsg);
-  $alertModal.fadeIn();
-  setTimeout(function () {
-      $alertModal.fadeOut();
+    $("div#content-wrap").html(errorMsg)
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function () {
+      $("div.modal").fadeOut();
   }, 2000);
-}
+  }
 
 function send() {
     /* 성공했을 시 id와 password를 DB와 비교해서 전송해줘야함 */
