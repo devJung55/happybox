@@ -2,6 +2,7 @@ package com.app.happybox.entity.user;
 
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.board.BoardLike;
+import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.order.MemberSubscription;
 import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.order.Purchase;
@@ -44,6 +45,10 @@ public abstract class User extends Period {
     /* 게시글 좋아요 */
     @OneToMany(fetch =  FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
     private List<BoardLike> boardLikes = new ArrayList<>();
+
+    /* 프로필 사진 */
+    @OneToOne(fetch = FetchType.LAZY)
+    private UserFile userFile;
 
     /* 생성자 */
     public User(String userId, String userPassword, Address address, String userEmail, UserStatus userStatus) {
