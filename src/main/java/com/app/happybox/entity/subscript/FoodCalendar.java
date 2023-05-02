@@ -1,0 +1,33 @@
+package com.app.happybox.entity.subscript;
+
+import com.app.happybox.audity.Period;
+import com.sun.istack.NotNull;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity @Table(name = "TBL_FOOD_CALENDAR")
+public class FoodCalendar extends Period {
+    @EqualsAndHashCode.Include
+    @Id @GeneratedValue
+    private Long id;
+
+    /* === 음식 달력일정 기본정보 === */
+    @NotNull
+    private String foodCalendarTitle;
+
+    private String foodCalendarDescription;
+
+    @NotNull
+    private LocalDate startDate;
+    @NotNull
+    private LocalDate endDate;
+
+    /* ========================== */
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Subscription subscription;
+}

@@ -1,27 +1,25 @@
-package com.app.happybox.entity.product;
+package com.app.happybox.entity.subscript;
 
 import com.app.happybox.audity.Period;
+import com.app.happybox.entity.user.Member;
 import lombok.*;
 
 import javax.persistence.*;
 
-/**
- * 주문 시 주문한 상품 내역 (주문 안에 여러 상품이 있기 때문)
- * */
-@Entity @Table(name = "TBL_ORDER_PRODUCT")
+@Entity @Table(name = "TBL_SUBSCRIPT_LIKE")
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class OrderProduct extends Period {
+public class SubscriptLike extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
 
-    /* 주문한 상품 */
+    /* 구독중인 일반회원 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Product product;
+    private Member member;
 
-    /* 주문 */
+    /* 구독 대상 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Order order;
+    private Subscription subscription;
 }
