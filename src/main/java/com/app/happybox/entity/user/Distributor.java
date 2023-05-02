@@ -1,18 +1,16 @@
 package com.app.happybox.entity.user;
 
-import com.app.happybox.entity.product.Product;
+import com.app.happybox.entity.order.Product;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity @Table(name = "TBL_DISTRIBUTOR")
+@DiscriminatorValue("DISTRIBUTOR")
 @Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Distributor extends User{
 

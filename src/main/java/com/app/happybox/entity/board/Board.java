@@ -6,9 +6,10 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity @Table(name = "TBL_BOARD")
-@Getter @ToString(exclude = "member") @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"member", "boardLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
@@ -26,4 +27,7 @@ public class Board extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Member member;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", orphanRemoval = true)
+    private List<BoardLike> boardLikes;
 }

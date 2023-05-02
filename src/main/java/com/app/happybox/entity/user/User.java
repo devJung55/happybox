@@ -1,7 +1,10 @@
 package com.app.happybox.entity.user;
 
 import com.app.happybox.audity.Period;
-import com.app.happybox.entity.product.Order;
+import com.app.happybox.entity.board.BoardLike;
+import com.app.happybox.entity.order.MemberSubscription;
+import com.app.happybox.entity.payment.Payment;
+import com.app.happybox.entity.order.Purchase;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -11,7 +14,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = "boardLikes") @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DiscriminatorColumn(name = "USER_TYPE")
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends Period {
@@ -36,8 +40,21 @@ public abstract class User extends Period {
     @ColumnDefault(value = "'REGISTERED'")
     private UserStatus userStatus;
 
+    /* 회원 주문 목록 (일반회원, 복지관회원) */
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user", orphanRemoval = true)
-    private List<Order> orders;
+    private List<Purchase> purchases;
+
+    /* 회원 구독 목록 */
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user", orphanRemoval = true)
+    private List<MemberSubscription> memberSubscriptions;
+
+    /* 게시글 좋아요 */
+    @OneToMany(fetch =  FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
+    private List<BoardLike> boardLikes;
+
+    /* 회원 결제내역 */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Payment> payments;
 
     /* 생성자 */
     public User(String userId, String userPassword, Address address, String userEmail, UserStatus userStatus) {
