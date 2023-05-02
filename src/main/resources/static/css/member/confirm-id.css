@@ -47,7 +47,7 @@
 }
 
 .text-primary {
-    color: #ff1d1d9e !important;
+    color: #FF5938 !important;
 }
 
 .btn-bottom-area {
@@ -80,8 +80,8 @@
 
 .btn-primary-line {
     background: #fff;
-    color: #ff1d1d9e;
-    border: 1px solid #ff1d1d9e;
+    color: #FF5938;
+    border: 1px solid #FF5938;
 }
 
 .btn-bottom-area > [class*="btn-"]:not(.w-full) {
@@ -120,9 +120,9 @@
 }
 
 .btn-primary {
-    background: #ff1d1d9e !important;
+    background: #FF5938 !important;
     color: #fff;
-    border: 1px solid #ff1d1d9e;
+    border: 1px solid #FF5938;
 }
 
 .btn-bottom-area > [class*="btn-"]:not(.w-full) {

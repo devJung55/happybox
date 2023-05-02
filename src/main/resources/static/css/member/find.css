@@ -80,7 +80,7 @@
     left: 5px;
     width: 10px;
     height: 10px;
-    background: #ff1d1d9e;
+    background: #FF5938;
     border-radius: 100%;
 }
 
@@ -274,9 +274,9 @@ button .blind {
 }
 
 .btn-primary {
-    background: #ff1d1d9e !important;
+    background: #FF5938 !important;
     color: #fff;
-    border: 1px solid #ff1d1d9e;
+    border: 1px solid #FF5938;
 }
 
 .join-area.type2 button {
@@ -298,7 +298,7 @@ button .blind {
     top: 15px;
     right: 15px;
     z-index: 2;
-    color: #ff1d1d9e;
+    color: #FF5938;
 }
 
 [class*="btn-basic-"] > span, [class*="btn-option"] > span, [class*="btn-rud-"] > span {

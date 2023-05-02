@@ -158,10 +158,10 @@
 }
 
 .custom-checkbox .checkbox:checked + label:before {
-    background: #ff1d1d9e url('https://www.rankingdak.com/resources/pc/images/icon/ico_form.png?ver=20220511') -50px -30px;
+    background: #FF5938 url('https://www.rankingdak.com/resources/pc/images/icon/ico_form.png?ver=20220511') -50px -30px;
     width: 18px;
     height: 18px;
-    border: 1px solid #ff1d1d9e;
+    border: 1px solid #FF5938;
 }
 
 .custom-checkbox .checkbox + label:before {
@@ -187,9 +187,9 @@
 }
 
 .btn-primary {
-    background: #ff1d1d9e !important;
+    background: #FF5938 !important;
     color: #fff;
-    border: 1px solid #ff1d1d9e;
+    border: 1px solid #FF5938;
 }
 
 .btn-basic-lg2 {
