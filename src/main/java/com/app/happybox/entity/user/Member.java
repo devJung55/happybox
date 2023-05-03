@@ -31,7 +31,7 @@ public class Member extends User {
     @NotNull @Enumerated(EnumType.STRING)
     private Gender memberGender;
     // 배송지 주소 정보
-    @NotNull
+    @NotNull @Embedded
     private Address memberDeliveryAddress;
 
     /* 회원 구독 좋아요 목록 */

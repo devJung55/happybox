@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity @Table(name = "TBL_USER_FILE")
 @Getter @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserFile extends Period implements FileTable {
+public class UserFile extends Period {
     @Id @GeneratedValue
     private Long id;
 
@@ -22,8 +22,10 @@ public class UserFile extends Period implements FileTable {
     @NotNull
     private String fileOrgName;
     @Enumerated(EnumType.STRING)
-    private FileType fileType;
+    private UserFileType userFileType;
     @Enumerated(EnumType.STRING)
     private FileRepresentType fileRepresentType;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
 }

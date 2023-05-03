@@ -46,7 +46,7 @@ public abstract class User extends Period {
     private List<BoardLike> boardLikes = new ArrayList<>();
 
     /* 프로필 사진 */
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private UserFile userFile;
 
     /* 생성자 */
