@@ -21,8 +21,11 @@ public class Inquiry extends Period {
     @NotNull private String inquiryContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn
     private User user;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "inquiry", cascade = CascadeType.REMOVE)
+    private InquiryAnswer inquiryAnswer;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "inquiry")
     private List<InquiryFile> inquiryFiles = new ArrayList<>();

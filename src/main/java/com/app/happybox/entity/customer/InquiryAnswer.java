@@ -19,7 +19,7 @@ public class InquiryAnswer extends Period {
     @NotNull private String inquiryAnswerContent;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "INQUIRY_ID")
+    @JoinColumn
     private Inquiry inquiry;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "inquiryAnswer")

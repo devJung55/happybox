@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_SUBSCRIPTION")
-@Getter @ToString(exclude = {"welfare", "subscriptLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"welfare", "subscriptionLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate @DynamicInsert
 public class Subscription extends Period {
 
@@ -24,7 +24,7 @@ public class Subscription extends Period {
 
     /* ===== 구독 상품 정보 ===== */
     @NotNull
-    private String subscriptionName;
+    private String subscriptionTitle;
 
     @ColumnDefault(value = "0")
     private Integer subscriptionPrice;
@@ -32,6 +32,10 @@ public class Subscription extends Period {
     // 구독 좋아요 갯수 (조회가 많기 때문에 컬럼으로 추가했음)
     @ColumnDefault(value = "0")
     private Integer subscriptLikeCount;
+
+    // 구독 옵션 (저염식, 양많이, 양적게 등)
+    @Enumerated(EnumType.STRING)
+    private SubOption subOption;
     /* ======================= */
 
     /* 복지관 */

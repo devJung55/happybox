@@ -19,7 +19,7 @@ public abstract class Order extends Period {
     private Long id;
 
     @Embedded
-    private Address address;
+    private Address orderAddress;
 
     /* 주문/구독한 회원 */
     @ManyToOne(fetch = FetchType.LAZY)
