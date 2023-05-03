@@ -1,7 +1,7 @@
 package com.app.happybox.entity.subscript;
 
 import com.app.happybox.audity.Period;
-import com.app.happybox.entity.order.MemberSubscription;
+import com.app.happybox.entity.order.OrderSubscription;
 import com.app.happybox.entity.user.Welfare;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -45,7 +45,7 @@ public class Subscription extends Period {
 
     /* 구독회원 정보 List (구독 상품과 회원은 N:N 관계여서 구독회원 정보 라는 중간테이블 존재) */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
-    private List<MemberSubscription> memberSubscriptions = new ArrayList<>();
+    private List<OrderSubscription> orderSubscriptions = new ArrayList<>();
 
     /* 구독 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
