@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../../static/css/component/footer.css" />
     </head>
     <body>
-        <footer id="footer" class="footer">
+        <footer th:fragment="footer" id="footer" class="footer">
             <div class="footer-menu">
                 <div class="frame-sm">
                     <ul class="footer-menu-list">
