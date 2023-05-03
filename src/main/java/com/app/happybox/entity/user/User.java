@@ -3,9 +3,6 @@ package com.app.happybox.entity.user;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.board.BoardLike;
 import com.app.happybox.entity.file.UserFile;
-import com.app.happybox.entity.order.MemberSubscription;
-import com.app.happybox.entity.payment.Payment;
-import com.app.happybox.entity.order.Purchase;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -35,6 +32,8 @@ public abstract class User extends Period {
     // 이메일 중복 X
     @NotNull @Column(unique = true)
     private String userEmail;
+    @NotNull @Column(unique = true)
+    private String welfarePhone;
     /* ======================= */
     /* ===== 회원 상태 표시 ===== */
     // 회원 INSERT 시 기본값은 REGISTERED 이다.

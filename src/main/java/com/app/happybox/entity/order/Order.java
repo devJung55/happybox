@@ -24,7 +24,4 @@ public abstract class Order extends Period {
     /* 주문/구독한 회원 */
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
-    @ColumnDefault(value = "0")
-    private Integer orderPrice;
 }
