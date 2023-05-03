@@ -60,6 +60,13 @@ img {
     font-size: 18px !important;
 }
 
+#product-market img {
+    position: absolute;
+    width: 20px;
+    top: -8px;
+    right: -21px;
+}
+
 .fontW500 {
     font-weight: 500 !important;
 }
