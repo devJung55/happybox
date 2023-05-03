@@ -112,7 +112,7 @@ const event = {
     calendarId: '2',    // 스케쥴의 ID(Random으로 뽑기)
     body:'안녕하세요 오태양입니다.', // 스케쥴의 설명
     title: '가정식 백반',   // 화면에 뿌려지는 이름
-    state:'',   // 현재 상태 (별필요없음)
+    state:'option:양많이',   // 현재 상태 (별필요없음)
     start: '2023-04-17 13:00',  // 시작 일
     end: '2023-04-21',  // 끝일
     UserName:'링구',    // 이거 필요없음
@@ -123,11 +123,9 @@ const event1 = {
     id: '2',
     calendarId: '1',
     title: '헬스 푸드(정지영)',
+    body:'안녕하세요 오태양입니다.',
     start: '2023-04-24T12:00',
     end: '2023-04-28',
-    state:'',
-    User:'오태양',
-    UserName:'링구',
     isReadOnly: true,
   };
 
@@ -135,10 +133,9 @@ const event2 = {
     id: '3',
     calendarId: '3',
     title: '캐밥 데이',
+    body:'안녕하세요 오태양입니다.',
     start: '2023-04-10T12:00',
     end: '2023-04-14',
-    state:'',
-    UserName:'링구',
     isReadOnly: true,
 };
 
