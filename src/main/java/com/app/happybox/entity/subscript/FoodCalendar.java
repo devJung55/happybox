@@ -2,14 +2,14 @@ package com.app.happybox.entity.subscript;
 
 import com.app.happybox.audity.Period;
 import com.sun.istack.NotNull;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity @Table(name = "TBL_FOOD_CALENDAR")
+@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FoodCalendar extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue

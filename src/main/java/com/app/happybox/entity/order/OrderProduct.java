@@ -10,7 +10,7 @@ import java.util.List;
 @Entity @Table(name = "TBL_ORDER_PRODUCT")
 @DynamicInsert
 @DiscriminatorValue("PURCHASE")
-@Getter @ToString(exclude = "user", callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderProduct extends Order {
 
     /* 주문 안의 상품 List */

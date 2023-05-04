@@ -7,18 +7,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "notice", callSuper = true)
 @Table(name = "TBL_NOTICE_FILE")
+@DiscriminatorValue("NOTICE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class NoticeFile {
-    @Id @GeneratedValue @EqualsAndHashCode.Include
-    private Long id;
-    @NotNull private String filePath;
-    @NotNull private String fileUuid;
-    private String fileOrgName;
-    @Enumerated(EnumType.STRING)
-    private FileRepresentType fileRepresentType;
-
+public class NoticeFile extends Files {
     @ManyToOne(fetch = FetchType.LAZY)
     private Notice notice;
 }

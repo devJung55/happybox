@@ -12,19 +12,20 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_PAYMENT")
-@DynamicInsert @DynamicUpdate
-@Getter @ToString(exclude = "user") @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
+@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Payment extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
 
-    @NotNull
+    /* 결제 기본 정보 */
     @ColumnDefault(value = "0")
     private Integer paymentAmount;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+    /* ============ */
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
