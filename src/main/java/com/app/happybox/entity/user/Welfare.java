@@ -15,7 +15,9 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_WELFARE")
 @DiscriminatorValue("WELFARE")
-@Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(callSuper = true, exclude = {
+        "payments", "orderProducts", "subscription"
+}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Welfare extends User {
 
     @NotNull @Column(unique = true)

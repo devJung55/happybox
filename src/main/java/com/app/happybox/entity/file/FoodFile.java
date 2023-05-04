@@ -7,19 +7,9 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_FOOD_FILE")
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class FoodFile {
-    @EqualsAndHashCode.Include
-    @Id @GeneratedValue
-    private Long id;
-
-    @NotNull
-    private String filePath;
-    @NotNull
-    private String fileUuid;
-    @NotNull
-    private String fileOrgName;
-
+@DiscriminatorValue("FOOD")
+@Getter @ToString(exclude = "food",callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class FoodFile extends Files {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Food food;

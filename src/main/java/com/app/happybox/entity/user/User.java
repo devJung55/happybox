@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
-@Getter @ToString(exclude = "boardLikes") @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"boardLikes", "userFile"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DiscriminatorColumn(name = "USER_TYPE")
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -49,12 +49,7 @@ public abstract class User extends Period {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private UserFile userFile;
 
-    /* 생성자 */
-    public User(String userId, String userPassword, Address address, String userEmail, UserStatus userStatus) {
-        this.userId = userId;
-        this.userPassword = userPassword;
-        this.address = address;
-        this.userEmail = userEmail;
-        this.userStatus = userStatus;
-    }
+    /* 회원 Random Key */
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
+//    private List<UserRandomKey> userRandomKeys;
 }

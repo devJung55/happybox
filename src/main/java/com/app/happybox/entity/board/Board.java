@@ -4,26 +4,32 @@ import com.app.happybox.audity.Period;
 import com.app.happybox.entity.user.Member;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_BOARD")
-@Getter @ToString(exclude = {"member", "boardLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
+@Getter @ToString(exclude = {"boardLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
 
-    @NotNull
+    /* 게시판 기본 정보 */
+    @ColumnDefault(value = "제목 없음")
     private String boardTitle;
     @NotNull
     private String boardContent;
 
+    // 기본 리뷰 게시판
     @Enumerated(EnumType.STRING)
-    @NotNull
+    @ColumnDefault(value = "'REVIEW'")
     private BoardType boardType;
+    /* ============= */
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn

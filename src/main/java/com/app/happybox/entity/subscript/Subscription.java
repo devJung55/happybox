@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_SUBSCRIPTION")
-@Getter @ToString(exclude = {"welfare", "subscriptionLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {
+        "foodCalendars", "orderSubscriptions", "subscriptionLikes"
+}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate @DynamicInsert
 public class Subscription extends Period {
 

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity @Table(name = "TBL_ORDER_SUBSCRIPTION")
 @DynamicInsert
 @DiscriminatorValue("SUBSCRIPTION")
-@Getter @ToString(exclude = {"member", "subscript"}, callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderSubscription extends Order {
 
     /* 구독상품 */

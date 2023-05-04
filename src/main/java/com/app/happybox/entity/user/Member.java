@@ -18,7 +18,9 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_MEMBER")
 @DiscriminatorValue("MEMBER")
-@Getter @ToString(callSuper = true, exclude = "subscriptLikes") @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(callSuper = true, exclude = {
+        "subscriptionLikes", "boards", "orderSubscriptions", "orderProducts", "payments"})
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends User {
 
     /* 일반회원만 있는 정보 */

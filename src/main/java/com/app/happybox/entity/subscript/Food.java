@@ -7,7 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_FOOD")
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"foodCalendar", "foodFile"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Food {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue

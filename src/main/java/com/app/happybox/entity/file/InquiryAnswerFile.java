@@ -8,18 +8,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "inquiryAnswer", callSuper = true)
 @Table(name = "TBL_INQUIRY_ANSWER_FILE")
+@DiscriminatorValue("INQUIRY_ANSWER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class InquiryAnswerFile extends Period {
-    @Id @GeneratedValue @EqualsAndHashCode.Include
-    private Long id;
-    @NotNull private String filePath;
-    @NotNull private String fileUuid;
-    private String fileOrgName;
-    @Enumerated(EnumType.STRING)
-    private FileRepresentType fileRepresentType;
-
+public class InquiryAnswerFile extends Files {
     @ManyToOne(fetch = FetchType.LAZY)
     private InquiryAnswer inquiryAnswer;
 }
