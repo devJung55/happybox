@@ -1,0 +1,107 @@
+/* Error 페이지 CSS */
+
+.error-container {
+    width: 1100px;
+    text-align: center;
+    margin: 0 auto;
+    min-height: 800px;
+}
+
+
+.brand-logo {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.brand-logo img {
+    width: 150px;
+}
+
+.error-wrap {
+    width: 100%;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.error-inner {
+    display: inline-block;
+}
+
+.img-error {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.img-error img {
+    width: 150px;
+}
+
+.img-error .num {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.error-inner .txt {
+    position: relative;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
+
+.error-inner .txt:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    height: 1px;
+    background: #ccc;
+    display: block;
+    content: '';
+}
+
+.error-inner .sub-txt {
+    color: #666;
+    font-size: 14px;
+    margin: 20px 0 65px;
+}
+
+.btn-black {
+    color: #fff;
+    background: #333;
+    border: 1px solid #333;
+}
+
+.btn-basic-lg2 {
+    min-width: 180px;
+    height: 48px;
+    padding: 10px 25px 11px;
+}
+
+[class*="btn-basic-"], [class*="btn-option"] {
+    border-radius: 6px;
+}
+
+[class*="btn-basic-"], [class*="btn-option"], [class*="btn-rud-"] {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.btn-basic-lg2 > span {
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+[class*="btn-basic-"] > span, [class*="btn-option"] > span, [class*="btn-rud-"] > span {
+    display: inline-block;
+    vertical-align: top;
+}
