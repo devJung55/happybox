@@ -1,4 +1,4 @@
-package com.app.happybox.entity.order;
+package com.app.happybox.entity.type;
 
 public enum PurchaseStatus {
     DELIVERED, CANCELED

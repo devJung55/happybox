@@ -2,6 +2,7 @@ package com.app.happybox.entity.subscript;
 
 import com.app.happybox.entity.file.FoodFile;
 import com.app.happybox.entity.user.Welfare;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +13,9 @@ public class Food {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
+
+    @NotNull
+    private String foodName;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "food")
     private FoodFile foodFile;

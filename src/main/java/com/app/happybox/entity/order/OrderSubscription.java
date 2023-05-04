@@ -1,6 +1,7 @@
 package com.app.happybox.entity.order;
 
 import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.entity.type.SubscriptStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;

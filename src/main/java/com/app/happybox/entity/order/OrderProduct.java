@@ -1,5 +1,6 @@
 package com.app.happybox.entity.order;
 
+import com.app.happybox.entity.type.PurchaseStatus;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 

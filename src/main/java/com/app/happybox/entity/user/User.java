@@ -3,6 +3,8 @@ package com.app.happybox.entity.user;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.board.BoardLike;
 import com.app.happybox.entity.file.UserFile;
+import com.app.happybox.entity.reply.Reply;
+import com.app.happybox.entity.type.UserStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
-@Getter @ToString(exclude = {"boardLikes", "userFile"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"boardLikes", "userFile", "replies"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DiscriminatorColumn(name = "USER_TYPE")
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -41,13 +43,13 @@ public abstract class User extends Period {
     @ColumnDefault(value = "'REGISTERED'")
     private UserStatus userStatus;
 
-    /* 게시글 좋아요 */
-    @OneToMany(fetch =  FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
-    private List<BoardLike> boardLikes = new ArrayList<>();
-
     /* 프로필 사진 */
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private UserFile userFile;
+
+    /* 댓글 List */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<Reply> replies;
 
     /* 회원 Random Key */
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)

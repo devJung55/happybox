@@ -1,5 +1,6 @@
 package com.app.happybox.entity.file;
 
+import com.app.happybox.entity.type.UserFileRepresent;
 import com.app.happybox.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;

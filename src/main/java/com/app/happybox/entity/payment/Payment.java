@@ -2,12 +2,11 @@ package com.app.happybox.entity.payment;
 
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.order.Order;
+import com.app.happybox.entity.type.PaymentStatus;
 import com.app.happybox.entity.user.User;
-import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 

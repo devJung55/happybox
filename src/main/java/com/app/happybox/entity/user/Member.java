@@ -5,6 +5,7 @@ import com.app.happybox.entity.order.OrderProduct;
 import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.entity.order.OrderSubscription;
+import com.app.happybox.entity.type.Gender;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -41,7 +42,7 @@ public class Member extends User {
     private List<SubscriptionLike> subscriptionLikes = new ArrayList<>();
 
     /* 회원 게시글 목록 */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
     private List<Board> boards = new ArrayList<>();
 
     /* 회원 구독 목록 */

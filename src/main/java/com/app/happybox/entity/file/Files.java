@@ -21,7 +21,4 @@ public class Files extends Period {
     private String fileUuid;
     @NotNull
     private String fileOrgName;
-
-    @Enumerated(EnumType.STRING)
-    private FileType fileType;
 }
