@@ -62,13 +62,13 @@ img {
 
 #product-market img {
     position: absolute;
-    width: 20px;
-    top: -8px;
-    right: -21px;
+    width: 18px;
+    top: 3px;
+    right: -23px;
 }
 
 .fontW500 {
-    font-weight: 500 !important;
+    font-weight: 500 ;
 }
 
 .main-swiper-wrap a {
@@ -76,9 +76,6 @@ img {
     color: #FF5938;
 }
 
-.main-swiper-wrap a:hover {
-    font-weight: 700 !important;
-}
 
 .main-swiper-wrap a:first-child:after {
     content: "";

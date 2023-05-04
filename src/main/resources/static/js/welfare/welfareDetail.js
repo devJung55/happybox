@@ -112,7 +112,7 @@ const $fixedDiv = $('.welfare-info-area');
 const $fixedPosition = 300; // 고정시킬 위치 값
 const initialPosition = $fixedDiv.offset();
 const initialTop = initialPosition.top;
-const initialRight = $(window).width()*1.545 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
+const initialRight = $(window).width()*1.23 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
 
 $(window).scroll(function() {
   const currentPosition = $(window).scrollTop();
