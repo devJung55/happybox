@@ -6,16 +6,16 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity @Table(name = "TBL_BOARD_LIKE")
+@Entity @Table(name = "TBL_REVIEW_BOARD_LIKE")
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BoardLike extends Period {
+public class ReviewBoardLike extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Board board;
+    private ReviewBoard reviewBoard;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn

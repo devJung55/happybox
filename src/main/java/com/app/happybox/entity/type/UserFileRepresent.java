@@ -1,4 +1,4 @@
-package com.app.happybox.entity.file;
+package com.app.happybox.entity.type;
 
 public enum UserFileRepresent {
     REPRESENT, ORDINARY

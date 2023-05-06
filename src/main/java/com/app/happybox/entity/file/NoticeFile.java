@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Getter @ToString(exclude = "notice", callSuper = true)
 @Table(name = "TBL_NOTICE_FILE")
-@DiscriminatorValue("NOTICE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NoticeFile extends Files {
     @ManyToOne(fetch = FetchType.LAZY)

@@ -9,9 +9,9 @@ import javax.persistence.*;
 /**
  * 주문 시 주문한 상품 내역 (주문 안에 여러 상품이 있기 때문)
  * */
-@Entity @Table(name = "TBL_ORDER_PRODUCT_ITEM")
-@Getter @ToString(exclude = {"product", "orderProduct"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class OrderProductItem extends Period {
+@Entity @Table(name = "TBL_WELFARE_ORDER_PRODUCT_ITEM")
+@Getter @ToString(exclude = {"product", "welfareOrderProduct"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class WelfareOrderProductItem extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
@@ -27,5 +27,5 @@ public class OrderProductItem extends Period {
     /* 주문 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
-    private OrderProduct orderProduct;
+    private WelfareOrderProduct welfareOrderProduct;
 }

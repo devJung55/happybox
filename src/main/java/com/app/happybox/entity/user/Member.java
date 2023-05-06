@@ -1,10 +1,13 @@
 package com.app.happybox.entity.user;
 
-import com.app.happybox.entity.board.Board;
-import com.app.happybox.entity.order.OrderProduct;
+import com.app.happybox.entity.board.RecipeBoard;
+import com.app.happybox.entity.board.ReviewBoard;
+import com.app.happybox.entity.order.MemberOrderProduct;
+import com.app.happybox.entity.order.WelfareOrderProduct;
 import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.entity.order.OrderSubscription;
+import com.app.happybox.entity.type.Gender;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,7 +22,7 @@ import java.util.List;
 @Entity @Table(name = "TBL_MEMBER")
 @DiscriminatorValue("MEMBER")
 @Getter @ToString(callSuper = true, exclude = {
-        "subscriptionLikes", "boards", "orderSubscriptions", "orderProducts", "payments"})
+        "subscriptionLikes", "recipeBoards", "reviewBoards", "orderSubscriptions", "memberOrderProducts", "payments"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends User {
 
@@ -40,17 +43,21 @@ public class Member extends User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     private List<SubscriptionLike> subscriptionLikes = new ArrayList<>();
 
-    /* 회원 게시글 목록 */
+    /* 회원 레시피 게시글 목록 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true)
-    private List<Board> boards = new ArrayList<>();
+    private List<RecipeBoard> recipeBoards = new ArrayList<>();
+
+    /* 회원 복지관 리뷰 게시글 목록 */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true)
+    private List<ReviewBoard> reviewBoards = new ArrayList<>();
 
     /* 회원 구독 목록 */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true)
     private List<OrderSubscription> orderSubscriptions = new ArrayList<>();
 
-    /* 회원 주문 목록 (일반회원, 복지관회원) */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
-    private List<OrderProduct> orderProducts = new ArrayList<>();
+    /* 회원 주문 목록 (일반 회원) */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true)
+    private List<MemberOrderProduct> memberOrderProducts = new ArrayList<>();
 
     /* 회원 결제내역 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
