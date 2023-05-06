@@ -10,6 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
@@ -46,7 +47,7 @@ public abstract class User extends Period {
 
     /* 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<Reply> replies;
+    private List<Reply> replies = new ArrayList<>();
 
     /* 회원 Random Key */
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)

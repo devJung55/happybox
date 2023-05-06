@@ -8,6 +8,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_PRODUCT")
@@ -31,9 +32,9 @@ public class Product extends Period {
 
     /* 상품 댓글 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<ProductReply> productReplies;
+    private List<ProductReply> productReplies = new ArrayList<>();
 
     /* 상품 파일 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<ProductFile> productFiles;
+    private List<ProductFile> productFiles = new ArrayList<>();
 }

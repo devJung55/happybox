@@ -14,16 +14,11 @@ import java.util.List;
  * */
 @Entity @Table(name = "TBL_DONATION_BOARD")
 @DynamicInsert @Inheritance(strategy = InheritanceType.JOINED)
-@Getter @ToString(exclude = {"boardFiles"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DonationBoard extends Board {
 
     /* 작성한 유저 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Welfare welfare;
-
-    /* 게시판 파일 List */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<BoardFile> boardFiles;
-
 }

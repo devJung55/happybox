@@ -10,6 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_RECIPE_BOARD")
@@ -29,9 +30,9 @@ public class RecipeBoard extends Board {
 
     /* 게시글 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<RecipeBoardReply> recipeBoardReplies;
+    private List<RecipeBoardReply> recipeBoardReplies = new ArrayList<>();
 
     /* 게시글 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<RecipeBoardLike> recipeBoardLikes;
+    private List<RecipeBoardLike> recipeBoardLikes = new ArrayList<>();
 }
