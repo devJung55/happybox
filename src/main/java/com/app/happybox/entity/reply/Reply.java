@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_REPLY")
@@ -32,5 +33,5 @@ public class Reply extends Period {
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reply", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<ReplyLike> replyLikes;
+    private List<ReplyLike> replyLikes = new ArrayList<>();
 }

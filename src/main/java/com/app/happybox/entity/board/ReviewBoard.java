@@ -11,6 +11,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_REVIEW_BOARD")
@@ -37,9 +38,9 @@ public class ReviewBoard extends Board {
 
     /* 게시글 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<ReviewBoardReply> reviewBoardReplies;
+    private List<ReviewBoardReply> reviewBoardReplies = new ArrayList<>();
 
     /* 게시글 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<ReviewBoardLike> reviewBoardLikes;
+    private List<ReviewBoardLike> reviewBoardLikes = new ArrayList<>();
 }
