@@ -35,4 +35,12 @@ public class RecipeBoard extends Board {
     /* 게시글 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<RecipeBoardLike> recipeBoardLikes = new ArrayList<>();
+
+    public RecipeBoard(String boardTitle, String boardContent) {
+        super(boardTitle, boardContent);
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }
