@@ -10,7 +10,6 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_PRODUCT_FILE")
-@DiscriminatorValue("PRODUCT")
 @Getter @ToString(exclude = "product",callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductFile extends Files {
     @ManyToOne(fetch = FetchType.LAZY)

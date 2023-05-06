@@ -10,7 +10,6 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_USER_FILE")
-@DiscriminatorValue("USER")
 @Getter @ToString(exclude = "user",callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserFile extends Files {
     @Enumerated(EnumType.STRING)

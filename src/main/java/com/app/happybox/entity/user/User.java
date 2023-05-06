@@ -1,7 +1,6 @@
 package com.app.happybox.entity.user;
 
 import com.app.happybox.audity.Period;
-import com.app.happybox.entity.board.BoardLike;
 import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.reply.Reply;
 import com.app.happybox.entity.type.UserStatus;
@@ -11,12 +10,10 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
 @Getter @ToString(exclude = {"boardLikes", "userFile", "replies"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DiscriminatorColumn(name = "USER_TYPE")
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends Period {
@@ -35,7 +32,7 @@ public abstract class User extends Period {
     @NotNull @Column(unique = true)
     private String userEmail;
     @NotNull @Column(unique = true)
-    private String welfarePhone;
+    private String userPhoneNumber;
     /* ======================= */
     /* ===== 회원 상태 표시 ===== */
     // 회원 INSERT 시 기본값은 REGISTERED 이다.

@@ -10,8 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_ORDER")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "ORDER_TYPE")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Order extends Period {
     @EqualsAndHashCode.Include
@@ -20,8 +19,4 @@ public abstract class Order extends Period {
 
     @Embedded
     private Address orderAddress;
-
-    /* 주문/구독한 회원 */
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
 }

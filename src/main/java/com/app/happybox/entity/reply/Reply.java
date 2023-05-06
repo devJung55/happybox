@@ -13,8 +13,8 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_REPLY")
 @DynamicInsert
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) @DiscriminatorColumn(name = "REPLY_TYPE")
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Inheritance(strategy = InheritanceType.JOINED)
+@Getter @ToString(exclude = "replyLikes") @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Reply extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue

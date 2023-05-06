@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity @Table(name = "TBL_PRODUCT")
-@Getter @ToString(exclude = "distributor") @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"productReplies", "productFiles"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue

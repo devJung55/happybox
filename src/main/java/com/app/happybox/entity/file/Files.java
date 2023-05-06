@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity @Table(name = "TBL_FILES")
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DiscriminatorColumn(name = "FILE_REF")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Files extends Period {
     @EqualsAndHashCode.Include

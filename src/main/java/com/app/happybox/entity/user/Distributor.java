@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_DISTRIBUTOR")
 @DiscriminatorValue("DISTRIBUTOR")
-@Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(callSuper = true, exclude = "products") @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Distributor extends User{
 
     @NotNull @Column(unique = true)

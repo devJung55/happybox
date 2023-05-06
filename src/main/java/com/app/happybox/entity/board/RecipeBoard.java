@@ -1,7 +1,7 @@
 package com.app.happybox.entity.board;
 
-import com.app.happybox.entity.reply.BoardReply;
-import com.app.happybox.entity.user.Welfare;
+import com.app.happybox.entity.reply.RecipeBoardReply;
+import com.app.happybox.entity.user.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_RECIPE_BOARD")
 @DynamicInsert
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"recipeBoardReplies", "recipeBoardLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RecipeBoard extends Board {
 
     /* 레시피 게시판 정보 */
@@ -22,11 +22,16 @@ public class RecipeBoard extends Board {
     private Integer recipeLikeCount;
     /* ============= */
 
+    /* 작성한 유저 */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Member member;
+
     /* 게시글 댓글 List */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<BoardReply> boardReplies;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<RecipeBoardReply> recipeBoardReplies;
 
     /* 게시글 좋아요 List */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<BoardLike> boardLikes;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<RecipeBoardLike> recipeBoardLikes;
 }
