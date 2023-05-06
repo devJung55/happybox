@@ -1,6 +1,7 @@
 package com.app.happybox.entity.board;
 
 import com.app.happybox.entity.reply.ReviewBoardReply;
+import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
 import lombok.AccessLevel;
@@ -33,8 +34,9 @@ public class ReviewBoard extends Board {
     private Member member;
 
     /* 리뷰할 복지관 */
-    @OneToOne(fetch = FetchType.LAZY)
-    private Welfare welfare;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Subscription subscription;
 
     /* 게시글 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)

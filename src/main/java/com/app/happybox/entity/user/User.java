@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
-@Getter @ToString(exclude = {"boardLikes", "userFile", "replies"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"replies"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends Period {
@@ -42,8 +42,10 @@ public abstract class User extends Period {
     private UserStatus userStatus;
 
     /* 프로필 사진 */
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-    private UserFile userFile;
+    // OneToOne 관계에서 양방향으로 설정되어 있다면,
+    // N + 1 문제가 발생한다. 따라서 단방향 관계로 제거했음.
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+//    private UserFile userFile;
 
     /* 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
@@ -52,4 +54,12 @@ public abstract class User extends Period {
     /* 회원 Random Key */
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
 //    private List<UserRandomKey> userRandomKeys;
+
+    public User(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber) {
+        this.userId = userId;
+        this.userPassword = userPassword;
+        this.address = address;
+        this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
+    }
 }
