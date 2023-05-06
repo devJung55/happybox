@@ -7,6 +7,8 @@ import com.app.happybox.entity.type.InquiryType;
 import com.app.happybox.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 @Entity
 @Getter @ToString
 @Table(name = "TBL_INQUIRY")
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Inquiry extends Period {
     @Id @GeneratedValue @EqualsAndHashCode.Include
@@ -26,16 +29,22 @@ public class Inquiry extends Period {
     @JoinColumn
     private User user;
 
-    /* 문의 유현 */
+    /* 문의 유형 */
     @Enumerated(EnumType.STRING)
     private InquiryType inquiryType;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) @ColumnDefault(value = "'STANDBY'")
     private InquiryStatus inquiryStatus;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "inquiry", cascade = CascadeType.REMOVE)
-    private InquiryAnswer inquiryAnswer;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "inquiry")
     private List<InquiryFile> inquiryFiles = new ArrayList<>();
+
+    public Inquiry(String inquiryTitle, String inquiryContent) {
+        this.inquiryTitle = inquiryTitle;
+        this.inquiryContent = inquiryContent;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

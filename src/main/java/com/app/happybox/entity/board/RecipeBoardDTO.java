@@ -6,8 +6,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-@Getter
-@ToString
+@Getter @ToString
 public class RecipeBoardDTO {
     private Long id;
 
