@@ -20,7 +20,7 @@ import java.util.List;
 @DiscriminatorValue("WELFARE")
 @DynamicInsert
 @Getter @ToString(callSuper = true, exclude = {
-        "payments", "welfareOrderProducts", "subscription", "donationBoards"
+        "payments", "welfareOrderProducts", /*"subscription",*/ "donationBoards"
 }) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Welfare extends User {
 
@@ -46,6 +46,13 @@ public class Welfare extends User {
     private List<WelfareOrderProduct> welfareOrderProducts = new ArrayList<>();
 
     /* 복지관의 구독 상품 기본적으로 복지관 당 하나 (OneToOne) */
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "welfare", orphanRemoval = true)
-    private Subscription subscription;
+    // OneToOne 관계에서 양방향으로 설정되어 있다면,
+    // N + 1 문제가 발생한다. 따라서 단방향 관계로 제거했음.
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "welfare", orphanRemoval = true)
+//    private Subscription subscription;
+
+    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String welfareName) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber);
+        this.welfareName = welfareName;
+    }
 }

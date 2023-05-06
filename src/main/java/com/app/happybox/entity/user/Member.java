@@ -30,8 +30,6 @@ public class Member extends User {
     @NotNull
     private String memberName;
     @NotNull
-    private String memberMobile;
-    @NotNull
     private LocalDate memberBirth;
     @NotNull @Enumerated(EnumType.STRING)
     private Gender memberGender;
@@ -62,4 +60,12 @@ public class Member extends User {
     /* 회원 결제내역 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Payment> payments = new ArrayList<>();
+
+    public Member(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String memberName, LocalDate memberBirth, Gender memberGender, Address memberDeliveryAddress) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber);
+        this.memberName = memberName;
+        this.memberBirth = memberBirth;
+        this.memberGender = memberGender;
+        this.memberDeliveryAddress = memberDeliveryAddress;
+    }
 }

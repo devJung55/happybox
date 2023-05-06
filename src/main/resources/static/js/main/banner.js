@@ -93,7 +93,7 @@ if (!mobileCheck) {
         banner.style.transition = `${autoSlideActionTimer}`;
         banner.style.transform = `translate(${-width * --count}px)`;
         if (count == 0) {
-            count = 8;
+            count = bannersLength;
             updateBannerCount();
             setTimeout(function () {
                 banner.style.transition = "transform 0s";

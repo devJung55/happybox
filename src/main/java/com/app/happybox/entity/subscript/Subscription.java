@@ -1,6 +1,7 @@
 package com.app.happybox.entity.subscript;
 
 import com.app.happybox.audity.Period;
+import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.order.OrderSubscription;
 import com.app.happybox.entity.type.SubOption;
 import com.app.happybox.entity.user.Welfare;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_SUBSCRIPTION")
 @Getter @ToString(exclude = {
-        "foodCalendars", "orderSubscriptions", "subscriptionLikes"
+        "foodCalendars", "orderSubscriptions", "subscriptionLikes", "orderSubscriptions"
 }) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate @DynamicInsert
 public class Subscription extends Period {
@@ -38,6 +39,7 @@ public class Subscription extends Period {
 
     // 구독 옵션 (저염식, 양많이, 양적게 등)
     @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'NORMAL'")
     private SubOption subOption;
     /* ======================= */
 
@@ -54,7 +56,24 @@ public class Subscription extends Period {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
     private List<OrderSubscription> orderSubscriptions = new ArrayList<>();
 
+    /* 구독 후기 List */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
+    private List<ReviewBoard> reviewBoards = new ArrayList<>();
+
     /* 구독 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
     private List<SubscriptionLike> subscriptionLikes = new ArrayList<>();
+
+    public Subscription(String subscriptionTitle, Integer subscriptionPrice) {
+        this.subscriptionTitle = subscriptionTitle;
+        this.subscriptionPrice = subscriptionPrice;
+    }
+
+    public void setWelfare(Welfare welfare) {
+        this.welfare = welfare;
+    }
+
+    public void setSubOption(SubOption subOption) {
+        this.subOption = subOption;
+    }
 }
