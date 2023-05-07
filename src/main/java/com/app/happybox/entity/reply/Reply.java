@@ -34,4 +34,13 @@ public class Reply extends Period {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reply", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ReplyLike> replyLikes = new ArrayList<>();
+
+    public Reply(String replyContent, User user) {
+        this.replyContent = replyContent;
+        this.user = user;
+    }
+
+    public void setReplyLikeCount(Integer replyLikeCount) {
+        this.replyLikeCount = replyLikeCount;
+    }
 }

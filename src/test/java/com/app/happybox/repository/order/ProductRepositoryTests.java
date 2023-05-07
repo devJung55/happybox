@@ -25,7 +25,7 @@ class ProductRepositoryTests {
     private DistributorRepository distributorRepository;
 
     @Test
-    public void saveTest(){
+    public void saveTest() {
         // given
         distributorRepository.findById(8L).ifPresent(distributor -> {
             Product product = new Product("정표사과", 1_800, distributor);
@@ -39,7 +39,7 @@ class ProductRepositoryTests {
     }
 
     @Test
-    public void findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL_Test(){
+    public void findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL_Test() {
         // given
         productRepository
                 .findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL()
@@ -49,5 +49,16 @@ class ProductRepositoryTests {
         // when
 
         // then
+    }
+
+    @Test
+    public void findByIdWithDetail_QueryDSL_Test() {
+        // given
+        ProductDTO productDTO = productRepository.findByIdWithDetail_QueryDSL(9L);
+
+        // when
+
+        // then
+        log.info(productDTO.toString());
     }
 }

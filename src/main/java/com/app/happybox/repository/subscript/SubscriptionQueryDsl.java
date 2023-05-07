@@ -23,5 +23,5 @@ public interface SubscriptionQueryDsl {
     public Page<SubscriptionDTO> findAllByAddressCategoryWithPaging_QueryDSL(Pageable pageable, String address);
 
 //    구독 상세 조회
-    public SubscriptionDTO findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(Long id);
+    public SubscriptionDTO findByIdWithDetail_QueryDSL(Long id);
 }

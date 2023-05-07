@@ -21,4 +21,13 @@ public class SubscriptionLikeQueryDslImpl implements SubscriptionLikeQueryDsl {
 
         return count > 0;
     }
+
+    @Override
+    public void deleteUserLikeByUserAndSubscription(Member member, Subscription subscription) {
+        query.delete(subscriptionLike)
+                .where(subscriptionLike.member.eq(member).and(subscriptionLike.subscription.eq(subscription)))
+                .execute();
+    }
+
+
 }

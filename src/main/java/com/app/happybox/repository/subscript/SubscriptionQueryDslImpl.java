@@ -78,7 +78,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     }
 
     @Override
-    public SubscriptionDTO findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(Long id) {
+    public SubscriptionDTO findByIdWithDetail_QueryDSL(Long id) {
         SubscriptionDTO subscriptionDTO = query.select(new QSubscriptionDTO(
                 subscription.id,
                 subscription.subscriptionTitle,

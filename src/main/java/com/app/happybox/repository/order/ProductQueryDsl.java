@@ -8,4 +8,6 @@ import java.util.List;
 public interface ProductQueryDsl {
 //    최신순 8개 조회
     public List<ProductDTO> findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL();
+//    상세 보기
+    public ProductDTO findByIdWithDetail_QueryDSL(Long id);
 }
