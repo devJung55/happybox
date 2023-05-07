@@ -26,4 +26,14 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
 
         return inquiryList;
     }
+
+    @Override
+    public Inquiry findInquiryByInquiryId_QueryDSL(Long id) {
+        Inquiry detail = query.select(inquiry)
+                .from(inquiry)
+                .where(inquiry.id.eq(id))
+                .fetchOne();
+
+        return detail;
+    }
 }
