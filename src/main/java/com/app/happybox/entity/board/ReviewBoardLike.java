@@ -1,6 +1,7 @@
 package com.app.happybox.entity.board;
 
 import com.app.happybox.audity.Period;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 import lombok.*;
 
@@ -19,5 +20,10 @@ public class ReviewBoardLike extends Period {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private User user;
+    private Member member;
+
+    public ReviewBoardLike(Member member, ReviewBoard reviewBoard) {
+        this.member = member;
+        this.reviewBoard = reviewBoard;
+    }
 }
