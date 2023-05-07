@@ -23,4 +23,9 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .where(QMember.member.eq(member))
                 .execute();
     }
+
+    @Override
+    public void setMemberStatusById_QueryDSL(Member member) {
+
+    }
 }
