@@ -1,3 +1,4 @@
+/*
 package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.QReviewBoard;
@@ -94,3 +95,4 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         return reviewBoardList;
     }
 }
+*/
