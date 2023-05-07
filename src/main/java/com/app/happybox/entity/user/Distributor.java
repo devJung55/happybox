@@ -23,4 +23,8 @@ public class Distributor extends User{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "distributor", orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
+    public Distributor(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String distributorName) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber);
+        this.distributorName = distributorName;
+    }
 }

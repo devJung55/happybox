@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_FOOD_CALENDAR")
@@ -33,5 +34,16 @@ public class FoodCalendar extends Period {
     private Subscription subscription;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodCalendar")
-    private List<Food> foodList;
+    private List<Food> foodList = new ArrayList<>();
+
+    public FoodCalendar(String foodCalendarTitle, String foodCalendarDescription, LocalDate startDate, LocalDate endDate) {
+        this.foodCalendarTitle = foodCalendarTitle;
+        this.foodCalendarDescription = foodCalendarDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
 }
