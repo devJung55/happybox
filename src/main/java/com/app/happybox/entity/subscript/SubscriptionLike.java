@@ -22,4 +22,9 @@ public class SubscriptionLike extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Subscription subscription;
+
+    public SubscriptionLike(Member member, Subscription subscription) {
+        this.member = member;
+        this.subscription = subscription;
+    }
 }

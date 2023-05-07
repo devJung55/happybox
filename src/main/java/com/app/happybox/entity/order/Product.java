@@ -6,12 +6,15 @@ import com.app.happybox.entity.reply.ProductReply;
 import com.app.happybox.entity.user.Distributor;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_PRODUCT")
+@DynamicInsert
 @Getter @ToString(exclude = {"productReplies", "productFiles"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product extends Period {
     @EqualsAndHashCode.Include
@@ -23,6 +26,8 @@ public class Product extends Period {
     private String productName;
     @NotNull
     private Integer productPrice;
+    @ColumnDefault(value = "0")
+    private Long productStock;
     /* ======================= */
 
     /* 유통회원 */
@@ -37,4 +42,14 @@ public class Product extends Period {
     /* 상품 파일 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<ProductFile> productFiles = new ArrayList<>();
+
+    public Product(String productName, Integer productPrice, Distributor distributor) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.distributor = distributor;
+    }
+
+    public void setProductStock(Long productStock) {
+        this.productStock = productStock;
+    }
 }

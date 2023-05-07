@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -73,10 +75,10 @@ class SubscriptionRepositoryTests {
     }
 
     @Test
-    public void findTop4ByReviewCountOrderByReviewCount_QueryDSL_Test() {
+    public void findTop4OrderByReviewCount_QueryDSL_Test() {
         // given
         subscriptionRepository
-                .findTop4ByReviewCountOrderByReviewCount_QueryDSL()
+                .findTop4OrderByReviewCount_QueryDSL()
                 .stream()
                 .map(SubscriptionDTO::toString)
                 .forEach(log::info);
@@ -84,5 +86,40 @@ class SubscriptionRepositoryTests {
         // when
 
         // then
+    }
+
+    @Test
+    public void findAllByAddressCategoryWithPaging_QueryDSL() {
+        // given
+        Page<SubscriptionDTO> searchResult = subscriptionRepository
+                .findAllByAddressCategoryWithPaging_QueryDSL(PageRequest.of(0, 10), "강남구");
+
+        // when
+
+        // then
+        searchResult.get().map(SubscriptionDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findTop8OrderByDate_QueryDSL() {
+        // given
+        List<SubscriptionDTO> subscriptionDTOList = subscriptionRepository.findTop8OrderByDate_QueryDSL();
+
+        // when
+
+        // then
+        subscriptionDTOList.stream().map(SubscriptionDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(){
+        // given
+        SubscriptionDTO subscriptionDTO =
+                subscriptionRepository.findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(3L);
+
+        // when
+
+        // then
+        log.info(subscriptionDTO.toString());
     }
 }
