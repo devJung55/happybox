@@ -14,7 +14,7 @@ import static com.app.happybox.entity.user.QMember.member;
 public class MemberQueryDslImpl implements MemberQueryDsl {
     private final JPAQueryFactory query;
 
-//    member정보 수정
+    //    member정보 수정
     @Override
     public void setMemberInfoById_QueryDSL(Member member) {
         query.update(QMember.member)
@@ -28,10 +28,45 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .execute();
     }
 
-
-
     @Override
     public void setMemberStatusById_QueryDSL(Member member) {
 
     }
+
+    /* id로 ID,Password 조회 */
+    @Override
+    public Tuple findMemberInfoById(Long id) {
+        return query.select(member.userId, member.userPassword)
+                .from(member)
+                .where(member.id.eq(id))
+                .fetchOne();
+    }
+
+    //    phone으로 member 유무 확인
+    @Override
+    public Optional<Member> findMemberByMemberPhone(String MemberPhone) {
+        Member member = query.select(QMember.member)
+                .from(QMember.member)
+                .where(QMember.member.userPhoneNumber.eq(MemberPhone))
+                .fetchOne();
+        return Optional.ofNullable(member);
+    }
+
+//    아이디 중복체크
+
+    @Override
+    public Boolean checkId(String memberId) {
+
+        String identification = query.select(member.userId)
+                .from(member)
+                .where(member.userId.eq(memberId))
+                .fetchOne();
+
+        if (identification != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
