@@ -33,7 +33,7 @@ public class ReviewBoardDTO {
 
 
     @QueryProjection
-    public ReviewBoardDTO(Long id, String memberName, String reviewBoardTitle, String reviewBoardContent, LocalDateTime reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewReplyCount, String welfareName){
+    public ReviewBoardDTO(Long id, String memberName, String welfareName, String reviewBoardTitle, String reviewBoardContent, LocalDateTime reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewReplyCount){
         this.id = id;
         this.memberName = memberName;
         this.welfareName = welfareName;
