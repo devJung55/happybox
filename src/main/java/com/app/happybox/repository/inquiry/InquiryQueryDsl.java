@@ -9,4 +9,7 @@ import java.util.List;
 public interface InquiryQueryDsl {
 //    문의 목록
     public List<Inquiry> findInquiryListByMemberIdWithPaging_QueryDSL(Pageable pageable, Member member);
+
+//    문의 상세
+    public Inquiry findInquiryByInquiryId_QueryDSL(Long id);
 }

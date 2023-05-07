@@ -21,4 +21,9 @@ public class Notice extends Period {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "notice")
     private List<NoticeFile> noticeFile = new ArrayList<>();
+
+    public Notice(String noticeTitle, String noticeContent) {
+        this.noticeTitle = noticeTitle;
+        this.noticeContent = noticeContent;
+    }
 }

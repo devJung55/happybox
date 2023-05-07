@@ -15,12 +15,10 @@ public class InquiryAnswerQueryDslImpl implements InquiryAnswerQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public List<InquiryAnswer> findByInquiryId(Inquiry inquiry) {
-        List<InquiryAnswer> inquiryAnswerList = query
+    public Optional<InquiryAnswer> findByInquiryId_QueryDSL(Inquiry inquiry) {
+        return Optional.ofNullable(query
                 .select(inquiryAnswer)
                 .from(inquiryAnswer)
-                .where(inquiryAnswer.inquiry.eq(inquiry)).fetch();
-
-        return inquiryAnswerList;
+                .where(inquiryAnswer.inquiry.eq(inquiry)).fetchOne());
     }
 }

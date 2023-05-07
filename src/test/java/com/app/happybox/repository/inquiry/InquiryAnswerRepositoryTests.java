@@ -1,6 +1,8 @@
 package com.app.happybox.repository.inquiry;
 
+import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.customer.InquiryAnswer;
+import com.app.happybox.entity.type.InquiryStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,18 @@ public class InquiryAnswerRepositoryTests {
 
     @Test
     public void saveTest() {
-        InquiryAnswer inquiryAnswer = new InquiryAnswer("문의내역 답변", inquiryRepository.findById(13L).get());
+        Inquiry inquiry = inquiryRepository.findById(17L).get();
+        InquiryAnswer inquiryAnswer = new InquiryAnswer("문의내역 답변", inquiry);
         inquiryAnswerRepository.save(inquiryAnswer);
+        inquiry.setInquiryStatus(InquiryStatus.COMPLETE);
     }
 
     @Test
     public void findByInquiryIdTest() {
-        inquiryAnswerRepository.findByInquiryId(
-                inquiryRepository.findById(12L).get()).stream().map(InquiryAnswer::getInquiryAnswerContent).forEach(log::info);
+        inquiryAnswerRepository.findByInquiryId_QueryDSL(
+                inquiryRepository.findById(17L).get())
+                .stream().map(InquiryAnswer::getInquiryAnswerContent).forEach(log::info);
     }
+
+
 }

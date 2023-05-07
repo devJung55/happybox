@@ -47,4 +47,8 @@ public class Inquiry extends Period {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void setInquiryStatus(InquiryStatus inquiryStatus) {
+        this.inquiryStatus = inquiryStatus;
+    }
 }
