@@ -17,7 +17,7 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_SUBSCRIPTION")
 @Getter @ToString(exclude = {
-        "foodCalendars", "orderSubscriptions", "subscriptionLikes", "orderSubscriptions"
+        "foodCalendars", "subscriptionLikes", "orderSubscriptions", "reviewBoards", "welfare"
 }) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate @DynamicInsert
 public class Subscription extends Period {
@@ -73,7 +73,7 @@ public class Subscription extends Period {
         this.welfare = welfare;
     }
 
-    public void setSubOption(SubOption subOption) {
-        this.subOption = subOption;
+    public void setSubscriptLikeCount(Integer subscriptLikeCount) {
+        this.subscriptLikeCount = subscriptLikeCount;
     }
 }
