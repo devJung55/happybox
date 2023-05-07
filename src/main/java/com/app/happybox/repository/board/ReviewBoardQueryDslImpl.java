@@ -1,4 +1,3 @@
-/*
 package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.QReviewBoard;
@@ -84,7 +83,9 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .fetchOne();
 
         return reviewBoardDTO;
+    }
 
+    @Override
     public List<ReviewBoard> findAllByMemberIdDescWithPaging_QueryDSL(Member member) {
         List<ReviewBoard> reviewBoardList = query.select(reviewBoard)
                 .from(reviewBoard)
@@ -95,4 +96,3 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         return reviewBoardList;
     }
 }
-*/
