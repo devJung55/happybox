@@ -1,7 +1,9 @@
 package com.app.happybox.entity.order;
 
 import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.entity.type.SubOption;
 import com.app.happybox.entity.type.SubscriptStatus;
+import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 import com.sun.istack.NotNull;
@@ -25,9 +27,28 @@ public class OrderSubscription extends Order {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    // 구독 옵션 (저염식, 양많이, 양적게 등)
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'NORMAL'")
+    private SubOption subOption;
+
     /* 구독 상태 */
     @Enumerated(EnumType.STRING)
     @ColumnDefault(value = "'SUBSCRIBED'")
     @NotNull
     private SubscriptStatus subscriptStatus;
+
+    public OrderSubscription(Address orderAddress, Subscription subscription, Member member) {
+        super(orderAddress);
+        this.subscription = subscription;
+        this.member = member;
+    }
+
+    public void setSubOption(SubOption subOption) {
+        this.subOption = subOption;
+    }
+
+    public void setSubscriptStatus(SubscriptStatus subscriptStatus) {
+        this.subscriptStatus = subscriptStatus;
+    }
 }

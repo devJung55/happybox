@@ -19,4 +19,8 @@ public abstract class Order extends Period {
 
     @Embedded
     private Address orderAddress;
+
+    public Order(Address orderAddress) {
+        this.orderAddress = orderAddress;
+    }
 }

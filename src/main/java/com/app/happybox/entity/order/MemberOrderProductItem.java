@@ -10,7 +10,7 @@ import javax.persistence.*;
  * 주문 시 주문한 상품 내역 (주문 안에 여러 상품이 있기 때문)
  * */
 @Entity @Table(name = "TBL_MEMBER_ORDER_PRODUCT_ITEM")
-@Getter @ToString(exclude = {"product", "memberOrderProduct"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"memberOrderProduct"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberOrderProductItem extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
@@ -28,4 +28,13 @@ public class MemberOrderProductItem extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private MemberOrderProduct memberOrderProduct;
+
+    public MemberOrderProductItem(Long orderAmount, Product product) {
+        this.orderAmount = orderAmount;
+        this.product = product;
+    }
+
+    public void setMemberOrderProduct(MemberOrderProduct memberOrderProduct) {
+        this.memberOrderProduct = memberOrderProduct;
+    }
 }

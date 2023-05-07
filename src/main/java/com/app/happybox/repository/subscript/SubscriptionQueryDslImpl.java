@@ -85,7 +85,6 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
                 subscription.subscriptionPrice,
                 subscription.subscriptLikeCount,
                 subscription.welfare.address,
-                subscription.subOption,
                 subscription.welfare.welfareName,
                 subscription.reviewBoards.size().longValue(),
                 JPAExpressions.select(reviewBoard.reviewRating.avg().nullif(0.0)).from(reviewBoard).where(reviewBoard.subscription.id.eq(id)),
@@ -106,7 +105,6 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
                 subscription.subscriptionPrice,
                 subscription.subscriptLikeCount,
                 subscription.welfare.address,
-                subscription.subOption,
                 subscription.welfare.welfareName,
                 subscription.reviewBoards.size().longValue()
         ));
