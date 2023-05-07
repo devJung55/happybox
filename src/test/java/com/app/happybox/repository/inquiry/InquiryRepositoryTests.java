@@ -33,4 +33,9 @@ public class InquiryRepositoryTests {
                 PageRequest.of(0, 5), memberRepository.findById(1L).get()
         ).stream().map(Inquiry::getInquiryTitle).forEach(log::info);
     }
+
+    @Test
+    public void findInquiryByInquiryId_QueryDSLTest() {
+        log.info(inquiryRepository.findInquiryByInquiryId_QueryDSL(17L).toString());
+    }
 }
