@@ -46,11 +46,20 @@ public class ReviewBoard extends Board {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<ReviewBoardLike> reviewBoardLikes = new ArrayList<>();
 
-    public ReviewBoard(String boardContent, Integer reviewRating, Integer reviewLikeCount, Member member, Subscription subscription) {
-        super(boardContent);
+    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating) {
+        super(boardTitle, boardContent);
         this.reviewRating = reviewRating;
-        this.reviewLikeCount = reviewLikeCount;
+    }
+
+    public void setMember(Member member) {
         this.member = member;
+    }
+
+    public void setSubscription(Subscription subscription) {
         this.subscription = subscription;
+    }
+
+    public void setReviewLikeCount(Integer reviewLikeCount) {
+        this.reviewLikeCount = reviewLikeCount;
     }
 }

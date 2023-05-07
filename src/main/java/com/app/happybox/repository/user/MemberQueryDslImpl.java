@@ -28,41 +28,10 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .execute();
     }
 
-    /* id로 ID,Password 조회 */
-    @Override
-    public Tuple findMemberInfoById(Long id) {
-        return query.select(member.userId, member.userPassword)
-                .from(member)
-                .where(member.id.eq(id))
-                .fetchOne();
-    }
 
-//    phone으로 member 유무 확인
-    @Override
-    public Optional<Member> findMemberByMemberPhone(String MemberPhone) {
-        Member member = query.select(QMember.member)
-                .from(QMember.member)
-                .where(QMember.member.userPhoneNumber.eq(MemberPhone))
-                .fetchOne();
-        return Optional.ofNullable(member);
-    }
-
-//    아이디 중복체크
 
     @Override
-    public Boolean checkId(String memberId) {
+    public void setMemberStatusById_QueryDSL(Member member) {
 
-            String identification = query.select(member.userId)
-                    .from(member)
-                    .where(member.userId.eq(memberId))
-                    .fetchOne();
-
-            if (identification != null){
-                return true;
-            }else {
-                return false;
-            }
     }
-
-
 }
