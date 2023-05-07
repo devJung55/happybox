@@ -1,6 +1,9 @@
 package com.app.happybox.repository.user;
 
 import com.app.happybox.entity.user.Member;
+import com.querydsl.core.Tuple;
+
+import java.util.Optional;
 
 public interface MemberQueryDsl {
 //    회원정보수정
