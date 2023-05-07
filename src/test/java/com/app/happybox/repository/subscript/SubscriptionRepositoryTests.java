@@ -115,7 +115,7 @@ class SubscriptionRepositoryTests {
     public void findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(){
         // given
         SubscriptionDTO subscriptionDTO =
-                subscriptionRepository.findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(3L);
+                subscriptionRepository.findByIdWithDetail_QueryDSL(3L);
 
         // when
 

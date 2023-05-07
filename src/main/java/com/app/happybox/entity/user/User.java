@@ -3,6 +3,7 @@ package com.app.happybox.entity.user;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.reply.Reply;
+import com.app.happybox.entity.reply.ReplyLike;
 import com.app.happybox.entity.type.UserStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
-@Getter @ToString(exclude = {"replies"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"replies", "replyLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends Period {
@@ -50,6 +51,10 @@ public abstract class User extends Period {
     /* 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<Reply> replies = new ArrayList<>();
+
+    /* 댓글 좋아요 List */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<ReplyLike> replyLikes = new ArrayList<>();
 
     /* 회원 Random Key */
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)

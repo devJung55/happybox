@@ -2,18 +2,26 @@ package com.app.happybox.entity.reply;
 
 import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.order.Product;
+import com.app.happybox.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_PRODUCT_REPLY")
+@DynamicInsert
 @DiscriminatorValue("PRODUCT")
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(callSuper = true, exclude = "product") @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductReply extends Reply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Product product;
+
+    public ProductReply(String replyContent, User user, Product product) {
+        super(replyContent, user);
+        this.product = product;
+    }
 }
