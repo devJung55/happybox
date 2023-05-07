@@ -45,4 +45,14 @@ public class ReviewBoard extends Board {
     /* 게시글 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<ReviewBoardLike> reviewBoardLikes = new ArrayList<>();
+
+    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating, Integer reviewLikeCount) {
+        super(boardTitle, boardContent);
+        this.reviewRating = reviewRating;
+        this.reviewLikeCount = reviewLikeCount;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }
