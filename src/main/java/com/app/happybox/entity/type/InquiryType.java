@@ -1,5 +1,6 @@
 package com.app.happybox.entity.type;
 
-public enum InquiryType {
+import javax.persistence.Enumerated;
 
+public enum InquiryType {
 }

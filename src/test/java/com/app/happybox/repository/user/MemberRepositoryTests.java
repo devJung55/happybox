@@ -51,6 +51,4 @@ class MemberRepositoryTests {
 
         // then
     }
-
-
 }

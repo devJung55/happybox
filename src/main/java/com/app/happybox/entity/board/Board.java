@@ -34,4 +34,13 @@ public abstract class Board extends Period {
     /* 게시판 파일 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<BoardFile> boardFiles = new ArrayList<>();
+
+    public Board(String boardTitle, String boardContent) {
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+    }
+
+    public Board(String boardContent) {
+        this.boardContent = boardContent;
+    }
 }
