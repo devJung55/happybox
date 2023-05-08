@@ -11,9 +11,6 @@ public interface WelfareQueryDsl {
     //    회원정보수정
     public void setWelfareInfoById_QueryDSL(Welfare welfare);
 
-    //    회원탈퇴
-    public void setWelfareStatusById_QueryDSL(Welfare welfare);
-
     //    로그인을 위해 ID로 Identification, Password 조회
     public Tuple findWelfareInfoById(Long id);
 

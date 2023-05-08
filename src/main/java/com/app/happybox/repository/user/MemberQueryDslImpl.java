@@ -14,7 +14,7 @@ import static com.app.happybox.entity.user.QMember.member;
 public class MemberQueryDslImpl implements MemberQueryDsl {
     private final JPAQueryFactory query;
 
-    //    member정보 수정
+    //    회원정보수정
     @Override
     public void setMemberInfoById_QueryDSL(Member member) {
         query.update(QMember.member)

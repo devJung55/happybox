@@ -1,9 +1,12 @@
 package com.app.happybox.repository.order;
 
+import com.app.happybox.entity.order.MemberOrderProductItem;
+import com.app.happybox.repository.user.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class MemberOrderProductItemRepositoryTests {
     @Autowired private MemberOrderProductItemRepository memberOrderProductItemRepository;
+    @Autowired private MemberRepository memberRepository;
 
     @Test
     public void findOrderListByMemberIdDescWithPagingTest() {
+//        memberOrderProductItemRepository.findOrderListByMemberIdDescWithPaging_QueryDSL(PageRequest.of(1, 5), 1L)
+//                .stream().map(MemberOrderProductItem::getProduct).forEach(v -> log.info(v.getProductName()));
 
+        memberOrderProductItemRepository.findOrderListByMemberIdDescWithPaging_QueryDSL(PageRequest.of(1, 5), 1L);
     }
 }
