@@ -34,4 +34,16 @@ public class FoodCalendarQueryDslImpl implements FoodCalendarQueryDsl {
                 .fetch();
         return foodCalendarList;
     }
+
+    @Override
+    public List<FoodCalendar> findAllInSubscriptionIds(List<Long> ids) {
+        List<FoodCalendar> foodCalendarList = query.select(foodCalendar)
+                .from(foodCalendar)
+                .join(foodCalendar.foodList)
+                .fetchJoin()
+                .where(foodCalendar.subscription.id.in(ids))
+                .fetch();
+
+        return foodCalendarList;
+    }
 }

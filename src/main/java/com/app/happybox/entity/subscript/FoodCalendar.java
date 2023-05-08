@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_FOOD_CALENDAR")
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = "foodList") @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FoodCalendar extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
