@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.happybox.entity.customer.QInquiry.inquiry;
 
@@ -29,12 +30,13 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
     }
 
     @Override
-    public Inquiry findInquiryByInquiryId_QueryDSL(Long id) {
-        Inquiry detail = query.select(inquiry)
-                .from(inquiry)
-                .where(inquiry.id.eq(id))
-                .fetchOne();
+    public Optional<Inquiry> findInquiryByInquiryId_QueryDSL(Long id) {
+        return Optional.ofNullable(
+                        query.select(inquiry)
+                        .from(inquiry)
+                        .join(inquiry.inquiryFiles).fetchJoin()
+                        .where(inquiry.id.eq(id))
+                        .fetchOne());
 
-        return detail;
     }
 }

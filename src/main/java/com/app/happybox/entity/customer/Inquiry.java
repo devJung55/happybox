@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "user")
 @Table(name = "TBL_INQUIRY")
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -39,9 +39,10 @@ public class Inquiry extends Period {
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "inquiry")
     private List<InquiryFile> inquiryFiles = new ArrayList<>();
 
-    public Inquiry(String inquiryTitle, String inquiryContent) {
+    public Inquiry(String inquiryTitle, String inquiryContent, InquiryType inquiryType) {
         this.inquiryTitle = inquiryTitle;
         this.inquiryContent = inquiryContent;
+        this.inquiryType = inquiryType;
     }
 
     public void setUser(User user) {

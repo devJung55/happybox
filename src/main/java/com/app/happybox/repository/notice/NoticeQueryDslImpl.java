@@ -25,8 +25,9 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
+        Long count = query.select(notice.count()).from(notice).fetchOne();
 
-        return new PageImpl<>(noticePage);
+        return new PageImpl<>(noticePage, pageable, count);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
         return Optional.ofNullable(
                 query.select(notice)
                 .from(notice)
-                .join(notice.noticeFile)
+                .join(notice.noticeFiles)
                 .fetchJoin()
                 .where(notice.id.eq(id))
                 .fetchOne());

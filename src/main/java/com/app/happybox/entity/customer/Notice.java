@@ -20,7 +20,7 @@ public class Notice extends Period {
     @NotNull private String noticeContent;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "notice")
-    private List<NoticeFile> noticeFile = new ArrayList<>();
+    private List<NoticeFile> noticeFiles = new ArrayList<>();
 
     public Notice(String noticeTitle, String noticeContent) {
         this.noticeTitle = noticeTitle;

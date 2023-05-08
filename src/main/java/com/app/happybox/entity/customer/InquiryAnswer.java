@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "inquiry")
 @Table(name = "TBL_INQUIRY_ANSWER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class InquiryAnswer extends Period {
