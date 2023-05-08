@@ -65,11 +65,14 @@ public class Member extends User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Payment> payments = new ArrayList<>();
 
-    public Member(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String memberName, LocalDate memberBirth, Gender memberGender, Address memberDeliveryAddress) {
+    public Member(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String memberName, LocalDate memberBirth, Gender memberGender, Address memberDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
         super(userId, userPassword, address, userEmail, userPhoneNumber);
         this.memberName = memberName;
         this.memberBirth = memberBirth;
         this.memberGender = memberGender;
         this.memberDeliveryAddress = memberDeliveryAddress;
+        this.deliveryName = deliveryName;
+        this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
+
 }

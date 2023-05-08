@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity @Table(name = "TBL_FILES")
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Files extends Period {
+public abstract class Files extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;

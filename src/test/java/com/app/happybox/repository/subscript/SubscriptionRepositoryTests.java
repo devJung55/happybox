@@ -3,7 +3,7 @@ package com.app.happybox.repository.subscript;
 import com.app.happybox.entity.subscript.Food;
 import com.app.happybox.entity.subscript.FoodCalendar;
 import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.subscript.SubscriptionDTO;
+import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.repository.user.WelfareRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -67,7 +67,7 @@ class SubscriptionRepositoryTests {
         LocalDateTime currentMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth()).atStartOfDay();
         LocalDateTime nextMonth = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).atStartOfDay().plusDays(1L);
 
-        List<SubscriptionDTO> subscriptionDTOList =
+        List<Subscription> SubscriptionList =
                 subscriptionRepository
                         .findTop3BetweenDateOrderByDateDesc_QueryDSL(
                                 currentMonth,
@@ -75,7 +75,7 @@ class SubscriptionRepositoryTests {
                         );
 
         // when
-        subscriptionDTOList.stream().map(SubscriptionDTO::toString).forEach(log::info);
+        SubscriptionList.stream().map(Subscription::toString).forEach(log::info);
         log.info("이번달 : " + currentMonth.toString());
 
         // then
@@ -87,7 +87,7 @@ class SubscriptionRepositoryTests {
         subscriptionRepository
                 .findTop4OrderByReviewCount_QueryDSL()
                 .stream()
-                .map(SubscriptionDTO::toString)
+                .map(Subscription::toString)
                 .forEach(log::info);
 
         // when
@@ -98,13 +98,13 @@ class SubscriptionRepositoryTests {
     @Test
     public void findAllByAddressCategoryWithPaging_QueryDSL() {
         // given
-        Page<SubscriptionDTO> searchResult = subscriptionRepository
+        Page<Subscription> searchResult = subscriptionRepository
                 .findAllByAddressCategoryWithPaging_QueryDSL(PageRequest.of(0, 10), "강남구");
 
         // when
 
         // then
-        searchResult.get().map(SubscriptionDTO::toString).forEach(log::info);
+        searchResult.get().map(Subscription::toString).forEach(log::info);
     }
 
     @Test
@@ -129,28 +129,16 @@ class SubscriptionRepositoryTests {
 
         log.info(foodList.toString());
     }
-//
-//    @Test
-//    public void findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(){
-//        // given
-//        SubscriptionDTO subscriptionDTO =
-//                subscriptionRepository.findByIdWithDetail_QueryDSL(3L);
-//
-//        // when
-//
-//        // then
-//        log.info(subscriptionDTO.toString());
-//    }
-//
-//    @Test
-//    public void findFoodCalendar(){
-//        // given
-//        Optional<Subscription> subscription = subscriptionRepository.findById(3L);
-//
-//        subscriptionRepository.findFoodCalendar(subscription.get()).stream().map(Food::toString).forEach(log::info);
-//
-//        // when
-//
-//        // then
-//    }
+
+    @Test
+    public void findByIdWithDetail_QueryDSL(){
+        // given
+        Subscription Subscription =
+                subscriptionRepository.findByIdWithDetail_QueryDSL(3L);
+
+        // when
+
+        // then
+        log.info(Subscription.toString());
+    }
 }
