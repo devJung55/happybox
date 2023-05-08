@@ -16,6 +16,10 @@ public abstract class Order extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
+//    주문자 이름
+    private String receiverName;
+//    주문자 휴대폰번호
+    private String receiverPhoneNumber;
 
     @Embedded
     private Address orderAddress;
