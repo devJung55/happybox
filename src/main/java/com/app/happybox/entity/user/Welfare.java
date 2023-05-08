@@ -33,6 +33,10 @@ public class Welfare extends User {
     private Integer welfarePointTotal;
     /* ============= */
 
+    /*-- 배송지정보설정 --*/
+    private String deliveryName;
+    private String deliveryPhoneNumber;
+
     /* 회원 게시글 목록 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "welfare", orphanRemoval = true)
     private List<DonationBoard> donationBoards = new ArrayList<>();

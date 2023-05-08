@@ -37,6 +37,10 @@ public class Member extends User {
     @NotNull @Embedded
     private Address memberDeliveryAddress;
 
+    /*-- 배송지정보설정 --*/
+    private String deliveryName;
+    private String deliveryPhoneNumber;
+
     /* 회원 구독 좋아요 목록 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     private List<SubscriptionLike> subscriptionLikes = new ArrayList<>();
