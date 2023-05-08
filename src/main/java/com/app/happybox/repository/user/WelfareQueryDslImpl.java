@@ -9,12 +9,14 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 
+import static com.app.happybox.entity.user.QMember.member;
 import static com.app.happybox.entity.user.QWelfare.welfare;
 
 @RequiredArgsConstructor
 public class WelfareQueryDslImpl implements WelfareQueryDsl {
     private final JPAQueryFactory query;
 
+//    복지관 정보 수정
     @Override
     public void setWelfareInfoById_QueryDSL(Welfare welfare) {
         query.update(QWelfare.welfare)
@@ -26,18 +28,31 @@ public class WelfareQueryDslImpl implements WelfareQueryDsl {
                 .execute();
     }
 
+//    복지관 이름으로 복지관 정보 조회
     @Override
-    public Optional<Member> findWelfareByWelfarePhone(String welfarePhone) {
-        return Optional.empty();
+    public Optional<Welfare> findWelfareByWelfareName(String welfareName) {
+        Welfare welfare = query.select(QWelfare.welfare)
+                .from(QWelfare.welfare)
+                .where(QWelfare.welfare.welfareName.eq(welfareName))
+                .fetchOne();
+        return Optional.ofNullable(welfare);
     }
 
+//    복지관 Id로 복지관 조회
     @Override
     public Tuple findWelfareInfoById(Long id) {
-        return null;
+        return query.select(welfare.userId, welfare.userPassword)
+                .from(welfare)
+                .where(welfare.id.eq(id))
+                .fetchOne();
     }
 
+//    아이디 중복체크(userId를 Return해서 service에서 검사)
     @Override
-    public Boolean checkId(String welfareId) {
-        return null;
+    public String checkId(String welfareId) {
+        return query.select(welfare.userId)
+                .from(welfare)
+                .where(welfare.userId.eq(welfareId))
+                .fetchOne();
     }
 }
