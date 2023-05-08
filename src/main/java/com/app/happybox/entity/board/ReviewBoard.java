@@ -17,7 +17,7 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_REVIEW_BOARD")
 @DynamicInsert
-@Getter @ToString(exclude = {"reviewBoardReplies", "reviewBoardLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"reviewBoardReplies", "reviewBoardLikes"}, callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ReviewBoard extends Board {
 
     /* 리뷰 게시판 정보 */

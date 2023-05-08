@@ -12,14 +12,15 @@ import java.util.Optional;
 
 public interface ReviewBoardQueryDsl {
 //    목록 페이징(최신순)
-    public Slice<ReviewBoardDTO> findAllByDateDescWithPaging_QueryDSL(Pageable pageable);
+    public Slice<ReviewBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable);
 
 //    목록 페이징(인기순)
     public Slice<ReviewBoardDTO> findAllByLikeCountDescWithPaging_QueryDSL(Pageable pageable);
 
 //    상세보기
-    public ReviewBoardDTO findById_QueryDSL(Long id);
+    public Optional<ReviewBoard> findById_QueryDSL(Long id);
 
 //    마이페이지 나의후기 목록
     public List<ReviewBoard> findAllByMemberIdDescWithPaging_QueryDSL(Member member);
+    
 }
