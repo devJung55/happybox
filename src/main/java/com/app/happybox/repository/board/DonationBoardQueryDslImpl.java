@@ -1,10 +1,9 @@
-package com.app.happybox.repository.order;
+package com.app.happybox.repository.board;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class MemberOrderProductQueryDslImpl implements MemberOrderProductQueryDsl {
+public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     private final JPAQueryFactory query;
-
 }
