@@ -1,14 +1,12 @@
 package com.app.happybox.entity.subscript;
 
-import com.app.happybox.entity.file.FoodFile;
-import com.app.happybox.entity.user.Welfare;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_FOOD")
-@Getter @ToString(exclude = {"foodCalendar", "foodFile"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"foodCalendar"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Food {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
@@ -17,10 +15,25 @@ public class Food {
     @NotNull
     private String foodName;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "food")
-    private FoodFile foodFile;
+    @NotNull
+    private String filePath;
+    @NotNull
+    private String fileUuid;
+    @NotNull
+    private String fileOrgName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private FoodCalendar foodCalendar;
+
+    public Food(String foodName, FoodCalendar foodCalendar) {
+        this.foodName = foodName;
+        this.foodCalendar = foodCalendar;
+    }
+
+    public void setFile(String filePath, String fileUuid, String fileOrgName) {
+        this.filePath = filePath;
+        this.fileUuid = fileUuid;
+        this.fileOrgName = fileOrgName;
+    }
 }

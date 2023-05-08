@@ -1,6 +1,5 @@
 package com.app.happybox.entity.subscript;
 
-import com.app.happybox.entity.type.SubOption;
 import com.app.happybox.entity.user.Address;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
@@ -33,6 +32,8 @@ public class SubscriptionDTO {
 
     //    주문수
     private Long orderCount;
+
+//    파일 list
 
     @QueryProjection
     public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice, Integer subscriptLikeCount, Address welfareAddress,
