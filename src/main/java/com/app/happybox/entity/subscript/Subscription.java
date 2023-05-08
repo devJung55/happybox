@@ -37,10 +37,6 @@ public class Subscription extends Period {
     @ColumnDefault(value = "0")
     private Integer subscriptLikeCount;
 
-    // 구독 옵션 (저염식, 양많이, 양적게 등)
-    @Enumerated(EnumType.STRING)
-    @ColumnDefault(value = "'NORMAL'")
-    private SubOption subOption;
     /* ======================= */
 
     /* 복지관 */

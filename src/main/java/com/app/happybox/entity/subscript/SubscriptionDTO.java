@@ -17,7 +17,6 @@ public class SubscriptionDTO {
 
     private Integer subscriptLikeCount;
 
-    private SubOption subOption;
     /* ======================= */
 
     //    복지관 명
@@ -37,26 +36,24 @@ public class SubscriptionDTO {
 
     @QueryProjection
     public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice, Integer subscriptLikeCount, Address welfareAddress,
-                           SubOption subOption, String welfareName, Long reviewCount) {
+                           String welfareName, Long reviewCount) {
         this.id = id;
         this.subscriptionTitle = subscriptionTitle;
         this.subscriptionPrice = subscriptionPrice;
         this.subscriptLikeCount = subscriptLikeCount;
         this.welfareAddress = welfareAddress;
-        this.subOption = subOption;
         this.welfareName = welfareName;
         this.reviewCount = reviewCount;
     }
 
     @QueryProjection
     public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice, Integer subscriptLikeCount, Address welfareAddress,
-                           SubOption subOption, String welfareName, Long reviewCount, Double reviewAvgRating, Long orderCount) {
+                           String welfareName, Long reviewCount, Double reviewAvgRating, Long orderCount) {
         this.id = id;
         this.subscriptionTitle = subscriptionTitle;
         this.subscriptionPrice = subscriptionPrice;
         this.subscriptLikeCount = subscriptLikeCount;
         this.welfareAddress = welfareAddress;
-        this.subOption = subOption;
         this.welfareName = welfareName;
         this.reviewCount = reviewCount;
         this.reviewAvgRating = reviewAvgRating;
