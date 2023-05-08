@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Builder
 public class MemberDTO {
 
+//    Member 전체 컬럼
     private Long id;
     private String memberId;
     private String memberPassword;
@@ -24,5 +25,7 @@ public class MemberDTO {
     private Address memberDeliveryAddress;
     private String deliveryName;
     private String deliveryPhoneNumber;
+
+//    Member와 Fetch조인하여 사용할 DTO 작성할 곳
 
 }
