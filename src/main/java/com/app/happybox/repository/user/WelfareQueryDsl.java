@@ -15,8 +15,8 @@ public interface WelfareQueryDsl {
     public Tuple findWelfareInfoById(Long id);
 
     //    가입여부 확인
-    public Optional<Member> findWelfareByWelfarePhone(String welfarePhone);
+    public Optional<Welfare> findWelfareByWelfareName(String welfareName);
 
     //    아이디 중복체크
-    public Boolean checkId(String welfareId);
+    public String checkId(String welfareId);
 }
