@@ -21,7 +21,8 @@ public interface MemberQueryDsl {
     //    아이디 중복체크
     public Boolean checkId(String memberId);
 
-//
+//    마이페이지 배송지정보
+    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Member member);
 }
 
 

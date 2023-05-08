@@ -30,7 +30,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     @Override
     public void setMemberStatusById_QueryDSL(Member member) {
-
+        
     }
 
     /* id로 ID,Password 조회 */
@@ -69,4 +69,8 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         }
     }
 
+    @Override
+    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Member member) {
+        return Optional.ofNullable(query.select(QMember.member).from(QMember.member).where(QMember.member.eq(member)).fetchOne());
+    }
 }

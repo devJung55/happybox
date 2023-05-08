@@ -70,6 +70,10 @@ class MemberRepositoryTests {
         log.info(memberRepository.checkId("1234").toString());
     }
 
-
-
+//  마이페이지 배송지정보
+    @Test
+    public void findDeliveryAddressByMemberIdTest() {
+        memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberRepository.findById(1L).get())
+                .ifPresent(member -> log.info(member.toString()));
+    }
 }
