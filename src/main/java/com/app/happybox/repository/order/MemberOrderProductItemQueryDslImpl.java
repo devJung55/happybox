@@ -1,7 +1,6 @@
 package com.app.happybox.repository.order;
 
 import com.app.happybox.entity.order.MemberOrderProductItem;
-import com.app.happybox.entity.user.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,17 +19,19 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
     private final JPAQueryFactory query;
 
     @Override
-    public Page<MemberOrderProductItem> findOrderListByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
+    public Page<MemberOrderProductItem> findOrderListByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long id) {
         List<MemberOrderProductItem> memberOrderProductItemList = query.select(memberOrderProductItem)
                 .from(memberOrderProductItem)
-                .join(memberOrderProduct)
-                .join(product)
-                .join(member)
-                .fetchJoin()
-                .where(memberOrderProductItem.memberOrderProduct.member.id.eq(memberId))
+                .join(memberOrderProduct).fetchJoin()
+                .join(product).fetchJoin()
+                .join(member).fetchJoin()
+                .where(memberOrderProductItem.memberOrderProduct.member.id.eq(id))
+                .orderBy(memberOrderProductItem.id.desc())
+                .offset(pageable.getOffset() - 1)
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(memberOrderProductItem.orderAmount.count()).from(memberOrderProductItem).fetchOne();
+        Long count = query.select(memberOrderProductItem.id.count()).from(memberOrderProductItem).fetchOne();
 
         return new PageImpl<>(memberOrderProductItemList, pageable, count);
     }

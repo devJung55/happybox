@@ -1,6 +1,7 @@
 package com.app.happybox.repository.inquiry;
 
 import com.app.happybox.entity.customer.Inquiry;
+import com.app.happybox.entity.user.User;
 import com.app.happybox.repository.user.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class InquiryRepositoryTests {
     public void saveTest() {
         for (int i = 0; i < 5; i++) {
             Inquiry inquiry = new Inquiry("문의 제목" + (i + 1), "문의 내용" + (i + 1));
-            memberRepository.findById(1L).ifPresent(member -> inquiry.setUser(member));
+            memberRepository.findById(1L).ifPresent(member -> inquiry.setUser((User)member));
 
             inquiryRepository.save(inquiry);
         }
@@ -30,8 +31,7 @@ public class InquiryRepositoryTests {
     @Test
     public void findInquiryListByMemberIdWithPaging_QueryDSLTest() {
         inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(
-                PageRequest.of(0, 5), memberRepository.findById(1L).get()
-        ).stream().map(Inquiry::getInquiryTitle).forEach(log::info);
+                PageRequest.of(0, 5), 42L).stream().map(Inquiry::getInquiryTitle).forEach(log::info);
     }
 
     @Test
