@@ -7,6 +7,12 @@
     margin: 0 auto;
 }
 
+.page-title-area {
+    padding: 70px 39px 0px;
+    width: 940px !important;
+    margin: 0 auto;
+}
+
 .detail-container {
     position: relative;
     width: 940px;
