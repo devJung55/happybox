@@ -81,10 +81,11 @@ public class ReviewBoardRepositoryTests {
     @Test
     public void findByIdTest(){log.info(reviewBoardRepository.findById(31L).get().getBoardFiles().toString());}
 
-//    마이페이지 나의리뷰 조회
+//    마이페이지 리뷰 목록
     @Test
     public void findAllByMemberIdDescWithPagingTest() {
-        reviewBoardRepository.findAllByMemberIdDescWithPaging_QueryDSL(memberRepository.findById(1L).get())
-                .stream().map(Board::getBoardContent).forEach(log::info);
+        reviewBoardRepository.findAllByMemberIdDescWithPaging_QueryDSL(PageRequest.of(0, 5), 1L)
+                .stream().map(Board::getBoardFiles).forEach(v -> log.info(v.toString()));
+
     }
 }

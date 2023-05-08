@@ -1,16 +1,11 @@
 package com.app.happybox.repository.board;
 
-import com.app.happybox.entity.board.QReviewBoard;
 import com.app.happybox.entity.board.QReviewBoardDTO;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
-import com.app.happybox.entity.user.Member;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.SliceImpl;
+import org.springframework.data.domain.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -70,13 +65,20 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     }
 
     @Override
-    public List<ReviewBoard> findAllByMemberIdDescWithPaging_QueryDSL(Member member) {
+    public Page<ReviewBoard> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<ReviewBoard> reviewBoardList = query.select(reviewBoard)
                 .from(reviewBoard)
-                .where(reviewBoard.member.eq(member))
+                .join(reviewBoard.boardFiles).fetchJoin()
+                .join(reviewBoard.member).fetchJoin()
+                .where(reviewBoard.member.id.eq(memberId))
                 .orderBy(reviewBoard.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        return reviewBoardList;
+        Long count = query.select(reviewBoard.id.count()).from(reviewBoard).where(reviewBoard.member.id.eq(memberId)).fetchOne();
+
+        return new PageImpl<>(reviewBoardList, pageable, count);
     }
+
 }
