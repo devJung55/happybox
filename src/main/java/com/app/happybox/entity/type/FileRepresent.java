@@ -1,5 +1,5 @@
 package com.app.happybox.entity.type;
 
-public enum UserFileRepresent {
+public enum FileRepresent {
     REPRESENT, ORDINARY
 }
