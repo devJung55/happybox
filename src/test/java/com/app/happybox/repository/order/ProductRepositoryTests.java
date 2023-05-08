@@ -1,7 +1,7 @@
 package com.app.happybox.repository.order;
 
 import com.app.happybox.entity.order.Product;
-import com.app.happybox.entity.order.ProductDTO;
+import com.app.happybox.entity.order.Product;
 import com.app.happybox.entity.user.Distributor;
 import com.app.happybox.repository.user.DistributorRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,7 +46,7 @@ class ProductRepositoryTests {
         productRepository
                 .findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL()
                 .stream()
-                .map(ProductDTO::toString)
+                .map(Product::toString)
                 .forEach(log::info);
         // when
 
@@ -54,11 +56,11 @@ class ProductRepositoryTests {
     @Test
     public void findByIdWithDetail_QueryDSL_Test() {
         // given
-        ProductDTO productDTO = productRepository.findByIdWithDetail_QueryDSL(9L);
+        Optional<Product> product = productRepository.findByIdWithDetail_QueryDSL(9L);
 
         // when
 
         // then
-        log.info(productDTO.toString());
+        product.map(Product::toString).ifPresent(log::info);
     }
 }

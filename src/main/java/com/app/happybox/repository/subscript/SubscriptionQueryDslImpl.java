@@ -1,9 +1,8 @@
 package com.app.happybox.repository.subscript;
 
-import com.app.happybox.entity.subscript.*;
+import com.app.happybox.entity.subscript.Food;
+import com.app.happybox.entity.subscript.Subscription;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.JPAExpressions;
-import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +13,7 @@ import org.springframework.data.domain.Pageable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 import static com.app.happybox.entity.subscript.QFood.food;
-import static com.app.happybox.entity.subscript.QFoodCalendar.foodCalendar;
 import static com.app.happybox.entity.subscript.QSubscription.subscription;
 
 @RequiredArgsConstructor
@@ -26,10 +23,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     @Override
     public List<Subscription> findTop8OrderByDate_QueryDSL() {
 
-        List<Subscription> subscriptionList = query.select(subscription)
-                .from(subscription)
-                .leftJoin(subscription.foodCalendars).fetchJoin()
-                .join(subscription.welfare)
+        List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .orderBy(subscription.createdDate.desc())
                 .limit(8L)
                 .fetch();
@@ -38,34 +32,32 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     }
 
     @Override
-    public List<SubscriptionDTO> findTop3BetweenDateOrderByDateDesc_QueryDSL(LocalDateTime startDate, LocalDateTime endDate) {
-        List<SubscriptionDTO> subscriptionDTOList = getSubscriptionJPAQuery()
-                .from(subscription)
+    public List<Subscription> findTop3BetweenDateOrderByDateDesc_QueryDSL(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .where(subscription.createdDate.between(startDate, endDate))
                 .orderBy(subscription.createdDate.desc())
                 .limit(3L)
                 .fetch();
 
-        return subscriptionDTOList;
+        return subscriptionList;
     }
 
     @Override
-    public List<SubscriptionDTO> findTop4OrderByReviewCount_QueryDSL() {
-        List<SubscriptionDTO> subscriptionDTOList = getSubscriptionJPAQuery()
-                .from(subscription)
-                .orderBy(subscription.reviewBoards.size().longValue().asc())
+    public List<Subscription> findTop4OrderByReviewCount_QueryDSL() {
+        List<Subscription> subscriptionList = getSubscriptionJPAQuery()
+                .orderBy(subscription.reviewCount.desc())
                 .limit(4L)
                 .fetch();
-        return subscriptionDTOList;
+        return subscriptionList;
     }
 
     @Override
-    public Page<SubscriptionDTO> findAllByAddressCategoryWithPaging_QueryDSL(Pageable pageable, String address) {
+    public Page<Subscription> findAllByAddressCategoryWithPaging_QueryDSL(Pageable pageable, String address) {
         //    추후 동적쿼리로 변경
         //    해당 지역 주소를 포함하고 있는가? ex) 강남 in 서울시 '강남구' ...
         BooleanExpression hasAddress = subscription.welfare.address.firstAddress.contains(address);
 
-        List<SubscriptionDTO> subscriptionDTOList = getSubscriptionJPAQuery()
+        List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .from(subscription)
                 .where(hasAddress)
                 .orderBy(subscription.reviewBoards.size().asc())
@@ -77,50 +69,23 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
                 .from(subscription)
                 .where(hasAddress).fetchOne();
 
-
-        return new PageImpl<>(subscriptionDTOList, pageable, count);
+        return new PageImpl<>(subscriptionList, pageable, count);
     }
 
     @Override
-    public SubscriptionDTO findByIdWithDetail_QueryDSL(Long id) {
-        SubscriptionDTO subscriptionDTO = query.select(new QSubscriptionDTO(
-                subscription.id,
-                subscription.subscriptionTitle,
-                subscription.subscriptionPrice,
-                subscription.subscriptLikeCount,
-                subscription.welfare.address,
-                subscription.welfare.welfareName,
-                subscription.reviewBoards.size().longValue(),
-                JPAExpressions.select(reviewBoard.reviewRating.avg().nullif(0.0)).from(reviewBoard).where(reviewBoard.subscription.id.eq(id)),
-                subscription.orderSubscriptions.size().longValue()
-        ))
-                .from(subscription)
+    public Subscription findByIdWithDetail_QueryDSL(Long id) {
+        Subscription sub = getSubscriptionJPAQuery()
                 .where(subscription.id.eq(id))
                 .fetchOne();
 
-        return subscriptionDTO;
+        return sub;
     }
 
-    @Override
-    public List<Food> findFoodCalendar(Subscription subscription) {
-        return query.select(food)
-                .from(food)
-//                .join(food.foodFile)
-                .fetchJoin()
-                .where(food.foodCalendar.subscription.eq(subscription))
-                .fetch();
-    }
-
-    /* 중복 코드인 SubscriptionDTO JPAQuery 리턴 */
-    private JPAQuery<SubscriptionDTO> getSubscriptionJPAQuery() {
-        return query.select(new QSubscriptionDTO(
-                subscription.id,
-                subscription.subscriptionTitle,
-                subscription.subscriptionPrice,
-                subscription.subscriptLikeCount,
-                subscription.welfare.address,
-                subscription.welfare.welfareName,
-                subscription.reviewBoards.size().longValue()
-        ));
+    /* 중복 코드인 Subscription JPAQuery 리턴 */
+    private JPAQuery<Subscription> getSubscriptionJPAQuery() {
+        return query.select(subscription)
+                .from(subscription)
+                .join(subscription.foodCalendars).fetchJoin()
+                .join(subscription.welfare).fetchJoin();
     }
 }

@@ -20,21 +20,10 @@ public class ProductDTO {
     private Integer productPrice;
 
     private Long productStock;
+
+    private Integer productReplyCount;
     /* ======================== */
 
 //    유통업자 이름
     private String distributorName;
-
-//    댓글수
-    private Integer replyCount;
-
-    @QueryProjection
-    public ProductDTO(Long id, String productName, Integer productPrice, Long productStock, String distributorName, Integer replyCount) {
-        this.id = id;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productStock = productStock;
-        this.distributorName = distributorName;
-        this.replyCount = replyCount;
-    }
 }
