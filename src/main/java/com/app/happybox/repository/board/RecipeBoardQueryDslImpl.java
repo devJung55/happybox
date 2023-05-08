@@ -11,6 +11,8 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -23,24 +25,21 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public List<RecipeBoardDTO> findRecipeBoardListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-        List<RecipeBoardDTO> recipeBoardDTOList = query.select(new QRecipeBoardDTO(
-                recipeBoard.id,
-                recipeBoard.member.memberName,
-                recipeBoard.boardTitle,
-                recipeBoard.boardContent,
-                recipeBoard.createdDate,
-                recipeBoard.recipeLikeCount.longValue(),
-                recipeBoard.recipeBoardReplies.size().longValue()
-        ))
+    public Page<RecipeBoard> findRecipeBoardListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
+        List<RecipeBoard> recipeBoardList = query.select(recipeBoard)
                 .from(recipeBoard)
+                .join(recipeBoard.member).fetchJoin()
+                .join(recipeBoard.boardFiles).fetchJoin()
+//                .join(recipeBoard.recipeBoardReplies).fetchJoin()
                 .where(recipeBoard.member.id.eq(memberId))
                 .orderBy(recipeBoard.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        return recipeBoardDTOList;
+        Long count = query.select(recipeBoard.id.count()).from(recipeBoard).where(recipeBoard.member.id.eq(memberId)).fetchOne();
+
+        return new PageImpl<>(recipeBoardList, pageable, count);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.app.happybox.repository.board;
 
+import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.type.Gender;
@@ -38,8 +39,8 @@ public class RecipeBoardRepositoryTests {
     @Test
     public void findRecipeBoardListByMemberIdWithPagingTest() {
         recipeBoardRepository.findRecipeBoardListByMemberIdWithPaging_QueryDSL(
-                PageRequest.of(0, 5), 1L
-        ).stream().map(RecipeBoardDTO::toString).forEach(log::info);
+                PageRequest.of(0, 1), 1L
+        ).stream().map(RecipeBoard::toString).forEach(log::info);
     }
 
     @Test
