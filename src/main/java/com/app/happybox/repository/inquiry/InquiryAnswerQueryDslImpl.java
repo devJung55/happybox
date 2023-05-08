@@ -19,6 +19,7 @@ public class InquiryAnswerQueryDslImpl implements InquiryAnswerQueryDsl {
         return Optional.ofNullable(query
                 .select(inquiryAnswer)
                 .from(inquiryAnswer)
+                .join(inquiryAnswer.inquiryAnswerFiles).fetchJoin()
                 .where(inquiryAnswer.inquiry.eq(inquiry)).fetchOne());
     }
 }

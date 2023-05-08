@@ -1,6 +1,8 @@
 package com.app.happybox.repository.notice;
 
 import com.app.happybox.entity.customer.Notice;
+import com.app.happybox.entity.file.NoticeFile;
+import com.app.happybox.entity.type.FileRepresent;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+
 @SpringBootTest
 @Transactional
 @Rollback(false)
@@ -16,11 +23,27 @@ import org.springframework.transaction.annotation.Transactional;
 public class NoticeRepositoryTests {
     @Autowired
     private NoticeRepository noticeRepository;
+    @Autowired
+    private NoticeFileRepository noticeFileRepository;
 
     @Test
     public void saveTest() {
         Notice notice = new Notice("[공지사항] 겨울나기 전 따뜻한 기부소식 공지", "이번에 기부왕으로 선정되신 복지관을 소개드리겠습니다.");
         noticeRepository.save(notice);
+    }
+
+    @Test
+    public void fileSaveTest() {
+        Notice notice = noticeRepository.findById(33L).get();
+        NoticeFile noticeFile1 = new NoticeFile("2023/05/09", UUID.randomUUID().toString(), "공지사항1.png", FileRepresent.REPRESENT);
+        NoticeFile noticeFile2 = new NoticeFile("2023/05/09", UUID.randomUUID().toString(), "공지사항2.png", FileRepresent.ORDINARY);
+        NoticeFile noticeFile3 = new NoticeFile("2023/05/09", UUID.randomUUID().toString(), "공지사항3.png", FileRepresent.ORDINARY);
+        List<NoticeFile> noticeFiles = new ArrayList<>(Arrays.asList(noticeFile1, noticeFile2, noticeFile3));
+        noticeFile1.setNotice(notice);
+        noticeFile2.setNotice(notice);
+        noticeFile3.setNotice(notice);
+
+        noticeFileRepository.saveAll(noticeFiles);
     }
 
     @Test
@@ -32,7 +55,8 @@ public class NoticeRepositoryTests {
 //    fetchjoin 상세 테스트
     @Test
     public void findNoticeDetailById_QueryDSLTest() {
-        noticeRepository.findNoticeDetailById_QueryDSL(23L).stream().map(Notice::toString).forEach(log::info);
+        noticeRepository.findNoticeDetailById_QueryDSL(33L).stream().map(Notice::toString).forEach(log::info);
+        noticeRepository.findById(33L).get().getNoticeFiles().toString();
     }
 
 //    queryMethod 상세 테스트
