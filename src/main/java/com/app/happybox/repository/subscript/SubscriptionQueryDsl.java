@@ -1,17 +1,17 @@
 package com.app.happybox.repository.subscript;
 
+import com.app.happybox.entity.subscript.Food;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.subscript.SubscriptionDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface SubscriptionQueryDsl {
 //    최신 Top8
-    public List<SubscriptionDTO> findTop8OrderByDate_QueryDSL();
+    public List<Subscription> findTop8OrderByDate_QueryDSL();
 
 //    이번달 최신 Top3
     public List<SubscriptionDTO> findTop3BetweenDateOrderByDateDesc_QueryDSL(LocalDateTime startDate, LocalDateTime endDate);
@@ -24,4 +24,7 @@ public interface SubscriptionQueryDsl {
 
 //    구독 상세 조회
     public SubscriptionDTO findByIdWithDetail_QueryDSL(Long id);
+
+//    구독 파일 조회
+public List<Food> findFoodCalendar(Subscription subscription);
 }

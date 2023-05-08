@@ -1,5 +1,7 @@
 package com.app.happybox.repository.subscript;
 
+import com.app.happybox.entity.subscript.Food;
+import com.app.happybox.entity.subscript.FoodCalendar;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.repository.user.WelfareRepository;
@@ -15,7 +17,10 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 @Transactional @Rollback(false)
@@ -25,6 +30,8 @@ class SubscriptionRepositoryTests {
     private WelfareRepository welfareRepository;
     @Autowired
     private SubscriptionRepository subscriptionRepository;
+    @Autowired
+    private FoodCalendarRepository foodCalendarRepository;
 
     @Test
     public void saveTest() {
@@ -103,23 +110,47 @@ class SubscriptionRepositoryTests {
     @Test
     public void findTop8OrderByDate_QueryDSL() {
         // given
-        List<SubscriptionDTO> subscriptionDTOList = subscriptionRepository.findTop8OrderByDate_QueryDSL();
+        List<Subscription> subscriptionList = subscriptionRepository.findTop8OrderByDate_QueryDSL();
+        List<Long> ids = subscriptionList.stream().map(Subscription::getId).collect(Collectors.toList());
+
+        List<Food> foodList = new ArrayList<>();
 
         // when
+        List<FoodCalendar> foodCalendarList = foodCalendarRepository.findAllInSubscriptionIds(ids);
 
         // then
-        subscriptionDTOList.stream().map(SubscriptionDTO::toString).forEach(log::info);
+        subscriptionList.forEach(subscription -> {
+            log.info(subscription.getFoodCalendars().toString());
+
+            foodCalendarList.stream()
+                    .filter(foodCalendar -> foodCalendar.getSubscription().equals(subscription))
+                    .forEach(foodCalendar -> foodCalendar.getFoodList().forEach(foodList::add));
+        });
+
+        log.info(foodList.toString());
     }
-
-    @Test
-    public void findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(){
-        // given
-        SubscriptionDTO subscriptionDTO =
-                subscriptionRepository.findByIdWithDetail_QueryDSL(3L);
-
-        // when
-
-        // then
-        log.info(subscriptionDTO.toString());
-    }
+//
+//    @Test
+//    public void findByIdWithReviewCountAndReviewRatingAvgAndOrderCount_QueryDSL(){
+//        // given
+//        SubscriptionDTO subscriptionDTO =
+//                subscriptionRepository.findByIdWithDetail_QueryDSL(3L);
+//
+//        // when
+//
+//        // then
+//        log.info(subscriptionDTO.toString());
+//    }
+//
+//    @Test
+//    public void findFoodCalendar(){
+//        // given
+//        Optional<Subscription> subscription = subscriptionRepository.findById(3L);
+//
+//        subscriptionRepository.findFoodCalendar(subscription.get()).stream().map(Food::toString).forEach(log::info);
+//
+//        // when
+//
+//        // then
+//    }
 }

@@ -19,7 +19,7 @@ import java.util.List;
 @Getter @ToString(exclude = {
         "foodCalendars", "subscriptionLikes", "orderSubscriptions", "reviewBoards", "welfare"
 }) @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DynamicUpdate @DynamicInsert
+@DynamicUpdate
 public class Subscription extends Period {
 
     @EqualsAndHashCode.Include
@@ -33,9 +33,24 @@ public class Subscription extends Period {
     @ColumnDefault(value = "0")
     private Integer subscriptionPrice;
 
+    /* ----- 반정규화 ----- */
+
     // 구독 좋아요 갯수 (조회가 많기 때문에 컬럼으로 추가했음)
     @ColumnDefault(value = "0")
     private Integer subscriptLikeCount;
+
+    //    리뷰수
+    @ColumnDefault(value = "0")
+    private Long reviewCount;
+
+    //    리뷰 평균
+    @ColumnDefault(value = "0.0")
+    private Double reviewAvgRating;
+
+    //    주문수
+    @ColumnDefault(value = "0")
+    private Long orderCount;
+    /* ------------------- */
 
     /* ======================= */
 
@@ -71,5 +86,17 @@ public class Subscription extends Period {
 
     public void setSubscriptLikeCount(Integer subscriptLikeCount) {
         this.subscriptLikeCount = subscriptLikeCount;
+    }
+
+    public void setReviewCount(Long reviewCount) {
+        this.reviewCount = reviewCount;
+    }
+
+    public void setReviewAvgRating(Double reviewAvgRating) {
+        this.reviewAvgRating = reviewAvgRating;
+    }
+
+    public void setOrderCount(Long orderCount) {
+        this.orderCount = orderCount;
     }
 }

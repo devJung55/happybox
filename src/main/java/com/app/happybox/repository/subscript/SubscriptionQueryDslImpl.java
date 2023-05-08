@@ -1,8 +1,6 @@
 package com.app.happybox.repository.subscript;
 
-import com.app.happybox.entity.board.QReviewBoard;
-import com.app.happybox.entity.subscript.QSubscriptionDTO;
-import com.app.happybox.entity.subscript.SubscriptionDTO;
+import com.app.happybox.entity.subscript.*;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
@@ -17,6 +15,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
+import static com.app.happybox.entity.subscript.QFood.food;
+import static com.app.happybox.entity.subscript.QFoodCalendar.foodCalendar;
 import static com.app.happybox.entity.subscript.QSubscription.subscription;
 
 @RequiredArgsConstructor
@@ -24,14 +24,17 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public List<SubscriptionDTO> findTop8OrderByDate_QueryDSL() {
-        List<SubscriptionDTO> subscriptionDTOList = getSubscriptionJPAQuery()
+    public List<Subscription> findTop8OrderByDate_QueryDSL() {
+
+        List<Subscription> subscriptionList = query.select(subscription)
                 .from(subscription)
+                .leftJoin(subscription.foodCalendars).fetchJoin()
+                .join(subscription.welfare)
                 .orderBy(subscription.createdDate.desc())
                 .limit(8L)
                 .fetch();
 
-        return subscriptionDTOList;
+        return subscriptionList;
     }
 
     @Override
@@ -74,6 +77,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
                 .from(subscription)
                 .where(hasAddress).fetchOne();
 
+
         return new PageImpl<>(subscriptionDTOList, pageable, count);
     }
 
@@ -95,6 +99,16 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
                 .fetchOne();
 
         return subscriptionDTO;
+    }
+
+    @Override
+    public List<Food> findFoodCalendar(Subscription subscription) {
+        return query.select(food)
+                .from(food)
+//                .join(food.foodFile)
+                .fetchJoin()
+                .where(food.foodCalendar.subscription.eq(subscription))
+                .fetch();
     }
 
     /* 중복 코드인 SubscriptionDTO JPAQuery 리턴 */
