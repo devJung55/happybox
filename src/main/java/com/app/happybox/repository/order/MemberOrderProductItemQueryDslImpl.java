@@ -13,6 +13,7 @@ import java.util.List;
 import static com.app.happybox.entity.order.QMemberOrderProduct.memberOrderProduct;
 import static com.app.happybox.entity.order.QMemberOrderProductItem.memberOrderProductItem;
 import static com.app.happybox.entity.order.QProduct.product;
+import static com.app.happybox.entity.user.QMember.member;
 
 @RequiredArgsConstructor
 public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductItemQueryDsl {
@@ -24,7 +25,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
                 .from(memberOrderProductItem)
                 .join(memberOrderProduct)
                 .join(product)
-                .join(QMember.member)
+                .join(member)
                 .fetchJoin()
                 .where(memberOrderProductItem.memberOrderProduct.member.id.eq(memberId))
                 .fetch();
