@@ -44,7 +44,7 @@ public class ReviewBoardLikeRepositoryTests {
     @Test
     public void saveTest(){
         Optional<Member> member = memberRepository.findById(1L);
-        Optional<ReviewBoard> reviewBoard = reviewBoardRepository.findById(39L);
+        Optional<ReviewBoard> reviewBoard = reviewBoardRepository.findById(67L);
 
         if(!member.isPresent() || !reviewBoard.isPresent()) fail("멤버 혹은 리뷰 보드가 존재하지 않음");
 

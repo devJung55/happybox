@@ -15,7 +15,7 @@ public interface ReviewBoardQueryDsl {
     public Slice<ReviewBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable);
 
 //    목록 페이징(인기순)
-    public Slice<ReviewBoardDTO> findAllByLikeCountDescWithPaging_QueryDSL(Pageable pageable);
+    public Slice<ReviewBoard> findAllByLikeCountDescWithPaging_QueryDSL(Pageable pageable);
 
 //    상세보기
     public Optional<ReviewBoard> findById_QueryDSL(Long id);
