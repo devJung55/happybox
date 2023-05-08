@@ -33,6 +33,10 @@ public class Welfare extends User {
     private Integer welfarePointTotal;
     /* ============= */
 
+    // 배송지 주소 정보
+    @NotNull @Embedded
+    private Address welfareDeliveryAddress;
+
     /*-- 배송지정보설정 --*/
     private String deliveryName;
     private String deliveryPhoneNumber;
@@ -55,8 +59,13 @@ public class Welfare extends User {
 //    @OneToOne(fetch = FetchType.LAZY, mappedBy = "welfare", orphanRemoval = true)
 //    private Subscription subscription;
 
-    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String welfareName) {
+
+    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String welfareName, Integer welfarePointTotal, Address welfareDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
         super(userId, userPassword, address, userEmail, userPhoneNumber);
         this.welfareName = welfareName;
+        this.welfarePointTotal = welfarePointTotal;
+        this.welfareDeliveryAddress = welfareDeliveryAddress;
+        this.deliveryName = deliveryName;
+        this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
 }

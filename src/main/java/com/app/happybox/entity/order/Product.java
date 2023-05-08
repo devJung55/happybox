@@ -28,6 +28,11 @@ public class Product extends Period {
     private Integer productPrice;
     @ColumnDefault(value = "0")
     private Long productStock;
+
+    /* ---- 반정규화 ---- */
+    @ColumnDefault(value = "0")
+    private Integer productLikeCount;
+
     /* ======================= */
 
     /* 유통회원 */

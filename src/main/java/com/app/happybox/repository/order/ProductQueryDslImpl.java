@@ -1,13 +1,12 @@
 package com.app.happybox.repository.order;
 
-import com.app.happybox.entity.order.ProductDTO;
-import com.app.happybox.entity.order.QProduct;
-import com.app.happybox.entity.order.QProductDTO;
+import com.app.happybox.entity.order.Product;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.happybox.entity.order.QProduct.product;
 
@@ -16,32 +15,35 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public List<ProductDTO> findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL() {
-        List<ProductDTO> productDTOList = getProductJPAQuery()
+    public List<Product> findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL() {
+        List<Product> ProductList = getProductJPAQuery()
                 .orderBy(product.createdDate.desc())
                 .limit(8L)
                 .fetch();
-        return productDTOList;
+        return ProductList;
     }
 
     @Override
-    public ProductDTO findByIdWithDetail_QueryDSL(Long id) {
-        ProductDTO productDTO = getProductJPAQuery()
+    public Optional<Product> findByIdWithDetail_QueryDSL(Long id) {
+        Product result = getProductWithRepliesJPAQuery()
                 .where(product.id.eq(id))
                 .fetchOne();
 
-        return productDTO;
+        return Optional.ofNullable(result);
     }
 
-    private JPAQuery<ProductDTO> getProductJPAQuery() {
-        return query.select(new QProductDTO(
-                product.id,
-                product.productName,
-                product.productPrice,
-                product.productStock,
-                product.distributor.distributorName,
-                product.productReplies.size())
-        )
-                .from(product);
+    private JPAQuery<Product> getProductJPAQuery() {
+        return query.select(product)
+                .from(product)
+                .join(product.distributor).fetchJoin()
+                .leftJoin(product.productFiles);
+    }
+
+    private JPAQuery<Product> getProductWithRepliesJPAQuery() {
+        return query.select(product)
+                .from(product)
+                .join(product.distributor).fetchJoin()
+                .leftJoin(product.productFiles)
+                .join(product.productReplies).fetchJoin();
     }
 }
