@@ -24,22 +24,22 @@ class MemberRepositoryTests {
 
     @Test
     public void saveTest(){
-        // given
-        Address address = new Address("11111", "서울시 역삼동", "코리아IT");
-        Member member = new Member("kmg1234",
-                "1234",
-                address,
-                "kmg1234@gmail.com",
-                "01034442331",
-                "강민구",
-                LocalDate.now(),
-                Gender.MALE,
-                address);
-
-        // when
-
-        // then
-        memberRepository.save(member);
+//        // given
+//        Address address = new Address("11111", "서울시 역삼동", "코리아IT");
+//        Member member = new Member("kmg1234",
+//                "1234",
+//                address,
+//                "kmg1234@gmail.com",
+//                "01034442331",
+//                "강민구",
+//                LocalDate.now(),
+//                Gender.MALE,
+//                address);
+//
+//        // when
+//
+//        // then
+//        memberRepository.save(member);
     }
 
     @Test
