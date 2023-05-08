@@ -16,6 +16,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootTest
 @Transactional @Rollback(false)
@@ -37,7 +38,18 @@ public class RecipeBoardRepositoryTests {
     @Test
     public void findRecipeBoardListByMemberIdWithPagingTest() {
         recipeBoardRepository.findRecipeBoardListByMemberIdWithPaging_QueryDSL(
-                PageRequest.of(0, 5),1L
+                PageRequest.of(0, 5), 1L
         ).stream().map(RecipeBoardDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findTop5ByLikeCountWithDetailOrderByLikeCount_QueryDSL_Test() {
+        // given
+        List<RecipeBoard> recipeBoards = recipeBoardRepository.findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL();
+
+        // when
+
+        // then
+        recipeBoards.stream().map(RecipeBoard::toString).forEach(log::info);
     }
 }
