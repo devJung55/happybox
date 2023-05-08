@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 기본 게시판
@@ -21,4 +22,13 @@ public class DonationBoard extends Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Welfare welfare;
+
+    public DonationBoard(String boardTitle, String boardContent) {
+        super(boardTitle, boardContent);
+    }
+
+    public void setWelfare(Welfare welfare) {
+        this.welfare = welfare;
+    }
+
 }

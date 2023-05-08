@@ -20,4 +20,10 @@ public class Files extends Period {
     private String fileUuid;
     @NotNull
     private String fileOrgName;
+
+    public Files(String filePath, String fileUuid, String fileOrgName) {
+        this.filePath = filePath;
+        this.fileUuid = fileUuid;
+        this.fileOrgName = fileOrgName;
+    }
 }

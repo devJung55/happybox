@@ -22,25 +22,18 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Slice<ReviewBoardDTO> findAllByDateDescWithPaging_QueryDSL(Pageable pageable) {
-        List<ReviewBoardDTO> reviewBoardDTOS = query.select(new QReviewBoardDTO(
-                reviewBoard.id,
-                reviewBoard.member.memberName,
-                reviewBoard.subscription.welfare.welfareName,
-                reviewBoard.boardTitle,
-                reviewBoard.boardContent,
-                reviewBoard.updatedDate,
-                reviewBoard.reviewRating,
-                reviewBoard.reviewLikeCount.longValue(),
-                reviewBoard.reviewBoardReplies.size().longValue()
-        ))
+    public Slice<ReviewBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {
+        List<ReviewBoard> reviewBoards =  query.select(reviewBoard)
                 .from(reviewBoard)
-                .orderBy(reviewBoard.updatedDate.desc())
+                .join(reviewBoard.member).fetchJoin()
+                .join(reviewBoard.subscription.welfare).fetchJoin()
+                .join(reviewBoard.boardFiles).fetchJoin()
+                .join(reviewBoard.reviewBoardReplies).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        return new SliceImpl<>(reviewBoardDTOS, pageable, true);
+        return new SliceImpl<>(reviewBoards, pageable, true);
     }
 
     @Override
@@ -66,23 +59,14 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     }
 
     @Override
-    public ReviewBoardDTO findById_QueryDSL(Long id) {
-        ReviewBoardDTO reviewBoardDTO = query.select(new QReviewBoardDTO(
-                reviewBoard.id,
-                reviewBoard.member.memberName,
-                reviewBoard.subscription.welfare.welfareName,
-                reviewBoard.boardTitle,
-                reviewBoard.boardContent,
-                reviewBoard.updatedDate,
-                reviewBoard.reviewRating,
-                reviewBoard.reviewLikeCount.longValue(),
-                reviewBoard.reviewBoardReplies.size().longValue()
-        ))
+    public Optional<ReviewBoard> findById_QueryDSL(Long id) {
+        return Optional.ofNullable(query.select(reviewBoard)
                 .from(reviewBoard)
+                .join(reviewBoard.member).fetchJoin()
+                .join(reviewBoard.subscription).fetchJoin()
+                .join(reviewBoard.boardFiles).fetchJoin()
                 .where(reviewBoard.id.eq(id))
-                .fetchOne();
-
-        return reviewBoardDTO;
+                .fetchOne());
     }
 
     @Override

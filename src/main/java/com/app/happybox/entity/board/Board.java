@@ -17,7 +17,7 @@ import java.util.List;
  * */
 @Entity @Table(name = "TBL_BOARD")
 @DynamicInsert @Inheritance(strategy = InheritanceType.JOINED)
-@Getter @ToString(exclude = {"boardFiles"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Board extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
@@ -43,4 +43,6 @@ public abstract class Board extends Period {
     public Board(String boardContent) {
         this.boardContent = boardContent;
     }
+
+
 }
