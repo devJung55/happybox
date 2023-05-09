@@ -33,7 +33,7 @@ public class Product extends Period {
     private String productInfo;
 
     @Enumerated(EnumType.STRING)
-    @NotNull
+    @ColumnDefault(value = "'OTHER'")
     private ProductCategory productCategory;
 
     /* ---- 반정규화 ---- */

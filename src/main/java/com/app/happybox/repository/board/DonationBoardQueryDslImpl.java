@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import static com.app.happybox.entity.board.QDonationBoard.donationBoard;
 
+
 @RequiredArgsConstructor
 public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     private final JPAQueryFactory query;
