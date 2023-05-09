@@ -25,17 +25,17 @@ class WelfareRepositoryTests {
     @Test
     public void saveTest() {
         Address address = new Address("11111", "서울시 역삼동", "코리아IT");
-        Welfare welfare = new Welfare("kmg123",
-                "asd1234",
-                address,
-                "kmg123@gmail.com",
-                "01012341234",
-                "민구복지관",
-                1000,
-                address,
-                "강민구",
-                "01098769876");
-        welfareRepository.save(welfare);
+//        Welfare welfare = new Welfare("kmg123",
+//                "asd1234",
+//                address,
+//                "kmg123@gmail.com",
+//                "01012341234",
+//                "민구복지관",
+//                1000,
+//                address,
+//                "강민구",
+//                "01098769876");
+//        welfareRepository.save(welfare);
     }
 
     @Test

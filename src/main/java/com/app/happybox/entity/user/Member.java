@@ -8,11 +8,10 @@ import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.entity.order.OrderSubscription;
 import com.app.happybox.entity.type.Gender;
+import com.app.happybox.entity.type.Role;
+import com.app.happybox.entity.type.UserStatus;
 import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -65,8 +64,9 @@ public class Member extends User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Payment> payments = new ArrayList<>();
 
-    public Member(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String memberName, LocalDate memberBirth, Gender memberGender, Address memberDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
-        super(userId, userPassword, address, userEmail, userPhoneNumber);
+    @Builder
+    public Member(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String memberName, LocalDate memberBirth, Gender memberGender, Address memberDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
         this.memberName = memberName;
         this.memberBirth = memberBirth;
         this.memberGender = memberGender;
@@ -74,5 +74,4 @@ public class Member extends User {
         this.deliveryName = deliveryName;
         this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
-
 }

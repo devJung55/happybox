@@ -31,14 +31,6 @@ public class DistributorQueryDslImpl implements DistributorQueryDsl {
                 .execute();
     }
 
-//    유통 로그인 확인
-    @Override
-    public Tuple findDistributorInfoById(Long id) {
-        return query.select(distributor.userId, distributor.userPassword)
-                .from(distributor)
-                .where(distributor.id.eq(id))
-                .fetchOne();
-    }
 
 //    유통회원이름으로 유통회원 정보 조회
     @Override
@@ -50,12 +42,12 @@ public class DistributorQueryDslImpl implements DistributorQueryDsl {
         return Optional.ofNullable(distributor);
     }
 
-//    유통회원 아이디 중복체크
+//    유통 로그인
     @Override
-    public String checkId(String distributorId) {
-        return query.select(distributor.userId)
+    public Optional<Distributor> logIn(String distributorId, String distributorPassword) {
+        return Optional.ofNullable(query.select(distributor)
                 .from(distributor)
-                .where(distributor.userId.eq(distributorId))
-                .fetchOne();
+                .where(distributor.userId.eq(distributorId).and(distributor.userPassword.eq(distributorPassword)))
+                .fetchOne());
     }
 }
