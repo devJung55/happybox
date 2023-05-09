@@ -38,10 +38,10 @@ public class RecipeBoardReplyRepositoryTests {
 //            recipeBoardReplyRepository.save(recipeBoardReply);
 //        }
 
-        for (int i = 0; i < 5; i++) {
-            RecipeBoardLike recipeBoardLike = new RecipeBoardLike(recipeBoardRepository.findById(60L).get(), memberRepository.findById(1L).get());
-            recipeBoardLikeRepository.save(recipeBoardLike);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            RecipeBoardLike recipeBoardLike = new RecipeBoardLike(recipeBoardRepository.findById(60L).get(), memberRepository.findById(1L).get());
+//            recipeBoardLikeRepository.save(recipeBoardLike);
+//        }
     }
 
     @Test
