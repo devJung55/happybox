@@ -21,10 +21,20 @@ public class MemberOrderProductItemRepositoryTests {
     @Test
     public void findCancleListByMemberIdDescWithPagingTest() {
         LocalDateTime startDate = LocalDateTime.now();
-        LocalDateTime endDate = LocalDateTime.of(2023, 4, 8, 0, 0);
+        LocalDateTime endDate = LocalDateTime.of(2023, 2, 8, 0, 0);
 
         memberOrderProductItemRepository
                 .findCancleListByMemberIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 1L, startDate, endDate)
-                .stream().map(MemberOrderProductItem::getProduct).forEach(v -> log.info(v.getProductFiles().toString()));
+                .stream().map(MemberOrderProductItem::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findSaleListByWelfareIdAndSearchDateDescWithPagingTest() {
+        LocalDateTime startDate = LocalDateTime.now();
+        LocalDateTime endDate = LocalDateTime.of(2023, 2, 8, 0, 0);
+
+        memberOrderProductItemRepository
+                .findSaleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 42L, startDate, endDate)
+                .stream().map(MemberOrderProductItem::toString).forEach(log::info);
     }
 }

@@ -1,5 +1,6 @@
 package com.app.happybox.repository.reply;
 
+import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.reply.RecipeBoardReply;
 import com.app.happybox.entity.reply.Reply;
@@ -39,5 +40,8 @@ public class RecipeBoardReplyRepositoryTests {
     public void findAllByMemberIdDescWithPagingTest() {
         recipeBoardReplyRepository.findAllByMemberIdDescWithPaging_QueryDSL(PageRequest.of(0, 3), 1L)
                 .stream().map(Reply::getReplyContent).forEach(log::info);
+
+//        recipeBoardRepository.findRecipeBoardReplyCountByMemberId_QueryDSL(1L)
+//                .stream().map(RecipeBoard::getRecipeBoardReplies).forEach(v -> log.info("replyCount : " + v.size()));
     }
 }
