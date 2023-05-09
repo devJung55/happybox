@@ -20,4 +20,9 @@ public class RecipeBoardLike extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
+
+    public RecipeBoardLike(RecipeBoard recipeBoard, User user) {
+        this.recipeBoard = recipeBoard;
+        this.user = user;
+    }
 }

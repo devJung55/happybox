@@ -1,8 +1,6 @@
 package com.app.happybox.repository.board;
 
-import com.app.happybox.entity.board.QRecipeBoardLike;
 import com.app.happybox.entity.board.RecipeBoard;
-import com.app.happybox.entity.board.RecipeBoardLike;
 import com.app.happybox.entity.type.FileRepresent;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.app.happybox.entity.board.QRecipeBoard.recipeBoard;
-import static com.app.happybox.entity.board.QRecipeBoardLike.recipeBoardLike;
 
 @RequiredArgsConstructor
 public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
@@ -63,12 +60,4 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         return recipeBoards;
     }
 
-    @Override
-    public Page<RecipeBoard> findBookmarkListWithMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-//        List<RecipeBoardLike> recipeBoardList = query.select(recipeBoardLike)
-//                .from(recipeBoardLike)
-//                .join(recipeBoardLike.recipeBoard).fetchJoin()
-//                .join(reci)
-        return null;
-    }
 }
