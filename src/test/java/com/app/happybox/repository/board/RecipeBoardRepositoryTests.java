@@ -3,6 +3,8 @@ package com.app.happybox.repository.board;
 import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
+import com.app.happybox.entity.file.BoardFile;
+import com.app.happybox.entity.type.FileRepresent;
 import com.app.happybox.entity.type.Gender;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
@@ -17,7 +19,10 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest
 @Transactional @Rollback(false)
@@ -25,15 +30,60 @@ import java.util.List;
 public class RecipeBoardRepositoryTests {
     @Autowired private RecipeBoardRepository recipeBoardRepository;
     @Autowired private MemberRepository memberRepository;
+    @Autowired private BoardFileRepository boardFileRepository;
 
     @Test
     public void saveTest() {
-        for (int i = 0; i < 5; i++) {
-            RecipeBoard recipeBoard = new RecipeBoard("레시피 게시물_제목" + (i + 1), "레시피 게시물_내용" + (i + 1));
+//        for (int i = 0; i < 5; i++) {
+//            RecipeBoard recipeBoard = new RecipeBoard("레시피 게시물_제목" + (i + 1), "레시피 게시물_내용" + (i + 1));
+//            memberRepository.findById(1L).ifPresent(member -> recipeBoard.setMember(member));
+//
+//            recipeBoardRepository.save(recipeBoard);
+//        }
+        for(int i=0; i<5; i++){
+            RecipeBoard recipeBoard = new RecipeBoard("테스트 제목" + (i+1), "테스트 내용" + (i+1));
             memberRepository.findById(1L).ifPresent(member -> recipeBoard.setMember(member));
+            BoardFile boardFile = new BoardFile("2023/04/05", UUID.randomUUID().toString(), "레시피" + (i + 1) + ".png", FileRepresent.REPRESENT);
+            BoardFile boardFile2 = new BoardFile("2023/04/05", UUID.randomUUID().toString(), "레시피" + (i + 1) + ".png", FileRepresent.ORDINARY);
+            boardFile.setBoard(recipeBoard);
+            boardFile2.setBoard(recipeBoard);
 
+            boardFileRepository.save(boardFile);
+            boardFileRepository.save(boardFile2);
             recipeBoardRepository.save(recipeBoard);
         }
+
+    }
+
+    // 레시피 게시글 목록 최신순 조회
+    @Test
+    public void findAllByIdDescWithPagingTest(){
+        recipeBoardRepository.findAllByIdDescWithPaging_QueryDSL(
+                PageRequest.of(0, 3)
+        ).stream().map(RecipeBoard::toString).forEach(log::info);
+    }
+
+    // 레시피 게시글 목록 인기순 조회
+    @Test
+    public void findAllByLikeCountDescWithPagingTest(){
+        recipeBoardRepository.findAllByLikeCountDescWithPaging_QueryDSL(
+                PageRequest.of(0, 3)
+        ).stream().map(RecipeBoard::toString).forEach(log::info);
+    }
+
+    //레시피 게시글 상세보기
+    @Test
+    public void findByIdTest(){
+        recipeBoardRepository.findById(91L).map(RecipeBoard::toString).ifPresent(log::info);
+    }
+
+    //레시피 게시글 수정
+    @Test
+    public void updateTest(){
+        recipeBoardRepository.findById(91L).ifPresent(recipeBoard -> {
+            recipeBoard.setBoardTitle("수정된 레시피 제목1");
+            recipeBoard.setBoardContent("수정된 레시피 내용1");
+        });
     }
 
     @Test

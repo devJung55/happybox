@@ -15,12 +15,16 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_RECIPE_BOARD")
 @DynamicInsert
-@Getter @ToString(exclude = {"recipeBoardReplies", "recipeBoardLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"recipeBoardReplies", "recipeBoardLikes"}, callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RecipeBoard extends Board {
 
     /* 레시피 게시판 정보 */
     @ColumnDefault(value = "0")
     private Integer recipeLikeCount;
+
+    /* 댓글 갯수 */
+    @ColumnDefault(value="0")
+    private Integer recipeBoardReplyCount;
     /* ============= */
 
     /* 작성한 유저 */
@@ -42,5 +46,13 @@ public class RecipeBoard extends Board {
 
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    public void setRecipeLikeCount(Integer recipeLikeCount) {
+        this.recipeLikeCount = recipeLikeCount;
+    }
+
+    public void setRecipeBoardReplyCount(Integer recipeBoardReplyCount) {
+        this.recipeBoardReplyCount = recipeBoardReplyCount;
     }
 }

@@ -37,6 +37,25 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .fetchOne());
     }
 
+//    아이디 찾기(memberPhone)
+    @Override
+    public Optional<String> findMemberIdByPhoneNumber(String memberPhoneNumber) {
+        return Optional.ofNullable(query.select(member.userId)
+                .from(member)
+                .where(member.userPhoneNumber.eq(memberPhoneNumber))
+                .fetchOne());
+    }
+
+
+    //    아이디 찾기(memberEmail)
+    @Override
+    public Optional<String> findMemberIdByEmail(String memberEmail) {
+        return Optional.ofNullable(query.select(member.userId)
+        .from(member)
+        .where(member.userEmail.eq(memberEmail))
+        .fetchOne());
+    }
+
 
     //    마이페이지 배송지정보
     @Override

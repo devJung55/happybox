@@ -21,14 +21,29 @@ public class MemberServiceImpl implements MemberService {
 
 //    Member 회원가입
     @Override
-    public void join(MemberDTO memberDTO) {
+    public Member join(MemberDTO memberDTO) {
         memberDTO.setMemberRole(Role.MEMBER);
-        memberRepository.save(toMemberEntity(memberDTO));
+        return memberRepository.save(toMemberEntity(memberDTO));
     }
 
 //    Member 로그인
     @Override
     public Optional<Member> login(String memberId, String memberPassword) {
-        return Optional.empty();
+        Optional<Member> member = memberRepository.logIn(memberId, memberPassword);
+        return member;
+    }
+
+//    아이디찾기(PhoneNumber)
+    @Override
+    public Optional<String> findMemberIdByPhoneNumber(String memberPhoneNumber) {
+        Optional<String> memberId = memberRepository.findMemberIdByPhoneNumber(memberPhoneNumber);
+        return memberId;
+    }
+
+//    아이디찾기(Email)
+    @Override
+    public Optional<String> findMemberIdByEmail(String memberEmail) {
+        Optional<String> memberId = memberRepository.findMemberIdByEmail(memberEmail);
+        return memberId;
     }
 }

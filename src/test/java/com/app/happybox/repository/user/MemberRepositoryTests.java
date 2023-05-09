@@ -1,6 +1,8 @@
 package com.app.happybox.repository.user;
 
 import com.app.happybox.entity.type.Gender;
+import com.app.happybox.entity.type.Role;
+import com.app.happybox.entity.type.UserStatus;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import lombok.extern.slf4j.Slf4j;
@@ -26,18 +28,22 @@ class MemberRepositoryTests {
     public void saveTest(){
 //        // given
         Address address = new Address("11111", "서울시 역삼동", "코리아IT");
-//        Member member = new Member("oty7942",
-//                "asd1234",
-//                address,
-//                "oty7942@gmail.com",
-//                "01064844195",
-//                "오태양",
-//                LocalDate.of(2000,06,01),
-//                Gender.MALE,
-//                address,
-//                "정지영",
-//                "01032223434");
-//        memberRepository.save(member);
+        Member member = Member.builder()
+                .memberBirth(LocalDate.of(2000,06,01))
+                .address(address)
+                .memberDeliveryAddress(address)
+                .memberGender(Gender.MALE)
+                .memberName("오태양")
+                .deliveryName("강민구")
+                .deliveryPhoneNumber("010-6484-4195")
+                .userEmail("oty7942@gmail.com")
+                .userId("oty7942")
+                .userPassword("asd1234")
+                .userPhoneNumber("010-6484-4195")
+                .userRole(Role.MEMBER)
+                .userStatus(UserStatus.REGISTERED)
+                .build();
+        memberRepository.save(member);
     }
 
     @Test

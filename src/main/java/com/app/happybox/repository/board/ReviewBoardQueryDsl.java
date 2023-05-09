@@ -17,9 +17,6 @@ public interface ReviewBoardQueryDsl {
 //    목록 페이징(인기순)
     public Slice<ReviewBoard> findAllByLikeCountDescWithPaging_QueryDSL(Pageable pageable);
 
-//    상세보기
-    public Optional<ReviewBoard> findById_QueryDSL(Long id);
-
 //    마이페이지 나의후기 목록
     public Page<ReviewBoard> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId);
     

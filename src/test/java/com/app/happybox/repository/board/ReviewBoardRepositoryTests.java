@@ -81,8 +81,8 @@ public class ReviewBoardRepositoryTests {
 //    리뷰게시판 상세보기
     @Test
     public void findByIdTest(){
-        log.info(reviewBoardRepository.findById_QueryDSL(65L).toString());
-        log.info(reviewBoardRepository.findById_QueryDSL(65L).get().getSubscription().getWelfare().getWelfareName().toString());
+        log.info(reviewBoardRepository.findById(65L).toString());
+        log.info(reviewBoardRepository.findById(65L).get().getSubscription().getWelfare().getWelfareName().toString());
     }
 
 //    리뷰게시판 수정
