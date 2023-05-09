@@ -3,7 +3,6 @@ package com.app.happybox.repository.subscript;
 import com.app.happybox.entity.subscript.Food;
 import com.app.happybox.entity.subscript.FoodCalendar;
 import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.repository.user.WelfareRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -82,10 +80,24 @@ class SubscriptionRepositoryTests {
     }
 
     @Test
-    public void findTop4OrderByReviewCount_QueryDSL_Test() {
+    public void findTopNByOrderCountOrderByOrderCount_QueryDSL(){
         // given
+        Long limit = 8L;
+        List<Subscription> subscriptionList = subscriptionRepository.findTopNByOrderCountOrderByOrderCount_QueryDSL(limit);
+
+        // when
+
+        // then
+        subscriptionList.stream().map(Subscription::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findTopNOrderByReviewCount_QueryDSL_Test() {
+        // given
+        Long limit = 8L;
+
         subscriptionRepository
-                .findTop4OrderByReviewCount_QueryDSL()
+                .findTopNOrderByReviewCount_QueryDSL(limit)
                 .stream()
                 .map(Subscription::toString)
                 .forEach(log::info);
@@ -127,6 +139,7 @@ class SubscriptionRepositoryTests {
                     .forEach(foodCalendar -> foodCalendar.getFoodList().forEach(foodList::add));
         });
 
+        log.info(subscriptionList.get(0).getWelfare().getWelfareName());
         log.info(foodList.toString());
     }
 

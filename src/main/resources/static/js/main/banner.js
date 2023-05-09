@@ -30,14 +30,14 @@ const mobileImgURLs = [
 ];
 
 let imgURLs = [
-    "../../static/img/main/banner/001.png",
-    "../../static/img/main/banner/002.png",
-    "../../static/img/main/banner/003.png",
-    "../../static/img/main/banner/004.png",
-    "../../static/img/main/banner/005.png",
-    "../../static/img/main/banner/006.png",
-    "../../static/img/main/banner/007.png",
-    "../../static/img/main/banner/008.png",
+    "/img/main/banner/001.png",
+    "/img/main/banner/002.png",
+    "/img/main/banner/003.png",
+    "/img/main/banner/004.png",
+    "/img/main/banner/005.png",
+    "/img/main/banner/006.png",
+    "/img/main/banner/007.png",
+    "/img/main/banner/008.png",
 ];
 
 /* 배너 수 */
