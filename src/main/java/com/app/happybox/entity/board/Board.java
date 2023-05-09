@@ -44,5 +44,11 @@ public abstract class Board extends Period {
         this.boardContent = boardContent;
     }
 
+    public void setBoardTitle(String boardTitle) {
+        this.boardTitle = boardTitle;
+    }
 
+    public void setBoardContent(String boardContent) {
+        this.boardContent = boardContent;
+    }
 }

@@ -81,8 +81,16 @@ public class ReviewBoardRepositoryTests {
 //    리뷰게시판 상세보기
     @Test
     public void findByIdTest(){
-        log.info(reviewBoardRepository.findById_QueryDSL(31L).toString());
-        log.info(reviewBoardRepository.findById(31L).get().getBoardFiles().toString());
+        log.info(reviewBoardRepository.findById_QueryDSL(65L).toString());
+        log.info(reviewBoardRepository.findById_QueryDSL(65L).get().getSubscription().getWelfare().getWelfareName().toString());
+        log.info(reviewBoardRepository.findById_QueryDSL(65L).get().getBoardFiles().toString());
+    }
+
+//    리뷰게시판 수정
+    @Test
+    public void updateTest(){
+        reviewBoardRepository.findById(65L).ifPresent(reviewBoard -> {reviewBoard.setBoardTitle("수정제목1"); reviewBoard.setBoardContent("수정내용1");});
+
     }
 
 
