@@ -3,6 +3,7 @@ package com.app.happybox.entity.order;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.reply.ProductReply;
+import com.app.happybox.entity.type.ProductCategory;
 import com.app.happybox.entity.user.Distributor;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -31,9 +32,18 @@ public class Product extends Period {
     @NotNull
     private String productInfo;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private ProductCategory productCategory;
+
     /* ---- 반정규화 ---- */
     @ColumnDefault(value = "0")
     private Integer productLikeCount;
+
+//    주문 횟수
+    @NotNull
+    @ColumnDefault(value = "0")
+    private Long productOrderCount;
 
     /* ======================= */
 
