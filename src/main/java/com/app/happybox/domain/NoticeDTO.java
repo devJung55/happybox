@@ -1,7 +1,5 @@
-package com.app.happybox.entity.customer;
+package com.app.happybox.domain;
 
-import com.app.happybox.entity.file.NoticeFile;
-import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,5 +11,5 @@ public class NoticeDTO {
     private Long id;
     private String noticeTitle;
     private String noticeContent;
-    private List<NoticeFile> noticeFile;
+    private List<NoticeFileDTO> noticeFileDTOS;
 }
