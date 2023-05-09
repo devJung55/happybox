@@ -28,11 +28,6 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .execute();
     }
 
-    @Override
-    public void setMemberStatusById_QueryDSL(Member member) {
-        
-    }
-
     /* id로 ID,Password 조회 */
     @Override
     public Tuple findMemberInfoById(Long id) {

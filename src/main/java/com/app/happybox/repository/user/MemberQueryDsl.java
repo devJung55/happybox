@@ -9,9 +9,6 @@ public interface MemberQueryDsl {
     //    회원정보수정
     public void setMemberInfoById_QueryDSL(Member member);
 
-    //    회원탈퇴
-    public void setMemberStatusById_QueryDSL(Member member);
-
     //    로그인을 위해 ID로 Identification, Password 조회
     public Tuple findMemberInfoById(Long id);
 

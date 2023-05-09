@@ -11,4 +11,5 @@ public interface ProductQueryDsl {
     public List<Product> findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL();
 //    상세 보기
     public Optional<Product> findByIdWithDetail_QueryDSL(Long id);
+
 }

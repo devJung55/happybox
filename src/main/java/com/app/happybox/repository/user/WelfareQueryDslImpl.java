@@ -16,7 +16,7 @@ import static com.app.happybox.entity.user.QWelfare.welfare;
 public class WelfareQueryDslImpl implements WelfareQueryDsl {
     private final JPAQueryFactory query;
 
-//    복지관 정보 수정
+//    복지관 정보수정
     @Override
     public void setWelfareInfoById_QueryDSL(Welfare welfare) {
         query.update(QWelfare.welfare)
@@ -28,7 +28,7 @@ public class WelfareQueryDslImpl implements WelfareQueryDsl {
                 .execute();
     }
 
-//    복지관 이름으로 복지관 정보 조회
+    //    복지관 이름으로 복지관 정보 조회
     @Override
     public Optional<Welfare> findWelfareByWelfareName(String welfareName) {
         Welfare welfare = query.select(QWelfare.welfare)

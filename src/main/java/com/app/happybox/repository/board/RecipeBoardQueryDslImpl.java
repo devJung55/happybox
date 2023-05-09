@@ -42,6 +42,18 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         return new PageImpl<>(recipeBoardList, pageable, count);
     }
 
+//    댓글 수
+    @Override
+    public List<RecipeBoard> findRecipeBoardReplyCountByMemberId_QueryDSL(Long memberId) {
+        List<RecipeBoard> recipeBoardList = query.select(recipeBoard)
+                .from(recipeBoard)
+                .join(recipeBoard.recipeBoardReplies).fetchJoin()
+                .where(recipeBoard.member.id.eq(memberId))
+                .fetch();
+        
+        return recipeBoardList;
+    }
+
     @Override
     public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL() {
         List<RecipeBoard> recipeBoards = query.select(recipeBoard)
