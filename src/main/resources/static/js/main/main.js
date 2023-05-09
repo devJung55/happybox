@@ -13,7 +13,7 @@ function appendIndex1() {
     text = `
             <li
             class="swiper-slide"
-            style="width: 320px; margin-right: 40px">
+            style="width: 320px; margin-right: 20px">
             <div class="prd-item">
                 <div class="img">
                     <a href="javascript:void(0)">

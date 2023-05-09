@@ -20,15 +20,22 @@ import static com.app.happybox.entity.subscript.QSubscription.subscription;
 public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     private final JPAQueryFactory query;
 
+    //    최신 8개 조회
     @Override
     public List<Subscription> findTop8OrderByDate_QueryDSL() {
-
         List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .orderBy(subscription.createdDate.desc())
                 .limit(8L)
                 .fetch();
-
         return subscriptionList;
+    }
+
+    @Override
+    public List<Subscription> findTopNByOrderCountOrderByOrderCount_QueryDSL(Long limit) {
+        return getSubscriptionJPAQuery()
+                .orderBy(subscription.orderCount.desc())
+                .limit(limit)
+                .fetch();
     }
 
     @Override
@@ -43,10 +50,10 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     }
 
     @Override
-    public List<Subscription> findTop4OrderByReviewCount_QueryDSL() {
+    public List<Subscription> findTopNOrderByReviewCount_QueryDSL(Long limit) {
         List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .orderBy(subscription.reviewCount.desc())
-                .limit(4L)
+                .limit(limit)
                 .fetch();
         return subscriptionList;
     }
