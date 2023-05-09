@@ -24,12 +24,11 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .join(reviewBoard.member).fetchJoin()
                 .rightJoin(reviewBoard.subscription.welfare)
                 .join(reviewBoard.boardFiles).fetchJoin()
-//                .join(reviewBoard.reviewBoardReplies).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        return new SliceImpl<>(reviewBoards, pageable, true);
+        return checkLastPage(pageable, reviewBoards);
     }
 
 //    인기순
@@ -46,16 +45,16 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        return new SliceImpl<>(reviewBoards, pageable, true);
+        return checkLastPage(pageable, reviewBoards);
     }
 
 //    상세보기
     @Override
     public Optional<ReviewBoard> findById_QueryDSL(Long id) {
-        return Optional.ofNullable(query.select(reviewBoard)
+        return Optional.ofNullable(query.selectDistinct(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .join(reviewBoard.subscription).fetchJoin()
+                .rightJoin(reviewBoard.subscription.welfare)
                 .join(reviewBoard.boardFiles).fetchJoin()
                 .where(reviewBoard.id.eq(id))
                 .fetchOne());
@@ -76,6 +75,19 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         Long count = query.select(reviewBoard.id.count()).from(reviewBoard).where(reviewBoard.member.id.eq(memberId)).fetchOne();
 
         return new PageImpl<>(reviewBoardList, pageable, count);
+    }
+
+    private Slice<ReviewBoard> checkLastPage(Pageable pageable, List<ReviewBoard> reviewBoards) {
+
+        boolean hasNext = false;
+
+        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
+        if (reviewBoards.size() > pageable.getPageSize()) {
+            hasNext = true;
+            reviewBoards.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(reviewBoards, pageable, hasNext);
     }
 
 }
