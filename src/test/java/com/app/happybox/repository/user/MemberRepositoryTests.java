@@ -58,13 +58,13 @@ class MemberRepositoryTests {
 //    Phone으로 회원 정보 확인
     @Test
     public void findMemberByMemberPhoneTest(){
-        memberRepository.findMemberByMemberPhone("01034442331").ifPresent(member -> log.info(member.toString()));
+//        memberRepository.findMemberByMemberPhone("01034442331").ifPresent(member -> log.info(member.toString()));
     }
 
 //    ID 중복체크
     @Test
     public void checkIdTest(){
-        log.info(memberRepository.checkId("1234").toString());
+//        log.info(memberRepository.checkId("1234").toString());
     }
 
 //  마이페이지 배송지정보

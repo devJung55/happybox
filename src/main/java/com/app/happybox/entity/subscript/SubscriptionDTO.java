@@ -2,8 +2,11 @@ package com.app.happybox.entity.subscript;
 
 import com.app.happybox.entity.user.Address;
 import com.querydsl.core.annotations.QueryProjection;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Getter @ToString
 public class SubscriptionDTO {
@@ -33,29 +36,17 @@ public class SubscriptionDTO {
     //    주문수
     private Long orderCount;
 
-//    파일 list
+    //    파일 list
+    private List<Food> foodList;
 
-    @QueryProjection
-    public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice, Integer subscriptLikeCount, Address welfareAddress,
-                           String welfareName, Long reviewCount) {
+    @Builder
+    public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice, Integer subscriptLikeCount, String welfareName, Address welfareAddress, Long reviewCount, Double reviewAvgRating, Long orderCount) {
         this.id = id;
         this.subscriptionTitle = subscriptionTitle;
         this.subscriptionPrice = subscriptionPrice;
         this.subscriptLikeCount = subscriptLikeCount;
-        this.welfareAddress = welfareAddress;
         this.welfareName = welfareName;
-        this.reviewCount = reviewCount;
-    }
-
-    @QueryProjection
-    public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice, Integer subscriptLikeCount, Address welfareAddress,
-                           String welfareName, Long reviewCount, Double reviewAvgRating, Long orderCount) {
-        this.id = id;
-        this.subscriptionTitle = subscriptionTitle;
-        this.subscriptionPrice = subscriptionPrice;
-        this.subscriptLikeCount = subscriptLikeCount;
         this.welfareAddress = welfareAddress;
-        this.welfareName = welfareName;
         this.reviewCount = reviewCount;
         this.reviewAvgRating = reviewAvgRating;
         this.orderCount = orderCount;
