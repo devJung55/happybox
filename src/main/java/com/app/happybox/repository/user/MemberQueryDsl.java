@@ -12,6 +12,12 @@ public interface MemberQueryDsl {
     //    member 로그인
     public Optional<Member> logIn(String memberId, String memberPassword);
 
+//    아이디 찾기
+    public Optional<String> findMemberIdByPhoneNumber(String memberPhoneNumber);
+
+//    아이디 찾기(memberEmail)
+    public Optional<String> findMemberIdByEmail(String memberEmail);
+
 
 
 //    마이페이지 배송지정보
