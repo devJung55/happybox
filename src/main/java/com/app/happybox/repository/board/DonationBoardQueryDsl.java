@@ -9,4 +9,6 @@ public interface DonationBoardQueryDsl {
 //    게시물 상세보기
     public Optional<DonationBoard> findById_QueryDSL(Long id);
 
+//    최신순 Top3 조회(메인)
+    public List<DonationBoard> findTop3OrderByDate_QueryDSL();
 }

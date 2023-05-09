@@ -53,9 +53,8 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
 
     @Override
     public Page<Subscription> findAllByAddressCategoryWithPaging_QueryDSL(Pageable pageable, String address) {
-        //    추후 동적쿼리로 변경
         //    해당 지역 주소를 포함하고 있는가? ex) 강남 in 서울시 '강남구' ...
-        BooleanExpression hasAddress = subscription.welfare.address.firstAddress.contains(address);
+        BooleanExpression hasAddress = address == null ? null : subscription.welfare.address.firstAddress.contains(address);
 
         List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .from(subscription)
