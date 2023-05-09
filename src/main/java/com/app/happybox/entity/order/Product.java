@@ -40,6 +40,11 @@ public class Product extends Period {
     @ColumnDefault(value = "0")
     private Integer productLikeCount;
 
+//    주문 횟수
+    @NotNull
+    @ColumnDefault(value = "0")
+    private Long productOrderCount;
+
     /* ======================= */
 
     /* 유통회원 */
