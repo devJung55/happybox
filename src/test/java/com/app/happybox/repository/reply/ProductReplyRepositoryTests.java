@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -50,5 +51,16 @@ class ProductReplyRepositoryTests {
 
         // then
         log.info(productReply.toString());
+    }
+
+    @Test
+    public void findAllByProductIdTest() {
+        // given
+        Long id = 1L;
+
+        // when
+        productReplyRepository.findAllByProductId(PageRequest.of(0, 10), id);
+
+        // then
     }
 }

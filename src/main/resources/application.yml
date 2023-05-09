@@ -16,7 +16,7 @@ spring:
     hibernate:
 
       #jpa ddl-auto
-      ddl-auto: validate
+      ddl-auto:  update
     show-sql: true
 
     #jpa format

@@ -59,4 +59,5 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
 
         return recipeBoards;
     }
+
 }
