@@ -5,6 +5,9 @@ import com.app.happybox.entity.reply.ReviewBoardReply;
 import com.app.happybox.entity.user.Member;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,13 +18,17 @@ public class ReviewBoardReplyQueryDslImpl implements ReviewBoardReplyQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public List<ReviewBoardReply> findAllByMemberIdDescWithPaging_QueryDSL(Member member) {
+    public Page<ReviewBoardReply> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<ReviewBoardReply> reviewBoardReplyList = query.select(reviewBoardReply)
                 .from(reviewBoardReply)
-                .where(reviewBoardReply.user.eq(member))
+                .where(reviewBoardReply.user.id.eq(memberId))
                 .orderBy(reviewBoardReply.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        return reviewBoardReplyList;
+        Long count = query.select(reviewBoardReply.id.count()).from(reviewBoardReply).where(reviewBoardReply.user.id.eq(memberId)).fetchOne();
+
+        return new PageImpl<>(reviewBoardReplyList, pageable, count);
     }
 }

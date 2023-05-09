@@ -5,6 +5,9 @@ import com.app.happybox.entity.reply.RecipeBoardReply;
 import com.app.happybox.entity.user.Member;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,13 +18,17 @@ public class RecipeBoardReplyQueryDslImpl implements RecipeBoardReplyQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public List<RecipeBoardReply> findAllByMemberIdDescWithPaging_QueryDSL(Member member) {
+    public Page<RecipeBoardReply> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<RecipeBoardReply> recipeBoardReplyList = query.select(recipeBoardReply)
                 .from(recipeBoardReply)
-                .where(recipeBoardReply.user.eq(member))
+                .where(recipeBoardReply.user.id.eq(memberId))
                 .orderBy(recipeBoardReply.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        return recipeBoardReplyList;
+        Long count = query.select(recipeBoardReply.id.count()).from(recipeBoardReply).where(recipeBoardReply.user.id.eq(memberId)).fetchOne();
+
+        return new PageImpl<>(recipeBoardReplyList, pageable, count);
     }
 }
