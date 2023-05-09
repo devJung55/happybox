@@ -26,9 +26,20 @@ public class DonationBoardRepositoryTests {
     private WelfareRepository welfareRepository;
 
     @Test
-    public void saveTest(){
+    public void saveTest() {
         DonationBoard donationBoard = new DonationBoard("기부 제목1", "기부내용1");
         welfareRepository.findById(2L).ifPresent(donationBoard::setWelfare);
         donationBoardRepository.save(donationBoard);
+    }
+
+    @Test
+    public void findTop3OrderByDate_QueryDSL() {
+        // given
+        List<DonationBoard> donationBoardList = donationBoardRepository.findTop3OrderByDate_QueryDSL();
+
+        // when
+
+        // then
+        donationBoardList.stream().map(DonationBoard::toString).forEach(log::info);
     }
 }
