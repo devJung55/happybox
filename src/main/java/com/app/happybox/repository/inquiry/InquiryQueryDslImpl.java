@@ -39,4 +39,14 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
                         .fetchOne());
 
     }
+
+    @Override
+    public Long findInquiryCountByDistributorId_QueryDSL(Long distributorId) {
+        Long count = query.select(inquiry.id.count())
+                .from(inquiry)
+                .where(inquiry.user.id.eq(distributorId))
+                .fetchOne();
+
+        return count;
+    }
 }

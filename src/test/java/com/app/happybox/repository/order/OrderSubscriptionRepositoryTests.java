@@ -51,4 +51,10 @@ class OrderSubscriptionRepositoryTests {
 
         // then
     }
+
+    @Test
+    public void findSubscriptionByMemberId_QueryDSL_Test() {
+        orderSubscriptionRepository.findSubscriptionByMemberId_QueryDSL(1L)
+                .ifPresent(orderSubscription -> log.info(orderSubscription.toString()));
+    }
 }

@@ -14,4 +14,7 @@ public interface InquiryQueryDsl {
 
 //    문의 상세
     public Optional<Inquiry> findInquiryByInquiryId_QueryDSL(Long id);
+
+//    문의 개수
+    public Long findInquiryCountByDistributorId_QueryDSL(Long distributorId);
 }

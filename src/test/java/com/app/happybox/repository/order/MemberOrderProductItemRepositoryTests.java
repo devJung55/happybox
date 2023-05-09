@@ -1,6 +1,5 @@
 package com.app.happybox.repository.order;
 
-import com.app.happybox.audity.Period;
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -20,8 +19,8 @@ public class MemberOrderProductItemRepositoryTests {
 
     @Test
     public void findCancleListByMemberIdDescWithPagingTest() {
-        LocalDateTime startDate = LocalDateTime.now();
-        LocalDateTime endDate = LocalDateTime.of(2023, 2, 8, 0, 0);
+        LocalDateTime startDate = LocalDateTime.of(2023, 2, 8, 0, 0);
+        LocalDateTime endDate = LocalDateTime.now();
 
         memberOrderProductItemRepository
                 .findCancleListByMemberIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 1L, startDate, endDate)
@@ -30,11 +29,31 @@ public class MemberOrderProductItemRepositoryTests {
 
     @Test
     public void findSaleListByWelfareIdAndSearchDateDescWithPagingTest() {
-        LocalDateTime startDate = LocalDateTime.now();
-        LocalDateTime endDate = LocalDateTime.of(2023, 2, 8, 0, 0);
+        LocalDateTime startDate = LocalDateTime.of(2023, 2, 8, 0, 0);
+        LocalDateTime endDate = LocalDateTime.now();
 
         memberOrderProductItemRepository
                 .findSaleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 42L, startDate, endDate)
-                .stream().map(MemberOrderProductItem::toString).forEach(log::info);
+                .stream().map(MemberOrderProductItem::getMemberOrderProduct).forEach(v -> log.info(v.getMember().toString()));
+    }
+
+    @Test
+    public void findCancleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL_Test() {
+        LocalDateTime startDate = LocalDateTime.of(2023, 2, 8, 0, 0);
+        LocalDateTime endDate = LocalDateTime.now();
+
+        memberOrderProductItemRepository
+                .findCancleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 42L, startDate, endDate)
+                .stream().map(MemberOrderProductItem::getMemberOrderProduct).forEach(v -> log.info(v.getMember().toString()));
+    }
+
+    @Test
+    public void findSaleCountByDistributorAndPurchaseStatus_QueryDSL_Test() {
+        log.info("saleCount : " + memberOrderProductItemRepository.findSaleCountByDistributorAndPurchaseStatus_QueryDSL(42L));
+    }
+
+    @Test
+    public void findCancleCountByDistributorAndPurchaseStatus_QueryDSL_Test() {
+        log.info("cancleCount : " + memberOrderProductItemRepository.findCancleCountByDistributorAndPurchaseStatus_QueryDSL(42L));
     }
 }
