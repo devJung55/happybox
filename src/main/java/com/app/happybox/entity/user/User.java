@@ -4,6 +4,7 @@ import com.app.happybox.audity.Period;
 import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.reply.Reply;
 import com.app.happybox.entity.reply.ReplyLike;
+import com.app.happybox.entity.type.Role;
 import com.app.happybox.entity.type.UserStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -41,6 +42,10 @@ public abstract class User extends Period {
     @Enumerated(EnumType.STRING)
     @ColumnDefault(value = "'REGISTERED'")
     private UserStatus userStatus;
+
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'MEMBER'")
+    private Role userRole;
 
     /* 프로필 사진 */
     // OneToOne 관계에서 양방향으로 설정되어 있다면,
