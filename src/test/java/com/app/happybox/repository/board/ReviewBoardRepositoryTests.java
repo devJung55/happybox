@@ -66,7 +66,7 @@ public class ReviewBoardRepositoryTests {
     @Test
     public void findAllByDateDescWithPagingTest(){
         reviewBoardRepository.findAllByIdDescWithPaging_QueryDSL(
-                PageRequest.of(0, 3)
+                PageRequest.of(0, 5)
         ).stream().map(ReviewBoard::toString).forEach(log::info);
     }
 
@@ -83,7 +83,6 @@ public class ReviewBoardRepositoryTests {
     public void findByIdTest(){
         log.info(reviewBoardRepository.findById_QueryDSL(65L).toString());
         log.info(reviewBoardRepository.findById_QueryDSL(65L).get().getSubscription().getWelfare().getWelfareName().toString());
-        log.info(reviewBoardRepository.findById_QueryDSL(65L).get().getBoardFiles().toString());
     }
 
 //    리뷰게시판 수정

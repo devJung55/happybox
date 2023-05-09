@@ -4,6 +4,8 @@ import com.app.happybox.entity.reply.ReviewBoardReply;
 import com.app.happybox.entity.user.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
