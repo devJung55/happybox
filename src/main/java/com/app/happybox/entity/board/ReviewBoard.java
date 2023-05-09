@@ -26,6 +26,9 @@ public class ReviewBoard extends Board {
 
     @ColumnDefault(value = "0")
     private Integer reviewLikeCount;
+
+    @ColumnDefault(value="0")
+    private Integer reviewBoardReplyCount;
     /* ============= */
 
     /* 작성한 유저 */
@@ -61,5 +64,9 @@ public class ReviewBoard extends Board {
 
     public void setReviewLikeCount(Integer reviewLikeCount) {
         this.reviewLikeCount = reviewLikeCount;
+    }
+
+    public void setReviewBoardReplyCount(Integer reviewBoardReplyCount) {
+        this.reviewBoardReplyCount = reviewBoardReplyCount;
     }
 }

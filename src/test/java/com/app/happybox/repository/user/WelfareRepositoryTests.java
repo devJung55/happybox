@@ -50,7 +50,7 @@ class WelfareRepositoryTests {
 
     @Test
     public void loginTest(){
-        log.info(welfareRepository.findWelfareInfoById(2L).toString());
+//        log.info(welfareRepository.findWelfareInfoById(2L).toString());
     }
 
 }
