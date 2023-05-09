@@ -65,10 +65,10 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
 
     @Override
     public Page<RecipeBoard> findBookmarkListWithMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-        List<RecipeBoardLike> recipeBoardList = query.select(recipeBoardLike)
-                .from(recipeBoardLike)
-                .join(recipeBoardLike.recipeBoard).fetchJoin()
-                .join(reci)
+//        List<RecipeBoardLike> recipeBoardList = query.select(recipeBoardLike)
+//                .from(recipeBoardLike)
+//                .join(recipeBoardLike.recipeBoard).fetchJoin()
+//                .join(reci)
         return null;
     }
 }
