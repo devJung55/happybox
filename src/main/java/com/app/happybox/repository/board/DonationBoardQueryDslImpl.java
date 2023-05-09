@@ -4,6 +4,10 @@ import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.board.QDonationBoard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,14 +19,15 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Optional<DonationBoard> findById_QueryDSL(Long id) {
-        return Optional.of(query.select(donationBoard)
+    public Page<DonationBoard> findAllWithPaging(Pageable pageable) {
+        List<DonationBoard> donationBoards = query.select(donationBoard)
                 .from(donationBoard)
-                .join(donationBoard.welfare)
-                .join(donationBoard.boardFiles)
-                .fetchJoin()
-                .where(donationBoard.id.eq(id))
-                .fetchOne());
+                .join(donationBoard.welfare).fetchJoin()
+                .join(donationBoard.boardFiles).fetchJoin()
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        return new PageImpl<>(donationBoards);
     }
 
     @Override

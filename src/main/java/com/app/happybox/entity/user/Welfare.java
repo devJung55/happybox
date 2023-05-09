@@ -68,4 +68,8 @@ public class Welfare extends User {
         this.deliveryName = deliveryName;
         this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
+
+    public void setWelfarePointTotal(Integer welfarePointTotal) {
+        this.welfarePointTotal = welfarePointTotal;
+    }
 }
