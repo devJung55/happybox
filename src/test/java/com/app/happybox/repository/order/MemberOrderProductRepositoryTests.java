@@ -70,4 +70,9 @@ class MemberOrderProductRepositoryTests {
         // then
         log.info(memberOrderProduct.toString());
     }
+
+    @Test
+    public void findOrderCountByMemberIdAndOrderStatus_QueryDSL_Test() {
+        log.info("orderCount : " + memberOrderProductRepository.findOrderCountByMemberIdAndOrderStatus_QueryDSL(1L).toString());
+    }
 }
