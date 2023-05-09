@@ -3,12 +3,19 @@ package com.app.happybox.repository.order;
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import com.app.happybox.entity.order.QMemberOrderProduct;
 import com.app.happybox.entity.type.PurchaseStatus;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.swing.text.html.parser.Entity;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import static com.app.happybox.entity.order.QMemberOrderProductItem.memberOrderProductItem;
@@ -18,7 +25,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
     private final JPAQueryFactory query;
 
     @Override
-    public Page<MemberOrderProductItem> findOrderListByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
+    public Page<MemberOrderProductItem> findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId, LocalDateTime searchEndDate, LocalDateTime searchStartDate) {
         List<MemberOrderProductItem> memberOrderProductItemList = query.select(memberOrderProductItem)
                 .from(memberOrderProductItem)
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
@@ -26,6 +33,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
                 .where(memberOrderProductItem.memberOrderProduct.member.id.eq(memberId))
                 .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CONFIRMED))
+                .where(memberOrderProductItem.createdDate.between(searchStartDate, searchEndDate))
                 .orderBy(memberOrderProductItem.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -37,7 +45,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
     }
 
     @Override
-    public Page<MemberOrderProductItem> findCancleListByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
+    public Page<MemberOrderProductItem> findCancleListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId, LocalDateTime searchEndDate, LocalDateTime searchStartDate) {
         List<MemberOrderProductItem> memberOrderProductItemList = query.select(memberOrderProductItem)
                 .from(memberOrderProductItem)
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
@@ -45,6 +53,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
                 .where(memberOrderProductItem.memberOrderProduct.member.id.eq(memberId))
                 .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CANCELED))
+                .where(memberOrderProductItem.createdDate.between(searchStartDate, searchEndDate))
                 .orderBy(memberOrderProductItem.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

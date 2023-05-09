@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +37,7 @@ public class RecipeBoardReplyRepositoryTests {
 
     @Test
     public void findAllByMemberIdDescWithPagingTest() {
-        recipeBoardReplyRepository.findAllByMemberIdDescWithPaging_QueryDSL(memberRepository.findById(1L).get())
+        recipeBoardReplyRepository.findAllByMemberIdDescWithPaging_QueryDSL(PageRequest.of(0, 3), 1L)
                 .stream().map(Reply::getReplyContent).forEach(log::info);
     }
 }
