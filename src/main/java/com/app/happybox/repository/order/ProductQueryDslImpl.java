@@ -99,4 +99,4 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
 //        }
 //        return orderSpecifiers.toArray(new OrderSpecifier[orderSpecifiers.size()]);
 //    }
-//}
+}

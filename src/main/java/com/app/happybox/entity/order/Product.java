@@ -29,6 +29,8 @@ public class Product extends Period {
     private Integer productPrice;
     @ColumnDefault(value = "0")
     private Long productStock;
+    @NotNull
+    private String productInfo;
 
     @Enumerated(EnumType.STRING)
     @NotNull
@@ -56,6 +58,14 @@ public class Product extends Period {
     public Product(String productName, Integer productPrice, Distributor distributor) {
         this.productName = productName;
         this.productPrice = productPrice;
+        this.distributor = distributor;
+    }
+
+    public Product(String productName, Integer productPrice, String productInfo, List<ProductFile> productFiles, Distributor distributor) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productInfo = productInfo;
+        this.productFiles = productFiles;
         this.distributor = distributor;
     }
 

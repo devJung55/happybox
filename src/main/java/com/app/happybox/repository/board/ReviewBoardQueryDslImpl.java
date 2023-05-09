@@ -16,12 +16,13 @@ import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     private final JPAQueryFactory query;
 
+//    최신순
     @Override
     public Slice<ReviewBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {
         List<ReviewBoard> reviewBoards =  query.select(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .join(reviewBoard.subscription).fetchJoin()
+                .rightJoin(reviewBoard.subscription.welfare)
                 .join(reviewBoard.boardFiles).fetchJoin()
 //                .join(reviewBoard.reviewBoardReplies).fetchJoin()
                 .offset(pageable.getOffset())
@@ -31,12 +32,13 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         return new SliceImpl<>(reviewBoards, pageable, true);
     }
 
+//    인기순
     @Override
     public Slice<ReviewBoard> findAllByLikeCountDescWithPaging_QueryDSL(Pageable pageable) {
         List<ReviewBoard> reviewBoards = query.select(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .join(reviewBoard.subscription).fetchJoin()
+                .rightJoin(reviewBoard.subscription.welfare)
                 .join(reviewBoard.boardFiles).fetchJoin()
                 .from(reviewBoard)
                 .orderBy(reviewBoard.reviewLikeCount.desc())
@@ -47,6 +49,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         return new SliceImpl<>(reviewBoards, pageable, true);
     }
 
+//    상세보기
     @Override
     public Optional<ReviewBoard> findById_QueryDSL(Long id) {
         return Optional.ofNullable(query.select(reviewBoard)

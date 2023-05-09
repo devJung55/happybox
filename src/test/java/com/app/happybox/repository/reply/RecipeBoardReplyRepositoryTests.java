@@ -1,5 +1,6 @@
 package com.app.happybox.repository.reply;
 
+import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.reply.RecipeBoardReply;
 import com.app.happybox.entity.reply.Reply;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +38,10 @@ public class RecipeBoardReplyRepositoryTests {
 
     @Test
     public void findAllByMemberIdDescWithPagingTest() {
-        recipeBoardReplyRepository.findAllByMemberIdDescWithPaging_QueryDSL(memberRepository.findById(1L).get())
+        recipeBoardReplyRepository.findAllByMemberIdDescWithPaging_QueryDSL(PageRequest.of(0, 3), 1L)
                 .stream().map(Reply::getReplyContent).forEach(log::info);
+
+//        recipeBoardRepository.findRecipeBoardReplyCountByMemberId_QueryDSL(1L)
+//                .stream().map(RecipeBoard::getRecipeBoardReplies).forEach(v -> log.info("replyCount : " + v.size()));
     }
 }
