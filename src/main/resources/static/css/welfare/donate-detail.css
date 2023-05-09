@@ -20,6 +20,7 @@ html {
 
 .answer .txt {
     font-weight: bold;
+    font-size: 18px;
 }
 
 .answer .txt span {
@@ -29,6 +30,7 @@ html {
 
 .plus-cell {
     font-weight: bold !important;
+    width: 200px;
 }
 
 .plus-cell span {
