@@ -15,7 +15,4 @@ public interface RecipeBoardQueryDsl {
 
 //    레시피 추천순 Top5
     public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL();
-
-//    찜목록
-    public Page<RecipeBoard> findBookmarkListWithMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId);
 }
