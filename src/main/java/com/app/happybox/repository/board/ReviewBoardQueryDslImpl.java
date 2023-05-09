@@ -39,25 +39,12 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .join(reviewBoard.member).fetchJoin()
                 .rightJoin(reviewBoard.subscription.welfare)
                 .join(reviewBoard.boardFiles).fetchJoin()
-                .from(reviewBoard)
                 .orderBy(reviewBoard.reviewLikeCount.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         return checkLastPage(pageable, reviewBoards);
-    }
-
-//    상세보기
-    @Override
-    public Optional<ReviewBoard> findById_QueryDSL(Long id) {
-        return Optional.ofNullable(query.selectDistinct(reviewBoard)
-                .from(reviewBoard)
-                .join(reviewBoard.member).fetchJoin()
-                .rightJoin(reviewBoard.subscription.welfare)
-                .join(reviewBoard.boardFiles).fetchJoin()
-                .where(reviewBoard.id.eq(id))
-                .fetchOne());
     }
 
     @Override
@@ -77,6 +64,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         return new PageImpl<>(reviewBoardList, pageable, count);
     }
 
+//    hasNext true인지 false인지 체크하는 메소드(마지막 페이지 체크)
     private Slice<ReviewBoard> checkLastPage(Pageable pageable, List<ReviewBoard> reviewBoards) {
 
         boolean hasNext = false;
