@@ -28,31 +28,14 @@ public class WelfareQueryDslImpl implements WelfareQueryDsl {
                 .execute();
     }
 
-    //    복지관 이름으로 복지관 정보 조회
+//    복지관 로그인
     @Override
-    public Optional<Welfare> findWelfareByWelfareName(String welfareName) {
-        Welfare welfare = query.select(QWelfare.welfare)
-                .from(QWelfare.welfare)
-                .where(QWelfare.welfare.welfareName.eq(welfareName))
-                .fetchOne();
-        return Optional.ofNullable(welfare);
+    public Optional<Welfare> logIn(String welfareId, String welfarePassword) {
+        return Optional.ofNullable(query.select(welfare)
+                .from(welfare)
+                .where(welfare.userId.eq(welfareId).and(welfare.userPassword.eq(welfarePassword)))
+                .fetchOne());
     }
 
-//    복지관 Id로 복지관 조회
-    @Override
-    public Tuple findWelfareInfoById(Long id) {
-        return query.select(welfare.userId, welfare.userPassword)
-                .from(welfare)
-                .where(welfare.id.eq(id))
-                .fetchOne();
-    }
 
-//    아이디 중복체크(userId를 Return해서 service에서 검사)
-    @Override
-    public String checkId(String welfareId) {
-        return query.select(welfare.userId)
-                .from(welfare)
-                .where(welfare.userId.eq(welfareId))
-                .fetchOne();
-    }
 }

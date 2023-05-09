@@ -1,6 +1,7 @@
 package com.app.happybox.entity.user;
 
 import com.app.happybox.entity.type.Gender;
+import com.app.happybox.entity.type.Role;
 import com.app.happybox.entity.type.UserStatus;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class MemberDTO {
     private String memberEmail;
     private String memberPhoneNumber;
     private UserStatus memberStatus;
+    private Role memberRole;
     private String memberName;
     private LocalDate memberBirth;
     private Gender memberGender;

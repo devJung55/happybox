@@ -26,18 +26,18 @@ class MemberRepositoryTests {
     public void saveTest(){
 //        // given
         Address address = new Address("11111", "서울시 역삼동", "코리아IT");
-        Member member = new Member("oty7942",
-                "asd1234",
-                address,
-                "oty7942@gmail.com",
-                "01064844195",
-                "오태양",
-                LocalDate.of(2000,06,01),
-                Gender.MALE,
-                address,
-                "정지영",
-                "01032223434");
-        memberRepository.save(member);
+//        Member member = new Member("oty7942",
+//                "asd1234",
+//                address,
+//                "oty7942@gmail.com",
+//                "01064844195",
+//                "오태양",
+//                LocalDate.of(2000,06,01),
+//                Gender.MALE,
+//                address,
+//                "정지영",
+//                "01032223434");
+//        memberRepository.save(member);
     }
 
     @Test
@@ -53,7 +53,6 @@ class MemberRepositoryTests {
 //    로그인 테스트
     @Test
     public void loginTest(){
-        log.info(memberRepository.findMemberInfoById(2L).toString());
     }
 
 //    Phone으로 회원 정보 확인

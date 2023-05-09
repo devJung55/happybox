@@ -1,11 +1,10 @@
 package com.app.happybox.entity.user;
 
 import com.app.happybox.entity.order.Product;
+import com.app.happybox.entity.type.Role;
+import com.app.happybox.entity.type.UserStatus;
 import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,8 +22,9 @@ public class Distributor extends User{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "distributor", orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
-    public Distributor(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String distributorName) {
-        super(userId, userPassword, address, userEmail, userPhoneNumber);
+    @Builder
+    public Distributor(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String distributorName) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
         this.distributorName = distributorName;
     }
 }

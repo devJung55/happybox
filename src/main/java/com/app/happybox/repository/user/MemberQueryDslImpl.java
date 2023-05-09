@@ -28,42 +28,17 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .execute();
     }
 
-    /* id로 ID,Password 조회 */
+    /* member Login */
     @Override
-    public Tuple findMemberInfoById(Long id) {
-        return query.select(member.userId, member.userPassword)
-                .from(member)
-                .where(member.id.eq(id))
-                .fetchOne();
-    }
-
-    //    phone으로 member 유무 확인
-    @Override
-    public Optional<Member> findMemberByMemberPhone(String MemberPhone) {
-        Member member = query.select(QMember.member)
+    public Optional<Member> logIn(String memberId, String memberPassword) {
+        return Optional.ofNullable(query.select(QMember.member)
                 .from(QMember.member)
-                .where(QMember.member.userPhoneNumber.eq(MemberPhone))
-                .fetchOne();
-        return Optional.ofNullable(member);
+                .where(QMember.member.userId.eq(memberId).and(QMember.member.userPassword.eq(memberPassword)))
+                .fetchOne());
     }
 
-//    아이디 중복체크
 
-    @Override
-    public Boolean checkId(String memberId) {
-
-        String identification = query.select(member.userId)
-                .from(member)
-                .where(member.userId.eq(memberId))
-                .fetchOne();
-
-        if (identification != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    //    마이페이지 배송지정보
     @Override
     public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Member member) {
         return Optional.ofNullable(query.select(QMember.member).from(QMember.member).where(QMember.member.eq(member)).fetchOne());

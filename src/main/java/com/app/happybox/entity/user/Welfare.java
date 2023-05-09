@@ -4,11 +4,10 @@ import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.order.WelfareOrderProduct;
 import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.entity.type.Role;
+import com.app.happybox.entity.type.UserStatus;
 import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -60,8 +59,9 @@ public class Welfare extends User {
 //    private Subscription subscription;
 
 
-    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, String welfareName, Integer welfarePointTotal, Address welfareDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
-        super(userId, userPassword, address, userEmail, userPhoneNumber);
+    @Builder
+    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String welfareName, Integer welfarePointTotal, Address welfareDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
         this.welfareName = welfareName;
         this.welfarePointTotal = welfarePointTotal;
         this.welfareDeliveryAddress = welfareDeliveryAddress;

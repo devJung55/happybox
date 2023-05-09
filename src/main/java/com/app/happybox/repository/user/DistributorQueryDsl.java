@@ -10,12 +10,10 @@ public interface DistributorQueryDsl {
 //    유통 회원정보수정
     public void setDistributorInfoById_QueryDSL(Distributor distributor);
 
-    //    로그인을 위해 ID로 Identification, Password 조회
-    public Tuple findDistributorInfoById(Long id);
-
     //    가입여부 확인
     public Optional<Distributor> findDistributorByDistributorName(String distributorName);
 
-    //    아이디 중복체크
-    public String checkId(String distributorId);
+//    유통회원 로그인
+    public Optional<Distributor> logIn(String distributorId, String distributorPassword);
+
 }

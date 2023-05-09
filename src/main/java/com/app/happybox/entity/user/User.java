@@ -43,6 +43,7 @@ public abstract class User extends Period {
     @ColumnDefault(value = "'REGISTERED'")
     private UserStatus userStatus;
 
+//    user권한 설정을 위한 컬럼
     @Enumerated(EnumType.STRING)
     @ColumnDefault(value = "'MEMBER'")
     private Role userRole;
@@ -65,11 +66,14 @@ public abstract class User extends Period {
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
 //    private List<UserRandomKey> userRandomKeys;
 
-    public User(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber) {
+
+    public User(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.address = address;
         this.userEmail = userEmail;
         this.userPhoneNumber = userPhoneNumber;
+        this.userStatus = userStatus;
+        this.userRole = userRole;
     }
 }
