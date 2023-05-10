@@ -1,9 +1,7 @@
 package com.app.happybox.repository.order;
 
-import com.app.happybox.entity.order.Product;
-import com.app.happybox.entity.order.Product;
-import com.app.happybox.entity.order.ProductSearch;
-import com.app.happybox.entity.type.ProductCategory;
+import com.app.happybox.entity.product.Product;
+import com.app.happybox.entity.product.ProductSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,7 +1,7 @@
 package com.app.happybox.entity.file;
 
-import com.app.happybox.entity.order.Product;
-import com.app.happybox.entity.subscript.Food;
+import com.app.happybox.entity.product.Product;
+import com.app.happybox.entity.type.FileRepresent;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +15,8 @@ public class ProductFile extends Files {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Product product;
+
+    //    파일이 대표 파일인지 여부
+    @Enumerated(EnumType.STRING)
+    private FileRepresent fileRepresent;
 }

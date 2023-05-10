@@ -13,6 +13,11 @@ html {
     margin: 0 auto;
 }
 
+.marginTop120ottom80 {
+    margin-top: 120px;
+    margin-bottom: 80px;
+}
+
 .side-menu-wrap {
     position: sticky;
     width: 220px;
