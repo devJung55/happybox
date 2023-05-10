@@ -108,4 +108,10 @@ public class RecipeBoardRepositoryTests {
     public void findRecipeBoardCountByMemberId_QueryDSL_Test() {
         log.info("recipeBoardCount : " + recipeBoardRepository.findRecipeBoardCountByIdMemberId_QueryDSL(1L));
     }
+
+    @Test
+    public void findAllWithPaging_QueryDSL_Test() {
+        recipeBoardRepository.findRecipeBoardListDescWithPaging_QueryDSL(PageRequest.of(0, 5))
+                .stream().map(RecipeBoard::toString).forEach(log::info);
+    }
 }
