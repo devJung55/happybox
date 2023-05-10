@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -55,6 +56,22 @@ class OrderSubscriptionRepositoryTests {
     @Test
     public void findSubscriptionByMemberId_QueryDSL_Test() {
         orderSubscriptionRepository.findSubscriptionByMemberId_QueryDSL(1L)
-                .ifPresent(orderSubscription -> log.info(orderSubscription.toString()));
+                .ifPresent(orderSubscription -> log.info(orderSubscription.getSubscription().getWelfare().toString()));
+    }
+
+    @Test
+    public void findSubscriptionCountByMemberId_QueryDSL_Test() {
+        log.info("subscriptionCount : " + orderSubscriptionRepository.findSubscriptionCountByMemberId_QueryDSL(1L));
+    }
+
+    @Test
+    public void findSubscriberListByWelfareIdDescWithPaging_QueryDSL_Test() {
+        orderSubscriptionRepository.findSubscriberListByWelfareIdDescWithPaging_QueryDSL(PageRequest.of(0, 1), 26L)
+                .stream().map(orderSubscription -> orderSubscription.getMember().toString()).forEach(log::info);
+    }
+
+    @Test
+    public void findSubscriberCountByWelfareId_QueryDSL_Test() {
+        log.info("subscriberCount : " + orderSubscriptionRepository.findSubscriberCountByWelfareId_QueryDSL(26L));
     }
 }

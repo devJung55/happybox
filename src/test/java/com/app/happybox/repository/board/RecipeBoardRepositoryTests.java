@@ -103,4 +103,9 @@ public class RecipeBoardRepositoryTests {
         // then
         recipeBoards.stream().map(RecipeBoard::toString).forEach(log::info);
     }
+
+    @Test
+    public void findRecipeBoardCountByMemberId_QueryDSL_Test() {
+        log.info("recipeBoardCount : " + recipeBoardRepository.findRecipeBoardCountByIdMemberId_QueryDSL(1L));
+    }
 }
