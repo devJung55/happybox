@@ -61,7 +61,7 @@ class OrderSubscriptionRepositoryTests {
 
     @Test
     public void findSubscriptionCountByMemberId_QueryDSL_Test() {
-        log.info("subscriptionCount : " + orderSubscriptionRepository.findSubscriptionCountByMemberId_QueryDSL(1L));
+        log.info("구독 수 : " + orderSubscriptionRepository.findSubscriptionCountByMemberId_QueryDSL(1L));
     }
 
     @Test
@@ -72,6 +72,6 @@ class OrderSubscriptionRepositoryTests {
 
     @Test
     public void findSubscriberCountByWelfareId_QueryDSL_Test() {
-        log.info("subscriberCount : " + orderSubscriptionRepository.findSubscriberCountByWelfareId_QueryDSL(26L));
+        log.info("구독자 수 : " + orderSubscriptionRepository.findSubscriberCountByWelfareId_QueryDSL(26L));
     }
 }

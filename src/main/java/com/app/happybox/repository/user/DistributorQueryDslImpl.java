@@ -7,7 +7,11 @@ import com.app.happybox.entity.user.QMember;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.user.QDistributor.distributor;
@@ -49,5 +53,18 @@ public class DistributorQueryDslImpl implements DistributorQueryDsl {
                 .from(distributor)
                 .where(distributor.userId.eq(distributorId).and(distributor.userPassword.eq(distributorPassword)))
                 .fetchOne());
+    }
+
+    @Override
+    public Page<Distributor> findAllWithPaging_QueryDSL(Pageable pageable) {
+        List<Distributor> distributorList = query.select(distributor)
+                .from(distributor)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(distributor.id.count()).from(distributor).fetchOne();
+
+        return new PageImpl<>(distributorList, pageable, count);
     }
 }

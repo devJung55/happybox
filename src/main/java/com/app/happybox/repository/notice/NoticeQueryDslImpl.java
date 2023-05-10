@@ -40,4 +40,17 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
                 .where(notice.id.eq(id))
                 .fetchOne());
     }
+
+    @Override
+    public Page<Notice> findNoticeListDescWithPaging_QueryDSL(Pageable pageable) {
+        List<Notice> noticeList = query.select(notice)
+                .from(notice)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(notice.id.count()).from(notice).fetchOne();
+
+        return new PageImpl<>(noticeList, pageable, count);
+    }
 }

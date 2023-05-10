@@ -12,4 +12,7 @@ public interface NoticeQueryDsl {
     public Page<Notice> findNoticeListWithPaging_QueryDSL(Pageable pageable);
 //    공지 상세 조회
     public Optional<Notice> findNoticeDetailById_QueryDSL(Long id);
+
+//    관리자 공지 목록 조회
+    public Page<Notice> findNoticeListDescWithPaging_QueryDSL(Pageable pageable);
 }

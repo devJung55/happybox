@@ -5,7 +5,11 @@ import com.app.happybox.entity.user.QMember;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.user.QMember.member;
@@ -61,5 +65,18 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     @Override
     public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Member member) {
         return Optional.ofNullable(query.select(QMember.member).from(QMember.member).where(QMember.member.eq(member)).fetchOne());
+    }
+
+    @Override
+    public Page<Member> findAllWithPaging_QueryDSL(Pageable pageable) {
+        List<Member> memberList = query.select(member)
+                .from(member)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(member.id.count()).from(member).fetchOne();
+
+        return new PageImpl<>(memberList, pageable, count);
     }
 }

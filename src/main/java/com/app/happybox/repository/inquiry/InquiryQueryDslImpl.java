@@ -5,6 +5,8 @@ import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -17,27 +19,27 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public List<Inquiry> findInquiryListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long id) {
+    public Page<Inquiry> findInquiryListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<Inquiry> inquiryList = query.select(inquiry)
                 .from(inquiry)
-                .where(inquiry.user.id.eq(id))
+                .where(inquiry.user.id.eq(memberId))
                 .orderBy(inquiry.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        return inquiryList;
+        Long count = query.select(inquiry.id.count()).from(inquiry).where(inquiry.user.id.eq(memberId)).fetchOne();
+
+        return new PageImpl<>(inquiryList, pageable, count);
     }
 
     @Override
-    public Optional<Inquiry> findInquiryByInquiryId_QueryDSL(Long id) {
+    public Optional<Inquiry> findInquiryByInquiryId_QueryDSL(Long inquiryId) {
         return Optional.ofNullable(
                         query.select(inquiry)
                         .from(inquiry)
-                        .join(inquiry.inquiryFiles).fetchJoin()
-                        .where(inquiry.id.eq(id))
+                        .where(inquiry.id.eq(inquiryId))
                         .fetchOne());
-
     }
 
     @Override
@@ -48,5 +50,18 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
                 .fetchOne();
 
         return count;
+    }
+
+    @Override
+    public Page<Inquiry> findInquiryListWithPaging_QueryDSL(Pageable pageable) {
+        List<Inquiry> inquiryList = query.select(inquiry)
+                .from(inquiry)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(inquiry.id.count()).from(inquiry).fetchOne();
+
+        return new PageImpl<>(inquiryList, pageable, count);
     }
 }
