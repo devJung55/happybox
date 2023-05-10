@@ -1,10 +1,10 @@
 package com.app.happybox.repository.order;
 
-import com.app.happybox.entity.order.QCart;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
-import static com.app.happybox.entity.order.QCart.cart;
+import static com.app.happybox.entity.product.QCart.cart;
+
 
 @RequiredArgsConstructor
 public class CartQueryDslImpl implements CartQueryDsl {

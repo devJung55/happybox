@@ -1,4 +1,4 @@
-package com.app.happybox.entity.order;
+package com.app.happybox.entity.product;
 
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.file.ProductFile;
@@ -23,6 +23,7 @@ public class Product extends Period {
     private Long id;
 
     /* ===== 상품 기본 정보 ===== */
+
     @NotNull
     private String productName;
     @NotNull
@@ -37,11 +38,14 @@ public class Product extends Period {
     private ProductCategory productCategory;
 
     /* ---- 반정규화 ---- */
+
     @ColumnDefault(value = "0")
     private Integer productLikeCount;
 
+    @ColumnDefault(value = "0")
+    private Integer productReplyCount;
+
 //    주문 횟수
-    @NotNull
     @ColumnDefault(value = "0")
     private Long productOrderCount;
 
