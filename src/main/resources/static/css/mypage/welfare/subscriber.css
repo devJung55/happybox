@@ -104,7 +104,6 @@
 .search-box.ui-toggle.on {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 }
 
 .search-box {

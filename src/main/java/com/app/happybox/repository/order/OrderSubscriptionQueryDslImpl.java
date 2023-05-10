@@ -1,6 +1,7 @@
 package com.app.happybox.repository.order;
 
 import com.app.happybox.entity.order.OrderSubscription;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -37,11 +38,14 @@ public class OrderSubscriptionQueryDslImpl implements OrderSubscriptionQueryDsl 
     }
 
     @Override
-    public Page<OrderSubscription> findSubscriberListByWelfareIdDescWithPaging_QueryDSL(Pageable pageable, Long welfareId) {
+    public Page<OrderSubscription> findSubscriberListByWelfareIdDescWithPaging_QueryDSL(Pageable pageable, Long welfareId, String subscriberName) {
+        BooleanExpression subscriberNameContains = subscriberName == null || subscriberName == "" ? null : orderSubscription.member.memberName.contains(subscriberName);
+
         List<OrderSubscription> orderSubscriptionList = query.select(orderSubscription)
                 .from(orderSubscription)
                 .join(orderSubscription.member).fetchJoin()
                 .where(orderSubscription.subscription.welfare.id.eq(welfareId))
+                .where(subscriberNameContains)
                 .orderBy(orderSubscription.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
