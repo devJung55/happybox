@@ -3,6 +3,7 @@ package com.app.happybox.entity.order;
 import com.app.happybox.entity.type.PurchaseStatus;
 import com.app.happybox.entity.user.Welfare;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
@@ -24,5 +25,6 @@ public class WelfareOrderProduct extends Order {
 
     /* 구매 상태 */
     @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'CONFIRMED'")
     private PurchaseStatus purchaseStatus;
 }
