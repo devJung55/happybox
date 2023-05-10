@@ -1,7 +1,9 @@
 package com.app.happybox.repository.notice;
 
 import com.app.happybox.entity.customer.Notice;
+import com.app.happybox.entity.customer.NoticeSearch;
 import com.app.happybox.entity.customer.QNotice;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -18,9 +20,13 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<Notice> findNoticeListWithPaging_QueryDSL(Pageable pageable) {
+    public Page<Notice> findNoticeListWithPaging_QueryDSL(Pageable pageable, NoticeSearch noticeSearch) {
+        BooleanExpression noticeTitleContains = noticeSearch.getNoticeTitle() == null ? null : notice.noticeTitle.contains(noticeSearch.getNoticeTitle());
+        BooleanExpression noticeContentContains = noticeSearch.getNoticeContent() == null ? null : notice.noticeContent.contains(noticeSearch.getNoticeContent());
+
         List<Notice> noticePage = query.select(notice)
                 .from(notice)
+                .where(noticeTitleContains, noticeContentContains)
                 .orderBy(notice.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
