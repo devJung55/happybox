@@ -83,4 +83,10 @@ class ProductRepositoryTests {
         // then
         products.get().map(Product::toString).forEach(log::info);
     }
+
+    @Test
+    public void findAllByDistributorIdWithPaging_QueryDSL_Test() {
+        productRepository.findAllByDistributorIdWithPaging_QueryDSL(PageRequest.of(0, 5), 42L)
+                .stream().map(Product::toString).forEach(log::info);
+    }
 }
