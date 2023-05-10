@@ -15,16 +15,19 @@ import java.util.Optional;
  * */
 @Entity @Table(name = "TBL_DONATION_BOARD")
 @DynamicInsert @Inheritance(strategy = InheritanceType.JOINED)
-@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DonationBoard extends Board {
+    /* 기부할 급식소 */
+    private String donateLocation;
 
     /* 작성한 유저 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Welfare welfare;
 
-    public DonationBoard(String boardTitle, String boardContent) {
+    public DonationBoard(String boardTitle, String boardContent, String donateLocation) {
         super(boardTitle, boardContent);
+        this.donateLocation = donateLocation;
     }
 
     public void setWelfare(Welfare welfare) {
