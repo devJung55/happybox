@@ -1,6 +1,7 @@
 package com.app.happybox.entity.order;
 
 import com.app.happybox.audity.Period;
+import com.app.happybox.entity.product.Product;
 import com.sun.istack.NotNull;
 import lombok.*;
 

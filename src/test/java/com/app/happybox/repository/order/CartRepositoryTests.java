@@ -1,6 +1,6 @@
 package com.app.happybox.repository.order;
 
-import com.app.happybox.entity.order.Cart;
+import com.app.happybox.entity.product.Cart;
 import com.app.happybox.repository.user.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional @Rollback(false)

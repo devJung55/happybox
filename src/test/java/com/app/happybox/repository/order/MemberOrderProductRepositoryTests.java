@@ -2,8 +2,7 @@ package com.app.happybox.repository.order;
 
 import com.app.happybox.entity.order.MemberOrderProduct;
 import com.app.happybox.entity.order.MemberOrderProductItem;
-import com.app.happybox.entity.order.Order;
-import com.app.happybox.entity.order.Product;
+import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.exception.NotEnoughStockException;
 import com.app.happybox.repository.user.MemberRepository;
@@ -11,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;

@@ -1,7 +1,6 @@
 package com.app.happybox.entity.reply;
 
-import com.app.happybox.entity.board.Board;
-import com.app.happybox.entity.order.Product;
+import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;
