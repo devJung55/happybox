@@ -14,7 +14,7 @@ public interface OrderSubscriptionQueryDsl {
     public Long findSubscriptionCountByMemberId_QueryDSL(Long memberId);
 
 //    마이페이지 구독자 관리 목록
-    public Page<OrderSubscription> findSubscriberListByWelfareIdDescWithPaging_QueryDSL(Pageable pageable, Long welfareId);
+    public Page<OrderSubscription> findSubscriberListByWelfareIdDescWithPaging_QueryDSL(Pageable pageable, Long welfareId, String subscriberName);
 
 //    마이페이지 구독자 수 조회
     public Long findSubscriberCountByWelfareId_QueryDSL(Long welfareId);
