@@ -85,6 +85,16 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         return recipeBoards;
     }
 
+    @Override
+    public Long findRecipeBoardCountByIdMemberId_QueryDSL(Long memberId) {
+        Long count = query.select(recipeBoard.id.count())
+                .from(recipeBoard)
+                .where(recipeBoard.member.id.eq(memberId))
+                .fetchOne();
+
+        return count;
+    }
+
     //    hasNext true인지 false인지 체크하는 메소드(마지막 페이지 체크)
     private Slice<RecipeBoard> checkLastPage(Pageable pageable, List<RecipeBoard> recipeBoards) {
 

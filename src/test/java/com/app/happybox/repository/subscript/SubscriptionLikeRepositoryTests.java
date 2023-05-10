@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -92,5 +93,17 @@ class SubscriptionLikeRepositoryTests {
 //                    log.info("좋아요 눌렀는지 여부 : " + true);
 //                }
 //            });
+    }
+
+    @Test
+    public void findSubscriptionByMemberIdWithPaging_QueryDSL_Test() {
+//        subscriptionLikeRepository.findSubscriptionByMemberIdWithPaging_QueryDSL(PageRequest.of(0, 1), 1L)
+//                .stream().map(SubscriptionLike::toString).forEach(log::info);
+
+        subscriptionLikeRepository.findSubscriptionByMemberIdWithPaging_QueryDSL(PageRequest.of(0, 1), 1L)
+                .stream().forEach(subscriptionLike -> {
+                    log.info(subscriptionLike.getSubscription().toString());
+                    log.info(subscriptionLike.getSubscription().getWelfare().toString());
+        });
     }
 }

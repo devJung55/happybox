@@ -24,4 +24,7 @@ public interface RecipeBoardQueryDsl {
 
     //    레시피 추천순 Top5
     public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL();
+
+//    마이페이지 게시물건 조회
+    public Long findRecipeBoardCountByIdMemberId_QueryDSL(Long memberId);
 }
