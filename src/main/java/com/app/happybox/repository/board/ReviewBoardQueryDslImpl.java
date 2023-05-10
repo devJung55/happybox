@@ -51,8 +51,8 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     public Page<ReviewBoard> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<ReviewBoard> reviewBoardList = query.select(reviewBoard)
                 .from(reviewBoard)
-                .join(reviewBoard.boardFiles).fetchJoin()
                 .join(reviewBoard.member).fetchJoin()
+                .join(reviewBoard.boardFiles).fetchJoin()
                 .where(reviewBoard.member.id.eq(memberId))
                 .orderBy(reviewBoard.id.desc())
                 .offset(pageable.getOffset())
@@ -64,7 +64,22 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         return new PageImpl<>(reviewBoardList, pageable, count);
     }
 
-//    hasNext true인지 false인지 체크하는 메소드(마지막 페이지 체크)
+    @Override
+    public Page<ReviewBoard> findReviewBoardListDescWithPaging_QueryDSL(Pageable pageable) {
+        List<ReviewBoard> reviewBoardList = query.select(reviewBoard)
+                .from(reviewBoard)
+                .join(reviewBoard.boardFiles).fetchJoin()
+                .join(reviewBoard.member).fetchJoin()
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(reviewBoard.id.count()).from(reviewBoard).fetchOne();
+
+        return new PageImpl<>(reviewBoardList, pageable, count);
+    }
+
+    //    hasNext true인지 false인지 체크하는 메소드(마지막 페이지 체크)
     private Slice<ReviewBoard> checkLastPage(Pageable pageable, List<ReviewBoard> reviewBoards) {
 
         boolean hasNext = false;

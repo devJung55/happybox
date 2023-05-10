@@ -1,5 +1,6 @@
 package com.app.happybox.repository.board;
 
+import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.type.FileRepresent;
@@ -59,5 +60,11 @@ public class DonationBoardRepositoryTests {
 
         // then
         donationBoardList.stream().map(DonationBoard::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findAllWithPaging_QueryDSL_Test() {
+        donationBoardRepository.findAllWithPaging(PageRequest.of(0, 5))
+                .stream().map(Board::getBoardContent).forEach(log::info);
     }
 }
