@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>리뷰 게시판 목록</title>
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../static/css/global/global.css" />
-    <link rel="stylesheet" href="../../static/css/member/member.css" />
-    <link rel="stylesheet" href="../../static/css/member/board.css" />
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css" />
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/member/member.css" />
+    <link rel="stylesheet" href="/css/member/board.css" />
   </head>
   <body>
-    <header></header>
+    <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
     <root>
       <section id="board-container">
         <main class="boardList-content-box">
@@ -73,23 +75,23 @@
                             <em class="rating-point">
                               <img
                                 class="rating__point one"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point two"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point three"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point four"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point five"
-                                src="../../static/img/mypage/rating.png"
+                                src="/img/mypage/rating.png"
                               />
                             </em>
                           </div>
@@ -152,23 +154,23 @@
                             <em class="rating-point">
                               <img
                                 class="rating__point one"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point two"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point three"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point four"
-                                src="../../static/img/mypage/rating-pull.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                               <img
                                 class="rating__point five"
-                                src="../../static/img/mypage/rating.png"
+                                src="/img/mypage/rating.png"
                               />
                             </em>
                           </div>
@@ -217,12 +219,9 @@
         </main>
       </section>
     </root>
-    <footer></footer>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script>
-    $('header').load('../../templates/component/header.html');
-    $('footer').load('../../templates/component/footer.html');
-  </script>
-  <script src="../../static/js/member/board.js"></script>
+  <script src="/js/main/header.js"></script>
+  <script src="/js/member/board.js"></script>
 </html>

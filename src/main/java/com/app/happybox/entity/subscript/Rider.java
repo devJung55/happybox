@@ -32,4 +32,13 @@ public class Rider extends Period {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Welfare welfare;
+
+    public Rider(String riderName, String riderPhoneNumber, String filePath, String fileUuid, String fileOrgName, Welfare welfare) {
+        this.riderName = riderName;
+        this.riderPhoneNumber = riderPhoneNumber;
+        this.filePath = filePath;
+        this.fileUuid = fileUuid;
+        this.fileOrgName = fileOrgName;
+        this.welfare = welfare;
+    }
 }

@@ -19,5 +19,7 @@ public interface ReviewBoardQueryDsl {
 
 //    마이페이지 나의후기 목록
     public Page<ReviewBoard> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId);
-    
+
+//    관리자 리뷰게시글 목록
+    public Page<ReviewBoard> findReviewBoardListDescWithPaging_QueryDSL(Pageable pageable);
 }

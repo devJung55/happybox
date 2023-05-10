@@ -42,5 +42,16 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
                 .fetch();
     }
 
+    @Override
+    public Page<DonationBoard> findAllWithPaging_QueryDSL(Pageable pageable) {
+        List<DonationBoard> donationBoardList = query.select(donationBoard)
+                .from(donationBoard)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
 
+        Long count = query.select(donationBoard.id.count()).from(donationBoard).fetchOne();
+
+        return new PageImpl<>(donationBoardList, pageable, count);
+    }
 }

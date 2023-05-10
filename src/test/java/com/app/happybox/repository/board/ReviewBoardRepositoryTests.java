@@ -98,6 +98,11 @@ public class ReviewBoardRepositoryTests {
     public void findAllByMemberIdDescWithPagingTest() {
         reviewBoardRepository.findAllByMemberIdDescWithPaging_QueryDSL(PageRequest.of(0, 5), 1L)
                 .stream().map(Board::getBoardFiles).forEach(v -> log.info(v.toString()));
+    }
 
+    @Test
+    public void findReviewBoardListDescWithPaging_QueryDSL_Test() {
+        reviewBoardRepository.findReviewBoardListDescWithPaging_QueryDSL(PageRequest.of(0, 5))
+                .stream().map(ReviewBoard::toString).forEach(log::info);
     }
 }
