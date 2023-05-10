@@ -1,15 +1,19 @@
 package com.app.happybox.entity.subscript;
 
 import com.app.happybox.audity.Period;
+import com.app.happybox.entity.type.DeliveryType;
 import com.app.happybox.entity.user.Welfare;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @ToString
 @Table(name = "TBL_RIDER")
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Rider extends Period {
     @Id @GeneratedValue @EqualsAndHashCode.Include
@@ -17,6 +21,9 @@ public class Rider extends Period {
     @NotNull private String riderName;
     @Column(unique = true)
     private String riderPhoneNumber;
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'ONGOING'")
+    private DeliveryType deliveryStatus;
 
     /* 라이더 프로필사진 */
     @NotNull private String filePath;
