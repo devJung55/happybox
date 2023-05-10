@@ -1,570 +1,570 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>유통마켓</title>
-        <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-        <link rel="stylesheet" href="../../static/css/global/global.css" />
-        <link rel="stylesheet" href="../../static/css/main/main.css" />
-        <link rel="stylesheet" href="../../static/css/main/supply-index.css" />
-    </head>
-    <body>
-        <!-- 추후 타임리프 fragment로 변경 -->
-        <header class="header-stage"></header>
-        <div class="wrap main">
-            <section class="content">
-                <section class="container">
-                    <!-- 메인 배너 -->
-                    <div class="banner">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div class="move-arrow">
-                        <!-- 배너의 카운트 -->
-                        <span class="banner-count"></span>
-                        <!-- 이전 버튼 -->
-                        <div class="prev">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                id="Layer_1"
-                                style="enable-background: new 0 0 512 512"
-                                version="1.1"
-                                viewBox="0 0 512 512"
-                                xml:space="preserve"
-                            >
-                                <polygon
-                                    points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                                />
-                            </svg>
-                        </div>
-                        <!-- 다음 버튼 -->
-                        <div class="next">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                id="Layer_1"
-                                style="enable-background: new 0 0 512 512"
-                                version="1.1"
-                                viewBox="0 0 512 512"
-                                xml:space="preserve"
-                            >
-                                <polygon
-                                    points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                                />
-                            </svg>
-                        </div>
-                    </div>
-                </section>
-                <section class="principleContainer section">
-                    <div class="inner">
-                        <strong class="summary">Wadiz 5 Principles</strong>
-                        <div class="titleWrapper">
-                            <h3 class="title">와디즈가 일하는 방식</h3>
-                        </div>
-                        <div class="descWrapper">
-                            <p class="desc">
-                                와디즈는 서로를 지지하고 도전을 즐기는 기업문화 안에서 아래 5가지
-                                원칙을 가지고 일합니다.
-                            </p>
-                        </div>
-                        <ol class="principleList">
-                            <li class="principleItem">
-                                <span class="num">1</span>
-                                <p class="desc">우리는 옳은 일을 합니다.</p>
-                            </li>
-                            <li class="principleItem">
-                                <span class="num">2</span>
-                                <p class="desc">급변의 물살을 즐기며 앞서 나갑니다.</p>
-                            </li>
-                            <li class="principleItem">
-                                <span class="num">3</span>
-                                <p class="desc">팀원간의 필요를 채워줍니다.</p>
-                            </li>
-                            <li class="principleItem">
-                                <span class="num">4</span>
-                                <p class="desc">파트너와 고객에게 긍정적인 기억을 남깁니다.</p>
-                            </li>
-                            <li class="principleItem">
-                                <span class="num">5</span>
-                                <p class="desc">재무적인 이익을 추구합니다.</p>
-                            </li>
-                        </ol>
-                    </div>
-                </section>
-                <section class="main-article recommend-sec">
-                    <div class="frame-sm frame-slide-overlap">
-                        <h2 class="main-article-tit">최신 상품들을 모아봤어요!</h2>
-                        <div
-                            class="bnr-item-container swiper-container swiper-container-initialized swiper-container-horizontal"
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>유통마켓</title>
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css"/>
+    <link rel="stylesheet" href="/css/main/main.css"/>
+    <link rel="stylesheet" href="/css/main/supply-index.css"/>
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+</head>
+<body>
+<!-- 추후 타임리프 fragment로 변경 -->
+<header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+<div class="wrap main">
+    <section class="content">
+        <section class="container">
+            <!-- 메인 배너 -->
+            <div class="banner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="move-arrow">
+                <!-- 배너의 카운트 -->
+                <span class="banner-count"></span>
+                <!-- 이전 버튼 -->
+                <div class="prev">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            id="Layer_1"
+                            style="enable-background: new 0 0 512 512"
+                            version="1.1"
+                            viewBox="0 0 512 512"
+                            xml:space="preserve"
+                    >
+                        <polygon
+                                points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                        />
+                    </svg>
+                </div>
+                <!-- 다음 버튼 -->
+                <div class="next">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            id="Layer_1"
+                            style="enable-background: new 0 0 512 512"
+                            version="1.1"
+                            viewBox="0 0 512 512"
+                            xml:space="preserve"
+                    >
+                        <polygon
+                                points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                        />
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <section class="principleContainer section">
+            <div class="inner">
+                <strong class="summary">Wadiz 5 Principles</strong>
+                <div class="titleWrapper">
+                    <h3 class="title">와디즈가 일하는 방식</h3>
+                </div>
+                <div class="descWrapper">
+                    <p class="desc">
+                        와디즈는 서로를 지지하고 도전을 즐기는 기업문화 안에서 아래 5가지
+                        원칙을 가지고 일합니다.
+                    </p>
+                </div>
+                <ol class="principleList">
+                    <li class="principleItem">
+                        <span class="num">1</span>
+                        <p class="desc">우리는 옳은 일을 합니다.</p>
+                    </li>
+                    <li class="principleItem">
+                        <span class="num">2</span>
+                        <p class="desc">급변의 물살을 즐기며 앞서 나갑니다.</p>
+                    </li>
+                    <li class="principleItem">
+                        <span class="num">3</span>
+                        <p class="desc">팀원간의 필요를 채워줍니다.</p>
+                    </li>
+                    <li class="principleItem">
+                        <span class="num">4</span>
+                        <p class="desc">파트너와 고객에게 긍정적인 기억을 남깁니다.</p>
+                    </li>
+                    <li class="principleItem">
+                        <span class="num">5</span>
+                        <p class="desc">재무적인 이익을 추구합니다.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section class="main-article recommend-sec">
+            <div class="frame-sm frame-slide-overlap">
+                <h2 class="main-article-tit">최신 상품들을 모아봤어요!</h2>
+                <div
+                        class="bnr-item-container swiper-container swiper-container-initialized swiper-container-horizontal"
+                >
+                    <ul class="bnr-item-list swiperDataContainer swiper-wrapper" data-index="0" data-limit="2">
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
                         >
-                            <ul class="bnr-item-list swiperDataContainer swiper-wrapper">
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
                                             <span class="sales-price">
                                                 2,900<span class="won">원</span>
                                             </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
-                                            <span class="sales-price">
-                                                2,900<span class="won">원</span>
-                                            </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
-                                            <span class="sales-price">
-                                                2,900<span class="won">원</span>
-                                            </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
-                                            <span class="sales-price">
-                                                2,900<span class="won">원</span>
-                                            </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <!--// grid-area -->
-                            <button class="swiper-button-prev swiper-btn swiper-button-disabled">
-                                <svg viewBox="0 0 512 512">
-                                    <polygon
-                                        points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                                    ></polygon>
-                                </svg>
-                            </button>
-                            <button class="swiper-button-next swiper-btn">
-                                <svg viewBox="0 0 512 512">
-                                    <polygon
-                                        points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                                    ></polygon>
-                                </svg>
-                            </button>
-                            <span
-                                class="swiper-notification"
-                                aria-live="assertive"
-                                aria-atomic="true"
-                            ></span>
-                        </div>
-                    </div>
-                </section>
-                <section class="main-article">
-                    <div class="frame-sm time-sales-wrap">
-                        <div class="time-sales-container flex-between">
-                            <div class="time-sales-title-area">
-                                <h2 class="main-article-tit">
-                                    <span>지금 이순간</span>
-                                    <span>깜짝 타임세일!</span>
-                                </h2>
-                                <!-- [Dev] 20220419 수정 -->
-                                <p class="marginBot100">오늘이 가면 없을 기회, 놓치지마세요.</p>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
                             </div>
-                            <div class="time-sale-img-wrap">
-                                <a href="javascript:void(0)">
-                                    <div class="image-container">
-                                        <img
-                                            src="https://product-image.kurly.com/product/image/3cb88df1-54a4-4a45-b6f6-e8f0df92f86e.jpg"
-                                        />
-                                    </div>
-                                </a>
-                                <div class="product-info">
-                                    <span class="distributer-name">김정표</span>
-                                    <h3 class="product-name">한돈 떡갈비 (2개입)</h3>
-                                    <div class="content-row">
+                        </li>
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
+                        >
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                            <span class="sales-price">
+                                                2,900<span class="won">원</span>
+                                            </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
+                        >
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                            <span class="sales-price">
+                                                2,900<span class="won">원</span>
+                                            </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
+                        >
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                            <span class="sales-price">
+                                                2,900<span class="won">원</span>
+                                            </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--// grid-area -->
+                    <button class="swiper-button-prev swiper-btn swiper-button-disabled">
+                        <svg viewBox="0 0 512 512">
+                            <polygon
+                                    points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                            ></polygon>
+                        </svg>
+                    </button>
+                    <button class="swiper-button-next swiper-btn">
+                        <svg viewBox="0 0 512 512">
+                            <polygon
+                                    points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                            ></polygon>
+                        </svg>
+                    </button>
+                    <span
+                            class="swiper-notification"
+                            aria-live="assertive"
+                            aria-atomic="true"
+                    ></span>
+                </div>
+            </div>
+        </section>
+        <section class="main-article">
+            <div class="frame-sm time-sales-wrap">
+                <div class="time-sales-container flex-between">
+                    <div class="time-sales-title-area">
+                        <h2 class="main-article-tit">
+                            <span>지금 이순간</span>
+                            <span>깜짝 타임세일!</span>
+                        </h2>
+                        <!-- [Dev] 20220419 수정 -->
+                        <p class="marginBot100">오늘이 가면 없을 기회, 놓치지마세요.</p>
+                    </div>
+                    <div class="time-sale-img-wrap">
+                        <a href="javascript:void(0)">
+                            <div class="image-container">
+                                <img
+                                        src="https://product-image.kurly.com/product/image/3cb88df1-54a4-4a45-b6f6-e8f0df92f86e.jpg"
+                                />
+                            </div>
+                        </a>
+                        <div class="product-info">
+                            <span class="distributer-name">김정표</span>
+                            <h3 class="product-name">한돈 떡갈비 (2개입)</h3>
+                            <div class="content-row">
                                         <span class="sales-price font20">
                                             2,900<span class="won">원</span>
                                         </span>
-                                    </div>
-                                    <div class="review-count">
-                                        후기<span class="review-number">999+</span>
-                                    </div>
+                            </div>
+                            <div class="review-count">
+                                후기<span class="review-number">999+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="main-article recommend-sec">
+            <div class="frame-sm frame-slide-overlap">
+                <h2 class="main-article-tit">이 상품 어때요?</h2>
+                <div
+                        class="bnr-item-container swiper-container swiper-container-initialized swiper-container-horizontal"
+                >
+                    <ul class="bnr-item-list swiperDataContainer swiper-wrapper" data-index="0" data-limit="2">
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
+                        >
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                            <span class="sales-price">
+                                                2,900<span class="won">원</span>
+                                            </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="main-article recommend-sec">
-                    <div class="frame-sm frame-slide-overlap">
-                        <h2 class="main-article-tit">이 상품 어때요?</h2>
-                        <div
-                            class="bnr-item-container swiper-container swiper-container-initialized swiper-container-horizontal"
+                        </li>
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
                         >
-                            <ul class="bnr-item-list swiperDataContainer swiper-wrapper">
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
                                             <span class="sales-price">
                                                 2,900<span class="won">원</span>
                                             </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
-                                            <span class="sales-price">
-                                                2,900<span class="won">원</span>
-                                            </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
-                                            <span class="sales-price">
-                                                2,900<span class="won">원</span>
-                                            </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li
-                                    class="bnr-item-slide swiper-slide swiper-slide-active"
-                                    style="width: 256.25px; margin-right: 25px"
-                                >
-                                    <a href="javascript:void(0)">
-                                        <div class="image-container">
-                                            <img
-                                                src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                                            />
-                                        </div>
-                                    </a>
-                                    <div class="product-info">
-                                        <span class="distributer-name">김정표</span>
-                                        <h3 class="product-name">
-                                            [쟈뎅] 시그니처 보틀 커피 1.1L 3종
-                                        </h3>
-                                        <div class="content-row">
-                                            <span class="sales-price">
-                                                2,900<span class="won">원</span>
-                                            </span>
-                                        </div>
-                                        <div class="review-count">
-                                            후기<span class="review-number">999+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <!--// grid-area -->
-                            <button class="swiper-button-prev swiper-btn swiper-button-disabled">
-                                <svg viewBox="0 0 512 512">
-                                    <polygon
-                                        points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                                    ></polygon>
-                                </svg>
-                            </button>
-                            <button class="swiper-button-next swiper-btn">
-                                <svg viewBox="0 0 512 512">
-                                    <polygon
-                                        points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                                    ></polygon>
-                                </svg>
-                            </button>
-                            <span
-                                class="swiper-notification"
-                                aria-live="assertive"
-                                aria-atomic="true"
-                            ></span>
-                        </div>
-                    </div>
-                </section>
-                <section class="main-article">
-                    <div class="frame-sm">
-                        <h2 class="main-article-tit text_center">이런 레시피도 있어요!</h2>
-                        <a href="javascript:void(0)" class="recipie-top-wrap">
-                            <div class="recipie-top-img-container">
-                                <img
-                                    src="https://product-image.kurly.com/main/random-collection/article/pc/img/5079f897-f344-4bcc-a365-ddd6206801b8.png"
-                                />
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
                             </div>
-                            <div class="recipe-top-title-wrap">
-                                <h3>레시피 제목 작성</h3>
-                                <p class="recipie-top-content">
-                                    이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
-                                    자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
-                                    아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
-                                    특별한 스픽-이지 바로 거듭날 거예요.
-                                </p>
+                        </li>
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
+                        >
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                            <span class="sales-price">
+                                                2,900<span class="won">원</span>
+                                            </span>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
                             </div>
-                        </a>
-                        <div class="recipie-top-others-wrap">
-                            <ul class="recipie-top-others">
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <div class="recipie-img-container">
-                                            <img
-                                                src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
-                                            />
-                                        </div>
-                                        <div class="recipie-content-wrap">
-                                            <span class="recipe-title-wrap">
-                                                <p class="recipe-title">
-                                                    [커피빈 픽업] 조니워커 블루(하드리커)
-                                                </p>
+                        </li>
+                        <li
+                                class="bnr-item-slide swiper-slide swiper-slide-active"
+                                style="width: 256.25px; margin-right: 25px"
+                        >
+                            <a href="javascript:void(0)">
+                                <div class="image-container">
+                                    <img
+                                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                                    />
+                                </div>
+                            </a>
+                            <div class="product-info">
+                                <span class="distributer-name">김정표</span>
+                                <h3 class="product-name">
+                                    [쟈뎅] 시그니처 보틀 커피 1.1L 3종
+                                </h3>
+                                <div class="content-row">
+                                            <span class="sales-price">
+                                                2,900<span class="won">원</span>
                                             </span>
-                                            <p class="recipie-content">
-                                                이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
-                                                자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
-                                                아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
-                                                특별한 스픽-이지 바로 거듭날 거예요.
-                                            </p>
-                                        </div>
-                                        <button class="recipie-detail-btn">
-                                            레시피 구경하기
-                                        </button>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <div class="recipie-img-container">
-                                            <img
-                                                src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
-                                            />
-                                        </div>
-                                        <div class="recipie-content-wrap">
-                                            <span class="recipe-title-wrap">
-                                                <p class="recipe-title">
-                                                    [커피빈 픽업] 조니워커 블루(하드리커)
-                                                </p>
-                                            </span>
-                                            <p class="recipie-content">
-                                                이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
-                                                자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
-                                                아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
-                                                특별한 스픽-이지 바로 거듭날 거예요.
-                                            </p>
-                                        </div>
-                                        <button class="recipie-detail-btn">
-                                            레시피 구경하기
-                                        </button>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <div class="recipie-img-container">
-                                            <img
-                                                src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
-                                            />
-                                        </div>
-                                        <div class="recipie-content-wrap">
-                                            <span class="recipe-title-wrap">
-                                                <p class="recipe-title">
-                                                    [커피빈 픽업] 조니워커 블루(하드리커)
-                                                </p>
-                                            </span>
-                                            <p class="recipie-content">
-                                                이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
-                                                자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
-                                                아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
-                                                특별한 스픽-이지 바로 거듭날 거예요.
-                                            </p>
-                                        </div>
-                                        <button class="recipie-detail-btn">
-                                            레시피 구경하기
-                                        </button>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <div class="recipie-img-container">
-                                            <img
-                                                src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
-                                            />
-                                        </div>
-                                        <div class="recipie-content-wrap">
-                                            <span class="recipe-title-wrap">
-                                                <p class="recipe-title">
-                                                    [커피빈 픽업] 조니워커 블루(하드리커)
-                                                </p>
-                                            </span>
-                                            <p class="recipie-content">
-                                                이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
-                                                자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
-                                                아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
-                                                특별한 스픽-이지 바로 거듭날 거예요.
-                                            </p>
-                                        </div>
-                                        <button class="recipie-detail-btn">
-                                            레시피 구경하기
-                                        </button>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                                </div>
+                                <div class="review-count">
+                                    후기<span class="review-number">999+</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--// grid-area -->
+                    <button class="swiper-button-prev swiper-btn swiper-button-disabled">
+                        <svg viewBox="0 0 512 512">
+                            <polygon
+                                    points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                            ></polygon>
+                        </svg>
+                    </button>
+                    <button class="swiper-button-next swiper-btn">
+                        <svg viewBox="0 0 512 512">
+                            <polygon
+                                    points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
+                            ></polygon>
+                        </svg>
+                    </button>
+                    <span
+                            class="swiper-notification"
+                            aria-live="assertive"
+                            aria-atomic="true"
+                    ></span>
+                </div>
+            </div>
+        </section>
+        <section class="main-article">
+            <div class="frame-sm">
+                <h2 class="main-article-tit text_center">이런 레시피도 있어요!</h2>
+                <a href="javascript:void(0)" class="recipie-top-wrap">
+                    <div class="recipie-top-img-container">
+                        <img
+                                src="https://product-image.kurly.com/main/random-collection/article/pc/img/5079f897-f344-4bcc-a365-ddd6206801b8.png"
+                        />
                     </div>
-                </section>
-            </section>
-        </div>
-        <!-- 추후 타임리프 fragment로 변경 -->
-        <footer class="footer-stage"></footer>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../static/js/main/banner.js"></script>
-    <script src="../../static/js/main/item-swiper.js"></script>
-    <!-- 추후 타임리프 fragment로 변경 -->
-    <script>
-        $(".header-stage").load("../../templates/component/header.html");
-        $(".footer-stage").load("../../templates/component/footer.html");
+                    <div class="recipe-top-title-wrap">
+                        <h3>레시피 제목 작성</h3>
+                        <p class="recipie-top-content">
+                            이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
+                            자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
+                            아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
+                            특별한 스픽-이지 바로 거듭날 거예요.
+                        </p>
+                    </div>
+                </a>
+                <div class="recipie-top-others-wrap">
+                    <ul class="recipie-top-others">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <div class="recipie-img-container">
+                                    <img
+                                            src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
+                                    />
+                                </div>
+                                <div class="recipie-content-wrap">
+                                            <span class="recipe-title-wrap">
+                                                <p class="recipe-title">
+                                                    [커피빈 픽업] 조니워커 블루(하드리커)
+                                                </p>
+                                            </span>
+                                    <p class="recipie-content">
+                                        이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
+                                        자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
+                                        아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
+                                        특별한 스픽-이지 바로 거듭날 거예요.
+                                    </p>
+                                </div>
+                                <button class="recipie-detail-btn">
+                                    레시피 구경하기
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <div class="recipie-img-container">
+                                    <img
+                                            src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
+                                    />
+                                </div>
+                                <div class="recipie-content-wrap">
+                                            <span class="recipe-title-wrap">
+                                                <p class="recipe-title">
+                                                    [커피빈 픽업] 조니워커 블루(하드리커)
+                                                </p>
+                                            </span>
+                                    <p class="recipie-content">
+                                        이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
+                                        자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
+                                        아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
+                                        특별한 스픽-이지 바로 거듭날 거예요.
+                                    </p>
+                                </div>
+                                <button class="recipie-detail-btn">
+                                    레시피 구경하기
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <div class="recipie-img-container">
+                                    <img
+                                            src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
+                                    />
+                                </div>
+                                <div class="recipie-content-wrap">
+                                            <span class="recipe-title-wrap">
+                                                <p class="recipe-title">
+                                                    [커피빈 픽업] 조니워커 블루(하드리커)
+                                                </p>
+                                            </span>
+                                    <p class="recipie-content">
+                                        이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
+                                        자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
+                                        아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
+                                        특별한 스픽-이지 바로 거듭날 거예요.
+                                    </p>
+                                </div>
+                                <button class="recipie-detail-btn">
+                                    레시피 구경하기
+                                </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <div class="recipie-img-container">
+                                    <img
+                                            src="https://3p-image.kurly.com/product-image/b67b3ba3-7e10-4435-bb85-cace066cce84/da2c9414-31c0-4083-8f48-55e4d45b4a31.jpg"
+                                    />
+                                </div>
+                                <div class="recipie-content-wrap">
+                                            <span class="recipe-title-wrap">
+                                                <p class="recipe-title">
+                                                    [커피빈 픽업] 조니워커 블루(하드리커)
+                                                </p>
+                                            </span>
+                                    <p class="recipie-content">
+                                        이제 컬리에서 위스키를 만나세요.저마다의 향과 이야기로 오감을
+                                        자극할 다양한 컬렉션을 소개합니다.위스키를 즐길 때 꼭 필요한
+                                        아이템도 준비해두었으니 함께 둘러보세요.어느 순간, 나만의 공간이
+                                        특별한 스픽-이지 바로 거듭날 거예요.
+                                    </p>
+                                </div>
+                                <button class="recipie-detail-btn">
+                                    레시피 구경하기
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+<!-- 추후 타임리프 fragment로 변경 -->
+<footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/banner.js"></script>
+<script src="/js/main/item-swiper.js"></script>
+<script src="/js/main/header.js"></script>
+<!-- 추후 타임리프 fragment로 변경 -->
+<script>
+    $("document").ready(function () {
+        $(window).scroll(function () {
+            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 
-        $("document").ready(function () {
-            $(window).scroll(function () {
-                var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+            if (position >= 120) {
+                $(".gnb-wrap").addClass("fixed");
+            } else {
+                $(".gnb-wrap").removeClass("fixed");
+            }
 
-                if (position >= 120) {
-                    $(".gnb-wrap").addClass("fixed");
-                } else {
-                    $(".gnb-wrap").removeClass("fixed");
-                }
-
-                if (position > 600) {
-                    $(".side-quick-area").css({
-                        position: "fixed",
-                        top: "121px",
-                    });
-                } else {
-                    $(".side-quick-area").css({
-                        position: "absolute",
-                        top: "670px",
-                    });
-                }
-            });
+            if (position > 600) {
+                $(".side-quick-area").css({
+                    position: "fixed",
+                    top: "121px",
+                });
+            } else {
+                $(".side-quick-area").css({
+                    position: "absolute",
+                    top: "670px",
+                });
+            }
         });
-    </script>
+    });
+</script>
 </html>

@@ -1,6 +1,6 @@
 package com.app.happybox.repository.reply;
 
-import com.app.happybox.entity.order.Product;
+import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.reply.ProductReply;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.repository.order.ProductRepository;

@@ -1,6 +1,6 @@
 package com.app.happybox.entity.user;
 
-import com.app.happybox.entity.order.Product;
+import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.type.Role;
 import com.app.happybox.entity.type.UserStatus;
 import com.sun.istack.NotNull;

@@ -1,8 +1,8 @@
 package com.app.happybox.repository.order;
 
-import com.app.happybox.entity.order.Product;
-import com.app.happybox.entity.order.ProductSearch;
-import com.app.happybox.entity.type.ProductCategory;
+import com.app.happybox.entity.product.Product;
+import com.app.happybox.entity.product.ProductSearch;
+import com.app.happybox.entity.product.QProduct;
 import com.app.happybox.entity.type.ProductSearchOrder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
@@ -10,18 +10,15 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-import static com.app.happybox.entity.order.QProduct.product;
+import static com.app.happybox.entity.product.QProduct.product;
+
 
 @RequiredArgsConstructor
 public class ProductQueryDslImpl implements ProductQueryDsl {
@@ -104,7 +101,7 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
     private JPAQuery<Product> getProductJPAQuery() {
         return query.select(product)
                 .from(product)
-                .leftJoin(product.distributor)
+                .join(product.distributor).fetchJoin()
                 .leftJoin(product.productFiles).fetchJoin();
     }
 
@@ -118,9 +115,6 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
         }
 
         switch (searchOrder) {
-            case DATE_DESC:
-                orderSpecifier = new OrderSpecifier(Order.DESC, product.createdDate);
-                break;
             case ORDER_COUNT_DESC:
                 orderSpecifier = new OrderSpecifier(Order.DESC, product.productOrderCount);
                 break;
