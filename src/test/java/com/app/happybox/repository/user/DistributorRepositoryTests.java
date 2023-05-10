@@ -1,9 +1,7 @@
 package com.app.happybox.repository.user;
 
-import com.app.happybox.entity.type.Gender;
+import com.app.happybox.type.Gender;
 import com.app.happybox.entity.user.Address;
-import com.app.happybox.entity.user.Distributor;
-import com.app.happybox.entity.user.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional @Rollback(false)

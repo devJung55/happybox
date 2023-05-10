@@ -2,7 +2,7 @@ package com.app.happybox.repository.notice;
 
 import com.app.happybox.entity.customer.Notice;
 import com.app.happybox.entity.file.NoticeFile;
-import com.app.happybox.entity.type.FileRepresent;
+import com.app.happybox.type.FileRepresent;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

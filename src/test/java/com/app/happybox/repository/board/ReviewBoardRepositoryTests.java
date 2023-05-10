@@ -2,11 +2,7 @@ package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.ReviewBoard;
-import com.app.happybox.entity.board.ReviewBoardDTO;
-import com.app.happybox.entity.file.BoardFile;
-import com.app.happybox.entity.reply.ReviewBoardReply;
-import com.app.happybox.entity.type.FileRepresent;
-import com.app.happybox.entity.user.User;
+import com.app.happybox.type.FileRepresent;
 import com.app.happybox.repository.reply.ReviewBoardReplyRepository;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.MemberRepository;
@@ -17,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.*;
 
 @SpringBootTest
 @Transactional

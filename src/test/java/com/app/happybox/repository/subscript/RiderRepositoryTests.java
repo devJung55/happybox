@@ -1,8 +1,7 @@
 package com.app.happybox.repository.subscript;
 
-import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.subscript.Rider;
-import com.app.happybox.entity.type.FileRepresent;
+import com.app.happybox.type.FileRepresent;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.repository.user.WelfareRepository;
 import lombok.extern.slf4j.Slf4j;

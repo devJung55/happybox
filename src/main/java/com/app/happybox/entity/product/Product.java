@@ -3,7 +3,7 @@ package com.app.happybox.entity.product;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.reply.ProductReply;
-import com.app.happybox.entity.type.ProductCategory;
+import com.app.happybox.type.ProductCategory;
 import com.app.happybox.entity.user.Distributor;
 import com.sun.istack.NotNull;
 import lombok.*;

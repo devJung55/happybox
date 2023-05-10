@@ -3,13 +3,12 @@ package com.app.happybox.entity.user;
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.order.MemberOrderProduct;
-import com.app.happybox.entity.order.WelfareOrderProduct;
 import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.entity.order.OrderSubscription;
-import com.app.happybox.entity.type.Gender;
-import com.app.happybox.entity.type.Role;
-import com.app.happybox.entity.type.UserStatus;
+import com.app.happybox.type.Gender;
+import com.app.happybox.type.Role;
+import com.app.happybox.type.UserStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 

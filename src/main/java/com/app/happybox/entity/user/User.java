@@ -1,11 +1,10 @@
 package com.app.happybox.entity.user;
 
 import com.app.happybox.audity.Period;
-import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.reply.Reply;
 import com.app.happybox.entity.reply.ReplyLike;
-import com.app.happybox.entity.type.Role;
-import com.app.happybox.entity.type.UserStatus;
+import com.app.happybox.type.Role;
+import com.app.happybox.type.UserStatus;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;

@@ -2,8 +2,8 @@ package com.app.happybox.repository.inquiry;
 
 import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.file.InquiryFile;
-import com.app.happybox.entity.type.FileRepresent;
-import com.app.happybox.entity.type.InquiryType;
+import com.app.happybox.type.FileRepresent;
+import com.app.happybox.type.InquiryType;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.repository.user.MemberRepository;
 import lombok.extern.slf4j.Slf4j;

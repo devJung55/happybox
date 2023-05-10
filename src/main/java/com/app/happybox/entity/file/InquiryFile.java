@@ -1,8 +1,7 @@
 package com.app.happybox.entity.file;
 
 import com.app.happybox.entity.customer.Inquiry;
-import com.app.happybox.entity.type.FileRepresent;
-import com.sun.istack.NotNull;
+import com.app.happybox.type.FileRepresent;
 import lombok.*;
 
 import javax.persistence.*;

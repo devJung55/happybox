@@ -1,6 +1,6 @@
 package com.app.happybox.entity.order;
 
-import com.app.happybox.entity.type.PurchaseStatus;
+import com.app.happybox.type.PurchaseStatus;
 import com.app.happybox.entity.user.Welfare;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;

@@ -1,13 +1,9 @@
 package com.app.happybox.entity.file;
 
-import com.app.happybox.entity.type.FileRepresent;
-import com.sun.istack.NotNull;
+import com.app.happybox.type.FileRepresent;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @Getter @ToString
 public class BoardFileDTO {

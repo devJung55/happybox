@@ -1,8 +1,8 @@
 package com.app.happybox.entity.user;
 
-import com.app.happybox.entity.type.Gender;
-import com.app.happybox.entity.type.Role;
-import com.app.happybox.entity.type.UserStatus;
+import com.app.happybox.type.Gender;
+import com.app.happybox.type.Role;
+import com.app.happybox.type.UserStatus;
 import lombok.Builder;
 import lombok.Data;
 

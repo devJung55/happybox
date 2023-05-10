@@ -1,6 +1,6 @@
 package com.app.happybox.entity.user;
 
-import com.app.happybox.entity.type.UserStatus;
+import com.app.happybox.type.UserStatus;
 import lombok.Builder;
 import lombok.Data;
 

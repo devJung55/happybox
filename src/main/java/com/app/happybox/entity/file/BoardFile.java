@@ -1,7 +1,7 @@
 package com.app.happybox.entity.file;
 
 import com.app.happybox.entity.board.Board;
-import com.app.happybox.entity.type.FileRepresent;
+import com.app.happybox.type.FileRepresent;
 import lombok.*;
 
 import javax.persistence.*;

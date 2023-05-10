@@ -3,9 +3,8 @@ package com.app.happybox.repository.inquiry;
 import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.customer.InquiryAnswer;
 import com.app.happybox.entity.file.InquiryAnswerFile;
-import com.app.happybox.entity.file.InquiryFile;
-import com.app.happybox.entity.type.FileRepresent;
-import com.app.happybox.entity.type.InquiryStatus;
+import com.app.happybox.type.FileRepresent;
+import com.app.happybox.type.InquiryStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest

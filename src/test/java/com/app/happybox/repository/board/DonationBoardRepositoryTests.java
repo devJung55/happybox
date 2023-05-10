@@ -3,9 +3,8 @@ package com.app.happybox.repository.board;
 import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.file.BoardFile;
-import com.app.happybox.entity.type.DonateType;
-import com.app.happybox.entity.type.FileRepresent;
-import com.app.happybox.entity.user.Welfare;
+import com.app.happybox.type.DonateType;
+import com.app.happybox.type.FileRepresent;
 import com.app.happybox.repository.user.WelfareRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -15,9 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootTest

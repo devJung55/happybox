@@ -1,7 +1,7 @@
 package com.app.happybox.entity.product;
 
 import com.app.happybox.entity.file.ProductFileDTO;
-import com.app.happybox.entity.type.ProductCategory;
+import com.app.happybox.type.ProductCategory;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;

@@ -2,8 +2,8 @@ package com.app.happybox.entity.customer;
 
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.file.InquiryFile;
-import com.app.happybox.entity.type.InquiryStatus;
-import com.app.happybox.entity.type.InquiryType;
+import com.app.happybox.type.InquiryStatus;
+import com.app.happybox.type.InquiryType;
 import com.app.happybox.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
