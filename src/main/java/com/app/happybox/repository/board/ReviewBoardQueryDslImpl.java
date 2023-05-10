@@ -1,6 +1,5 @@
 package com.app.happybox.repository.board;
 
-import com.app.happybox.entity.board.QReviewBoardDTO;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;

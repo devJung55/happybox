@@ -1,11 +1,15 @@
 package com.app.happybox.entity.board;
 
+import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.reply.ReplyDTO;
 import com.querydsl.core.annotations.QueryProjection;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter @ToString
 public class ReviewBoardDTO {
@@ -31,9 +35,14 @@ public class ReviewBoardDTO {
     /*-- 댓글 수 --*/
     private Long reviewReplyCount;
 
+    /*-- 파일 리스트 --*/
+    List<BoardFileDTO> boardFiles;
 
-    @QueryProjection
-    public ReviewBoardDTO(Long id, String memberName, String welfareName, String reviewBoardTitle, String reviewBoardContent, LocalDateTime reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewReplyCount){
+    /*-- 댓글 리스트 --*/
+    List<ReplyDTO> replies;
+
+    @Builder
+    public ReviewBoardDTO(Long id, String memberName, String welfareName, String reviewBoardTitle, String reviewBoardContent, LocalDateTime reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewReplyCount, List<BoardFileDTO> boardFiles) {
         this.id = id;
         this.memberName = memberName;
         this.welfareName = welfareName;
@@ -43,5 +52,6 @@ public class ReviewBoardDTO {
         this.reviewRating = reviewRating;
         this.reviewLikeCount = reviewLikeCount;
         this.reviewReplyCount = reviewReplyCount;
+        this.boardFiles = boardFiles;
     }
 }
