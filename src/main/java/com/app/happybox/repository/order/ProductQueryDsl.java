@@ -17,4 +17,6 @@ public interface ProductQueryDsl {
     public Optional<Product> findByIdWithDetail_QueryDSL(Long id);
 //    상품 동적검색
     public Page<Product> findAllByProductSearch_QueryDSL(Pageable pageable, ProductSearch productSearch);
+//    마이페이지 상품 목록
+    public Page<Product> findAllByDistributorIdWithPaging_QueryDSL(Pageable pageable, Long distributorId);
 }

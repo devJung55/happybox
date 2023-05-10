@@ -3,6 +3,7 @@ package com.app.happybox.entity.user;
 import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.order.WelfareOrderProduct;
 import com.app.happybox.entity.payment.Payment;
+import com.app.happybox.entity.subscript.Rider;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.type.Role;
 import com.app.happybox.entity.type.UserStatus;
@@ -39,6 +40,10 @@ public class Welfare extends User {
     /*-- 배송지정보설정 --*/
     private String deliveryName;
     private String deliveryPhoneNumber;
+
+    /* 배달원 정보 */
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "welfare", orphanRemoval = true)
+    private List<Rider> riders = new ArrayList<>();
 
     /* 회원 게시글 목록 */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "welfare", orphanRemoval = true)

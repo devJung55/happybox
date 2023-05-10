@@ -86,6 +86,21 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
         return new PageImpl<>(productList, pageable, total);
     }
 
+    @Override
+    public Page<Product> findAllByDistributorIdWithPaging_QueryDSL(Pageable pageable, Long distributorId) {
+        List<Product> productList = query.select(product)
+                .from(product)
+                .join(product.distributor).fetchJoin()
+                .where(product.distributor.id.eq(distributorId))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(product.id.count()).from(product).where(product.distributor.id.eq(distributorId)).fetchOne();
+
+        return new PageImpl<>(productList, pageable, count);
+    }
+
     private JPAQuery<Product> getProductJPAQuery() {
         return query.select(product)
                 .from(product)
