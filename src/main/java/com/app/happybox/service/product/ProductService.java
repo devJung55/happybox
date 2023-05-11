@@ -22,6 +22,9 @@ public interface ProductService {
 //    상품 동적검색
     public Page<ProductDTO> findAllBySearch(Pageable pageable, ProductSearch search);
 
+//    상품 상세조회
+    public ProductDTO findById(Long id);
+
     default ProductDTO productToDTO(Product product) {
         return ProductDTO.builder()
                 .id(product.getId())

@@ -70,7 +70,7 @@ function changeImgThumbnail(img) {
 $listSelecter.on("click", function () {
     let i = $listSelecter.index($(this));
     /* 스크롤이 이동할 위치 */
-    $sectionWrap.eq(i)[0].scrollIntoView({ behavior: "smooth" });
+    $sectionWrap.eq(i)[0].scrollIntoView({behavior: "smooth"});
 });
 
 /* item list menu 고정용 */
@@ -141,4 +141,41 @@ $updateReviewBtn.on("click", function () {
         $(this).parent().parent().remove();
         parent.removeClass(ON_UPDATE);
     });
+});
+
+/* 주문수량 설정 */
+
+let orderCount = 1;
+
+$(".minus-btn").click(function () {
+    let currentValue = parseInt($(".quantity-input").val());
+    if (currentValue > 1) {
+        $(".quantity-input").val(--currentValue);
+    }
+    orderCount = currentValue;
+});
+
+$(".plus-btn").click(function () {
+    let currentValue = parseInt($(".quantity-input").val());
+    $(".quantity-input").val(++currentValue);
+    orderCount = currentValue;
+});
+
+$(".quantity-input").on("input", function () {
+    let currentValue = $(this).val();
+    let regex = /^[0-9]*$/; // 정규식: 숫자만 입력받도록 함
+    if (!regex.test(currentValue) || currentValue <= 0) {
+        $(this).val(orderCount);
+    } else {
+        orderCount = currentValue;
+    }
+});
+
+$(".quantity-input").on("blur", function () {
+    let currentValue = $(this).val();
+    if (currentValue === "") {
+        $(this).val("1");
+    } else if (currentValue.charAt(0) === "0") {
+        $(this).val(parseInt(currentValue));
+    }
 });

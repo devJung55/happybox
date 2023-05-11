@@ -1,6 +1,6 @@
 //package com.app.happybox.config;
 //
-//import com.app.happybox.entity.type.Role;
+//import com.app.happybox.type.Role;
 //import lombok.RequiredArgsConstructor;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.boot.autoconfigure.security.servlet.PathRequest;

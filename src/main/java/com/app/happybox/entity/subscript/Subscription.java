@@ -3,12 +3,11 @@ package com.app.happybox.entity.subscript;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.order.OrderSubscription;
-import com.app.happybox.entity.type.SubOption;
+import com.app.happybox.type.SubOption;
 import com.app.happybox.entity.user.Welfare;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;

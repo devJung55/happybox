@@ -4,7 +4,7 @@ import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.entity.customer.Notice;
 import com.app.happybox.entity.customer.NoticeSearch;
 import com.app.happybox.entity.file.NoticeFile;
-import com.app.happybox.entity.type.FileRepresent;
+import com.app.happybox.type.FileRepresent;
 import com.app.happybox.service.cs.NoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -59,14 +59,14 @@ public class NoticeRepositoryTests {
                 PageRequest.of(0, 5), new NoticeSearch()).stream().map(Notice::toString).forEach(log::info);
     }
 
-//    fetchjoin 상세 테스트
+    //    fetchjoin 상세 테스트
     @Test
     public void findNoticeDetailById_QueryDSLTest() {
         noticeRepository.findNoticeDetailById_QueryDSL(33L).stream().map(Notice::toString).forEach(log::info);
         noticeRepository.findById(33L).get().getNoticeFiles().toString();
     }
 
-//    queryMethod 상세 테스트
+    //    queryMethod 상세 테스트
     @Test
     public void findNoticeByIdTest() {
         noticeRepository.findNoticeById(23L).ifPresent(notice -> log.info(notice.toString()));

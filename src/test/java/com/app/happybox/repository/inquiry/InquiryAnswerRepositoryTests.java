@@ -4,9 +4,8 @@ import com.app.happybox.domain.InquiryAnswerDTO;
 import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.customer.InquiryAnswer;
 import com.app.happybox.entity.file.InquiryAnswerFile;
-import com.app.happybox.entity.file.InquiryFile;
-import com.app.happybox.entity.type.FileRepresent;
-import com.app.happybox.entity.type.InquiryStatus;
+import com.app.happybox.type.FileRepresent;
+import com.app.happybox.type.InquiryStatus;
 import com.app.happybox.service.cs.InquiryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -16,9 +15,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest

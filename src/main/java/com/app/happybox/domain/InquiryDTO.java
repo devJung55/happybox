@@ -1,9 +1,8 @@
 package com.app.happybox.domain;
 
-import com.app.happybox.entity.file.InquiryFile;
-import com.app.happybox.entity.type.InquiryStatus;
-import com.app.happybox.entity.type.InquiryType;
 import com.app.happybox.entity.user.User;
+import com.app.happybox.type.InquiryStatus;
+import com.app.happybox.type.InquiryType;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package com.app.happybox.entity.order;
 
-import com.app.happybox.entity.type.PurchaseStatus;
+import com.app.happybox.type.PurchaseStatus;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import lombok.AccessLevel;

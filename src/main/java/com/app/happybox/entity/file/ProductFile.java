@@ -1,7 +1,7 @@
 package com.app.happybox.entity.file;
 
 import com.app.happybox.entity.product.Product;
-import com.app.happybox.entity.type.FileRepresent;
+import com.app.happybox.type.FileRepresent;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

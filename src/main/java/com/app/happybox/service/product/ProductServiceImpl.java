@@ -3,6 +3,7 @@ package com.app.happybox.service.product;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductDTO;
 import com.app.happybox.entity.product.ProductSearch;
+import com.app.happybox.exception.ProductNotFoundException;
 import com.app.happybox.repository.order.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,5 +43,14 @@ public class ProductServiceImpl implements ProductService {
         Page<Product> productPage = productRepository.findAllByProductSearch_QueryDSL(pageable, search);
         List<ProductDTO> productDTOList = productPage.get().map(this::productToDTO).collect(Collectors.toList());
         return new PageImpl<>(productDTOList, pageable, productPage.getTotalElements());
+    }
+
+    @Override
+    public ProductDTO findById(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> {
+            throw new ProductNotFoundException();
+        });
+
+        return productToDTO(product);
     }
 }

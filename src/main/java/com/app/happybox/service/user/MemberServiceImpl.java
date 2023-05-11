@@ -1,6 +1,6 @@
 package com.app.happybox.service.user;
 
-import com.app.happybox.entity.type.Role;
+import com.app.happybox.type.Role;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.MemberDTO;
 import com.app.happybox.repository.user.MemberRepository;

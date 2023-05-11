@@ -1,4 +1,4 @@
-package com.app.happybox.entity.type;
+package com.app.happybox.type;
 
 public enum UserStatus {
     REGISTERED, UNREGISTERED

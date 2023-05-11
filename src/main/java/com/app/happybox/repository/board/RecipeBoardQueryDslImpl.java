@@ -1,14 +1,12 @@
 package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.RecipeBoard;
-import com.app.happybox.entity.board.ReviewBoard;
-import com.app.happybox.entity.type.FileRepresent;
+import com.app.happybox.type.FileRepresent;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.app.happybox.entity.board.QRecipeBoard.recipeBoard;
 

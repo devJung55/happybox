@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>유통마켓 상세</title>
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css"/>
+    <link rel="stylesheet" href="/css/market/market-detail.css"/>
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+</head>
+<body>
+<header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+<section class="container">
+    <section>
+        <article class="content item-top">
+            <div class="fixed-img">
+                <div class="img">
+                    <img
+                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg"
+                            alt=""
+                    />
+                </div>
+            </div>
+            <div class="refrig-banner">
+                <a href="">
+                    <img
+                            src="https://www.rankingdak.com/resources/pc/images/img/pc_delivery_banner2.jpg"
+                            alt=""
+                    />
+                </a>
+            </div>
+        </article>
+        <article class="content item-main">
+            <ul class="main-category-list">
+                <li class="list-normal">
+                    <a>
+                        <span>상품설명</span>
+                    </a>
+                </li>
+                <li class="list-normal">
+                    <a>
+                        <span>상품사진</span>
+                    </a>
+                </li>
+                <li class="list-normal">
+                    <a>
+                        <span>판매자정보</span>
+                    </a>
+                </li>
+                <li class="list-normal">
+                    <a>
+                        <span>리뷰댓글</span>
+                    </a>
+                </li>
+            </ul>
+            <section class="item-info-section section-wrap">
+                <h3 class="section-title">상품설명</h3>
+                <div class="tip_box">
+                    <div class="context">
+                        <p class="words">
+                            <strong>중량 안내</strong> <b>・</b>1통(33.6g / 800mg X
+                            42캡슐)으로, 총 14일 분량을 보내드려요.
+                        </p>
+                        <p class="words">
+                            <strong>유의사항</strong> <b>・</b>알레르기 체질이신 경우 성분을
+                            확인한 후 섭취하세요.<br/>
+                            <b>・</b>위장 장애가 발생할 수 있습니다.<br/>
+                            <b>・</b>영·유아, 임산부는 섭취를 삼가시기 바랍니다.<br/>
+                            <b>・</b>식사조절, 운동을 병행하는 것이 체지방 감소에
+                            효과적입니다.<br/>
+                            <b>・</b>고칼슘혈증이 있거나 의약품 복용시 전문가와
+                            상담하세요.<br/>
+                            <b>・</b>이상사례 발생 시 섭취를 중단하고 전문가와 상담하세요.
+                            <br/>
+                            <b>・</b>본 제품은 질병의 예방 및 치료를 위한 의약품이 아닌
+                            건강기능식품입니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="section-wrap">
+                <h3 class="section-title">상품사진</h3>
+                <div class="info-img-thumbnail">
+                    <img
+                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                    />
+                </div>
+                <div class="info-img-container"></div>
+            </section>
+            <section class="section-wrap">
+                <h3 class="section-title">판매자정보</h3>
+                <ul class="supplier-info-list">
+                    <li class="info-category">판매자</li>
+                    <li>김정표</li>
+                </ul>
+                <ul class="supplier-info-list">
+                    <li class="info-category">원산지</li>
+                    <li>충북 단양시</li>
+                </ul>
+            </section>
+            <section class="section-wrap">
+                <h3 class="section-title">리뷰댓글</h3>
+                <div class="review-count-wrap">
+                    <span class="review-count"> 총 <span>0</span>개 </span>
+                    <div class="review-orders">
+                        <button class="fontW700">최신순</button>
+                        <button>추천순</button>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="reply-writer-info">
+                    <span class="user-type">일반</span>
+                    <span class="user-id">kjp1234</span>
+                </div>
+                <div class="write-content-wrap">
+                    <form>
+                                <textarea
+                                        class="write-textarea"
+                                        placeholder="댓글 남기기"
+                                ></textarea
+                                >
+                        <button class="write-regist-btn" type="button" disabled="">
+                            <span class="regist">등록</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="review-list-wrap"></div>
+            </section>
+        </article>
+    </section>
+    <article class="item-info-wrap">
+        <div class="item-info fixed">
+            <h1 class="title-info">
+                <p class="supplier-name">김정표</p>
+                <div class="title-info-wrap">
+                    <div class="item-name-wrap">
+                        <span class="item-name"> [4.22원데이] </span>
+                        <span class="item-name"> 더라인 순면 피그먼트 </span>
+                    </div>
+                    <div class="item-personlize">
+                        <button class="cart-btn">
+                            <img src="/img/welfare/cart.png" alt=""/>
+                        </button>
+                    </div>
+                </div>
+                <div class="rating-div">
+                    <a href="" class="rating-point">
+                        <img src="/img/mypage/rating-pull.png" alt=""/>
+                    </a>
+                    <a href="" class="score"> 4.9점 </a>
+                    <a href="" class="num"> (76,356) </a>
+                </div>
+            </h1>
+            <div class="item-price-wrap">
+                <span class="number">28,800</span>
+                <span>원</span>
+            </div>
+            <!--  -->
+            <div class="detail-info-wrap">
+                <dl class="detail-info">
+                    <dt class="detail-info-category">배송</dt>
+                    <dd>
+                        <p></p>
+                    </dd>
+                </dl>
+                <dl class="detail-info">
+                    <dt class="detail-info-category">판매자</dt>
+                    <dd>
+                        <p>컬리</p>
+                    </dd>
+                </dl>
+                <dl class="detail-info">
+                    <dt class="detail-info-category">판매단위</dt>
+                    <dd>
+                        <p>1통</p>
+                    </dd>
+                </dl>
+                <dl class="detail-info">
+                    <dt class="detail-info-category">원산지</dt>
+                    <dd>
+                        <p>상품설명/상세정보 참조</p>
+                    </dd>
+                </dl>
+                <dl class="detail-info">
+                    <dt class="detail-info-category">안내사항</dt>
+                    <dd>
+                        <p>
+                            2023년 5월 3일 23시 주문 건까지, 유통기한 2023년 11월 7일 상품
+                            출고
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <!--  -->
+            <div class="order-option-wrap">
+                <p>주문수량 선택</p>
+                <div class="quantity">
+                    <button class="minus-btn" type="button">-</button>
+                    <input class="quantity-input" type="text" value="1" />
+                    <button class="plus-btn" type="button">+</button>
+                </div>
+            </div>
+            <p class="order-price">
+                <span class="total">주문금액</span>
+                <span>0<em>원</em></span>
+            </p>
+            <div class="btn-area">
+                <button type="button" class="subscribe-btn">
+                    <span>주문하기</span>
+                </button>
+            </div>
+        </div>
+    </article>
+</section>
+<footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/market/detail.js"></script>
+</html>

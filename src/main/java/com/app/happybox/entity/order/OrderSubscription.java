@@ -1,11 +1,10 @@
 package com.app.happybox.entity.order;
 
 import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.type.SubOption;
-import com.app.happybox.entity.type.SubscriptStatus;
+import com.app.happybox.type.SubOption;
+import com.app.happybox.type.SubscriptStatus;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
-import com.app.happybox.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;

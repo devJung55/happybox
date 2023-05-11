@@ -1,15 +1,11 @@
 package com.app.happybox.entity.board;
 
-import com.app.happybox.entity.file.BoardFile;
-import com.app.happybox.entity.type.DonateType;
+import com.app.happybox.type.DonateType;
 import com.app.happybox.entity.user.Welfare;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * 기본 게시판

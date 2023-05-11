@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .minus-btn,
+        .plus-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #467adc;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 30px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        .plus-btn:hover,
+        .minus-btn:hover {
+            background-color: #3a67a3;
+        }
+    </style>
+    <body>
+        <div class="quantity">
+            <button class="minus-btn" type="button">-</button>
+            <input class="quantity-input" type="text" value="1" />
+            <button class="plus-btn" type="button">+</button>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(".minus-btn").click(function () {
+            let currentValue = parseInt($(".quantity-input").val());
+            if (currentValue > 1) {
+                $(".quantity-input").val(currentValue - 1);
+            }
+        });
+
+        $(".plus-btn").click(function () {
+            let currentValue = parseInt($(".quantity-input").val());
+            $(".quantity-input").val(currentValue + 1);
+        });
+    </script>
+</html>

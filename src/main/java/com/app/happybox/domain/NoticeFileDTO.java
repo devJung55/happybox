@@ -1,6 +1,6 @@
 package com.app.happybox.domain;
 
-import com.app.happybox.entity.type.FileRepresent;
+import com.app.happybox.type.FileRepresent;
 import lombok.Builder;
 import lombok.Data;
 

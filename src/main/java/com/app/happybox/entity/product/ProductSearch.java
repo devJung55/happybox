@@ -1,7 +1,7 @@
 package com.app.happybox.entity.product;
 
-import com.app.happybox.entity.type.ProductCategory;
-import com.app.happybox.entity.type.ProductSearchOrder;
+import com.app.happybox.type.ProductCategory;
+import com.app.happybox.type.ProductSearchOrder;
 import lombok.Data;
 
 @Data
