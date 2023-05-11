@@ -1,5 +1,7 @@
 package com.app.happybox.service.order;
 
+import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.domain.OrderInfoDTO;
 import com.app.happybox.entity.order.MemberOrderProduct;
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import com.app.happybox.entity.order.WelfareOrderProduct;
@@ -7,13 +9,14 @@ import com.app.happybox.entity.order.WelfareOrderProductItem;
 import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductCart;
+import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.exception.NotEnoughStockException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.exception.UserRoleUnsuitableException;
-import com.app.happybox.exception.ProductCartNotFoundException;
+import com.app.happybox.exception.CartNotFoundException;
 import com.app.happybox.repository.order.MemberOrderProductRepository;
 import com.app.happybox.repository.order.WelfareOrderProductRepository;
 import com.app.happybox.repository.payment.PaymentRepository;
@@ -22,6 +25,7 @@ import com.app.happybox.repository.user.UserRepository;
 import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,7 +35,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OrderProductServiceImpl implements OrderProductService {
+@Qualifier("product")
+public class ProductOrderServiceImpl implements ProductOrderService {
     private final ProductCartRepository productCartRepository;
     private final UserRepository userRepository;
     private final MemberOrderProductRepository memberOrderProductRepository;
@@ -41,7 +46,7 @@ public class OrderProductServiceImpl implements OrderProductService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     // 장바구니 id들과 회원 id 받아옴
-    public Long saveProductOrder(List<Long> productCartIds, Long userId) {
+    public Long saveProductOrder(List<Long> productCartIds, Long userId, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO) {
         if(productCartIds.isEmpty()) return -1L;
 
         // 회원 ID로 회원 find
@@ -61,15 +66,14 @@ public class OrderProductServiceImpl implements OrderProductService {
 
         List<ProductCart> productCarts = productCartRepository.findAllByIdsWithDetail_QueryDSL(productCartIds);
 
-
-        if(productCarts.isEmpty()) throw new ProductCartNotFoundException();
+        if(productCarts.isEmpty()) throw new CartNotFoundException();
 
         if (isMember) {
             Member member = (Member) user;
             MemberOrderProduct orderProduct = new MemberOrderProduct(
-                    member.getDeliveryName(),
-                    member.getDeliveryPhoneNumber(),
-                    member.getMemberDeliveryAddress(),
+                    orderInfoDTO.getDeliveryName(),
+                    orderInfoDTO.getDeliveryPhoneNumber(),
+                    new Address(addressDTO.getZipcode(), addressDTO.getFirstAddress(), addressDTO.getAddressDetail()),
                     member
             );
 
@@ -88,9 +92,9 @@ public class OrderProductServiceImpl implements OrderProductService {
         } else {
             Welfare welfare = (Welfare) user;
             WelfareOrderProduct orderProduct = new WelfareOrderProduct(
-                    welfare.getWelfareName(),
-                    welfare.getUserPhoneNumber(),
-                    welfare.getAddress(),
+                    orderInfoDTO.getDeliveryName(),
+                    orderInfoDTO.getDeliveryPhoneNumber(),
+                    new Address(addressDTO.getZipcode(), addressDTO.getFirstAddress(), addressDTO.getAddressDetail()),
                     welfare
             );
 

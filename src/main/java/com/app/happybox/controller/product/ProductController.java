@@ -38,7 +38,7 @@ public class ProductController {
 
     @GetMapping("/search")
     @ResponseBody
-    public Page<ProductDTO> searchProducts(@PageableDefault(size = 9) Pageable pageable, ProductSearch productSearch) {
+    public Page<ProductDTO> searchProducts(@PageableDefault(page = 1, size = 9) Pageable pageable, ProductSearch productSearch) {
         Page<ProductDTO> result = productService.findAllBySearch(
                 PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize())
                 , productSearch
@@ -54,7 +54,7 @@ public class ProductController {
 
     @GetMapping("/detail/reply/{id}")
     @ResponseBody
-    public Slice<ReplyDTO> productReplies(@PageableDefault(size = 5) Pageable pageable, @PathVariable Long id) {
+    public Slice<ReplyDTO> productReplies(@PageableDefault(page = 1,size = 5) Pageable pageable, @PathVariable Long id) {
         return productReplyService.findAllByRefId(
                 PageRequest.of(pageable.getPageNumber() - 1,
                         pageable.getPageSize()), id
