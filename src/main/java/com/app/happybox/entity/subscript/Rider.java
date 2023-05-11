@@ -41,4 +41,8 @@ public class Rider extends Period {
         this.fileOrgName = fileOrgName;
         this.welfare = welfare;
     }
+
+    public void setDeliveryStatus(DeliveryType deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
+    }
 }

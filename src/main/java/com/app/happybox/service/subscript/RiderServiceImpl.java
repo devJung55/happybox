@@ -2,6 +2,7 @@ package com.app.happybox.service.subscript;
 
 import com.app.happybox.entity.subscript.Rider;
 import com.app.happybox.repository.subscript.RiderRepository;
+import com.app.happybox.type.DeliveryType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -24,5 +25,11 @@ public class RiderServiceImpl implements RiderService {
     @Override
     public Page<Rider> getRiderListByWelfareIdWithPaging(Pageable pageable, Long welfareId) {
         return riderRepository.findAllByWelfareIdWithPaging_QueryDSL(pageable, welfareId);
+    }
+
+    @Override
+    public void updateDeliveryStatusById(Long riderId, DeliveryType deliveryStatus) {
+        Rider rider = riderRepository.findById(riderId).get();
+        rider.setDeliveryStatus(deliveryStatus);
     }
 }

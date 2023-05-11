@@ -1,10 +1,10 @@
 package com.app.happybox.repository.subscript;
 
 import com.app.happybox.entity.subscript.Rider;
-import com.app.happybox.service.subscript.RiderService;
-import com.app.happybox.type.FileRepresent;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.repository.user.WelfareRepository;
+import com.app.happybox.service.subscript.RiderService;
+import com.app.happybox.type.DeliveryType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +53,10 @@ public class RiderRepositoryTests {
                     log.info(rider.getRiderName());
                     log.info(rider.getRiderPhoneNumber());
         });
+    }
+
+    @Test
+    public void updateDeliveryStatusById_Test() {
+        riderService.updateDeliveryStatusById(97L, DeliveryType.COMPLETED);
     }
 }
