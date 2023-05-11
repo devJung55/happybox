@@ -1,11 +1,13 @@
 package com.app.happybox.repository.inquiry;
 
+import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.file.InquiryFile;
 import com.app.happybox.type.FileRepresent;
 import com.app.happybox.type.InquiryType;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.service.cs.InquiryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,14 @@ public class InquiryRepositoryTests {
     @Autowired private InquiryRepository inquiryRepository;
     @Autowired private MemberRepository memberRepository;
     @Autowired private InquiryFileRepository inquiryFileRepository;
+    @Autowired private InquiryService inquiryService;
 
     @Test
     public void saveTest() {
         InquiryType[] inquiryTypes = {InquiryType.ORDER, InquiryType.CANCEL, InquiryType.SITE, InquiryType.USE, InquiryType.ETC};
         for (int i = 0; i < 3; i++) {
             Inquiry inquiry = new Inquiry("문의 제목" + (i + 1), "문의 내용" + (i + 1), inquiryTypes[new Random().nextInt(inquiryTypes.length)]);
-            memberRepository.findById(43L).ifPresent(member -> inquiry.setUser((User)member));
+            memberRepository.findById(84L).ifPresent(member -> inquiry.setUser((User)member));
 
             inquiryRepository.save(inquiry);
         }
@@ -37,7 +40,7 @@ public class InquiryRepositoryTests {
 
     @Test
     public void fileSaveTest() {
-        Inquiry inquiry = inquiryRepository.findById(53L).get();
+        Inquiry inquiry = inquiryRepository.findById(91L).get();
 
         InquiryFile inquiryFile1 = new InquiryFile("2023/05/09", UUID.randomUUID().toString(), "문의사항1.png", FileRepresent.REPRESENT);
         InquiryFile inquiryFile2 = new InquiryFile("2023/05/09", UUID.randomUUID().toString(), "문의사항2.png", FileRepresent.ORDINARY);
@@ -57,11 +60,7 @@ public class InquiryRepositoryTests {
     @Test
     public void findInquiryListByMemberIdWithPaging_QueryDSLTest() {
         inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(
-                PageRequest.of(0, 5), 1L).stream().forEach(v -> {
-                    log.info(v.getInquiryTitle());
-                    log.info(v.getInquiryContent());
-                    log.info(v.getInquiryFiles().toString());
-        });
+                PageRequest.of(0, 5), 84L).stream().map(Inquiry::toString).forEach(log::info);
     }
 
     @Test
@@ -77,5 +76,11 @@ public class InquiryRepositoryTests {
                     log.info(inquiry.getInquiryTitle());
                     log.info(inquiry.getInquiryFiles().toString());
         });
+    }
+
+    @Test
+    public void getInquiryListByIdTest() {
+        PageRequest page = PageRequest.of(0, 5);
+        inquiryService.getInquiryListById(page, 84L).stream().map(InquiryDTO::toString).forEach(log::info);
     }
 }

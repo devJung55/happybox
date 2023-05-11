@@ -2,14 +2,12 @@ package com.app.happybox.controller.product;
 
 import com.app.happybox.entity.product.ProductDTO;
 import com.app.happybox.entity.product.ProductSearch;
-import com.app.happybox.entity.reply.ProductReplyDTO;
 import com.app.happybox.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,5 +43,5 @@ public class ProductController {
 
 //    @GetMapping("/detail/reply/{id}")
 //    @ResponseBody
-    public Slice<ProductReplyDTO>
+//    public Slice<ProductReplyDTO>
 }

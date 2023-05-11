@@ -66,7 +66,9 @@ class OrderSubscriptionRepositoryTests {
 
     @Test
     public void findSubscriberListByWelfareIdDescWithPaging_QueryDSL_Test() {
-        orderSubscriptionRepository.findSubscriberListByWelfareIdDescWithPaging_QueryDSL(PageRequest.of(0, 1), 26L)
+        String name = "강민";
+
+        orderSubscriptionRepository.findSubscriberListByWelfareIdDescWithPaging_QueryDSL(PageRequest.of(0, 1), 26L, name)
                 .stream().map(orderSubscription -> orderSubscription.getMember().toString()).forEach(log::info);
     }
 
