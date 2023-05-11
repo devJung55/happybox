@@ -1,6 +1,7 @@
 package com.app.happybox.controller.cs;
 
 import com.app.happybox.domain.NoticeDTO;
+import com.app.happybox.domain.PageDTO;
 import com.app.happybox.entity.customer.NoticeSearch;
 import com.app.happybox.service.cs.NoticeService;
 import lombok.RequiredArgsConstructor;
@@ -20,22 +21,26 @@ public class CsController {
     @Qualifier("notice")
     private final NoticeService noticeService;
 
-//    공지사항 리스트 및 검색조건
-    @GetMapping("/list")
-    @ResponseBody
-    public Page<NoticeDTO> getNoticeList(@RequestParam(value = "page", required = false) int page, @RequestParam(value = "type", required = false) String type, @RequestParam(value = "search", required = false) String search) {
+    //    공지사항 리스트 및 검색조건
+    @GetMapping("notice-list")
+    public String getNoticeList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @RequestParam(value = "srchType", required = false) String srchType, @RequestParam(value = "keyword", required = false) String keyword, Model model) {
         NoticeSearch noticeSearch = new NoticeSearch();
-        if(type != null) {
-            switch(type){
-                case "title" : noticeSearch.setNoticeTitle(search);
+        if(srchType != null) {
+            switch(srchType){
+                case "제목" : noticeSearch.setNoticeTitle(keyword);
                     break;
-                case "content" : noticeSearch.setNoticeContent(search);
+                case "내용" : noticeSearch.setNoticeContent(keyword);
+                    break;
+                case "전체" : noticeSearch.setNoticeWhole(keyword);
                     break;
             }
         }
-        log.info(noticeSearch.toString());
-        PageRequest getPage = PageRequest.of(page - 1, 5);
-        return noticeService.getNoticeList(getPage, noticeSearch);
+        PageRequest getPage = PageRequest.of(page - 1, 10);
+        Page<NoticeDTO> lists = noticeService.getNoticeList(getPage, noticeSearch);
+        model.addAttribute("pageDTO", new PageDTO(lists));
+        model.addAttribute("lists", lists.getContent());
+
+        return "/CS/notice";
     }
 
 //    공지사항 상세페이지로 이동

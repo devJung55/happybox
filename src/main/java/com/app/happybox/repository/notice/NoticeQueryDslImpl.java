@@ -24,15 +24,16 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
     public Page<Notice> findNoticeListWithPaging_QueryDSL(Pageable pageable, NoticeSearch noticeSearch) {
         BooleanExpression noticeTitleContains = noticeSearch.getNoticeTitle() == null ? null : notice.noticeTitle.contains(noticeSearch.getNoticeTitle());
         BooleanExpression noticeContentContains = noticeSearch.getNoticeContent() == null ? null : notice.noticeContent.contains(noticeSearch.getNoticeContent());
+        BooleanExpression noticeWholeContains = noticeSearch.getNoticeWhole() == null ? null : notice.noticeTitle.contains(noticeSearch.getNoticeWhole()).or(notice.noticeContent.contains(noticeSearch.getNoticeWhole()));
 
         List<Notice> noticePage = query.select(notice)
                 .from(notice)
-                .where(noticeTitleContains, noticeContentContains)
+                .where(noticeTitleContains, noticeContentContains, noticeWholeContains)
                 .orderBy(notice.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
-        Long count = query.select(notice.count()).from(notice).fetchOne();
+        Long count = query.select(notice.count()).from(notice).where(noticeTitleContains, noticeContentContains, noticeWholeContains).fetchOne();
 
         return new PageImpl<>(noticePage, pageable, count);
     }
