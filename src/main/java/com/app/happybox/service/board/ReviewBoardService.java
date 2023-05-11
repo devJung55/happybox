@@ -33,7 +33,7 @@ public interface ReviewBoardService {
                 .reviewBoardTitle(reviewBoard.getBoardTitle())
                 .reviewBoardContent(reviewBoard.getBoardContent())
                 .reviewRating(reviewBoard.getReviewRating())
-                .reviewBoardRegisterDate(reviewBoard.getUpdatedDate())
+                .reviewBoardRegisterDate(reviewBoard.getUpdatedDate().toLocalDate())
                 .reviewLikeCount(reviewBoard.getReviewLikeCount().longValue())
                 .boardFiles(reviewBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();

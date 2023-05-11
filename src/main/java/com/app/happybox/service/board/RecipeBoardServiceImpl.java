@@ -36,13 +36,11 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     }
 
     @Override
-    public Page<RecipeBoardDTO> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-        return null;
-    }
+    public Page<RecipeBoardDTO> getListByMemberId(Pageable pageable, Long memberId) {
+        Page<RecipeBoard> recipeBoardList = recipeBoardRepository.findRecipeBoardListByMemberIdWithPaging_QueryDSL(pageable, memberId);
+        List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::myPageRecipeBoardToDTO).collect(Collectors.toList());
 
-    @Override
-    public Page<RecipeBoard> findRecipeBoardListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-        return null;
+        return new PageImpl<>(recipeBoardDTOList, pageable, recipeBoardList.getTotalElements());
     }
 
     @Override
@@ -56,12 +54,16 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     }
 
     @Override
-    public Long findRecipeBoardCountByIdMemberId_QueryDSL(Long memberId) {
-        return null;
+    public Long getCountByMemberId(Long memberId) {
+        Long count = recipeBoardRepository.findRecipeBoardCountByIdMemberId_QueryDSL(memberId);
+        return count;
     }
 
     @Override
-    public Page<RecipeBoard> findRecipeBoardListDescWithPaging_QueryDSL(Pageable pageable) {
-        return null;
+    public Page<RecipeBoardDTO> getList(Pageable pageable) {
+        Page<RecipeBoard> recipeBoardList = recipeBoardRepository.findRecipeBoardListDescWithPaging_QueryDSL(pageable);
+        List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::myPageRecipeBoardToDTO).collect(Collectors.toList());
+
+        return new PageImpl<>(recipeBoardDTOList, pageable, recipeBoardList.getTotalElements());
     }
 }

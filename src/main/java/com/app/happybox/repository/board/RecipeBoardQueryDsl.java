@@ -19,7 +19,7 @@ public interface RecipeBoardQueryDsl {
     //    마이페이지 목록
     public Page<RecipeBoard> findRecipeBoardListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId);
 
-    //    댓글 수
+    //    댓글 목록
     public List<RecipeBoard> findRecipeBoardReplyCountByMemberId_QueryDSL(Long memberId);
 
     //    레시피 추천순 Top5
