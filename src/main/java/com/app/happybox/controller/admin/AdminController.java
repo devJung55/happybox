@@ -1,26 +1,25 @@
-package com.app.happybox.controller.mypage;
+package com.app.happybox.controller.admin;
 
 import com.app.happybox.service.board.RecipeBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/mypage/*")
+@RequestMapping("/admin/*")
 @RequiredArgsConstructor
 @Slf4j
-public class MypageController {
+public class AdminController {
     private final RecipeBoardService recipeBoardService;
 
-//    나의 게시물 조회(레시피)
-    @GetMapping("member/recipe-board")
-    public String getUserRecipeBoardList(Pageable pageable, Long memberId, Model model) {
-        model.addAttribute("recipeBoards", recipeBoardService.getListByMemberId(PageRequest.of(0, 5), 1L));
-        return "/mypage/member/board";
+//    레시피 게시물 목록
+    @GetMapping("recipeBoard-list")
+    public String getRecipeBoardList(Model model) {
+        model.addAttribute("recipeBoards", recipeBoardService.getList(PageRequest.of(0, 5)));
+        return "/admin/admin-recipeBoardList";
     }
 }
