@@ -45,7 +45,6 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
                 .from(recipeBoard)
                 .join(recipeBoard.member).fetchJoin()
                 .join(recipeBoard.boardFiles).fetchJoin()
-//                .join(recipeBoard.recipeBoardReplies).fetchJoin()
                 .where(recipeBoard.member.id.eq(memberId))
                 .orderBy(recipeBoard.id.desc())
                 .offset(pageable.getOffset())
@@ -57,7 +56,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         return new PageImpl<>(recipeBoardList, pageable, count);
     }
 
-    //    댓글 수
+    //    댓글 목록
     @Override
     public List<RecipeBoard> findRecipeBoardReplyCountByMemberId_QueryDSL(Long memberId) {
         List<RecipeBoard> recipeBoardList = query.select(recipeBoard)

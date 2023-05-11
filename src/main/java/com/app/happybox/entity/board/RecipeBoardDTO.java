@@ -17,6 +17,7 @@ public class RecipeBoardDTO {
 
     /*-- 회원 정보 --*/
     private String memberName;
+    private Long memberId;
 
     /*-- 레시피 게시물 정보*/
     private String recipeBoardTitle;
@@ -39,6 +40,20 @@ public class RecipeBoardDTO {
     public RecipeBoardDTO(Long id, String memberName, String recipeBoardTitle, String recipeBoardContent, LocalDateTime recipeBoardRegisterDate, Integer likeCount, Integer replyCount, List<BoardFileDTO> boardFiles, List<ReplyDTO> replies) {
         this.id = id;
         this.memberName = memberName;
+        this.recipeBoardTitle = recipeBoardTitle;
+        this.recipeBoardContent = recipeBoardContent;
+        this.recipeBoardRegisterDate = recipeBoardRegisterDate;
+        this.likeCount = likeCount;
+        this.replyCount = replyCount;
+        this.boardFiles = boardFiles;
+        this.replies = replies;
+    }
+
+    @Builder
+    public RecipeBoardDTO(Long id, String memberName, Long memberId, String recipeBoardTitle, String recipeBoardContent, LocalDateTime recipeBoardRegisterDate, Integer likeCount, Integer replyCount, List<BoardFileDTO> boardFiles, List<ReplyDTO> replies) {
+        this.id = id;
+        this.memberName = memberName;
+        this.memberId = memberId;
         this.recipeBoardTitle = recipeBoardTitle;
         this.recipeBoardContent = recipeBoardContent;
         this.recipeBoardRegisterDate = recipeBoardRegisterDate;
