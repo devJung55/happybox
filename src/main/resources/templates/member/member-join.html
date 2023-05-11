@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>일반회원 회원가입</title>
     <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="/css/global/global.css" />
-    <link rel="stylesheet" href="/css/member/member.css" />
-    <link rel="stylesheet" href="/css/member/join.css" />
+    <link rel="stylesheet" href="../../static/css/global/global.css" />
+    <link rel="stylesheet" href="../../static/css/member/member.css" />
+    <link rel="stylesheet" href="../../static/css/member/join.css" />
   </head>
   <body>
     <header></header>
@@ -906,7 +906,7 @@
                   <input
                     type="password"
                     id="member-join-general-pw-text"
-                    name="memberPassword"
+                    name="userPassword"
                     class="input-text w571 join-input"
                     placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
                     th:field="*{userPassword}"
@@ -921,7 +921,7 @@
                   <input
                     type="password"
                     id="member-join-general-pw-confirm-text"
-                    name="memberPassword"
+                    name="userPassword"
                     class="input-text w571 join-input"
                     placeholder="비밀번호 확인"
                   />
@@ -964,7 +964,7 @@
                     name="memberPhoneNumber"
                     class="input-text w571"
                     placeholder="휴대폰 번호"
-                    th:field="*{memberPhoneNumber}"
+                    th:field="*{userPhoneNumber}"
                     readonly
                   />
                 </div>
@@ -982,10 +982,32 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="member-general-join-address-text"
+                    name="memberAddress"
                     class="input-text w571"
                     placeholder="주소"
                     readonly
+                    th:field="*{userAddress.firstAddress}"
+                  />
+                </div>
+                <p class="valid error" id="pw-error-text1" style="display: none">
+                </p>
+              </div>
+              <div class="form-group">
+                <div class="form-head">
+                  <label for="" class="form-label"
+                    >우편번호<i class="es2"></i
+                      ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <input
+                    type="text"
+                    id="zone-code"
+                    name="memberAddress"
+                    class="input-text w571"
+                    placeholder="우편번호"
+                    readonly
+                    th:field="*{userAddress.zipcode}"
                   />
                 </div>
                 <p class="valid error" id="pw-error-text1" style="display: none">
@@ -1002,10 +1024,11 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="member-general-join-detail-address-text"
+                    name="userAddress"
                     class="input-text w571"
                     placeholder="상세주소"
                     value=""
+                    th:field="*{userAddress.addressDetail}"
                   />
                 </div>
                 <p class="valid error" id="pw-error-text1" style="display: none">
@@ -1022,10 +1045,11 @@
                   <input
                     type="text"
                     id="member-join-general-email-text"
-                    name="member-join-general-email-text"
+                    name="userEmail"
                     class="input-text w571 join-input"
                     placeholder="이메일 주소"
                     value=""
+                    th:field="*{userEmail}"
                   />
                   <p class="valid error help" id="pw-error-text1" style="display: none">
                   </p>
@@ -1043,10 +1067,11 @@
                   <input
                     type="text"
                     id="member-join-general-birthday-text"
-                    name="member-join-general-birthday-text"
+                    name="memberBirth"
                     class="input-text w571 join-input"
                     placeholder="생년월일 8자리"
                     value=""
+                    th:field="*{memberBirth}"
                   />
                   <p class="valid error help" id="pw-error-text1" style="display: none">
                   </p>
@@ -1064,7 +1089,7 @@
                         type="radio"
                         id="member-join-general-gender-N"
                         class="radio"
-                        name="member-join-general-gender"
+                        name="memberGender"
                         value="male"
                         checked
                       /><label for="member-join-general-gender-N">선택안함</label>
@@ -1076,7 +1101,7 @@
                         type="radio"
                         id="member-join-general-gender-M"
                         class="radio"
-                        name="member-join-general-gender"
+                        name="memberGender"
                         value="male"
                       /><label for="member-join-general-gender-M">남자</label>
                     </div>
@@ -1087,7 +1112,7 @@
                         type="radio"
                         id="member-join-general-gender-F"
                         class="radio"
-                        name="member-join-general-gender"
+                        name="memberGender"
                         value="female"
                       /><label for="member-join-general-gender-F">여자</label>
                     </div>
@@ -1277,5 +1302,5 @@
   </body>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="/js/join/join.js"></script>
+  <script src="../../static/js/join/join.js"></script>
 </html>
