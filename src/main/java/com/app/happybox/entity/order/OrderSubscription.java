@@ -37,8 +37,8 @@ public class OrderSubscription extends Order {
     @NotNull
     private SubscriptStatus subscriptStatus;
 
-    public OrderSubscription(Address orderAddress, Subscription subscription, Member member) {
-        super(orderAddress);
+    public OrderSubscription(String receiverName, String receiverPhoneNumber, Address orderAddress, Subscription subscription, Member member) {
+        super(receiverName, receiverPhoneNumber, orderAddress);
         this.subscription = subscription;
         this.member = member;
     }
