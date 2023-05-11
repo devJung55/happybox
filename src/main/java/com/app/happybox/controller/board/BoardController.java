@@ -16,6 +16,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,8 +37,18 @@ public class BoardController {
 
     @GetMapping("review-board-list")
     public String goReviewList(Model model){
-        model.addAttribute("recent", reviewBoardService.getReviewBoards(PageRequest.of(0, 10)));
+        model.addAttribute("list", reviewBoardService.getReviewBoards(PageRequest.of(0, 10)));
         return "user-board/review-board-list";
+    }
+
+    @GetMapping("review-board-insert")
+    public String goReviewWrite(){
+        return "user-board/review-board-insert";
+    }
+
+    @PostMapping("review-board-insert")
+    public void write(ReviewBoard reviewBoard){
+        reviewBoardService.write(reviewBoard);
     }
 
 //    리뷰 게시판 리스트(최신순)

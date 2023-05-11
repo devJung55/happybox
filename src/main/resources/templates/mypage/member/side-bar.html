@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
 </head>
 <body>
-    <div class="frame-left">
+    <div th:fragment="side-bar" class="frame-left">
         <div class="aside-menu-wrap">
             <nav class="aside-menu">
                 <ul class="menu-list">

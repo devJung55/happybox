@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -32,7 +33,42 @@ public class memberController {
         memberService.join(memberDTO,passwordEncoder);
         return new RedirectView("/member/login");
     }
+
+//    logIn폼으로 이동
     @GetMapping("login")
     public void goToLoginForm(){;}
+
+//    아이디 중복 검사
+    @PostMapping("checkId")
+    @ResponseBody
+    public String checkId(String userId){
+        if (memberService.existsByUserId(userId)){
+            return "success";
+        }else {
+            return "false";
+        }
+    }
+
+//    휴대폰 중복 검사
+    @PostMapping("checkPhoneNumber")
+    @ResponseBody
+    public String checkPhoneNumber(String userPhoneNumber){
+        if (memberService.existsByUserPhoneNumber(userPhoneNumber)){
+            return "success";
+        }else {
+            return "false";
+        }
+    }
+
+//    이메일 중복검사
+    @PostMapping("checkEmail")
+    @ResponseBody
+    public String checkEmail(String userEmail){
+        if (memberService.existsByUserEmail(userEmail)){
+            return "success";
+        }else {
+            return "false";
+        }
+    }
 
 }

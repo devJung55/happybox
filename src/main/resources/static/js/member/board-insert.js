@@ -1,15 +1,20 @@
 /* recipe-board-insert.html */
 
-
 $(function() {
     $(".rating-point img").each(function(index) {
       $(this).on("click", function() {
-        $(".rating-point img").attr("src", "../../static/img/mypage/rating.png");
-        $(this).prevAll().addBack().attr("src", "../../static/img/mypage/rating-pull.png");
+        $(".rating-point img").attr("src", "/img/mypage/rating.png");
+        $(this).prevAll().addBack().attr("src", "/img/mypage/rating-pull.png");
+
+          var pullCount = $(".rating-point img[src='/img/mypage/rating-pull.png']").length;
+          console.log("rating-pull.png 개수: " + pullCount);
       });
     });
   });
 
+function send() {
+
+}
 
 /* 파일 등록 */
 const $fileAttachBtn = $(".btn-attach-thumb");
