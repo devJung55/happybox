@@ -13,8 +13,8 @@ import org.springframework.data.domain.Pageable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.app.happybox.entity.subscript.QFood.food;
 import static com.app.happybox.entity.subscript.QSubscription.subscription;
+
 
 @RequiredArgsConstructor
 public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {

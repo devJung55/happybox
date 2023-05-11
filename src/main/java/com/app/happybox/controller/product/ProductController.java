@@ -61,9 +61,9 @@ public class ProductController {
         );
     }
 
-    @PostMapping("/cart")
+    @PostMapping("/cart/add/{productId}")
     @ResponseBody
-    public Long registerCart(ProductCartDTO productCartDTO, Long productId) {
+    public Long registerCart(@RequestBody ProductCartDTO productCartDTO, @PathVariable Long productId) {
         // 임시로 회원아이디 1L 넣어둠, 추후 변경
         return productCartService.saveCart(productCartDTO, 1L, productId);
     }

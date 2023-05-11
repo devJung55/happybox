@@ -15,6 +15,7 @@ import java.util.Optional;
 
 import static com.app.happybox.entity.customer.QNotice.notice;
 
+
 @RequiredArgsConstructor
 public class NoticeQueryDslImpl implements NoticeQueryDsl {
     private final JPAQueryFactory query;

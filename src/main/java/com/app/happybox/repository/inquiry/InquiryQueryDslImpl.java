@@ -1,8 +1,7 @@
 package com.app.happybox.repository.inquiry;
 
 import com.app.happybox.entity.customer.Inquiry;
-import com.app.happybox.entity.user.Member;
-import com.app.happybox.entity.user.User;
+import com.app.happybox.entity.customer.QInquiry;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.customer.QInquiry.inquiry;
+
 
 @RequiredArgsConstructor
 public class InquiryQueryDslImpl implements InquiryQueryDsl {

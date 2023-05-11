@@ -101,11 +101,11 @@ public class SecurityConfig {
 
         http
                 .authorizeRequests()
-//                  마이페이지 권한 설정
-//                    .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-//                    .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-//                    .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
-//                    .antMatchers(MYPAGE_PATH).authenticated()
+//                마이페이지 권한 설정
+//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
+//                .antMatchers(MYPAGE_PATH).authenticated()
 
 
 //                  작성페이지 권한 설정

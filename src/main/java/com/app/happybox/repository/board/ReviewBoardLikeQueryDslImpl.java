@@ -1,15 +1,13 @@
 package com.app.happybox.repository.board;
 
-import com.app.happybox.entity.board.QReviewBoard;
-import com.app.happybox.entity.board.QReviewBoardLike;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
-import static com.app.happybox.entity.board.QReviewBoard.*;
-import static com.app.happybox.entity.board.QReviewBoardLike.*;
+import static com.app.happybox.entity.board.QReviewBoardLike.reviewBoardLike;
+
 
 @RequiredArgsConstructor
 public class ReviewBoardLikeQueryDslImpl implements ReviewBoardLikeQueryDsl {

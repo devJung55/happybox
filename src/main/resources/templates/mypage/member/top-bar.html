@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
 </head>
 <body>
-    <div class="frame-full head-mypage">
+    <div th:fragment="top-bar" class="frame-full head-mypage">
         <div class="user-info-box">
             <div class="inner">
                 <div class="column user-info">
@@ -17,9 +17,9 @@
                         <input type="file" id="profile__label" style="display: none;">
                         <span class="img">
                             <!-- <i class="ico-cou-level01"></i> -->
-                            <img class="user__profile__img" src="../../../static/img/mypage/user__profile.jpg">
+                            <img class="user__profile__img" src="/img/mypage/user__profile.jpg">
                             <span class="img__editor__wrap">
-                                <img class="img__editor" src="../../../static/img/mypage/img_editor.webp">
+                                <img class="img__editor" src="/yimg/mypage/img_editor.webp">
                             </span>
                         </span>
                     </label>

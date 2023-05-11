@@ -12,12 +12,13 @@ import com.app.happybox.entity.user.User;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.exception.NotEnoughStockException;
 import com.app.happybox.exception.UserNotFoundException;
+import com.app.happybox.exception.UserRoleUnsuitableException;
+import com.app.happybox.exception.ProductCartNotFoundException;
 import com.app.happybox.repository.order.MemberOrderProductRepository;
 import com.app.happybox.repository.order.WelfareOrderProductRepository;
 import com.app.happybox.repository.payment.PaymentRepository;
 import com.app.happybox.repository.product.ProductCartRepository;
 import com.app.happybox.repository.user.UserRepository;
-import com.app.happybox.type.ErrorCode;
 import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +42,8 @@ public class OrderProductServiceImpl implements OrderProductService {
     @Transactional(rollbackOn = Exception.class)
     // 장바구니 id들과 회원 id 받아옴
     public Long saveProductOrder(List<Long> productCartIds, Long userId) {
+        if(productCartIds.isEmpty()) return -1L;
+
         // 회원 ID로 회원 find
         User user = userRepository.findById(userId).orElseThrow(() -> {
             throw new UserNotFoundException(); // 회원 조회 실패 시 예외 발생
@@ -54,9 +57,12 @@ public class OrderProductServiceImpl implements OrderProductService {
         boolean isWelfare = user.getUserRole().equals(Role.WELFARE);
 
         // 알맞은 회원 타입이 아닐 경우 예외 발생
-        if (!isMember && !isWelfare) throw new IllegalArgumentException(ErrorCode.AUTHENTICATION_FAILED.name());
+        if (!isMember && !isWelfare) throw new UserRoleUnsuitableException();
 
         List<ProductCart> productCarts = productCartRepository.findAllByIdsWithDetail_QueryDSL(productCartIds);
+
+
+        if(productCarts.isEmpty()) throw new ProductCartNotFoundException();
 
         if (isMember) {
             Member member = (Member) user;
@@ -76,7 +82,6 @@ public class OrderProductServiceImpl implements OrderProductService {
             // 주문 저장
             memberOrderProductRepository.save(orderProduct);
 
-            // 결제내역 저장
             paymentAmount = items.stream().mapToLong(item -> item.getProduct().getProductPrice() * item.getOrderAmount()).sum();
             payment = new Payment(paymentAmount, member, orderProduct);
 
@@ -98,12 +103,14 @@ public class OrderProductServiceImpl implements OrderProductService {
             // 주문 저장
             welfareOrderProductRepository.save(orderProduct);
 
-            // 결제내역 저장
             paymentAmount = items.stream().mapToLong(item -> item.getProduct().getProductPrice() * item.getOrderAmount()).sum();
             payment = new Payment(paymentAmount, welfare, orderProduct);
         }
         // 장바구니 내역 삭제
         productCartRepository.deleteAllById(productCartIds);
+
+        // 결제내역 저장
+        paymentRepository.save(payment);
 
         return payment.getPaymentAmount();
     }

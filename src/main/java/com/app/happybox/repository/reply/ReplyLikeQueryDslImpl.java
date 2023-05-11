@@ -1,6 +1,5 @@
 package com.app.happybox.repository.reply;
 
-import com.app.happybox.entity.reply.QReplyLike;
 import com.app.happybox.entity.reply.Reply;
 import com.app.happybox.entity.reply.ReplyLike;
 import com.app.happybox.entity.subscript.Subscription;

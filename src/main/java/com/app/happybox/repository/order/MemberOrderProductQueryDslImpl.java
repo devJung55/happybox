@@ -1,10 +1,12 @@
 package com.app.happybox.repository.order;
 
+import com.app.happybox.entity.order.QMemberOrderProduct;
 import com.app.happybox.type.PurchaseStatus;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import static com.app.happybox.entity.order.QMemberOrderProduct.memberOrderProduct;
+
 
 @RequiredArgsConstructor
 public class MemberOrderProductQueryDslImpl implements MemberOrderProductQueryDsl {
