@@ -35,7 +35,7 @@ public class ReviewBoardDTO {
     private Long reviewLikeCount;
 
     /*-- 댓글 수 --*/
-    private Long reviewReplyCount;
+    private Long reviewBoardReplyCount;
 
     /*-- 파일 리스트 --*/
     List<BoardFileDTO> boardFiles;
@@ -44,7 +44,7 @@ public class ReviewBoardDTO {
     List<ReplyDTO> replies;
 
     @Builder
-    public ReviewBoardDTO(Long id, String memberName, String welfareName, String reviewBoardTitle, String reviewBoardContent, LocalDate reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewReplyCount, List<BoardFileDTO> boardFiles) {
+    public ReviewBoardDTO(Long id, String memberName, String welfareName, String reviewBoardTitle, String reviewBoardContent, LocalDate reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewBoardReplyCount, List<BoardFileDTO> boardFiles) {
         this.id = id;
         this.memberName = memberName;
         this.welfareName = welfareName;
@@ -53,7 +53,7 @@ public class ReviewBoardDTO {
         this.reviewBoardRegisterDate = reviewBoardRegisterDate;
         this.reviewRating = reviewRating;
         this.reviewLikeCount = reviewLikeCount;
-        this.reviewReplyCount = reviewReplyCount;
+        this.reviewBoardReplyCount = reviewBoardReplyCount;
         this.boardFiles = boardFiles;
     }
 

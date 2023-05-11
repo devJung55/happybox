@@ -55,7 +55,7 @@
                   <a class="on">최신순</a>
                   <a class="">인기순</a>
                 </div>
-                <article th:each="reviewDTO : ${recent}" class="board-item-wrap">
+                <article th:each="reviewDTO : ${list}" class="board-item-wrap">
                   <div class="profile-area">
                     <a href="javascript:void(0)"
                       ><div class="profile-wrap">
@@ -129,7 +129,7 @@
                             transform="matrix(-1 0 0 1 18 0)"
                             d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"
                           ></path></svg
-                        ><span th:text="${reviewDTO.reviewReplyCount}" class="reply-count"></span>
+                        ><span th:text="${reviewDTO.reviewBoardReplyCount}" class="reply-count"></span>
                       </div>
                     </div></a
                   >
