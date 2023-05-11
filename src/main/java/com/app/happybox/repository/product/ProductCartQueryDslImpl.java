@@ -1,6 +1,7 @@
 package com.app.happybox.repository.product;
 
 import com.app.happybox.entity.product.ProductCart;
+import com.app.happybox.entity.product.QProductCart;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 

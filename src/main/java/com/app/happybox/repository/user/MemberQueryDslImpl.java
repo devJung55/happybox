@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import static com.app.happybox.entity.user.QMember.member;
 
+
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
     private final JPAQueryFactory query;
@@ -35,9 +36,9 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     /* member Login */
     @Override
     public Optional<Member> logIn(String memberId, String memberPassword) {
-        return Optional.ofNullable(query.select(QMember.member)
-                .from(QMember.member)
-                .where(QMember.member.userId.eq(memberId).and(QMember.member.userPassword.eq(memberPassword)))
+        return Optional.ofNullable(query.select(member)
+                .from(member)
+                .where(member.userId.eq(memberId).and(member.userPassword.eq(memberPassword)))
                 .fetchOne());
     }
 
@@ -64,7 +65,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     //    마이페이지 배송지정보
     @Override
     public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId) {
-        return Optional.ofNullable(query.select(QMember.member).from(QMember.member).where(QMember.member.eq(member)).fetchOne());
+        return Optional.ofNullable(query.select(member).from(member).where(member.eq(member)).fetchOne());
     }
 
     @Override

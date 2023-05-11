@@ -14,7 +14,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.app.happybox.entity.board.QRecipeBoardLike.recipeBoardLike;
-import static com.app.happybox.entity.board.QReviewBoardLike.reviewBoardLike;
+
 
 @RequiredArgsConstructor
 public class RecipeBoardLikeQueryDslImpl implements RecipeBoardLikeQueryDsl {

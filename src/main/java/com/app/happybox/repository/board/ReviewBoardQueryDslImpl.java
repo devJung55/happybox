@@ -1,5 +1,6 @@
 package com.app.happybox.repository.board;
 
+import com.app.happybox.entity.board.QReviewBoard;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
+
 
 @RequiredArgsConstructor
 public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
