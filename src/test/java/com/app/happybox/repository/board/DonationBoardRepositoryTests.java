@@ -45,7 +45,7 @@ public class DonationBoardRepositoryTests {
 
     @Test
     public void findAllWithPagingTest(){
-        donationBoardRepository.findAllWithPaging(PageRequest.of(0, 9)
+        donationBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 9)
         ).stream().map(DonationBoard::toString).forEach(log::info);
     }
 
@@ -62,7 +62,7 @@ public class DonationBoardRepositoryTests {
 
     @Test
     public void findAllWithPaging_QueryDSL_Test() {
-        donationBoardRepository.findAllWithPaging(PageRequest.of(0, 5))
+        donationBoardRepository.findAllWithPaging_QueryDSL(PageRequest.of(0, 5))
                 .stream().map(Board::getBoardContent).forEach(log::info);
     }
 }
