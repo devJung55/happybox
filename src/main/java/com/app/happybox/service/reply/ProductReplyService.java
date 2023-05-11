@@ -1,5 +1,6 @@
-package com.app.happybox.entity.reply;
+package com.app.happybox.service.reply;
 
+import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.repository.reply.ProductReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
