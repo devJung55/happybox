@@ -18,7 +18,7 @@ function addNotice() {
                     <span>${list.id}</span>
                 </div>
                 <div class="text-left flex1">
-                    <a href="javascript:void(0)" class="title-elps">
+                    <a href="/cs/notice-detail/${list.id}" class="title-elps">
                         ${list.noticeTitle}
                     </a>
                 </div>
