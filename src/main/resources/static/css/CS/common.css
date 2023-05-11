@@ -488,3 +488,19 @@ html {
     bottom: 4px;
     right: 0;
 }
+
+/* 상세 페이지 이미지 */
+
+.img-area {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    max-width: 860px;
+    margin-top: 60px;
+}
+
+.img-area img {
+    margin-top: 10px;
+    width: 600px;
+    height: 600px;
+}

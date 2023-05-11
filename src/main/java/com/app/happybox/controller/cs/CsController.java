@@ -46,7 +46,7 @@ public class CsController {
 //    공지사항 상세페이지로 이동
     @GetMapping("notice-detail/{id}")
     public String goToNoticeDetail(@PathVariable Long id, Model model){
-        model.addAttribute("detail", noticeService.getNoticeWithId(id));
+        model.addAttribute("noticeDetail", noticeService.getNoticeWithId(id));
 
         return "/CS/notice-detail";
     }
