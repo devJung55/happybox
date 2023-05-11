@@ -1,5 +1,8 @@
 package com.app.happybox.type;
 
+import lombok.Getter;
+
+@Getter
 public enum ErrorCode {
     /* ===== AUTH ===== */
     LOGIN_FAILED("AUTH_001", "LOGIN_FAILED.", 401),

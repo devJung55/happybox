@@ -14,12 +14,12 @@ import java.util.List;
 public class DonationBoardDTO {
     private Long id;
 
-//    연관된 Entity의 DTO(Welfare)
+    //    연관된 Entity의 DTO(Welfare)
     private String welfareName;
     private String welfarePhone;
     private Integer welfarePoint;
 
-//    DonationBoard 기본 컬럼
+    //    DonationBoard 기본 컬럼
     private String boardTitle;
     private String boardContent;
 

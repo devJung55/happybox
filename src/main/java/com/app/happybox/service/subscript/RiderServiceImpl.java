@@ -17,6 +17,11 @@ public class RiderServiceImpl implements RiderService {
     private final RiderRepository riderRepository;
 
     @Override
+    public void registerRiderByWelfareId(Rider rider) {
+        riderRepository.save(rider);
+    }
+
+    @Override
     public Page<Rider> getRiderListByWelfareIdWithPaging(Pageable pageable, Long welfareId) {
         return riderRepository.findAllByWelfareIdWithPaging_QueryDSL(pageable, welfareId);
     }

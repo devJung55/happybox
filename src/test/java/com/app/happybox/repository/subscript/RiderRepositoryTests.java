@@ -1,6 +1,7 @@
 package com.app.happybox.repository.subscript;
 
 import com.app.happybox.entity.subscript.Rider;
+import com.app.happybox.service.subscript.RiderService;
 import com.app.happybox.type.FileRepresent;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.repository.user.WelfareRepository;
@@ -20,6 +21,7 @@ import java.util.UUID;
 public class RiderRepositoryTests {
     @Autowired private RiderRepository riderRepository;
     @Autowired private WelfareRepository welfareRepository;
+    @Autowired private RiderService riderService;
 
     @Test
     public void saveTest() {
@@ -28,6 +30,16 @@ public class RiderRepositoryTests {
         for (int i = 0; i < 5; i++) {
             Rider rider = new Rider("배달원_" + (i + 1), "01012341234" + i, "2023/05/01", UUID.randomUUID().toString(), "라이더 프로필 사진_" + (i + 1), welfare);
             riderRepository.save(rider);
+        }
+    }
+
+    @Test
+    public void saveServiceTest() {
+        Welfare welfare = welfareRepository.findById(26L).get();
+
+        for (int i = 0; i < 5; i++) {
+            Rider rider = new Rider("라이더_" + (i + 1), "0102222123" + (i), "2023/05/01", UUID.randomUUID().toString(), "라이더 프로필 사진_" + (i + 1), welfare);
+            riderService.registerRiderByWelfareId(rider);
         }
     }
 

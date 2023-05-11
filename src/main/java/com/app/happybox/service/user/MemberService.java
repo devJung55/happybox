@@ -1,14 +1,16 @@
 package com.app.happybox.service.user;
 
 import com.app.happybox.entity.user.Member;
-import com.app.happybox.entity.user.MemberDTO;
+import com.app.happybox.domain.user.MemberDTO;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-public interface MemberService {
+public interface MemberService extends UserDetailsService {
 
     //    회원가입
-    public Member join(MemberDTO memberDTO);
+    public Member join(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
 
     //    로그인
     public Optional<Member> login(String memberId, String memberPassword);
@@ -25,7 +27,10 @@ public interface MemberService {
 //    회원정보수정
     public void updateMemberInfoById(Member member);
 
-//    MemberDTO -> Member
+//    회원탈퇴
+    public void updateUserStatusById(Long memberId);
+
+    //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder().userId(memberDTO.getMemberId())
                 .userEmail(memberDTO.getMemberEmail())
@@ -41,7 +46,7 @@ public interface MemberService {
                 .build();
     }
 
-//    Member -> MemberDTO
+    //    Member -> MemberDTO
     default MemberDTO toMemberDTO(Member member){
         return MemberDTO.builder()
                 .id(member.getId())

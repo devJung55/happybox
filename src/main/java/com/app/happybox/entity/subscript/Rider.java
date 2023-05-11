@@ -22,7 +22,7 @@ public class Rider extends Period {
     @Column(unique = true)
     private String riderPhoneNumber;
     @Enumerated(EnumType.STRING)
-    @ColumnDefault(value = "'ONGOING'")
+    @ColumnDefault(value = "'INCOMPLETED'")
     private DeliveryType deliveryStatus;
 
     /* 라이더 프로필사진 */
