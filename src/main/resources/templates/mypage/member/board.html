@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물 목록</title>
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/member/member.css">
+    <link rel="stylesheet" href="/css/member/board.css">
+</head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
+<body>
+<div class="wrap">
+    <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+    <section id="contents" class="container">
+        <div class="content-wrap">
+
+            <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
+
+            <div class="frame-sm">
+
+                <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
+
+                <div class="frame-right">
+                    <div class="frame-cnt-inner">
+                        <div class="menu-title-area" style="border-bottom: 1px solid #666666;">
+                            <h3 class="title-menu" style="margin-bottom: 5px;">게시물</h3>
+                        </div><!--// menu-title-area -->
+
+                        <article class="board-item-wrap" th:each="recipeBoardDTO : ${recipeBoards}" th:object="${recipeBoardDTO}">
+                            <div class="profile-area">
+                                <a href="javascript:void(0)"><div class="profile-wrap">
+                                    <div class="writer-image">
+                                        <img src="https://static.wanted.co.kr/oneid-user/profile_default.png" alt="">
+                                    </div>
+                                    <div class="writer-info-wrap">
+                                        <div class="writer-info">
+                                            <div class="writer-name" th:text="*{memberName}"></div>
+                                        </div>
+                                        <span class="write-date" th:text="*{recipeBoardRegisterDate}"></span>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            <a href="javascript:void(0)">
+                                <h3 class="board-title" th:text="*{recipeBoardTitle}"></h3>
+                                <p class="board-content" th:text="*{recipeBoardContent}"></p>
+                                <picture>
+                                    <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2FImageTargetTypeEnum.COMMUNITY%2F2023%2F4%2Fcc499f657b5f0ace6f13f6a3e1d0926e0aac8fa0afe4168b85d11dfa251dd359&amp;w=310&amp;q=90" class="board-image">
+                                </picture>
+                                <div class="board-item-bottom">
+                                    <div class="recommend-btn">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"></path></svg><span class="recommend-count">0</span>
+                                    </div>
+                                    <div class="reply-btn">
+                                        <svg width="18" height="18" viewBox="0 0 18 18">
+                                            <path fill="currentColor" transform="matrix(-1 0 0 1 18 0)" d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"></path></svg><span class="reply-count">1</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+
+                    </div>
+
+                    <div class="page-bottom"><!-- // 페이징 -->
+                        <div class="pagination mt20" style="margin-top: 30px;">
+                            <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
+                            <a href="javascript:void(0)" class="current"><span>1</span></a>
+                            <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
+                        </div><!--// pagination -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
+</div>
+</body>
+<script src="/js/main/header.js"></script>
+<script src="/js/member/board.js"></script>
+</html>

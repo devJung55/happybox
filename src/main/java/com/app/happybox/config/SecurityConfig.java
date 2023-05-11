@@ -104,10 +104,10 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
 //                마이페이지 권한 설정
-                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
-                .antMatchers(MYPAGE_PATH).authenticated()
+//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
+//                .antMatchers(MYPAGE_PATH).authenticated()
 
 //                전체 서비스 인증되지 않는 유저도 접근 가능
                 .antMatchers(MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
