@@ -63,7 +63,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     //    마이페이지 배송지정보
     @Override
-    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Member member) {
+    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId) {
         return Optional.ofNullable(query.select(QMember.member).from(QMember.member).where(QMember.member.eq(member)).fetchOne());
     }
 

@@ -46,4 +46,15 @@ public class MemberServiceImpl implements MemberService {
         Optional<String> memberId = memberRepository.findMemberIdByEmail(memberEmail);
         return memberId;
     }
+
+    @Override
+    public Optional<Member> findDeliveryInfoById(Long memberId) {
+        Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);
+        return member;
+    }
+
+    @Override
+    public void updateMemberInfoById(Member member) {
+        memberRepository.setMemberInfoById_QueryDSL(member);
+    }
 }

@@ -21,7 +21,7 @@ public interface MemberQueryDsl {
     public Optional<String> findMemberIdByEmail(String memberEmail);
 
 //    마이페이지 배송지정보
-    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Member member);
+    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId);
 
 //    관리자 회원 목록
     public Page<Member> findAllWithPaging_QueryDSL(Pageable pageable);
