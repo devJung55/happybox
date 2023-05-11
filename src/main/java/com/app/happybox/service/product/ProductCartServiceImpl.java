@@ -35,12 +35,19 @@ public class ProductCartServiceImpl implements ProductCartService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     public Long saveCart(ProductCartDTO cartDTO, Long userId, Long productId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> {
-            throw new UserNotFoundException();
-        });
-        Product product = productRepository.findById(productId).orElseThrow(() -> {
-            throw new ProductNotFoundException();
-        });
+        User user = null;
+        Product product = null;
+        try {
+            user = userRepository.findById(userId).orElseThrow(() -> {
+                throw new UserNotFoundException();
+            });
+            product = productRepository.findById(productId).orElseThrow(() -> {
+                throw new ProductNotFoundException();
+            });
+        } catch (RuntimeException e) {
+            log.error("상품 번호 혹은 유저 번호 잘못됨.");
+            return -1L;
+        }
 
         ProductCart cart = productCartRepository.save(productCartDTOToEntity(cartDTO, user, product));
 

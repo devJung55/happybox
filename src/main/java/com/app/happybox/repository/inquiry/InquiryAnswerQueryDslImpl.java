@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static com.app.happybox.entity.customer.QInquiryAnswer.inquiryAnswer;
 
+
 @RequiredArgsConstructor
 public class InquiryAnswerQueryDslImpl implements InquiryAnswerQueryDsl {
     private final JPAQueryFactory query;

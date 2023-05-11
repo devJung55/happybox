@@ -13,8 +13,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.app.happybox.entity.user.QMember.member;
 import static com.app.happybox.entity.user.QWelfare.welfare;
+
 
 @RequiredArgsConstructor
 public class WelfareQueryDslImpl implements WelfareQueryDsl {

@@ -13,6 +13,7 @@ import java.util.List;
 
 import static com.app.happybox.entity.order.QMemberOrderProductItem.memberOrderProductItem;
 
+
 @RequiredArgsConstructor
 public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductItemQueryDsl {
     private final JPAQueryFactory query;
