@@ -53,5 +53,16 @@ public interface ReviewBoardService {
                 .build();
     }
 
-
+    default ReviewBoardDTO mypageReviewBoardToDTO(ReviewBoard reviewBoard){ // 지영이
+        return ReviewBoardDTO.builder()
+                .id(reviewBoard.getId())
+                .memberName(reviewBoard.getMember().getMemberName())
+                .memberId(reviewBoard.getMember().getId())
+                .reviewBoardTitle(reviewBoard.getBoardTitle())
+                .reviewBoardContent(reviewBoard.getBoardContent())
+                .reviewRating(reviewBoard.getReviewRating())
+                .reviewBoardRegisterDate(reviewBoard.getUpdatedDate().toLocalDate())
+                .boardFiles(reviewBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .build();
+    }
 }

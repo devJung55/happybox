@@ -2,7 +2,6 @@ package com.app.happybox.service.board;
 
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
-import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.repository.board.RecipeBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,7 +37,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     @Override
     public Page<RecipeBoardDTO> getListByMemberId(Pageable pageable, Long memberId) {
         Page<RecipeBoard> recipeBoardList = recipeBoardRepository.findRecipeBoardListByMemberIdWithPaging_QueryDSL(pageable, memberId);
-        List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::myPageRecipeBoardToDTO).collect(Collectors.toList());
+        List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::mypageRecipeBoardToDTO).collect(Collectors.toList());
 
         return new PageImpl<>(recipeBoardDTOList, pageable, recipeBoardList.getTotalElements());
     }
@@ -62,7 +61,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     @Override
     public Page<RecipeBoardDTO> getList(Pageable pageable) {
         Page<RecipeBoard> recipeBoardList = recipeBoardRepository.findRecipeBoardListDescWithPaging_QueryDSL(pageable);
-        List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::myPageRecipeBoardToDTO).collect(Collectors.toList());
+        List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::mypageRecipeBoardToDTO).collect(Collectors.toList());
 
         return new PageImpl<>(recipeBoardDTOList, pageable, recipeBoardList.getTotalElements());
     }

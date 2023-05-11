@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,125 +60,17 @@
 											<th>작성 날짜</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr th:each="recipeBoardDTO : ${recipeBoards}" th:object="${recipeBoardDTO}">
 										<td>
 											<label class="check-label">
 											    <input type="checkbox" name="check">
                                             </label>
 										</td>
-										<td class="show-modal">1</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">임**</td>
-										<td class="show-modal">2023.01.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">2</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">3</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">4</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">5</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">6</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">7</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">8</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">9</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">10</td>
-										<td class="show-modal">레시피 게시판</td>
-										<td class="show-modal">혼자서도 만들어 먹을 수 있는 메뉴!!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
+										<td class="show-modal" th:text="*{memberId}"></td>
+										<td class="show-modal" th:text="*{recipeBoardTitle}"></td>
+										<td class="show-modal" th:text="*{recipeBoardContent}"></td>
+										<td class="show-modal" th:text="*{memberName}"></td>
+										<td class="show-modal" th:text="*{recipeBoardRegisterDate}"></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->

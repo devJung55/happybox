@@ -19,6 +19,7 @@ public class ReviewBoardDTO {
 
     /*-- 회원 정보 --*/
     private String memberName;
+    private Long memberId;
 
     /*-- 리뷰 복지관명 --*/
     private String welfareName;
@@ -57,4 +58,15 @@ public class ReviewBoardDTO {
         this.boardFiles = boardFiles;
     }
 
+    @Builder
+    public ReviewBoardDTO(Long id, String memberName, Long memberId, String reviewBoardTitle, String reviewBoardContent, LocalDate reviewBoardRegisterDate, Integer reviewRating, List<BoardFileDTO> boardFiles) {
+        this.id = id;
+        this.memberName = memberName;
+        this.memberId = memberId;
+        this.reviewBoardTitle = reviewBoardTitle;
+        this.reviewBoardContent = reviewBoardContent;
+        this.reviewBoardRegisterDate = reviewBoardRegisterDate;
+        this.reviewRating = reviewRating;
+        this.boardFiles = boardFiles;
+    }
 }
