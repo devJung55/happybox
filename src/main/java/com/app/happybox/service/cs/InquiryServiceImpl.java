@@ -38,4 +38,18 @@ public class InquiryServiceImpl implements InquiryService {
         List<InquiryAnswerDTO> inquiryAnswerLists = inquiryAnswers.get().map(this::toInquiryAnswerDTO).collect(Collectors.toList());
         return new PageImpl<>(inquiryAnswerLists, pageable, inquiryAnswers.getTotalElements());
     }
+
+//    마이페이지 문의내역 목록
+    @Override
+    public Page<InquiryDTO> getInquiryListByMemberId(Pageable pageable, Long memberId) {
+        Page<Inquiry> inquiries = inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(pageable, memberId);
+        List<InquiryDTO> inquiryDTOList = inquiries.get().map(this::toInquiryDTO).collect(Collectors.toList());
+        return new PageImpl<>(inquiryDTOList, pageable, inquiries.getTotalElements());
+    }
+
+    @Override
+    public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId) {
+        List<InquiryAnswer> inquiryAnswers = inquiryAnswerRepository.findByUserId_QueryDSL(memberId);
+        return inquiryAnswers.stream().map(this::toInquiryAnswerDTO).collect(Collectors.toList());
+    }
 }

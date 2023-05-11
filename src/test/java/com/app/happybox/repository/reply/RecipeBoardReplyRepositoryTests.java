@@ -2,7 +2,7 @@ package com.app.happybox.repository.reply;
 
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardLike;
-import com.app.happybox.service.reply.RecipeBoardReply;
+import com.app.happybox.entity.reply.RecipeBoardReply;
 import com.app.happybox.entity.reply.Reply;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.repository.board.RecipeBoardLikeRepository;

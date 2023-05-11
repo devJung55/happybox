@@ -1,5 +1,6 @@
 package com.app.happybox.entity.product;
 
+import com.app.happybox.audity.Period;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.User;
 import com.sun.istack.NotNull;
@@ -9,10 +10,10 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
-@Entity @Table(name = "TBL_CART")
+@Entity @Table(name = "TBL_PRODUCT_CART")
 @DynamicInsert
 @Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Cart {
+public class ProductCart extends Period {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
     private Long id;
@@ -25,20 +26,12 @@ public class Cart {
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Subscription subscription;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
 
-    public Cart(Long cartOrderAmount, Product product, User user) {
+    public ProductCart(Long cartOrderAmount, Product product, User user) {
         this.cartOrderAmount = cartOrderAmount;
         this.product = product;
-        this.user = user;
-    }
-
-    public Cart(Subscription subscription, User user) {
-        this.subscription = subscription;
         this.user = user;
     }
 }

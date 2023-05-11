@@ -38,4 +38,13 @@ public class InquiryAnswerQueryDslImpl implements InquiryAnswerQueryDsl {
                 .join(inquiryAnswer.inquiryAnswerFiles).fetchJoin()
                 .where(inquiryAnswer.inquiry.eq(inquiry)).fetchOne());
     }
+
+    @Override
+    public List<InquiryAnswer> findByUserId_QueryDSL(Long userId) {
+        return query.select(inquiryAnswer)
+                .from(inquiryAnswer)
+                .join(inquiryAnswer.inquiry).fetchJoin()
+                .where(inquiryAnswer.inquiry.user.id.eq(userId))
+                .fetch();
+    }
 }

@@ -1,6 +1,6 @@
 package com.app.happybox.repository.reply;
 
-import com.app.happybox.service.reply.RecipeBoardReply;
+import com.app.happybox.entity.reply.RecipeBoardReply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
