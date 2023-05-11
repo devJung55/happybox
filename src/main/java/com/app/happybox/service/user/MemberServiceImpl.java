@@ -54,6 +54,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Optional<Member> findDeliveryInfoById(Long memberId) {
+        Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);
+        return member;
+    }
+
+    @Override
+    public void updateMemberInfoById(Member member) {
+        memberRepository.setMemberInfoById_QueryDSL(member);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByUserId(username).orElseThrow(()-> new UsernameNotFoundException(username + " not found"));
         return UserDetail.builder()
