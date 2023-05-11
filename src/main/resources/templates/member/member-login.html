@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인</title>
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../static/css/global/global.css" />
-    <link rel="stylesheet" href="../../static/css/member/member.css" />
-    <link rel="stylesheet" href="../../static/css/member/login.css" />
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css" />
+    <link rel="stylesheet" href="/css/member/member.css" />
+    <link rel="stylesheet" href="/css/member/login.css" />
   </head>
   <body>
     <header></header>
@@ -25,7 +25,7 @@
             <strong class="txt">안녕하세요 :) </strong>
             <p class="message">
               <i class="ico-logo-login">
-                <img src="../../static/img/header/Logo-main.png" style="margin-top: 4px;">
+                <img src="/img/header/Logo-main.png" style="margin-top: 4px;">
               </i><span class="blind">해피박스</span>입니다.
             </p>
           </div>
@@ -36,7 +36,7 @@
                 <input
                   type="text"
                   id="id"
-                  name="id"
+                  name="userId"
                   class="input-text type-lg"
                   placeholder="아이디"
                   maxlength="100"
@@ -47,6 +47,7 @@
                 <input
                   type="password"
                   id="pw"
+                  name="userPassword"
                   class="input-text type-lg"
                   placeholder="비밀번호"
                   maxlength="100"
@@ -130,5 +131,5 @@
     $('header').load('../../templates/component/header.html');
     $('footer').load('../../templates/component/footer.html');
   </script>
-  <script src="../../static/js/member/login.js"></script>
+  <script src="/js/member/login.js"></script>
 </html>

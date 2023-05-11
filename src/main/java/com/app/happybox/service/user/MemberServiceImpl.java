@@ -53,6 +53,31 @@ public class MemberServiceImpl implements MemberService {
         return memberId;
     }
 
+//    아이디 중복 검사
+    @Override
+    public boolean existsByUserId(String userId) {
+        return memberRepository.existsIdByUserId(userId);
+    }
+
+//    휴대폰 중복 검사
+    @Override
+    public boolean existsByUserPhoneNumber(String userPhoneNumber) {
+        return memberRepository.existsByUserPhoneNumber(userPhoneNumber);
+    }
+
+//    이메일 중복 검사
+    @Override
+    public boolean existsByUserEmail(String userEmail) {
+        return memberRepository.existsByUserEmail(userEmail);
+    }
+
+
+    //    id로 정보 조회(UserDetail 용)
+    @Override
+    public Optional<Member> findByUserId(String userId) {
+        return memberRepository.findByUserId(userId);
+    }
+
     @Override
     public Optional<Member> findDeliveryInfoById(Long memberId) {
         Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);

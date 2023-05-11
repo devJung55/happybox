@@ -56,6 +56,8 @@ $('#member-join-general-birthday-text').on('focus', function () {
   $(this).val($(this).val().replaceAll('.', ''));
 });
 
+// coolsms 할때 필요함
+
 // /* 인증번호 입력 버튼 */
 // $(".join-check-btn").on("click", function(){
 //   if($(".join-check").val() == code){
@@ -140,7 +142,7 @@ $joinInputs.on('blur', function () {
   //     $.ajax({
   //       type: 'POST',
   //       url: '/member/checkId',
-  //       data: { memberIdentification: value },
+  //       data: { userId: value },
   //       success: function (result) {
   //         $joinHelp.eq(i).show();
   //         if (result != 'success') {
@@ -365,7 +367,7 @@ function termsBtnClick() {
 const $inputPhone = $('#member-general-join-phone-text');
 const $modal = $('.layer-wrap');
 const $modal2 = $('.layer-wrap2');
-const $phoeBtn = $('.btn-basic-md');
+const $phoneBtn = $('.btn-basic-md');
 
 $inputPhone.on('click', function () {
   $modal.css('display', 'block');
