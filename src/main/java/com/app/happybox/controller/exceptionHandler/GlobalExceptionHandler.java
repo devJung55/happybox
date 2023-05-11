@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     protected RedirectView handleCustomAuthenticationException(CustomAuthenticationException e, HttpSession session){
         session.removeAttribute("id");
         session.removeAttribute("userId");
-        session.removeAttribute("role");
+        session.removeAttribute("userRole");
         session.invalidate();
         return new RedirectView("/login");
     }

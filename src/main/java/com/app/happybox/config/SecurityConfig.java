@@ -51,14 +51,11 @@ public class SecurityConfig {
 
     //    ignore 경로
     private static final String IGNORE_FAVICON = "/favicon.png";
-    private static final String RESOURCES_URL = "**/resources/**";
     //    로그인 FORM 경로
     private static final String LOGIN_PAGE = "/member/member-login";
 
     //    로그인 ACTION 경로
     private static final String MEMBER_LOGIN_PROCESSING_URL = "/member/login";
-    private static final String WELFARE_LOGIN_PROCESSING_URL = "/welfare/login";
-    private static final String DISTRIBUTOR_LOGIN_PROCESSING_URL = "/distributor/login";
 
     //    로그아웃 경로
     private static final String LOGOUT_URL = "/logout";
@@ -93,7 +90,8 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON)
-                .antMatchers(RESOURCES_URL)
+//                전체 서비스 filterChain 안거치고 접근
+                .antMatchers(MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
@@ -109,19 +107,16 @@ public class SecurityConfig {
 //                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
 //                .antMatchers(MYPAGE_PATH).authenticated()
 
-//                전체 서비스 인증되지 않는 유저도 접근 가능
-                .antMatchers(MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
-                .permitAll()
 
-//                작성페이지 권한 설정
-                .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
-                .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
-                .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
-                .antMatchers(WRITE_PATH).authenticated()
+//                  작성페이지 권한 설정
+//                    .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
+//                    .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
+//                    .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
+//                    .antMatchers(WRITE_PATH).authenticated()
 
-//                관리자 페이지 권한 설정
-                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
-                .antMatchers(ADMIN_PATH).authenticated()
+    //                관리자 페이지 권한 설정
+//                    .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+//                    .antMatchers(ADMIN_PATH).authenticated()
 
 //                기타 설정
                 .and()
@@ -145,7 +140,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(Boolean.TRUE)
                 .and()
                 .rememberMe()
-                .rememberMeParameter("auto-login")
+                .rememberMeParameter("remember-me")
                 .key(REMEMBER_ME_TOKEN_KEY)
                 .tokenValiditySeconds(REMEMBER_ME_TOKEN_EXPIRED)
                 .userDetailsService(userDetailsService)
