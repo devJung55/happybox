@@ -74,7 +74,7 @@ class MemberRepositoryTests {
 //  마이페이지 배송지정보
     @Test
     public void findDeliveryAddressByMemberIdTest() {
-        memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberRepository.findById(1L).get())
+        memberRepository.findDeliveryAddressByMemberId_QueryDSL(1L)
                 .ifPresent(member -> log.info(member.toString()));
     }
 }

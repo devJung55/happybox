@@ -14,4 +14,7 @@ public interface InquiryAnswerQueryDsl {
 
 //    답변 상세 조회
     public Optional<InquiryAnswer> findByInquiryId_QueryDSL(Inquiry inquiry);
+
+//    마이페이지 답변 목록
+    public List<InquiryAnswer> findByUserId_QueryDSL(Long userId);
 }
