@@ -1,10 +1,7 @@
 package com.app.happybox.entity.board;
 
-import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
-import com.app.happybox.entity.user.WelfareDTO;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
