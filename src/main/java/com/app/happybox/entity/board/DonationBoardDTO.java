@@ -1,14 +1,22 @@
 package com.app.happybox.entity.board;
 
+<<<<<<< HEAD
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.user.WelfareDTO;
+=======
+import com.app.happybox.domain.user.WelfareDTO;
+>>>>>>> back-end-ty
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
+<<<<<<< HEAD
 import java.util.List;
 
+=======
+@Data
+>>>>>>> back-end-ty
 @Getter
 @Builder
 public class DonationBoardDTO {
