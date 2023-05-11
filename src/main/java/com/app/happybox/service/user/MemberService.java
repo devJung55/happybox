@@ -21,7 +21,6 @@ public interface MemberService extends UserDetailsService {
     //    아이디 찾기(memberEmail)
     public Optional<String> findMemberIdByEmail(String memberEmail);
 
-<<<<<<< HEAD
     //    마이페이지 배송지정보조회
     public Optional<Member> findDeliveryInfoById(Long memberId);
 
@@ -31,10 +30,7 @@ public interface MemberService extends UserDetailsService {
 //    회원탈퇴
     public void updateUserStatusById(Long memberId);
 
-//    MemberDTO -> Member
-=======
     //    MemberDTO -> Member
->>>>>>> back-end-ty
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder().userId(memberDTO.getMemberId())
                 .userEmail(memberDTO.getMemberEmail())

@@ -1,33 +1,25 @@
 package com.app.happybox.entity.board;
 
-<<<<<<< HEAD
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.user.WelfareDTO;
-=======
-import com.app.happybox.domain.user.WelfareDTO;
->>>>>>> back-end-ty
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
-<<<<<<< HEAD
 import java.util.List;
 
-=======
-@Data
->>>>>>> back-end-ty
 @Getter
 @Builder
 public class DonationBoardDTO {
     private Long id;
 
-//    연관된 Entity의 DTO(Welfare)
+    //    연관된 Entity의 DTO(Welfare)
     private String welfareName;
     private String welfarePhone;
     private Integer welfarePoint;
 
-//    DonationBoard 기본 컬럼
+    //    DonationBoard 기본 컬럼
     private String boardTitle;
     private String boardContent;
 
