@@ -55,7 +55,7 @@
                   <a class="on">최신순</a>
                   <a class="">인기순</a>
                 </div>
-                <article class="board-item-wrap">
+                <article th:each="reviewDTO : ${recent}" class="board-item-wrap">
                   <div class="profile-area">
                     <a href="javascript:void(0)"
                       ><div class="profile-wrap">
@@ -67,11 +67,11 @@
                         </div>
                         <div class="writer-info-wrap">
                           <div class="writer-info">
-                            <div class="writer-name">요리사정정짱</div>
-                            <span class="write-date">2023.04.21</span>
+                            <div th:text="${reviewDTO.memberName}" class="writer-name"></div>
+                            <span th:text="${reviewDTO.reviewBoardRegisterDate}" class="write-date">2023.04.21</span>
                           </div>
                           <div>
-                            <div id="welfare-name">노원노인복지관</div>
+                            <div th:text="${reviewDTO.welfareName}" id="welfare-name">노원노인복지관</div>
                             <em class="rating-point">
                               <img
                                 class="rating__point one"
@@ -100,8 +100,8 @@
                     </a>
                   </div>
                   <a href="javascript:void(0)"
-                    ><h3 class="board-title">노원복지관 3개월 구독 후기!</h3>
-                    <p class="board-content">
+                    ><h3 th:text="${reviewDTO.reviewBoardTitle}" class="board-title">노원복지관 3개월 구독 후기!</h3>
+                    <p th:text="${reviewDTO.reviewBoardContent}" class="board-content">
                       안녕하세요. 요리사정정짱입니다. 요즘 혼자 살다보니 아침 차려먹을 시간도 없고 그렇다고 매번 냉동식품만 먹자니 건강도 너무 안좋아지는게 느껴지더라구요 ㅠㅠ
                       저는 아침에 헬스장에 가기 전에 꼭 아침을 먹어야하기 때문에 아침을 정기적으로 배달시켜먹을 곳이 없나 찾아보다가 해피박스라는 서비슬 알게 되어서 한 번 도시락을 따로 시켜 먹어봤어요.
                       근데 정말 집밥 먹는 것처럼 너무 맛있고 든든하더라구요!! 그래서 여러 복지관에 도시락을 시켜 먹어보고 개인적으로 가장 맛있었던 노원복지관을 선택하게 되었어요!
@@ -120,7 +120,7 @@
                             fill="currentColor"
                             d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"
                           ></path></svg
-                        ><span class="recommend-count">0</span>
+                        ><span th:text="${reviewDTO.reviewLikeCount}" class="recommend-count"></span>
                       </div>
                       <div class="reply-btn">
                         <svg width="18" height="18" viewBox="0 0 18 18">
@@ -129,7 +129,7 @@
                             transform="matrix(-1 0 0 1 18 0)"
                             d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"
                           ></path></svg
-                        ><span class="reply-count">1</span>
+                        ><span th:text="${reviewDTO.reviewReplyCount}" class="reply-count"></span>
                       </div>
                     </div></a
                   >

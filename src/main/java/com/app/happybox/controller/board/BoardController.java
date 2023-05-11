@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +34,22 @@ public class BoardController {
     @Qualifier
     private final DonationBoardService donationBoardService;
 
+    @GetMapping("review-board-list")
+    public String goReviewList(Model model){
+        model.addAttribute("recent", reviewBoardService.getReviewBoards(PageRequest.of(0, 10)));
+        return "user-board/review-board-list";
+    }
+
 //    리뷰 게시판 리스트(최신순)
-    @GetMapping("review-board-list/newest")
+    @GetMapping("review-board-list/recent")
     @ResponseBody
-    public Slice<ReviewBoardDTO> getReviewBoardList(int page, int size){
-        Slice<ReviewBoardDTO> result = reviewBoardService.getReviewBoards(PageRequest.of(page, size));
+    public Slice<ReviewBoardDTO> goRecentReviewList(@PageableDefault Pageable pageable){
+        Slice<ReviewBoardDTO> result =
+                reviewBoardService
+                        .getReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+                                pageable.getPageSize()));
         return result;
-        }
+    }
 
 //    레시피 게시판 리스트 (최신순)
     @GetMapping("recipe-board-list")
@@ -49,6 +60,6 @@ public class BoardController {
 //    기부 게시판 리스트
     @GetMapping("donate-list")
     public Page<DonationBoardDTO> getDonateBoardList(int page, int size){
-        return donationBoardService.getList(PageRequest.of(0, 10));
+        return donationBoardService.getList(PageRequest.of(page, size));
     }
 }
