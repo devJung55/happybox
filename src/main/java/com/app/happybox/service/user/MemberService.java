@@ -25,6 +25,9 @@ public interface MemberService {
 //    회원정보수정
     public void updateMemberInfoById(Member member);
 
+//    회원탈퇴
+    public void updateUserStatusById(Long memberId);
+
 //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder().userId(memberDTO.getMemberId())
