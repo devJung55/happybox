@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -32,9 +33,11 @@ public class BoardController {
     private final DonationBoardService donationBoardService;
 
 //    리뷰 게시판 리스트(최신순)
-    @GetMapping("review-board-list")
+    @GetMapping("review-board-list/newest")
+    @ResponseBody
     public Slice<ReviewBoardDTO> getReviewBoardList(int page, int size){
-        return reviewBoardService.getReviewBoards(PageRequest.of(page, size));
+        Slice<ReviewBoardDTO> result = reviewBoardService.getReviewBoards(PageRequest.of(page, size));
+        return result;
         }
 
 //    레시피 게시판 리스트 (최신순)
