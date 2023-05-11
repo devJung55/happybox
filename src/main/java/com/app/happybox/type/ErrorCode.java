@@ -1,12 +1,13 @@
-package com.app.happybox.exception;
+package com.app.happybox.type;
 
 public enum ErrorCode {
     /* ===== AUTH ===== */
     LOGIN_FAILED("AUTH_001", "LOGIN_FAILED.", 401),
     AUTHENTICATION_FAILED("AUTH_002", "AUTHENTICATION_FAILED", 401),
     /* ================ */
-    /* ===== PRODUCT ===== */
-    PRODUCT_NOT_FOUND("PRODUCT_NOT_FOUND", "PRODUCT_NOT_FOUND", 404);
+    /* ===== NOT_FOUND ===== */
+    USER_NOT_FOUND("NOT_FOUND_001", "USER_NOT_FOUND", 404),
+    PRODUCT_NOT_FOUND("NOT_FOUND_002", "PRODUCT_NOT_FOUND", 404);
 
     private final String code;
     private final String message;

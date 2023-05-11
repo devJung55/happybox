@@ -1,4 +1,4 @@
-package com.app.happybox.repository.order;
+package com.app.happybox.repository.product;
 
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductSearch;
