@@ -91,7 +91,7 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON)
 //                전체 서비스 filterChain 안거치고 접근
-                .antMatchers(MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
+//                .antMatchers(MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
@@ -102,10 +102,10 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
 //                마이페이지 권한 설정
-//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
-//                .antMatchers(MYPAGE_PATH).authenticated()
+                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
+                .antMatchers(MYPAGE_PATH).authenticated()
 
 
 //                  작성페이지 권한 설정
