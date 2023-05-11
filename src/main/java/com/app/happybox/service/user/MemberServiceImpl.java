@@ -27,8 +27,8 @@ public class MemberServiceImpl implements MemberService {
     //    Member 회원가입
     @Override
     public Member join(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
-        memberDTO.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
-        memberDTO.setMemberRole(Role.MEMBER);
+        memberDTO.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword()));
+        memberDTO.setUserRole(Role.MEMBER);
         return memberRepository.save(toMemberEntity(memberDTO));
     }
 

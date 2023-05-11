@@ -32,12 +32,12 @@ public interface MemberService extends UserDetailsService {
 
     //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){
-        return Member.builder().userId(memberDTO.getMemberId())
-                .userEmail(memberDTO.getMemberEmail())
-                .userPassword(memberDTO.getMemberPassword())
-                .userPhoneNumber(memberDTO.getMemberPhoneNumber())
+        return Member.builder().userId(memberDTO.getUserId())
+                .userEmail(memberDTO.getUserEmail())
+                .userPassword(memberDTO.getUserPassword())
+                .userPhoneNumber(memberDTO.getUserPhoneNumber())
                 .deliveryPhoneNumber(memberDTO.getDeliveryPhoneNumber())
-                .address(memberDTO.getMemberAddress())
+                .address(memberDTO.getUserAddress())
                 .deliveryName(memberDTO.getDeliveryName())
                 .memberDeliveryAddress(memberDTO.getMemberDeliveryAddress())
                 .memberBirth(memberDTO.getMemberBirth())
@@ -50,19 +50,19 @@ public interface MemberService extends UserDetailsService {
     default MemberDTO toMemberDTO(Member member){
         return MemberDTO.builder()
                 .id(member.getId())
-                .memberId(member.getUserId())
-                .memberAddress(member.getAddress())
+                .userId(member.getUserId())
+                .userAddress(member.getAddress())
                 .memberDeliveryAddress(member.getMemberDeliveryAddress())
                 .memberBirth(member.getMemberBirth())
-                .memberEmail(member.getUserEmail())
+                .userEmail(member.getUserEmail())
                 .memberGender(member.getMemberGender())
                 .memberName(member.getMemberName())
-                .memberPassword(member.getUserPassword())
-                .memberPhoneNumber(member.getUserPhoneNumber())
+                .userPassword(member.getUserPassword())
+                .userPhoneNumber(member.getUserPhoneNumber())
                 .deliveryName(member.getDeliveryName())
                 .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
-                .memberRole(member.getUserRole())
-                .memberStatus(member.getUserStatus())
+                .userRole(member.getUserRole())
+                .userStatus(member.getUserStatus())
                 .build();
     }
 
