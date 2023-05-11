@@ -1,5 +1,6 @@
-package com.app.happybox.entity.user;
+package com.app.happybox.domain.user;
 
+import com.app.happybox.entity.user.Address;
 import com.app.happybox.type.Gender;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
