@@ -1,7 +1,9 @@
 package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.RecipeBoard;
+import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
+import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.type.FileRepresent;
 import com.app.happybox.type.Gender;
 import com.app.happybox.repository.user.MemberRepository;
@@ -23,6 +25,7 @@ public class RecipeBoardRepositoryTests {
     @Autowired private RecipeBoardRepository recipeBoardRepository;
     @Autowired private MemberRepository memberRepository;
     @Autowired private BoardFileRepository boardFileRepository;
+    @Autowired private RecipeBoardService recipeBoardService;
 
     @Test
     public void saveTest() {
@@ -105,5 +108,17 @@ public class RecipeBoardRepositoryTests {
     public void findAllWithPaging_QueryDSL_Test() {
         recipeBoardRepository.findRecipeBoardListDescWithPaging_QueryDSL(PageRequest.of(0, 5))
                 .stream().map(RecipeBoard::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getListByMemberId_Test() {
+        recipeBoardService.getListByMemberId(PageRequest.of(0, 5), 1L)
+                .stream().map(RecipeBoardDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getList_Test() {
+        recipeBoardService.getList(PageRequest.of(0, 5))
+                .stream().map(RecipeBoardDTO::toString).forEach(log::info);
     }
 }
