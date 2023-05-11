@@ -20,7 +20,7 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<DonationBoard> findAllWithPaging(Pageable pageable) {
+    public Page<DonationBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {
         List<DonationBoard> donationBoards = query.select(donationBoard)
                 .from(donationBoard)
                 .join(donationBoard.welfare).fetchJoin()
