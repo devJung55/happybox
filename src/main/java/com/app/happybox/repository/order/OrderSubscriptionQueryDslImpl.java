@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static com.app.happybox.entity.order.QOrderSubscription.orderSubscription;
 
+
 @RequiredArgsConstructor
 public class OrderSubscriptionQueryDslImpl implements OrderSubscriptionQueryDsl {
     private final JPAQueryFactory query;

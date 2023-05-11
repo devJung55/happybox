@@ -1,6 +1,5 @@
 package com.app.happybox.repository.subscript;
 
-import com.app.happybox.entity.subscript.QRider;
 import com.app.happybox.entity.subscript.Rider;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

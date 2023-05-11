@@ -1,6 +1,5 @@
 package com.app.happybox.repository.reply;
 
-import com.app.happybox.entity.reply.QReviewBoardReply;
 import com.app.happybox.entity.reply.ReviewBoardReply;
 import com.app.happybox.entity.user.Member;
 import com.querydsl.jpa.impl.JPAQueryFactory;

@@ -1,9 +1,11 @@
 package com.app.happybox.repository.order;
 
+import com.app.happybox.entity.order.QWelfareOrderProduct;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import static com.app.happybox.entity.order.QWelfareOrderProduct.welfareOrderProduct;
+
 
 @RequiredArgsConstructor
 public class WelfareOrderProductQueryDslImpl implements WelfareOrderProductQueryDsl {

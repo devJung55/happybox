@@ -3,7 +3,6 @@ package com.app.happybox.repository.user;
 import com.app.happybox.entity.user.Distributor;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.QDistributor;
-import com.app.happybox.entity.user.QMember;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.user.QDistributor.distributor;
-import static com.app.happybox.entity.user.QMember.member;
-import static com.app.happybox.entity.user.QWelfare.welfare;
+
 
 @RequiredArgsConstructor
 public class DistributorQueryDslImpl implements DistributorQueryDsl {

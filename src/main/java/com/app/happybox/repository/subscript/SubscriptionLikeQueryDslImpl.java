@@ -1,6 +1,5 @@
 package com.app.happybox.repository.subscript;
 
-import com.app.happybox.entity.subscript.QSubscriptionLike;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.entity.user.Member;
