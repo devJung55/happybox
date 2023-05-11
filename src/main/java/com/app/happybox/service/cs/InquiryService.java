@@ -74,4 +74,10 @@ public interface InquiryService {
                 .fileOrgName(inquiryAnswerFile.getFileOrgName())
                 .build();
     }
+
+//    마이페이지 문의내역 목록
+    public Page<InquiryDTO> getInquiryListByMemberId(Pageable pageable, Long memberId);
+
+//    마이페이지 문의답변
+    public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId);
 }

@@ -1,7 +1,9 @@
 package com.app.happybox.repository.inquiry;
 
+import com.app.happybox.domain.InquiryAnswerDTO;
 import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.entity.customer.Inquiry;
+import com.app.happybox.entity.customer.InquiryAnswer;
 import com.app.happybox.entity.file.InquiryFile;
 import com.app.happybox.type.FileRepresent;
 import com.app.happybox.type.InquiryType;
@@ -26,6 +28,7 @@ public class InquiryRepositoryTests {
     @Autowired private MemberRepository memberRepository;
     @Autowired private InquiryFileRepository inquiryFileRepository;
     @Autowired private InquiryService inquiryService;
+    @Autowired private InquiryAnswerRepository inquiryAnswerRepository;
 
     @Test
     public void saveTest() {
@@ -36,6 +39,12 @@ public class InquiryRepositoryTests {
 
             inquiryRepository.save(inquiry);
         }
+    }
+
+    @Test
+    public void saveAnswerTest() {
+        InquiryAnswer inquiryAnswer = new InquiryAnswer("문의 답변_내용", inquiryRepository.findById(2L).get());
+        inquiryAnswerRepository.save(inquiryAnswer);
     }
 
     @Test
@@ -60,7 +69,11 @@ public class InquiryRepositoryTests {
     @Test
     public void findInquiryListByMemberIdWithPaging_QueryDSLTest() {
         inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(
-                PageRequest.of(0, 5), 84L).stream().map(Inquiry::toString).forEach(log::info);
+                PageRequest.of(0, 5), 1L).stream().forEach(v -> {
+                    log.info(v.getInquiryTitle());
+                    log.info(v.getInquiryContent());
+                    log.info(v.getInquiryFiles().toString());
+        });
     }
 
     @Test
@@ -82,5 +95,17 @@ public class InquiryRepositoryTests {
     public void getInquiryListByIdTest() {
         PageRequest page = PageRequest.of(0, 5);
         inquiryService.getInquiryListById(page, 84L).stream().map(InquiryDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getInquiryListByMemberId_Test() {
+        inquiryService.getInquiryListByMemberId(PageRequest.of(0, 5), 1L)
+                .stream().map(InquiryDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getInquiryAnswerListByMemberId_Test() {
+        inquiryService.getInquiryAnswerListByUserId(1L)
+                .stream().map(InquiryAnswerDTO::toString).forEach(log::info);
     }
 }

@@ -19,6 +19,12 @@ public interface MemberService {
     //    아이디 찾기(memberEmail)
     public Optional<String> findMemberIdByEmail(String memberEmail);
 
+    //    마이페이지 배송지정보조회
+    public Optional<Member> findDeliveryInfoById(Long memberId);
+
+//    회원정보수정
+    public void updateMemberInfoById(Member member);
+
 //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder().userId(memberDTO.getMemberId())
