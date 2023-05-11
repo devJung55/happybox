@@ -4,6 +4,7 @@ import com.app.happybox.type.Role;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.MemberDTO;
 import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -56,5 +57,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void updateMemberInfoById(Member member) {
         memberRepository.setMemberInfoById_QueryDSL(member);
+    }
+
+    @Override
+    public void updateUserStatusById(Long memberId) {
+        Member member = memberRepository.findById(memberId).get();
+        member.setUserStatus(UserStatus.UNREGISTERED);
     }
 }

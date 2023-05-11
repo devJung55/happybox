@@ -220,6 +220,8 @@
 
 .prd-info-area {
     position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .cart-list > li .cart-info-area:not(.option-line) {
@@ -378,4 +380,8 @@
 
 .board-list ~ .page-bottom {
     margin-top: 30px;
+}
+
+.productCart-list li {
+    margin: 5px;
 }

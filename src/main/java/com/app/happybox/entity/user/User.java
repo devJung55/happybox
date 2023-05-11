@@ -75,4 +75,8 @@ public abstract class User extends Period {
         this.userStatus = userStatus;
         this.userRole = userRole;
     }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
+    }
 }
