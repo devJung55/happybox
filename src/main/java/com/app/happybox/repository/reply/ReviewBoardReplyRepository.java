@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface ReviewBoardReplyRepository extends JpaRepository<ReviewBoardReply, Long>, ReviewBoardReplyQueryDsl {
     //    최신순
-    @Query("select r from ReviewBoardReply r join r.user")
-    public Slice<ReviewBoardReply> findAllWithScroll(Pageable pageable);
+    @Query("select r from ReviewBoardReply r join r.user where r.id = :id")
+    public Slice<ReviewBoardReply> findAllByReviewBoardId(Pageable pageable, Long id);
 
     //    인기순
     @Query("select r from ReviewBoardReply r join r.user")
