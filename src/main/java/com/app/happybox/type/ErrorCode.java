@@ -7,7 +7,8 @@ public enum ErrorCode {
     /* ================ */
     /* ===== NOT_FOUND ===== */
     USER_NOT_FOUND("NOT_FOUND_001", "USER_NOT_FOUND", 404),
-    PRODUCT_NOT_FOUND("NOT_FOUND_002", "PRODUCT_NOT_FOUND", 404);
+    PRODUCT_NOT_FOUND("NOT_FOUND_002", "PRODUCT_NOT_FOUND", 404),
+    DONATION_BOARD_NOT_FOUNT("NOT_FOUND_003", "DONATION_BOARD_NOT_FOUND", 404);
 
     private final String code;
     private final String message;

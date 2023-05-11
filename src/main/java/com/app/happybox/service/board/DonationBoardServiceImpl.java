@@ -2,6 +2,7 @@ package com.app.happybox.service.board;
 
 import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.board.DonationBoardDTO;
+import com.app.happybox.exception.BoardNotFoundException;
 import com.app.happybox.repository.board.DonationBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,9 +31,10 @@ public class DonationBoardServiceImpl implements DonationBoardService {
 
     @Override
     public DonationBoardDTO getDetail(Long id) {
-        DonationBoard donationBoard =
-                donationBoardRepository.findById(id).orElseThrow();
-        return null;
+        DonationBoard donationBoard = donationBoardRepository.findById(id).orElseThrow(() -> {
+            throw new BoardNotFoundException();
+        });
+        return donationBoardToDTO(donationBoard);
     }
 
     @Override
