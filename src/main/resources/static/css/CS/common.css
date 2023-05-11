@@ -454,3 +454,37 @@ html {
     height: 48px;
     padding: 10px 25px 11px;
 }
+
+/* 페이지 버튼 */
+
+.page-bottom {
+    position: relative;
+}
+
+.board-list ~ .page-bottom {
+    margin-top: 30px;
+}
+
+.pagination {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.pagination > a {
+    height: 25px;
+    padding: 0 1px;
+    margin: 0 8px 0;
+    color: #999;
+}
+
+.pagination > a.current, .pagination > a.on {
+    border-bottom: 2px solid #FF5938;
+    color: #FF5938;
+    font-weight: 700;
+}
+
+.page-bottom .right-area {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+}

@@ -3,33 +3,34 @@ const $useInfoList = $(".use-info-list");
 const $faqList = $(".faq-list");
 
 // 임시
-for (let i = 0; i < 10; i++) {
-    addNotice();
-    addInfo();
-    addFAQ();
-}
+// for (let i = 0; i < 10; i++) {
+//     addNotice();
+//     addInfo();
+//     addFAQ();
+// }
 
-function addNotice(notice) {
-    let text;
-
-    text = `
-        <div class="board-wrap">
-            <div class="text-center number">
-                <span>152</span>
+function addNotice() {
+    let text = "";
+    lists.forEach((list, i) => {
+        text+= `
+            <div class="board-wrap">
+                <div class="text-center number">
+                    <span>${list.id}</span>
+                </div>
+                <div class="text-left flex1">
+                    <a href="javascript:void(0)" class="title-elps">
+                        ${list.noticeTitle}
+                    </a>
+                </div>
+                <div class="text-center">
+                    <span>${list.createdDate}</span>
+                </div>
             </div>
-            <div class="text-left flex1">
-                <a href="javascript:void(0)" class="title-elps">
-                    영양성분 전수조사 결과 입장문
-                </a>
-            </div>
-            <div class="text-center">
-                <span>2023.02.03</span>
-            </div>
-        </div>
-    `;
-
+        `;
+    })
     $noticeList.append(text);
 }
+addNotice();
 
 function addInfo(info) {
     let text;
