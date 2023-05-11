@@ -2,12 +2,12 @@ package com.app.happybox.exception;
 
 import com.app.happybox.type.ErrorCode;
 
-public class ProductCartNotFoundException extends RuntimeException {
-    public ProductCartNotFoundException() {
+public class CartNotFoundException extends RuntimeException {
+    public CartNotFoundException() {
         super(ErrorCode.CART_NOT_FOUND.getMessage());
     }
 
-    public ProductCartNotFoundException(String message) {
+    public CartNotFoundException(String message) {
         super(message);
     }
 }

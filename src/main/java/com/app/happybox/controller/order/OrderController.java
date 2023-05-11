@@ -1,8 +1,12 @@
 package com.app.happybox.controller.order;
 
-import com.app.happybox.service.order.OrderProductService;
+import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.domain.OrderInfoDTO;
+import com.app.happybox.service.order.ProductOrderService;
+import com.app.happybox.service.order.SubscriptionOrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +20,24 @@ import java.util.List;
 @RequestMapping("/order")
 @Slf4j
 public class OrderController {
-    private final OrderProductService orderProductService;
 
-    @PostMapping("register")
+    @Qualifier("product")
+    private final ProductOrderService productOrderService;
+    @Qualifier("subscription")
+    private final SubscriptionOrderService subscriptionOrderService;
+
+    @PostMapping("product")
     @ResponseBody
-    public Long register(@RequestParam("cartId") List<Long> cartIds) {
+    public Long orderProduct(@RequestParam("cartId") List<Long> cartIds, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO) {
+        log.info(addressDTO.toString());
         // 임시 세션 ID 1L
-        return orderProductService.saveProductOrder(cartIds, 1L);
+        return productOrderService.saveProductOrder(cartIds, 1L, addressDTO, orderInfoDTO);
+    }
+
+    @PostMapping("subscription")
+    @ResponseBody
+    public Integer register(@RequestParam("cartId") List<Long> cartIds, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO) {
+        // 임시 세션 ID 1L
+        return subscriptionOrderService.saveSubscriptionOrder(cartIds, 1L, addressDTO, orderInfoDTO);
     }
 }

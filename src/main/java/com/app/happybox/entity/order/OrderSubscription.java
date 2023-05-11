@@ -37,10 +37,12 @@ public class OrderSubscription extends Order {
     @NotNull
     private SubscriptStatus subscriptStatus;
 
-    public OrderSubscription(String receiverName, String receiverPhoneNumber, Address orderAddress, Subscription subscription, Member member) {
+    @Builder
+    public OrderSubscription(String receiverName, String receiverPhoneNumber, Address orderAddress, Subscription subscription, Member member, SubOption subOption) {
         super(receiverName, receiverPhoneNumber, orderAddress);
         this.subscription = subscription;
         this.member = member;
+        this.subOption = subOption;
     }
 
     public void setSubOption(SubOption subOption) {
