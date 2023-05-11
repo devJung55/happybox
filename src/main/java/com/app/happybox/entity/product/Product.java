@@ -81,4 +81,8 @@ public class Product extends Period {
     public void setProductStock(Long productStock) {
         this.productStock = productStock;
     }
+
+    public void setProductOrderCount(Long productOrderCount) {
+        this.productOrderCount = productOrderCount;
+    }
 }

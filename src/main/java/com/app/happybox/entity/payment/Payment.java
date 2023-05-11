@@ -20,9 +20,10 @@ public class Payment extends Period {
 
     /* 결제 기본 정보 */
     @ColumnDefault(value = "0")
-    private Integer paymentAmount;
+    private Long paymentAmount;
 
     @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'COMPLETE'")
     private PaymentStatus paymentStatus;
     /* ============ */
 
@@ -32,4 +33,10 @@ public class Payment extends Period {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Order order;
+
+    public Payment(Long paymentAmount, User user, Order order) {
+        this.paymentAmount = paymentAmount;
+        this.user = user;
+        this.order = order;
+    }
 }

@@ -24,7 +24,9 @@ public abstract class Order extends Period {
     @Embedded
     private Address orderAddress;
 
-    public Order(Address orderAddress) {
+    public Order(String receiverName, String receiverPhoneNumber, Address orderAddress) {
+        this.receiverName = receiverName;
+        this.receiverPhoneNumber = receiverPhoneNumber;
         this.orderAddress = orderAddress;
     }
 }

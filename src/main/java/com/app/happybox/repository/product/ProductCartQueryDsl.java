@@ -9,6 +9,6 @@ public interface ProductCartQueryDsl {
     public Long deleteByUserId_QueryDSL(Long id);
 //    회원 id로 List조회
     public List<ProductCart> findAllByUserId_QueryDSL(Long id);
-//    id로 상세조회
+//    id들로 상세조회
     public List<ProductCart> findAllByIdsWithDetail_QueryDSL(List<Long> ids);
 }

@@ -29,4 +29,13 @@ public class WelfareOrderProductItem extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private WelfareOrderProduct welfareOrderProduct;
+
+    public WelfareOrderProductItem(Long orderAmount, Product product) {
+        this.orderAmount = orderAmount;
+        this.product = product;
+    }
+
+    public void setWelfareOrderProduct(WelfareOrderProduct welfareOrderProduct) {
+        this.welfareOrderProduct = welfareOrderProduct;
+    }
 }

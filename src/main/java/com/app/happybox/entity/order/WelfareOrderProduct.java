@@ -1,5 +1,6 @@
 package com.app.happybox.entity.order;
 
+import com.app.happybox.entity.user.Address;
 import com.app.happybox.type.PurchaseStatus;
 import com.app.happybox.entity.user.Welfare;
 import lombok.*;
@@ -27,4 +28,17 @@ public class WelfareOrderProduct extends Order {
     @Enumerated(EnumType.STRING)
     @ColumnDefault(value = "'CONFIRMED'")
     private PurchaseStatus purchaseStatus;
+
+    public WelfareOrderProduct(String receiverName, String receiverPhoneNumber, Address orderAddress, Welfare welfare) {
+        super(receiverName, receiverPhoneNumber, orderAddress);
+        this.welfare = welfare;
+    }
+
+    //    편의 메소드
+    public void addProducts(List<WelfareOrderProductItem> items) {
+        for (WelfareOrderProductItem item : items) {
+            item.setWelfareOrderProduct(this);
+            this.welfareOrderProductItems.add(item);
+        }
+    }
 }
