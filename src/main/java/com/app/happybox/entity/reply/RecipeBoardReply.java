@@ -1,4 +1,4 @@
-package com.app.happybox.service.reply;
+package com.app.happybox.entity.reply;
 
 import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.RecipeBoard;

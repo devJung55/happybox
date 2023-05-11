@@ -1,5 +1,7 @@
 package com.app.happybox.exception;
 
+import com.app.happybox.type.ErrorCode;
+
 public class ProductNotFoundException extends RuntimeException {
 
     public ProductNotFoundException() {

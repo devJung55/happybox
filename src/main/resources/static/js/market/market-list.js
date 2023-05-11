@@ -1,4 +1,3 @@
-/* ajax 실행 */
 /* ProductSearch */
 // private String address;
 // private Integer price;

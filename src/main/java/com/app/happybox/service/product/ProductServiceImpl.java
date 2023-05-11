@@ -4,7 +4,7 @@ import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductDTO;
 import com.app.happybox.entity.product.ProductSearch;
 import com.app.happybox.exception.ProductNotFoundException;
-import com.app.happybox.repository.order.ProductRepository;
+import com.app.happybox.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO findById(Long id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> {
+        Product product = productRepository.findByIdWithDetail_QueryDSL(id).orElseThrow(() -> {
             throw new ProductNotFoundException();
         });
 

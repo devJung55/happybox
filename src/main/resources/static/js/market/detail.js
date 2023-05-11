@@ -8,6 +8,18 @@ const $infoImgThumbnail = $(".info-img-thumbnail img");
 
 const $reviewListWrap = $(".review-list-wrap");
 
+function $doAjax(type, url, data) {
+    $.ajax({
+        type: type,
+        url: url,
+        data: data,
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+        }
+    });
+}
+
 /* 임시 이미지 갯수 */
 const imgCount = 7;
 
@@ -20,6 +32,11 @@ for (let i = 0; i < imgCount; i++) {
     `;
     $imgContainer.append(text);
 }
+
+$doAjax("get", "/product/detail/reply/9", {
+    page: 1,
+    size: 5
+});
 
 /* 임시 리뷰 요소 append */
 for (let i = 0; i < imgCount; i++) {
@@ -143,6 +160,8 @@ $updateReviewBtn.on("click", function () {
     });
 });
 
+
+
 /* 주문수량 설정 */
 
 let orderCount = 1;
@@ -179,3 +198,5 @@ $(".quantity-input").on("blur", function () {
         $(this).val(parseInt(currentValue));
     }
 });
+
+/* ================== */
