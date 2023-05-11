@@ -21,7 +21,6 @@ class DistributorRepositoryTests {
     public void saveTest(){
         // given
         Address address = new Address("99999", "경남 거창", "정표네 사과농장");
-z
 
         // when
 
