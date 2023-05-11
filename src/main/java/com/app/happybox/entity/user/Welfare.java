@@ -32,14 +32,6 @@ public class Welfare extends User {
     private Integer welfarePointTotal;
     /* ============= */
 
-    // 배송지 주소 정보
-    @NotNull @Embedded
-    private Address welfareDeliveryAddress;
-
-    /*-- 배송지정보설정 --*/
-    private String deliveryName;
-    private String deliveryPhoneNumber;
-
     /* 배달원 정보 */
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "welfare", orphanRemoval = true)
     private List<Rider> riders = new ArrayList<>();
@@ -64,13 +56,10 @@ public class Welfare extends User {
 
 
     @Builder
-    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String welfareName, Integer welfarePointTotal, Address welfareDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
+    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String welfareName, Integer welfarePointTotal) {
         super(userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
         this.welfareName = welfareName;
         this.welfarePointTotal = welfarePointTotal;
-        this.welfareDeliveryAddress = welfareDeliveryAddress;
-        this.deliveryName = deliveryName;
-        this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
 
     public void setWelfarePointTotal(Integer welfarePointTotal) {

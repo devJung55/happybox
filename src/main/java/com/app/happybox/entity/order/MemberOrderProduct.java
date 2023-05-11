@@ -20,7 +20,7 @@ import java.util.List;
 public class MemberOrderProduct extends Order {
 
     /* 주문 안의 상품 List */
-    @OneToMany(mappedBy = "memberOrderProduct", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "memberOrderProduct", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<MemberOrderProductItem> welfareOrderProductItems = new ArrayList<>();
 
     /* 주문/구독한 회원 */
@@ -32,8 +32,8 @@ public class MemberOrderProduct extends Order {
     @ColumnDefault(value = "'CONFIRMED'")
     private PurchaseStatus purchaseStatus;
 
-    public MemberOrderProduct(Address orderAddress, Member member) {
-        super(orderAddress);
+    public MemberOrderProduct(String receiverName, String receiverPhoneNumber, Address orderAddress, Member member) {
+        super(receiverName, receiverPhoneNumber, orderAddress);
         this.member = member;
     }
 

@@ -29,6 +29,7 @@ public class ProductCart extends Period {
     @JoinColumn
     private User user;
 
+    @Builder
     public ProductCart(Long cartOrderAmount, Product product, User user) {
         this.cartOrderAmount = cartOrderAmount;
         this.product = product;
