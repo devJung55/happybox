@@ -19,6 +19,11 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
     private final ReviewBoardRepository reviewBoardRepository;
 
     @Override
+    public void write(ReviewBoard reviewBoard) {
+        reviewBoardRepository.save(reviewBoard);
+    }
+
+    @Override
     public Slice<ReviewBoardDTO> getReviewBoards(Pageable pageable) {
         Slice<ReviewBoard> reviewBoards =
                 reviewBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 10));

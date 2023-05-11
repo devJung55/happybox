@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface ReviewBoardService {
+    //    작성하기
+    public void write(ReviewBoard reviewBoard);
+
     //    목록 페이징(최신순)
     public Slice<ReviewBoardDTO> getReviewBoards(Pageable pageable);
 
@@ -35,6 +38,7 @@ public interface ReviewBoardService {
                 .reviewRating(reviewBoard.getReviewRating())
                 .reviewBoardRegisterDate(reviewBoard.getUpdatedDate().toLocalDate())
                 .reviewLikeCount(reviewBoard.getReviewLikeCount().longValue())
+                .reviewBoardReplyCount(reviewBoard.getReviewBoardReplyCount().longValue())
                 .boardFiles(reviewBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }
@@ -48,5 +52,6 @@ public interface ReviewBoardService {
                 .fileRepresent(boardFile.getFileRepresent())
                 .build();
     }
+
 
 }
