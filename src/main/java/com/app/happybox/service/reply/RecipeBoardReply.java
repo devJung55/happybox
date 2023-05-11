@@ -1,7 +1,8 @@
-package com.app.happybox.entity.reply;
+package com.app.happybox.service.reply;
 
 import com.app.happybox.entity.board.Board;
 import com.app.happybox.entity.board.RecipeBoard;
+import com.app.happybox.entity.reply.Reply;
 import com.app.happybox.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;

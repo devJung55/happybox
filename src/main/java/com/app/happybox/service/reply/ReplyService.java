@@ -1,5 +1,7 @@
-package com.app.happybox.entity.reply;
+package com.app.happybox.service.reply;
 
+import com.app.happybox.entity.reply.Reply;
+import com.app.happybox.entity.reply.ReplyDTO;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

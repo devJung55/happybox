@@ -8,6 +8,7 @@ html {
     width: 1100px;
     margin: 0 auto;
     gap: 30px;
+    padding-bottom: 60px;
 }
 
 .content {
@@ -23,7 +24,6 @@ html {
 .item-info-wrap {
     flex: 1;
     position: relative;
-    margin-bottom: 70px;
 }
 
 .item-info {
