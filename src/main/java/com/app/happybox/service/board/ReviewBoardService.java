@@ -53,7 +53,7 @@ public interface ReviewBoardService {
                 .build();
     }
 
-    default ReviewBoardDTO mypageReviewBoardToDTO(ReviewBoard reviewBoard){ // 지영이
+    default ReviewBoardDTO myReviewBoardToDTO(ReviewBoard reviewBoard){ // 지영이
         return ReviewBoardDTO.builder()
                 .id(reviewBoard.getId())
                 .memberName(reviewBoard.getMember().getMemberName())

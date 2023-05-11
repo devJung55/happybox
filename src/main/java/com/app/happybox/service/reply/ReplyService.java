@@ -19,4 +19,27 @@ public interface ReplyService {
                 .updatedDate(productReply.getUpdatedDate())
                 .build();
     }
+
+    default <T extends Reply> ReplyDTO reviewBoardReplyToDTO(T reviewBoardReply) {
+        return ReplyDTO.builder()
+                .id(reviewBoardReply.getId())
+                .replyContent(reviewBoardReply.getReplyContent())
+                .replyLikeCount(reviewBoardReply.getReplyLikeCount())
+                .userRole(reviewBoardReply.getUser().getUserRole())
+                .createdDate(reviewBoardReply.getCreatedDate())
+                .updatedDate(reviewBoardReply.getUpdatedDate())
+                .build();
+    }
+
+    default <T extends Reply> ReplyDTO recipeBoardReplyToDTO(T recipeBoardReply) {
+        return ReplyDTO.builder()
+                .id(recipeBoardReply.getId())
+                .replyContent(recipeBoardReply.getReplyContent())
+                .replyLikeCount(recipeBoardReply.getReplyLikeCount())
+                .userRole(recipeBoardReply.getUser().getUserRole())
+                .createdDate(recipeBoardReply.getCreatedDate())
+                .updatedDate(recipeBoardReply.getUpdatedDate())
+                .build();
+    }
+
 }
