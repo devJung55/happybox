@@ -30,7 +30,9 @@ public class memberController {
     @PostMapping("join")
     public RedirectView join(MemberDTO memberDTO, PasswordEncoder passwordEncoder){
         memberService.join(memberDTO,passwordEncoder);
-        return new RedirectView("/member/member-login");
+        return new RedirectView("/member/login");
     }
+    @GetMapping("login")
+    public void goToLoginForm(){;}
 
 }
