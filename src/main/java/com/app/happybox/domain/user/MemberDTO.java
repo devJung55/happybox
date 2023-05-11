@@ -15,13 +15,13 @@ public class MemberDTO {
 
 //    Member 전체 컬럼
     private Long id;
-    private String memberId;
-    private String memberPassword;
-    private Address memberAddress;
-    private String memberEmail;
-    private String memberPhoneNumber;
-    private UserStatus memberStatus;
-    private Role memberRole;
+    private String userId;
+    private String userPassword;
+    private Address userAddress;
+    private String userEmail;
+    private String userPhoneNumber;
+    private UserStatus userStatus;
+    private Role userRole;
     private String memberName;
     private LocalDate memberBirth;
     private Gender memberGender;
