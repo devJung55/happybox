@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>복지관 회원가입</title>
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../static/css/global/global.css" />
-    <link rel="stylesheet" href="../../static/css/member/member.css" />
-    <link rel="stylesheet" href="../../static/css/member/join.css" />
+    <title>유통업체 회원가입</title>
+    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="../../../static/css/global/global.css" />
+    <link rel="stylesheet" href="../../../static/css/member/member.css" />
+    <link rel="stylesheet" href="../../../static/css/member/join.css" />
   </head>
   <body>
     <header></header>
@@ -94,7 +94,7 @@
               <div class="form-group">
                 <div class="form-head">
                   <label for="member-general-join-name-text" class="form-label"
-                    >복지관명<i class="es2"></i
+                    >업체명<i class="es2"></i
                   ></label>
                 </div>
                 <!--// form-head -->
@@ -104,7 +104,7 @@
                     id="member-general-join-name-text"
                     name="member-general-join-name-text"
                     class="input-text w571 join-input"
-                    placeholder="복지관명 입력"
+                    placeholder="유통업체명 입력"
                     value=""
                   />
                 </div>
@@ -143,7 +143,7 @@
                     type="text"
                     id="address-kakao"
                     name="member-general-join-address-text"
-                    class="input-text w571"
+                    class="input-text w571 address-input"
                     placeholder="주소"
                     value=""
                     readonly
@@ -156,7 +156,7 @@
                 <div class="form-head">
                   <label for="member-general-join-detail-address-text" class="form-label"
                     >상세주소<i class="es2"></i
-                      ></label>
+                    ></label>
                 </div>
                 <!--// form-head -->
                 <div class="input-group type-lg w-full">
@@ -164,7 +164,7 @@
                     type="text"
                     id="address-kakao"
                     name="member-general-join-detail-address-text"
-                    class="input-text w571"
+                    class="input-text w571 address-detail-input"
                     placeholder="상세주소"
                     value=""
                   />
@@ -210,8 +210,8 @@
         </div>
       </form>
     </section>
-  </root>
-  <footer></footer>
+    </root>
+    <footer></footer>
   </body>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -219,5 +219,5 @@
     $('header').load('../../templates/component/header.html');
     $('footer').load('../../templates/component/footer.html');
   </script>
-  <script src="../../static/js/join/business-join.js"></script>
+  <script src="../../../static/js/join/company-join.js"></script>
 </html>
