@@ -4,6 +4,7 @@
 const setDetail = $(".notice-content");
 
 function addDetail() {
+    const formattedDate = formatDate(new Date(noticeDetail.createdDate));
     let text = "";
     text = `
                  <div class="answer-wrap notice-title">
@@ -14,7 +15,7 @@ function addDetail() {
                         </p>
                     </div>
                     <div class="text-center">
-                        <span>${noticeDetail.createdDate}</span>
+                        <span>${formattedDate}</span>
                     </div>
                 </div>
                  <div class="inner-text">
