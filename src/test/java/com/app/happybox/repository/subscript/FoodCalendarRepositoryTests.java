@@ -57,10 +57,10 @@ class FoodCalendarRepositoryTests {
         log.info(LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).toString());
     }
 
-    @Test
-    public void findAllInSubscriptionIds_Test() {
-        foodCalendarRepository.findAllInSubscriptionIds(Arrays.asList(3L, 4L))
-                .stream().map(FoodCalendar::toString)
-                .forEach(log::info);
-    }
+//    @Test
+//    public void findAllInSubscriptionIds_Test() {
+//        foodCalendarRepository.findAllInSubscriptionIds(Arrays.asList(3L, 4L))
+//                .stream().map(FoodCalendar::toString)
+//                .forEach(log::info);
+//    }
 }

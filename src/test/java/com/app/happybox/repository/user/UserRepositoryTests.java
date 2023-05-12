@@ -1,5 +1,6 @@
 package com.app.happybox.repository.user;
 
+import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -18,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTests {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserFileRepository userFileRepository;
 
     @Test
     public void findByIdTest(){
@@ -27,5 +32,11 @@ class UserRepositoryTests {
         // when
 
         // then
+    }
+
+    @Test
+    public void userFilesaveTest() {
+        UserFile userFile = new UserFile("2023/05/12", UUID.randomUUID().toString(), "프로필 사진", userRepository.findById(1L).get());
+        userFileRepository.save(userFile);
     }
 }
