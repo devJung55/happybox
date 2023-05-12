@@ -1,4 +1,3 @@
-
 // 임시로 8개 넣어둠
 for (let i = 0; i < 7; i++) {
     // 임시 함수들
@@ -109,6 +108,7 @@ function appendIndex2() {
 
     $(".swiperDataContainer").eq(2).append(text);
 }
+
 function appendIndex3() {
     let text;
 
@@ -159,3 +159,32 @@ function appendIndex3() {
     $(".swiperDataContainer").eq(3).append(text);
 }
 
+const $recentSubUl = $(".recentSub");
+recentSub.forEach((sub, i) => {
+    let text = "";
+
+    let filePath = "";
+
+    console.log(sub.representFood);
+
+    if(sub.representFood != null) filePath = sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
+
+    text +=
+        `
+        <li
+            class="bnr-item-slide swiper-slide swiper-slide-active"
+            style="width: 256.25px; margin-right: 25px"
+        >
+            <div class="bnr-item">
+                <div class="img">
+                    <img src='${'/images/display/' + filePath}'/>
+                </div>
+                <em class="tit text-elps">${sub.subscriptionTitle}</em>
+                <span class="desc"">${sub.welfareName}</span>
+                <a href="/product/view?productCd=24931" class="btn-blank"></a>
+            </div>
+        </li>
+    `
+
+    $recentSubUl.append(text);
+})

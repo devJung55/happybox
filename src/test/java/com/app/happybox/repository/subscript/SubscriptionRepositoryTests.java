@@ -128,16 +128,15 @@ class SubscriptionRepositoryTests {
         // when
         List<FoodCalendar> foodCalendarList = foodCalendarRepository.findAllInSubscriptionIds(ids);
 
+        log.info(foodCalendarList.toString());
         // then
         subscriptionList.forEach(subscription -> {
-            log.info(subscription.getFoodCalendars().toString());
-
             foodCalendarList.stream()
                     .filter(foodCalendar -> foodCalendar.getSubscription().equals(subscription))
                     .forEach(foodCalendar -> foodCalendar.getFoodList().forEach(foodList::add));
         });
 
-        log.info(subscriptionList.get(0).getWelfare().getWelfareName());
+        log.info(subscriptionList.toString());
         log.info(foodList.toString());
     }
 

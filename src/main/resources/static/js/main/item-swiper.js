@@ -14,7 +14,7 @@ $nextBtn.each((i, e) => {
 
         let $dataContainer = $($(this).prev().prev());
         let $listContainer = $($(this).prev().prev().parent());
-        let offsetWidth = $listContainer[0].offsetWidth;
+        let offsetWidth = 256.25;
         let indexLimit = $dataContainer.data("limit");
         let offset;
 

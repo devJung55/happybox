@@ -44,6 +44,9 @@ public class SubscriptionDTO {
     //    파일 list
     private List<FoodDTO> foodList = new ArrayList<>();
 
+    //    대표음식
+    private FoodDTO representFood;
+
     @Builder
     public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice,
                            Integer subscriptLikeCount, Long reviewCount, Double reviewAvgRating,
@@ -61,5 +64,9 @@ public class SubscriptionDTO {
 
     public void setFoodList(List<FoodDTO> foodList) {
         this.foodList = foodList;
+    }
+
+    public void setRepresentFood(FoodDTO representFood) {
+        this.representFood = representFood;
     }
 }
