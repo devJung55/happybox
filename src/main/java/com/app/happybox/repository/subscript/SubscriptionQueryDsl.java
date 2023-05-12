@@ -1,13 +1,13 @@
 package com.app.happybox.repository.subscript;
 
-import com.app.happybox.entity.subscript.Food;
-import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface SubscriptionQueryDsl {
     //    최신 Top8
@@ -23,8 +23,8 @@ public interface SubscriptionQueryDsl {
     public List<Subscription> findTopNOrderByReviewCount_QueryDSL(Long limit);
 
     //    구독 지역별 조회
-    public Page<Subscription> findAllByAddressCategoryWithPaging_QueryDSL(Pageable pageable, String address);
+    public Page<Subscription> findAllBySearchWithPaging_QueryDSL(Pageable pageable, SubscriptionSearchDTO subscriptionSearchDTO);
 
     //    구독 상세 조회
-    public Subscription findByIdWithDetail_QueryDSL(Long id);
+    public Optional<Subscription> findByIdWithDetail_QueryDSL(Long id);
 }

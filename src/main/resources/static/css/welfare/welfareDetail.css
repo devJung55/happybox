@@ -65,6 +65,7 @@
 
 .detail-top-wrap {
     padding-top: 70px;
+    display: flex;
 }
 
 .welfare-img-area {
@@ -85,7 +86,6 @@
 
 .refrig-banner {
     width: 100%;
-    height: 100%;
     margin-top: 15px;
     text-align: center;
 }
@@ -103,7 +103,8 @@
 }
 
 .welfare-info-area {
-    float: right;
+    position: sticky;
+    top: 0;
     width: 280px;
     padding: 20px;
     border: 2px solid #80808014;
@@ -1113,6 +1114,10 @@ input[type="checkbox"], input[type="radio"] {
 /*============= 복지관 소개 ========================*/
 .welfare-intro-area {
     padding: 14px;
+}
+
+.welfare-info-wrap {
+    position: relative;
 }
 
 .welfare-info-list{

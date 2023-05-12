@@ -5,36 +5,36 @@ cal = new Calendar('#calendar', {
     useDetailPopup: false,
     theme: MONTHLY_CUSTOM_THEME,
     timezones: {
-         timezoneOffset: 540,
-         // displayLabel: 'GMT+09:00',
-         tooltip: 'Seoul'        	
+        timezoneOffset: 540,
+        // displayLabel: 'GMT+09:00',
+        tooltip: 'Seoul'
     },
     calendars: [
-                {
-                id: '1',
-                name: '개인',
-                color: '#ffffff',
-                bgColor: '#9e5fff',
-                dragBgColor: '#9e5fff',
-                borderColor: '#9e5fff'
-                },
-                {
-                id: '2',
-                name: '회사',
-                color: '#00a9ff',
-                bgColor: '#00a9ff',
-                dragBgColor: '#00a9ff',
-                borderColor: '#00a9ff'
-                },
-                {
-                id: '3',
-                name: '휴일',
-                color: '#ff5583',
-                bgColor: '#ff5583',
-                dragBgColor: '#ff5583',
-                borderColor: '#ff5583'
-                }
-           ]
+        {
+            id: '1',
+            name: '개인',
+            color: '#ffffff',
+            bgColor: '#9e5fff',
+            dragBgColor: '#9e5fff',
+            borderColor: '#9e5fff'
+        },
+        {
+            id: '2',
+            name: '회사',
+            color: '#00a9ff',
+            bgColor: '#00a9ff',
+            dragBgColor: '#00a9ff',
+            borderColor: '#00a9ff'
+        },
+        {
+            id: '3',
+            name: '휴일',
+            color: '#ff5583',
+            bgColor: '#ff5583',
+            dragBgColor: '#ff5583',
+            borderColor: '#ff5583'
+        }
+    ]
 
 });
 
@@ -74,4 +74,4 @@ var MONTHLY_CUSTOM_THEME = {
     'month.moreViewTitle.borderBottom': '1px solid #ddd',
     'month.moreViewTitle.padding': '0 10px',
     'month.moreViewList.padding': '10px'
-  };
+};

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter @ToString
@@ -41,12 +42,12 @@ public class SubscriptionDTO {
     private AddressDTO address;
 
     //    파일 list
-    private List<FoodDTO> foodList;
+    private List<FoodDTO> foodList = new ArrayList<>();
 
     @Builder
     public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice,
                            Integer subscriptLikeCount, Long reviewCount, Double reviewAvgRating,
-                           Long orderCount, String welfareName, AddressDTO welfareAddress, List<FoodDTO> foodList) {
+                           Long orderCount, String welfareName, AddressDTO welfareAddress) {
         this.id = id;
         this.subscriptionTitle = subscriptionTitle;
         this.subscriptionPrice = subscriptionPrice;
@@ -56,6 +57,9 @@ public class SubscriptionDTO {
         this.orderCount = orderCount;
         this.welfareName = welfareName;
         this.address = welfareAddress;
+    }
+
+    public void setFoodList(List<FoodDTO> foodList) {
         this.foodList = foodList;
     }
 }

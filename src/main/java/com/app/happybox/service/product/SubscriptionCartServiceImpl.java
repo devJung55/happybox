@@ -12,6 +12,7 @@ import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Qualifier("subscriptionCartService")
 public class SubscriptionCartServiceImpl implements SubscriptionCartService {
     private final MemberRepository memberRepository;
     private final SubscriptionRepository subscriptionRepository;
@@ -35,7 +37,6 @@ public class SubscriptionCartServiceImpl implements SubscriptionCartService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     public Long saveCart(SubscriptionCartDTO cartDTO, Long memberId, Long subscriptionId) {
-        log.info("========== 들어옴 ==========");
         Member member = null;
         Subscription subscription = null;
         try {

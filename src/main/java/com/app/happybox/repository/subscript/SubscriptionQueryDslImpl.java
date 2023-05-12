@@ -1,22 +1,25 @@
 package com.app.happybox.repository.subscript;
 
-import com.app.happybox.entity.subscript.Food;
+import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.happybox.entity.subscript.QSubscription.subscription;
 
 
 @RequiredArgsConstructor
+@Slf4j
 public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     private final JPAQueryFactory query;
 
@@ -59,32 +62,35 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     }
 
     @Override
-    public Page<Subscription> findAllByAddressCategoryWithPaging_QueryDSL(Pageable pageable, String address) {
+    public Page<Subscription> findAllBySearchWithPaging_QueryDSL(Pageable pageable, SubscriptionSearchDTO searchDTO) {
+        log.info(searchDTO.toString());
         //    해당 지역 주소를 포함하고 있는가? ex) 강남 in 서울시 '강남구' ...
-        BooleanExpression hasAddress = address == null ? null : subscription.welfare.address.firstAddress.contains(address);
+        BooleanExpression hasAddress = searchDTO.getSearchFirstAddress() == null ? null : subscription.welfare.address.firstAddress.contains(searchDTO.getSearchFirstAddress());
+        BooleanExpression hasSearchText = searchDTO.getSearchText() == null ? null : subscription.subscriptionTitle.contains(searchDTO.getSearchText());
 
         List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .from(subscription)
-                .where(hasAddress)
-                .orderBy(subscription.reviewBoards.size().asc())
+                .where(hasAddress, hasSearchText)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         Long count = query.select(subscription.count())
                 .from(subscription)
-                .where(hasAddress).fetchOne();
+                .where(hasAddress, hasSearchText).fetchOne();
 
         return new PageImpl<>(subscriptionList, pageable, count);
     }
 
     @Override
-    public Subscription findByIdWithDetail_QueryDSL(Long id) {
-        Subscription sub = getSubscriptionJPAQuery()
+    public Optional<Subscription> findByIdWithDetail_QueryDSL(Long id) {
+        Subscription sub = query.select(subscription)
+                .from(subscription)
+                .join(subscription.welfare).fetchJoin()
                 .where(subscription.id.eq(id))
                 .fetchOne();
 
-        return sub;
+        return Optional.ofNullable(sub);
     }
 
     /* 중복 코드인 Subscription JPAQuery 리턴 */
