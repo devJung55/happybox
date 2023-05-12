@@ -64,7 +64,7 @@
 											<th>이메일</th>
 										</tr>
 									</thead>
-									<tr th:each="welfares : ${welfares}" th:object="${welfares}">
+									<tr class="toWelfareDetail" th:each="welfares : ${welfares}" th:object="${welfares}">
 										<td>
 											<label class="check-label">
 											    <input type="checkbox" name="check">
@@ -95,20 +95,6 @@
 												</div>
 											</div>
 										</div>
-										<!-- <div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>2</span>
-												</div>
-											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>3</span>
-												</div>
-											</div>
-										</div> -->
 										<div class="">
 											<div class="page-button-margin">
 												<div>
@@ -144,4 +130,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/menuLoad.js"></script>
 <script src="/js/admin/event.js"></script>
+<script src="/js/admin/sidebar.js"></script>
+<script src="/js/admin/toDetail.js"></script>
 </html>

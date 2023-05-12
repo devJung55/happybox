@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,18 +8,19 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-detail.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+	<link rel="stylesheet" href="/css/admin/admin-default.css">
+    <link rel="stylesheet" href="/css/admin/admin-modal.css">
+    <link rel="stylesheet" href="/css/admin/admin-detail.css">
+    <link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
     <section class="header-section">
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-title-layout">
-                    <img class="logo-image" src="../../static/img/header/Logo-main.png" alt="">
+                    <img class="logo-image" src="/img/header/Logo-main.png" alt="">
                 </div>
             </div>
             <div>
@@ -32,7 +33,7 @@
     </section>
     <main class="main-section">
         <!-- 임시 사이드바 -->
-        <div id="side-bar"></div>
+		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
         <!-- 임시 사이드바 끝 -->
         <section class="content-section">
             <div class="container">
@@ -52,35 +53,35 @@
 									/>
 								</div>
                             </div>
-                            <ul class="content-list-wrap">
+                            <ul class="content-list-wrap" th:object="${welfare}">
                                 <li class="content-list">
                                     <span>센터명</span>
                                     <div class="content-input">
-                                        <input type="text" value="노동 복지센터" readonly/>
+                                        <input type="text" th:value="*{welfareName}" readonly/>
                                     </div>
                                 </li>
                                 <li class="content-list">
                                     <span>대표 번호</span>
                                     <div class="content-input">
-                                        <input type="text" value="02-000-0000" readonly/>
+                                        <input type="text" th:value="*{userPhoneNumber}" readonly/>
                                     </div>
                                 </li>
                                 <li class="content-list">
                                     <span>대표 이메일</span>
                                     <div class="content-input">
-                                        <input type="text" value="public11@naver.com" readonly/>
+                                        <input type="text" th:value="*{userEmail}" readonly/>
                                     </div>
                                 </li>
                                 <li class="content-list">
                                     <span>등록날짜</span>
                                     <div class="content-input">
-                                        <input type="text" value="2023.03.12" readonly/>
+                                        <input type="text" th:value="*{#temporals.format(createdDate, 'yyyy.MM.dd')}" readonly/>
                                     </div>
                                 </li>
 								<li class="content-list">
                                     <span>보유 포인트</span>
                                     <div class="content-input">
-                                        <input type="text" value="2000p" readonly/>
+                                        <input type="text" th:value="*{welfarePointTotal + 'P'}" readonly/>
                                     </div>
                                 </li>
 								<li class="content-list">
@@ -94,21 +95,21 @@
                     </div>
                     <div class="detail-list">
                         <div class="board-info-detail-box">
-                            <span>게제 목록</span>
+                            <span>구독자 목록</span>
                             <div class="delete-box">
                                 <button class="delete-button">목록 삭제</button>
                             </div>
                         </div>
                         <div class="table-box detail-table">
                             <div class="info-table">
-								<table class="table">
+								<table class="table" th:each="subscriber : ${subscribers}" th:object="${subscriber}">
 									<thead>
 										<tr>
 											<th>
 												<input type="checkbox" id="allSelect">
 											</th>
 											<th>No</th>
-											<th>메뉴</th>
+											<th>이름</th>
                                             <th>등록날짜</th>
 										</tr>
 									</thead>
@@ -116,33 +117,9 @@
 										<td>
 											<input type="checkbox" name="check">
 										</td>
-										<td class="show-modal">1</td>
-										<td class="show-modal">제육볶음</td>
-										<td class="show-modal">2000.12.04</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal">2</td>
-										<td class="show-modal">오므라이스</td>
-										<td class="show-modal">1995.02.12</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal">3</td>
-										<td class="show-modal">잡채볶음</td>
-										<td class="show-modal">1999.04.27</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal">4</td>
-										<td class="show-modal">돌솥비빔밥</td>
-										<td class="show-modal">1991.08.16</td>
+										<td class="show-modal" th:text="*{memberId}"></td>
+										<td class="show-modal" th:text="*{memberName}"></td>
+										<td class="show-modal" th:text="*{#temporals.format(orderStartDate, 'yyyy.MM.dd')}"></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -350,6 +327,7 @@
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/event.js"></script>
+<script src="/js/admin/menuLoad.js"></script>
+<script src="/js/admin/event.js"></script>
+<script src="/js/admin/sidebar.js"></script>
 </html>
