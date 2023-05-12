@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public interface RecipeBoardService {
@@ -34,6 +35,9 @@ public interface RecipeBoardService {
 
     //    관리자 레시피 게시글 목록
     public Page<RecipeBoardDTO> getList(Pageable pageable);
+
+//    관리자 레시피 게시글 조회
+    public Optional<RecipeBoardDTO> getRecipeBoardDetailById(Long recipeBoardId);
 
     default RecipeBoardDTO recipeBoardToDTO(RecipeBoard recipeBoard){
         return RecipeBoardDTO.builder()

@@ -30,4 +30,7 @@ public interface RecipeBoardQueryDsl {
 
 //    관리자 레시피 게시글 목록
     public Page<RecipeBoard> findRecipeBoardListDescWithPaging_QueryDSL(Pageable pageable);
+
+//    관리자 레시피 게시글 조회
+    public Optional<RecipeBoard> findById_QueryDSL(Long recipeBoardId);
 }
