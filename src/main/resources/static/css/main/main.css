@@ -107,6 +107,7 @@ div.banner div {
 }
 
 .frame-sm {
+    width: 1140px;
     position: relative;
     margin: 0 auto;
 }

@@ -24,7 +24,7 @@ public class ProductReplyService implements ReplyService {
         Slice<ProductReply> productReplySlice = productReplyRepository.findAllByProductId(pageable, id);
         List<ReplyDTO> replyDTOList = productReplySlice
                 .get()
-                .map(this::productReplyToDTO)
+                .map(this::replyToDTO)
                 .collect(Collectors.toList());
         return new SliceImpl<>(replyDTOList, pageable, productReplySlice.hasNext());
     }

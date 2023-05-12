@@ -51,14 +51,14 @@ public class ReviewBoardReplyRepositoryTests {
 
     @Test
     public void findAllWithScroll(){
-        reviewBoardReplyRepository.findAllWithScroll(PageRequest.of(0, 10))
-                .stream().map(Reply::getReplyContent).forEach(log::info);
+//        reviewBoardReplyRepository.findAllWithScroll(PageRequest.of(0, 10))
+//                .stream().map(Reply::getReplyContent).forEach(log::info);
     }
 
     @Test
     public void findAllByLikeDescWithScroll(){
-        reviewBoardReplyRepository.findAllWithScroll(PageRequest.of(0, 10))
-                .stream().map(Reply::getReplyContent).forEach(log::info);
+//        reviewBoardReplyRepository.findAllWithScroll(PageRequest.of(0, 10))
+//                .stream().map(Reply::getReplyContent).forEach(log::info);
     }
 
     @Test

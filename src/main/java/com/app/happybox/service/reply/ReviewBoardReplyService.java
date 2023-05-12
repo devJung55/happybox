@@ -26,7 +26,7 @@ public class ReviewBoardReplyService implements ReplyService {
         Slice<ReviewBoardReply> reviewBoardReplySlice = reviewBoardReplyRepository.findAllByReviewBoardId(pageable, id);
         List<ReplyDTO> replyDTOList = reviewBoardReplySlice
                 .get()
-                .map(this::reviewBoardReplyToDTO)
+                .map(this::replyToDTO)
                 .collect(Collectors.toList());
         return new SliceImpl<>(replyDTOList, pageable, reviewBoardReplySlice.hasNext());
     }
