@@ -43,6 +43,14 @@ public interface ReviewBoardService {
                 .build();
     }
 
+    default ReviewBoard toReviewBoardEntity(ReviewBoardDTO reviewBoardDTO){
+        return ReviewBoard.builder()
+                .boardTitle(reviewBoardDTO.getReviewBoardTitle())
+                .boardContent(reviewBoardDTO.getReviewBoardContent())
+                .reviewRating(reviewBoardDTO.getReviewRating())
+                .build();
+    }
+
     default BoardFileDTO boardFileToDTO(BoardFile boardFile){
         return BoardFileDTO.builder()
                 .id(boardFile.getId())
