@@ -45,9 +45,10 @@ public class ReviewBoardDTO {
     List<ReplyDTO> replies;
 
     @Builder
-    public ReviewBoardDTO(Long id, String memberName, String welfareName, String reviewBoardTitle, String reviewBoardContent, LocalDate reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewBoardReplyCount, List<BoardFileDTO> boardFiles) {
+    public ReviewBoardDTO(Long id, Long memberId, String memberName, String welfareName, String reviewBoardTitle, String reviewBoardContent, LocalDate reviewBoardRegisterDate, Integer reviewRating, Long reviewLikeCount, Long reviewBoardReplyCount, List<BoardFileDTO> boardFiles) {
         this.id = id;
         this.memberName = memberName;
+        this.memberId = memberId;
         this.welfareName = welfareName;
         this.reviewBoardTitle = reviewBoardTitle;
         this.reviewBoardContent = reviewBoardContent;
@@ -58,15 +59,4 @@ public class ReviewBoardDTO {
         this.boardFiles = boardFiles;
     }
 
-    @Builder
-    public ReviewBoardDTO(Long id, String memberName, Long memberId, String reviewBoardTitle, String reviewBoardContent, LocalDate reviewBoardRegisterDate, Integer reviewRating, List<BoardFileDTO> boardFiles) {
-        this.id = id;
-        this.memberName = memberName;
-        this.memberId = memberId;
-        this.reviewBoardTitle = reviewBoardTitle;
-        this.reviewBoardContent = reviewBoardContent;
-        this.reviewBoardRegisterDate = reviewBoardRegisterDate;
-        this.reviewRating = reviewRating;
-        this.boardFiles = boardFiles;
-    }
 }
