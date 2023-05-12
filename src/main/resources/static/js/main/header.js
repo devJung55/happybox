@@ -81,3 +81,16 @@ $(document).ready(function () {
         $(this).find('a').css('font-weight', '');
     });
 });
+
+/* ========================= fixed 용 =============================== */
+$('document').ready(function () {
+    $(window).scroll(function () {
+        let position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+
+        if (position >= 120) {
+            $('.gnb-wrap').addClass('fixed');
+        } else {
+            $('.gnb-wrap').removeClass('fixed');
+        }
+    });
+});

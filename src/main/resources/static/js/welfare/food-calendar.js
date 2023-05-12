@@ -11,8 +11,7 @@ const DEFAULT_MONTH_OPTIONS = {
     startDayOfWeek: 0,
     isAlways6Weeks: true,
     visibleEventCount: 6,
-  };
-
+};
 
 
 const options = {
@@ -22,9 +21,9 @@ const options = {
     usageStatistics: false,
     useFormPopup: true,
     useDetailPopup: true,
-    month : DEFAULT_MONTH_OPTIONS,
-    gridSelection:true,
-    eventFilter:(event) => !!event.isVisible,
+    month: DEFAULT_MONTH_OPTIONS,
+    gridSelection: true,
+    eventFilter: (event) => !!event.isVisible,
     timezone: {
         zones: [
             {
@@ -49,7 +48,7 @@ const options = {
         {
             id: '2', // 필수
             /* UserName: '오태양', */
-            UserCode:'그레이들',
+            UserCode: '그레이들',
             name: '오태양양', // 필수
             backgroundColor: '#00a9ff', // 필수
         },
@@ -59,50 +58,49 @@ const options = {
             name: '오태양',
             UserCode:'그레이들', */
             backgroundColor: '#fc0101',
-            color : 'white',
+            color: 'white',
         },
     ],
 };
 
 
 /* ============================================ 객체 연습=================================================== */
-function Welfare(id, calendarId, body, title,start,end,UserName,isReadOnly){
-	this.id = id;
-	this.calendarId = calendarId;
-	this.body = body;
-	this.title = title;
-	this.start = start;
-	this.end = end;
-	this.UserName = UserName;
+function Welfare(id, calendarId, body, title, start, end, UserName, isReadOnly) {
+    this.id = id;
+    this.calendarId = calendarId;
+    this.body = body;
+    this.title = title;
+    this.start = start;
+    this.end = end;
+    this.UserName = UserName;
     this.isReadOnly = true;
 };
 
-var id = "2";
-var calendarId = "2";
-var body = "안녕하세요";
-var title = "앙기모띠";
-var start = "2023-05-10";
-var end = "2023-05-15";
-var UserName = "강민구";
-var isReadOnly = true;
+let id = "2";
+let calendarId = "2";
+let body = "안녕하세요";
+let title = "앙기모띠";
+let start = "2023-05-10";
+let end = "2023-05-15";
+let UserName = "강민구";
+let isReadOnly = true;
 
 /* ======================================= dateFormat  ================================================================== */
-var today = new Date();
+let today = new Date();
 
-var year = today.getFullYear();
-var month = ('0' + (today.getMonth() + 1)).slice(-2);
-var day = ('0' + today.getDate()).slice(-2);
+let year = today.getFullYear();
+let month = ('0' + (today.getMonth() + 1)).slice(-2);
+let day = ('0' + today.getDate()).slice(-2);
 
-var dateString = year + '-' + month  + '-' + day;
+let dateString = year + '-' + month + '-' + day;
 
 /* ==================== =============================================== ===============================================*/
 
 
-var welfare1 = new Welfare("1","2","아령","청국장","","2023-05-01","2023-05-05","태양");
-var welfare2 = new Welfare(id,calendarId,body,title,start,end,UserName,isReadOnly);
+let welfare1 = new Welfare("1", "2", "아령", "청국장", "", "2023-05-01", "2023-05-05", "태양");
+let welfare2 = new Welfare(id, calendarId, body, title, start, end, UserName, isReadOnly);
 
 /* =============================================================================================== */
-
 
 
 /* 백앤드시 작성할것 */
@@ -110,30 +108,30 @@ var welfare2 = new Welfare(id,calendarId,body,title,start,end,UserName,isReadOnl
 const event = {
     id: '1',    // iD번째 스캐줄
     calendarId: '2',    // 스케쥴의 ID(Random으로 뽑기)
-    body:'안녕하세요 오태양입니다.', // 스케쥴의 설명
+    body: '안녕하세요 오태양입니다.', // 스케쥴의 설명
     title: '가정식 백반',   // 화면에 뿌려지는 이름
-    state:'option:양많이',   // 현재 상태 (별필요없음)
+    state: 'option:양많이',   // 현재 상태 (별필요없음)
     start: '2023-04-17 13:00',  // 시작 일
     end: '2023-04-21',  // 끝일
-    UserName:'링구',    // 이거 필요없음
+    UserName: '링구',    // 이거 필요없음
     isReadOnly: true,   // 이거 설정 시 편집 불가 우리는 무조건 True로 설정해줘야함
-  };
-  
+};
+
 const event1 = {
     id: '2',
     calendarId: '1',
     title: '헬스 푸드(정지영)',
-    body:'안녕하세요 오태양입니다.',
+    body: '안녕하세요 오태양입니다.',
     start: '2023-04-24T12:00',
     end: '2023-04-28',
     isReadOnly: true,
-  };
+};
 
 const event2 = {
     id: '3',
     calendarId: '3',
     title: '캐밥 데이',
-    body:'안녕하세요 오태양입니다.',
+    body: '안녕하세요 오태양입니다.',
     start: '2023-04-10T12:00',
     end: '2023-04-14',
     isReadOnly: true,
@@ -146,11 +144,11 @@ console.log(calendar);
 
 /* 이벤트 생성 */
 calendar.createEvents([
-      event, // event 객체
-      event1,
-      event2,
-      welfare1,
-      welfare2,
+    event, // event 객체
+    event1,
+    event2,
+    welfare1,
+    welfare2,
 ]);
 
 calendar.setTheme({
@@ -172,7 +170,7 @@ calendar.setTheme({
 calendar.setOptions({
     template: {
         monthMoreTitleDate(moreTitle) {
-            const { date } = moreTitle;
+            const {date} = moreTitle;
 
             return `<span>${date}</span>`;
         },
@@ -219,7 +217,7 @@ calendar.on('beforeCreateEvent', (eventObj) => {
 
 
 // ==================================================== 캘린더 버튼
-var currentDate = calendar.getDate();
+let currentDate = calendar.getDate();
 
 $('.year').text(currentDate.getFullYear() + '년');
 $('.month').text(currentDate.getMonth() + 1 + '월');
@@ -227,9 +225,9 @@ $('.month').text(currentDate.getMonth() + 1 + '월');
 $('#calender-prev').click(() => {
     currentDate = calendar.getDate();
 
-    var prevDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
-    var prevYear = prevDate.getFullYear();
-    var prevMonthIndex = prevDate.getMonth();
+    let prevDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    let prevYear = prevDate.getFullYear();
+    let prevMonthIndex = prevDate.getMonth();
 
     $('.year').text(prevYear + '년');
     $('.month').text(prevMonthIndex + 1 + '월');
@@ -240,9 +238,9 @@ $('#calender-prev').click(() => {
 $('#calender-next').click(() => {
     currentDate = calendar.getDate();
 
-    var nextDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-    var nextMonthIndex = nextDate.getMonth();
-    var nextYear = nextDate.getFullYear();
+    let nextDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+    let nextMonthIndex = nextDate.getMonth();
+    let nextYear = nextDate.getFullYear();
 
     $('.year').text(nextYear + '년');
     $('.month').text(nextMonthIndex + 1 + '월');
@@ -271,8 +269,8 @@ $('#today').click(() => {
 
 /* ======================================= 이벤트 생성 ========================================== */
 
-$('.toastui-calendar-daygrid-cell').on('change',function(){
+$('.toastui-calendar-daygrid-cell').on('change', function () {
     console.log("앙들엉왔다");
-    $(this).css('background-color','red');
+    $(this).css('background-color', 'red');
 })
 

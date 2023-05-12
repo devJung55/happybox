@@ -108,31 +108,31 @@ geocoder.addressSearch("서울시 노원구 석계로 49 현대아파트 105동"
 });
 
 /* ============================================= 스크롤 이벤트 =================================== */
-const $fixedDiv = $('.welfare-info-area');
-const $fixedPosition = 300; // 고정시킬 위치 값
-const initialPosition = $fixedDiv.offset();
-const initialTop = initialPosition.top;
-const initialRight = $(window).width()*1.23 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
+// const $fixedDiv = $('.welfare-info-area');
+// const $fixedPosition = 300; // 고정시킬 위치 값
+// const initialPosition = $fixedDiv.offset();
+// const initialTop = initialPosition.top;
+// const initialRight = $(window).width()*1.23 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
 
-$(window).scroll(function() {
-  const currentPosition = $(window).scrollTop();
-  // 스크롤 위치가 고정시킬 위치보다 크거나 같을 때
-  if (currentPosition >= $fixedPosition) {
-    $fixedDiv.addClass('fixed');
-    $fixedDiv.css({
-      'top': 10,
-      'right': initialRight
-    });
-  } else {
-    $fixedDiv.removeClass('fixed');
-    $fixedDiv.removeAttr('style');
-  }
+// $(window).scroll(function() {
+//   const currentPosition = $(window).scrollTop();
+//   // 스크롤 위치가 고정시킬 위치보다 크거나 같을 때
+//   if (currentPosition >= $fixedPosition) {
+//     $fixedDiv.addClass('fixed');
+//     $fixedDiv.css({
+//       'top': 10,
+//       'right': initialRight
+//     });
+//   } else {
+//     $fixedDiv.removeClass('fixed');
+//     $fixedDiv.removeAttr('style');
+//   }
 
-  if (Math.floor(currentPosition) == Math.floor(($(document).height() - $(window).height()))) {
-    console.log("아래닸냐");
-    $fixedDiv.css({'top':-250, 'right':initialRight});
-  }
-});
+//   if (Math.floor(currentPosition) == Math.floor(($(document).height() - $(window).height()))) {
+//     console.log("아래닸냐");
+//     $fixedDiv.css({'top':-250, 'right':initialRight});
+//   }
+// });
 
 
 /* =================================================================================================== */
