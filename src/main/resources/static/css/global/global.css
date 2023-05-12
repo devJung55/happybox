@@ -184,3 +184,9 @@ button,
 input {
     overflow: visible;
 }
+
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+}

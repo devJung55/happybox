@@ -1,8 +1,11 @@
 package com.app.happybox.service.subscript;
 
 import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.entity.subscript.*;
 import com.app.happybox.entity.user.Address;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,29 @@ public interface SubscriptionService {
 //    리뷰 많은순 N개 조회
     public List<SubscriptionDTO> findByReviews(Long limit);
 
+//    검색 조회
+    public Page<SubscriptionDTO> findBySearch(Pageable pageable, SubscriptionSearchDTO searchDTO);
+
+//    상세 조회
+    public SubscriptionDTO findByIdWithDetail(Long id);
+
     default SubscriptionDTO subscriptionToDTO(Subscription subscription, List<FoodDTO> foodList) {
+        SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder()
+                .id(subscription.getId())
+                .orderCount(subscription.getOrderCount())
+                .reviewAvgRating(subscription.getReviewAvgRating())
+                .reviewCount(subscription.getReviewCount())
+                .subscriptionPrice(subscription.getSubscriptionPrice())
+                .subscriptionTitle(subscription.getSubscriptionTitle())
+                .subscriptLikeCount(subscription.getSubscriptLikeCount())
+                .welfareAddress(addressToDTO(subscription.getWelfare().getAddress()))
+                .welfareName(subscription.getWelfare().getWelfareName())
+                .build();
+        subscriptionDTO.setFoodList(foodList);
+        return subscriptionDTO;
+    }
+
+    default SubscriptionDTO subscriptionToDTO(Subscription subscription) {
         return SubscriptionDTO.builder()
                 .id(subscription.getId())
                 .orderCount(subscription.getOrderCount())
@@ -30,7 +55,6 @@ public interface SubscriptionService {
                 .subscriptLikeCount(subscription.getSubscriptLikeCount())
                 .welfareAddress(addressToDTO(subscription.getWelfare().getAddress()))
                 .welfareName(subscription.getWelfare().getWelfareName())
-                .foodList(foodList)
                 .build();
     }
 

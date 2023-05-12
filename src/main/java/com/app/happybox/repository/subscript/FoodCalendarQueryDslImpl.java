@@ -18,7 +18,7 @@ public class FoodCalendarQueryDslImpl implements FoodCalendarQueryDsl {
 
 
     @Override
-    public List<FoodCalendar> findAllWithFoodListBySubscriptionAndDateBetween_QueryDSL(LocalDate date, Subscription subscription) {
+    public List<FoodCalendar> findAllWithFoodListBySubscriptionAndDateBetween_QueryDSL(LocalDate date, Long subId) {
         List<FoodCalendar> foodCalendarList = query.select(foodCalendar)
                 .from(foodCalendar)
                 .leftJoin(foodCalendar.foodList)
@@ -28,7 +28,7 @@ public class FoodCalendarQueryDslImpl implements FoodCalendarQueryDsl {
                                 date.with(TemporalAdjusters.firstDayOfMonth()),
                                 date.with(TemporalAdjusters.lastDayOfMonth())
                         )
-                                .and(foodCalendar.subscription.eq(subscription))
+                                .and(foodCalendar.subscription.id.eq(subId))
                 )
                 .orderBy(foodCalendar.startDate.asc())
                 .fetch();
