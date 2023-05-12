@@ -18,4 +18,9 @@ public class UserFile extends Files {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
+
+    public UserFile(String filePath, String fileUuid, String fileOrgName, User user) {
+        super(filePath, fileUuid, fileOrgName);
+        this.user = user;
+    }
 }
