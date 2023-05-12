@@ -8,7 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -22,5 +24,17 @@ public class MypageController {
     public String getUserRecipeBoardList(Pageable pageable, Long memberId, Model model) {
         model.addAttribute("recipeBoards", recipeBoardService.getListByMemberId(PageRequest.of(0, 5), 1L));
         return "/mypage/member/board";
+    }
+
+//    비밀번호 인증
+    @GetMapping("member/checkPassword")
+    public String checkMemberPassword() {
+        return "/mypage/member/member-editor";
+    }
+
+//    비밀번호 인증
+    @PostMapping("member/checkPassword")
+    public RedirectView checkMemberPassword(String password) {
+        return new RedirectView();
     }
 }

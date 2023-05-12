@@ -19,31 +19,18 @@
                         <div class="menu-flex">
                             <div>
                                 <img src="https://cdn2.iconfinder.com/data/icons/picol-vector/32/user_profile-128.png" class="icon">
-                            </div> 
-                            <span>회원정보 관리</span>
-                            <div class="triangle-button">
-                                <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="icon triangle-icon triangle">
-                            </div>  
+                            </div>
+                            <a th:href="@{/admin/member-list}">
+                                <span>회원정보 관리</span>
+                            </a>
                         </div>
-                        <ul class="menus2 menus" style="display:none;">
-                            <li class="select-menu">
-                                <a href="">
-                                    <span>회원 목록</span>
-                                </a>
-                            </li>
-                            <li class="select-menu">
-                                <a href="">
-                                    <span>구독 목록</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="menu">
                         <div class="menu-flex">
                             <div>
                                 <img src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-building-house-128.png" class="icon">
                             </div> 
-                            <a href="">
+                            <a th:href="@{/admin/welfare-list}">
                                 <span>복지센터 관리</span>  
                             </a>
                         </div>
@@ -53,7 +40,7 @@
                             <div>
                                 <img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_delivery-128.png" class="icon">
                             </div> 
-                            <a href="">
+                            <a th:href="@{/admin/distributor-list}">
                                 <span>유통업자 관리</span>  
                             </a>
                         </div>
