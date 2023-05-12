@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,18 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+	<link rel="stylesheet" href="/css/admin/admin-default.css">
+    <link rel="stylesheet" href="/css/admin/admin-modal.css">
+    <link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
 	<section class="header-section">
 		<div class="info-title-box info-title-box-flex">
 			<div class="logo-box-layout">
 				<div class="logo-title-layout">
-					<img class="logo-image" src="../../static/img/header/Logo-main.png" alt="">
+					<img class="logo-image" src="/img/header/Logo-main.png" alt="">
 				</div>
 			</div>
 			<div>
@@ -31,7 +32,7 @@
 	</section>
 	<main class="main-section">
 		<!-- 임시 사이드바 -->
-		<div id="side-bar"></div>
+		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
 		<!-- 임시 사이드바 끝 -->
 		<section class="content-section">
 			<div class="container">
@@ -54,55 +55,20 @@
 											</th>
 											<th>No</th>
 											<th>이름</th>
-											<th>닉네임</th>
 											<th>전화번호</th>
 											<th>이메일</th>
 											<th>생년월일</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr th:each="members : ${members}" th:object="${members}" class="tr__tag">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
-										<td class="show-modal">1</td>
-										<td class="show-modal">한동석</td>
-										<td class="show-modal">멋쟁이</td>
-										<td class="show-modal">010-1234-1234</td>
-										<td class="show-modal">hds123@gmail.com</td>
-										<td class="show-modal">2000.12.04</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal">2</td>
-										<td class="show-modal">이순신</td>
-										<td class="show-modal">장군님</td>
-										<td class="show-modal">010-0000-0000</td>
-										<td class="show-modal">lss123@naver.com</td>
-										<td class="show-modal">1995.02.12</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal">3</td>
-										<td class="show-modal">홍길동</td>
-										<td class="show-modal">서자</td>
-										<td class="show-modal">010-0123-0123</td>
-										<td class="show-modal">hgd123@naver.com</td>
-										<td class="show-modal">1999.04.27</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal">4</td>
-										<td class="show-modal">을지문덕</td>
-										<td class="show-modal">지휘관</td>
-										<td class="show-modal">010-1111-2222</td>
-										<td class="show-modal">uzmd123@naver.com</td>
-										<td class="show-modal">1991.08.16</td>
+										<td class="show-modal memberId" th:text="*{id}"></td>
+										<td class="show-modal" th:text="*{memberName}"></td>
+										<td class="show-modal" th:text="*{userPhoneNumber}"></td>
+										<td class="show-modal" th:text="*{userEmail}"></td>
+										<td class="show-modal" th:text="*{memberBirth}"></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -196,50 +162,16 @@
 							<input type="file" name="file" accept="image/*" style="display: none" />
 						</label>
 					</div>
-					<ul class="content-list-wrap">
-						<li class="content-list">
-							<span>이름</span>
-							<div class="content-input">
-								<input type="text" value="한동석" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>닉네임</span>
-							<div class="content-input">
-								<input type="text" value="멋쟁이" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>휴대전화</span>
-							<div class="content-input">
-								<input type="text" value="010-1234-1234" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>이메일</span>
-							<div class="content-input">
-								<input type="text" value="hds123@gmail.com" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>생년월일</span>
-							<div class="content-input">
-								<input type="text" value="2000.12.04" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>성별</span>
-							<div class="content-input">
-								<input type="text" value="남" readonly/>
-							</div>
-						</li>
-					</ul>
+					<ul class="content-list-wrap"></ul><!--// memberDetailModal-->
 				</main>
 			</form>
 		</div>
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/event.js"></script>
+<script src="/js/admin/menuLoad.js"></script>
+<script src="/js/admin/event.js"></script>
+<script src="/js/admin/modal.js"></script>
+<script src="/js/admin/ajax.js"></script>
+<script src="/js/admin/sidebar.js"></script>
 </html>

@@ -60,11 +60,11 @@ public interface RecipeBoardService {
     default RecipeBoardDTO mypageRecipeBoardToDTO(RecipeBoard recipeBoard){ // 지영이
         return RecipeBoardDTO.builder()
                 .id(recipeBoard.getId())
+                .memberId(recipeBoard.getMember().getId())
                 .memberName(recipeBoard.getMember().getMemberName())
                 .recipeBoardTitle(recipeBoard.getBoardTitle())
                 .recipeBoardContent(recipeBoard.getBoardContent())
-                .likeCount(recipeBoard.getRecipeLikeCount())
-                .replyCount(recipeBoard.getRecipeBoardReplyCount())
+                .recipeBoardRegisterDate(recipeBoard.getCreatedDate())
                 .boardFiles(recipeBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }

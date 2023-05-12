@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/admin/sidebar.css">
+    <link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
-    <section class="side-menu-section">
+    <section th:fragment="side-bar" class="side-menu-section">
         <aside class="side-menu">
             <div>
                 <ul class="menu-bar">
@@ -135,5 +135,5 @@
     </section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/sidebar.js"></script>
+<script src="/js/admin/sidebar.js"></script>
 </html>

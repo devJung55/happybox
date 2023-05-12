@@ -2,6 +2,8 @@ package com.app.happybox.service.user;
 
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.domain.user.MemberDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -41,6 +43,12 @@ public interface MemberService extends UserDetailsService {
 
 //    회원탈퇴
     public void updateUserStatusById(Long memberId);
+
+//    관리자 회원 목록
+    public Page<Member> getList(Pageable pageable);
+
+//    회원 조회
+    public Optional<Member> getDetail(Long memberId);
 
     //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){

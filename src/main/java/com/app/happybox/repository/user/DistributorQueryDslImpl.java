@@ -65,4 +65,14 @@ public class DistributorQueryDslImpl implements DistributorQueryDsl {
 
         return new PageImpl<>(distributorList, pageable, count);
     }
+
+    @Override
+    public Optional<Distributor> findDistributorById_QueryDSL(Long distributorId) {
+        Optional<Distributor> distributor = Optional.ofNullable(query.select(QDistributor.distributor)
+                .from(QDistributor.distributor)
+                .where(QDistributor.distributor.id.eq(distributorId))
+                .fetchOne());
+
+        return distributor;
+    }
 }

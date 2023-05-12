@@ -1,14 +1,16 @@
 package com.app.happybox.service.user;
 
-import com.app.happybox.type.Role;
-import com.app.happybox.entity.user.Member;
 import com.app.happybox.domain.user.MemberDTO;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -104,5 +106,17 @@ public class MemberServiceImpl implements MemberService {
     public void updateUserStatusById(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         member.setUserStatus(UserStatus.UNREGISTERED);
+    }
+
+    @Override
+    public Page<Member> getList(Pageable pageable) {
+        Page<Member> memberList = memberRepository.findAllWithPaging_QueryDSL(pageable);
+        return memberList;
+    }
+
+    @Override
+    public Optional<Member> getDetail(Long memberId) {
+        Optional<Member> member = memberRepository.findMemberById_QueryDSL(memberId);
+        return member;
     }
 }
