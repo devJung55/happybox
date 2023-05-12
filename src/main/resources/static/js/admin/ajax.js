@@ -4,32 +4,44 @@ let adminService = (function() {
     function memberDetail(memberId) {
         $.ajax({
             url: "/admin/member-detail",
-            data: {"memberId" : memberId},
+            data: {"memberId": memberId},
             success: function(member) {
-                showList(member);
-            },
-            error: function(a, b, c) {
-                console.log(a);
-                console.log(b);
-                console.log(c);
+                showMemberDetail(member);
             }
         })
     }
-    return {memberDetail: memberDetail}
+
+    function productDetail(productId) {
+        $.ajax({
+            url: "/admin/product-detail",
+            data: {"productId": productId},
+            success: function(product) {
+                showProductDetail(product);
+            }
+        })
+    }
+    return {memberDetail: memberDetail, productDetail: productDetail}
 })();
 
 /*-- 회원 상세보기 모달 --*/
+const $memberTr = $(".tr__tag");
 
-const $tr = $(".tr__tag");
-
-$tr.on("click", function() {
+$memberTr.on("click", function() {
     let memberId = $($(this).children()[1]).text();
     adminService.memberDetail(memberId);
 });
 
+/*-- 상품 상세보기 모달 --*/
+const $productTr = $(".product__tr");
+
+$productTr.on("click", function() {
+    let productId = $($(this).children()[1]).text();
+    adminService.productDetail(productId);
+});
+
 /*-- 회원 정보 모달 --*/
 
-function showList(member) {
+function showMemberDetail(member) {
     let text = "";
     const $ulTag = $(".content-list-wrap");
 
@@ -64,7 +76,35 @@ function showList(member) {
                 <input type="text" value="${member[4]}" readonly/>
             </div>
         </li>
-    `
+    `;
+    $ulTag.empty();
+    $ulTag.append(text);
+}
+
+function showProductDetail(product) {
+    let text = "";
+    const $ulTag = $(".product__detail__modal");
+
+    text = `
+        <li class="content-list">
+            <span>메뉴</span>
+            <div class="content-input">
+                <input type="text" value="${product[0]}" readonly/>
+            </div>
+        </li>
+        <li class="content-list">
+            <span>가격</span>
+            <div class="content-input">
+                <input type="text" value="${product[1]}" readonly/>
+            </div>
+        </li>
+        <li class="content-list">
+            <span>수량</span>
+            <div class="content-input">
+                <input type="text" value="${product[2]}" readonly/>
+            </div>
+        </li>
+    `;
     $ulTag.empty();
     $ulTag.append(text);
 }

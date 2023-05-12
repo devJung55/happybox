@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,5 +52,18 @@ public class ProductServiceImpl implements ProductService {
         });
 
         return productToDTO(product);
+    }
+
+    @Override
+    public Page<ProductDTO> getListByDistributorId(Pageable pageable, Long distributorId) {
+        Page<Product> productList = productRepository.findAllByDistributorIdWithPaging_QueryDSL(pageable, distributorId);
+        List<ProductDTO> productDTOList = productList.get().map(this::adminProductToDTO).collect(Collectors.toList());
+
+        return new PageImpl<>(productDTOList, pageable, productList.getTotalElements());
+    }
+
+    @Override
+    public Optional<Product> getDetailById(Long productId) {
+        return Optional.ofNullable(productRepository.findById(productId).get());
     }
 }

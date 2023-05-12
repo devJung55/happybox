@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Qualifier("welfare") @Primary
@@ -31,5 +33,10 @@ public class WelfareServiceImpl implements WelfareService {
     public Page<Welfare> getList(Pageable pageable) {
         Page<Welfare> welfares = welfareRepository.findAllWithPaging_QueryDSL(pageable);
         return welfares;
+    }
+
+    @Override
+    public Optional<Welfare> getDetail(Long welfareId) {
+        return welfareRepository.findWelfareById_QueryDSL(welfareId);
     }
 }
