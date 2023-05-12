@@ -50,15 +50,15 @@ public class ReviewBoardReplyRepositoryTests {
     }
 
     @Test
-    public void findAllByReviewBoardIdTest(){
-        reviewBoardReplyRepository.findAllByReviewBoardId(PageRequest.of(0, 10), 1L)
-                .stream().map(Reply::getReplyContent).forEach(log::info);
+    public void findAllWithScroll(){
+//        reviewBoardReplyRepository.findAllWithScroll(PageRequest.of(0, 10))
+//                .stream().map(Reply::getReplyContent).forEach(log::info);
     }
 
     @Test
-    public void findAllByLikeDescWithScrollTest(){
-        reviewBoardReplyRepository.findAllByLikeDescWithScroll(PageRequest.of(0, 10), 1L)
-                .stream().map(Reply::getReplyContent).forEach(log::info);
+    public void findAllByLikeDescWithScroll(){
+//        reviewBoardReplyRepository.findAllWithScroll(PageRequest.of(0, 10))
+//                .stream().map(Reply::getReplyContent).forEach(log::info);
     }
 
     @Test

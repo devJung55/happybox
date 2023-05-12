@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.*;
 public class WelfareController {
     private final SubscriptionCartService subscriptionCartService;
 
+    @GetMapping("list")
+    public String goWelfareList() {
+        return "welfare/welfareList";
+    }
+
     @PostMapping("/add/{subscriptionId}")
     @ResponseBody
     public Long registerCart(@RequestBody SubscriptionCartDTO subscriptionCartDTO, @PathVariable Long subscriptionId) {
