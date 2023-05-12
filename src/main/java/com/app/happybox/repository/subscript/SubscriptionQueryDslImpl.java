@@ -26,7 +26,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     //    최신 8개 조회
     @Override
     public List<Subscription> findTop8OrderByDate_QueryDSL() {
-        List<Subscription> subscriptionList = getSubscriptionJPAQuery()
+        List<Subscription> subscriptionList = getSubscriptionJPAQuery()/*query.select(subscription).from(subscription)*/
                 .orderBy(subscription.createdDate.desc())
                 .limit(8L)
                 .fetch();
@@ -55,7 +55,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     @Override
     public List<Subscription> findTopNOrderByReviewCount_QueryDSL(Long limit) {
         List<Subscription> subscriptionList = getSubscriptionJPAQuery()
-                .orderBy(subscription.reviewCount.desc())
+                .orderBy(subscription.reviewCount.asc())
                 .limit(limit)
                 .fetch();
         return subscriptionList;
@@ -86,7 +86,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     public Optional<Subscription> findByIdWithDetail_QueryDSL(Long id) {
         Subscription sub = query.select(subscription)
                 .from(subscription)
-                .join(subscription.welfare).fetchJoin()
+                .leftJoin(subscription.welfare).fetchJoin()
                 .where(subscription.id.eq(id))
                 .fetchOne();
 
@@ -97,7 +97,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     private JPAQuery<Subscription> getSubscriptionJPAQuery() {
         return query.select(subscription)
                 .from(subscription)
-                .join(subscription.foodCalendars).fetchJoin()
+                .leftJoin(subscription.foodCalendars).fetchJoin()
                 .join(subscription.welfare).fetchJoin();
     }
 }
