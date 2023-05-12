@@ -40,9 +40,15 @@ public class BoardController {
     @Qualifier
     private final DonationBoardService donationBoardService;
 
+//    @GetMapping("review-board-list")
+//    public String goReviewList(@PageableDefault(page = 1,size = 5) Pageable pageable, Model model) {
+//        model.addAttribute("reviewList", reviewBoardService.getReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+//                pageable.getPageSize())));
+//        return "user-board/review-board-list";
+//    }
+
     @GetMapping("review-board-list")
-    public String goReviewList(Model model) {
-        model.addAttribute("list", reviewBoardService.getReviewBoards(PageRequest.of(0, 10)));
+    public String goReviewList(){
         return "user-board/review-board-list";
     }
 
@@ -56,15 +62,13 @@ public class BoardController {
         reviewBoardService.write(reviewBoard);
     }
 
-    //    리뷰 게시판 리스트(최신순)
-    @GetMapping("review-board-list/recent")
+    //    리뷰 게시판 리스트(인기순)
+    @GetMapping("review-board-list/popular")
     @ResponseBody
-    public Slice<ReviewBoardDTO> goRecentReviewList(@PageableDefault Pageable pageable) {
-        Slice<ReviewBoardDTO> result =
-                reviewBoardService
-                        .getReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+    public Slice<ReviewBoardDTO> goPopularList(@PageableDefault(page=1, size=5) Pageable pageable) {
+                return reviewBoardService
+                        .getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
                                 pageable.getPageSize()));
-        return result;
     }
 
     //    레시피 게시판 리스트 (최신순)
@@ -78,49 +82,5 @@ public class BoardController {
     public Page<DonationBoardDTO> getDonateBoardList(int page, int size) {
         return donationBoardService.getList(PageRequest.of(page, size));
     }
-
-    //    파일 업로드
-    @PostMapping("upload")
-    public List<String> suggestUpload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
-        List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-
-
-        for (int i = 0; i < multipartFiles.size(); i++) {
-            uuids.add(UUID.randomUUID().toString());
-            multipartFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-
-            InputStream inputStream = new FileInputStream("C:\\upload\\" + getPath() + "\\" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename());
-
-            if (multipartFiles.get(i).getContentType().startsWith("image")) {
-                FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-                Thumbnailator.createThumbnail(inputStream, out, 400, 400);
-                out.close();
-            }
-        }
-        return uuids;
-    }
-
-
-    //    파일 불러오기
-    @GetMapping("display")
-    public byte[] Display(String fileName) throws Exception {
-        try {
-            return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    //    현재 날짜 경로 구하기
-    private String getPath() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-    }
-
 
 }
