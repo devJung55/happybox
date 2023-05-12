@@ -9,6 +9,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -64,5 +65,11 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
         List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::mypageRecipeBoardToDTO).collect(Collectors.toList());
 
         return new PageImpl<>(recipeBoardDTOList, pageable, recipeBoardList.getTotalElements());
+    }
+
+    @Override
+    public Optional<RecipeBoardDTO> getRecipeBoardDetailById(Long recipeBoardId) {
+        Optional<RecipeBoardDTO> recipeBoardDTO = recipeBoardRepository.findById_QueryDSL(recipeBoardId).map(this::mypageRecipeBoardToDTO);
+        return recipeBoardDTO;
     }
 }

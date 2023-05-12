@@ -53,4 +53,14 @@ public class WelfareQueryDslImpl implements WelfareQueryDsl {
 
         return new PageImpl<>(welfareList, pageable, count);
     }
+
+    @Override
+    public Optional<Welfare> findWelfareById_QueryDSL(Long welfareId) {
+        Optional<Welfare> welfare = Optional.ofNullable(query.select(QWelfare.welfare)
+                .from(QWelfare.welfare)
+                .where(QWelfare.welfare.id.eq(welfareId))
+                .fetchOne());
+
+        return welfare;
+    }
 }
