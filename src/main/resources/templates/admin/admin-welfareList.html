@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,18 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+	<link rel="stylesheet" href="/css/admin/admin-default.css">
+    <link rel="stylesheet" href="/css/admin/admin-modal.css">
+    <link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
 	<section class="header-section">
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-title-layout">
-                    <img class="logo-image" src="../../static/img/header/Logo-main.png" alt="">
+                    <img class="logo-image" src="/img/header/Logo-main.png" alt="">
                 </div>
             </div>
             <div>
@@ -31,7 +32,7 @@
     </section>
     <main class="main-section">
         <!-- 임시 사이드바 -->
-        <div id="side-bar"></div>
+		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
         <!-- 임시 사이드바 끝 -->
         <section class="content-section">
             <div class="container">
@@ -63,17 +64,17 @@
 											<th>이메일</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr th:each="welfares : ${welfares}" th:object="${welfares}">
 										<td>
 											<label class="check-label">
 											    <input type="checkbox" name="check">
                                             </label>
 										</td>
-										<td>1</td>
-										<td>ㅇㅇ종합사회복지관</td>
-										<td>02-000-0000</td>
-										<td>서울특별시 동작구 사당로14길 20</td>
-										<td>welfare@naver.com</td>
+										<td th:text="*{id}"></td>
+										<td th:text="*{welfareName}"></td>
+										<td th:text="*{userPhoneNumber}"></td>
+										<td th:text="*{address.firstAddress}"></td>
+										<td th:text="*{userEmail}"></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -141,6 +142,6 @@
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/event.js"></script>
+<script src="/js/admin/menuLoad.js"></script>
+<script src="/js/admin/event.js"></script>
 </html>
