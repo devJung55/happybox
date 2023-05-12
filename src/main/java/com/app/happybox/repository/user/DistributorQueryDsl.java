@@ -20,4 +20,7 @@ public interface DistributorQueryDsl {
 
 //    관리자 유통회원 목록
     public Page<Distributor> findAllWithPaging_QueryDSL(Pageable pageable);
+
+//    관리자 회원 조회
+    public Optional<Distributor> findDistributorById_QueryDSL(Long distributorId);
 }

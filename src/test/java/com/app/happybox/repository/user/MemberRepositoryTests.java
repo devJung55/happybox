@@ -1,5 +1,6 @@
 package com.app.happybox.repository.user;
 
+import com.app.happybox.service.user.MemberService;
 import com.app.happybox.type.Gender;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
@@ -21,6 +22,8 @@ import java.time.LocalDate;
 class MemberRepositoryTests {
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private MemberService memberService;
 
     @Test
     public void saveTest(){
@@ -76,5 +79,10 @@ class MemberRepositoryTests {
     public void findDeliveryAddressByMemberIdTest() {
         memberRepository.findDeliveryAddressByMemberId_QueryDSL(1L)
                 .ifPresent(member -> log.info(member.toString()));
+    }
+
+    @Test
+    public void Test() {
+        memberService.getDetail(1L).ifPresent(v -> log.info(v.toString()));
     }
 }

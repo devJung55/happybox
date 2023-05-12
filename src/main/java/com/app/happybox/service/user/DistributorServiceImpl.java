@@ -6,7 +6,11 @@ import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,5 +27,15 @@ public class DistributorServiceImpl implements DistributorService {
     public void updateUserStatusById(Long distributorId) {
         Distributor distributor = distributorRepository.findById(distributorId).get();
         distributor.setUserStatus(UserStatus.UNREGISTERED);
+    }
+
+    @Override
+    public Page<Distributor> getList(Pageable pageable) {
+        return distributorRepository.findAllWithPaging_QueryDSL(pageable);
+    }
+
+    @Override
+    public Optional<Distributor> getDetail(Long distributorId) {
+        return distributorRepository.findDistributorById_QueryDSL(distributorId);
     }
 }
