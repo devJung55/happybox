@@ -80,4 +80,13 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
         return new PageImpl<>(memberList, pageable, count);
     }
+
+    @Override
+    public Optional<Member> findMemberById_QueryDSL(Long memberId) {
+        Optional<Member> memberDatail = Optional.ofNullable(query.select(member)
+                .from(member)
+                .where(member.id.eq(memberId))
+                .fetchOne());
+        return memberDatail;
+    }
 }
