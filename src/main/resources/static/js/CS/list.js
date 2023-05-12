@@ -12,6 +12,7 @@ const $faqList = $(".faq-list");
 function addNotice() {
     let text = "";
     lists.forEach((list, i) => {
+        const formattedDate = formatDate(new Date(list.createdDate));
         text+= `
             <div class="board-wrap">
                 <div class="text-center number">
@@ -23,7 +24,7 @@ function addNotice() {
                     </a>
                 </div>
                 <div class="text-center">
-                    <span>${list.createdDate}</span>
+                    <span>${formattedDate}</span>
                 </div>
             </div>
         `;
