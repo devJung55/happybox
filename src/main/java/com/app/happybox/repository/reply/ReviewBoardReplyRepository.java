@@ -16,5 +16,5 @@ public interface ReviewBoardReplyRepository extends JpaRepository<ReviewBoardRep
 
     //    인기순
     @Query("select r from ReviewBoardReply r join r.user")
-    public Slice<ReviewBoardReply> findAllByLikeDescWithScroll(Pageable pageable);
+    public Slice<ReviewBoardReply> findAllByLikeDescWithScroll(Pageable pageable, Long id);
 }

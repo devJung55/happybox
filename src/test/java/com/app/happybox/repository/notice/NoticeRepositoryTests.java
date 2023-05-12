@@ -41,7 +41,7 @@ public class NoticeRepositoryTests {
 
     @Test
     public void fileSaveTest() {
-        Notice notice = noticeRepository.findById(85L).get();
+        Notice notice = noticeRepository.findById(166L).get();
         NoticeFile noticeFile1 = new NoticeFile("2023/05/09", UUID.randomUUID().toString(), "공지사항1.png", FileRepresent.REPRESENT);
         NoticeFile noticeFile2 = new NoticeFile("2023/05/09", UUID.randomUUID().toString(), "공지사항2.png", FileRepresent.ORDINARY);
         NoticeFile noticeFile3 = new NoticeFile("2023/05/09", UUID.randomUUID().toString(), "공지사항3.png", FileRepresent.ORDINARY);

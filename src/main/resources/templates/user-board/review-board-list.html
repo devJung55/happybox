@@ -61,7 +61,7 @@
                       ><div class="profile-wrap">
                         <div class="writer-image rw">
                           <img
-                            src="https://static.wanted.co.kr/oneid-user/profile_default.png"
+                            src="/user-board/display?fileName=${review.files[0].reviewFilePath}/${review.files[0].reviewFileUuid}_${review.files[0].reviewFileOriginalName}"
                             alt=""
                           />
                         </div>
@@ -221,6 +221,9 @@
     </root>
     <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
   </body>
+  <script th:inline="javascript">
+    let reviewDetail = [[${reviewDetail}]]
+  </script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="/js/main/header.js"></script>
   <script src="/js/member/board.js"></script>
