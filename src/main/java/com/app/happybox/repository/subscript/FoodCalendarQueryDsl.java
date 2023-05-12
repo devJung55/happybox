@@ -11,5 +11,5 @@ public interface FoodCalendarQueryDsl {
     public List<FoodCalendar> findAllWithFoodListBySubscriptionAndDateBetween_QueryDSL(LocalDate date, Long subId);
 
 //    subscription PK 의 List 를 받아와 in 절로 조회
-    public List<FoodCalendar> findAllInSubscriptionIds(List<Long> ids);
+    public List<FoodCalendar> findAllInSubscriptionId(Long id);
 }

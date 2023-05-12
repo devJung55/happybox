@@ -6,6 +6,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
@@ -36,12 +37,18 @@ public class FoodCalendarQueryDslImpl implements FoodCalendarQueryDsl {
     }
 
     @Override
-    public List<FoodCalendar> findAllInSubscriptionIds(List<Long> ids) {
+    public List<FoodCalendar> findAllInSubscriptionId(Long id) {
+        LocalDateTime yearStart = LocalDate.now().with(TemporalAdjusters.firstDayOfYear()).atStartOfDay();
+        LocalDateTime yearEnd = LocalDate.now().with(TemporalAdjusters.lastDayOfYear()).plusDays(1L).atStartOfDay();
         List<FoodCalendar> foodCalendarList = query.select(foodCalendar)
+                .distinct()
                 .from(foodCalendar)
-                .join(foodCalendar.foodList)
+                .leftJoin(foodCalendar.foodList)
                 .fetchJoin()
-                .where(foodCalendar.subscription.id.in(ids))
+                .where(foodCalendar.subscription.id.eq(id),
+                        foodCalendar.createdDate.goe(yearStart)
+                                .and(foodCalendar.createdDate.loe(yearEnd))
+                )
                 .fetch();
 
         return foodCalendarList;

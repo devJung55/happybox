@@ -2,9 +2,7 @@ package com.app.happybox.service.subscript;
 
 import com.app.happybox.domain.FoodCalendarDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
-import com.app.happybox.entity.subscript.FoodCalendar;
-import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.subscript.SubscriptionDTO;
+import com.app.happybox.entity.subscript.*;
 import com.app.happybox.exception.SubscriptionNotFoundException;
 import com.app.happybox.repository.subscript.FoodCalendarRepository;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
@@ -16,6 +14,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,30 +31,29 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public List<SubscriptionDTO> findRecentTop8() {
         List<Subscription> subscriptions = subscriptionRepository.findTop8OrderByDate_QueryDSL();
-        return collectFoodList(subscriptions, getFoodCalendars(subscriptions));
+        return collectFoodList(subscriptions);
     }
 
     //    주문 많은순 N개 조회
     @Override
     public List<SubscriptionDTO> findByOrderCount(Long limit) {
         List<Subscription> subscriptions = subscriptionRepository.findTopNByOrderCountOrderByOrderCount_QueryDSL(limit);
-        return collectFoodList(subscriptions, getFoodCalendars(subscriptions));
+        return collectFoodList(subscriptions);
     }
 
     // 리뷰 많은순 N개 조회
     @Override
     public List<SubscriptionDTO> findByReviews(Long limit) {
         List<Subscription> subscriptions = subscriptionRepository.findTopNOrderByReviewCount_QueryDSL(limit);
-        return collectFoodList(subscriptions, getFoodCalendars(subscriptions));
+        return collectFoodList(subscriptions);
     }
 
     // 검색 조회
     @Override
     public Page<SubscriptionDTO> findBySearch(Pageable pageable, SubscriptionSearchDTO searchDTO) {
         Page<Subscription> subscriptions = subscriptionRepository.findAllBySearchWithPaging_QueryDSL(pageable, searchDTO);
-        log.info(subscriptions.getContent().toString());
         return new PageImpl<>(
-                collectFoodList(subscriptions.getContent(), getFoodCalendars(subscriptions.getContent())),
+                collectFoodList(subscriptions.getContent()),
                 pageable,
                 subscriptions.getTotalElements()
         );
@@ -71,8 +69,20 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionToDTO(subscription);
     }
 
-    private List<FoodCalendar> getFoodCalendars(List<Subscription> subscriptions) {
-        List<Long> ids = subscriptions.stream().map(Subscription::getId).collect(Collectors.toList());
-        return foodCalendarRepository.findAllInSubscriptionIds(ids);
+    private List<SubscriptionDTO> collectFoodList(List<Subscription> subscriptions) {
+        List<SubscriptionDTO> collect = subscriptions.stream().map(subscription -> {
+            List<FoodCalendar> foodCalendars = getFoodCalendars(subscription.getId());
+
+            if(foodCalendars.isEmpty()) return subscriptionToDTO(subscription);
+
+            Food food = foodCalendars.get(0).getFoodList().get(0);
+
+            return subscriptionToDTO(subscription, foodToDTO(food));
+        }).collect(Collectors.toList());
+        return collect;
+    }
+
+    private List<FoodCalendar> getFoodCalendars(Long id) {
+        return foodCalendarRepository.findAllInSubscriptionId(id);
     }
 }
