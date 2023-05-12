@@ -1,409 +1,409 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>복지관 리스트</title>
-        <link rel="icon" href="../../static/img/main/fabicon.png">
-        <link rel="stylesheet" href="../../static/css/global/global.css" />
-        <link rel="stylesheet" href="../../static/css/welfare/welfareList.css" />
-    </head>
-    <body style="zoom: 80%;">
-        <header></header>
-        <section class="welfare-container">
-            <div class="welfare-content">
-                <!-- 복지관리스트 -->
-                <div class="page-head">
-                    <div class="title-area">
-                        <h2 class="title">복지관 리스트</h2>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>복지관 리스트</title>
+    <link rel="icon" href="/img/main/fabicon.png">
+    <link rel="stylesheet" href="/css/global/global.css"/>
+    <link rel="stylesheet" href="/css/welfare/welfareList.css"/>
+</head>
+<body style="zoom: 80%;">
+<header></header>
+<section class="welfare-container">
+    <div class="welfare-content">
+        <!-- 복지관리스트 -->
+        <div class="page-head">
+            <div class="title-area">
+                <h2 class="title">복지관 리스트</h2>
+            </div>
+        </div>
+        <article class="frame-full-bar">
+            <!-- 인기 복지관 탑4 -->
+            <div class="article-title-div">
+                <h3 class="title">인기 복지관</h3>
+            </div>
+            <!-- 인기 복지관 슬라이드 -->
+            <div class="frame-slide-overlap">
+                <div class="brand-swiper-list">
+                    <ul class="swiper-wrapper">
+                        <!-- 복지관 리스트 1 -->
+                        <li class="swiper-slide swiper-slide-active">
+                            <div class="brand-list-item">
+                                <div class="welfare-img" style="cursor: pointer;">
+                                    <img class="original-img"
+                                         src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                         alt="맛있닭"
+                                    />
+                                </div>
+                                <div class="txt-area">
+                                    <strong class="welfare-name text-elps">맛있닭</strong>
+                                    <p class="welfare-info text-elps">Life is Delicious!</p>
+                                    <span class="welfare-location text-elps"
+                                    >서울 관악구</span
+                                    >
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 복지관 리스트 2 -->
+                        <li class="swiper-slide swiper-slide-active">
+                            <div class="brand-list-item">
+                                <div class="welfare-img" style="cursor: pointer;">
+                                    <img class="original-img"
+                                         src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                         alt="맛있닭"
+                                    />
+                                </div>
+                                <div class="txt-area">
+                                    <strong class="welfare-name text-elps">맛있닭</strong>
+                                    <p class="welfare-info text-elps">Life is Delicious!</p>
+                                    <span class="welfare-location text-elps"
+                                    >서울 관악구</span
+                                    >
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 복지관 리스트 3 -->
+                        <li class="swiper-slide swiper-slide-active">
+                            <div class="brand-list-item">
+                                <div class="welfare-img" style="cursor: pointer;">
+                                    <img class="original-img"
+                                         src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                         alt="맛있닭"
+                                    />
+                                </div>
+                                <div class="txt-area">
+                                    <strong class="welfare-name text-elps">맛있닭</strong>
+                                    <p class="welfare-info text-elps">Life is Delicious!</p>
+                                    <span class="welfare-location text-elps"
+                                    >서울 관악구</span
+                                    >
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 복지관 리스트 4 -->
+                        <li class="swiper-slide swiper-slide-active">
+                            <div class="brand-list-item">
+                                <div class="welfare-img" style="cursor: pointer;">
+                                    <img class="original-img"
+                                         src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
+                                         alt="맛있닭"
+                                    />
+                                </div>
+                                <div class="txt-area">
+                                    <strong class="welfare-name text-elps">맛있닭</strong>
+                                    <p class="welfare-info text-elps">Life is Delicious!</p>
+                                    <span class="welfare-location text-elps"
+                                    >서울 관악구</span
+                                    >
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <!-- 이달의 복지관 -->
+        <article class="frame-sm">
+            <div class="article-title-div">
+                <h3 class="title">이달의 복지관</h3>
+            </div>
+            <div class="month-welfare-list gap20">
+                <div class="colum">
+                    <div class="brand-box">
+                        <div class="top-title">
+                            <h4 class="tit">
+                                <img
+                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO1_PC/20220401/IMG1648sfu789775259.png"
+                                        alt="맛있닭"
+                                />
+                                <span class="txt">맛있닭</span>
+                            </h4>
+                            <a
+                                    href="javascript:void(0);"
+                                    class="btn-link-txt4 goView"
+                                    data-target="1042"
+                            >
+                                <span>더보기</span><i class="ico-arr-right"></i>
+                            </a>
+                        </div>
+                        <!--// top-title -->
+                        <ul class="welfare-list-ul gap16">
+                            <li class="colum">
+                                <div class="welfare-in-box">
+                                    <a
+                                            href="/product/view?productCd=923&amp;siteCd=RANK"
+                                            data-target="923"
+                                    >
+                                                <span class="welfare-img w156"
+                                                ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                        <span class="price"><em>15,900</em>원</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="colum">
+                                <div class="welfare-in-box">
+                                    <a
+                                            href="/product/view?productCd=923&amp;siteCd=RANK"
+                                            data-target="923"
+                                    >
+                                                <span class="welfare-img w156"
+                                                ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                        <span class="price"><em>15,900</em>원</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="colum">
+                                <div class="welfare-in-box">
+                                    <a
+                                            href="/product/view?productCd=923&amp;siteCd=RANK"
+                                            data-target="923"
+                                    >
+                                                <span class="welfare-img w156"
+                                                ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                        <span class="price"><em>15,900</em>원</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <article class="frame-full-bar">
-                    <!-- 인기 복지관 탑4 -->
-                    <div class="article-title-div">
-                        <h3 class="title">인기 복지관</h3>
-                    </div>
-                    <!-- 인기 복지관 슬라이드 -->
-                    <div class="frame-slide-overlap">
-                        <div class="brand-swiper-list">
-                            <ul class="swiper-wrapper">
-                                <!-- 복지관 리스트 1 -->
-                                <li class="swiper-slide swiper-slide-active">
-                                    <div class="brand-list-item">
-                                        <div class="welfare-img" style="cursor: pointer;">
-                                                <img class="original-img"
-                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
-                                                    alt="맛있닭"
-                                                />
-                                        </div>
-                                        <div class="txt-area">
-                                            <strong class="welfare-name text-elps">맛있닭</strong>
-                                            <p class="welfare-info text-elps">Life is Delicious!</p>
-                                            <span class="welfare-location text-elps"
-                                                >서울 관악구</span
-                                            >
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- 복지관 리스트 2 -->
-                                <li class="swiper-slide swiper-slide-active">
-                                    <div class="brand-list-item">
-                                        <div class="welfare-img" style="cursor: pointer;">
-                                                <img class="original-img"
-                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
-                                                    alt="맛있닭"
-                                                />
-                                        </div>
-                                        <div class="txt-area">
-                                            <strong class="welfare-name text-elps">맛있닭</strong>
-                                            <p class="welfare-info text-elps">Life is Delicious!</p>
-                                            <span class="welfare-location text-elps"
-                                                >서울 관악구</span
-                                            >
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- 복지관 리스트 3 -->
-                                <li class="swiper-slide swiper-slide-active">
-                                    <div class="brand-list-item">
-                                        <div class="welfare-img" style="cursor: pointer;">
-                                                <img class="original-img"
-                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
-                                                    alt="맛있닭"
-                                                />
-                                        </div>
-                                        <div class="txt-area">
-                                            <strong class="welfare-name text-elps">맛있닭</strong>
-                                            <p class="welfare-info text-elps">Life is Delicious!</p>
-                                            <span class="welfare-location text-elps"
-                                                >서울 관악구</span
-                                            >
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- 복지관 리스트 4 -->
-                                <li class="swiper-slide swiper-slide-active">
-                                    <div class="brand-list-item">
-                                        <div class="welfare-img" style="cursor: pointer;">
-                                                <img class="original-img"
-                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
-                                                    alt="맛있닭"
-                                                />
-                                        </div>
-                                        <div class="txt-area">
-                                            <strong class="welfare-name text-elps">맛있닭</strong>
-                                            <p class="welfare-info text-elps">Life is Delicious!</p>
-                                            <span class="welfare-location text-elps"
-                                                >서울 관악구</span
-                                            >
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                <div class="colum">
+                    <div class="brand-box">
+                        <div class="top-title">
+                            <h4 class="tit">
+                                <img
+                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO1_PC/20220401/IMG1648sfu789775259.png"
+                                        alt="맛있닭"
+                                />
+                                <span class="txt">맛있닭</span>
+                            </h4>
+                            <a
+                                    href="javascript:void(0);"
+                                    class="btn-link-txt4 goView"
+                                    data-target="1042"
+                            >
+                                <span>더보기</span><i class="ico-arr-right"></i>
+                            </a>
                         </div>
-                    </div>
-                </article>
-                <!-- 이달의 복지관 -->
-                <article class="frame-sm">
-                    <div class="article-title-div">
-                        <h3 class="title">이달의 복지관</h3>
-                    </div>
-                    <div class="month-welfare-list gap20">
-                        <div class="colum">
-                            <div class="brand-box">
-                                <div class="top-title">
-                                    <h4 class="tit">
-                                        <img
-                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO1_PC/20220401/IMG1648sfu789775259.png"
-                                            alt="맛있닭"
-                                        />
-                                        <span class="txt">맛있닭</span>
-                                    </h4>
+                        <ul class="welfare-list-ul gap16">
+                            <li class="colum">
+                                <div class="welfare-in-box">
                                     <a
-                                        href="javascript:void(0);"
-                                        class="btn-link-txt4 goView"
-                                        data-target="1042"
+                                            href="/product/view?productCd=923&amp;siteCd=RANK"
+                                            data-target="923"
                                     >
-                                        <span>더보기</span><i class="ico-arr-right"></i>
+                                                <span class="welfare-img w156"
+                                                ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                        <span class="price"><em>15,900</em>원</span>
                                     </a>
                                 </div>
-                                <!--// top-title -->
-                                <ul class="welfare-list-ul gap16">
-                                    <li class="colum">
-                                        <div class="welfare-in-box">
-                                            <a
-                                                href="/product/view?productCd=923&amp;siteCd=RANK"
-                                                data-target="923"
-                                            >
-                                                <span class="welfare-img w156"
-                                                    ><img
-                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        alt="상품이미지"
-                                                        class="lozad"
-                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        data-loaded="true"
-                                                /></span>
-                                                <span class="price"><em>15,900</em>원</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="colum">
-                                        <div class="welfare-in-box">
-                                            <a
-                                                href="/product/view?productCd=923&amp;siteCd=RANK"
-                                                data-target="923"
-                                            >
-                                                <span class="welfare-img w156"
-                                                    ><img
-                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        alt="상품이미지"
-                                                        class="lozad"
-                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        data-loaded="true"
-                                                /></span>
-                                                <span class="price"><em>15,900</em>원</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="colum">
-                                        <div class="welfare-in-box">
-                                            <a
-                                                href="/product/view?productCd=923&amp;siteCd=RANK"
-                                                data-target="923"
-                                            >
-                                                <span class="welfare-img w156"
-                                                    ><img
-                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        alt="상품이미지"
-                                                        class="lozad"
-                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        data-loaded="true"
-                                                /></span>
-                                                <span class="price"><em>15,900</em>원</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="colum">
-                            <div class="brand-box">
-                                <div class="top-title">
-                                    <h4 class="tit">
-                                        <img
-                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/LOGO1_PC/20220401/IMG1648sfu789775259.png"
-                                            alt="맛있닭"
-                                        />
-                                        <span class="txt">맛있닭</span>
-                                    </h4>
+                            </li>
+                            <li class="colum">
+                                <div class="welfare-in-box">
                                     <a
-                                        href="javascript:void(0);"
-                                        class="btn-link-txt4 goView"
-                                        data-target="1042"
+                                            href="/product/view?productCd=923&amp;siteCd=RANK"
+                                            data-target="923"
                                     >
-                                        <span>더보기</span><i class="ico-arr-right"></i>
+                                                <span class="welfare-img w156"
+                                                ><img
+                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        alt="상품이미지"
+                                                        class="lozad"
+                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
+                                                        data-loaded="true"
+                                                /></span>
+                                        <span class="price"><em>15,900</em>원</span>
                                     </a>
                                 </div>
-                                <ul class="welfare-list-ul gap16">
-                                    <li class="colum">
-                                        <div class="welfare-in-box">
-                                            <a
-                                                href="/product/view?productCd=923&amp;siteCd=RANK"
-                                                data-target="923"
-                                            >
+                            </li>
+                            <li class="colum">
+                                <div class="welfare-in-box">
+                                    <a
+                                            href="/product/view?productCd=923&amp;siteCd=RANK"
+                                            data-target="923"
+                                    >
                                                 <span class="welfare-img w156"
-                                                    ><img
+                                                ><img
                                                         data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
                                                         alt="상품이미지"
                                                         class="lozad"
                                                         src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
                                                         data-loaded="true"
                                                 /></span>
-                                                <span class="price"><em>15,900</em>원</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="colum">
-                                        <div class="welfare-in-box">
-                                            <a
-                                                href="/product/view?productCd=923&amp;siteCd=RANK"
-                                                data-target="923"
-                                            >
-                                                <span class="welfare-img w156"
-                                                    ><img
-                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        alt="상품이미지"
-                                                        class="lozad"
-                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        data-loaded="true"
-                                                /></span>
-                                                <span class="price"><em>15,900</em>원</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="colum">
-                                        <div class="welfare-in-box">
-                                            <a
-                                                href="/product/view?productCd=923&amp;siteCd=RANK"
-                                                data-target="923"
-                                            >
-                                                <span class="welfare-img w156"
-                                                    ><img
-                                                        data-src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        alt="상품이미지"
-                                                        class="lozad"
-                                                        src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_330_330.jpg"
-                                                        data-loaded="true"
-                                                /></span>
-                                                <span class="price"><em>15,900</em>원</span>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                                        <span class="price"><em>15,900</em>원</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </article>
-                <form id="searchForm" name="searchForm" action="/display/brand/list" method="get">
-                    <input type="hidden" name="returnUrl" value="/display/brand/list" />
-                    <input type="hidden" name="searchType" value="" />
-                    <div class="welfare-search-wrap">
-                        <div class="search-head">
-                            <div class="input-group-wrap line-type">
-                                <div class="input-group">
-                                    <label for="" class="blind">검색</label>
-                                    <input
-                                        type="text"
-                                        id=""
-                                        class="input-text"
-                                        name="searchKeyword"
-                                        value=""
-                                        placeholder="복지관을 검색해보세요"
-                                    />
-                                    <span class="input-group-btn">
+                </div>
+            </div>
+        </article>
+        <form id="searchForm" name="searchForm" action="/display/brand/list" method="get">
+            <input type="hidden" name="returnUrl" value="/display/brand/list"/>
+            <input type="hidden" name="searchType" value=""/>
+            <div class="welfare-search-wrap">
+                <div class="search-head">
+                    <div class="input-group-wrap line-type">
+                        <div class="input-group">
+                            <label for="" class="blind">검색</label>
+                            <input
+                                    type="text"
+                                    id=""
+                                    class="input-text"
+                                    name="searchKeyword"
+                                    value=""
+                                    placeholder="복지관을 검색해보세요"
+                            />
+                            <span class="input-group-btn">
                                         <button
-                                            type="button"
-                                            class="btn-search btn_brandSearch"
-                                            title="검색"
+                                                type="button"
+                                                class="btn-search btn_brandSearch"
+                                                title="검색"
                                         >
-                                            <img src="../../static/img/welfare/search-icon.png" alt="" />
+                                            <img src="/img/welfare/search-icon.png" alt=""/>
                                             <span class="blind">검색하기</span>
                                         </button>
                                     </span>
-                                </div>
-                            </div>
                         </div>
-                        <!-- 검색 부분 -->
-                        <div class="sorting-search-box">
-                            <div class="inner">
-                                <!-- 지역별 정렬 -->
-                                <button type="button" class="category-btn">
-                                    <div>전체</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>강남구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>송파구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>서초구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>강동구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>광진구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>성동구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>동대문구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>중랑구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>노원구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>도봉구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>강북구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>성북구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>종로구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>중구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>용산구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>서대문구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>마포구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>은평구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>강서구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>양천구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>구로구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>금천구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>영등포구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>동작구</div>
-                                </button>
-                                <button type="button" class="category-btn">
-                                    <div>관악구</div>
-                                </button>
-                                <!-- 카테고리별 정렬 -->
-                            </div>
-                        </div>
-                        <!-- 복지관 리스트 뿌려지는 곳 -->
-                        <div class="brand-list-wrap frame-sm" id="div_showBrand">
-                            <ul class="welfare-list-wrap gap20">
-                                <!-- 리스트 1 -->
-                            </ul>
-                            <!--// grid-area-span4 -->
-                            <div class="page-bottom">
-                                <div class="pagination mt20" style="margin-top: 30px;"><!-- // 페이징 -->
-                                    <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
-                                    <a href="javascript:void(0)" class="current"><span>1</span></a>
-                                    <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
-                                </div><!--// pagination -->
-                            </div>
-                        </div>
-                        <!--// brand-list-wrap  -->
                     </div>
-                </form>
+                </div>
+                <!-- 검색 부분 -->
+                <div class="sorting-search-box">
+                    <div class="inner">
+                        <!-- 지역별 정렬 -->
+                        <button type="button" class="category-btn">
+                            <div>전체</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>강남구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>송파구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>서초구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>강동구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>광진구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>성동구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>동대문구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>중랑구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>노원구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>도봉구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>강북구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>성북구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>종로구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>중구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>용산구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>서대문구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>마포구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>은평구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>강서구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>양천구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>구로구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>금천구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>영등포구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>동작구</div>
+                        </button>
+                        <button type="button" class="category-btn">
+                            <div>관악구</div>
+                        </button>
+                        <!-- 카테고리별 정렬 -->
+                    </div>
+                </div>
+                <!-- 복지관 리스트 뿌려지는 곳 -->
+                <div class="brand-list-wrap frame-sm" id="div_showBrand">
+                    <ul class="welfare-list-wrap gap20">
+                        <!-- 리스트 1 -->
+                    </ul>
+                    <!--// grid-area-span4 -->
+                    <div class="page-bottom">
+                        <div class="pagination mt20" style="margin-top: 30px;"><!-- // 페이징 -->
+                            <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
+                            <a href="javascript:void(0)" class="current"><span>1</span></a>
+                            <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
+                        </div><!--// pagination -->
+                    </div>
+                </div>
+                <!--// brand-list-wrap  -->
             </div>
-        </section>
-        <footer></footer>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        /* $('header').load('../../templates/component/header.html');
-        $('footer').load('../../templates/component/footer.html'); */
-    </script>
-    <script src="../../static/js/welfare/welfareList.js"></script>
+        </form>
+    </div>
+</section>
+<footer></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    /* $('header').load('../../templates/component/header.html');
+    $('footer').load('../../templates/component/footer.html'); */
+</script>
+<script src="/js/welfare/welfareList.js"></script>
 </html>

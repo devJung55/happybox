@@ -13,7 +13,7 @@ import static com.app.happybox.entity.product.QSubscriptionCart.subscriptionCart
 
 @RequiredArgsConstructor
 public class SubscriptionCartQueryDslImpl implements SubscriptionCartQueryDsl {
-    private JPAQueryFactory query;
+    private final JPAQueryFactory query;
 
 
     @Override
