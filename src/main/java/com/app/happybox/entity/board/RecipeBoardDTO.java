@@ -37,19 +37,6 @@ public class RecipeBoardDTO {
     List<ReplyDTO> replies;
 
     @Builder
-    public RecipeBoardDTO(Long id, String memberName, String recipeBoardTitle, String recipeBoardContent, LocalDateTime recipeBoardRegisterDate, Integer likeCount, Integer replyCount, List<BoardFileDTO> boardFiles, List<ReplyDTO> replies) {
-        this.id = id;
-        this.memberName = memberName;
-        this.recipeBoardTitle = recipeBoardTitle;
-        this.recipeBoardContent = recipeBoardContent;
-        this.recipeBoardRegisterDate = recipeBoardRegisterDate;
-        this.likeCount = likeCount;
-        this.replyCount = replyCount;
-        this.boardFiles = boardFiles;
-        this.replies = replies;
-    }
-
-    @Builder
     public RecipeBoardDTO(Long id, String memberName, Long memberId, String recipeBoardTitle, String recipeBoardContent, LocalDateTime recipeBoardRegisterDate, Integer likeCount, Integer replyCount, List<BoardFileDTO> boardFiles, List<ReplyDTO> replies) {
         this.id = id;
         this.memberName = memberName;
@@ -62,4 +49,5 @@ public class RecipeBoardDTO {
         this.boardFiles = boardFiles;
         this.replies = replies;
     }
+
 }
