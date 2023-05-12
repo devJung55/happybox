@@ -1,8 +1,10 @@
 package com.app.happybox.repository.subscript;
 
+import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.entity.subscript.Food;
 import com.app.happybox.entity.subscript.FoodCalendar;
 import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.exception.SubscriptionNotFoundException;
 import com.app.happybox.repository.user.WelfareRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -93,7 +96,6 @@ class SubscriptionRepositoryTests {
 
     @Test
     public void findTopNOrderByReviewCount_QueryDSL_Test() {
-        // given
         Long limit = 8L;
 
         subscriptionRepository
@@ -101,17 +103,13 @@ class SubscriptionRepositoryTests {
                 .stream()
                 .map(Subscription::toString)
                 .forEach(log::info);
-
-        // when
-
-        // then
     }
 
     @Test
-    public void findAllByAddressCategoryWithPaging_QueryDSL() {
+    public void findAllBySearchWithPaging_QueryDSL_Test() {
         // given
         Page<Subscription> searchResult = subscriptionRepository
-                .findAllByAddressCategoryWithPaging_QueryDSL(PageRequest.of(0, 10), "강남구");
+                .findAllBySearchWithPaging_QueryDSL(PageRequest.of(0, 10), new SubscriptionSearchDTO());
 
         // when
 
@@ -146,12 +144,11 @@ class SubscriptionRepositoryTests {
     @Test
     public void findByIdWithDetail_QueryDSL(){
         // given
-        Subscription Subscription =
-                subscriptionRepository.findByIdWithDetail_QueryDSL(3L);
+        Subscription subscription = subscriptionRepository.findByIdWithDetail_QueryDSL(3L).orElseThrow(() -> new SubscriptionNotFoundException());
 
         // when
 
         // then
-        log.info(Subscription.toString());
+        log.info(subscription.toString());
     }
 }
