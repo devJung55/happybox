@@ -25,6 +25,9 @@ public interface MemberQueryDsl {
 
 //    관리자 회원 목록
     public Page<Member> findAllWithPaging_QueryDSL(Pageable pageable);
+
+//    관리자 회원 조회
+    public Optional<Member> findMemberById_QueryDSL(Long memberId);
 }
 
 

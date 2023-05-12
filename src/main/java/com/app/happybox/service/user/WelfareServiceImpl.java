@@ -6,6 +6,8 @@ import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +25,11 @@ public class WelfareServiceImpl implements WelfareService {
     public void updateUserStatusById(Long welfareId) {
         Welfare welfare = welfareRepository.findById(welfareId).get();
         welfare.setUserStatus(UserStatus.UNREGISTERED);
+    }
+
+    @Override
+    public Page<Welfare> getList(Pageable pageable) {
+        Page<Welfare> welfares = welfareRepository.findAllWithPaging_QueryDSL(pageable);
+        return welfares;
     }
 }
