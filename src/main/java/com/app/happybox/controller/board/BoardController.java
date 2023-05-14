@@ -52,6 +52,12 @@ public class BoardController {
         return "user-board/review-board-list";
     }
 
+    @GetMapping("review-board-detail/{id}")
+    public String goDetail(@PathVariable Long id, Model model){
+        model.addAttribute("review", reviewBoardService.getDetail(id));
+        return "user-board/review-board-detail";
+    }
+
     @GetMapping("review-board-insert")
     public String goReviewWrite() {
         return "user-board/review-board-insert";
