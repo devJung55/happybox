@@ -1,9 +1,4 @@
-const $swiperDataContainer = $(".swiperDataContainer");
 const MARGIN = 20;
-
-$swiperDataContainer.each((i, e) => {
-    let width = $(e).find(".swiper-slide")[0].offsetWidth;
-});
 
 const $prevBtn = $(".swiper-button-prev");
 const $nextBtn = $(".swiper-button-next");
@@ -14,7 +9,7 @@ $nextBtn.each((i, e) => {
 
         let $dataContainer = $($(this).prev().prev());
         let $listContainer = $($(this).prev().prev().parent());
-        let offsetWidth = 256.25;
+        let offsetWidth = $listContainer[0].offsetWidth;
         let indexLimit = $dataContainer.data("limit");
         let offset;
 

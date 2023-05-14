@@ -4,10 +4,6 @@
 // private String name;
 // private ProductCategory productCategory;
 // private ProductSearchOrder productSearchOrder;
-$doAjax("get", "/product/search", {
-    page: 1,
-    size: 10,
-});
 
 const $navCtrl = $(".nav-control");
 const $navBtn = $(".filter-nav-list").find("a");
@@ -53,16 +49,3 @@ $itemOrder.on("click", function () {
     $(this).addClass("order-selected");
     $itemOrder.not($(this)).each((i, e) => $(e).removeClass(orderClass));
 });
-
-/* ajax 용 */
-function $doAjax(type, url, data) {
-    $.ajax({
-        type: type,
-        url: url,
-        data: data,
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-        }
-    });
-}

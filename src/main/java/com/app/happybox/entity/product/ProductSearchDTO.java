@@ -5,7 +5,7 @@ import com.app.happybox.type.ProductSearchOrder;
 import lombok.Data;
 
 @Data
-public class ProductSearch {
+public class ProductSearchDTO {
     private String address;
     private Integer price;
     private String name;

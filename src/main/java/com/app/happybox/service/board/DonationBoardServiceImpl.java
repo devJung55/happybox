@@ -38,8 +38,9 @@ public class DonationBoardServiceImpl implements DonationBoardService {
     }
 
     @Override
-    public List<DonationBoard> findTop3OrderByDate_QueryDSL() {
-        return null;
+    public List<DonationBoardDTO> findTop3OrderByDate_QueryDSL() {
+        return donationBoardRepository.findTop3OrderByDate_QueryDSL().stream()
+                .map(this::donationBoardToDTO).collect(Collectors.toList());
     }
 
     @Override

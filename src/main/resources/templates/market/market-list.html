@@ -404,7 +404,7 @@
         </section>
         <section class="content">
             <div class="items-order-wrap">
-                <div class="items-count">총 525건</div>
+                <div class="items-count">총 <span id="item-count">0</span>건</div>
                 <ul class="item-order-list">
                     <li class="item-order">
                         <a class="order-selected" href="javascript:void(0)"
@@ -428,133 +428,15 @@
                     </li>
                 </ul>
             </div>
-            <div class="show-item-wrap">
-                <div
-                        class="bnr-item-slide swiper-slide swiper-slide-active"
-                        style="width: 256.25px"
-                >
-                    <a href="javascript:void(0)">
-                        <div class="image-container">
-                            <img
-                                    src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                            />
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <span class="distributer-name">김정표</span>
-                        <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
-                        <div class="content-row">
-                            <span class="sales-price">
-                                2,900<span class="won">원</span>
-                            </span>
-                        </div>
-                        <div class="review-count">
-                            후기<span class="review-number">999+</span>
-                        </div>
-                    </div>
-                </div>
-                <div
-                        class="bnr-item-slide swiper-slide swiper-slide-active"
-                        style="width: 256.25px"
-                >
-                    <a href="javascript:void(0)">
-                        <div class="image-container">
-                            <img
-                                    src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                            />
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <span class="distributer-name">김정표</span>
-                        <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
-                        <div class="content-row">
-                            <span class="sales-price">
-                                2,900<span class="won">원</span>
-                            </span>
-                        </div>
-                        <div class="review-count">
-                            후기<span class="review-number">999+</span>
-                        </div>
-                    </div>
-                </div>
-                <div
-                        class="bnr-item-slide swiper-slide swiper-slide-active"
-                        style="width: 256.25px"
-                >
-                    <a href="javascript:void(0)">
-                        <div class="image-container">
-                            <img
-                                    src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                            />
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <span class="distributer-name">김정표</span>
-                        <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
-                        <div class="content-row">
-                            <span class="sales-price">
-                                2,900<span class="won">원</span>
-                            </span>
-                        </div>
-                        <div class="review-count">
-                            후기<span class="review-number">999+</span>
-                        </div>
-                    </div>
-                </div>
-                <div
-                        class="bnr-item-slide swiper-slide swiper-slide-active"
-                        style="width: 256.25px"
-                >
-                    <a href="javascript:void(0)">
-                        <div class="image-container">
-                            <img
-                                    src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                            />
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <span class="distributer-name">김정표</span>
-                        <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
-                        <div class="content-row">
-                            <span class="sales-price">
-                                2,900<span class="won">원</span>
-                            </span>
-                        </div>
-                        <div class="review-count">
-                            후기<span class="review-number">999+</span>
-                        </div>
-                    </div>
-                </div>
-                <div
-                        class="bnr-item-slide swiper-slide swiper-slide-active"
-                        style="width: 256.25px"
-                >
-                    <a href="javascript:void(0)">
-                        <div class="image-container">
-                            <img
-                                    src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
-                            />
-                        </div>
-                    </a>
-                    <div class="product-info">
-                        <span class="distributer-name">김정표</span>
-                        <h3 class="product-name">[쟈뎅] 시그니처 보틀 커피 1.1L 3종</h3>
-                        <div class="content-row">
-                            <span class="sales-price">
-                                2,900<span class="won">원</span>
-                            </span>
-                        </div>
-                        <div class="review-count">
-                            후기<span class="review-number">999+</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="show-item-wrap"></div>
+            <div class="paging-div"></div>
         </section>
     </div>
 </main>
 <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/common/ajax.js"></script>
 <script src="/js/market/market-list.js"></script>
+<script src="/js/market/search.js"></script>
 </html>

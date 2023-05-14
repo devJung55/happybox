@@ -251,7 +251,7 @@ div.banner div {
 }
 
 .bnr-item-list {
-    width: calc(256.25px * 12);
+    width: calc(256.25px * 6);
 }
 
 .swiper-btn {
@@ -390,7 +390,11 @@ div.banner div {
     max-width: 100%;
     vertical-align: top;
     border: 0;
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px;
+}
+
+.height256 {
+    height: 256.25px !important;
 }
 
 .lozad {
@@ -548,6 +552,8 @@ div.banner div {
 }
 
 .best-list-item a img {
+    width: 340px;
+    height: 340px;
     border-radius: 10px;
 }
 

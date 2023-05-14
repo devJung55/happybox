@@ -209,106 +209,10 @@
             <div class="frame-sm">
                 <h2 class="main-article-tit">받은만큼 더 어려운 이웃에게</h2>
                 <div class="swiper-container">
-                    <ul class="swiper-wrapper">
-                        <li class="swiper-slide" style="width: 340px">
-                            <div class="best-list-item">
-                                <a href="/display/brand/view?brandCd=1042">
-                                    <img
-                                            class="swiper-lazy swiper-lazy-loaded"
-                                            width="340"
-                                            height="340"
-                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
-                                    />
-                                </a>
-                                <div class="txt-area">
-                                    <p class="slogan text-elps">Life is Delicious!</p>
-                                    <strong class="tit text-elps">맛있닭</strong>
-                                </div>
-                            </div>
-                            <!--// brand-list-item -->
-                        </li>
-                        <li class="swiper-slide" style="width: 340px">
-                            <div class="best-list-item">
-                                <a href="/display/brand/view?brandCd=1042">
-                                    <img
-                                            class="swiper-lazy swiper-lazy-loaded"
-                                            width="340"
-                                            height="340"
-                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
-                                    />
-                                </a>
-                                <div class="txt-area">
-                                    <p class="slogan text-elps">Life is Delicious!</p>
-                                    <strong class="tit text-elps">맛있닭</strong>
-                                </div>
-                            </div>
-                            <!--// brand-list-item -->
-                        </li>
-                        <li class="swiper-slide" style="width: 340px">
-                            <div class="best-list-item">
-                                <a href="/display/brand/view?brandCd=1042">
-                                    <img
-                                            class="swiper-lazy swiper-lazy-loaded"
-                                            width="340"
-                                            height="340"
-                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/BRAND_PC/20220410/IMG1649Uey592990027.jpg"
-                                    />
-                                </a>
-                                <div class="txt-area">
-                                    <p class="slogan text-elps">Life is Delicious!</p>
-                                    <strong class="tit text-elps">맛있닭</strong>
-                                </div>
-                            </div>
-                            <!--// brand-list-item -->
-                        </li>
-                    </ul>
+                    <ul class="swiper-wrapper donationWrap"></ul>
                 </div>
             </div>
         </article>
-        <div class="side-quick-area">
-            <div class="side-quick">
-                <ul class="bnrs">
-                    <li>
-                        <a href="javacript:void(0)"
-                        ><img
-                                src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20220902/IMG1662CCa082367181.jpg"
-                                alt=""
-                        /></a>
-                    </li>
-                </ul>
-                <!--// bnrs -->
-                <!-- 빼버려도됨 -->
-                <div class="recent-list">
-                    <a href="javacript:void(0)" class="recent-heading">
-                        <h5 class="recent-title">최근 본 상품</h5>
-                    </a>
-                    <div class="no-recent">
-                        <p class="no-recent-txt">상품이<br/>없습니다.</p>
-                    </div>
-                    <div class="btn-move-group">
-                        <a href="javacript:void(0)" class="btn-left-xs disabled"
-                        ><i class="ico-arr-left"></i
-                        ></a>
-                        <a href="javacript:void(0)" class="btn-right-xs disabled"
-                        ><i class="ico-arr-right"></i
-                        ></a>
-                    </div>
-                </div>
-                <ul class="bnrs">
-                    <li>
-                        <a href="javacript:void(0)"
-                        ><img
-                                src="https://file.rankingdak.com/image/RANK/BANNER/AR_IMG_1/20220902/IMG1662dSP082547387.jpg"
-                        /></a>
-                    </li>
-                </ul>
-                <div class="side-btns">
-                    <button type="button" class="btn-side-func up"></button>
-                    <button type="button" class="btn-side-func down"></button>
-                </div>
-            </div>
-            <!--// side-quick -->
-        </div>
     </section>
 </div>
 <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
@@ -317,31 +221,13 @@
 <script th:inline="javascript">
     let recentSub = [[${recent}]];
     console.log(recentSub);
+    let topSale = [[${topSale}]];
+    console.log(topSale);
+    let donation = [[${donation}]];
+    console.log(donation);
 </script>
 <script src="/js/main/main.js"></script>
 <script src="/js/main/banner.js"></script>
 <script src="/js/main/item-swiper.js"></script>
 <script src="/js/main/header.js"></script>
-<!-- 추후 타임리프 fragment로 변경 -->
-<script th:inline="javascript">
-
-    /* 오른쪽 fixed 요소 용 JS 코드 */
-    $('document').ready(function () {
-        $(window).scroll(function () {
-            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-
-            if (position > 600) {
-                $('.side-quick-area').css({
-                    position: 'fixed',
-                    top: '121px',
-                });
-            } else {
-                $('.side-quick-area').css({
-                    position: 'absolute',
-                    top: '670px',
-                });
-            }
-        });
-    });
-</script>
 </html>

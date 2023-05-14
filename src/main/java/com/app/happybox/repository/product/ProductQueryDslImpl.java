@@ -1,7 +1,7 @@
 package com.app.happybox.repository.product;
 
 import com.app.happybox.entity.product.Product;
-import com.app.happybox.entity.product.ProductSearch;
+import com.app.happybox.entity.product.ProductSearchDTO;
 import com.app.happybox.type.ProductSearchOrder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
@@ -43,34 +43,34 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
 
     @Override
     public Page<Product> findAllByProductSearch_QueryDSL
-            (Pageable pageable, ProductSearch productSearch) {
+            (Pageable pageable, ProductSearchDTO productSearchDTO) {
 
 //        주소 검색
         BooleanExpression productAddressContains =
-                productSearch.getAddress() == null ?
-                        null : product.distributor.address.firstAddress.contains(productSearch.getAddress());
+                productSearchDTO.getAddress() == null ?
+                        null : product.distributor.address.firstAddress.contains(productSearchDTO.getAddress());
 //        가격 검색
         BooleanExpression productPriceGoe =
-                productSearch.getPrice() == null ?
-                        null : product.productPrice.goe(productSearch.getPrice());
+                productSearchDTO.getPrice() == null ?
+                        null : product.productPrice.loe(productSearchDTO.getPrice());
 //        이름 검색
         BooleanExpression productNameContains =
-                productSearch.getName() == null ?
-                        null : product.productName.contains(productSearch.getName());
+                productSearchDTO.getName() == null ?
+                        null : product.productName.contains(productSearchDTO.getName());
 //        카테고리 검색
         BooleanExpression productCategoryEq =
-                productSearch.getProductCategory() == null ?
-                        null : product.productCategory.eq(productSearch.getProductCategory());
+                productSearchDTO.getProductCategory() == null ?
+                        null : product.productCategory.eq(productSearchDTO.getProductCategory());
 
 //        Product 쿼리
         List<Product> productList = query.select(product)
                 .from(product)
-                .leftJoin(product.distributor)
+                .leftJoin(product.distributor).fetchJoin()
                 .leftJoin(product.productFiles).fetchJoin()
                 .where(productAddressContains, productPriceGoe, productNameContains, productCategoryEq)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(createOrderSpecifier(productSearch))
+                .orderBy(createOrderSpecifier(productSearchDTO))
                 .fetch();
 
 //        total 쿼리
@@ -105,12 +105,12 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
     }
 
     //    정렬 동적쿼리
-    private OrderSpecifier createOrderSpecifier(ProductSearch productSearch) {
+    private OrderSpecifier createOrderSpecifier(ProductSearchDTO productSearchDTO) {
         OrderSpecifier orderSpecifier = null;
-        ProductSearchOrder searchOrder = productSearch.getProductSearchOrder();
+        ProductSearchOrder searchOrder = productSearchDTO.getProductSearchOrder();
 
         if(searchOrder == null) {
-            return new OrderSpecifier(Order.DESC, product.createdDate);
+            return new OrderSpecifier(Order.DESC, product.id);
         }
 
         switch (searchOrder) {
