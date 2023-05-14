@@ -5,5 +5,5 @@ import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 
 public interface ReviewBoardLikeQueryDsl {
-    public boolean checkMemberLikesReviewBoard_QueryDSL(Member member, ReviewBoard reviewboard);
+    public boolean checkMemberLikesReviewBoard_QueryDSL(Long userId, Long reviewBoardId);
 }
