@@ -9,8 +9,10 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,16 +30,23 @@ public class ChatService {
         return new ArrayList<>(chatRooms.values());
     }
 
+
+    public List<ChatRoom> findAllRoomById(Long id) {
+        return new ArrayList<>(chatRooms.values()).stream()
+                .filter(chatRoom -> chatRoom.getRoomId().equals(String.valueOf(id)))
+                .collect(Collectors.toList());
+    }
+
     public ChatRoom findRoomById(String roomId) {
         return chatRooms.get(roomId);
     }
 
-    public ChatRoom createRoom() {
-        String randomId = UUID.randomUUID().toString();
+    public ChatRoom createRoom(Long id) {
+        String roomId = String.valueOf(id);
         ChatRoom chatRoom = ChatRoom.builder()
-                .roomId(randomId)
+                .roomId(roomId)
                 .build();
-        chatRooms.put(randomId, chatRoom);
+        chatRooms.put(roomId, chatRoom);
         return chatRoom;
     }
 

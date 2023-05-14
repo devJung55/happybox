@@ -22,13 +22,13 @@ public class ChatController {
     @PostMapping("/create")
     @ResponseBody
     public ChatRoom createRoom() {
-        return chatService.createRoom();
+        return chatService.createRoom(1L);
     }
 
-    @GetMapping("/room/find")
+    @GetMapping("/room/find/{id}")
     @ResponseBody
-    public List<ChatRoom> findAllRoom() {
-        return chatService.findAllRoom();
+    public List<ChatRoom> findAllRoom(@PathVariable Long id) {
+        return chatService.findAllRoomById(id);
     }
 
 }

@@ -35,6 +35,23 @@ $createChat.on("click", function () {
     });
 });
 
-$sendBtn.on("click", function () {
+// public enum MessageType{
+//     ENTER, TALK
+// }
+//
+// private MessageType type;
+// private String roomId;
+// private String sender;
+// private String message;
 
-})
+$sendBtn.on("click", function () {
+    let msg = $(".input_msg").val();
+    let data = {
+        type: "TALK",
+        roomId: 1,
+        sender: "테스트 사용자",
+        message: msg
+    }
+
+    socket.send(JSON.stringify(data));
+});
