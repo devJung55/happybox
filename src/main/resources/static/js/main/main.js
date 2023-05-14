@@ -2,8 +2,7 @@
 for (let i = 0; i < 7; i++) {
     // 임시 함수들
     appendIndex1();
-    appendIndex2();
-    appendIndex3();
+    // appendIndex3();
 }
 
 function appendIndex1() {
@@ -59,8 +58,12 @@ function appendIndex1() {
     $(".swiperDataContainer").eq(1).append(text);
 }
 
-function appendIndex2() {
+topSale.forEach((sub, i) => {
     let text;
+
+    let filePath = "";
+
+    if(sub.representFood != null) filePath = sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
     text = `
         <li
@@ -69,11 +72,8 @@ function appendIndex2() {
         >
             <div class="prd-item type-sm">
                 <div class="img w200">
-                    <a href="/product/view?productCd=9005&amp;RC_Rview">
-                        <img
-                            class="lozad"
-                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230405/IMG1680Lig659554866_330_330.jpg"
-                        />
+                    <a href="/welfare/detail/${sub.id}">
+                        <img src="${'/images/display/' + filePath}" class="height256"/>
                     </a>
                 </div>
                 <div class="desc-bottom">
@@ -83,7 +83,7 @@ function appendIndex2() {
                         </em>
                         <div class="rating-simply">
                             <span class="rating-star"></span>
-                            <span class="score">4.8</span>
+                            <span class="score">${sub.reviewAvgRating}</span>
                             <span class="total-num">5</span>
                         </div>
                     </div>
@@ -92,9 +92,7 @@ function appendIndex2() {
                         <a
                             href="javascript:void(0)"
                             class="text-elps2"
-                            >맛있닭 NEW 더담은 닭가슴살 도시락 시즌2
-                            다섯가지나물밥 &amp; 한입소스닭가슴살 짬뽕
-                            275g</a
+                            >${sub.welfareName} | ${sub.subscriptionTitle}</a
                         >
                     </p>
                     <span class="price"
@@ -107,69 +105,17 @@ function appendIndex2() {
     `;
 
     $(".swiperDataContainer").eq(2).append(text);
-}
-
-function appendIndex3() {
-    let text;
-
-    text = `
-        <li
-            class="ext-li colum swiper-slide swiper-slide-active"
-            style="width: 256.25px; margin-right: 25px"
-        >
-            <div class="prd-item type-sm">
-                <div class="img w200">
-                    <a href="/product/view?productCd=9005&amp;RC_Rview">
-                        <img
-                            class="lozad"
-                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230405/IMG1680Lig659554866_330_330.jpg"
-                        />
-                    </a>
-                </div>
-                <div class="desc-bottom">
-                    <div class="top">
-                        <em class="imgbadge-dlv">
-                            <span>정기배송</span>
-                        </em>
-                        <div class="rating-simply">
-                            <span class="rating-star"></span>
-                            <span class="score">4.8</span>
-                            <span class="total-num">5</span>
-                        </div>
-                    </div>
-
-                    <p class="tit">
-                        <a
-                            href="javascript:void(0)"
-                            class="text-elps2"
-                            >맛있닭 NEW 더담은 닭가슴살 도시락 시즌2
-                            다섯가지나물밥 &amp; 한입소스닭가슴살 짬뽕
-                            275g</a
-                        >
-                    </p>
-                    <span class="price"
-                        ><em class="num">26,450</em>원
-                    </span>
-                </div>
-                <!--// desc-bottom -->
-            </div>
-        </li>
-    `;
-
-    $(".swiperDataContainer").eq(3).append(text);
-}
+});
 
 const $recentSubUl = $(".recentSub");
 recentSub.forEach((sub, i) => {
-    let text = "";
+    let text;
 
     let filePath = "";
 
-    console.log(sub.representFood);
-
     if(sub.representFood != null) filePath = sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
-    text +=
+    text =
         `
         <li
             class="bnr-item-slide swiper-slide swiper-slide-active"
@@ -187,4 +133,28 @@ recentSub.forEach((sub, i) => {
     `
 
     $recentSubUl.append(text);
-})
+});
+
+let $donationWrap = $(".donationWrap");
+
+donation.forEach(board => {
+    let text;
+    let filePath = board.boardFiles[0].filePath + '/t_' + board.boardFiles[0].fileUuid + '_' + board.boardFiles[0].fileOrgName;
+
+    text = `
+        <li class="swiper-slide" style="width: 340px">
+            <div class="best-list-item">
+                <a href="/display/brand/view?brandCd=1042">
+                    <img src="${'/images/display/' + filePath}"/>
+                </a>
+                <div class="txt-area">
+                    <p class="slogan text-elps">${board.welfareName}</p>
+                    <strong class="tit text-elps">${board.boardTitle}</strong>
+                </div>
+            </div>
+            <!--// brand-list-item -->
+        </li>
+    `
+
+    $donationWrap.append(text);
+});

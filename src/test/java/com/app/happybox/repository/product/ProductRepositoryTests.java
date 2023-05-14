@@ -1,8 +1,7 @@
 package com.app.happybox.repository.product;
 
 import com.app.happybox.entity.product.Product;
-import com.app.happybox.entity.product.ProductSearch;
-import com.app.happybox.repository.product.ProductRepository;
+import com.app.happybox.entity.product.ProductSearchDTO;
 import com.app.happybox.repository.user.DistributorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -67,14 +66,14 @@ class ProductRepositoryTests {
     @Test
     public void findAllByProductSearch_QueryDSL(){
         // given
-        ProductSearch productSearch = new ProductSearch();
+        ProductSearchDTO productSearchDTO = new ProductSearchDTO();
 
 //        productSearch.setAddress("경남");
 //        productSearch.setName("사과");
 //        productSearch.setProductSearchOrder(ProductSearchOrder.PRICE_DESC);
 
         // when
-        Page<Product> products = productRepository.findAllByProductSearch_QueryDSL(PageRequest.of(0, 10), productSearch);
+        Page<Product> products = productRepository.findAllByProductSearch_QueryDSL(PageRequest.of(0, 10), productSearchDTO);
 
         // then
         products.get().map(Product::toString).forEach(log::info);
