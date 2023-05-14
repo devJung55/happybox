@@ -17,6 +17,7 @@ public interface ReplyService {
                 .userRole(reply.getUser().getUserRole())
                 .createdDate(reply.getCreatedDate())
                 .updatedDate(reply.getUpdatedDate())
+                .userId(reply.getUser().getUserId())
                 .build();
     }
 }

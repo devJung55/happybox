@@ -1,7 +1,7 @@
 package com.app.happybox.repository.product;
 
 import com.app.happybox.entity.product.Product;
-import com.app.happybox.entity.product.ProductSearchDTO;
+import com.app.happybox.domain.product.ProductSearchDTO;
 import com.app.happybox.repository.user.DistributorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

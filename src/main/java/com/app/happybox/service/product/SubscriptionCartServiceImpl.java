@@ -1,10 +1,9 @@
 package com.app.happybox.service.product;
 
+import com.app.happybox.domain.SubscriptionCartDTO;
 import com.app.happybox.entity.product.*;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Member;
-import com.app.happybox.entity.user.User;
-import com.app.happybox.exception.ProductNotFoundException;
 import com.app.happybox.exception.SubscriptionNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.product.SubscriptionCartRepository;

@@ -3,7 +3,7 @@ package com.app.happybox.service.product;
 
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductCart;
-import com.app.happybox.entity.product.ProductCartDTO;
+import com.app.happybox.domain.product.ProductCartDTO;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.exception.ProductNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;

@@ -6,7 +6,7 @@ html {
     display: flex;
     flex-direction: row;
     width: 1100px;
-    margin: 0 auto;
+    margin: 45px auto 0;
     gap: 30px;
     padding-bottom: 60px;
 }
@@ -38,7 +38,6 @@ html {
 
 .fixed {
     position: sticky;
-    z-index: 10;
 }
 
 .title-info-wrap {
@@ -76,22 +75,21 @@ html {
 }
 
 .item-personlize button {
-    margin: 0 3px;
-    padding: 5px 4px 0;
+    height: 30px;
     background: none;
     border: none;
-    text-align: center;
-    transition: opacity 0.1s;
-    line-height: 0;
-    z-index: 2;
-    vertical-align: top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.item-personlize button svg {
-    fill: transparent;
-    stroke: #eee;
-    stroke-width: 1px;
-    transition: fill 0.1s, stroke 0.1s;
+.item-personlize button img {
+    padding: 3px;
+    width: 30px;
+}
+
+.item-personlize button img:hover {
+    background-color: #ccc;
 }
 
 .item-personlize .count {
@@ -226,6 +224,7 @@ option {
 }
 
 .main-category-list {
+    z-index: 10;
     display: flex;
     width: 770px;
     flex-wrap: wrap;
@@ -660,4 +659,116 @@ option {
 .plus-btn:hover,
 .minus-btn:hover {
     background-color: #3a67a3;
+}
+
+/* 모달창 기본 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 모달창 내용 스타일 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 315px;
+}
+
+.modal-content .modal-title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 닫기 버튼 스타일 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-btn-wrap {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#modal-yesBtn {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+#modal-yesBtn {
+    background-color: #4CAF50;
+}
+
+#modal-yesBtn:hover {
+    background-color: #45a049;
+}
+
+.cart-product-info {
+    display: flex;
+    margin-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-product-info div:first-child {
+    padding-right: 12px;
+    border-right: 1px solid #ccc;
+}
+
+.cart-product-info div:nth-child(2) {
+    padding-left: 12px;
+}
+
+.cart-product-info div:nth-child(2) p {
+    margin-bottom: 4px;
+}
+
+.cart-info {
+    margin-bottom: 4px;
+}
+
+.more-review {
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    color: #2e2e2e;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 58px;
+}
+
+.more-review:hover {
+    background-color: #eee;
 }

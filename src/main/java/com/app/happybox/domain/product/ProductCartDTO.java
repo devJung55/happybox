@@ -1,4 +1,4 @@
-package com.app.happybox.entity.product;
+package com.app.happybox.domain.product;
 
 import lombok.Builder;
 import lombok.Getter;
