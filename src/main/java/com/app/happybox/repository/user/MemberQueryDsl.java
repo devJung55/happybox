@@ -20,6 +20,9 @@ public interface MemberQueryDsl {
 //    아이디 찾기(memberEmail)
     public Optional<String> findMemberIdByEmail(String memberEmail);
 
+//    비밀번호 찾기
+    public Optional<String> findMemberPwByPhoneNumber(String memberPhoneNumber);
+
 //    마이페이지 배송지정보
     public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId);
 

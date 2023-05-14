@@ -55,6 +55,13 @@ public class MemberServiceImpl implements MemberService {
         return memberId;
     }
 
+    //    비밀번호 찾기(PhoneNumber)
+    @Override
+    public Optional<String> findMemberPwByPhoneNumber(String memberPhoneNumber) {
+        Optional<String> memberPw = memberRepository.findMemberPwByPhoneNumber(memberPhoneNumber);
+        return memberPw;
+    }
+
 //    아이디 중복 검사
     @Override
     public boolean existsByUserId(String userId) {

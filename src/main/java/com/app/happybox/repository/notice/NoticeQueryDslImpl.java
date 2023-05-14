@@ -43,8 +43,6 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
         return Optional.ofNullable(
                 query.select(notice)
                 .from(notice)
-                .join(notice.noticeFiles)
-                .fetchJoin()
                 .where(notice.id.eq(id))
                 .fetchOne());
     }
@@ -53,6 +51,7 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
     public Page<Notice> findNoticeListDescWithPaging_QueryDSL(Pageable pageable) {
         List<Notice> noticeList = query.select(notice)
                 .from(notice)
+                .orderBy(notice.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
