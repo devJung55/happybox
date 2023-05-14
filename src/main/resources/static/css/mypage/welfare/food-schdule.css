@@ -1,0 +1,16 @@
+
+.formTime {
+    position: relative;
+    border: 1px solid #ccc;
+    width: 50%;
+    padding-left: 15px;
+    color: #ccc;
+}
+
+.food-name {
+    position: relative;
+    border: 1px solid #ccc;
+    width: 50%;
+    padding-left: 15px;
+    color: #ccc;
+}

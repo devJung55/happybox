@@ -1,5 +1,7 @@
 package com.app.happybox.handler;
 
+import com.app.happybox.provider.UserDetail;
+import com.app.happybox.type.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -15,9 +17,30 @@ import java.io.IOException;
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
 
     private static final String REDIRECT_URL = "/main";
+    private static final String REDIRECT_URL_FOR_MEMBER = "/main/";
+    private static final String REDIRECT_URL_FOR_WELFARE = "/main/";
+    private static final String REDIRECT_URL_FOR_DISTRIBUTOR = "/main/";
+    private static final String REDIRECT_URL_FOR_ADMIN = "/admin/member";
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+
         response.sendRedirect(REDIRECT_URL);
+        if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.ADMIN)){
+            log.info("ADMIN_SUCCESS");
+            response.sendRedirect(REDIRECT_URL_FOR_ADMIN);
+        }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.MEMBER)) {
+            log.info("MEMBER_SUCCESS");
+            log.info(authentication.getPrincipal().toString());
+            response.sendRedirect(REDIRECT_URL_FOR_MEMBER);
+        }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.WELFARE)){
+            log.info("WELFARE_SUCCESS");
+            response.sendRedirect(REDIRECT_URL_FOR_WELFARE);
+        }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.DISTRIBUTOR)){
+            log.info("DISTRIBUTOR_SUCCESS");
+            response.sendRedirect(REDIRECT_URL_FOR_DISTRIBUTOR);
+        }
     }
+
 }

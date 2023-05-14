@@ -36,7 +36,9 @@ public class memberController {
 
 //    logIn폼으로 이동
     @GetMapping("login")
-    public void goToLoginForm(){;}
+    public String goToLoginForm(){
+        return "member/member-login";
+    }
 
 //    아이디 중복 검사
     @PostMapping("checkId")
