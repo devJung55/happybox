@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.happybox.entity.board.QRecipeBoard.recipeBoard;
 
@@ -107,6 +108,18 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         Long count = query.select(recipeBoard.id.count()).from(recipeBoard).fetchOne();
 
         return new PageImpl<>(recipeBoardList, pageable, count);
+    }
+
+    @Override
+    public Optional<RecipeBoard> findById_QueryDSL(Long recipeBoardId) {
+        Optional<RecipeBoard> recipeBoardInfo = Optional.ofNullable(query.select(recipeBoard)
+                .from(recipeBoard)
+                .leftJoin(recipeBoard.boardFiles).fetchJoin()
+                .join(recipeBoard.member).fetchJoin()
+                .where(recipeBoard.id.eq(recipeBoardId))
+                .fetchOne());
+
+        return recipeBoardInfo;
     }
 
     //    hasNext true인지 false인지 체크하는 메소드(마지막 페이지 체크)

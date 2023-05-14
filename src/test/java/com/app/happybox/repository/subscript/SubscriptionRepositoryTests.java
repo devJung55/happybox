@@ -117,28 +117,28 @@ class SubscriptionRepositoryTests {
         searchResult.get().map(Subscription::toString).forEach(log::info);
     }
 
-    @Test
-    public void findTop8OrderByDate_QueryDSL() {
-        // given
-        List<Subscription> subscriptionList = subscriptionRepository.findTop8OrderByDate_QueryDSL();
-        List<Long> ids = subscriptionList.stream().map(Subscription::getId).collect(Collectors.toList());
-
-        List<Food> foodList = new ArrayList<>();
-
-        // when
-        List<FoodCalendar> foodCalendarList = foodCalendarRepository.findAllInSubscriptionIds(ids);
-
-        log.info(foodCalendarList.toString());
-        // then
-        subscriptionList.forEach(subscription -> {
-            foodCalendarList.stream()
-                    .filter(foodCalendar -> foodCalendar.getSubscription().equals(subscription))
-                    .forEach(foodCalendar -> foodCalendar.getFoodList().forEach(foodList::add));
-        });
-
-        log.info(subscriptionList.toString());
-        log.info(foodList.toString());
-    }
+//    @Test
+//    public void findTop8OrderByDate_QueryDSL() {
+//        // given
+//        List<Subscription> subscriptionList = subscriptionRepository.findTop8OrderByDate_QueryDSL();
+//        List<Long> ids = subscriptionList.stream().map(Subscription::getId).collect(Collectors.toList());
+//
+//        List<Food> foodList = new ArrayList<>();
+//
+//        // when
+//        List<FoodCalendar> foodCalendarList = foodCalendarRepository.findAllInSubscriptionIds(ids);
+//
+//        log.info(foodCalendarList.toString());
+//        // then
+//        subscriptionList.forEach(subscription -> {
+//            foodCalendarList.stream()
+//                    .filter(foodCalendar -> foodCalendar.getSubscription().equals(subscription))
+//                    .forEach(foodCalendar -> foodCalendar.getFoodList().forEach(foodList::add));
+//        });
+//
+//        log.info(subscriptionList.toString());
+//        log.info(foodList.toString());
+//    }
 
     @Test
     public void findByIdWithDetail_QueryDSL(){

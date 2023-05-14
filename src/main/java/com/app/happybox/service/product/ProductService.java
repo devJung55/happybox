@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public interface ProductService {
@@ -24,6 +25,12 @@ public interface ProductService {
 
 //    상품 상세조회
     public ProductDTO findById(Long id);
+
+//    관리자 해당 유통회원의 상품 목록
+    public Page<ProductDTO> getListByDistributorId(Pageable pageable, Long distributorId);
+
+//    관리자 상품 상세보기
+    public Optional<Product> getDetailById(Long productId);
 
     default ProductDTO productToDTO(Product product) {
         return ProductDTO.builder()
@@ -51,6 +58,16 @@ public interface ProductService {
                 .fileRepresent(file.getFileRepresent())
                 .fileUuid(file.getFileUuid())
                 .id(file.getId())
+                .build();
+    }
+
+    default ProductDTO adminProductToDTO(Product product) {
+        return ProductDTO.builder()
+                .id(product.getId())
+                .productCategory(product.getProductCategory())
+                .productName(product.getProductName())
+                .productPrice(product.getProductPrice())
+                .productStock(product.getProductStock())
                 .build();
     }
 }

@@ -18,4 +18,7 @@ public interface WelfareQueryDsl {
 
 //    복지관 회원 목록
     public Page<Welfare> findAllWithPaging_QueryDSL(Pageable pageable);
+
+//    복지관회원 조회
+    public Optional<Welfare> findWelfareById_QueryDSL(Long welfareId);
 }
