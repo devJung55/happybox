@@ -15,17 +15,17 @@ import java.util.Collection;
 public class UserDetail implements UserDetails {
 
     private Long id;
-    private String memberId;
-    private String memberPassword;
-    private Role memberRole;
+    private String userId;
+    private String userPassword;
+    private Role userRole;
     private Collection<? extends GrantedAuthority> authorities;
 
     @Builder
-    public UserDetail(Long id, String memberId, String memberPassword, Role memberRole, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetail(Long id, String userId, String userPassword, Role userRole, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.memberId = memberId;
-        this.memberPassword = memberPassword;
-        this.memberRole = memberRole;
+        this.userId = userId;
+        this.userPassword = userPassword;
+        this.userRole = userRole;
         this.authorities = authorities;
     }
 
@@ -36,12 +36,12 @@ public class UserDetail implements UserDetails {
 
     @Override
     public String getPassword() {
-        return memberPassword;
+        return userPassword;
     }
 
     @Override
     public String getUsername() {
-        return memberId;
+        return userId;
     }
 
     @Override

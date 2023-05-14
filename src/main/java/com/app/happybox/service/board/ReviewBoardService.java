@@ -12,9 +12,13 @@ import org.springframework.data.domain.Slice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public interface ReviewBoardService {
+    // 상세보기
+    public ReviewBoardDTO getDetail(Long id);
+
     //    작성하기
     public void write(ReviewBoard reviewBoard);
 

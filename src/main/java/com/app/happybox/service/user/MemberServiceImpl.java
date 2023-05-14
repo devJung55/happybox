@@ -96,9 +96,9 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberRepository.findByUserId(username).orElseThrow(()-> new UsernameNotFoundException(username + " not found"));
         return UserDetail.builder()
                 .id(member.getId())
-                .memberId((member.getUserId()))
-                .memberPassword(member.getUserPassword())
-                .memberRole(member.getUserRole())
+                .userId((member.getUserId()))
+                .userPassword(member.getUserPassword())
+                .userRole(member.getUserRole())
                 .build();
     }
 

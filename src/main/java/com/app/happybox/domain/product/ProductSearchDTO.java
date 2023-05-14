@@ -1,4 +1,4 @@
-package com.app.happybox.entity.product;
+package com.app.happybox.domain.product;
 
 import com.app.happybox.type.ProductCategory;
 import com.app.happybox.type.ProductSearchOrder;

@@ -63,17 +63,17 @@
 											<th>이메일</th>
 										</tr>
 									</thead>
-									<tr class="toDetail" th:each="distributors : ${distributors}" th:object="${distributors}">
+									<tr th:each="distributors : ${distributors}" th:object="${distributors}">
 										<td>
 											<label class="check-label">
 												<input type="checkbox" name="check">
 											</label>
 										</td>
-										<td th:text="*{id}"></td>
-										<td th:text="*{distributorName}"></td>
-										<td th:text="*{userPhoneNumber}"></td>
-										<td th:text="*{address.firstAddress}"></td>
-										<td th:text="*{userEmail}"></td>
+										<td th:text="*{id}" class="toDetail"></td>
+										<td th:text="*{distributorName}" class="toDetail"></td>
+										<td th:text="*{userPhoneNumber}" class="toDetail"></td>
+										<td th:text="*{address.firstAddress}" class="toDetail"></td>
+										<td th:text="*{userEmail}" class="toDetail"></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->

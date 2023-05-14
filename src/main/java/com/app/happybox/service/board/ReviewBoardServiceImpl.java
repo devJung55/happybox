@@ -2,6 +2,7 @@ package com.app.happybox.service.board;
 
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
+import com.app.happybox.exception.BoardNotFoundException;
 import com.app.happybox.repository.board.ReviewBoardRepository;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,6 +19,14 @@ import java.util.stream.Collectors;
 @Qualifier("reviewBoard")
 public class ReviewBoardServiceImpl implements ReviewBoardService {
     private final ReviewBoardRepository reviewBoardRepository;
+
+    @Override
+    public ReviewBoardDTO getDetail(Long id) {
+        ReviewBoard reviewBoard = reviewBoardRepository.findById_QueryDSL(id).orElseThrow(() -> {
+            throw new BoardNotFoundException();
+        });
+        return reviewBoardToDTO(reviewBoard);
+    }
 
     @Override
     public void write(ReviewBoard reviewBoard) {

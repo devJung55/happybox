@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProductReplyRepository extends JpaRepository<ProductReply, Long>, ProductReplyQueryDsl {
 //    상품 댓글 조회
-    @Query("select r from ProductReply r join r.user")
+    @Query("select r from ProductReply r join r.user where r.product.id = :productId order by r.id desc")
     public Slice<ProductReply> findAllByProductId(Pageable pageable, Long productId);
 }

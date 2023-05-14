@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReviewBoardQueryDsl {
+//    상세보기
+    public Optional<ReviewBoard> findById_QueryDSL(Long id);
+
 //    목록 페이징(최신순)
     public Slice<ReviewBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable);
 

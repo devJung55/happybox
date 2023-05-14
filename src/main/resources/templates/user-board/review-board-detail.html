@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>리뷰 게시판 상세보기</title>
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../static/css/global/global.css" />
-    <link rel="stylesheet" href="../../static/css/component/header.css" />
-    <link rel="stylesheet" href="../../static/css/component/footer.css" />
-    <link rel="stylesheet" href="../../static/css/member/board-detail.css" />
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css" />
+    <link rel="stylesheet" href="/css/component/header.css" />
+    <link rel="stylesheet" href="/css/component/footer.css" />
+    <link rel="stylesheet" href="/css/member/board-detail.css" />
   </head>
   <body>
-    <header></header>
+    <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
     <section id="whole-container" style="zoom: 80%">
       <div class="page-title-area">
         <h2 class="title-page">
@@ -20,171 +20,9 @@
         </h2>
     </div>
       <div class="detail-container">
-        <div class="slider__sec">
-          <div class="slider slick-initialized slick-slider">
-            <button class="swiper-button-prev swiper-btn">
-              <svg viewBox="0 0 512 512">
-                <polygon
-                  points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                ></polygon>
-              </svg>
-            </button>
-            <div class="slick-list draggable">
-              <div class="slick-track" style="opacity: 1; height: 100%">
-                <div
-                  class="slick-slide"
-                  data-slick-index="0"
-                  aria-hidden="true"
-                  style="
-                    width: 400px;
-                    height: 400px;
-                    position: relative;
-                    left: 0px;
-                    top: 0px;
-                    z-index: 1;
-                  "
-                  tabindex="-1"
-                >
-                  <div>
-                    <div class="slider__list" style="width: 100%; display: inline-block">
-                      <figure>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6vb-GZ28zNQVC5gb74x38yanaFHP72vX_Gg&usqp=CAU"
-                        />
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="slick-slide"
-                  data-slick-index="0"
-                  aria-hidden="true"
-                  style="
-                    width: 400px;
-                    height: 400px;
-                    position: relative;
-                    left: 0px;
-                    top: 0px;
-                    z-index: 1;
-                  "
-                  tabindex="-1"
-                >
-                  <div>
-                    <div class="slider__list" style="width: 100%; display: inline-block">
-                      <figure>
-                        <img
-                          src="https://image.greating.co.kr/IL/item/202302/09/557C80D49618484DBC52172A35185514.jpg"
-                        />
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="slick-slide"
-                  data-slick-index="0"
-                  aria-hidden="true"
-                  style="
-                    width: 400px;
-                    height: 400px;
-                    position: relative;
-                    left: 0px;
-                    top: 0px;
-                    z-index: 1;
-                  "
-                  tabindex="-1"
-                >
-                  <div>
-                    <div class="slider__list" style="width: 100%; display: inline-block">
-                      <figure>
-                        <img
-                          src="https://image.greating.co.kr/IL/item/202302/09/557C80D49618484DBC52172A35185514.jpg"
-                        />
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button class="swiper-button-next swiper-btn">
-              <svg viewBox="0 0 512 512">
-                <polygon
-                  points="160,128.4 192.3,96 352,256 352,256 352,256 192.3,416 160,383.6 287.3,256 "
-                ></polygon>
-              </svg>
-            </button>
-            <div class="slick-counter">
-              <span class="current">1</span> / <span class="total">3</span>
-            </div>
-          </div>
-          <div class="refrig-bnr">
-            <a href="javascript:void(0)">
-              <img
-                src="https://www.rankingdak.com/resources/pc/images/img/pc_delivery_banner2.jpg"
-            /></a>
-          </div>
-        </div>
 
-        <div class="info-area">
-          <div class="info-area__btn">
-            <button type="button" class="update-btn">
-              <svg
-                class="write-button-icon"
-                style="enable-background: new 0 0 1696.162 1696.143"
-                version="1.1"
-                viewBox="0 0 1696.162 1696.143"
-                width="1696.162px"
-                xml:space="preserve"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g id="pen">
-                  <path
-                    d="M1648.016,305.367L1390.795,48.149C1359.747,17.098,1318.466,0,1274.555,0c-43.907,0-85.188,17.098-116.236,48.148   L81.585,1124.866c-10.22,10.22-16.808,23.511-18.75,37.833L0.601,1621.186c-2.774,20.448,4.161,41.015,18.753,55.605   c12.473,12.473,29.313,19.352,46.714,19.352c2.952,0,5.923-0.197,8.891-0.601l458.488-62.231   c14.324-1.945,27.615-8.529,37.835-18.752L1648.016,537.844c31.049-31.048,48.146-72.33,48.146-116.237   C1696.162,377.696,1679.064,336.415,1648.016,305.367z M493.598,1505.366l-350.381,47.558l47.56-350.376L953.78,439.557   l302.818,302.819L493.598,1505.366z M1554.575,444.404l-204.536,204.533l-302.821-302.818l204.535-204.532   c8.22-8.218,17.814-9.446,22.802-9.446c4.988,0,14.582,1.228,22.803,9.446l257.221,257.218c8.217,8.217,9.443,17.812,9.443,22.799   S1562.795,436.186,1554.575,444.404z"
-                  />
-                </g>
-                <g id="Layer_1" />
-              </svg>
-            </button>
-            <button type="button" class="delete-btn">
-              <svg viewBox="0 0 448 512" class="delete-button-icon" xmlns="http://www.w3.org/2000/svg">
-                <path
-                d="M432 80h-82.38l-34-56.75C306.1 8.827 291.4 0 274.6 0H173.4C156.6 0 141 8.827 132.4 23.25L98.38 80H16C7.125 80 0 87.13 0 96v16C0 120.9 7.125 128 16 128H32v320c0 35.35 28.65 64 64 64h256c35.35 0 64-28.65 64-64V128h16C440.9 128 448 120.9 448 112V96C448 87.13 440.9 80 432 80zM171.9 50.88C172.9 49.13 174.9 48 177 48h94c2.125 0 4.125 1.125 5.125 2.875L293.6 80H154.4L171.9 50.88zM352 464H96c-8.837 0-16-7.163-16-16V128h288v320C368 456.8 360.8 464 352 464zM224 416c8.844 0 16-7.156 16-16V192c0-8.844-7.156-16-16-16S208 183.2 208 192v208C208 408.8 215.2 416 224 416zM144 416C152.8 416 160 408.8 160 400V192c0-8.844-7.156-16-16-16S128 183.2 128 192v208C128 408.8 135.2 416 144 416zM304 416c8.844 0 16-7.156 16-16V192c0-8.844-7.156-16-16-16S288 183.2 288 192v208C288 408.8 295.2 416 304 416z"
-                />
-              </svg>
-            </button>
-            <button type="button" class="btn-heart">
-            </button>
-          </div>
-          <span class="writer-button-wrap">
-            <p class="writer-name">요리사정정짱</p>
-          </span>
-          <h3 class="info-area__name">
-            <span class="strong">제육볶음 맛있게 하는 법!</span>
-          </h3>
-          <div class="info-area__box">
-            <div class="info-area__box-list">
-              <div class="info-area__box-cont">
-                <p id="welfare-name">
-                    노원노인복지관
-                </p>
-                        <em class="rating-point">
-                            <img class="rating__point one" src="../../static/img/mypage/rating-pull.png">
-                            <img class="rating__point two" src="../../static/img/mypage/rating-pull.png">
-                            <img class="rating__point three" src="../../static/img/mypage/rating-pull.png">
-                            <img class="rating__point four" src="../../static/img/mypage/rating-pull.png">
-                            <img class="rating__point five" src="../../static/img/mypage/rating.png">
-                        </em>
-                <div class="detail-content">
-                    안녕하세요. 요리사정정짱입니다. 요즘 혼자 살다보니 아침 차려먹을 시간도 없고 그렇다고 매번 냉동식품만 먹자니 건강도 너무 안좋아지는게 느껴지더라구요 ㅠㅠ
-                    저는 아침에 헬스장에 가기 전에 꼭 아침을 먹어야하기 때문에 아침을 정기적으로 배달시켜먹을 곳이 없나 찾아보다가 해피박스라는 서비슬 알게 되어서 한 번 도시락을 따로 시켜 먹어봤어요.
-                    근데 정말 집밥 먹는 것처럼 너무 맛있고 든든하더라구요!! 그래서 여러 복지관에 도시락을 시켜 먹어보고 개인적으로 가장 맛있었던 노원복지관을 선택하게 되었어요!
-                    벌써 3개월이나 지났는데 배달도 항상 제때 일찍 도착하고 너무 맛있고 영양분도 골고루 갖춰져 있어서 정말 최고입니다!!
-                    아침에 준비하느라 시간 없는 직장인들에게 추천드립니다. 그리고 제가 레시피 게시판에 제육볶음 레시피 공유했으니까 좋아요와 댓글 부탁드릴게요 ^^
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- -------------------------------------------  -->
+
       </div>
       <section class="reply-wrap">
         <h3 class="reply-title">댓글</h3>
@@ -212,12 +50,12 @@
       </section>
       <div class="review-list-wrap"></div>
     </section>
-    <footer></footer>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script>
-    $('header').load('../../templates/component/header.html');
-    $('footer').load('../../templates/component/footer.html');
+  <script th:inline="javascript">
+    let review = [[${review}]]
   </script>
-  <script src="../../static/js/member/board-detail.js"></script>
+  <script src="/js/main/header.js"></script>
+  <script src="/js/member/board-detail.js"></script>
 </html>

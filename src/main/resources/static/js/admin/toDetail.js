@@ -2,7 +2,7 @@
 const $toDetail = $(".toDetail");
 
 $toDetail.on("click", function() {
-    let distributorId = $($(this).children()[1]).text();
+    let distributorId = $($(this).parent().children()[1]).text();
     location.href= "/admin/distributor-detail/" + distributorId;
 });
 
@@ -10,6 +10,6 @@ $toDetail.on("click", function() {
 const $toWelfareDetail = $(".toWelfareDetail");
 
 $toWelfareDetail.on("click", function() {
-    let welfareId = $($(this).children()[1]).text();
+    let welfareId = $($(this).parent().children()[1]).text();
     location.href = "/admin/welfare-detail/" + welfareId;
 });

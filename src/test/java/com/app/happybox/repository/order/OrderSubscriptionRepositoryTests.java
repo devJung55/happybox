@@ -56,7 +56,10 @@ class OrderSubscriptionRepositoryTests {
     @Test
     public void findSubscriptionByMemberId_QueryDSL_Test() {
         orderSubscriptionRepository.findSubscriptionByMemberId_QueryDSL(1L)
-                .ifPresent(orderSubscription -> log.info(orderSubscription.getSubscription().getWelfare().toString()));
+                .ifPresent(orderSubscription -> {
+                    log.info(orderSubscription.getMember().getMemberName());
+                    log.info(orderSubscription.getSubscription().getWelfare().getWelfareName());
+                });
     }
 
     @Test

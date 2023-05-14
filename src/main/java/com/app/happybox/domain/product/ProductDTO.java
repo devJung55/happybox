@@ -1,5 +1,6 @@
-package com.app.happybox.entity.product;
+package com.app.happybox.domain.product;
 
+import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.entity.file.ProductFileDTO;
 import com.app.happybox.type.ProductCategory;
 import lombok.Builder;
@@ -33,6 +34,7 @@ public class ProductDTO {
 
 //    유통업자 이름
     private String distributorName;
+
 
     @Builder
     public ProductDTO(Long id, String productName, Integer productPrice, Long productStock,

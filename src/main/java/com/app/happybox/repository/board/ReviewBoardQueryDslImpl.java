@@ -10,6 +10,7 @@ import org.springframework.data.domain.*;
 import java.util.List;
 import java.util.Optional;
 
+import static com.app.happybox.entity.board.QReviewBoard.*;
 import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 
 
@@ -17,7 +18,19 @@ import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     private final JPAQueryFactory query;
 
-//    최신순
+    @Override
+    public Optional<ReviewBoard> findById_QueryDSL(Long id) {
+        ReviewBoard reviewBoard = query.select(QReviewBoard.reviewBoard)
+                .from(QReviewBoard.reviewBoard)
+                .join(QReviewBoard.reviewBoard.member).fetchJoin()
+                .rightJoin(QReviewBoard.reviewBoard.subscription.welfare)
+                .join(QReviewBoard.reviewBoard.boardFiles).fetchJoin()
+                .where(QReviewBoard.reviewBoard.id.eq(id))
+                .fetchOne();
+        return Optional.of(reviewBoard);
+    }
+
+    //    최신순
     @Override
     public Slice<ReviewBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {
         List<ReviewBoard> reviewBoards =  query.select(reviewBoard)
