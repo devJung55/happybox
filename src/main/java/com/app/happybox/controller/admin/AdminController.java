@@ -1,6 +1,8 @@
 package com.app.happybox.controller.admin;
 
 import com.app.happybox.entity.board.RecipeBoardDTO;
+import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.user.Member;
@@ -17,6 +19,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -50,9 +55,12 @@ public class AdminController {
                 recipeBoardDTO.getRecipeBoardContent()
         };
 
-        for (int i = 0; i < recipeBoard.length; i++) {
-            log.info(recipeBoard[i]);
-        }
+//        for (int i = 0; i < recipeBoard.length; i++) {
+//            log.info(recipeBoardDTO.getBoardFiles().get(i).getFileOrgName());
+//            log.info(recipeBoard[i]);
+//        }
+        recipeBoardDTO.getBoardFiles().stream().map(BoardFileDTO::toString).forEach(log::info);
+
         return recipeBoard;
     }
 
@@ -68,13 +76,16 @@ public class AdminController {
     @GetMapping("member-detail")
     public String[] getMemberDetail(@RequestParam("memberId") Long memberId, Model model) {
         Member memberInfo = memberService.getDetail(memberId).get();
-        UserFile userFile = userFileService.getDetail(memberId).get();
-        log.info("----------------------------------" + userFile.toString());
+        UserFile userFile = userFileService.getDetail(memberId);
 
         String[] member = {
-                userFile.getFilePath(),
-                userFile.getFileUuid(),
-                userFile.getFileOrgName(),
+                userFile.getFilePath() == null ? null : userFile.getFilePath(),
+                userFile.getFileUuid() == null ? null : userFile.getFileUuid(),
+                userFile.getFileOrgName() == null ? null : userFile.getFileOrgName(),
+//                "2012/01/01",
+//                UUID.randomUUID().toString(),
+//                "사진",
+
                 memberInfo.getMemberName(),
                 memberInfo.getUserPhoneNumber(),
                 memberInfo.getUserEmail(),
@@ -96,6 +107,7 @@ public class AdminController {
     public String getDistributorDetail(@PathVariable Long distributorId, Model model) {
         model.addAttribute("distributors", distributorService.getList(PageRequest.of(0, 5)));
         model.addAttribute("distributorId", distributorId);
+        model.addAttribute("userFile", userFileService.getDetail(distributorId));
         model.addAttribute("products", productService.getListByDistributorId(PageRequest.of(0, 5), distributorId));
         return "/admin/admin-distributorDetail";
     }
@@ -105,7 +117,23 @@ public class AdminController {
     @GetMapping("product-detail")
     public String[] getProductDetail(@RequestParam("productId") Long productId) {
         Product productInfo = productService.getDetailById(productId).get();
+
+//        for (int i = 0; i < productInfo.getProductFiles().size(); i++) {
+//            if(productInfo.getProductFiles().get(i) == null) {
+//                log.info("null ----------------------");
+//            }
+//            log.info(productInfo.getProductFiles().get(i).getFilePath());
+//            log.info(productInfo.getProductFiles().get(i).getFileUuid());
+//            log.info(productInfo.getProductFiles().get(i).getFileOrgName());
+//        }
+
         String[] product = {
+//                productInfo.getProductFiles().get(0).getFilePath(),
+//                productInfo.getProductFiles().get(0).getFileUuid(),
+//                productInfo.getProductFiles().get(0).getFileOrgName(),
+                "2012/01/01",
+                UUID.randomUUID().toString(),
+                "상품 사진",
                 productInfo.getProductName(),
                 String.valueOf(productInfo.getProductPrice()),
                 String.valueOf(productInfo.getProductStock())
@@ -126,6 +154,7 @@ public class AdminController {
         String subsciberName = null;
         model.addAttribute("welfare",welfareService.getDetail(welfareId).get());
         model.addAttribute("subscribers", orderSubsciptionService.getListByWelfareId(PageRequest.of(0, 5), welfareId, subsciberName));
+        model.addAttribute("userFile", userFileService.getDetail(welfareId));
         return "/admin/admin-welfareDetail";
     }
 }
