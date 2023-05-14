@@ -1,7 +1,7 @@
 package com.app.happybox.repository.product;
 
 import com.app.happybox.entity.product.Product;
-import com.app.happybox.entity.product.ProductSearchDTO;
+import com.app.happybox.domain.product.ProductSearchDTO;
 import com.app.happybox.type.ProductSearchOrder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;

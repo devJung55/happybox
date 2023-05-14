@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,10 +23,14 @@ public class OrderController {
     @Qualifier("subscription")
     private final SubscriptionOrderService subscriptionOrderService;
 
+    @GetMapping("product")
+    public String goProductOrderForm() {
+        return "market/payment";
+    }
+
     @PostMapping("product")
     @ResponseBody
     public Long orderProduct(@RequestParam("cartId") List<Long> cartIds, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO) {
-        log.info(addressDTO.toString());
         // 임시 세션 ID 1L
         return productOrderService.saveProductOrder(cartIds, 1L, addressDTO, orderInfoDTO);
     }

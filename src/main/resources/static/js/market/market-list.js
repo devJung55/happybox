@@ -1,12 +1,7 @@
-/* ProductSearch */
-// private String address;
-// private Integer price;
-// private String name;
-// private ProductCategory productCategory;
-// private ProductSearchOrder productSearchOrder;
 
 const $navCtrl = $(".nav-control");
-const $navBtn = $(".filter-nav-list").find("a");
+const $navBtn_region = $(".filter-nav-list").find("a.region");
+const $navBtn_price = $(".filter-nav-list").find("a.price");
 
 // 초기화 버튼
 const $reset = $("#reset-filter");
@@ -25,27 +20,81 @@ $navCtrl.on("click", function () {
 });
 
 /* 카테고리 항목 선택 */
-$navBtn.on("click", function () {
+$navBtn_region.on("click", function () {
     let btn = $(this).find("button");
     let check = btn.data("checked") === true;
 
-    // 버튼의 색깔을 바꾼 후
-    btn.find(".check_path").attr("fill", `${check ? "#fff" : "#467adc"}`);
+    searchProduct.page = null;
 
+    $navBtn_region.not($(this)).each((i, e) => {
+        $(e).find("button").data("checked", false);
+        $(e).find("button").find(".check_path").attr("fill", "#fff=");
+    });
+
+    if(!check) {
+        // 버튼의 색깔을 바꾸기
+        btn.find(".check_path").attr("fill", "#467adc");
+
+        // 검색 실행
+        searchProduct.address = $(this).data("region");
+    } else {
+        btn.find(".check_path").attr("fill", "#fff");
+        searchProduct.address = null;
+    }
     // data 속성 바꾸기
     btn.data("checked", !check);
+    doSearch();
+});
+
+$navBtn_price.on("click", function () {
+    let btn = $(this).find("button");
+    let check = btn.data("checked") === true;
+
+    $navBtn_price.not($(this)).each((i, e) => {
+        $(e).find("button").data("checked", false);
+        $(e).find("button").find(".check_path").attr("fill", "#fff=");
+    });
+
+    searchProduct.page = null;
+
+    if(!check) {
+        // 버튼의 색깔을 바꾸기
+        btn.find(".check_path").attr("fill", "#467adc");
+
+        // 검색 실행
+        searchProduct.price = $(this).data("price");
+    } else {
+        btn.find(".check_path").attr("fill", "#fff");
+        searchProduct.price = null;
+    }
+    // data 속성 바꾸기
+    btn.data("checked", !check);
+    doSearch();
 });
 
 /* 카테고리 초기화 */
 $reset.on("click", function () {
     let btns = $(".filter-nav-list a button");
     btns.each((i, e) => $(e).data("checked", false).find(".check_path").attr("fill", "#fff"));
+    $itemOrder.each((i, e) => $(e).removeClass("order-selected"));
+    $itemOrder.eq(0).addClass("order-selected");
+
+    searchProduct.address = null;
+    searchProduct.price = null;
+    searchProduct.name = null;
+    searchProduct.productCategory = null;
+    searchProduct.productSearchOrder = null;
+    searchProduct.page = null;
+
+    doSearch();
 });
 
 /* 정렬순서 */
-const orderClass = "order-selected";
-
 $itemOrder.on("click", function () {
     $(this).addClass("order-selected");
-    $itemOrder.not($(this)).each((i, e) => $(e).removeClass(orderClass));
+    $itemOrder.not($(this)).each((i, e) => $(e).removeClass("order-selected"));
+
+    searchProduct.productSearchOrder = $(this).data("order");
+
+    doSearch();
 });
