@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Qualifier("userFile") @Primary
@@ -16,7 +14,7 @@ public class UserFileServiceImpl implements UserFileService {
     private final UserFileRepository userFileRepository;
 
     @Override
-    public Optional<UserFile> getDetail(Long userId) {
+    public UserFile getDetail(Long userId) {
         return userFileRepository.findById_QueryDSL(userId);
     }
 }

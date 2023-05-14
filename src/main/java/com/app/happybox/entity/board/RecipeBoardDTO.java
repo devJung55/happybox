@@ -49,5 +49,4 @@ public class RecipeBoardDTO {
         this.boardFiles = boardFiles;
         this.replies = replies;
     }
-
 }
