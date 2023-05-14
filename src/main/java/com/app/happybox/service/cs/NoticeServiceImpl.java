@@ -36,4 +36,18 @@ public class NoticeServiceImpl implements NoticeService {
         Optional<Notice> notice = noticeRepository.findNoticeDetailById_QueryDSL(id);
         return toNoticeDTO(notice.get());
     }
+
+    //    관리자용 목록 조회
+    @Override
+    public Page<NoticeDTO> getAdminNoticeList(Pageable pageable) {
+        Page<Notice> notices = noticeRepository.findNoticeListDescWithPaging_QueryDSL(pageable);
+        List<NoticeDTO> noticeList = notices.get().map(this::toNoticeDTO).collect(Collectors.toList());
+        return new PageImpl<>(noticeList, pageable, notices.getTotalElements());
+    }
+
+    //    공지 삭제
+    @Override
+    public void deleteById(Long id) {
+        noticeRepository.findById(id).ifPresent(notice -> noticeRepository.delete(notice));
+    }
 }

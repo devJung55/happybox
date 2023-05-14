@@ -61,6 +61,14 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         .fetchOne());
     }
 
+    //    비밀번호 찾기(memberPhone)
+    @Override
+    public Optional<String> findMemberPwByPhoneNumber(String memberPhoneNumber) {
+        return Optional.ofNullable(query.select(member.userPassword)
+                .from(member)
+                .where(member.userPhoneNumber.eq(memberPhoneNumber))
+                .fetchOne());
+    }
 
     //    마이페이지 배송지정보
     @Override

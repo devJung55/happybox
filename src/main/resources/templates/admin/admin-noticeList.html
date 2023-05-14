@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,18 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+	<link rel="stylesheet" href="/css/admin/admin-default.css">
+    <link rel="stylesheet" href="/css/admin/admin-modal.css">
+    <link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
 	<section class="header-section">
 		<div class="info-title-box info-title-box-flex">
 			<div class="logo-box-layout">
 				<div class="logo-title-layout">
-					<img class="logo-image" src="../../static/img/header/Logo-main.png" alt="">
+					<img class="logo-image" src="/img/header/Logo-main.png" alt="">
 				</div>
 			</div>
 			<div>
@@ -30,9 +31,8 @@
 		</div>
 	</section>
 	<main class="main-section">
-		<!-- 임시 사이드바 -->
-		<div id="side-bar"></div>
-		<!-- 임시 사이드바 끝 -->
+		<!-- 사이드바 -->
+		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
 		<section class="content-section">
 			<div class="container">
 				<div class="container-margin">
@@ -51,7 +51,7 @@
 								</div>
 							</div>
 							<div class="info-table">
-								<table>
+								<table class="table">
 									<thead>
 										<tr>
 											<th>
@@ -66,109 +66,11 @@
 											<th>작성 날짜</th>
 										</tr>
 									</thead>
-									<tr>
-										<td>
-											<label class="check-label">
-												<input type="checkbox" name="check">
-											</label>
-										</td>
-										<td class="show-modal">1</td>
-										<td class="show-modal">[필독]HappyBox 이용방법</td>
-										<td class="show-modal">안녕하세요. HappyBox 이용방법에 대해서 알려드리고자 합니다. 길이를 최대한 늘려보고 있으니 양해부탁드립니다.</td>
-										<td class="show-modal">관리자</td>
-										<td class="show-modal">2023.01.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-												<input type="checkbox" name="check">
-											</label>
-										</td>
-										<td class="show-modal">2</td>
-										<td class="show-modal">HappyBox가 진행하는 이벤트!</td>
-										<td class="show-modal">안녕하세요. HappyBox에서 진행하는 이벤트...</td>
-										<td class="show-modal">관리자</td>
-										<td class="show-modal">2023.01.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-												<input type="checkbox" name="check">
-											</label>
-										</td>
-										<td class="show-modal">3</td>
-										<td class="show-modal">[필독]HappyBox 이용방법</td>
-										<td class="show-modal">안녕하세요. HappyBox 이용방법에 대해서...</td>
-										<td class="show-modal">관리자</td>
-										<td class="show-modal">2023.01.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-												<input type="checkbox" name="check">
-											</label>
-										</td>
-										<td class="show-modal">4</td>
-										<td class="show-modal">[필독]HappyBox 이용방법</td>
-										<td class="show-modal">안녕하세요. HappyBox 이용방법에 대해서...</td>
-										<td class="show-modal">관리자</td>
-										<td class="show-modal">2023.01.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-												<input type="checkbox" name="check">
-											</label>
-										</td>
-										<td class="show-modal">5</td>
-										<td class="show-modal">[필독]HappyBox 이용방법</td>
-										<td class="show-modal">안녕하세요. HappyBox 이용방법에 대해서...</td>
-										<td class="show-modal">관리자</td>
-										<td class="show-modal">2023.01.11</td>
-									</tr>
+									<!-- 목록 리스트가 나올 곳 -->
+									<tbody class="notice-list-wrap"></tbody>
 								</table>
-								<!-- 페이지 버튼 -->
-								<div class="page-button-box-layout">
-									<div class="page-button-box">
-										<!-- 페이지 번호 -->
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
-												</div>
-											</div>
-										</div>
-										<div class="page-button-active page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>1</span>
-												</div>
-											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>2</span>
-												</div>
-											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>3</span>
-												</div>
-											</div>
-										</div>
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- 페이지 버튼 끝 -->
+								<!-- 페이지 버튼 놓을 공간-->
+								<div class="paging-wrap"></div>
 							</div>
 						</div>
 					</section>
@@ -411,6 +313,8 @@
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/event.js"></script>
+<script src="/js/admin/sidebar.js"></script>
+<script src="/js/CS/common.js"></script>
+<script src="/js/admin/event.js"></script>
+<script src="/js/admin/admin-notice.js"></script>
 </html>

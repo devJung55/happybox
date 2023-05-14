@@ -18,6 +18,12 @@ public interface NoticeService {
     //    상세보기
     public NoticeDTO getNoticeWithId(Long id);
 
+    //    관리자용 공지사항 목록
+    public Page<NoticeDTO> getAdminNoticeList(Pageable pageable);
+
+    //    삭제
+    public void deleteById(Long id);
+
     //    공지사항 DTO로 바꾸기
     default NoticeDTO toNoticeDTO(Notice notice){
         return NoticeDTO.builder().id(notice.getId())

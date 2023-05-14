@@ -23,6 +23,9 @@ public interface MemberService extends UserDetailsService {
     //    아이디 찾기(memberEmail)
     public Optional<String> findMemberIdByEmail(String memberEmail);
 
+    //    비밀번호 찾기
+    public Optional<String> findMemberPwByPhoneNumber(String memberPhoneNumber);
+
     //    아이디 중복검사
     public boolean existsByUserId(String userId);
 
