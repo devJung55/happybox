@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface UserFileService {
 //    회원 프로필 조회
-    public Optional<UserFile> getDetail(Long userId);
+    public UserFile getDetail(Long userId);
 }

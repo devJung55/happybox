@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface OrderSubsciptionService {
-//    관리자 복지관 구독자 조회
+//    관리자 복지관 구독자 목록
     public Page<OrderSubscriptionDTO> getListByWelfareId(Pageable pageable, Long welfare, String subscriberName);
 
     default OrderSubscriptionDTO adminToOrderSubscription(OrderSubscription orderSubscription) {

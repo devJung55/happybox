@@ -64,17 +64,17 @@
 											<th>이메일</th>
 										</tr>
 									</thead>
-									<tr class="toWelfareDetail" th:each="welfares : ${welfares}" th:object="${welfares}">
+									<tr th:each="welfares : ${welfares}" th:object="${welfares}">
 										<td>
 											<label class="check-label">
 											    <input type="checkbox" name="check">
                                             </label>
 										</td>
-										<td th:text="*{id}"></td>
-										<td th:text="*{welfareName}"></td>
-										<td th:text="*{userPhoneNumber}"></td>
-										<td th:text="*{address.firstAddress}"></td>
-										<td th:text="*{userEmail}"></td>
+										<td th:text="*{id}" class="toWelfareDetail"></td>
+										<td th:text="*{welfareName}" class="toWelfareDetail"></td>
+										<td th:text="*{userPhoneNumber}" class="toWelfareDetail"></td>
+										<td th:text="*{address.firstAddress}" class="toWelfareDetail"></td>
+										<td th:text="*{userEmail}" class="toWelfareDetail"></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
