@@ -8,17 +8,12 @@ const $infoImgThumbnail = $(".info-img-thumbnail img");
 
 const $reviewListWrap = $(".review-list-wrap");
 
-function $doAjax(type, url, data) {
-    $.ajax({
-        type: type,
-        url: url,
-        data: data,
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-        }
-    });
-}
+const $moreReview = $(".more-review");
+
+// 현재 페이지
+let page = 1;
+// 마지막 여부
+let isLastPage = false;
 
 /* 임시 이미지 갯수 */
 const imgCount = 7;
@@ -33,34 +28,58 @@ for (let i = 0; i < imgCount; i++) {
     $imgContainer.append(text);
 }
 
-$doAjax("get", "/product/detail/reply/9", {
-    page: 1,
-    size: 5
+/* common/ajax.js */
+$doAjax("get", `/product/detail/reply/${$product.id}`,
+    {},
+    (result) => {
+        console.log(result);
+        result.content.forEach((reply) => appendReplyList(reply));
+        if(result.last) $moreReview.css("display", "none");
+    }
+);
+
+$moreReview.on("click", function () {
+    $doAjax("get", `/product/detail/reply/${$product.id}`,
+        {page : ++page},
+        (result) => {
+            console.log(result);
+            result.content.forEach((reply) => appendReplyList(reply));
+            if(result.last) $(this).css("display", "none");
+        }
+    );
 });
 
-/* 임시 리뷰 요소 append */
-for (let i = 0; i < imgCount; i++) {
+const USER_ROLE = {
+    MEMBER: "일반",
+    WELFARE: "복지관"
+}
+
+window.scroll()
+
+/* 댓글 append */
+function appendReplyList(reply) {
+
+    let date = reply.updatedDate.split("T")[0];
+
     let text = `
     <div class="review-list">
         <div class="user-info-wrap">
             <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
+                <span class="user-type">${USER_ROLE[reply.userRole]}</span>
+                <span class="user-id">${reply.userId}</span>
             </div>
         </div>
         <div class="review-wrap">
             <div>
                 <h3 class="review-item-name">
-                    [4.22원데이] 더라인 순면 피그먼트
+                    ${$product.productName}
                 </h3>
             </div>
             <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무
-                데치면 질겨지니 2분안쪽으로 데쳐서 초고추장 찍어서 먹으면
-                그곳이 천국입니다
+                ${reply.replyContent}
             </p>
             <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
+                <span class="review-date">${date}</span>
                 <div class="review-btn-wrap">
                     <button class="review-rec-btn">
                         <span>도움돼요</span>
@@ -90,10 +109,23 @@ $listSelecter.on("click", function () {
     $sectionWrap.eq(i)[0].scrollIntoView({behavior: "smooth"});
 });
 
-/* item list menu 고정용 */
+/* throttle */
+function throttle(func, delay) {
+    let lastCall = 0;
+    return function () {
+        let now = Date.now();
+        if (now - lastCall < delay) {
+            return;
+        }
+        lastCall = now;
+        return func.apply(this, arguments);
+    };
+}
+
+/* scroll 이벤트 */
 $("document").ready(function () {
     $(window).scroll(function () {
-        var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+        let position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 
         if (position >= mainCategoryTopLoc - 200) {
             $mainCategoryList.addClass("list-menu-pos-fixed");
@@ -161,10 +193,12 @@ $updateReviewBtn.on("click", function () {
 });
 
 
-
 /* 주문수량 설정 */
 
 let orderCount = 1;
+
+let $totalPrice = $("#totalPrice");
+$totalPrice.text(orderCount * productPrice);
 
 $(".minus-btn").click(function () {
     let currentValue = parseInt($(".quantity-input").val());
@@ -172,12 +206,14 @@ $(".minus-btn").click(function () {
         $(".quantity-input").val(--currentValue);
     }
     orderCount = currentValue;
+    $totalPrice.text(orderCount * productPrice);
 });
 
 $(".plus-btn").click(function () {
     let currentValue = parseInt($(".quantity-input").val());
     $(".quantity-input").val(++currentValue);
     orderCount = currentValue;
+    $totalPrice.text(orderCount * productPrice);
 });
 
 $(".quantity-input").on("input", function () {
@@ -188,6 +224,7 @@ $(".quantity-input").on("input", function () {
     } else {
         orderCount = currentValue;
     }
+    $totalPrice.text(orderCount * productPrice);
 });
 
 $(".quantity-input").on("blur", function () {
@@ -199,4 +236,41 @@ $(".quantity-input").on("blur", function () {
     }
 });
 
-/* ================== */
+/* ========= 장바구니 모달창 ========= */
+const CART_URL = "/product/cart/add/";
+$(".productCart-btn").on("click", function () {
+    $(".cart-name").text($product.productName);
+    $(".cart-distributor").text($product.distributorName);
+    $(".cart-price").text(productPrice);
+    $(".cart-order-count").text(orderCount);
+    $(".cart-total-price").text(orderCount * productPrice + " 원");
+
+    $("#cart-modal").css("display", "block");
+});
+
+// 닫기 버튼을 클릭했을 때
+$(".close").on("click", function () {
+    $("#cart-modal").css("display", "none");
+});
+
+// 예 버튼을 클릭했을 때
+$("#modal-yesBtn").on("click", function () {
+    console.log($(".quantity-input").val());
+    $doAjaxPost("POST",
+        CART_URL + $product.id, // 상품 ID
+        {cartOrderAmount: $(".quantity-input").val()}, // 주문수량
+        (result) => {  // callback
+            $("#cart-modal").css("display", "none");
+
+            console.log(result);
+        }
+    );
+
+});
+
+// 모달창 외부를 클릭했을 때
+$(window).on("click", function (event) {
+    if ($(event.target).is('.modal')) {
+        $("#cart-modal").css("display", "none");
+    }
+});

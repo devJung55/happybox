@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter @ToString
 public class ReplyDTO {
     private Long id;
+    private String userId;
     private String replyContent;
     private Integer replyLikeCount;
     private Role userRole;
@@ -21,10 +22,11 @@ public class ReplyDTO {
     private LocalDateTime updatedDate;
 
     @Builder
-    public ReplyDTO(Long id, String replyContent, Integer replyLikeCount, Role userRole, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public ReplyDTO(Long id, String replyContent, Integer replyLikeCount, Role userRole, LocalDateTime createdDate, LocalDateTime updatedDate, String userId) {
         this.id = id;
         this.replyContent = replyContent;
         this.replyLikeCount = replyLikeCount;
+        this.userId = userId;
         this.userRole = userRole;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;

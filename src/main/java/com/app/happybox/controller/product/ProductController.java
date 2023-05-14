@@ -1,8 +1,8 @@
 package com.app.happybox.controller.product;
 
-import com.app.happybox.entity.product.ProductCartDTO;
-import com.app.happybox.entity.product.ProductDTO;
-import com.app.happybox.entity.product.ProductSearchDTO;
+import com.app.happybox.domain.product.ProductCartDTO;
+import com.app.happybox.domain.product.ProductDTO;
+import com.app.happybox.domain.product.ProductSearchDTO;
 import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.service.product.ProductCartService;
 import com.app.happybox.service.product.ProductService;
@@ -49,6 +49,7 @@ public class ProductController {
     @GetMapping("/detail/{id}")
     public String goDetail(@PathVariable Long id, Model model) {
         model.addAttribute("product", productService.findById(id));
+
         return "market/market-detail";
     }
 
