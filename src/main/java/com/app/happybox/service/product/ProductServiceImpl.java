@@ -2,7 +2,7 @@ package com.app.happybox.service.product;
 
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductDTO;
-import com.app.happybox.entity.product.ProductSearch;
+import com.app.happybox.entity.product.ProductSearchDTO;
 import com.app.happybox.exception.ProductNotFoundException;
 import com.app.happybox.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductDTO> findAllBySearch(Pageable pageable, ProductSearch search) {
+    public Page<ProductDTO> findAllBySearch(Pageable pageable, ProductSearchDTO search) {
         Page<Product> productPage = productRepository.findAllByProductSearch_QueryDSL(pageable, search);
         List<ProductDTO> productDTOList = productPage.get().map(this::productToDTO).collect(Collectors.toList());
         return new PageImpl<>(productDTOList, pageable, productPage.getTotalElements());

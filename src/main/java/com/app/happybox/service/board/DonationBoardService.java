@@ -18,7 +18,7 @@ public interface DonationBoardService {
     public DonationBoardDTO getDetail(Long id);
 
     //    최신순 Top3 조회(메인)
-    public List<DonationBoard> findTop3OrderByDate_QueryDSL();
+    public List<DonationBoardDTO> findTop3OrderByDate_QueryDSL();
 
     //    관리자 기부글 목록
     public Page<DonationBoard> findAllWithPaging_QueryDSL(Pageable pageable);

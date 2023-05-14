@@ -4,7 +4,7 @@ import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductDTO;
 import com.app.happybox.entity.file.ProductFileDTO;
-import com.app.happybox.entity.product.ProductSearch;
+import com.app.happybox.entity.product.ProductSearchDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,7 +21,7 @@ public interface ProductService {
     public List<ProductDTO> temp();
 
 //    상품 동적검색
-    public Page<ProductDTO> findAllBySearch(Pageable pageable, ProductSearch search);
+    public Page<ProductDTO> findAllBySearch(Pageable pageable, ProductSearchDTO search);
 
 //    상품 상세조회
     public ProductDTO findById(Long id);

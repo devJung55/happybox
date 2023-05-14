@@ -1,127 +1,128 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="/css/global/global.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
-    </head>
-    <body>
-        <div th:fragment="header" class="header">
-            <div class="header_inner">
-                <!-- header_logo -->
-                <h1 class="logo">
-                    <a href="/">
-                        <img src="/img/header/Logo-main.png" alt="">
-                    </a>
-                    <div class="main-swiper-wrap">
-                        <a href="javascript:void(0)" class="fontW500" id="welfare-market">복지관</a>
-                        <a href="javascript:void(0)" class="fontW500" id="product-market">
-                            <img src="/img/header/market-img.png" alt="">
-                            지역 마켓
-                        </a>
-                    </div>
-                </h1>
-                <!-- header_util -->
-                <div class="util">
-                    <ul>
-                        <li><a href="javascript:void(0)">로그아웃</a></li>
-                        <li><a href="javascript:void(0)">정보수정</a></li>
-                        <li><a href="javascript:void(0)">주문조회</a></li>
-                    </ul>
-                </div>
-                <!-- header_search -->
-                <div class="header-search">
-                    <div class="top-search">
-                        <input
-                            type="search"
-                            class="input-search"
-                            id="rankKeyword"
-                            name="rankKeyword"
-                            autocomplete="off"
-                            placeholder="복지관 검색"
-                            maxlength="100"
-                        />
-
-                        <button
-                            type="button"
-                            class="btn-top-search"
-                            id="btnTopSearch"
-                            name="btnTopSearch"
-                        ></button>
-                    </div>
-                </div>
-                <!--  -->
-                <div class="my-menu">
-                    <ul>
-                        <li>
-                            <a href="javascript:void(0)" class="btn-util-mypage" title=""></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="btn-util-productCart" title=""></a>
-                        </li>
-                    </ul>
-                </div>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/global/global.css"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+</head>
+<body>
+<div th:fragment="header" class="header">
+    <div class="header_inner">
+        <!-- header_logo -->
+        <h1 class="logo">
+            <a href="/">
+                <img src="/img/header/Logo-main.png" alt="">
+            </a>
+            <div class="main-swiper-wrap">
+                <a href="/main/welfare" class="fontW500" id="welfare-market">복지관</a>
+                <a href="/main/product" class="fontW500" id="product-market">
+                    <img src="/img/header/market-img.png" alt="">
+                    지역 마켓
+                </a>
             </div>
-            <div class="gnb-wrap">
-                <div class="inner">
-                    <div class="category-wrap">
-                        <a class="btn-menu-all">
-                            <span>카테고리</span>
-                        </a>
-                        <nav id="all-category" class="category-menu">
-                            <ul class="cate-dep1" style="display: none" ;>
-                                <li>
-                                    <a href="javascript:void(0)" data-cd1="R254">
-                                        <i class="ico-cate-gnb">
-                                            <img
-                                                src="/img/main/food_icon.png"
-                                                alt=""
-                                            />
-                                        </i>
-                                        <span class="menu">신상품</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <nav id="gnb" class="gnb">
-                        <ul>
-                            <li class="">
-                                <a href="javascript:void(0)">
-                                    <span>게시판</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0)">
-                                    <span>복지관</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0)">
-                                    <span>지역마켓</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0)">
-                                    <span>고객센터</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0)">
-                                    <em class="ico-txt-gnb">
-                                        <span class="blind">정기배송</span>
-                                    </em>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+        </h1>
+        <!-- header_util -->
+        <div class="util">
+            <ul>
+                <li><a href="javascript:void(0)">로그아웃</a></li>
+                <li><a href="javascript:void(0)">정보수정</a></li>
+                <li><a href="javascript:void(0)">주문조회</a></li>
+            </ul>
+        </div>
+        <!-- header_search -->
+        <div class="header-search">
+            <div class="top-search">
+                <input
+                        type="search"
+                        class="input-search"
+                        id="rankKeyword"
+                        name="rankKeyword"
+                        autocomplete="off"
+                        placeholder="복지관 검색"
+                        maxlength="100"
+                />
+
+                <button
+                        type="button"
+                        class="btn-top-search"
+                        id="btnTopSearch"
+                        name="btnTopSearch"
+                ></button>
             </div>
         </div>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="/js/main/header.js"></script>
+        <!--  -->
+        <div class="my-menu">
+            <ul>
+                <li>
+                    <a href="javascript:void(0)" class="btn-util-mypage" title=""></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="btn-util-productCart" title=""></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="gnb-wrap">
+        <div class="inner">
+            <div class="category-wrap">
+                <a class="btn-menu-all">
+                    <span>카테고리</span>
+                </a>
+                <nav id="all-category" class="category-menu">
+                    <ul class="cate-dep1" style="display: none" ;>
+                        <li>
+                            <a href="javascript:void(0)" data-cd1="R254">
+                                <i class="ico-cate-gnb">
+                                    <img
+                                            src="/img/main/food_icon.png"
+                                            alt=""
+                                    />
+                                </i>
+                                <span class="menu">신상품</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <nav id="gnb" class="gnb">
+                <ul>
+                    <li class="">
+                        <a href="/user-board/review-board-list">
+                            <span>게시판</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/user-board/review-board-list">
+                            <span>복지관</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/product/list">
+                            <span>지역마켓</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/product/list">
+                            <span>고객센터</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/product/list">
+                            <em class="ico-txt-gnb">
+                                <span class="blind">정기배송</span>
+                            </em>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/header.js"></script>
 </html>

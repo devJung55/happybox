@@ -98,7 +98,7 @@ html {
     width: 100%;
 }
 
-.filter-nav-list:first-child{
+.filter-nav-list:first-child {
     margin-top: 8px;
 }
 
@@ -143,7 +143,6 @@ html {
     display: flex;
     align-items: center;
 }
-
 
 
 .item-order-list .item-order {
@@ -253,4 +252,45 @@ html {
 .image-container img {
     max-height: 100%;
     transition: 0.5s ease;
+}
+
+.paging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+    gap: 12px;
+}
+
+.paging a {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #467adc;
+    border-radius: 3px; /* Adjust to your desired roundness */
+    background-color: #467adc;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paging #currentPage {
+    width: 28px;
+    height: 28px;
+    background-color: #333;
+    color: #fff;
+    background-color: #000;
+    border-radius: 3px; /* Adjust to your desired roundness */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for page numbers on hover */
+.paging a:hover {
+    background-color: #345995; /* Darken the color a bit on hover */
+    color: #fff;
 }
