@@ -20,7 +20,7 @@ public interface ReviewBoardService {
     public ReviewBoardDTO getDetail(Long id);
 
     //    작성하기
-    public void write(ReviewBoard reviewBoard);
+    public void write(ReviewBoardDTO reviewBoardDTO, Long userId);
 
     //    목록 페이징(최신순)
     public Slice<ReviewBoardDTO> getReviewBoards(Pageable pageable);
@@ -52,6 +52,7 @@ public interface ReviewBoardService {
                 .boardTitle(reviewBoardDTO.getReviewBoardTitle())
                 .boardContent(reviewBoardDTO.getReviewBoardContent())
                 .reviewRating(reviewBoardDTO.getReviewRating())
+//                .boardFiles(reviewBoardDTO.getBoardFiles().stream().map(file -> toBoardFileEntity(file)).collect(Collectors.toList()))
                 .build();
     }
 
@@ -62,6 +63,16 @@ public interface ReviewBoardService {
                 .filePath(boardFile.getFilePath())
                 .fileOrgName(boardFile.getFileOrgName())
                 .fileRepresent(boardFile.getFileRepresent())
+                .build();
+    }
+
+    default BoardFile toBoardFileEntity(BoardFileDTO boardFileDTO){
+        return BoardFile.builder()
+                .id(boardFileDTO.getId())
+                .fileUuid(boardFileDTO.getFileUuid())
+                .filePath(boardFileDTO.getFilePath())
+                .fileOrgName(boardFileDTO.getFileOrgName())
+                .fileRepresent(boardFileDTO.getFileRepresent())
                 .build();
     }
 

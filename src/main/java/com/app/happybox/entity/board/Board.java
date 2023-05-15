@@ -51,4 +51,15 @@ public abstract class Board extends Period {
     public void setBoardContent(String boardContent) {
         this.boardContent = boardContent;
     }
+
+    public void setBoardFiles(List<BoardFile> boardFiles) {
+        this.boardFiles = boardFiles;
+    }
+
+    public Board(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles) {
+        this.id = id;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardFiles = boardFiles;
+    }
 }

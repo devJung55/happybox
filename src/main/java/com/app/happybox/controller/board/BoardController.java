@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -40,16 +41,31 @@ public class BoardController {
     @Qualifier
     private final DonationBoardService donationBoardService;
 
-//    @GetMapping("review-board-list")
-//    public String goReviewList(@PageableDefault(page = 1,size = 5) Pageable pageable, Model model) {
-//        model.addAttribute("reviewList", reviewBoardService.getReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
-//                pageable.getPageSize())));
-//        return "user-board/review-board-list";
-//    }
-
     @GetMapping("review-board-list")
-    public String goReviewList(){
+    public String goRecentList(@PageableDefault(page=1, size=5) Pageable pageable, Model model){
+        model.addAttribute("reviewList",
+                reviewBoardService.getReviewBoards(PageRequest.of(
+                        pageable.getPageNumber() - 1,
+                        pageable.getPageSize())));
         return "user-board/review-board-list";
+    }
+
+    //    리뷰 게시판 리스트(인기순)
+    @GetMapping("review-board-list/popular")
+    @ResponseBody
+    public Slice<ReviewBoardDTO> goPopularList(@PageableDefault(page=1, size=5) Pageable pageable) {
+        return reviewBoardService
+                .getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+                        pageable.getPageSize()));
+    }
+
+    //    리뷰 게시판 리스트(최신순)
+    @GetMapping("review-board-list/recent")
+    @ResponseBody
+    public Slice<ReviewBoardDTO> goRecentList(@PageableDefault(page=1, size=5) Pageable pageable) {
+        return reviewBoardService
+                .getReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+                        pageable.getPageSize()));
     }
 
     @GetMapping("review-board-detail/{id}")
@@ -58,29 +74,23 @@ public class BoardController {
         return "user-board/review-board-detail";
     }
 
+    //  레시피 게시판 작성하기
     @GetMapping("review-board-insert")
     public String goReviewWrite() {
         return "user-board/review-board-insert";
     }
 
     @PostMapping("review-board-insert")
-    public void write(ReviewBoard reviewBoard) {
-        reviewBoardService.write(reviewBoard);
-    }
-
-    //    리뷰 게시판 리스트(인기순)
-    @GetMapping("review-board-list/popular")
-    @ResponseBody
-    public Slice<ReviewBoardDTO> goPopularList(@PageableDefault(page=1, size=5) Pageable pageable) {
-                return reviewBoardService
-                        .getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
-                                pageable.getPageSize()));
+    public RedirectView write(ReviewBoardDTO reviewBoardDTO, Long userId) {
+        reviewBoardService.write(reviewBoardDTO, userId);
+        return new RedirectView("user-board/review-board-list");
     }
 
     //    레시피 게시판 리스트 (최신순)
-    @GetMapping("recipe-board-list")
-    public Slice<RecipeBoardDTO> getRecipeBoardList(int page, int size) {
-        return recipeBoardService.getRecipeBoards(PageRequest.of(page, size));
+    @GetMapping("recipe-board-list/recent")
+    public Slice<RecipeBoardDTO> getRecipeBoardList(@PageableDefault(page=1, size=5) Pageable pageable) {
+        return recipeBoardService.getRecipeBoards(PageRequest.of(pageable.getPageNumber() - 1,
+                pageable.getPageSize()));
     }
 
     //    기부 게시판 리스트

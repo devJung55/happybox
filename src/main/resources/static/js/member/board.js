@@ -11,8 +11,6 @@ $(".sort-btn").on('click', function(e){
     $(".tit-type").not($(this).find('.tit-type')).removeClass("active");
 });
 
-
-
 $(document).ready(function() {
     // 최신순 클릭 이벤트
     $('.last-pop-btn a:first-child').click(function() {
@@ -21,6 +19,10 @@ $(document).ready(function() {
       $(this).siblings().removeClass('on');
 
       setList.empty();
+        $doAjax("/user-board/review-board-list/recent", {
+            page: 1,
+            size: 5
+        });
     });
   
     // 인기순 클릭 이벤트
@@ -29,11 +31,16 @@ $(document).ready(function() {
       $(this).addClass('on');
       $(this).siblings().removeClass('on');
 
+        setList.empty();
+        $doAjax("/user-board/review-board-list/popular", {
+            page: 1,
+            size: 5
+        });
     });
   });
 
 const setList = $('.list-append-wrap');
-let page = 1;
+// let page = 1;
 
 function showList(reviewList){
     let text ="";
@@ -119,20 +126,13 @@ function showList(reviewList){
     setList.append(text);
 }
 
-$(window).scroll(
-    function() {
-        if (Math.ceil($(window).scrollTop()) >= $(document).height() - $(window).height() - 50) {
-            page++;
-            $doAjax(page, "/user-board/review-board-list/popular");
-        }
-    }
-);
+showList(reviewList);
 
-function $doAjax(page, url) {
+function $doAjax(url, data) {
     $.ajax({
         type: "GET",
         url: url,
-        data: {page: page},
+        data: data,
         dataType: "json",
         success: function (response) {
             showList(response);
@@ -141,3 +141,12 @@ function $doAjax(page, url) {
 }
 
 
+
+// $(window).scroll(
+//     function() {
+//         if (Math.ceil($(window).scrollTop()) >= $(document).height() - $(window).height() - 50) {
+//             page++;
+//             $doAjax(page, "/user-board/review-board-list/popular");
+//         }
+//     }
+// );
