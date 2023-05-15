@@ -1,6 +1,8 @@
 package com.app.happybox.controller.user;
 
 import com.app.happybox.domain.user.MemberDTO;
+import com.app.happybox.entity.user.Member;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.user.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
