@@ -14,3 +14,26 @@
     padding-left: 15px;
     color: #ccc;
 }
+
+.food-write-more {
+    display: flex;
+    margin-top: 20px;
+}
+
+.food-write-btn{
+    width: 100px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.delete-btn{
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.delete-btn img{
+    width: 25px;
+    height: 25px;
+}
