@@ -29,8 +29,10 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
     }
 
     @Override
-    public void write(ReviewBoard reviewBoard) {
-        reviewBoardRepository.save(reviewBoard);
+    public void write(ReviewBoardDTO reviewBoardDTO, Long userId) {
+        reviewBoardDTO.getBoardFiles();
+        reviewBoardRepository.save(toReviewBoardEntity(reviewBoardDTO));
+
     }
 
     @Override

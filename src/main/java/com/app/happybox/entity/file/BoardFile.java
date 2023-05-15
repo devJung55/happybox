@@ -21,9 +21,12 @@ public class BoardFile extends Files {
     @JoinColumn
     private Board board;
 
-    public BoardFile(String filePath, String fileUuid, String fileOrgName, FileRepresent fileRepresent) {
+    @Builder
+    public BoardFile(String filePath, String fileUuid, String fileOrgName, Long id, FileRepresent fileRepresent, Board board) {
         super(filePath, fileUuid, fileOrgName);
+        this.id = id;
         this.fileRepresent = fileRepresent;
+        this.board = board;
     }
 
     public void setBoard(Board board) {

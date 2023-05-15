@@ -1,5 +1,6 @@
 package com.app.happybox.entity.board;
 
+import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.reply.ReviewBoardReply;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Member;
@@ -54,9 +55,15 @@ public class ReviewBoard extends Board {
     }
 
     @Builder
-    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating) {
-        super(boardTitle, boardContent);
+    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, Member member, Subscription subscription, List<ReviewBoardReply> reviewBoardReplies, List<ReviewBoardLike> reviewBoardLikes) {
+        super(id, boardTitle, boardContent, boardFiles);
         this.reviewRating = reviewRating;
+        this.reviewLikeCount = reviewLikeCount;
+        this.reviewBoardReplyCount = reviewBoardReplyCount;
+        this.member = member;
+        this.subscription = subscription;
+        this.reviewBoardReplies = reviewBoardReplies;
+        this.reviewBoardLikes = reviewBoardLikes;
     }
 
     public void setMember(Member member) {
