@@ -7,6 +7,7 @@ import com.app.happybox.repository.user.MemberRepository;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Qualifier("member") @Primary
+@Slf4j
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
@@ -28,10 +30,10 @@ public class MemberServiceImpl implements MemberService {
 
     //    Member 회원가입
     @Override
-    public Member join(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
+    public void join(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
         memberDTO.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword()));
         memberDTO.setUserRole(Role.MEMBER);
-        return memberRepository.save(toMemberEntity(memberDTO));
+        memberRepository.save(toMemberEntity(memberDTO));
     }
 
     //    Member 로그인

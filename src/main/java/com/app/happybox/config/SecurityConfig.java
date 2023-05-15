@@ -18,6 +18,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Component;
 
 @EnableWebSecurity
 @Configuration
@@ -91,7 +92,7 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON)
 //                전체 서비스 filterChain 안거치고 접근
-//                .antMatchers(MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
+                .antMatchers(MAIN_PATH,MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
@@ -99,32 +100,29 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
-//        http
-//                .authorizeRequests()
+        http
+                .authorizeRequests()
 //                마이페이지 권한 설정
-//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
-//                .antMatchers(MYPAGE_PATH).authenticated()
+                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
 
 
 //                  작성페이지 권한 설정
-//                    .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
-//                    .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
-//                    .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
-//                    .antMatchers(WRITE_PATH).authenticated()
+                    .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
+                    .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
+                    .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
 
     //                관리자 페이지 권한 설정
-//                    .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
-//                    .antMatchers(ADMIN_PATH).authenticated()
+                    .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
 
 //                기타 설정
-//                .and()
-//                .csrf().disable()
-//                .exceptionHandling()
-//                /* 인가, 인증 Exception Handler */
-//                .accessDeniedHandler(accessDeniedHandler)
-//                .authenticationEntryPoint(authenticationEntryPoint);
+                .and()
+                .csrf().disable()
+                .exceptionHandling()
+                /* 인가, 인증 Exception Handler */
+                .accessDeniedHandler(accessDeniedHandler)
+                .authenticationEntryPoint(authenticationEntryPoint);
 
         http
                 .formLogin()
