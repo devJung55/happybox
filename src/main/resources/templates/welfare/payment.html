@@ -336,7 +336,7 @@
             $.ajax({
                 url: "/order/product", // 컨트롤러 주소
                 type: "POST",
-                data: {paymentAmount: paymentAmount, orderId: orderId}, // 결제정보 객체 paymetnVO
+                data: {TotalPrice: TotalPrice, orderId: orderId}, // 결제정보 객체 paymetnVO
                 success: function (result) {
                     location.href = result;
                 },

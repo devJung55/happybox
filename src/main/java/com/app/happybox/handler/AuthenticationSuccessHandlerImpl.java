@@ -36,9 +36,11 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
             response.sendRedirect(REDIRECT_URL_FOR_MEMBER);
         }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.WELFARE)){
             log.info("WELFARE_SUCCESS");
+            log.info(authentication.getPrincipal().toString());
             response.sendRedirect(REDIRECT_URL_FOR_WELFARE);
         }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.DISTRIBUTOR)){
             log.info("DISTRIBUTOR_SUCCESS");
+            log.info(authentication.getPrincipal().toString());
             response.sendRedirect(REDIRECT_URL_FOR_DISTRIBUTOR);
         }
     }
