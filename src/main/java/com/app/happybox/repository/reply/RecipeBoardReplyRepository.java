@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface RecipeBoardReplyRepository extends JpaRepository<RecipeBoardReply, Long>, RecipeBoardReplyQueryDsl {
     //    최신순
-    @Query("select r from RecipeBoardReply r join r.user where r.id = :id order by r.createdDate d desc")
+    @Query("select r from RecipeBoardReply r join r.user where r.id = :id order by r.createdDate desc")
     public Slice<RecipeBoardReply> findAllByRecipeBoardId(Pageable pageable, Long id);
 
     //    인기순
