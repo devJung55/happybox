@@ -2,7 +2,6 @@ package com.app.happybox.controller.admin;
 
 import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.PageDTO;
-import com.app.happybox.entity.board.QRecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.file.UserFile;
@@ -17,14 +16,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -44,20 +39,13 @@ public class AdminController {
 
 //    레시피 게시물 목록
     @GetMapping("recipeBoard-list")
-    public String getRecipeBoardList(Integer page, Integer size, Model model) {
-        if(page == null && size == null) {
-            page = 1;
-            size = 10;
-        }
+    public String getRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
+        Page<RecipeBoardDTO> list = recipeBoardService.getList(PageRequest.of(page - 1, 10));
 
-        Page<RecipeBoardDTO> list = recipeBoardService.getList(PageRequest.of(page - 1, size));
-        int totalPage = list.getTotalPages();
-
-        log.info(totalPage + "--------------------------------");
-        log.info(list.getSize() + "----------------------------size");
         model.addAttribute("recipeBoards", list.getContent());
-        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("pageDTO", new PageDTO(list));
 
+        log.info(list.toString() + "------");
         return "/admin/admin-recipeBoardList";
     }
 
@@ -203,8 +191,6 @@ public class AdminController {
     @GetMapping("admin-noticeList/{page}")
     public Page<NoticeDTO> showNoticeList(@PathVariable("page") Integer page) {
         PageRequest pages = PageRequest.of(page - 1, 1);
-    public Map<String, Object> showNoticeList(@PathVariable("page") Integer page) {
-        PageRequest pages = PageRequest.of(page - 1, 10);
         Page<NoticeDTO> lists = noticeService.getAdminNoticeList(pages);
         return lists;
     }

@@ -195,6 +195,11 @@ function showRecipeBoardDetail(recipeBoard) {
     $ulTag.append(text);
 }
 
+/*-- 페이징 처리 --*/
+function setPage(page) {
+    location.href = `/admin/recipeBoard-list?page=${page}`;
+}
+
 /*-- 회원 상세보기 모달 --*/
 const $memberTr = $(".tr__tag");
 
