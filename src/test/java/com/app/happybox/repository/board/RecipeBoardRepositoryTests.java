@@ -118,13 +118,13 @@ public class RecipeBoardRepositoryTests {
 
     @Test
     public void getList_Test() {
-        recipeBoardService.getList(PageRequest.of(0, 5))
+        recipeBoardService.getList(PageRequest.of(0, 10))
                 .stream().map(RecipeBoardDTO::getMemberId).forEach(v -> log.info(v + ""));
     }
 
     @Test
     public void getList_Tests() {
-        recipeBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 5))
+        recipeBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 10))
                 .stream().forEach(v -> {
                     log.info(v.getMember().getUserId());
                     log.info(v.getCreatedDate() + "");
