@@ -154,7 +154,7 @@
                                             <col style="width: 180px"/>
                                             <col style="width: auto"/>
                                         </colgroup>
-                                        <tbody>
+                                        <tbody class="more-food">
                                             <tr>
                                                 <th class="text-left" scope="row">
                                                     <div class="in-tb">
@@ -209,13 +209,29 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                            <!-- 음식 등록 최대 9개 -->
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        음식 이름 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                    <div class="delete-btn">
+                                                        <img src="../../../static/img/welfare/delete-btn.png" alt="">
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="" id="vQuestionTitle" title="" class="food-name" placeholder="음식 이름을 적어주세요" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                            
                                             <!-- 첨부파일 영역 -->
                                             <tr class="attach-file-line">
                                                 <th class="text-left" scope="row"></th>
                                                 <td class="text-left">
                                                     <div class="file-add-boxes" style="display: inline-block;">
-
+                            
                                                         <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
                                                             <button type="button" class="btn-attach-thumb">
                                                                 <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
@@ -234,11 +250,12 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <!--// 첨부파일 영역 -->
                                         </tbody>
                                     </table>
                                 </div>
-
+                                <div class="food-write-more">
+                                <button type="button" class="food-write-btn">추가등록</button>
+                                </div>
                                 <div class="btn-bottom-area">
                                     <button type="button" class="btn-basic-lg2 btn-grey3">
                                         <span>취소하기</span>
@@ -334,4 +351,6 @@
         }).open();
     }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+<script src="../../../static/js/mypage/welfare/food-schedule.js"></script>
 </html>
