@@ -174,16 +174,10 @@ public class AdminController {
     //    공지사항 목록 페이징
     @ResponseBody
     @GetMapping("admin-noticeList/{page}")
-    public Map<String, Object> showNoticeList(@PathVariable("page") Integer page) {
+    public Page<NoticeDTO> showNoticeList(@PathVariable("page") Integer page) {
         PageRequest pages = PageRequest.of(page - 1, 1);
         Page<NoticeDTO> lists = noticeService.getAdminNoticeList(pages);
-        PageDTO pageDTO = new PageDTO(lists);
-
-//        페이지를 이동할 때마다 페이지 정보를 갱신해줘야 하기 때문에 page 정보도 같이 넘겨준다
-        Map<String, Object> response = new HashMap<>();
-        response.put("noticeLists", lists.getContent());
-        response.put("pageDTO", pageDTO);
-        return response;
+        return lists;
     }
 
     //    공지사항 상세 조회

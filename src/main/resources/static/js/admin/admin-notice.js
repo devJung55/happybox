@@ -1,5 +1,4 @@
 
-
 /* 목록 불러오기 */
 
 const $NoticeListWrap = $('.notice-list-wrap');
@@ -25,16 +24,43 @@ function showNoticeList(noticeLists) {
     $NoticeListWrap.append(text);
 }
 
-/* 페이지 설정 */
+/* ============================ 페이지 설정 ==================================== */
 globalThis.page = 1;
+
+/* 한 페이지에 보여질 페이지의 개수 */
+const PAGE_AMOUNT = 10;
+
+/* 데이터 요청할 페이지 */
+function setPage(page) {
+    globalThis.page = page;
+    adminNoticeService.getNoticeList();
+}
+
 
 /* 페이지 버튼 만들기 */
 const $contentWrap = $('.paging-wrap');
 
-function pagination(pageDTO) {
+function pagination(data) {
+    let pageable = data.pageable;
+
+    /* 현재 페이지 */
+    let pageNumber = pageable.pageNumber;
+
+    let count = Math.floor(pageNumber / PAGE_AMOUNT);
+    /* 시작 페이지 */
+    let startPage = count * PAGE_AMOUNT;
+    /* 끝 페이지 */
+    let endPage = startPage + PAGE_AMOUNT;
+
+    endPage = endPage > data.totalPages ? data.totalPages : endPage;
+
+    let hasPrev = startPage > 1;
+    let hasNext = endPage < data.totalPages;
+
+    /* 페이지 버튼 추가하는 HTML 코드 작성부 */
     let text =  "";
 
-    if (pageDTO.total == 0) {
+    if (pageable == null) {
         text = ``;
     } else {
         text = `
@@ -43,21 +69,22 @@ function pagination(pageDTO) {
                     <div class="page-button-box">
                         <!-- 페이지 번호 -->
                 `
-        if(pageDTO.prev) {
+        if(hasPrev) {
             text += `
                         <!-- 페이지 개수 10개 이상 -->
                         <div class="">
                             <div class="page-button-margin">
                                 <div>
-                                    <a href="javascript:setPage(${pageDTO.startPage - 1})" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
+                                    <a href="javascript:setPage(${startPage})" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
                                 </div>
                             </div>
                         </div>
                     `
         }
-        for(let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
-            if (globalThis.page == i) {
-                /* 페이지가 내가 지금 데이터를 요청한 페이지인지 검사 */
+        for(let i = startPage + 1; i < endPage + 1; i++) {
+            let page = i
+            /* 현재 페이지가 내가 선택한 페이지 일 경우 */
+            if (pageNumber + 1 == page) {
                 text += `<div onclick="setPage(${i})" class="page-button page-button-active"> `
             } else {
                 text += ` <div onclick="setPage(${i})" class="page-button"> `
@@ -72,12 +99,12 @@ function pagination(pageDTO) {
                 `
         }
 
-        if (pageDTO.next) {
+        if (hasNext) {
             text += `
                         <div class="">
                             <div class="page-button-margin">
                                 <div>
-                                    <a href="javascript:setPage(${pageDTO.endPage + 1})"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
+                                    <a href="javascript:setPage(${endPage + 1})"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
                                 </div>
                             </div>
                         </div>
@@ -90,11 +117,6 @@ function pagination(pageDTO) {
     $contentWrap.append(text);
 }
 
-/* 데이터 요청할 페이지 */
-function setPage(page) {
-    globalThis.page = page;
-    adminNoticeService.getNoticeList();
-}
 
 /* ajax 모듈 */
 
@@ -106,9 +128,9 @@ let adminNoticeService = (function() {
             url: `/admin/admin-noticeList/${globalThis.page}`,
             success: function(data) {
                 $NoticeListWrap.empty();
-                showNoticeList(data.noticeLists);
+                showNoticeList(data.content);
                 $contentWrap.empty();
-                pagination(data.pageDTO)
+                pagination(data)
             }
         })
     }
