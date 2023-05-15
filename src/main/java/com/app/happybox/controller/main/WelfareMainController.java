@@ -24,10 +24,8 @@ public class WelfareMainController {
 
     private final ReviewBoardService reviewBoardService;
 
-
     @Qualifier("donationBoard")
     private final DonationBoardService donationBoardService;
-
 
     @GetMapping("")
     public String goMain(Model model) {

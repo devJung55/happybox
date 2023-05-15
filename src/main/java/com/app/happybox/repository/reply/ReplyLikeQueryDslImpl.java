@@ -1,10 +1,5 @@
 package com.app.happybox.repository.reply;
 
-import com.app.happybox.entity.reply.Reply;
-import com.app.happybox.entity.reply.ReplyLike;
-import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.user.Member;
-import com.app.happybox.entity.user.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -15,19 +10,19 @@ public class ReplyLikeQueryDslImpl implements ReplyLikeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public boolean checkUserLikesReply_QueryDSL(User user, Reply reply) {
+    public boolean checkUserLikesReply_QueryDSL(Long id, Long userId) {
         Long count = query.select(replyLike.count())
                 .from(replyLike)
-                .where(replyLike.user.eq(user).and(replyLike.reply.eq(reply)))
+                .where(replyLike.user.id.eq(userId).and(replyLike.reply.id.eq(id)))
                 .fetchOne();
 
         return count > 0;
     }
 
     @Override
-    public void deleteUserLikeByUserAndReply(User user, Reply reply) {
+    public void deleteUserLikeByUserAndReply(Long id, Long userId) {
         query.delete(replyLike)
-                .where(replyLike.user.eq(user).and(replyLike.reply.eq(reply)))
+                .where(replyLike.user.id.eq(userId).and(replyLike.reply.id.eq(id)))
                 .execute();
     }
 }

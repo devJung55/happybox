@@ -7,12 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 public interface MemberService extends UserDetailsService {
 
     //    회원가입
-    public Member join(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
+    public void join(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
 
     //    로그인
     public Optional<Member> login(String memberId, String memberPassword);
@@ -63,30 +64,30 @@ public interface MemberService extends UserDetailsService {
                 .address(memberDTO.getUserAddress())
                 .deliveryName(memberDTO.getDeliveryName())
                 .memberDeliveryAddress(memberDTO.getMemberDeliveryAddress())
-                .memberBirth(memberDTO.getMemberBirth())
+                .memberBirth(LocalDate.parse(memberDTO.getMemberBirth()))
                 .memberName(memberDTO.getMemberName())
                 .memberGender(memberDTO.getMemberGender())
                 .build();
     }
 
     //    Member -> MemberDTO
-    default MemberDTO toMemberDTO(Member member){
-        return MemberDTO.builder()
-                .id(member.getId())
-                .userId(member.getUserId())
-                .userAddress(member.getAddress())
-                .memberDeliveryAddress(member.getMemberDeliveryAddress())
-                .memberBirth(member.getMemberBirth())
-                .userEmail(member.getUserEmail())
-                .memberGender(member.getMemberGender())
-                .memberName(member.getMemberName())
-                .userPassword(member.getUserPassword())
-                .userPhoneNumber(member.getUserPhoneNumber())
-                .deliveryName(member.getDeliveryName())
-                .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
-                .userRole(member.getUserRole())
-                .userStatus(member.getUserStatus())
-                .build();
-    }
+//    default MemberDTO toMemberDTO(Member member){
+//        return MemberDTO.builder()
+//                .id(member.getId())
+//                .userId(member.getUserId())
+//                .userAddress(member.getAddress())
+//                .memberDeliveryAddress(member.getMemberDeliveryAddress())
+//                .memberBirth(member.getMemberBirth().toString())
+//                .userEmail(member.getUserEmail())
+//                .memberGender(member.getMemberGender())
+//                .memberName(member.getMemberName())
+//                .userPassword(member.getUserPassword())
+//                .userPhoneNumber(member.getUserPhoneNumber())
+//                .deliveryName(member.getDeliveryName())
+//                .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
+//                .userRole(member.getUserRole())
+//                .userStatus(member.getUserStatus())
+//                .build();
+//    }
 
 }

@@ -38,7 +38,7 @@ class ReplyLikeRepositoryTests {
         // when
         if (!member.isPresent() || !productReply.isPresent()) fail("member 혹은 productReply 없음.");
 
-        if (replyLikeRepository.checkUserLikesReply_QueryDSL(member.get(), productReply.get())) {
+        if (replyLikeRepository.checkUserLikesReply_QueryDSL(member.get().getId(), productReply.get().getId())) {
             fail("이미 좋아요를 누른 댓글입니다.");
             return;
         }
@@ -62,12 +62,12 @@ class ReplyLikeRepositoryTests {
         // when
         if (!member.isPresent() || !productReply.isPresent()) fail("member 혹은 productReply 없음.");
 
-        replyLikeRepository.deleteUserLikeByUserAndReply(member.get(), productReply.get());
+        replyLikeRepository.deleteUserLikeByUserAndReply(member.get().getId(), productReply.get().getId());
 
         Integer replyLikeCount = productReply.get().getReplyLikeCount();
         productReply.get().setReplyLikeCount(--replyLikeCount);
         
         // then
-        log.info("좋아요 눌렀는지 여부 : " + replyLikeRepository.checkUserLikesReply_QueryDSL(member.get(), productReply.get()));
+        log.info("좋아요 눌렀는지 여부 : " + replyLikeRepository.checkUserLikesReply_QueryDSL(member.get().getId(), productReply.get().getId()));
     }
 }

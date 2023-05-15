@@ -857,7 +857,7 @@
           </div>
         </div>
 <!-- ============================== 회원가입 쪽 ==================================================-->
-      <form th:action="@{/member/join}" id="join-general-form" name="join-general-form" method="post" accept-charset="UTF-8" autocomplete="off" th:object="${memberDTO}">
+      <form th:action="@{/member/join}" id="join-general-form" name="join-general-form" th:method="post" autocomplete="off" th:object="${memberDTO}">
         <div class="join-container join-container2" style="display: none">
           <div class="join-area">
             <h2 class="join-title">회원가입</h2>
@@ -874,10 +874,9 @@
                   <input
                     type="text"
                     id="member-join-general-id-text"
-                    name="memberId"
+                    name="memberDTO.userId"
                     class="input-text w571 join-input"
                     placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
-                    th:field="*{userId}"
                   />
                   <span class="input-group-btn"
                     ><button
@@ -906,10 +905,9 @@
                   <input
                     type="password"
                     id="member-join-general-pw-text"
-                    name="userPassword"
+                    name="memberDTO.userPassword"
                     class="input-text w571 join-input"
                     placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
-                    th:field="*{userPassword}"
                   />
                 </div>
                 <p class="valid error help" id="pw-error-text1" style="display: none">
@@ -921,7 +919,7 @@
                   <input
                     type="password"
                     id="member-join-general-pw-confirm-text"
-                    name="userPassword"
+                    name="userPasswordCheck"
                     class="input-text w571 join-input"
                     placeholder="비밀번호 확인"
                   />
@@ -941,10 +939,9 @@
                   <input
                     type="text"
                     id="member-general-join-name-text"
-                    name="memberName"
+                    name="memberDTO.memberName"
                     class="input-text w571 join-input"
                     placeholder="2자 이상 입력"
-                    th:field="*{memberName}"
                   />
                 </div>
                 <p class="valid error help" id="pw-error-text1" style="display: none">
@@ -961,10 +958,9 @@
                   <input
                     type="text"
                     id="member-general-join-phone-text"
-                    name="memberPhoneNumber"
+                    name="memberDTO.userPhoneNumber"
                     class="input-text w571"
                     placeholder="휴대폰 번호"
-                    th:field="*{userPhoneNumber}"
                     readonly
                   />
                 </div>
@@ -982,7 +978,7 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="memberAddress"
+                    name="memberDTO.userAddress"
                     class="input-text w571"
                     placeholder="주소"
                     readonly
@@ -1003,7 +999,7 @@
                   <input
                     type="text"
                     id="zone-code"
-                    name="memberAddress"
+                    name="memberDTO.memberAddress"
                     class="input-text w571"
                     placeholder="우편번호"
                     readonly
@@ -1024,7 +1020,7 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="userAddress"
+                    name="memberDTO.userAddress"
                     class="input-text w571"
                     placeholder="상세주소"
                     value=""
@@ -1045,11 +1041,10 @@
                   <input
                     type="text"
                     id="member-join-general-email-text"
-                    name="userEmail"
+                    name="memberDTO.userEmail"
                     class="input-text w571 join-input"
                     placeholder="이메일 주소"
                     value=""
-                    th:field="*{userEmail}"
                   />
                   <p class="valid error help" id="pw-error-text1" style="display: none">
                   </p>
@@ -1067,11 +1062,10 @@
                   <input
                     type="text"
                     id="member-join-general-birthday-text"
-                    name="memberBirth"
+                    name="memberDTO.memberBirth"
                     class="input-text w571 join-input"
                     placeholder="생년월일 8자리"
                     value=""
-                    th:field="*{memberBirth}"
                   />
                   <p class="valid error help" id="pw-error-text1" style="display: none">
                   </p>
@@ -1089,9 +1083,9 @@
                         type="radio"
                         id="member-join-general-gender-N"
                         class="radio"
-                        name="memberGender"
-                        value="male"
-                        checked
+                        name="memberDTO.memberGender"
+                        value="NOT_SELECTED"
+                        th:checked="${memberGender == 'NOT_SELECTED'}"
                       /><label for="member-join-general-gender-N">선택안함</label>
                     </div>
                   </li>
@@ -1101,8 +1095,9 @@
                         type="radio"
                         id="member-join-general-gender-M"
                         class="radio"
-                        name="memberGender"
-                        value="male"
+                        name="memberDTO.memberGender"
+                        value="MALE"
+                        th:checked="${memberGender == 'MALE'}"
                       /><label for="member-join-general-gender-M">남자</label>
                     </div>
                   </li>
@@ -1112,8 +1107,9 @@
                         type="radio"
                         id="member-join-general-gender-F"
                         class="radio"
-                        name="memberGender"
-                        value="female"
+                        name="memberDTO.memberGender"
+                        value="FEMALE"
+                        th:checked="${memberGender == 'FEMALE'}"
                       /><label for="member-join-general-gender-F">여자</label>
                     </div>
                   </li>
@@ -1303,4 +1299,8 @@
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="/js/join/join.js"></script>
+  <script>
+    var memberDTO = [[${memberDTO}]];
+    console.log(memberDTO);
+  </script>
 </html>
