@@ -64,7 +64,7 @@
 									<tr class="recipeBoard__tr" th:each="recipeBoardDTO : ${recipeBoards}" th:object="${recipeBoardDTO}">
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
+											    <input type="checkbox" name="check" class="check__box">
                                             </label>
 										</td>
 										<td class="show-modal" th:text="*{id}"></td>
@@ -75,46 +75,44 @@
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
-								<div class="page-button-box-layout">
+
+								<div th:if="${pageDTO.total != 0}" class="page-button-box-layout">
 									<div class="page-button-box">
 										<!-- 페이지 번호 -->
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
+													<a th:if="${pageDTO.prev}" th:href="'javascript:setPage(' + ${pageDTO.startPage - 1} + ')'" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
 												</div>
 											</div>
 										</div>
-										<div class="page-button-active page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>1</span>
+										<th:block th:each="page : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+											<div th:if="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button-active page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>2</span>
+											<div th:unless="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>3</span>
-												</div>
-											</div>
-										</div>
+										</th:block>
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
+													<a th:if="${pageDTO.next}" th:href="'javascript:setPage(' + ${pageDTO.endPage + 1} + ')'"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+
+
 								<!-- 페이지 버튼 끝 -->
 							</div>
 						</div>
@@ -219,6 +217,10 @@
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+	let pageDTO = [[${pageDTO}]];
+	let lists = [[${recipeBoards}]];
+</script>
 <script src="/js/admin/menuLoad.js"></script>
 <script src="/js/admin/event.js"></script>
 <script src="/js/admin/sidebar.js"></script>

@@ -29,24 +29,24 @@ public class RecipeBoardRepositoryTests {
 
     @Test
     public void saveTest() {
-//        for (int i = 0; i < 5; i++) {
-//            RecipeBoard recipeBoard = new RecipeBoard("레시피 게시물_제목" + (i + 1), "레시피 게시물_내용" + (i + 1));
-//            memberRepository.findById(1L).ifPresent(member -> recipeBoard.setMember(member));
-//
-//            recipeBoardRepository.save(recipeBoard);
-//        }
-        for(int i=0; i<5; i++){
-            RecipeBoard recipeBoard = new RecipeBoard("테스트 제목" + (i+1), "테스트 내용" + (i+1));
+        for (int i = 0; i < 5; i++) {
+            RecipeBoard recipeBoard = new RecipeBoard("레시피 게시물_제목" + (i + 1), "레시피 게시물_내용" + (i + 1));
             memberRepository.findById(1L).ifPresent(member -> recipeBoard.setMember(member));
-            BoardFile boardFile = new BoardFile("2023/04/05", UUID.randomUUID().toString(), "레시피" + (i + 1) + ".png", FileRepresent.REPRESENT);
-            BoardFile boardFile2 = new BoardFile("2023/04/05", UUID.randomUUID().toString(), "레시피" + (i + 1) + ".png", FileRepresent.ORDINARY);
-            boardFile.setBoard(recipeBoard);
-            boardFile2.setBoard(recipeBoard);
 
-            boardFileRepository.save(boardFile);
-            boardFileRepository.save(boardFile2);
             recipeBoardRepository.save(recipeBoard);
         }
+//        for(int i=0; i<5; i++){
+//            RecipeBoard recipeBoard = new RecipeBoard("테스트 제목" + (i+1), "테스트 내용" + (i+1));
+//            memberRepository.findById(1L).ifPresent(member -> recipeBoard.setMember(member));
+//            BoardFile boardFile = new BoardFile("2023/04/05", UUID.randomUUID().toString(), "레시피" + (i + 1) + ".png", FileRepresent.REPRESENT);
+//            BoardFile boardFile2 = new BoardFile("2023/04/05", UUID.randomUUID().toString(), "레시피" + (i + 1) + ".png", FileRepresent.ORDINARY);
+//            boardFile.setBoard(recipeBoard);
+//            boardFile2.setBoard(recipeBoard);
+//
+//            boardFileRepository.save(boardFile);
+//            boardFileRepository.save(boardFile2);
+//            recipeBoardRepository.save(recipeBoard);
+//        }
 
     }
 
@@ -118,13 +118,13 @@ public class RecipeBoardRepositoryTests {
 
     @Test
     public void getList_Test() {
-        recipeBoardService.getList(PageRequest.of(0, 5))
+        recipeBoardService.getList(PageRequest.of(0, 10))
                 .stream().map(RecipeBoardDTO::getMemberId).forEach(v -> log.info(v + ""));
     }
 
     @Test
     public void getList_Tests() {
-        recipeBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 5))
+        recipeBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 10))
                 .stream().forEach(v -> {
                     log.info(v.getMember().getUserId());
                     log.info(v.getCreatedDate() + "");

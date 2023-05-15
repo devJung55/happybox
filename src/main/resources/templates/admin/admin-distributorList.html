@@ -66,7 +66,7 @@
 									<tr th:each="distributors : ${distributors}" th:object="${distributors}">
 										<td>
 											<label class="check-label">
-												<input type="checkbox" name="check">
+												<input type="checkbox" name="check" class="check__box">
 											</label>
 										</td>
 										<td th:text="*{id}" class="toDetail"></td>
@@ -77,27 +77,36 @@
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
-								<div class="page-button-box-layout">
+								<div th:if="${pageDTO.total != 0}" class="page-button-box-layout">
 									<div class="page-button-box">
 										<!-- 페이지 번호 -->
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
+													<a th:if="${pageDTO.prev}" th:href="'javascript:setPage(' + ${pageDTO.startPage - 1} + ')'" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
 												</div>
 											</div>
 										</div>
-										<div class="page-button-active page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>1</span>
+										<th:block th:each="page : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+											<div th:if="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button-active page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
 												</div>
 											</div>
-										</div>
+											<div th:unless="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
+												</div>
+											</div>
+										</th:block>
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
+													<a th:if="${pageDTO.next}" th:href="'javascript:setPage(' + ${pageDTO.endPage + 1} + ')'"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
 												</div>
 											</div>
 										</div>
@@ -120,7 +129,7 @@
 				<p>정말로 삭제하겠습니까?</p>
 			</div>
 			<div class="modal-footer">
-				<span class="confirm-delete">확인</span>
+				<span class="F">확인</span>
 				<span class="cancel-delete">취소</span>
 			</div>
 		</div>
@@ -131,4 +140,5 @@
 <script src="/js/admin/event.js"></script>
 <script src="/js/admin/sidebar.js"></script>
 <script src="/js/admin/toDetail.js"></script>
+<script src="/js/admin/ajax.js"></script>
 </html>
