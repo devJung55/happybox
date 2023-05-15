@@ -8,6 +8,7 @@ import com.app.happybox.repository.board.BoardFileRepository;
 import com.app.happybox.repository.board.ReviewBoardRepository;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.repository.user.WelfareRepository;
 import com.app.happybox.type.FileRepresent;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 public class ReviewBoardServiceImpl implements ReviewBoardService {
     private final ReviewBoardRepository reviewBoardRepository;
     private final MemberRepository memberRepository;
-    private final SubscriptionRepository subscriptionRepository;
+    private final WelfareRepository welfareRepository;
     private final BoardFileRepository boardFileRepository;
 
     @Override
@@ -37,14 +38,11 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         return reviewBoardToDTO(reviewBoard);
     }
 
-    @Override @Transactional
-    public void write(ReviewBoardDTO reviewBoardDTO, Long memberId, Long subscriptionId) {
+    @Override @Transactional(rollbackFor = Exception.class)
+    public void write(ReviewBoardDTO reviewBoardDTO, Long memberId) {
         List<BoardFileDTO> boardFileDTOS = reviewBoardDTO.getBoardFiles();
         memberRepository.findById(memberId).ifPresent(
                 member -> reviewBoardDTO.setMemberDTO(toMemberDTO(member))
-        );
-        subscriptionRepository.findById(subscriptionId).ifPresent(
-                subscription -> reviewBoardDTO.setSubscriptionDTO(toSubscriptionDTO(subscription))
         );
         reviewBoardRepository.save(toReviewBoardEntity(reviewBoardDTO));
         if(boardFileDTOS != null){

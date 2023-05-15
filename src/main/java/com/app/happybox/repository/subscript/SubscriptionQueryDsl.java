@@ -27,4 +27,5 @@ public interface SubscriptionQueryDsl {
 
     //    구독 상세 조회
     public Optional<Subscription> findByIdWithDetail_QueryDSL(Long id);
+
 }

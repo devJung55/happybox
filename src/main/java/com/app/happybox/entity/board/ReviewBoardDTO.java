@@ -1,6 +1,7 @@
 package com.app.happybox.entity.board;
 
 import com.app.happybox.domain.user.MemberDTO;
+import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.reply.ReplyDTO;
@@ -26,12 +27,12 @@ public class ReviewBoardDTO {
     private MemberDTO memberDTO;
 
     /*-- 리뷰 복지관명 --*/
-    private SubscriptionDTO subscriptionDTO;
+    private WelfareDTO welfareDTO;
 
     /*-- 게시글 정보 --*/
-    private String reviewBoardTitle;
-    private String reviewBoardContent;
-    private LocalDate reviewBoardRegisterDate;
+    private String boardTitle;
+    private String boardContent;
+    private LocalDate boardRegisterDate;
 
     /*-- 별점 --*/
     private Integer reviewRating;
@@ -54,13 +55,13 @@ public class ReviewBoardDTO {
     }
 
     @Builder
-    public ReviewBoardDTO(Long id, MemberDTO memberDTO, SubscriptionDTO subscriptionDTO, String reviewBoardTitle, String reviewBoardContent, LocalDate reviewBoardRegisterDate, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, List<BoardFileDTO> boardFiles, List<ReplyDTO> replies, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public ReviewBoardDTO(Long id, MemberDTO memberDTO, WelfareDTO welfareDTO, String boardTitle, String boardContent, LocalDate boardRegisterDate, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, List<BoardFileDTO> boardFiles, List<ReplyDTO> replies, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.memberDTO = memberDTO;
-        this.subscriptionDTO = subscriptionDTO;
-        this.reviewBoardTitle = reviewBoardTitle;
-        this.reviewBoardContent = reviewBoardContent;
-        this.reviewBoardRegisterDate = reviewBoardRegisterDate;
+        this.welfareDTO = welfareDTO;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardRegisterDate = boardRegisterDate;
         this.reviewRating = reviewRating;
         this.reviewLikeCount = reviewLikeCount;
         this.reviewBoardReplyCount = reviewBoardReplyCount;
@@ -74,7 +75,8 @@ public class ReviewBoardDTO {
         this.memberDTO = memberDTO;
     }
 
-    public void setSubscriptionDTO(SubscriptionDTO subscriptionDTO) {
-        this.subscriptionDTO = subscriptionDTO;
+    public void setWelfareDTO(WelfareDTO welfareDTO) {
+        this.welfareDTO = welfareDTO;
     }
+
 }

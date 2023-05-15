@@ -1,6 +1,7 @@
 package com.app.happybox.entity.user;
 
 import com.app.happybox.entity.board.DonationBoard;
+import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.order.WelfareOrderProduct;
 import com.app.happybox.entity.payment.Payment;
 import com.app.happybox.entity.subscript.Rider;
@@ -53,6 +54,9 @@ public class Welfare extends User {
     // N + 1 문제가 발생한다. 따라서 단방향 관계로 제거했음.
 //    @OneToOne(fetch = FetchType.LAZY, mappedBy = "welfare", orphanRemoval = true)
 //    private Subscription subscription;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "welfare")
+    private List<ReviewBoard> reviewBoards = new ArrayList<>();
 
 
     @Builder
