@@ -65,9 +65,10 @@ function showPage(result) {
     paging += `<div class="paging" style="text-align: center">`;
 
     if (hasPrev) {
-        paging += `<a class="changePage" data-page="${startPage - 1}" 
+        paging += `<a class="changePage" data-page="${startPage}" 
                         onclick="doSearch(this)"><span><</span></a>`;
     }
+
     for (let i = startPage + 1; i < endPage + 1; i++) {
         let page = i;
         if (pageNumber + 1 != page) {
@@ -90,7 +91,7 @@ function appendList(product) {
     let repFilePath = "/img/market/no_img_market.png";
 
     if(filePaths.length != 0) {
-        repFilePath = filePaths[0].filePath + '/t_' + filePaths[0].fileUuid + '_' + filePaths[0].fileOrgName
+        repFilePath = "/image/display?fileName=" + filePaths[0].filePath + '/t_' + filePaths[0].fileUuid + '_' + filePaths[0].fileOrgName
     }
 
     text = `

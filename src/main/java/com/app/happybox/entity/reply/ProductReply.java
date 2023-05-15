@@ -2,10 +2,7 @@ package com.app.happybox.entity.reply;
 
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.user.User;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
@@ -19,6 +16,7 @@ public class ProductReply extends Reply {
     @JoinColumn
     private Product product;
 
+    @Builder
     public ProductReply(String replyContent, User user, Product product) {
         super(replyContent, user);
         this.product = product;

@@ -66,13 +66,12 @@ public abstract class User extends Period {
 //    private List<UserRandomKey> userRandomKeys;
 
 
-    public User(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole) {
+    public User(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, Role userRole) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.address = address;
         this.userEmail = userEmail;
         this.userPhoneNumber = userPhoneNumber;
-        this.userStatus = userStatus;
         this.userRole = userRole;
     }
 

@@ -19,7 +19,7 @@
             <div class="fixed-img">
                 <div class="img">
                     <img
-                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg"
+                            class="represent-img"
                             alt=""
                     />
                 </div>
@@ -94,11 +94,11 @@
                 <h3 class="section-title">판매자정보</h3>
                 <ul class="supplier-info-list">
                     <li class="info-category">판매자</li>
-                    <li>김정표</li>
+                    <li></li>
                 </ul>
                 <ul class="supplier-info-list">
                     <li class="info-category">원산지</li>
-                    <li>충북 단양시</li>
+                    <li></li>
                 </ul>
             </section>
             <section class="section-wrap">
@@ -106,8 +106,8 @@
                 <div class="review-count-wrap">
                     <span class="review-count"> 총 <span></span>개 </span>
                     <div class="review-orders">
-                        <button class="fontW700">최신순</button>
-                        <button>추천순</button>
+                        <button class="orderDate fontW700">최신순</button>
+                        <button class="orderLikeCount">추천순</button>
                     </div>
                 </div>
                 <!--  -->
@@ -122,7 +122,7 @@
                                 placeholder="댓글 남기기"
                         ></textarea
                         >
-                        <button class="write-regist-btn" type="button" disabled="">
+                        <button class="write-regist-btn" type="button">
                             <span class="regist">등록</span>
                         </button>
                     </form>
@@ -237,36 +237,9 @@
 <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/common/ajax.js"></script>
 <script th:inline="javascript">
     let $product = [[${product}]];
-    let productPrice = $product.productPrice;
-    console.log($product);
-
-    const category = {
-        VEGETABLES: "야채",
-        FRUITS: "과일",
-        SEAFOOD: "해산물",
-        MEAT: "육류",
-        DAIRY: "유제품",
-        SPICES: "양념",
-        OTHER: "기타"
-    }
-
-    // 판매자
-    $(".supplier-name").text($product.distributorName);
-    $(".detail-info-category").next().find("p").eq(1).text($product.distributorName);
-
-    // 상품이름
-    $(".item-name").eq(0).text('[' + category[$product.productCategory] + ']');
-    $(".item-name").eq(1).text($product.productName);
-
-    // 상품 가격
-    $(".item-price-wrap .number").text(productPrice);
-
-    // 상품 댓글 수
-    $(".reply-count").text($product.productReplyCount);
-    $(".review-count span").text($product.productReplyCount);
 </script>
-<script src="/js/common/ajax.js"></script>
 <script src="/js/market/detail.js"></script>
 </html>

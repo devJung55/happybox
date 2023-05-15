@@ -1,9 +1,9 @@
 package com.app.happybox.service.product;
 
 
+import com.app.happybox.domain.product.ProductCartDTO;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductCart;
-import com.app.happybox.domain.product.ProductCartDTO;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.exception.ProductNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
@@ -13,8 +13,8 @@ import com.app.happybox.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +33,7 @@ public class ProductCartServiceImpl implements ProductCartService {
     }
 
     @Override
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public Long saveCart(ProductCartDTO cartDTO, Long userId, Long productId) {
         User user = null;
         Product product = null;

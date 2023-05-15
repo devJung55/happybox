@@ -3,30 +3,76 @@ const $sectionWrap = $(".section-wrap");
 const $mainCategoryList = $(".main-category-list");
 const mainCategoryTopLoc = $mainCategoryList[0].offsetTop;
 
-const $imgContainer = $(".info-img-container");
+
 const $infoImgThumbnail = $(".info-img-thumbnail img");
 
 const $reviewListWrap = $(".review-list-wrap");
 
 const $moreReview = $(".more-review");
 
+const $imgContainer = $(".info-img-container");
+
+const $supplierInfoList = $(".supplier-info-list");
+
+let productPrice = $product.productPrice;
+let productFiles = $product.productFileDTOS;
+let productFileRep = $product.productFileDTOS[0];
+
+console.log($product);
+
+const category = {
+    VEGETABLES: "야채",
+    FRUITS: "과일",
+    SEAFOOD: "해산물",
+    MEAT: "육류",
+    DAIRY: "유제품",
+    SPICES: "양념",
+    OTHER: "기타"
+}
+
+// 판매자
+$(".supplier-name").text($product.distributorName);
+$(".detail-info-category").next().find("p").eq(1).text($product.distributorName);
+
+// 상품이름
+$(".item-name").eq(0).text('[' + category[$product.productCategory] + ']');
+$(".item-name").eq(1).text($product.productName);
+
+// 상품 가격
+$(".item-price-wrap .number").text(productPrice);
+
+// 판매자 정보
+$supplierInfoList.eq(0).find("li").eq(1).text($product.distributorName);
+$supplierInfoList.eq(1).find("li").eq(1).text($product.address.firstAddress + " " + $product.address.addressDetail);
+
+// 상품 댓글 수
+$(".reply-count").text($product.productReplyCount);
+$(".review-count span").text($product.productReplyCount);
+
+// 상품 대표사진
+const filePath = "/image/display?fileName=" + productFileRep.filePath + '/t_' + productFileRep.fileUuid + '_' + productFileRep.fileOrgName;
+$(".represent-img").attr("src", filePath);
+$(".info-img-thumbnail img").attr("src", filePath);
+
+productFiles.forEach((file) => {
+    let text;
+    let filePath = file.filePath + '/t_' + file.fileUuid + '_' + file.fileOrgName;
+
+    text = `
+            <button class="img-btn" onclick="changeImgThumbnail(this)">
+                <img src="/image/display?fileName=${filePath}">
+            </button>
+        `
+
+    $imgContainer.append(text);
+});
+
 // 현재 페이지
 let page = 1;
+// 정렬 순서
+let isOrderByDate = null;
 // 마지막 여부
 let isLastPage = false;
-
-/* 임시 이미지 갯수 */
-const imgCount = 7;
-
-/* 임시 이미지 append */
-for (let i = 0; i < imgCount; i++) {
-    let text = `
-        <button class="img-btn" onclick="changeImgThumbnail(this)">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg">
-        </button>
-    `;
-    $imgContainer.append(text);
-}
 
 /* common/ajax.js */
 $doAjax("get", `/product/detail/reply/${$product.id}`,
@@ -34,17 +80,45 @@ $doAjax("get", `/product/detail/reply/${$product.id}`,
     (result) => {
         console.log(result);
         result.content.forEach((reply) => appendReplyList(reply));
-        if(result.last) $moreReview.css("display", "none");
+        if (result.last) $moreReview.css("display", "none");
     }
 );
 
 $moreReview.on("click", function () {
     $doAjax("get", `/product/detail/reply/${$product.id}`,
-        {page : ++page},
+        {page: ++page, isOrderByDate : isOrderByDate},
         (result) => {
             console.log(result);
             result.content.forEach((reply) => appendReplyList(reply));
-            if(result.last) $(this).css("display", "none");
+            if (result.last) $(this).css("display", "none");
+        }
+    );
+});
+
+// 최신순
+$(".orderDate").on("click", function () {
+    page = 1;
+    isOrderByDate = true
+    $reviewListWrap.empty();
+    $doAjax("get", `/product/detail/reply/${$product.id}`,
+        {page: page, isOrderByDate: isOrderByDate},
+        (result) => {
+            result.content.forEach((reply) => appendReplyList(reply));
+            $moreReview.css("display", "block")
+        }
+    );
+});
+
+// 인기순
+$(".orderLikeCount").on("click", function () {
+    page = 1;
+    isOrderByDate = false;
+    $reviewListWrap.empty();
+    $doAjax("get", `/product/detail/reply/${$product.id}`,
+        {page: page, isOrderByDate: isOrderByDate},
+        (result) => {
+            result.content.forEach((reply) => appendReplyList(reply));
+            $moreReview.css("display", "block")
         }
     );
 });
@@ -57,7 +131,7 @@ const USER_ROLE = {
 window.scroll()
 
 /* 댓글 append */
-function appendReplyList(reply) {
+function appendReplyList(reply, isPrepend) {
 
     let date = reply.updatedDate.split("T")[0];
 
@@ -81,9 +155,9 @@ function appendReplyList(reply) {
             <div class="review-footer">
                 <span class="review-date">${date}</span>
                 <div class="review-btn-wrap">
-                    <button class="review-rec-btn">
+                    <button data-id="${reply.id}" onclick="checkOutLike(this)" class="review-rec-btn">
                         <span>도움돼요</span>
-                        <span class="rec-count">1</span>
+                        <span class="rec-count">${reply.replyLikeCount ? reply.replyLikeCount : 0}</span>
                     </button>
                     <button class="review-rec-btn update_review">
                         <span>수정하기</span>
@@ -93,6 +167,12 @@ function appendReplyList(reply) {
         </div>
     </div>
     `;
+
+    // prepend 검사
+    if (isPrepend) {
+        $reviewListWrap.prepend(text);
+        return;
+    }
     $reviewListWrap.append(text);
 }
 
@@ -108,19 +188,6 @@ $listSelecter.on("click", function () {
     /* 스크롤이 이동할 위치 */
     $sectionWrap.eq(i)[0].scrollIntoView({behavior: "smooth"});
 });
-
-/* throttle */
-function throttle(func, delay) {
-    let lastCall = 0;
-    return function () {
-        let now = Date.now();
-        if (now - lastCall < delay) {
-            return;
-        }
-        lastCall = now;
-        return func.apply(this, arguments);
-    };
-}
 
 /* scroll 이벤트 */
 $("document").ready(function () {
@@ -274,3 +341,47 @@ $(window).on("click", function (event) {
         $("#cart-modal").css("display", "none");
     }
 });
+
+/* 댓글 작성 */
+const REPLY_URL = `/product/detail/reply/write/${$product.id}`;
+
+const $replyWriteBtn = $(".write-regist-btn");
+
+$replyWriteBtn.on("click", function () {
+    if ($('.write-textarea').val() == "") {
+        return;
+    }
+
+    $doAjaxPost("POST",
+        REPLY_URL,
+        {replyContent: $('.write-textarea').val()},
+        (result) => {
+            let count = Number($(".review-count span").text());
+            // 댓글 맨위에 append
+            appendReplyList(result, true);
+            // 댓글수 증가
+            $(".review-count span").text(++count);
+            $(".reply-count").text(count);
+            // 댓글 내용 초기화
+            $('.write-textarea').val("");
+            console.log(result);
+        }
+    );
+});
+
+/* 댓글 좋아요 */
+const $replyLikeBtn = $(".review-rec-btn");
+const REPLY_LIKE_URL = "/product/detail/reply/like";
+
+function checkOutLike(likeBtn) {
+    let id = $(likeBtn).data("id");
+    let $value = $(likeBtn).find(".rec-count");
+    let count = Number($value.text());
+
+    $doAjaxPost("POST",
+        REPLY_LIKE_URL + `/${id}`,
+        {},
+        (result) => {
+            $value.text(result ? --count : ++count);
+        });
+}

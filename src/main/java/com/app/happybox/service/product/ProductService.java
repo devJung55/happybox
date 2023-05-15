@@ -1,10 +1,12 @@
 package com.app.happybox.service.product;
 
+import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.entity.file.ProductFileDTO;
 import com.app.happybox.domain.product.ProductSearchDTO;
+import com.app.happybox.entity.user.Address;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -48,6 +50,7 @@ public interface ProductService {
                                 .map(this::productFileToDTO)
                                 .collect(Collectors.toList())
                 )
+                .address(this.addressToDTO(product.getDistributor().getAddress()))
                 .build();
     }
 
@@ -68,6 +71,14 @@ public interface ProductService {
                 .productName(product.getProductName())
                 .productPrice(product.getProductPrice())
                 .productStock(product.getProductStock())
+                .build();
+    }
+
+    default AddressDTO addressToDTO(Address address) {
+        return AddressDTO.builder()
+                .firstAddress(address.getFirstAddress())
+                .addressDetail(address.getAddressDetail())
+                .zipcode(address.getZipcode())
                 .build();
     }
 }

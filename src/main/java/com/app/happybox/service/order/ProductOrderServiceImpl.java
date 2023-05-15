@@ -13,10 +13,10 @@ import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.entity.user.Welfare;
+import com.app.happybox.exception.CartNotFoundException;
 import com.app.happybox.exception.NotEnoughStockException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.exception.UserRoleUnsuitableException;
-import com.app.happybox.exception.CartNotFoundException;
 import com.app.happybox.repository.order.MemberOrderProductRepository;
 import com.app.happybox.repository.order.WelfareOrderProductRepository;
 import com.app.happybox.repository.payment.PaymentRepository;
@@ -27,8 +27,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +44,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     private final PaymentRepository paymentRepository;
 
     @Override
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     // 장바구니 id들과 회원 id 받아옴
     public Long saveProductOrder(List<Long> productCartIds, Long userId, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO) {
         if(productCartIds.isEmpty()) return -1L;
