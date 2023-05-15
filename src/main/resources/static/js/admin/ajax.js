@@ -41,7 +41,17 @@ let adminService = (function() {
             }
         })
     }
-    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, removeUser: removeUser}
+
+    function removeBoard(boardId) {
+        $.ajax({
+            url: "/admin/board-remove",
+            data: {"boardId": boardId},
+            success: function() {
+                location.reload();
+            }
+        })
+    }
+    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, removeUser: removeUser, removeBoard: removeBoard}
 })();
 
 function showMemberDetail(member) {
@@ -197,7 +207,8 @@ function showRecipeBoardDetail(recipeBoard) {
 
 /*-- 페이징 처리 --*/
 function setPage(page) {
-    location.href = `/admin/recipeBoard-list?page=${page}`;
+    const url = window.location.pathname;
+    location.href = `${url}?page=${page}`;
 }
 
 /*-- 회원 상세보기 모달 --*/
@@ -233,7 +244,13 @@ $confirm.on("click", function() {
 
     $checkBoxes.each((i, v) => {
         if(v.checked) {
-            adminService.removeUser($($(v).parent().siblings()[0]).text());
+            const url = window.location.pathname;
+
+            if(url == "/admin/member-list") {
+                adminService.removeUser($($(v).parent().siblings()[0]).text());
+            } else if(url == "/admin/recipeBoard-list") {
+                adminService.removeBoard($($(v).parent().parent().siblings()[0]).text());
+            }
         }
     });
 });
