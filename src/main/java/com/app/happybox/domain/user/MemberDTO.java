@@ -4,13 +4,19 @@ import com.app.happybox.entity.user.Address;
 import com.app.happybox.type.Gender;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
-@Builder
+@Getter
+@NoArgsConstructor
 public class MemberDTO {
 
 //    Member 전체 컬럼
@@ -23,7 +29,7 @@ public class MemberDTO {
     private UserStatus userStatus;
     private Role userRole;
     private String memberName;
-    private LocalDate memberBirth;
+    private String memberBirth;
     private Gender memberGender;
     private Address memberDeliveryAddress;
     private String deliveryName;
