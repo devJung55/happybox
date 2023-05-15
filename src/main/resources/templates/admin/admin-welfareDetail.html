@@ -89,12 +89,6 @@
                                         <input type="text" th:value="*{welfarePointTotal + 'P'}" readonly/>
                                     </div>
                                 </li>
-								<li class="content-list">
-                                    <span>소개글</span>
-                                    <div class="content-input">
-                                        <div class="show-intro">소개내용 보기</div>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -128,41 +122,36 @@
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
-								<div class="page-button-box-layout">
+								<div th:if="${pageDTO.total != 0}" class="page-button-box-layout">
 									<div class="page-button-box">
 										<!-- 페이지 번호 -->
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
+													<a th:if="${pageDTO.prev}" th:href="'javascript:setPage(' + ${pageDTO.startPage - 1} + ')'" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
 												</div>
 											</div>
 										</div>
-										<div class="page-button-active page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>1</span>
+										<th:block th:each="page : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+											<div th:if="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button-active page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>2</span>
+											<div th:unless="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>3</span>
-												</div>
-											</div>
-										</div>
+										</th:block>
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
+													<a th:if="${pageDTO.next}" th:href="'javascript:setPage(' + ${pageDTO.endPage + 1} + ')'"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
 												</div>
 											</div>
 										</div>
@@ -190,104 +179,10 @@
 			</div>
 		</div>
 	</section>
-	<section class="intro-modal">
-		<div class="modal-shape board-shape">
-			<div class="modal-header">
-				<h4>복지관 소개내용</h4>
-				<a class="modal-close">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						data-name="Capa 3"
-						id="Capa_3"
-						viewBox="0 0 20 19.84"
-					>
-						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
-					</svg>
-				</a>
-			</div>
-			<form class="content-info" action>
-				<main class="content-detail">
-					<div class="content-img-wrapper board-wrapper">
-						<label>
-							<div class="content-img list-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
-							</div>
-							<input type="file" name="file" style="display: none" />
-						</label>
-						<label>
-							<div class="content-img list-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
-							</div>
-							<input type="file" name="file" style="display: none" />
-						</label>
-						<label>
-							<div class="content-img list-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
-							</div>
-							<input type="file" name="file" style="display: none" />
-						</label>
-						<label>
-							<div class="content-img list-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
-							</div>
-							<input type="file" name="file" style="display: none" />
-						</label>
-						<label>
-							<div class="content-img list-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
-							</div>
-							<input type="file" name="file" style="display: none" />
-						</label>
-						<label>
-							<div class="content-img list-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
-							</div>
-							<input type="file" name="file" style="display: none" />
-						</label>
-						<label>
-							<div class="content-img list-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
-							</div>
-							<input type="file" name="file" style="display: none" />
-						</label>
-					</div>
-					<ul class="content-list-wrap">
-						<li class="content-list">
-							<span>작성날짜</span>
-							<div class="content-input">
-								<input type="text" value="2023.01.11" readonly/>
-							</div>
-						</li>
-						<li class="content-list txt-align">
-							<span>내용</span>
-							<div class="content-input">
-								<textarea class="intro-textarea" name="" readonly>
-복지관 소개글입니다.저희 복지관은 어쩌고 저쩌고
-.앞으로 잘 부탁드립니다.</textarea>
-							</div>
-						</li>
-					</ul>
-				</main>
-			</form>
-		</div>
-	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/menuLoad.js"></script>
 <script src="/js/admin/event.js"></script>
 <script src="/js/admin/sidebar.js"></script>
+<script src="/js/admin/ajax.js"></script>
 </html>

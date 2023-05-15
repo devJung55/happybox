@@ -1,12 +1,17 @@
 package com.app.happybox.controller.admin;
 
 import com.app.happybox.domain.NoticeDTO;
+import com.app.happybox.domain.OrderSubscriptionDTO;
 import com.app.happybox.domain.PageDTO;
+import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.product.Product;
+import com.app.happybox.entity.user.Distributor;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.entity.user.Welfare;
+import com.app.happybox.service.board.BoardService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.cs.NoticeService;
 import com.app.happybox.service.order.OrderSubsciptionService;
@@ -20,8 +25,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @Controller
 @RequestMapping("/admin/*")
 @RequiredArgsConstructor
@@ -32,10 +35,11 @@ public class AdminController {
     private final UserFileService userFileService;
     private final DistributorService distributorService;
     private final WelfareService welfareService;
-    private final RecipeBoardService recipeBoardService;
     private final ProductService productService;
     private final OrderSubsciptionService orderSubsciptionService;
     private final NoticeService noticeService;
+    private final RecipeBoardService recipeBoardService;
+    private final BoardService boardService;
 
 //    레시피 게시물 목록
     @GetMapping("recipeBoard-list")
@@ -45,7 +49,6 @@ public class AdminController {
         model.addAttribute("recipeBoards", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
 
-        log.info(list.toString() + "------");
         return "/admin/admin-recipeBoardList";
     }
 
@@ -70,10 +73,19 @@ public class AdminController {
         return recipeBoard;
     }
 
+//    레시피 게시물 삭제
+    @ResponseBody
+    @GetMapping("board-remove")
+    public void removeBoard(@RequestParam("boardId") Long boardId) {
+        boardService.removeByBoardId(boardId);
+    }
+
 //    회원 목록
     @GetMapping("member-list")
-    public String getMemberList(Model model) {
-        model.addAttribute("members", memberService.getList(PageRequest.of(0, 5)));
+    public String getMemberList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
+        Page<Member> list = memberService.getList(PageRequest.of(page - 1, 10));
+        model.addAttribute("members", list.getContent());
+        model.addAttribute("pageDTO", new PageDTO(list));
         return "/admin/admin-memberList";
     }
 
@@ -119,18 +131,22 @@ public class AdminController {
 
 //    유통회원 목록
     @GetMapping("distributor-list")
-    public String getDistributorList(Model model) {
-        model.addAttribute("distributors", distributorService.getList(PageRequest.of(0, 5)));
+    public String getDistributorList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
+        Page<Distributor> list = distributorService.getList(PageRequest.of(0, 5));
+        model.addAttribute("distributors", list.getContent());
+        model.addAttribute("pageDTO", new PageDTO(list));
         return "/admin/admin-distributorList";
     }
 
 //    유통회원 조회
     @GetMapping("distributor-detail/{distributorId}")
     public String getDistributorDetail(@PathVariable Long distributorId, Model model) {
+        Page<ProductDTO> list = productService.getListByDistributorId(PageRequest.of(0, 5), distributorId);
         model.addAttribute("distributors", distributorService.getList(PageRequest.of(0, 5)));
         model.addAttribute("distributorId", distributorId);
         model.addAttribute("userFile", userFileService.getDetail(distributorId));
-        model.addAttribute("products", productService.getListByDistributorId(PageRequest.of(0, 5), distributorId));
+        model.addAttribute("products", list.getContent());
+        model.addAttribute("pageDTO", new PageDTO(list));
         return "/admin/admin-distributorDetail";
     }
 
@@ -139,23 +155,24 @@ public class AdminController {
     @GetMapping("product-detail")
     public String[] getProductDetail(@RequestParam("productId") Long productId) {
         Product productInfo = productService.getDetailById(productId).get();
+        String filePath = "";
+        String fileUuid = "";
+        String fileOrgName = "";
 
-//        for (int i = 0; i < productInfo.getProductFiles().size(); i++) {
-//            if(productInfo.getProductFiles().get(i) == null) {
-//                log.info("null ----------------------");
-//            }
-//            log.info(productInfo.getProductFiles().get(i).getFilePath());
-//            log.info(productInfo.getProductFiles().get(i).getFileUuid());
-//            log.info(productInfo.getProductFiles().get(i).getFileOrgName());
-//        }
+        if(productInfo.getProductFiles() == null || productInfo.getProductFiles().isEmpty()) {
+            filePath = null;
+            fileUuid = null;
+            fileOrgName = null;
+        } else {
+            filePath = productInfo.getProductFiles().get(0).getFilePath();
+            fileUuid = productInfo.getProductFiles().get(0).getFileUuid();
+            fileOrgName = productInfo.getProductFiles().get(0).getFileOrgName();
+        }
 
         String[] product = {
-//                productInfo.getProductFiles().get(0).getFilePath(),
-//                productInfo.getProductFiles().get(0).getFileUuid(),
-//                productInfo.getProductFiles().get(0).getFileOrgName(),
-                "2012/01/01",
-                UUID.randomUUID().toString(),
-                "상품 사진",
+                filePath,
+                fileUuid,
+                fileOrgName,
                 productInfo.getProductName(),
                 String.valueOf(productInfo.getProductPrice()),
                 String.valueOf(productInfo.getProductStock())
@@ -165,17 +182,22 @@ public class AdminController {
 
 //    복지관회원 목록
     @GetMapping("welfare-list")
-    public String getWelfareList(Model model) {
-        model.addAttribute("welfares", welfareService.getList(PageRequest.of(0, 5)));
+    public String getWelfareList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
+        Page<Welfare> list = welfareService.getList(PageRequest.of(0, 5));
+        model.addAttribute("welfares", list.getContent());
+        model.addAttribute("pageDTO", new PageDTO(list));
         return "/admin/admin-welfareList";
     }
 
 //    복지관회원 조회
     @GetMapping("welfare-detail/{welfareId}")
-    public String getWelfareDetail(@PathVariable Long welfareId, Model model) {
+    public String getWelfareDetail(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @PathVariable Long welfareId, Model model) {
         String subsciberName = null;
+        Page<OrderSubscriptionDTO> list = orderSubsciptionService.getListByWelfareId(PageRequest.of(0, 5), welfareId, subsciberName);
+
         model.addAttribute("welfare",welfareService.getDetail(welfareId).get());
-        model.addAttribute("subscribers", orderSubsciptionService.getListByWelfareId(PageRequest.of(0, 5), welfareId, subsciberName));
+        model.addAttribute("subscribers", list.getContent());
+        model.addAttribute("pageDTO", new PageDTO(list));
         model.addAttribute("userFile", userFileService.getDetail(welfareId));
         return "/admin/admin-welfareDetail";
     }

@@ -64,7 +64,7 @@
 									<tr class="recipeBoard__tr" th:each="recipeBoardDTO : ${recipeBoards}" th:object="${recipeBoardDTO}">
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
+											    <input type="checkbox" name="check" class="check__box">
                                             </label>
 										</td>
 										<td class="show-modal" th:text="*{id}"></td>

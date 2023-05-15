@@ -99,8 +99,9 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     public Page<RecipeBoard> findRecipeBoardListDescWithPaging_QueryDSL(Pageable pageable) {
         List<RecipeBoard> recipeBoardList = query.select(recipeBoard)
                 .from(recipeBoard)
+                .leftJoin(recipeBoard.boardFiles).fetchJoin()
                 .join(recipeBoard.member).fetchJoin()
-                .join(recipeBoard.boardFiles).fetchJoin()
+                .orderBy(recipeBoard.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
