@@ -28,8 +28,35 @@ $fileAttachBtn.on("click", function () {
     $fileInput.click();
 });
 
+const fileAjax = (data, callback) => {
+    $.ajax({
+        url: '/image/upload',
+        data: data,
+        method: 'post',
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            if(result){
+                callback(result);
+            }
+        }
+    })
+}
+
 $imgFile.each((i, e) => {
     $(e).on('change', function (e) {
+        console.log(this.files[0]);
+        let file = this.files[0];
+        let formData = new FormData();
+
+        formData.append('file', file);
+
+        fileAjax(formData, (result) => {
+            console.log(result);
+        });
+
+
+
         $imgDiv.eq(i).css('display', 'block');
         // 기존의 이미지 숨김 처리
         $('.btn-attach-thumb').eq(i).css('display', 'none');
