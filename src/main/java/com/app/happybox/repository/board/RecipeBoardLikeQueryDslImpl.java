@@ -32,15 +32,6 @@ public class RecipeBoardLikeQueryDslImpl implements RecipeBoardLikeQueryDsl {
 
     @Override
     public Page<RecipeBoardLike> findBookmarkListWithMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-//        List<RecipeBoardLike> recipeBoardList = query.select(recipeBoardLike)
-//                .from(recipeBoardLike)
-//                .join(recipeBoardLike.recipeBoard).fetchJoin()
-//                .where(recipeBoardLike.user.id.eq(memberId))
-//                .orderBy(recipeBoard.id.desc())
-//                .offset(pageable.getOffset())
-//                .limit(pageable.getPageSize())
-//                .fetch();
-
         List<RecipeBoardLike> recipeBoardList = query.select(recipeBoardLike)
                 .from(recipeBoardLike)
                 .where(recipeBoardLike.member.id.eq(memberId))
