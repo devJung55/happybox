@@ -2,6 +2,7 @@ package com.app.happybox.domain.product;
 
 import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.entity.file.ProductFileDTO;
+import com.app.happybox.entity.user.Address;
 import com.app.happybox.type.ProductCategory;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,11 +36,13 @@ public class ProductDTO {
 //    유통업자 이름
     private String distributorName;
 
+//    유통업자 주소 (원산지)
+    private AddressDTO address;
 
     @Builder
     public ProductDTO(Long id, String productName, Integer productPrice, Long productStock,
                       Integer productReplyCount, ProductCategory productCategory, Integer productLikeCount,
-                      Long productOrderCount, List<ProductFileDTO> productFileDTOS, String distributorName) {
+                      Long productOrderCount, List<ProductFileDTO> productFileDTOS, String distributorName, AddressDTO address) {
         this.id = id;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -50,5 +53,6 @@ public class ProductDTO {
         this.productOrderCount = productOrderCount;
         this.productFileDTOS = productFileDTOS;
         this.distributorName = distributorName;
+        this.address = address;
     }
 }

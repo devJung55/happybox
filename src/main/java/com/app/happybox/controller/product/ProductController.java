@@ -7,6 +7,7 @@ import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.service.product.ProductCartService;
 import com.app.happybox.service.product.ProductService;
 import com.app.happybox.service.reply.ProductReplyService;
+import com.app.happybox.service.reply.ReplyLikeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,6 +31,8 @@ public class ProductController {
     private final ProductReplyService productReplyService;
     @Qualifier("product")
     private final ProductCartService productCartService;
+    @Qualifier("like")
+    private final ReplyLikeService replyLikeService;
 
     @GetMapping("/list")
     public String goSearchForm() {
@@ -55,11 +58,27 @@ public class ProductController {
 
     @GetMapping("/detail/reply/{id}")
     @ResponseBody
-    public Slice<ReplyDTO> productReplies(@PageableDefault(page = 1, size = 5) Pageable pageable, @PathVariable Long id) {
+    public Slice<ReplyDTO> productReplies(@PageableDefault(page = 1, size = 5) Pageable pageable, @PathVariable Long id, Boolean isOrderByDate) {
+
         return productReplyService.findAllByRefId(
-                PageRequest.of(pageable.getPageNumber() - 1,
-                        pageable.getPageSize()), id
+                PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()),
+                id,
+                isOrderByDate // 최신순 or 인기순
         );
+    }
+
+    @PostMapping("/detail/reply/write/{productId}")
+    @ResponseBody
+    public ReplyDTO writeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long productId) {
+        // 임시 session 값 1저장
+        return productReplyService.saveReply(replyDTO, productId, 1L);
+    }
+
+    @PostMapping("/detail/reply/like/{replyId}")
+    @ResponseBody
+    public boolean addLike(@PathVariable Long replyId) {
+        // 임시 session 값 1
+        return replyLikeService.checkOutLike(replyId, 1L);
     }
 
     @PostMapping("/cart/add/{productId}")

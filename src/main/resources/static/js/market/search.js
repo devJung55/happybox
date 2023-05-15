@@ -65,7 +65,7 @@ function showPage(result) {
     paging += `<div class="paging" style="text-align: center">`;
 
     if (hasPrev) {
-        paging += `<a class="changePage" data-page="${startPage - 1}" 
+        paging += `<a class="changePage" data-page="${startPage}" 
                         onclick="doSearch(this)"><span><</span></a>`;
     }
 

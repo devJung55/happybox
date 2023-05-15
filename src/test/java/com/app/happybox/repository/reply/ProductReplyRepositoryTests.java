@@ -59,7 +59,7 @@ class ProductReplyRepositoryTests {
         Long id = 1L;
 
         // when
-        productReplyRepository.findAllByProductId(PageRequest.of(0, 10), id);
+        productReplyRepository.findAllByProductIdOrderByLikeCount(PageRequest.of(0, 10), id);
 
         // then
     }
