@@ -22,6 +22,8 @@ public class MypageController {
 //    나의 게시물 조회(레시피)
     @GetMapping("member/recipe-board")
     public String getUserRecipeBoardList(Pageable pageable, Long memberId, Model model) {
+        model.addAttribute("recipeBoardFile", recipeBoardService.getListByMemberId(PageRequest.of(0, 5), 1L)
+        .getContent().get(0).getBoardFiles().get(0));
         model.addAttribute("recipeBoards", recipeBoardService.getListByMemberId(PageRequest.of(0, 5), 1L));
         return "/mypage/member/board";
     }

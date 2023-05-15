@@ -99,13 +99,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
-        http
-                .authorizeRequests()
+//        http
+//                .authorizeRequests()
 //                마이페이지 권한 설정
-                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
-                .antMatchers(MYPAGE_PATH).authenticated()
+//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
+//                .antMatchers(MYPAGE_PATH).authenticated()
 
 
 //                  작성페이지 권한 설정
@@ -119,12 +119,12 @@ public class SecurityConfig {
 //                    .antMatchers(ADMIN_PATH).authenticated()
 
 //                기타 설정
-                .and()
-                .csrf().disable()
-                .exceptionHandling()
-                /* 인가, 인증 Exception Handler */
-                .accessDeniedHandler(accessDeniedHandler)
-                .authenticationEntryPoint(authenticationEntryPoint);
+//                .and()
+//                .csrf().disable()
+//                .exceptionHandling()
+//                /* 인가, 인증 Exception Handler */
+//                .accessDeniedHandler(accessDeniedHandler)
+//                .authenticationEntryPoint(authenticationEntryPoint);
 
         http
                 .formLogin()

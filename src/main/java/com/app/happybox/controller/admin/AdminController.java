@@ -2,9 +2,9 @@ package com.app.happybox.controller.admin;
 
 import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.PageDTO;
+import com.app.happybox.entity.board.QRecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
-import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.user.Member;
@@ -12,21 +12,19 @@ import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.cs.NoticeService;
 import com.app.happybox.service.order.OrderSubsciptionService;
 import com.app.happybox.service.product.ProductService;
-import com.app.happybox.service.user.DistributorService;
-import com.app.happybox.service.user.MemberService;
-import com.app.happybox.service.user.UserFileService;
-import com.app.happybox.service.user.WelfareService;
+import com.app.happybox.service.user.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -34,6 +32,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class AdminController {
+    private final UserService userService;
     private final MemberService memberService;
     private final UserFileService userFileService;
     private final DistributorService distributorService;
@@ -45,8 +44,20 @@ public class AdminController {
 
 //    레시피 게시물 목록
     @GetMapping("recipeBoard-list")
-    public String getRecipeBoardList(Model model) {
-        model.addAttribute("recipeBoards", recipeBoardService.getList(PageRequest.of(0, 5)));
+    public String getRecipeBoardList(Integer page, Integer size, Model model) {
+        if(page == null && size == null) {
+            page = 1;
+            size = 10;
+        }
+
+        Page<RecipeBoardDTO> list = recipeBoardService.getList(PageRequest.of(page - 1, size));
+        int totalPage = list.getTotalPages();
+
+        log.info(totalPage + "--------------------------------");
+        log.info(list.getSize() + "----------------------------size");
+        model.addAttribute("recipeBoards", list.getContent());
+        model.addAttribute("totalPage", totalPage);
+
         return "/admin/admin-recipeBoardList";
     }
 
@@ -78,21 +89,37 @@ public class AdminController {
         return "/admin/admin-memberList";
     }
 
+//    회원 삭제
+    @ResponseBody
+    @GetMapping("user-remove")
+    public void removeMember(@RequestParam("userId") Long userId) {
+        userService.deleteByMemberId(userId);
+    }
+
 //    회원 조회
     @ResponseBody
     @GetMapping("member-detail")
     public String[] getMemberDetail(@RequestParam("memberId") Long memberId, Model model) {
         Member memberInfo = memberService.getDetail(memberId).get();
         UserFile userFile = userFileService.getDetail(memberId);
+        String filePath = "";
+        String fileUuid = "";
+        String fileOrgName = "";
+
+        if(userFile == null) {
+            filePath = null;
+            fileUuid = null;
+            fileOrgName = null;
+        } else {
+            filePath = userFile.getFilePath();
+            fileUuid = userFile.getFileUuid();
+            fileOrgName = userFile.getFileOrgName();
+        }
 
         String[] member = {
-                userFile.getFilePath() == null ? null : userFile.getFilePath(),
-                userFile.getFileUuid() == null ? null : userFile.getFileUuid(),
-                userFile.getFileOrgName() == null ? null : userFile.getFileOrgName(),
-//                "2012/01/01",
-//                UUID.randomUUID().toString(),
-//                "사진",
-
+                filePath,
+                fileUuid,
+                fileOrgName,
                 memberInfo.getMemberName(),
                 memberInfo.getUserPhoneNumber(),
                 memberInfo.getUserEmail(),
@@ -175,7 +202,7 @@ public class AdminController {
     @ResponseBody
     @GetMapping("admin-noticeList/{page}")
     public Map<String, Object> showNoticeList(@PathVariable("page") Integer page) {
-        PageRequest pages = PageRequest.of(page - 1, 1);
+        PageRequest pages = PageRequest.of(page - 1, 10);
         Page<NoticeDTO> lists = noticeService.getAdminNoticeList(pages);
         PageDTO pageDTO = new PageDTO(lists);
 
