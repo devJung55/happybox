@@ -39,24 +39,23 @@ public class ReviewBoardRepositoryTests {
 //    리뷰게시판 세이브 테스트
     @Test
     public void saveTest(){
-        for(Long i=170L; i<180L; i++){
-            BoardFile boardFile = new BoardFile("2023/04/01", UUID.randomUUID().toString(), "대표.png", FileRepresent.REPRESENT);
-            BoardFile boardFile2 = new BoardFile("2023/04/01", UUID.randomUUID().toString(), "일반.png", FileRepresent.ORDINARY);
-            BoardFile boardFile3 = new BoardFile("2023/04/01", UUID.randomUUID().toString(), "일반.png", FileRepresent.ORDINARY);
-            boardFile.setBoard(reviewBoardRepository.findById(i).get());
-            boardFile2.setBoard(reviewBoardRepository.findById(i).get());
-            boardFile3.setBoard(reviewBoardRepository.findById(i).get());
-
-            boardFileRepository.save(boardFile);
-            boardFileRepository.save(boardFile2);
-            boardFileRepository.save(boardFile3);
-        }
+//        for(Long i=170L; i<180L; i++){
+//            BoardFile boardFile = new BoardFile("2023/04/01", UUID.randomUUID().toString(), "대표.png", FileRepresent.REPRESENT);
+//            BoardFile boardFile2 = new BoardFile("2023/04/01", UUID.randomUUID().toString(), "일반.png", FileRepresent.ORDINARY);
+//            BoardFile boardFile3 = new BoardFile("2023/04/01", UUID.randomUUID().toString(), "일반.png", FileRepresent.ORDINARY);
+//            boardFile.setBoard(reviewBoardRepository.findById(i).get());
+//            boardFile2.setBoard(reviewBoardRepository.findById(i).get());
+//            boardFile3.setBoard(reviewBoardRepository.findById(i).get());
+//
+//            boardFileRepository.save(boardFile);
+//            boardFileRepository.save(boardFile2);
+//            boardFileRepository.save(boardFile3);
+//        }
 
 
 //        for(int i=0; i<10; i++){
 //            ReviewBoard reviewBoard = new ReviewBoard("테스트 제목1" + (i+1), "테스트 내용1" + (i+1), i%5+1);
 //            memberRepository.findById(1L).ifPresent(member -> reviewBoard.setMember(member));
-//            subscriptionRepository.findById(3L).ifPresent(subscription -> reviewBoard.setSubscription(subscription));
 //            subscriptionRepository.findById(27L).ifPresent(subscription -> reviewBoard.setSubscription(subscription));
 //            reviewBoardRepository.save(reviewBoard);
 //        }

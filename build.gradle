@@ -47,6 +47,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
+    implementation 'net.coobird:thumbnailator:0.4.8'
 }
 
 tasks.named('test') {

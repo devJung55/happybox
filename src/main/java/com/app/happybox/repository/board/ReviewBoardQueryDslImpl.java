@@ -19,6 +19,11 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
+    public void save(ReviewBoardDTO reviewBoardDTO) {
+
+    }
+
+    @Override
     public Optional<ReviewBoard> findById_QueryDSL(Long id) {
         ReviewBoard reviewBoard = query.select(QReviewBoard.reviewBoard)
                 .from(QReviewBoard.reviewBoard)
@@ -28,6 +33,15 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .where(QReviewBoard.reviewBoard.id.eq(id))
                 .fetchOne();
         return Optional.of(reviewBoard);
+    }
+
+    @Override
+    public ReviewBoard getCurrentSequence_QueryDsl() {
+        return query.select(reviewBoard)
+                .from(reviewBoard)
+                .orderBy(reviewBoard.id.desc())
+                .limit(1)
+                .fetchOne();
     }
 
     //    최신순

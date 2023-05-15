@@ -1,10 +1,17 @@
 package com.app.happybox.controller.board;
 
 import com.app.happybox.entity.board.*;
+import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.file.QBoardFile;
+import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.entity.user.Member;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.board.DonationBoardRepository;
 import com.app.happybox.service.board.DonationBoardService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.board.ReviewBoardService;
+import com.app.happybox.service.subscript.SubscriptionService;
+import com.app.happybox.service.user.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -14,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -21,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,6 +49,10 @@ public class BoardController {
     private final RecipeBoardService recipeBoardService;
     @Qualifier
     private final DonationBoardService donationBoardService;
+    @Qualifier
+    private final MemberService memberService;
+    @Qualifier
+    private final SubscriptionService subscriptionService;
 
     @GetMapping("review-board-list")
     public String goRecentList(@PageableDefault(page=1, size=5) Pageable pageable, Model model){
@@ -74,16 +87,15 @@ public class BoardController {
         return "user-board/review-board-detail";
     }
 
-    //  레시피 게시판 작성하기
-    @GetMapping("review-board-insert")
-    public String goReviewWrite() {
-        return "user-board/review-board-insert";
-    }
+    @GetMapping("write")
+    public void goToWriteForm(ReviewBoardDTO reviewBoardDTO) { }
 
-    @PostMapping("review-board-insert")
-    public RedirectView write(ReviewBoardDTO reviewBoardDTO, Long userId) {
-        reviewBoardService.write(reviewBoardDTO, userId);
-        return new RedirectView("user-board/review-board-list");
+    @PostMapping("write")
+    public RedirectView write(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
+        Long memberId = userDetail.getId();
+//        Long subscriptionId = memberService.findSubscriptionById(memberId);
+//        reviewBoardService.write(reviewBoardDTO, memberId, subscriptionId);
+        return new RedirectView("/user-board/review-board-list");
     }
 
     //    레시피 게시판 리스트 (최신순)
