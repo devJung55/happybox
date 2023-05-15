@@ -7,7 +7,9 @@ import org.springframework.data.domain.Slice;
 
 public interface ReplyService {
 
-    public Slice<ReplyDTO> findAllByRefId(Pageable pageable, Long id);
+    public Slice<ReplyDTO> findAllByRefId(Pageable pageable, Long id, Boolean isOrderByDate);
+
+    public ReplyDTO saveReply(ReplyDTO replyDTO, Long refId, Long userId);
 
     default <T extends Reply> ReplyDTO replyToDTO(T reply) {
         return ReplyDTO.builder()
@@ -20,4 +22,7 @@ public interface ReplyService {
                 .userId(reply.getUser().getUserId())
                 .build();
     }
+
+    // To Entity 메서드, @Overide 하여 재정의 할 것. RefId는 댓글이 달린 테이블
+    public <T extends Reply> T replyToEntity(ReplyDTO replyDTO, Long refId, Long userId);
 }

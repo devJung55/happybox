@@ -23,8 +23,8 @@ public class Distributor extends User{
     private List<Product> products = new ArrayList<>();
 
     @Builder
-    public Distributor(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String distributorName) {
-        super(userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
+    public Distributor(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, Role userRole, String distributorName) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber, userRole);
         this.distributorName = distributorName;
     }
 }
