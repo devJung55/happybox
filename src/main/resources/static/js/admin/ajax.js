@@ -31,45 +31,31 @@ let adminService = (function() {
             }
         })
     }
-    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail}
+
+    function removeUser(userId) {
+        $.ajax({
+            url: "/admin/user-remove",
+            data: {"userId": userId},
+            success: function() {
+                location.reload();
+            }
+        })
+    }
+    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, removeUser: removeUser}
 })();
-
-/*-- 회원 상세보기 모달 --*/
-const $memberTr = $(".tr__tag");
-
-$memberTr.on("click", function() {
-    let memberId = $($(this).children()[1]).text();
-    adminService.memberDetail(memberId);
-});
-
-/*-- 상품 상세보기 모달 --*/
-const $productTr = $(".product__tr");
-
-$productTr.on("click", function() {
-    let productId = $($(this).children()[1]).text();
-    adminService.productDetail(productId);
-});
-
-/*-- 레시피 게시물 상세보기 모달 --*/
-const $recipeBoardUl = $(".recipeBoard__tr");
-
-$recipeBoardUl.on("click", function() {
-    let recipeBoardId = $($(this).children()[1]).text();
-    adminService.recipeBoardDetail(recipeBoardId);
-});
 
 function showMemberDetail(member) {
     let text = "";
     let src = "";
-    let FilePath = member[0];
-    let FileUuid = member[1];
-    let FileOrgName = member[2];
+    let filePath = member[0];
+    let fileUuid = member[1];
+    let fileOrgName = member[2];
     const $modalAppend = $(".content-detail");
 
-    if(member[0] == null) {
+    if(member[0] == null || member[0] == "") {
         src = "https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6";
     } else {
-        src = "/files/display?" + FilePath + "/t_" + FileUuid + "_" + FileOrgName;
+        src = "/files/display?" + filePath + "/t_" + fileUuid + "_" + fileOrgName;
     }
 
     text = `
@@ -124,15 +110,15 @@ function showMemberDetail(member) {
 function showProductDetail(product) {
     let text = "";
     let src = "";
-    let FilePath = product[0];
-    let FileUuid = product[1];
-    let FileOrgName = product[2];
+    let filePath = product[0];
+    let fileUuid = product[1];
+    let fileOrgName = product[2];
     const $mainTag = $(".product__detail__modal");
 
     if(product[0] == null) {
         src = "https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6";
     } else {
-        src = "/files/display?" + FilePath + "/t_" + FileUuid + "_" + FileOrgName;
+        src = "/files/display?" + filePath + "/t_" + fileUuid + "_" + fileOrgName;
     }
 
     text = `
@@ -208,3 +194,46 @@ function showRecipeBoardDetail(recipeBoard) {
     $ulTag.empty();
     $ulTag.append(text);
 }
+
+/*-- 페이징 처리 --*/
+function setPage(page) {
+    location.href = `/admin/recipeBoard-list?page=${page}`;
+}
+
+/*-- 회원 상세보기 모달 --*/
+const $memberTr = $(".tr__tag");
+
+$memberTr.on("click", function() {
+    let memberId = $($(this).children()[1]).text();
+    adminService.memberDetail(memberId);
+});
+
+/*-- 상품 상세보기 모달 --*/
+const $productTr = $(".product__tr");
+
+$productTr.on("click", function() {
+    let productId = $($(this).children()[1]).text();
+    adminService.productDetail(productId);
+});
+
+/*-- 레시피 게시물 상세보기 모달 --*/
+const $recipeBoardUl = $(".recipeBoard__tr");
+
+$recipeBoardUl.on("click", function() {
+    let recipeBoardId = $($(this).children()[1]).text();
+    adminService.recipeBoardDetail(recipeBoardId);
+});
+
+/*-- 회원 삭제 --*/
+const $userCheckBox = $(".check__box");
+const $confirm = $(".confirm-delete");
+
+$confirm.on("click", function() {
+    const $checkBoxes = $(".check__box");
+
+    $checkBoxes.each((i, v) => {
+        if(v.checked) {
+            adminService.removeUser($($(v).parent().siblings()[0]).text());
+        }
+    });
+});
