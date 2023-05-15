@@ -19,7 +19,7 @@
             <div class="fixed-img">
                 <div class="img">
                     <img
-                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg"
+                            class="represent-img"
                             alt=""
                     />
                 </div>
@@ -239,33 +239,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let $product = [[${product}]];
-    let productPrice = $product.productPrice;
-    console.log($product);
-
-    const category = {
-        VEGETABLES: "야채",
-        FRUITS: "과일",
-        SEAFOOD: "해산물",
-        MEAT: "육류",
-        DAIRY: "유제품",
-        SPICES: "양념",
-        OTHER: "기타"
-    }
-
-    // 판매자
-    $(".supplier-name").text($product.distributorName);
-    $(".detail-info-category").next().find("p").eq(1).text($product.distributorName);
-
-    // 상품이름
-    $(".item-name").eq(0).text('[' + category[$product.productCategory] + ']');
-    $(".item-name").eq(1).text($product.productName);
-
-    // 상품 가격
-    $(".item-price-wrap .number").text(productPrice);
-
-    // 상품 댓글 수
-    $(".reply-count").text($product.productReplyCount);
-    $(".review-count span").text($product.productReplyCount);
 </script>
 <script src="/js/common/ajax.js"></script>
 <script src="/js/market/detail.js"></script>

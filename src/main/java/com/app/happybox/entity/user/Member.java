@@ -64,8 +64,8 @@ public class Member extends User {
     private List<Payment> payments = new ArrayList<>();
 
     @Builder
-    public Member(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String memberName, LocalDate memberBirth, Gender memberGender, Address memberDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
-        super(userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
+    public Member(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, Role userRole, String memberName, LocalDate memberBirth, Gender memberGender, Address memberDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
+        super(userId, userPassword, address, userEmail, userPhoneNumber, userRole);
         this.memberName = memberName;
         this.memberBirth = memberBirth;
         this.memberGender = memberGender;

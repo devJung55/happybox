@@ -3,30 +3,66 @@ const $sectionWrap = $(".section-wrap");
 const $mainCategoryList = $(".main-category-list");
 const mainCategoryTopLoc = $mainCategoryList[0].offsetTop;
 
-const $imgContainer = $(".info-img-container");
+
 const $infoImgThumbnail = $(".info-img-thumbnail img");
 
 const $reviewListWrap = $(".review-list-wrap");
 
 const $moreReview = $(".more-review");
 
+const $imgContainer = $(".info-img-container");
+let productPrice = $product.productPrice;
+let productFiles = $product.productFileDTOS;
+let productFileRep = $product.productFileDTOS[0];
+console.log($product);
+
+// 판매자
+$(".supplier-name").text($product.distributorName);
+$(".detail-info-category").next().find("p").eq(1).text($product.distributorName);
+
+// 상품이름
+$(".item-name").eq(0).text('[' + category[$product.productCategory] + ']');
+$(".item-name").eq(1).text($product.productName);
+
+// 상품 가격
+$(".item-price-wrap .number").text(productPrice);
+
+// 상품 댓글 수
+$(".reply-count").text($product.productReplyCount);
+$(".review-count span").text($product.productReplyCount);
+
+// 상품 대표사진
+const filePath = "/image/display?fileName=" + productFileRep.filePath + '/t_' + productFileRep.fileUuid + '_' + productFileRep.fileOrgName;
+$(".represent-img").attr("src", filePath);
+$(".info-img-thumbnail img").attr("src", filePath);
+
+const category = {
+    VEGETABLES: "야채",
+    FRUITS: "과일",
+    SEAFOOD: "해산물",
+    MEAT: "육류",
+    DAIRY: "유제품",
+    SPICES: "양념",
+    OTHER: "기타"
+}
+
+productFiles.forEach((file) => {
+    let text;
+    let filePath = file.filePath + '/t_' + file.fileUuid + '_' + file.fileOrgName;
+
+    text = `
+            <button class="img-btn" onclick="changeImgThumbnail(this)">
+                <img src="/image/display?fileName=${filePath}">
+            </button>
+        `
+
+    $imgContainer.append(text);
+});
+
 // 현재 페이지
 let page = 1;
 // 마지막 여부
 let isLastPage = false;
-
-/* 임시 이미지 갯수 */
-const imgCount = 7;
-
-/* 임시 이미지 append */
-for (let i = 0; i < imgCount; i++) {
-    let text = `
-        <button class="img-btn" onclick="changeImgThumbnail(this)">
-            <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220510/IMG1652xdA145362055_600_600.jpg">
-        </button>
-    `;
-    $imgContainer.append(text);
-}
 
 /* common/ajax.js */
 $doAjax("get", `/product/detail/reply/${$product.id}`,
@@ -108,19 +144,6 @@ $listSelecter.on("click", function () {
     /* 스크롤이 이동할 위치 */
     $sectionWrap.eq(i)[0].scrollIntoView({behavior: "smooth"});
 });
-
-/* throttle */
-function throttle(func, delay) {
-    let lastCall = 0;
-    return function () {
-        let now = Date.now();
-        if (now - lastCall < delay) {
-            return;
-        }
-        lastCall = now;
-        return func.apply(this, arguments);
-    };
-}
 
 /* scroll 이벤트 */
 $("document").ready(function () {
