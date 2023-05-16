@@ -471,4 +471,20 @@ a.hasImage {
   width: 50%;
 }
 
+.more-list {
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    color: #2e2e2e;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 58px;
+}
+
+.more-list:hover {
+    background-color: #eee;
+}
+
 
