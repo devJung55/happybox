@@ -37,13 +37,7 @@ public class MemberDTO {
 
 //    Member와 Fetch조인하여 사용할 DTO 작성할 곳
 
-<<<<<<< HEAD
     @Builder
-
-=======
-
-    @Builder
->>>>>>> 997908cec351af8b7629aa9da6805a06e4df1d81
     public MemberDTO(Long id, String userId, String userPassword, Address userAddress, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String memberName, String memberBirth, Gender memberGender, Address memberDeliveryAddress, String deliveryName, String deliveryPhoneNumber) {
         this.id = id;
         this.userId = userId;
