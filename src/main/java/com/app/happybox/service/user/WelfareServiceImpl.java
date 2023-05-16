@@ -1,7 +1,10 @@
 package com.app.happybox.service.user;
 
+import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
+import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Welfare;
+import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.WelfareRepository;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
@@ -13,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -20,6 +24,8 @@ import java.util.Optional;
 @Qualifier("welfare") @Primary
 public class WelfareServiceImpl implements WelfareService {
     private final WelfareRepository welfareRepository;
+    private final SubscriptionRepository subscriptionRepository;
+
 
     @Override
     public void updateWelfareInfoById(Welfare welfare) {
@@ -45,12 +51,18 @@ public class WelfareServiceImpl implements WelfareService {
 
 //    복지관 회원가입
     @Override
-    public void join(WelfareDTO welfareDTO, PasswordEncoder passwordEncoder) {
+    public void join(WelfareDTO welfareDTO, SubscriptionWelFareDTO subscriptionWelFareDTO, PasswordEncoder passwordEncoder) {
         welfareDTO.setUserPassword(passwordEncoder.encode(welfareDTO.getUserPassword()));
         welfareDTO.setUserRole(Role.WELFARE);
         welfareDTO.setUserStatus(UserStatus.REGISTERED);
         welfareDTO.setWelfarePointTotal(1000);
-        welfareRepository.save(toWelfareEntity(welfareDTO));
+        Welfare welfare = toWelfareEntity(welfareDTO);
+        welfareRepository.save(welfare);
+        Welfare result = welfareRepository.findByUserId(welfare.getUserId()).get();
+        Subscription subscription = toSubscriptionEntity(subscriptionWelFareDTO);
+        subscription.setWelfare(result);
+        subscriptionRepository.save(subscription);
+
     }
 
     @Override

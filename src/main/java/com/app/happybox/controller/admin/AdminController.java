@@ -225,6 +225,9 @@ public class AdminController {
     }
 
     //    공지사항 작성
+    @ResponseBody
+    @PostMapping("notice-write")
+    public void writeNotice(@RequestBody NoticeDTO noticeDTO) { noticeService.noticeWrite(noticeDTO); }
 
     //    공지사항 수정
 

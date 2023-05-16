@@ -24,7 +24,7 @@ $(document).ready(function() {
             size: 5
         });
     });
-  
+
     // 인기순 클릭 이벤트
     $('.last-pop-btn a:last-child').click(function() {
       // 인기순에 'on' 클래스 추가, 최신순에서 'on' 클래스 제거
@@ -52,7 +52,10 @@ function showList(reviewList){
         let boardFiles = reviewDetail.reviewBoardFiles;
 
         if(boardFiles){
-            filePath = '/image/display?fileName=' + boardFiles[0].filePath + "/t_" + boardFiles[0].fileUuid + "_" + boardFiles[0].fileOrgName;
+            for (let i = 0; i < boardFiles.length; i++) {
+                boardFiles[i].fileRepresent = "REPRESENT";
+                filePath = '/image/display?fileName=' + boardFiles[i].filePath + "/t_" + boardFiles[i].fileUuid + "_" + boardFiles[i].fileOrgName;
+            }
         }
 
         text += `

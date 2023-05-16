@@ -1,8 +1,22 @@
+const $append = $(".article__wrap");
+let page = 0;
+
 function showRecipeBoardList(recipeBoards) {
-    const $append = $(".article__wrap");
     let text = "";
+    let image = "";
 
     recipeBoards.content.forEach(recipeBoard => {
+        if(recipeBoard.boardFiles.length != 0) {
+            for (let i = 0; i < recipeBoard.boardFiles.length; i++) {
+                if(i == 0) {
+                    image = `
+                        <img src="/image/display?fileName=${recipeBoard.boardFiles[i].filePath}/${recipeBoard.boardFiles[i].fileUuid}_${recipeBoard.boardFiles[i].fileOrgName}">
+                    `;
+                }
+            }
+        } else {
+            image = "";
+        }
         const formattedDate = formatDate(new Date(recipeBoard.recipeBoardRegisterDate));
         text +=
             `
@@ -26,7 +40,12 @@ function showRecipeBoardList(recipeBoards) {
                         <h3 class="board-title">${recipeBoard.recipeBoardTitle}</h3>
                         <p class="board-content">${recipeBoard.recipeBoardContent}</p>
                         <picture>
-                            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2FImageTargetTypeEnum.COMMUNITY%2F2023%2F4%2Fcc499f657b5f0ace6f13f6a3e1d0926e0aac8fa0afe4168b85d11dfa251dd359&amp;w=310&amp;q=90" class="board-image">
+            `;
+
+        text += image;
+
+        text += `
+            
                         </picture>
                     </a>
                 </article>
@@ -47,13 +66,22 @@ function displayPagination(totalPages) {
     for (let i = 1; i <= totalPages; i++) {
         if (i === page + 1) {
             // 현재 페이지를 텍스트로 표시
-            $pagination.append(`<a href="javascript:void(0)" class="current"><span>${i}</span></a>`);
+            $pagination.append(`<a href="javascript:void(0)" id="prev" class="arrow current"><span>${i}</span></a>`);
         } else {
             // 다른 페이지는 a 태그로 표시
-            $pagination.append(`<a href="/mypage/member/recipe-board/${i}" class="current"><span>${i}</span></a>`);
+            $pagination.append(`<a href="#" class="current"><span>${i}</span></a>`);
         }
     }
+
     if (page < totalPages - 1) {
-        $pagination.append(`<a href="javascript:void(0)" class="btn-page next"><span class="blind2">&gt;</span></a>`);
+        $pagination.append(`<a href="javascript:void(0)" id="next" class="arrow btn-page next"><span class="blind2">&gt;</span></a>`);
     }
 }
+
+$(".pagination").on("click", "a", function(e) {
+    e.preventDefault();
+    const targetPage = $(this).text();
+    page = parseInt(targetPage);
+    $append.empty();
+    myPageService.recipeBoardListAjax(page);
+});

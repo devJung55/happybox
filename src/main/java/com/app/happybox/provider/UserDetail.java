@@ -3,9 +3,11 @@ package com.app.happybox.provider;
 import com.app.happybox.type.Role;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 @Component
@@ -29,9 +31,10 @@ public class UserDetail implements UserDetails {
         this.authorities = authorities;
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return Arrays.asList(new SimpleGrantedAuthority(Role.MEMBER.getSecurityRole()), new SimpleGrantedAuthority(Role.ADMIN.getSecurityRole()), new SimpleGrantedAuthority(Role.WELFARE.getSecurityRole()), new SimpleGrantedAuthority(Role.DISTRIBUTOR.getSecurityRole()));
     }
 
     @Override

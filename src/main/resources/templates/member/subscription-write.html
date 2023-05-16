@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>구독 정보 입력</title>
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css" />
+    <link rel="stylesheet" href="/css/member/member.css" />
+    <link rel="stylesheet" href="/css/member/join.css" />
+  </head>
+  <body>
+    <header></header>
+    <root style="zoom: 80%">
+    <section id="contents" class="container">
+      <div class="modal">
+        <div class="warn-modal">
+            <div id="content-wrap"></div>
+        </div>
+    </div>
+      <form th:action="@{/welfare/join}" th:method="post" id="join-general-form" name="welfareDTO" autocomplete="off"  accept-charset="UTF-8" th:object="${welfareDTO}">
+        <div class="join-container join-container2" >
+          <div class="join-area">
+            <h2 class="join-title">구독정보 입력</h2>
+            <fieldset class="form-group-area">
+              <legend>구독 정보</legend>
+              <div class="form-group">
+                <div class="form-head">
+                  <label for="" class="form-label"
+                    >구독 이름<i class="es2"></i
+                  ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <input
+                    type="text"
+                    name="subscriptionTitle"
+                    class="input-text w571 join-input"
+                    placeholder="구독에 대한 이름을 적어주세요"
+                  />
+                </div>
+              </div>
+              <!--// form-group -->
+
+              <div class="form-group">
+                <div class="form-head">
+                  <label for="" class="form-label"
+                    >구독 내용<i class="es2"></i
+                  ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <label for="" class="blind">비밀번호 입력</label>
+                  <input
+                    type="text"
+                    name="subscriptionContent"
+                    class="input-text w571 join-input"
+                    placeholder="구독에 대한 정보를 입력해주세요"
+                  />
+                </div>
+              </div>
+              <!--// form-group -->
+              <div class="form-group">
+                <div class="form-head">
+                  <label for="" class="form-label"
+                    >구독료<i class="es2"></i
+                  ></label>
+                </div>
+                <!--// form-head -->
+                <div class="input-group type-lg w-full">
+                  <input
+                    type="text"
+                    name="subscriptionPrice"
+                    class="input-text w571 join-input"
+                    placeholder="구독료 입력"
+                  />
+                </div>
+                <p class="valid error help" id="pw-error-text1" style="display: none">
+                </p>
+              </div>
+              <!--// form-group -->
+            </fieldset>
+            <div class="btn-bottom-area">
+              <button
+                type="submit"
+                id="member-join-general-submit-btn"
+                class="btn-basic-lg2 btn-dim btn-primary"
+                onclick="send()"
+              >
+                <span>회원가입</span></button
+              ><!-- 활성화시 removeClass btn-dim -->
+            </div>
+            <!--// btn-bottom-area -->
+          </div>
+          <!--// join-area -->
+        </div>
+      </form>
+    </section>
+  </root>
+  <footer></footer>
+  </body>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!--  <script src="/js/join/company-join.js"></script>-->
+</html>

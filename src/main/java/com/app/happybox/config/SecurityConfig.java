@@ -35,7 +35,7 @@ public class SecurityConfig {
     private static final String ADMIN_PATH = "/admin/**";
     private static final String MEMBER_PATH = "/member/**";
     private static final String WELFARE_PATH = "/welfares/**";
-    private static final String DISTRIBUTOR_PATH = "/distributors/**";
+    private static final String DISTRIBUTOR_PATH = "/product/**";
     private static final String BOARD_PATH = "**/boards/**";
     private static final String CS_PATH = "**/CS/**";
     private static final String MYPAGE_PATH = "/mypage/**";
@@ -47,7 +47,7 @@ public class SecurityConfig {
     private static final String WRITE_PATH = "/**/write";
     private static final String WELFARE_WRITE_PATH = "/**/welfare/**/write";
     private static final String MEMBER_WRITE_PATH = "/**/MEMBER/**/write";
-    private static final String DISTRIBUTOR_WRITE_PATH = "/**/DISTRIBUTOR/**/write";
+    private static final String DISTRIBUTOR_WRITE_PATH = "/**/product/**/write";
 
 
     //    ignore 경로
@@ -56,7 +56,7 @@ public class SecurityConfig {
     private static final String LOGIN_PAGE = "/member/login";
 
     //    로그인 ACTION 경로
-    private static final String MEMBER_LOGIN_PROCESSING_URL = "/member/login";
+    private static final String MEMBER_LOGIN_PROCESSING_URL = "/login";
 
     //    로그아웃 경로
     private static final String LOGOUT_URL = "/logout";
@@ -88,7 +88,7 @@ public class SecurityConfig {
 
     /* 파비콘은 필터에 거치지 않고 바로 들어오게 해줌 */
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
+    public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON)
 //                전체 서비스 filterChain 안거치고 접근
@@ -97,13 +97,13 @@ public class SecurityConfig {
 
     /* 거쳐야할 필터들을 설정 */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
 //                마이페이지 권한 설정
-                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
+//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
 //
 //
 //                  작성페이지 권한 설정
@@ -112,7 +112,7 @@ public class SecurityConfig {
                 .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
 
                 //                관리자 페이지 권한 설정
-                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+//                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
                 .anyRequest().permitAll()
 
 //                기타 설정
@@ -130,10 +130,12 @@ public class SecurityConfig {
                 .loginProcessingUrl(MEMBER_LOGIN_PROCESSING_URL)
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationFailureHandler)
+                .permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_URL))
                 .logoutSuccessUrl(LOGOUT_SUCCESS_URL)
                 .invalidateHttpSession(Boolean.TRUE)
+                .permitAll()
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")
@@ -144,10 +146,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-
-
-
 
 
 }

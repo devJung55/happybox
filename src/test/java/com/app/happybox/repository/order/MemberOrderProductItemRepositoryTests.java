@@ -1,6 +1,8 @@
 package com.app.happybox.repository.order;
 
+import com.app.happybox.domain.MemberOrderProductItemDTO;
 import com.app.happybox.entity.order.MemberOrderProductItem;
+import com.app.happybox.service.order.MemberOrderProductItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import java.time.LocalDateTime;
 @Slf4j
 public class MemberOrderProductItemRepositoryTests {
     @Autowired private MemberOrderProductItemRepository memberOrderProductItemRepository;
+    @Autowired private MemberOrderProductItemService memberOrderProductItemService;
 
     @Test
     public void findCancleListByMemberIdDescWithPagingTest() {
@@ -55,5 +58,11 @@ public class MemberOrderProductItemRepositoryTests {
     @Test
     public void findCancleCountByDistributorAndPurchaseStatus_QueryDSL_Test() {
         log.info("cancleCount : " + memberOrderProductItemRepository.findCancleCountByDistributorAndPurchaseStatus_QueryDSL(42L));
+    }
+
+    @Test
+    public void memberOrderServiceTest() {
+        memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(0, 5), 1L)
+                .stream().map(MemberOrderProductItemDTO::toString).forEach(log::info);
     }
 }

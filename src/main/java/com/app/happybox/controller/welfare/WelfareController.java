@@ -1,9 +1,8 @@
 package com.app.happybox.controller.welfare;
 
-import com.app.happybox.domain.FoodCalendarDTO;
-import com.app.happybox.domain.FoodCalendarSearchDTO;
-import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.domain.SubscriptionCartDTO;
+import com.app.happybox.domain.SubscriptionSearchDTO;
+import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.service.product.SubscriptionCartService;
@@ -23,9 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -86,9 +83,11 @@ public class WelfareController {
 
     //    복지관 회원가입 완료
     @PostMapping("join")
-    public RedirectView join(WelfareDTO welfareDTO){
-        welfareService.join(welfareDTO,passwordEncoder);
-        log.info(welfareDTO.toString());
-        return new RedirectView("/member/login");
+    public RedirectView join(WelfareDTO welfareDTO, SubscriptionWelFareDTO subscriptionWelFareDTO){
+        welfareService.join(welfareDTO,subscriptionWelFareDTO,passwordEncoder);
+        log.info("welfareDTO:" + welfareDTO);
+        log.info("subscriptionWelFareDTO:" + subscriptionWelFareDTO);
+        return new RedirectView("/login");
     }
+
 }

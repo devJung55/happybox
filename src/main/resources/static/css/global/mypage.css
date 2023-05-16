@@ -70,7 +70,7 @@
 }
 
 .pagination > a.current, .pagination > a.on {
-    border-bottom: 2px solid #FF5938;
+    /*border-bottom: 2px solid #FF5938;*/
     color: #FF5938;
     font-weight: 700;
 }

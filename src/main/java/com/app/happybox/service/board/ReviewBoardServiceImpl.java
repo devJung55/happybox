@@ -4,6 +4,8 @@ import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.reply.ProductReply;
+import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.exception.BoardNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;

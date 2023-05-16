@@ -233,15 +233,15 @@ $joinInputs.on('blur', function () {
   $joinHelp.eq(i).hide();
 });
 
-function send() {
-    if (joinCheckAll.filter((check) => check).length != $joinInputs.length) {
-      alertModal('가입 정보를 확인하세요.');
-    } else if ($addressInput.val() == '') {
-      alertModal('주소를 입력하세요.');
-    } else if($addressDetailInput.val() == ''){
-      alertModal('상세주소를 입력하세요.')
-    } 
-  }
+// function send() {
+//     if (joinCheckAll.filter((check) => check).length != $joinInputs.length) {
+//       alertModal('가입 정보를 확인하세요.');
+//     } else if ($addressInput.val() == '') {
+//       alertModal('주소를 입력하세요.');
+//     } else if($addressDetailInput.val() == ''){
+//       alertModal('상세주소를 입력하세요.')
+//     }
+//   }
 
   function alertModal(errorMsg) {
     $("div#content-wrap").html(errorMsg)
@@ -250,3 +250,48 @@ function send() {
       $("div.modal").fadeOut();
   }, 2000);
   }
+
+
+  /*============================================ 추가 JS(Subscription) ============================================================*/
+
+const $area = $('.join-area');
+const $nextBtn = $('.next-btn');
+const $subs = $('.subscription-area');
+
+/*다음 버튼 눌렀을 때 기존 이벤트를 막은 후 기존 폼 hide*/
+$nextBtn.on('click', function (e){
+  e.preventDefault();
+
+  if (joinCheckAll.filter((check) => check).length !== $joinInputs.length) {
+    alertModal('가입 정보를 확인하세요.');
+  } else if ($addressInput.val() === '') {
+    alertModal('주소를 입력하세요.');
+  } else if ($addressDetailInput.val() === '') {
+    alertModal('상세주소를 입력하세요.');
+  } else {
+    $area.hide();
+    $subs.show();
+  }
+});
+
+/* 내용 글자수 카운트 이벤트 */
+
+const $counter = $('#counter');
+const $textarea = $('#vQuestionCont');
+
+$textarea.on('keyup', function () {
+  let content = $(this).val();
+
+  // 글자수 세기
+  if (content.length < 1000) {
+    $counter.text(content.length);
+  }
+
+  // 글자수 제한
+  if (content.length > 1000) {
+    // 1000자 부터는 타이핑 되지 않도록
+    $(this).val($(this).val().substring(0, 1000));
+    // 1000자 넘으면 알림창 뜨도록
+    alert('글자수는 1000자까지 입력 가능합니다.');
+  }
+});

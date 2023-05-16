@@ -67,8 +67,7 @@ public class BoardController {
     @GetMapping("review-board-list/popular")
     @ResponseBody
     public Slice<ReviewBoardDTO> goPopularList(@PageableDefault(page=1, size=5) Pageable pageable) {
-        return reviewBoardService
-                .getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+        return reviewBoardService.getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
                         pageable.getPageSize()));
     }
 

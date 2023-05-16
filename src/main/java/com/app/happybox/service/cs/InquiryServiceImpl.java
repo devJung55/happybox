@@ -7,6 +7,7 @@ import com.app.happybox.entity.customer.InquiryAnswer;
 import com.app.happybox.repository.inquiry.InquiryAnswerRepository;
 import com.app.happybox.repository.inquiry.InquiryRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Qualifier("inquiry")
@@ -23,7 +25,7 @@ public class InquiryServiceImpl implements InquiryService {
     private final InquiryRepository inquiryRepository;
     private final InquiryAnswerRepository inquiryAnswerRepository;
 
-//    문의 목록
+    //    문의 목록
     @Override
     public Page<InquiryDTO> getInquiryListById(Pageable pageable, Long id) {
         Page<Inquiry> inquiries = inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(pageable, id);
@@ -31,20 +33,31 @@ public class InquiryServiceImpl implements InquiryService {
         return new PageImpl<>(inquiryLists, pageable, inquiries.getTotalElements());
     }
 
-//    문의 답변 목록
+    @Override
+    public Page<InquiryDTO> getListByMemberId(Pageable pageable, Long memberId) {
+        Page<Inquiry> inquiries = inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(pageable, memberId);
+        List<InquiryDTO> inquiryLists = inquiries.get().map(this::mypageToInquiryDTO).collect(Collectors.toList());
+
+        // 문의 id들
+        List<Long> inquiryIds = inquiries.get().map(Inquiry::getId).collect(Collectors.toList());
+
+        inquiryAnswerRepository.findByInquiryIds(inquiryIds)
+                .forEach(answer -> {
+                    inquiryLists.forEach(inquiry -> {
+                        if (inquiry.getId() == answer.getInquiry().getId())
+                            inquiry.setInquiryAnswerDTO(this.toInquiryAnswerDTO(answer));
+                    });
+                });
+
+        return new PageImpl<>(inquiryLists, pageable, inquiries.getTotalElements());
+    }
+
+    //    문의 답변 목록
     @Override
     public Page<InquiryAnswerDTO> getInquiryAnswerListById(Pageable pageable, Long id) {
         Page<InquiryAnswer> inquiryAnswers = inquiryAnswerRepository.findAnswersByInquiryId_QueryDSL(pageable, id);
         List<InquiryAnswerDTO> inquiryAnswerLists = inquiryAnswers.get().map(this::toInquiryAnswerDTO).collect(Collectors.toList());
         return new PageImpl<>(inquiryAnswerLists, pageable, inquiryAnswers.getTotalElements());
-    }
-
-//    마이페이지 문의내역 목록
-    @Override
-    public Page<InquiryDTO> getInquiryListByMemberId(Pageable pageable, Long memberId) {
-        Page<Inquiry> inquiries = inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(pageable, memberId);
-        List<InquiryDTO> inquiryDTOList = inquiries.get().map(this::toInquiryDTO).collect(Collectors.toList());
-        return new PageImpl<>(inquiryDTOList, pageable, inquiries.getTotalElements());
     }
 
     @Override

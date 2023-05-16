@@ -64,4 +64,9 @@ public class InquiryAnswerRepositoryTests {
         PageRequest page = PageRequest.of(0, 5);
         inquiryService.getInquiryAnswerListById(page, 91L).stream().map(InquiryAnswerDTO::toString).forEach(log::info);
     }
+
+    @Test
+    public void getListByMemberId_Test() {
+        inquiryAnswerRepository.findByUserId_QueryDSL(1L).stream().map(InquiryAnswer::getInquiry).forEach(v -> log.info(v.getId() + ""));
+    }
 }
