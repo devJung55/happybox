@@ -112,7 +112,7 @@ public class SecurityConfig {
                 .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
 
                 //                관리자 페이지 권한 설정
-                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+//                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
                 .anyRequest().permitAll()
 
 //                기타 설정

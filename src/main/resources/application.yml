@@ -32,3 +32,11 @@ spring:
   #Redis
   session:
     store-type: redis
+
+  #multipart
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 40MB
+      max-file-size: 40MB
+      file-size-threshold: 100MB

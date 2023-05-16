@@ -151,6 +151,40 @@ let adminNoticeService = (function() {
         })
     }
 
+    /* 작성 */
+    function noticeWrite() {
+        // 공지 파일 DTO 설정
+        let noticeFiles = [];
+
+        fileList.forEach((file, i)=> {
+            let noticeFileDTO = {
+                fileOrgName: file[0].name,
+                filePath: path[i][0],
+                fileUuid: Uuid[i][0]
+            };
+            noticeFiles.push(noticeFileDTO);
+        })
+
+        // 공지 DTO 설정
+        let noticeDTO = new Object();
+        noticeDTO.noticeTitle = $('#noticeTitle').val();
+        noticeDTO.noticeContent = $('#noticeContent').val();
+        noticeDTO.noticeFileDTOS = noticeFiles;
+
+        $.ajax({
+            url: "/admin/notice-write",
+            type: "post",
+            data: JSON.stringify(noticeDTO),
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                $('.add-modal').fadeOut(500);
+                adminNoticeService.getNoticeList();
+                $('#noticeTitle').val("")
+                $('#noticeContent').val("")
+            }
+        })
+    }
+
     /* 수정 */
 
     /* 삭제 */
@@ -170,7 +204,7 @@ let adminNoticeService = (function() {
         })
     }
 
-    return {getNoticeList: getNoticeList, noticeDetail: noticeDetail, noticeDelete: noticeDelete}
+    return {getNoticeList: getNoticeList, noticeDetail: noticeDetail, noticeWrite: noticeWrite, noticeDelete: noticeDelete}
 
 })();
 
@@ -182,6 +216,19 @@ $("table.table").on('click','.show-modal' , function(e){
     $(".modal").show();
     adminNoticeService.noticeDetail(id);
 });
+
+/* ===================================== 공지사항 작성 ================================ */
+
+const $writeNoticeButton = $('.regist-button');
+
+$writeNoticeButton.on('click', function () {
+    let noticeTitle = $('#noticeTitle').val();
+    let noticeContent = $('#noticeContent').val();
+
+    if (noticeTitle != null && noticeContent != null) {
+        adminNoticeService.noticeWrite();
+    }
+})
 
 /* =========================== 공지사항 삭제 =============================== */
 
