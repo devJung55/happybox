@@ -37,7 +37,7 @@ public class ReviewBoard extends Board {
     /* 리뷰할 복지관 */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Subscription subscription;
+    private Welfare welfare;
 
     /* 게시글 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
@@ -47,21 +47,21 @@ public class ReviewBoard extends Board {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<ReviewBoardLike> reviewBoardLikes = new ArrayList<>();
 
-    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating, Member member, Subscription subscription) {
+    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating, Member member, Welfare welfare) {
         super(boardTitle, boardContent);
         this.reviewRating = reviewRating;
         this.member = member;
-        this.subscription = subscription;
+        this.welfare = welfare;
     }
 
     @Builder
-    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, Member member, Subscription subscription, List<ReviewBoardReply> reviewBoardReplies, List<ReviewBoardLike> reviewBoardLikes) {
+    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, Member member, Welfare welfare, List<ReviewBoardReply> reviewBoardReplies, List<ReviewBoardLike> reviewBoardLikes) {
         super(id, boardTitle, boardContent, boardFiles);
         this.reviewRating = reviewRating;
         this.reviewLikeCount = reviewLikeCount;
         this.reviewBoardReplyCount = reviewBoardReplyCount;
         this.member = member;
-        this.subscription = subscription;
+        this.welfare = welfare;
         this.reviewBoardReplies = reviewBoardReplies;
         this.reviewBoardLikes = reviewBoardLikes;
     }
@@ -70,8 +70,8 @@ public class ReviewBoard extends Board {
         this.member = member;
     }
 
-    public void setSubscription(Subscription subscription) {
-        this.subscription = subscription;
+    public void setWelfare(Welfare welfare) {
+        this.welfare = welfare;
     }
 
     public void setReviewLikeCount(Integer reviewLikeCount) {

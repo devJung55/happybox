@@ -19,16 +19,11 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public void save(ReviewBoardDTO reviewBoardDTO) {
-
-    }
-
-    @Override
     public Optional<ReviewBoard> findById_QueryDSL(Long id) {
         ReviewBoard reviewBoard = query.select(QReviewBoard.reviewBoard)
                 .from(QReviewBoard.reviewBoard)
                 .join(QReviewBoard.reviewBoard.member).fetchJoin()
-                .rightJoin(QReviewBoard.reviewBoard.subscription.welfare)
+                .rightJoin(QReviewBoard.reviewBoard.welfare)
                 .join(QReviewBoard.reviewBoard.boardFiles).fetchJoin()
                 .where(QReviewBoard.reviewBoard.id.eq(id))
                 .fetchOne();
@@ -50,7 +45,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         List<ReviewBoard> reviewBoards =  query.select(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .rightJoin(reviewBoard.subscription.welfare)
+                .join(reviewBoard.welfare).fetchJoin()
                 .join(reviewBoard.boardFiles).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -65,7 +60,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         List<ReviewBoard> reviewBoards = query.select(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .rightJoin(reviewBoard.subscription.welfare)
+                .rightJoin(reviewBoard.welfare).fetchJoin()
                 .join(reviewBoard.boardFiles).fetchJoin()
                 .orderBy(reviewBoard.reviewLikeCount.desc())
                 .offset(pageable.getOffset())

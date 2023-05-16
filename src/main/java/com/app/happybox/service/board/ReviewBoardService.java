@@ -1,6 +1,7 @@
 package com.app.happybox.service.board;
 
 import com.app.happybox.domain.user.MemberDTO;
+import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
@@ -10,6 +11,7 @@ import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.entity.user.Welfare;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -25,7 +27,7 @@ public interface ReviewBoardService {
     public ReviewBoardDTO getDetail(Long id);
 
     //    작성하기
-    public void write(ReviewBoardDTO reviewBoardDTO, Long memberId, Long subscriptionId);
+    public void write(ReviewBoardDTO reviewBoardDTO, Long memberId);
 
     //    현재 시퀀스 가져오기
     public ReviewBoard getCurrentSequence();
@@ -43,12 +45,11 @@ public interface ReviewBoardService {
     default ReviewBoardDTO reviewBoardToDTO(ReviewBoard reviewBoard){
         return ReviewBoardDTO.builder()
                 .id(reviewBoard.getId())
-                .reviewBoardTitle(reviewBoard.getBoardTitle())
-                .reviewBoardContent(reviewBoard.getBoardContent())
+                .boardTitle(reviewBoard.getBoardTitle())
+                .boardContent(reviewBoard.getBoardContent())
                 .memberDTO(toMemberDTO(reviewBoard.getMember()))
-                .subscriptionDTO(toSubscriptionDTO(reviewBoard.getSubscription()))
-                .reviewBoardContent(reviewBoard.getBoardContent())
-                .reviewBoardRegisterDate(LocalDate.now())
+                .welfareDTO(toWelfareDTO(reviewBoard.getWelfare()))
+                .boardRegisterDate(LocalDate.now())
                 .boardFiles(boardFileToDTO(reviewBoard.getBoardFiles()))
                 .build();
     }
@@ -70,24 +71,43 @@ public interface ReviewBoardService {
                 .build();
     }
 
-    default SubscriptionDTO toSubscriptionDTO(Subscription subscription) {
-        return SubscriptionDTO.builder()
-                .id(subscription.getId())
-                .subscriptionTitle(subscription.getSubscriptionTitle())
-                .subscriptionPrice(subscription.getSubscriptionPrice())
-                .subscriptLikeCount(subscription.getSubscriptLikeCount())
-                .reviewCount(subscription.getReviewCount())
-                .reviewAvgRating(subscription.getReviewAvgRating())
-                .orderCount(subscription.getOrderCount())
-                .welfareName(subscription.getWelfare().getWelfareName())
+    default WelfareDTO toWelfareDTO(Welfare welfare) {
+        return WelfareDTO.builder()
+                .id(welfare.getId())
+                .userId(welfare.getUserId())
+                .userPassword(welfare.getUserPassword())
+                .userPhoneNumber(welfare.getUserPhoneNumber())
+                .userEmail(welfare.getUserEmail())
+                .userAddress(welfare.getAddress())
+                .userStatus(welfare.getUserStatus())
+                .userRole(welfare.getUserRole())
+                .welfareName(welfare.getWelfareName())
+                .welfarePointTotal(welfare.getWelfarePointTotal())
                 .build();
     }
 
     default ReviewBoard toReviewBoardEntity(ReviewBoardDTO reviewBoardDTO){
         return ReviewBoard.builder()
-                .boardTitle(reviewBoardDTO.getReviewBoardTitle())
-                .boardContent(reviewBoardDTO.getReviewBoardContent())
+                .id(reviewBoardDTO.getId())
+                .boardTitle(reviewBoardDTO.getBoardTitle())
+                .boardContent(reviewBoardDTO.getBoardContent())
                 .boardFiles(reviewBoardDTO.getBoardFiles().stream().map(file -> toBoardFileEntity(file)).collect(Collectors.toList()))
+                .member(toMemberEntity(reviewBoardDTO.getMemberDTO()))
+                .build();
+    }
+
+    default Member toMemberEntity(MemberDTO memberDTO) {
+        return Member.builder()
+                .userId(memberDTO.getUserId())
+                .userPassword(memberDTO.getUserPassword())
+                .userPhoneNumber(memberDTO.getUserPhoneNumber())
+                .userRole(memberDTO.getUserRole())
+                .userRole(memberDTO.getUserRole())
+                .memberName(memberDTO.getMemberName())
+                .memberBirth(LocalDate.parse(memberDTO.getMemberBirth()))
+                .memberDeliveryAddress(memberDTO.getMemberDeliveryAddress())
+                .userEmail(memberDTO.getUserEmail())
+                .memberGender(memberDTO.getMemberGender())
                 .build();
     }
 
