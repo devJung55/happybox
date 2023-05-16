@@ -64,7 +64,7 @@ public interface ReviewBoardService {
                 .userStatus(member.getUserStatus())
                 .userRole(member.getUserRole())
                 .memberName(member.getMemberName())
-                .memberBirth(member.getMemberBirth())
+                .memberBirth(member.getMemberBirth().toString())
                 .memberDeliveryAddress(member.getMemberDeliveryAddress())
                 .memberGender(member.getMemberGender())
                 .build();
