@@ -3,6 +3,8 @@ package com.app.happybox.service.cs;
 import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.entity.customer.Notice;
 import com.app.happybox.entity.customer.NoticeSearch;
+import com.app.happybox.entity.file.NoticeFile;
+import com.app.happybox.repository.notice.NoticeFileRepository;
 import com.app.happybox.repository.notice.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class NoticeServiceImpl implements NoticeService {
     private final NoticeRepository noticeRepository;
+    private final NoticeFileRepository noticeFileRepository;
 
 //    공지 목록 조회
     @Override
@@ -49,5 +53,16 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public void deleteById(Long id) {
         noticeRepository.findById(id).ifPresent(notice -> noticeRepository.delete(notice));
+    }
+
+    //    공지 등록
+    @Override
+    @Transactional
+    public void noticeWrite(NoticeDTO noticeDTO) {
+        Notice notice = toNoticeEntity(noticeDTO);
+        noticeRepository.save(notice);
+        List<NoticeFile> noticeFiles = toNoticeEntity(noticeDTO).getNoticeFiles();
+        noticeFiles.forEach(noticeFile -> noticeFile.setNotice(notice));
+        noticeFileRepository.saveAll(noticeFiles);
     }
 }

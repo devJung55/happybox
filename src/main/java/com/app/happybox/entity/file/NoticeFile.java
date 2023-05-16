@@ -22,6 +22,11 @@ public class NoticeFile extends Files {
         this.fileRepresent = fileRepresent;
     }
 
+    @Builder
+    public NoticeFile(Long id, String filePath, String fileUuid, String fileOrgName) {
+        super(id, filePath, fileUuid, fileOrgName);
+    }
+
     public void setNotice(Notice notice) {
         this.notice = notice;
     }
