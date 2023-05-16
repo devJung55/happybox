@@ -98,14 +98,15 @@ public class InquiryRepositoryTests {
     }
 
     @Test
-    public void getInquiryListByMemberId_Test() {
-        inquiryService.getInquiryListByMemberId(PageRequest.of(0, 5), 1L)
-                .stream().map(InquiryDTO::toString).forEach(log::info);
-    }
-
-    @Test
     public void getInquiryAnswerListByMemberId_Test() {
         inquiryService.getInquiryAnswerListByUserId(1L)
                 .stream().map(InquiryAnswerDTO::toString).forEach(log::info);
+    }
+
+
+    @Test
+    public void 후() {
+        inquiryService.getListByMemberId(PageRequest.of(0, 5), 1L)
+                .stream().map(InquiryDTO::toString).forEach(log::info);
     }
 }
