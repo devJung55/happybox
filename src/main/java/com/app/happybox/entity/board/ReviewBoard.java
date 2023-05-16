@@ -30,7 +30,7 @@ public class ReviewBoard extends Board {
     /* ============= */
 
     /* 작성한 유저 */
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Member member;
 

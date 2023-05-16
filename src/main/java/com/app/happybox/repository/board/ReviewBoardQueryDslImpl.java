@@ -19,11 +19,6 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public void save(ReviewBoardDTO reviewBoardDTO) {
-
-    }
-
-    @Override
     public Optional<ReviewBoard> findById_QueryDSL(Long id) {
         ReviewBoard reviewBoard = query.select(QReviewBoard.reviewBoard)
                 .from(QReviewBoard.reviewBoard)

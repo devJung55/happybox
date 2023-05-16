@@ -93,9 +93,9 @@ public class BoardController {
     public void goToReviewWrite(ReviewBoardDTO reviewBoardDTO) { }
 
     @PostMapping("review-board-insert")
-    public RedirectView ReviewWrite(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO, Long memberId /*@AuthenticationPrincipal UserDetail userDetail*/) {
+    public RedirectView ReviewWrite(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO/*@AuthenticationPrincipal UserDetail userDetail*/) {
 //        Long memberId = userDetail.getId();
-        memberId = 1L;
+        Long memberId = 7L;
         reviewBoardService.write(reviewBoardDTO, memberId);
         log.info(reviewBoardDTO.toString());
         return new RedirectView("/user-board/review-board-list");
@@ -120,7 +120,7 @@ public class BoardController {
     public void goToRecipeWrite(ReviewBoardDTO reviewBoardDTO) { }
 
     @PostMapping("recipe-board-insert")
-    public RedirectView RecipeWrite(@ModelAttribute("reecipeBoardDTO") RecipeBoardDTO recipeBoardDTO/*, @AuthenticationPrincipal UserDetail userDetail*/) {
+    public RedirectView RecipeWrite(@ModelAttribute("recipeBoardDTO") RecipeBoardDTO recipeBoardDTO/*, @AuthenticationPrincipal UserDetail userDetail*/) {
 //        Long memberId = userDetail.getId();
         Long memberId = 1L;
 //        recipeBoardService.write(recipeBoardDTO, memberId);
