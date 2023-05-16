@@ -45,7 +45,7 @@ public class FileRestController {
             if (multipartFiles.get(i).getContentType().startsWith("image")) {
                 FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
                 InputStream inputStream = new FileInputStream("C:\\upload\\" + getPath() + "\\" + uuids.get(i)+ "_" + multipartFiles.get(i).getOriginalFilename());
-                Thumbnailator.createThumbnail(inputStream, out, 150, 150);
+                Thumbnailator.createThumbnail(inputStream, out, 300, 300);
                 out.close();
                 filePath = "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename();
             }
