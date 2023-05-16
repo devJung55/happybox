@@ -67,8 +67,7 @@ public class BoardController {
     @GetMapping("review-board-list/popular")
     @ResponseBody
     public Slice<ReviewBoardDTO> goPopularList(@PageableDefault(page=1, size=5) Pageable pageable) {
-        return reviewBoardService
-                .getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+        return reviewBoardService.getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
                         pageable.getPageSize()));
     }
 
@@ -90,15 +89,17 @@ public class BoardController {
 
     //    리뷰 게시판 작성하기
     @GetMapping("review-board-insert")
-    public void goToReviewWrite(ReviewBoardDTO reviewBoardDTO) { }
+    public void goToReviewWrite(Model model) {
+        model.addAttribute("reviewBoard", new ReviewBoardDTO());
+    }
 
     @PostMapping("review-board-insert")
-    public RedirectView ReviewWrite(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO/*@AuthenticationPrincipal UserDetail userDetail*/) {
-//        Long memberId = userDetail.getId();
-        Long memberId = 7L;
+    @ResponseBody
+    public void ReviewWrite(@RequestBody ReviewBoardDTO reviewBoardDTO) {
+        Long memberId = 1L;
         reviewBoardService.write(reviewBoardDTO, memberId);
-        log.info(reviewBoardDTO.toString());
-        return new RedirectView("/user-board/review-board-list");
+
+        log.info("=====================" + reviewBoardDTO);
     }
 
     //    레시피 게시판 리스트 (최신순)

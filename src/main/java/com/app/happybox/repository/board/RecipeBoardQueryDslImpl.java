@@ -22,7 +22,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         List<RecipeBoard> recipeBoards = query.select(recipeBoard)
                 .from(recipeBoard)
                 .join(recipeBoard.member).fetchJoin()
-                .join(recipeBoard.boardFiles).fetchJoin()
+                .join(recipeBoard.recipeBoardFiles).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -34,7 +34,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         List<RecipeBoard> recipeBoards = query.select(recipeBoard)
                 .from(recipeBoard)
                 .join(recipeBoard.member).fetchJoin()
-                .join(recipeBoard.boardFiles).fetchJoin()
+                .join(recipeBoard.recipeBoardFiles).fetchJoin()
                 .orderBy(recipeBoard.recipeLikeCount.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -46,7 +46,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     public Page<RecipeBoard> findRecipeBoardListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<RecipeBoard> recipeBoardList = query.select(recipeBoard)
                 .from(recipeBoard)
-                .leftJoin(recipeBoard.boardFiles).fetchJoin()
+                .leftJoin(recipeBoard.recipeBoardFiles).fetchJoin()
                 .join(recipeBoard.member).fetchJoin()
                 .where(recipeBoard.member.id.eq(memberId))
                 .orderBy(recipeBoard.id.desc())
@@ -75,9 +75,9 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL() {
         List<RecipeBoard> recipeBoards = query.select(recipeBoard)
                 .from(recipeBoard)
-                .join(recipeBoard.boardFiles)
+                .join(recipeBoard.recipeBoardFiles)
                 .fetchJoin()
-                .where(recipeBoard.boardFiles.any().fileRepresent.eq(FileRepresent.REPRESENT))
+                .where(recipeBoard.recipeBoardFiles.any().fileRepresent.eq(FileRepresent.REPRESENT))
                 .orderBy(recipeBoard.recipeLikeCount.desc())
                 .limit(5L)
                 .fetch();
@@ -99,7 +99,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     public Page<RecipeBoard> findRecipeBoardListDescWithPaging_QueryDSL(Pageable pageable) {
         List<RecipeBoard> recipeBoardList = query.select(recipeBoard)
                 .from(recipeBoard)
-                .leftJoin(recipeBoard.boardFiles).fetchJoin()
+                .leftJoin(recipeBoard.recipeBoardFiles).fetchJoin()
                 .join(recipeBoard.member).fetchJoin()
                 .orderBy(recipeBoard.id.desc())
                 .offset(pageable.getOffset())
@@ -115,7 +115,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     public Optional<RecipeBoard> findById_QueryDSL(Long recipeBoardId) {
         Optional<RecipeBoard> recipeBoardInfo = Optional.ofNullable(query.select(recipeBoard)
                 .from(recipeBoard)
-                .leftJoin(recipeBoard.boardFiles).fetchJoin()
+                .leftJoin(recipeBoard.recipeBoardFiles).fetchJoin()
                 .join(recipeBoard.member).fetchJoin()
                 .where(recipeBoard.id.eq(recipeBoardId))
                 .fetchOne());

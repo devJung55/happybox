@@ -14,6 +14,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +50,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return collectFoodList(subscriptions);
     }
 
+    @Override
+    public List<SubscriptionDTO> findTop3ByLikeCount() {
+        List<Subscription> subscriptions = subscriptionRepository.findTop3OrderByLikeCount();
+        return collectFoodList(subscriptions);
+    }
+
     // 검색 조회
     @Override
     public Page<SubscriptionDTO> findBySearch(Pageable pageable, SubscriptionSearchDTO searchDTO) {
@@ -69,11 +77,21 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionToDTO(subscription);
     }
 
+    @Override
+    public List<SubscriptionDTO> findAllBetweenDate(LocalDateTime dateTime) {
+        LocalDateTime startDate = dateTime.with(TemporalAdjusters.firstDayOfMonth());
+        LocalDateTime endDate = dateTime.with(TemporalAdjusters.lastDayOfMonth());
+
+        List<Subscription> monthlySubs = subscriptionRepository.findTop3BetweenDateOrderByDateDesc_QueryDSL(startDate, endDate);
+
+        return collectFoodList(monthlySubs);
+    }
+
     private List<SubscriptionDTO> collectFoodList(List<Subscription> subscriptions) {
         List<SubscriptionDTO> collect = subscriptions.stream().map(subscription -> {
             List<FoodCalendar> foodCalendars = getFoodCalendars(subscription.getId());
 
-            if(foodCalendars.isEmpty()) return subscriptionToDTO(subscription);
+            if (foodCalendars.isEmpty()) return subscriptionToDTO(subscription);
 
             Food food = foodCalendars.get(0).getFoodList().get(0);
 

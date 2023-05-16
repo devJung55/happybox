@@ -24,6 +24,9 @@ public interface NoticeService {
     //    삭제
     public void deleteById(Long id);
 
+    //    공지사항 등록
+    public void noticeWrite(NoticeDTO noticeDTO);
+
     //    공지사항 DTO로 바꾸기
     default NoticeDTO toNoticeDTO(Notice notice){
         return NoticeDTO.builder().id(notice.getId())
@@ -49,5 +52,26 @@ public interface NoticeService {
                 .collect(Collectors.toList());
     }
 
-//    문의 사항 목록
+    //    공지사항 DTO Entity로 바꾸기
+    default Notice toNoticeEntity(NoticeDTO noticeDTO) {
+        return Notice.builder().id(noticeDTO.getId())
+                .noticeTitle(noticeDTO.getNoticeTitle())
+                .noticeContent(noticeDTO.getNoticeContent())
+                .noticeFiles(noticeDTO.getNoticeFileDTOS().stream()
+                        .map(this::toNoticeFileEntity)
+                        .collect(Collectors.toList())
+                )
+                .build();
+    }
+
+    //    공지사항 파일 DTO Entity로 바꾸기
+    default NoticeFile toNoticeFileEntity(NoticeFileDTO noticeFileDTO) {
+        return NoticeFile.builder()
+                .id(noticeFileDTO.getId())
+                .filePath(noticeFileDTO.getFilePath())
+                .fileUuid(noticeFileDTO.getFileUuid())
+                .fileOrgName(noticeFileDTO.getFileOrgName())
+                .build();
+    }
+
 }

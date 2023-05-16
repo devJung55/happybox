@@ -9,7 +9,7 @@ public interface OrderSubsciptionService {
 //    관리자 복지관 구독자 목록
     public Page<OrderSubscriptionDTO> getListByWelfareId(Pageable pageable, Long welfare, String subscriberName);
 
-    default OrderSubscriptionDTO adminToOrderSubscription(OrderSubscription orderSubscription) {
+    default OrderSubscriptionDTO adminToOrderSubscriptionDTO(OrderSubscription orderSubscription) {
         return OrderSubscriptionDTO.builder()
                 .memberId(orderSubscription.getMember().getId())
                 .memberName(orderSubscription.getMember().getMemberName())

@@ -19,8 +19,9 @@
       <section id="contents" class="container">
         <div class="content-wrap">
           <div class="frame-sm">
-            <form th:action="@{/user-board/review-board-insert}" method="post"
-                  enctype="multipart/form-data" name="form" id="counselRegFrm">
+            <form
+                  method="post"
+                  name="form" id="counselRegFrm">
               <div class="frame-right">
                 <div class="frame-cnt-inner">
                   <div class="menu-title-area">
@@ -47,10 +48,9 @@
                           <td class="text-left">
                             <div class="input-group w-full">
                               <input
+                                      name="boardTitle"
                                 type="text"
-                                name="boardTitle"
                                 id="vQuestionTitle"
-                                title=""
                                 class="input-text"
                                 placeholder="제목을 입력해주세요"
                                 value=""
@@ -108,9 +108,9 @@
                           <td class="text-left">
                             <div class="textarea-box-count h230">
                               <textarea
+                                      name="boardContent"
                                 id="vQuestionCont"
                                 placeholder="내용을 입력하세요"
-                                name="boardContent"
                               ></textarea>
                               <div class="txt-count">
                                 <span id="counter">0</span> / <span class="total">1,000</span>
@@ -124,18 +124,19 @@
                           <td class="text-left">
                             <div class="file-add-boxes">
                               <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
-                                <label>
-                                <button type="button" class="btn-attach-thumb">
-                                  <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                </button>
+                                <label for="file">
+                                <div type="button" class="btn-attach-thumb">
+                                  <i class="ico-plus-xlg"></i>
+                                </div>
+                                </label>
                                 <input
                                   class="input_file"
+                                  id="file"
                                   name="imgFile"
                                   type="file"
                                   accept="image/*"
                                   style="display: none"
                                 />
-                                </label>
                                 <div class="attach-img" style="display: none;">
 
                                   <!-- 이미지 파일 들어가는곳 -->

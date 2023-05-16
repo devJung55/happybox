@@ -47,10 +47,13 @@ public interface ReviewBoardService {
                 .id(reviewBoard.getId())
                 .boardTitle(reviewBoard.getBoardTitle())
                 .boardContent(reviewBoard.getBoardContent())
+                .welfareName(reviewBoard.getWelfareName())
                 .memberDTO(toMemberDTO(reviewBoard.getMember()))
-                .welfareDTO(toWelfareDTO(reviewBoard.getWelfare()))
-                .boardRegisterDate(LocalDate.now())
-                .boardFiles(boardFileToDTO(reviewBoard.getBoardFiles()))
+                .boardRegisterDate(reviewBoard.getUpdatedDate().toLocalDate())
+                .reviewBoardFiles(boardFileToDTO(reviewBoard.getReviewBoardFiles()))
+                .reviewLikeCount(reviewBoard.getReviewLikeCount())
+                .reviewBoardReplyCount(reviewBoard.getReviewBoardReplyCount())
+                .reviewRating(reviewBoard.getReviewRating())
                 .build();
     }
 
@@ -91,8 +94,7 @@ public interface ReviewBoardService {
                 .id(reviewBoardDTO.getId())
                 .boardTitle(reviewBoardDTO.getBoardTitle())
                 .boardContent(reviewBoardDTO.getBoardContent())
-                .boardFiles(reviewBoardDTO.getBoardFiles().stream().map(file -> toBoardFileEntity(file)).collect(Collectors.toList()))
-                .member(toMemberEntity(reviewBoardDTO.getMemberDTO()))
+                .welfareName(reviewBoardDTO.getWelfareName())
                 .build();
     }
 
@@ -111,9 +113,9 @@ public interface ReviewBoardService {
                 .build();
     }
 
-    default List<BoardFileDTO> boardFileToDTO(List<BoardFile> boardFiles){
+    default List<BoardFileDTO> boardFileToDTO(List<BoardFile> reviewBoardFiles){
         List<BoardFileDTO> boardFileDTOS = new ArrayList<>();
-        boardFiles.forEach(
+        reviewBoardFiles.forEach(
                 boardFile -> {
                     BoardFileDTO boardFileDTO = BoardFileDTO.builder()
                             .id(boardFile.getId())
@@ -130,7 +132,6 @@ public interface ReviewBoardService {
 
     default BoardFile toBoardFileEntity(BoardFileDTO boardFileDTO){
         return BoardFile.builder()
-                .id(boardFileDTO.getId())
                 .fileUuid(boardFileDTO.getFileUuid())
                 .filePath(boardFileDTO.getFilePath())
                 .fileOrgName(boardFileDTO.getFileOrgName())

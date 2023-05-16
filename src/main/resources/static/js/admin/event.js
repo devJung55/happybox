@@ -108,42 +108,86 @@ $cancelDelete.on('click', function(e){
 /* input 태그 */
 const $imgFile = $("input[name='imgFile']");
 
-$imgFile.on('change', function(e){
-    let input = $(this)
-    let $label = $(this).closest('label');
-    /* 이미지 지우는 x 버튼 */
-    let cancel = $label.siblings();
-    let reader = new FileReader();
-    /* 이미지 넣을 곳 */
-    let attachBtn = $(this).prev();
-    /* + 모양이 담긴 i 태그 */
-    let iTag = $(this).siblings().find("i");
-    console.log($(this).siblings())
+// 파일을 담을 배열 선언
+let fileList = [];
+// 받은 uuid 담을 배열
+let Uuid = [];
+// 받은 path를 담을 배열
+let path = [];
 
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = function(e) {
-        let result = e.target.result;
-        if(result.includes('image')) {
-            iTag.hide();
-            attachBtn.append(`<img src='${result}'></img>`);
-            cancel.css('display', 'inline-block')
+/* 파일 넣기 */
+/* 한 번에 멀티플로 넣는게 아니라서 각자 파일들을 찾음 */
+$(`input[name=imgFile]`).each((i, e) => {
+    $(e).on('change', function () {
+        let input = $(this)
+        let $label = $(this).closest('label');
+        /* 이미지 지우는 x 버튼 */
+        let cancel = $label.siblings();
 
-            // 파일 선택을 막음
-            input.prop('disabled', true);
+        /* 이미지 넣을 곳 */
+        let attachBtn = $(this).prev();
+
+        /* + 모양이 담긴 i 태그 */
+        let iTag = $(this).siblings().find("i");
+        iTag.hide();
+        // 파일 선택 막아주기
+        input.prop('disabled', true);
+        // x버튼도 보이게 해준다
+        cancel.css('display', 'inline-block')
+
+        // 파일 찾아오기
+        const $files = $(`input[name=imgFile]`)[i].files;
+        let formData = new FormData();
+
+        if ($files.length > 0) {
+            // 배열의 각 i번째에 해당 파일을 집어넣는다
+            fileList[i] = $files
         }
-    }
+        formData.append("file", fileList[i][0])
 
-    cancel.on('click', function(e){
-        let img = attachBtn.find("img")
-        e.preventDefault();
-        selectedFile = null;
-        $imgFile.val("");
-        img.remove()
-        cancel.css('display', 'none');
-        iTag.show();
+        // upload ajax 실행 및 썸네일까지 올리기
+        getFilePath(formData, attachBtn, i);
 
-        // 파일 선택 가능하도록 변경
-        input.prop('disabled', false);
+        // x 버튼을 눌렀다면
+        cancel.on('click', function(e) {
+            // 썸네일 이미지
+            let img = attachBtn.find("img")
+            e.preventDefault();
+            // 선택한 파일이 없게 만들기
+            // selectedFile = null;
+            $imgFile.eq(i).val("");
+            img.remove()
+            // x 버튼 없애기
+            cancel.css('display', 'none');
+            iTag.show();
+            // 파일 선택 가능하도록 변경
+            input.prop('disabled', false);
+            fileList[i] = null;
+            Uuid[i] = null;
+            path[i] = null;
+        })
     })
 })
+
+//  썸네일 만드는 기능
+function showThumb(attachBtn, data) {
+    attachBtn.append(`<img src='/image/display?fileName=${data.paths}/t_${data.uuids}_${data.orgNames}'></img>`)
+}
+
+// 파일을 올리면 path 받아오는 ajax
+function getFilePath(formData, attachBtn, i) {
+    $.ajax({
+        url: "/image/upload",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data)
+            Uuid[i] = data.uuids;
+            path[i] = data.paths;
+            showThumb(attachBtn, data)
+        }
+    })
+}
 

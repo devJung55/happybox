@@ -31,20 +31,19 @@ public class InquiryServiceImpl implements InquiryService {
         return new PageImpl<>(inquiryLists, pageable, inquiries.getTotalElements());
     }
 
-//    문의 답변 목록
+    @Override
+    public Page<InquiryDTO> getListByMemberId(Pageable pageable, Long memberId) {
+        Page<Inquiry> inquiries = inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(pageable, memberId);
+        List<InquiryDTO> inquiryDTOList = inquiries.get().map(this::mypageToInquiryDTO).collect(Collectors.toList());
+        return new PageImpl<>(inquiryDTOList, pageable, inquiries.getTotalElements());
+    }
+
+    //    문의 답변 목록
     @Override
     public Page<InquiryAnswerDTO> getInquiryAnswerListById(Pageable pageable, Long id) {
         Page<InquiryAnswer> inquiryAnswers = inquiryAnswerRepository.findAnswersByInquiryId_QueryDSL(pageable, id);
         List<InquiryAnswerDTO> inquiryAnswerLists = inquiryAnswers.get().map(this::toInquiryAnswerDTO).collect(Collectors.toList());
         return new PageImpl<>(inquiryAnswerLists, pageable, inquiryAnswers.getTotalElements());
-    }
-
-//    마이페이지 문의내역 목록
-    @Override
-    public Page<InquiryDTO> getInquiryListByMemberId(Pageable pageable, Long memberId) {
-        Page<Inquiry> inquiries = inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(pageable, memberId);
-        List<InquiryDTO> inquiryDTOList = inquiries.get().map(this::toInquiryDTO).collect(Collectors.toList());
-        return new PageImpl<>(inquiryDTOList, pageable, inquiries.getTotalElements());
     }
 
     @Override

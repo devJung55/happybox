@@ -1,11 +1,14 @@
 package com.app.happybox.entity.board;
 
+import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.type.DonateType;
 import com.app.happybox.entity.user.Welfare;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 기본 게시판
@@ -25,10 +28,15 @@ public class DonationBoard extends Board {
     @JoinColumn
     private Welfare welfare;
 
-    public DonationBoard(String boardTitle, String boardContent, DonateType donateType, String donateLocation) {
+    /* 기부 파일 List */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "donationBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<BoardFile> donationBoardFiles = new ArrayList<>();
+
+    public DonationBoard(String boardTitle, String boardContent, DonateType donateType, String donateLocation, List<BoardFile> donationBoardFiles) {
         super(boardTitle, boardContent);
         this.donateType = donateType;
         this.donateLocation = donateLocation;
+        this.donationBoardFiles = donationBoardFiles;
     }
 
     public void setWelfare(Welfare welfare) {

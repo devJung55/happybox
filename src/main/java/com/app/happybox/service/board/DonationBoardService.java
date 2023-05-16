@@ -32,7 +32,7 @@ public interface DonationBoardService {
                 .welfarePoint(donationBoard.getWelfare().getWelfarePointTotal())
                 .boardTitle(donationBoard.getBoardTitle())
                 .boardContent(donationBoard.getBoardContent())
-                .boardFiles(donationBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .donationBoardFiles(donationBoard.getDonationBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }
 

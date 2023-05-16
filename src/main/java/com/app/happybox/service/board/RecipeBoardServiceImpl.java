@@ -49,8 +49,11 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     }
 
     @Override
-    public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL() {
-        return null;
+    public List<RecipeBoardDTO> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL() {
+        return recipeBoardRepository.findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL()
+                .stream()
+                .map(this::recipeBoardToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override

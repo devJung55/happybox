@@ -23,7 +23,7 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
         List<DonationBoard> donationBoards = query.select(donationBoard)
                 .from(donationBoard)
                 .join(donationBoard.welfare).fetchJoin()
-                .join(donationBoard.boardFiles).fetchJoin()
+                .join(donationBoard.donationBoardFiles).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -35,7 +35,7 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
         return query.select(donationBoard)
                 .from(donationBoard)
                 .join(donationBoard.welfare)
-                .join(donationBoard.boardFiles).fetchJoin()
+                .join(donationBoard.donationBoardFiles).fetchJoin()
                 .orderBy(donationBoard.createdDate.desc())
                 .limit(3L)
                 .fetch();
