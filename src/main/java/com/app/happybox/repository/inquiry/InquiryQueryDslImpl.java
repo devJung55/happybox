@@ -22,6 +22,8 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
     public Page<Inquiry> findInquiryListByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<Inquiry> inquiryList = query.select(inquiry)
                 .from(inquiry)
+                .leftJoin(inquiry.inquiryFiles).fetchJoin()
+                .join(inquiry.user).fetchJoin()
                 .where(inquiry.user.id.eq(memberId))
                 .orderBy(inquiry.id.desc())
                 .offset(pageable.getOffset())

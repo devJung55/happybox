@@ -33,26 +33,19 @@
     <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
     <section id="contents" class="container">
         <div class="content-wrap">
-
             <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
-
             <div class="frame-sm">
-
                 <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
-
                 <div class="frame-right">
                     <div class="frame-cnt-inner">
                         <div class="menu-title-area" style="border-bottom: 1px solid #666666;">
                             <h3 class="title-menu" style="margin-bottom: 5px;">게시물</h3>
                         </div><!--// menu-title-area -->
-
                         <div class="article__wrap"></div><!--// list append -->
                     </div>
-
-                    <div class="page-bottom"><!-- // 페이징 -->
+                    <div class="page-bottom">
                         <div class="pagination mt20" style="margin-top: 30px;"></div><!--// pagination -->
                     </div>
-
                 </div>
             </div>
         </div>
