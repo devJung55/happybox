@@ -32,6 +32,9 @@ public class Subscription extends Period {
     @ColumnDefault(value = "0")
     private Integer subscriptionPrice;
 
+    @NotNull
+    private String subscriptionContent;
+
     /* ----- 반정규화 ----- */
 
     // 구독 좋아요 갯수 (조회가 많기 때문에 컬럼으로 추가했음)
@@ -74,9 +77,11 @@ public class Subscription extends Period {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
     private List<SubscriptionLike> subscriptionLikes = new ArrayList<>();
 
-    public Subscription(String subscriptionTitle, Integer subscriptionPrice) {
+    @Builder
+    public Subscription(String subscriptionTitle, Integer subscriptionPrice, String subscriptionContent) {
         this.subscriptionTitle = subscriptionTitle;
         this.subscriptionPrice = subscriptionPrice;
+        this.subscriptionContent = subscriptionContent;
     }
 
     public void setWelfare(Welfare welfare) {
@@ -98,4 +103,6 @@ public class Subscription extends Period {
     public void setOrderCount(Long orderCount) {
         this.orderCount = orderCount;
     }
+
+
 }

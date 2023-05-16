@@ -1,7 +1,9 @@
 package com.app.happybox.service.user;
 
 import com.app.happybox.domain.user.MemberDTO;
+import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
+import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
 import org.springframework.data.domain.Page;
@@ -25,7 +27,7 @@ public interface WelfareService {
     public Optional<Welfare> getDetail(Long welfareId);
 
     //    회원가입
-    public void join(WelfareDTO welfareDTO, PasswordEncoder passwordEncoder);
+    public void join(WelfareDTO welfareDTO, SubscriptionWelFareDTO subscriptionWelFareDTO, PasswordEncoder passwordEncoder);
 
     //    아이디 중복검사
     public boolean existsByUserId(String userId);
@@ -50,6 +52,14 @@ public interface WelfareService {
                 .userStatus(welfareDTO.getUserStatus())
                 .welfareName(welfareDTO.getWelfareName())
                 .welfarePointTotal(welfareDTO.getWelfarePointTotal())
+                .build();
+    }
+
+    default Subscription toSubscriptionEntity(SubscriptionWelFareDTO subscriptionWelFareDTO){
+        return Subscription.builder()
+                .subscriptionContent(subscriptionWelFareDTO.getSubscriptionContent())
+                .subscriptionPrice(subscriptionWelFareDTO.getSubscriptionPrice())
+                .subscriptionTitle(subscriptionWelFareDTO.getSubscriptionTitle())
                 .build();
     }
 

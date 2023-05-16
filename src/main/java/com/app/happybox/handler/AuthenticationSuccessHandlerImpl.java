@@ -19,7 +19,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     private static final String REDIRECT_URL = "/main/welfare";
     private static final String REDIRECT_URL_FOR_MEMBER = "/main/welfare";
     private static final String REDIRECT_URL_FOR_WELFARE = "/main/welfare";
-    private static final String REDIRECT_URL_FOR_DISTRIBUTOR = "/main/welfare";
+    private static final String REDIRECT_URL_FOR_DISTRIBUTOR = "/main/product";
     private static final String REDIRECT_URL_FOR_ADMIN = "/admin/member";
 
 

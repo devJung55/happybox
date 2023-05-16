@@ -16,4 +16,22 @@ public class UserServiceImpl implements UserService {
     public void deleteByMemberId(Long userId) {
         userRepository.deleteById(userId);
     }
+
+//    아이디 중복검사
+    @Override
+    public Boolean existsUserByUserId(String userId) {
+        return userRepository.existsUserByUserId(userId);
+    }
+
+//    이메일 중복검사
+    @Override
+    public Boolean existsUserByUserEmail(String userEmail) {
+        return userRepository.existsUserByUserEmail(userEmail);
+    }
+
+//    휴대폰 중복검사
+    @Override
+    public Boolean existsUserByUserPhoneNumber(String userPhoneNumber) {
+        return userRepository.existsUserByUserPhoneNumber(userPhoneNumber);
+    }
 }
