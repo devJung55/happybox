@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -34,14 +35,18 @@ public class WelfareController {
     private final FoodCalendarService foodCalendarService;
 
     @GetMapping("list")
-    public String goWelfareList() {
+    public String goWelfareList(Model model) {
+        model.addAttribute("orderCount", subscriptionService.findByOrderCount(4L));
+        model.addAttribute("thisMonth", subscriptionService.findAllBetweenDate(LocalDateTime.now()));
+        model.addAttribute("likeCount", subscriptionService.findTop3ByLikeCount());
+
         return "welfare/welfareList";
     }
 
     @GetMapping("list/search")
     @ResponseBody
-    public Page<SubscriptionDTO> getSearchResult(@PageableDefault(page = 1, size = 8) Pageable pageable, SubscriptionSearchDTO searchDTO) {
-        return subscriptionService.findBySearch(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), searchDTO);
+    public Page<SubscriptionDTO> getSearchResult(@PageableDefault(page = 1, size = 8) Pageable pageable, SubscriptionSearchDTO subscriptionSearchDTO) {
+        return subscriptionService.findBySearch(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), subscriptionSearchDTO);
     }
 
     @GetMapping("detail/{id}")

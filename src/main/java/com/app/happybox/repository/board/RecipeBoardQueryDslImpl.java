@@ -22,7 +22,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
         List<RecipeBoard> recipeBoards = query.select(recipeBoard)
                 .from(recipeBoard)
                 .join(recipeBoard.member).fetchJoin()
-                .join(recipeBoard.boardFiles).fetchJoin()
+                .leftJoin(recipeBoard.boardFiles).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -75,9 +75,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL() {
         List<RecipeBoard> recipeBoards = query.select(recipeBoard)
                 .from(recipeBoard)
-                .join(recipeBoard.boardFiles)
-                .fetchJoin()
-                .where(recipeBoard.boardFiles.any().fileRepresent.eq(FileRepresent.REPRESENT))
+                .leftJoin(recipeBoard.boardFiles).fetchJoin()
                 .orderBy(recipeBoard.recipeLikeCount.desc())
                 .limit(5L)
                 .fetch();

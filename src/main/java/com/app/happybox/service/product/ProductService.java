@@ -20,7 +20,7 @@ public interface ProductService {
     public List<ProductDTO> findTop8Recent();
 
 //    추천으로 조회
-    public List<ProductDTO> temp();
+    public List<ProductDTO> findTop8ReplyCount();
 
 //    상품 동적검색
     public Page<ProductDTO> findAllBySearch(Pageable pageable, ProductSearchDTO search);
