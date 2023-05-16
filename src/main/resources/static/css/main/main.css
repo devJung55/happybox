@@ -451,10 +451,6 @@ div.banner div {
 .rating-simply span {
     font-weight: 700;
 }
-.rating-simply .score::after {
-    content: "/";
-    margin-left: 2px;
-}
 
 .main-article .time-sales-content-area .desc-bottom .tit {
     margin: 6px 0 8px;

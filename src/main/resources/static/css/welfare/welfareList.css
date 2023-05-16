@@ -244,7 +244,6 @@
 }
 
 .top-title .tit .txt {
-    margin-left: 20px;
     display: inline-block;
     vertical-align: middle;
     word-break: break-all;
@@ -403,6 +402,7 @@ input-group-wrap.line-type .btn-search {
 }
 
 .btn-search img{
+    opacity: 0.5;
     width: 23px;
     height: 23px;
     vertical-align: middle;
@@ -534,17 +534,42 @@ input[type="checkbox"], input[type="radio"] {
     text-align: center;
 }
 
-.pagination > a {
+.btn-page {
     height: 25px;
     padding: 0 1px;
     margin: 0 8px 0;
     color: #999;
 }
 
+#currentPage {
+    font-weight: 700;
+    color: #333;
+}
+
+span.btn-page {
+    user-select: none;
+}
+
+a.btn-page {
+    cursor: pointer;
+}
+
+.btn-page span {
+    user-select: none;
+}
+
 .pagination > a.current, .pagination > a.on {
     border-bottom: 2px solid #FB5001;
     color: #FB5001;
     font-weight: 700;
+}
+
+.changePage {
+    cursor: pointer;
+}
+
+.changePage span {
+    user-select: none;
 }
 
 .page-bottom .right-area {

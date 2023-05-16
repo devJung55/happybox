@@ -77,7 +77,6 @@ class SubscriptionRepositoryTests {
 
         // when
         SubscriptionList.stream().map(Subscription::toString).forEach(log::info);
-        log.info("이번달 : " + currentMonth.toString());
 
         // then
     }
