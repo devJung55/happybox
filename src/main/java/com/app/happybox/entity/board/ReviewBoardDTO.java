@@ -9,9 +9,7 @@ import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.entity.user.Member;
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
@@ -19,7 +17,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter @ToString
+@ToString
+@Setter
+@Getter
 public class ReviewBoardDTO {
     private Long id;
 
@@ -41,8 +41,10 @@ public class ReviewBoardDTO {
 
     private Integer reviewBoardReplyCount;
 
+    private String welfareName;
+
     /*-- 파일 리스트 --*/
-    private List<BoardFileDTO> boardFiles;
+    private List<BoardFileDTO> reviewBoardFiles;
 
     /*-- 댓글 리스트 --*/
     private List<ReplyDTO> replies;
@@ -51,21 +53,21 @@ public class ReviewBoardDTO {
     private LocalDateTime updatedDate;
 
     public ReviewBoardDTO(){
-        this.boardFiles = new ArrayList<>();
+        this.reviewBoardFiles = new ArrayList<>();
     }
 
     @Builder
-    public ReviewBoardDTO(Long id, MemberDTO memberDTO, WelfareDTO welfareDTO, String boardTitle, String boardContent, LocalDate boardRegisterDate, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, List<BoardFileDTO> boardFiles, List<ReplyDTO> replies, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public ReviewBoardDTO(Long id, MemberDTO memberDTO, String boardTitle, String boardContent, LocalDate boardRegisterDate, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, String welfareName, List<BoardFileDTO> reviewBoardFiles, List<ReplyDTO> replies, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.memberDTO = memberDTO;
-        this.welfareDTO = welfareDTO;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.boardRegisterDate = boardRegisterDate;
         this.reviewRating = reviewRating;
         this.reviewLikeCount = reviewLikeCount;
         this.reviewBoardReplyCount = reviewBoardReplyCount;
-        this.boardFiles = boardFiles;
+        this.welfareName = welfareName;
+        this.reviewBoardFiles = reviewBoardFiles;
         this.replies = replies;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
@@ -73,10 +75,6 @@ public class ReviewBoardDTO {
 
     public void setMemberDTO(MemberDTO memberDTO) {
         this.memberDTO = memberDTO;
-    }
-
-    public void setWelfareDTO(WelfareDTO welfareDTO) {
-        this.welfareDTO = welfareDTO;
     }
 
 }

@@ -90,14 +90,17 @@ public class BoardController {
 
     //    리뷰 게시판 작성하기
     @GetMapping("review-board-insert")
-    public void goToReviewWrite(ReviewBoardDTO reviewBoardDTO) { }
+    public void goToReviewWrite(Model model) {
+        model.addAttribute("reviewBoard", new ReviewBoardDTO());
+    }
 
     @PostMapping("review-board-insert")
-    public RedirectView ReviewWrite(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO/*@AuthenticationPrincipal UserDetail userDetail*/) {
+    public RedirectView ReviewWrite(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO, List<BoardFileDTO> boardFiles) {
 //        Long memberId = userDetail.getId();
-        Long memberId = 7L;
+        Long memberId = 1L;
         reviewBoardService.write(reviewBoardDTO, memberId);
         log.info(reviewBoardDTO.toString());
+        log.info(reviewBoardDTO.getReviewBoardFiles().toString());
         return new RedirectView("/user-board/review-board-list");
     }
 

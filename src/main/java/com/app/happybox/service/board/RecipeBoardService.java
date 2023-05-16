@@ -47,7 +47,7 @@ public interface RecipeBoardService {
                 .recipeBoardContent(recipeBoard.getBoardContent())
                 .likeCount(recipeBoard.getRecipeLikeCount())
                 .replyCount(recipeBoard.getRecipeBoardReplyCount())
-                .boardFiles(recipeBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .boardFiles(recipeBoard.getRecipeBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }
 
@@ -69,7 +69,7 @@ public interface RecipeBoardService {
                 .recipeBoardTitle(recipeBoard.getBoardTitle())
                 .recipeBoardContent(recipeBoard.getBoardContent())
                 .recipeBoardRegisterDate(recipeBoard.getCreatedDate())
-                .boardFiles(recipeBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .boardFiles(recipeBoard.getRecipeBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }
 }

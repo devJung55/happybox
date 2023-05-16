@@ -1,11 +1,9 @@
 package com.app.happybox.entity.board;
 
+import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.reply.RecipeBoardReply;
 import com.app.happybox.entity.user.Member;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -40,6 +38,23 @@ public class RecipeBoard extends Board {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<RecipeBoardLike> recipeBoardLikes = new ArrayList<>();
 
+    /* 레시피 파일 List */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<BoardFile> recipeBoardFiles = new ArrayList<>();
+
+    @Builder
+    public RecipeBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, Integer recipeLikeCount, Integer recipeBoardReplyCount, Member member, List<RecipeBoardReply> recipeBoardReplies, List<RecipeBoardLike> recipeBoardLikes, List<BoardFile> recipeBoardFiles) {
+        super(id, boardTitle, boardContent, boardFiles);
+        this.recipeLikeCount = recipeLikeCount;
+        this.recipeBoardReplyCount = recipeBoardReplyCount;
+        this.member = member;
+        this.recipeBoardReplies = recipeBoardReplies;
+        this.recipeBoardLikes = recipeBoardLikes;
+        this.recipeBoardFiles = recipeBoardFiles;
+    }
+
+
+    
     public RecipeBoard(String boardTitle, String boardContent) {
         super(boardTitle, boardContent);
     }
