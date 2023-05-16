@@ -2,6 +2,7 @@ package com.app.happybox.controller.order;
 
 import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.domain.OrderInfoDTO;
+import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.service.order.ProductOrderService;
 import com.app.happybox.service.order.SubscriptionOrderService;
 import lombok.RequiredArgsConstructor;
