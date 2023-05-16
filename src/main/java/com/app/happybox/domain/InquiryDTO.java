@@ -21,4 +21,6 @@ public class InquiryDTO {
     private InquiryType inquiryType;
     private InquiryStatus inquiryStatus;
     private List<InquiryFileDTO> inquiryFileDTOS;
+
+    private InquiryAnswerDTO inquiryAnswerDTO;
 }

@@ -46,7 +46,7 @@ public class MypageController {
     @ResponseBody
     @GetMapping("member/inquiry-list")
     public Page<InquiryDTO> getInquiryList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
-        Page<InquiryDTO> inquiries = inquiryService.getListByMemberId(PageRequest.of(page - 1, 5), memberId);
+        Page<InquiryDTO> inquiries = inquiryService.getListByMemberId(PageRequest.of(page - 1, 8), memberId);
         return inquiries;
     }
 

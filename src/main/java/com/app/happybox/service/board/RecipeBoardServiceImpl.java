@@ -4,6 +4,7 @@ import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.repository.board.RecipeBoardRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Qualifier("recipeBoard")
@@ -39,7 +41,6 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     public Page<RecipeBoardDTO> getListByMemberId(Pageable pageable, Long memberId) {
         Page<RecipeBoard> recipeBoardList = recipeBoardRepository.findRecipeBoardListByMemberIdWithPaging_QueryDSL(pageable, memberId);
         List<RecipeBoardDTO> recipeBoardDTOList = recipeBoardList.get().map(this::mypageRecipeBoardToDTO).collect(Collectors.toList());
-
         return new PageImpl<>(recipeBoardDTOList, pageable, recipeBoardList.getTotalElements());
     }
 
