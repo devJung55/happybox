@@ -69,10 +69,10 @@ public class InquiryRepositoryTests {
     @Test
     public void findInquiryListByMemberIdWithPaging_QueryDSLTest() {
         inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(
-                PageRequest.of(0, 5), 1L).stream().forEach(v -> {
-                    log.info(v.getInquiryTitle());
-                    log.info(v.getInquiryContent());
-                    log.info(v.getInquiryFiles().toString());
+                PageRequest.of(1, 5), 1L).stream().forEach(v -> {
+            log.info(v.getInquiryTitle());
+            log.info(v.getInquiryContent());
+            log.info(v.getInquiryFiles().toString());
         });
     }
 
@@ -106,7 +106,11 @@ public class InquiryRepositoryTests {
 
     @Test
     public void 후() {
-        inquiryService.getListByMemberId(PageRequest.of(0, 5), 1L)
-                .stream().map(InquiryDTO::toString).forEach(log::info);
+//        inquiryRepository.findAll().stream().forEach(v -> log.info(v.toString()));
+        inquiryRepository.findInquiryListByMemberIdWithPaging_QueryDSL(PageRequest.of(0, 10), 1L)
+                .stream().forEach(v -> log.info(v.toString()));
+
+//        inquiryService.getListByMemberId(PageRequest.of(2, 5), 1L)
+//                .stream().map(InquiryDTO::toString).forEach(log::info);
     }
 }

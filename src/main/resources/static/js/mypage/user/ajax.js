@@ -16,11 +16,11 @@ let myPageService = (function() {
             url: "/mypage/member/inquiry-list/",
             data: {"page": page, "memberId": memberId},
             success: function(inquiries) {
-                console.log("success");
                 showInquiryList(inquiries);
             }
         })
     }
+
     return {recipeBoardListAjax: recipeBoardListAjax, inquiryListAjax: inquiryListAjax}
 }());
 
