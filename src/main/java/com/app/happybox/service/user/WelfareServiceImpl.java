@@ -49,6 +49,7 @@ public class WelfareServiceImpl implements WelfareService {
         welfareDTO.setUserPassword(passwordEncoder.encode(welfareDTO.getUserPassword()));
         welfareDTO.setUserRole(Role.WELFARE);
         welfareDTO.setUserStatus(UserStatus.REGISTERED);
+        welfareDTO.setWelfarePointTotal(1000);
         welfareRepository.save(toWelfareEntity(welfareDTO));
     }
 
