@@ -44,7 +44,7 @@ public class ReviewBoardDTO {
     private String welfareName;
 
     /*-- 파일 리스트 --*/
-    private List<BoardFileDTO> reviewBoardFiles;
+    private List<BoardFileDTO> reviewBoardFiles = new ArrayList<>();
 
     /*-- 댓글 리스트 --*/
     private List<ReplyDTO> replies;

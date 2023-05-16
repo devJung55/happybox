@@ -2,6 +2,7 @@ package com.app.happybox.service.board;
 
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
+import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.exception.BoardNotFoundException;
@@ -14,6 +15,7 @@ import com.app.happybox.repository.user.WelfareRepository;
 import com.app.happybox.type.FileRepresent;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Qualifier("reviewBoard")
+@Slf4j
 public class ReviewBoardServiceImpl implements ReviewBoardService {
     private final ReviewBoardRepository reviewBoardRepository;
     private final MemberRepository memberRepository;
@@ -39,7 +42,8 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         return reviewBoardToDTO(reviewBoard);
     }
 
-    @Override @Transactional(rollbackFor = Exception.class)
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public void write(ReviewBoardDTO reviewBoardDTO, Long memberId) {
         List<BoardFileDTO> boardFileDTOS = reviewBoardDTO.getReviewBoardFiles();
         // 아이디 조회 실패 시 Exception
@@ -50,16 +54,26 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         reviewBoard.setMember(member);
 
         reviewBoardRepository.save(reviewBoard);
-        if(boardFileDTOS != null){
-            for (int i = 0; i < boardFileDTOS.size(); i++) {
-                if(i == 0){
-                    boardFileDTOS.get(i).setFileRepresent(FileRepresent.REPRESENT);
-                }else {
-                    boardFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
-                }
-                boardFileDTOS.get(i).setReviewBoardDTO(reviewBoardToDTO(getCurrentSequence()));
-                boardFileRepository.save(toBoardFileEntity(boardFileDTOS.get(i)));
+
+        int count = 0;
+
+        for (int i = 0; i < boardFileDTOS.size(); i++) {
+            if(boardFileDTOS.get(i) == null) continue;
+
+            if (count == 0) {
+                boardFileDTOS.get(i).setFileRepresent(FileRepresent.REPRESENT);
+                count++;
+            } else {
+                boardFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
             }
+
+            boardFileDTOS.get(i).setReviewBoardDTO(reviewBoardToDTO(getCurrentSequence()));
+            // 엔티티
+            BoardFile boardFile = toBoardFileEntity(boardFileDTOS.get(i));
+
+            boardFile.setReviewBoard(reviewBoard);
+
+            boardFileRepository.save(boardFile);
         }
     }
 

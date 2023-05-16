@@ -49,8 +49,11 @@ public interface ReviewBoardService {
                 .boardContent(reviewBoard.getBoardContent())
                 .welfareName(reviewBoard.getWelfareName())
                 .memberDTO(toMemberDTO(reviewBoard.getMember()))
-                .boardRegisterDate(LocalDate.now())
+                .boardRegisterDate(reviewBoard.getUpdatedDate().toLocalDate())
                 .reviewBoardFiles(boardFileToDTO(reviewBoard.getReviewBoardFiles()))
+                .reviewLikeCount(reviewBoard.getReviewLikeCount())
+                .reviewBoardReplyCount(reviewBoard.getReviewBoardReplyCount())
+                .reviewRating(reviewBoard.getReviewRating())
                 .build();
     }
 
@@ -92,8 +95,6 @@ public interface ReviewBoardService {
                 .boardTitle(reviewBoardDTO.getBoardTitle())
                 .boardContent(reviewBoardDTO.getBoardContent())
                 .welfareName(reviewBoardDTO.getWelfareName())
-                .reviewBoardFiles(reviewBoardDTO.getReviewBoardFiles().stream().map(file -> toBoardFileEntity(file)).collect(Collectors.toList()))
-//                .member(toMemberEntity(reviewBoardDTO.getMemberDTO()))
                 .build();
     }
 
@@ -131,7 +132,6 @@ public interface ReviewBoardService {
 
     default BoardFile toBoardFileEntity(BoardFileDTO boardFileDTO){
         return BoardFile.builder()
-                .id(boardFileDTO.getId())
                 .fileUuid(boardFileDTO.getFileUuid())
                 .filePath(boardFileDTO.getFilePath())
                 .fileOrgName(boardFileDTO.getFileOrgName())

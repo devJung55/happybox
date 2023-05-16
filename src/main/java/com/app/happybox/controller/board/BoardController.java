@@ -95,13 +95,12 @@ public class BoardController {
     }
 
     @PostMapping("review-board-insert")
-    public RedirectView ReviewWrite(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO, List<BoardFileDTO> boardFiles) {
-//        Long memberId = userDetail.getId();
+    @ResponseBody
+    public void ReviewWrite(@RequestBody ReviewBoardDTO reviewBoardDTO) {
         Long memberId = 1L;
         reviewBoardService.write(reviewBoardDTO, memberId);
-        log.info(reviewBoardDTO.toString());
-        log.info(reviewBoardDTO.getReviewBoardFiles().toString());
-        return new RedirectView("/user-board/review-board-list");
+
+        log.info("=====================" + reviewBoardDTO);
     }
 
     //    레시피 게시판 리스트 (최신순)

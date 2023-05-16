@@ -1,5 +1,12 @@
 /* recipe-board-insert.html */
 
+const insertData = {
+    boardTitle:"",
+    boardContent: "",
+    welfareName: "",
+    reviewBoardFiles: new Array(3)
+}
+
 $(function() {
     $(".rating-point img").each(function(index) {
       $(this).on("click", function() {
@@ -28,7 +35,7 @@ $fileAttachBtn.on("click", function () {
     $fileInput.click();
 });
 
-const fileAjax = (data, callback) => {
+const fileAjax = (data, index) => {
     $.ajax({
         url: '/image/upload',
         data: data,
@@ -37,10 +44,17 @@ const fileAjax = (data, callback) => {
         contentType: false,
         success: function (result) {
             if(result){
-                callback(result);
+                let file = new Object();
+
+                file.filePath = result.paths[0];
+                file.fileUuid = result.uuids[0];
+                file.fileOrgName = result.orgNames[0];
+
+                insertData.reviewBoardFiles[index] = file;
+                console.log(insertData);
             }
         }
-    })
+    });
 }
 
 $imgFile.each((i, e) => {
@@ -51,9 +65,7 @@ $imgFile.each((i, e) => {
 
         formData.append('file', file);
 
-        fileAjax(formData, (result) => {
-            console.log(result);
-        });
+        fileAjax(formData, i);
 
         $imgDiv.eq(i).css('display', 'block');
         // 기존의 이미지 숨김 처리
@@ -77,74 +89,27 @@ $imgFile.each((i, e) => {
     });
 });
 
-// FileList.prototype.forEach = Array.prototype.forEach;
-//
-// const $imgDiv = $('.attach-img');
-// let files = [];
-// if(fileDTOS != null && fileDTOS != undefined){
-//     fileDTOS.forEach((file, i) => {
-//         files.push(file);
-//     });
-// }
-//
-// $("input[type=file]").on("change", function () {
-//     const $files = $("input[type=file]")[0].files;
-//     let formData = new FormData();
-//
-//     $($files).each((i, file) => {
-//         files.push(file);
-//     })
-//
-//     files.forEach((file, e) => {
-//         formData.append("file", file);
-//     })
-//
-//
-//     $.ajax({
-//         url: "/image/upload",
-//         type: "post",
-//         data: formData,
-//         contentType: false,
-//         processData: false,
-//         success: function (uuids) {
-//             globalThis.uuids = uuids;
-//             console.log(uuids);
-//             $files.forEach((file, i) => {
-//                 if (file.type.startsWith("image")) {
-//                     let text = `
-//                         <img
-//                                     src="/image/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}"
-//                                     style="width: 68px; height: 68px"
-//                                   /><button
-//                                     type="button"
-//                                     class="btn-x-xs2 btn_del"
-//                                   >
-//                                     <i class="ico-x-white"></i><span class="blind">삭제</span>
-//                                   </button>
-//                 `;
-//                     $imgDiv.append(text);
-//                 }
-//             });
-//         }
-//     });
-// });
-//
-//
-// /*****************************************************/
-// function leftPad(value) {
-//     if (value >= 10) {
-//         return value;
-//     }
-//
-//     return `0${value}`;
-// }
-//
-// function toStringByFormatting(source, delimiter = '/') {
-//     const year = source.getFullYear();
-//     const month = leftPad(source.getMonth() + 1);
-//     const day = leftPad(source.getDate());
-//
-//     return [year, month, day].join(delimiter);
-// }
+$("form[name='form']").on("submit", function (e) {
+    e.preventDefault();
+
+    let boardTitle = $("input[name='boardTitle']").val();
+    let welfareName = $("input[name='welfareName']").val();
+    let boardContent = $("textarea[name='boardContent']").val();
+
+    insertData.boardTitle = boardTitle;
+    insertData.welfareName = welfareName;
+    insertData.boardContent = boardContent;
+
+    $.ajax({
+        url: '/user-board/review-board-insert',
+        data: JSON.stringify(insertData),
+        contentType: "application/json; charset=utf-8",
+        method: 'post',
+        success: function (result) {
+            // redirect 경로
+            location.href = "/user-board/review-board-list";
+        }
+    })
+});
 
 
