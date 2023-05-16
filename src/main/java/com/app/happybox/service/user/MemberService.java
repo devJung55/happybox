@@ -56,17 +56,20 @@ public interface MemberService extends UserDetailsService {
 
     //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){
-        return Member.builder().userId(memberDTO.getUserId())
-                .userEmail(memberDTO.getUserEmail())
-                .userPassword(memberDTO.getUserPassword())
-                .userPhoneNumber(memberDTO.getUserPhoneNumber())
-                .deliveryPhoneNumber(memberDTO.getDeliveryPhoneNumber())
-                .address(memberDTO.getUserAddress())
-                .deliveryName(memberDTO.getDeliveryName())
-                .memberDeliveryAddress(memberDTO.getMemberDeliveryAddress())
-                .memberBirth(LocalDate.parse(memberDTO.getMemberBirth()))
-                .memberName(memberDTO.getMemberName())
+        return Member.builder()
+                .address(memberDTO.getAddress())
                 .memberGender(memberDTO.getMemberGender())
+                .memberName(memberDTO.getMemberName())
+                .memberBirth(memberDTO.getMemberBirth())
+                .memberDeliveryAddress(memberDTO.getMemberDeliveryAddress())
+                .deliveryName(memberDTO.getDeliveryName())
+                .deliveryPhoneNumber(memberDTO.getDeliveryPhoneNumber())
+                .userPhoneNumber(memberDTO.getUserPhoneNumber())
+                .userPassword(memberDTO.getUserPassword())
+                .userEmail(memberDTO.getUserEmail())
+                .userId(memberDTO.getUserId())
+                .userRole(memberDTO.getUserRole())
+                .userStatus(memberDTO.getUserStatus())
                 .build();
     }
 

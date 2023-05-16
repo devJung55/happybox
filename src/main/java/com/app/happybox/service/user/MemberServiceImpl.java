@@ -33,6 +33,10 @@ public class MemberServiceImpl implements MemberService {
     public void join(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
         memberDTO.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword()));
         memberDTO.setUserRole(Role.MEMBER);
+        memberDTO.setMemberDeliveryAddress(memberDTO.getAddress());
+        memberDTO.setDeliveryName(memberDTO.getMemberName());
+        memberDTO.setDeliveryPhoneNumber(memberDTO.getUserPhoneNumber());
+        memberDTO.setUserStatus(UserStatus.REGISTERED);
         memberRepository.save(toMemberEntity(memberDTO));
     }
 

@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>복지관 회원가입</title>
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../static/css/global/global.css" />
-    <link rel="stylesheet" href="../../static/css/member/member.css" />
-    <link rel="stylesheet" href="../../static/css/member/join.css" />
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css" />
+    <link rel="stylesheet" href="/css/member/member.css" />
+    <link rel="stylesheet" href="/css/member/join.css" />
   </head>
   <body>
     <header></header>
@@ -19,7 +19,7 @@
             <div id="content-wrap"></div>
         </div>
     </div>
-      <form id="join-general-form" name="join-general-form" method="post" accept-charset="UTF-8">
+      <form th:action="@{/welfare/join}" th:method="post" id="join-general-form" name="welfareDTO" autocomplete="off"  accept-charset="UTF-8" th:object="${welfareDTO}">
         <div class="join-container join-container2" >
           <div class="join-area">
             <h2 class="join-title">회원가입</h2>
@@ -36,10 +36,9 @@
                   <input
                     type="text"
                     id="member-join-general-id-text"
-                    name="member-join-general-id-text"
+                    name="userId"
                     class="input-text w571 join-input"
                     placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
-                    value=""
                   />
                   <span class="input-group-btn"
                     ><button
@@ -68,7 +67,7 @@
                   <input
                     type="password"
                     id="member-join-general-pw-text"
-                    name="member-join-general-pw-text"
+                    name="userPassword"
                     class="input-text w571 join-input"
                     placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
                   />
@@ -82,7 +81,7 @@
                   <input
                     type="password"
                     id="member-join-general-pw-confirm-text"
-                    name="member-join-general-pw-confirm-text"
+                    name="userPasswordCheck"
                     class="input-text w571 join-input"
                     placeholder="비밀번호 확인"
                   />
@@ -102,10 +101,9 @@
                   <input
                     type="text"
                     id="member-general-join-name-text"
-                    name="member-general-join-name-text"
+                    name="welfareName"
                     class="input-text w571 join-input"
                     placeholder="복지관명 입력"
-                    value=""
                   />
                 </div>
                 <p class="valid error help" id="pw-error-text1" style="display: none">
@@ -122,7 +120,7 @@
                   <input
                     type="text"
                     id="member-general-join-tel-text"
-                    name="member-general-join-tel-text"
+                    name="userPhoneNumber"
                     class="input-text w571 join-input"
                     placeholder="전화번호"
                     value=""
@@ -142,10 +140,9 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="member-general-join-address-text"
+                    name="address.firstAddress"
                     class="input-text w571"
                     placeholder="주소"
-                    value=""
                     readonly
                   />
                 </div>
@@ -163,7 +160,7 @@
                   <input
                     type="text"
                     id="zone-code"
-                    name="member-general-join-detail-address-text"
+                    name="address.zipcode"
                     class="input-text w571"
                     placeholder="우편번호"
                     readonly
@@ -183,10 +180,9 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="member-general-join-detail-address-text"
+                    name="address.addressDetail"
                     class="input-text w571"
                     placeholder="상세주소"
-                    value=""
                   />
                 </div>
                 <p class="valid error" id="pw-error-text1" style="display: none">
@@ -203,10 +199,9 @@
                   <input
                     type="text"
                     id="member-join-general-email-text"
-                    name="member-join-general-email-text"
+                    name="userEmail"
                     class="input-text w571 join-input"
                     placeholder="이메일 주소"
-                    value=""
                   />
                   <p class="valid error help" id="pw-error-text1" style="display: none">
                   </p>
@@ -216,7 +211,7 @@
             </fieldset>
             <div class="btn-bottom-area">
               <button
-                type="button"
+                type="submit"
                 id="member-join-general-submit-btn"
                 class="btn-basic-lg2 btn-dim btn-primary"
                 onclick="send()"
@@ -235,5 +230,5 @@
   </body>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="../../static/js/join/company-join.js"></script>
+  <script src="/js/join/company-join.js"></script>
 </html>

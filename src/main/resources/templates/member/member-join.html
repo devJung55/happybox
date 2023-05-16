@@ -874,7 +874,7 @@
                   <input
                     type="text"
                     id="member-join-general-id-text"
-                    name="memberDTO.userId"
+                    name="userId"
                     class="input-text w571 join-input"
                     placeholder="4~16자 이상 영문 또는 숫자만 사용 가능"
                   />
@@ -905,7 +905,7 @@
                   <input
                     type="password"
                     id="member-join-general-pw-text"
-                    name="memberDTO.userPassword"
+                    name="userPassword"
                     class="input-text w571 join-input"
                     placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"
                   />
@@ -939,7 +939,7 @@
                   <input
                     type="text"
                     id="member-general-join-name-text"
-                    name="memberDTO.memberName"
+                    name="memberName"
                     class="input-text w571 join-input"
                     placeholder="2자 이상 입력"
                   />
@@ -958,7 +958,7 @@
                   <input
                     type="text"
                     id="member-general-join-phone-text"
-                    name="memberDTO.userPhoneNumber"
+                    name="userPhoneNumber"
                     class="input-text w571"
                     placeholder="휴대폰 번호"
                     readonly
@@ -978,11 +978,10 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="memberDTO.userAddress"
+                    name="address.firstAddress"
                     class="input-text w571"
                     placeholder="주소"
                     readonly
-                    th:field="*{userAddress.firstAddress}"
                   />
                 </div>
                 <p class="valid error" id="pw-error-text1" style="display: none">
@@ -999,11 +998,10 @@
                   <input
                     type="text"
                     id="zone-code"
-                    name="memberDTO.memberAddress"
+                    name="address.zipcode"
                     class="input-text w571"
                     placeholder="우편번호"
                     readonly
-                    th:field="*{userAddress.zipcode}"
                   />
                 </div>
                 <p class="valid error" id="pw-error-text1" style="display: none">
@@ -1020,11 +1018,9 @@
                   <input
                     type="text"
                     id="address-kakao"
-                    name="memberDTO.userAddress"
+                    name="address.addressDetail"
                     class="input-text w571"
                     placeholder="상세주소"
-                    value=""
-                    th:field="*{userAddress.addressDetail}"
                   />
                 </div>
                 <p class="valid error" id="pw-error-text1" style="display: none">
@@ -1041,7 +1037,7 @@
                   <input
                     type="text"
                     id="member-join-general-email-text"
-                    name="memberDTO.userEmail"
+                    name="userEmail"
                     class="input-text w571 join-input"
                     placeholder="이메일 주소"
                     value=""
@@ -1062,7 +1058,7 @@
                   <input
                     type="text"
                     id="member-join-general-birthday-text"
-                    name="memberDTO.memberBirth"
+                    name="memberBirth"
                     class="input-text w571 join-input"
                     placeholder="생년월일 8자리"
                     value=""
@@ -1083,9 +1079,8 @@
                         type="radio"
                         id="member-join-general-gender-N"
                         class="radio"
-                        name="memberDTO.memberGender"
+                        name="memberGender"
                         value="NOT_SELECTED"
-                        th:checked="${memberGender == 'NOT_SELECTED'}"
                       /><label for="member-join-general-gender-N">선택안함</label>
                     </div>
                   </li>
@@ -1095,9 +1090,8 @@
                         type="radio"
                         id="member-join-general-gender-M"
                         class="radio"
-                        name="memberDTO.memberGender"
+                        name="memberGender"
                         value="MALE"
-                        th:checked="${memberGender == 'MALE'}"
                       /><label for="member-join-general-gender-M">남자</label>
                     </div>
                   </li>
@@ -1107,9 +1101,8 @@
                         type="radio"
                         id="member-join-general-gender-F"
                         class="radio"
-                        name="memberDTO.memberGender"
+                        name="memberGender"
                         value="FEMALE"
-                        th:checked="${memberGender == 'FEMALE'}"
                       /><label for="member-join-general-gender-F">여자</label>
                     </div>
                   </li>
