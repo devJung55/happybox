@@ -23,7 +23,6 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
         List<Inquiry> inquiryList = query.select(inquiry)
                 .from(inquiry)
                 .leftJoin(inquiry.inquiryFiles).fetchJoin()
-                .join(inquiry.user).fetchJoin()
                 .where(inquiry.user.id.eq(memberId))
                 .orderBy(inquiry.id.desc())
                 .offset(pageable.getOffset())

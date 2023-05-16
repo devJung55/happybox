@@ -24,7 +24,7 @@ public class OrderSubsciptionServiceImpl implements OrderSubsciptionService {
     @Override
     public Page<OrderSubscriptionDTO> getListByWelfareId(Pageable pageable, Long welfareId, String subscriberName) {
         Page<OrderSubscription> orderSubscriptions = orderSubscriptionRepository.findSubscriberListByWelfareIdDescWithPaging_QueryDSL(pageable, welfareId, subscriberName);
-        List<OrderSubscriptionDTO> orderSubscriptionDTOList = orderSubscriptions.get().map(this::adminToOrderSubscription).collect(Collectors.toList());
+        List<OrderSubscriptionDTO> orderSubscriptionDTOList = orderSubscriptions.get().map(this::adminToOrderSubscriptionDTO).collect(Collectors.toList());
 
         return new PageImpl<>(orderSubscriptionDTOList, pageable, orderSubscriptions.getTotalElements());
     }

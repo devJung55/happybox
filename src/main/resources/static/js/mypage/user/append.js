@@ -1,5 +1,6 @@
 const $append = $(".article__wrap");
 const $inquiryAppend = $(".inquiry__list__append");
+let memberId = 1;
 let page = 0;
 
 function showRecipeBoardList(recipeBoards) {
@@ -41,10 +42,8 @@ function showRecipeBoardList(recipeBoards) {
 
 function showInquiryList(inquiries) {
     let text = "";
-
     inquiries.content.forEach(inquiry => {
         const formattedDate = formatDate(new Date(inquiry.createdDate));
-
         text += `
                     <li class="border-bottom">
                         <a href="javascript:void(0)" class="title-div ui-accordion-click">
@@ -54,7 +53,7 @@ function showInquiryList(inquiries) {
                                 <span class="classify inquiry__title">${inquiry.inquiryTitle}</span>
                             </div>
                             <div class="right">
-                                <span class="date">${formatDate}</span>
+                                <span class="date">${formattedDate}</span>
                                 <img class="arrow-0deg" src="/img/mypage/inquiry-arrow.png" width="18" height="18">
                             </div>
                 
@@ -80,34 +79,12 @@ function showInquiryList(inquiries) {
                                     </div>
                                 </div>
                             </div>
-                
-                            <div class="answer">
-                                <div class="info">
-                                    <span class="name">닭대리</span>
-                                    <span class="date">2023.04.16</span>
-                                </div>
-                                <p class="txt">
-                                    <span style="white-space:pre-line">
-                                    안녕하세요.
-                                    다이어트 플랫폼, 랭킹닭컴입니다.
-                
-                                    문의주신 적립금의 유효기간의 경우 2024.04.12 까지 인것으로 확인됩니다.
-                                    이용에 참고 부탁드립니다.
-                                    감사합니다.
-                
-                                    앞으로도 지속적인 사랑 부탁드리며, 늘 행복하고 건강하시길 바랍니다.
-                                    문의사항을 남겨주시면 운영시간 내에 빠르게 안내 도와드리겠습니다.
-                
-                                    감사합니다.
-                                    </span>
-                                </p>
-                            </div>
                         </div>
                     </li>
                 `;
     });
-    displayPagination(inquiries.totalPages);
     $inquiryAppend.append(text);
+    displayPagination(inquiries.totalPages);
 }
 
 function displayPagination(totalPages) {
@@ -135,14 +112,8 @@ function displayPagination(totalPages) {
 
 $(".pagination").on("click", "a", function(e) {
     e.preventDefault();
-    $append.empty();
     const targetPage = $(this).text();
     page = parseInt(targetPage);
-    const url = window.location.pathname;
-
-    if(url == "/mypage/member/board") {
-        myPageService.recipeBoardListAjax(page);
-    } else if(url == "/mypage/member/inquiry"){
-        myPageService.inquiryListAjax(page);
-    };
+    $append.empty();
+    myPageService.recipeBoardListAjax(page);
 });
