@@ -3,7 +3,9 @@ package com.app.happybox.service.board;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.exception.BoardNotFoundException;
+import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.board.BoardFileRepository;
 import com.app.happybox.repository.board.ReviewBoardRepository;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
@@ -27,7 +29,6 @@ import java.util.stream.Collectors;
 public class ReviewBoardServiceImpl implements ReviewBoardService {
     private final ReviewBoardRepository reviewBoardRepository;
     private final MemberRepository memberRepository;
-    private final WelfareRepository welfareRepository;
     private final BoardFileRepository boardFileRepository;
 
     @Override
@@ -40,11 +41,15 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 
     @Override @Transactional(rollbackFor = Exception.class)
     public void write(ReviewBoardDTO reviewBoardDTO, Long memberId) {
-        List<BoardFileDTO> boardFileDTOS = reviewBoardDTO.getBoardFiles();
-        memberRepository.findById(memberId).ifPresent(
-                member -> reviewBoardDTO.setMemberDTO(toMemberDTO(member))
-        );
-        reviewBoardRepository.save(toReviewBoardEntity(reviewBoardDTO));
+        List<BoardFileDTO> boardFileDTOS = reviewBoardDTO.getReviewBoardFiles();
+        // 아이디 조회 실패 시 Exception
+        Member member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
+
+        // 게시판에 setMember
+        ReviewBoard reviewBoard = toReviewBoardEntity(reviewBoardDTO);
+        reviewBoard.setMember(member);
+
+        reviewBoardRepository.save(reviewBoard);
         if(boardFileDTOS != null){
             for (int i = 0; i < boardFileDTOS.size(); i++) {
                 if(i == 0){
@@ -52,7 +57,7 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
                 }else {
                     boardFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
                 }
-                boardFileDTOS.get(i).setBoard(getCurrentSequence());
+                boardFileDTOS.get(i).setReviewBoardDTO(reviewBoardToDTO(getCurrentSequence()));
                 boardFileRepository.save(toBoardFileEntity(boardFileDTOS.get(i)));
             }
         }

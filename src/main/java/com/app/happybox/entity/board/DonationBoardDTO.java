@@ -21,16 +21,16 @@ public class DonationBoardDTO {
     private String boardContent;
 
     /*-- 파일 리스트 --*/
-    List<BoardFileDTO> boardFiles;
+    List<BoardFileDTO> donationBoardFiles;
 
     @Builder
-    public DonationBoardDTO(Long id, String welfareName, String welfarePhone, Integer welfarePoint, String boardTitle, String boardContent, List<BoardFileDTO> boardFiles) {
+    public DonationBoardDTO(Long id, String welfareName, String welfarePhone, Integer welfarePoint, String boardTitle, String boardContent, List<BoardFileDTO> donationBoardFiles) {
         this.id = id;
         this.welfareName = welfareName;
         this.welfarePhone = welfarePhone;
         this.welfarePoint = welfarePoint;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
-        this.boardFiles = boardFiles;
+        this.donationBoardFiles = donationBoardFiles;
     }
 }

@@ -1,6 +1,9 @@
 package com.app.happybox.entity.file;
 
 import com.app.happybox.entity.board.Board;
+import com.app.happybox.entity.board.DonationBoard;
+import com.app.happybox.entity.board.RecipeBoard;
+import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.type.FileRepresent;
 import lombok.*;
 
@@ -19,17 +22,31 @@ public class BoardFile extends Files {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Board board;
+    private ReviewBoard reviewBoard;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private RecipeBoard recipeBoard;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private DonationBoard donationBoard;
 
     @Builder
-    public BoardFile(String filePath, String fileUuid, String fileOrgName, Long id, FileRepresent fileRepresent, Board board) {
+    public BoardFile(String filePath, String fileUuid, String fileOrgName, Long id, FileRepresent fileRepresent, ReviewBoard reviewBoard, RecipeBoard recipeBoard, DonationBoard donationBoard) {
         super(filePath, fileUuid, fileOrgName);
         this.id = id;
         this.fileRepresent = fileRepresent;
-        this.board = board;
+        this.reviewBoard = reviewBoard;
+        this.recipeBoard = recipeBoard;
+        this.donationBoard = donationBoard;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
+    public void setReviewBoard(ReviewBoard reviewBoard) {
+        this.reviewBoard = reviewBoard;
+    }
+
+    public  void setRecipeBoard(RecipeBoard recipeBoard) {
+        this.recipeBoard = recipeBoard;
     }
 }

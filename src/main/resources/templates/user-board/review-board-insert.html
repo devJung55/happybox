@@ -19,7 +19,9 @@
       <section id="contents" class="container">
         <div class="content-wrap">
           <div class="frame-sm">
-            <form th:action="@{/user-board/review-board-insert}" method="post"
+            <form th:action="@{/user-board/review-board-insert}"
+                  th:object="${reviewBoard}"
+                  method="post"
                   enctype="multipart/form-data" name="form" id="counselRegFrm">
               <div class="frame-right">
                 <div class="frame-cnt-inner">
@@ -48,7 +50,7 @@
                             <div class="input-group w-full">
                               <input
                                 type="text"
-                                name="boardTitle"
+                                th:field="*{boardTitle}"
                                 id="vQuestionTitle"
                                 title=""
                                 class="input-text"
@@ -69,7 +71,7 @@
                               <div class="input-group w-full">
                                 <input
                                   type="text"
-                                  name="welfareName"
+                                  th:field="*{welfareName}"
                                   id="vQuestionTitle"
                                   title=""
                                   class="input-text"
@@ -110,7 +112,7 @@
                               <textarea
                                 id="vQuestionCont"
                                 placeholder="내용을 입력하세요"
-                                name="boardContent"
+                                th:field="*{boardContent}"
                               ></textarea>
                               <div class="txt-count">
                                 <span id="counter">0</span> / <span class="total">1,000</span>
@@ -124,18 +126,19 @@
                           <td class="text-left">
                             <div class="file-add-boxes">
                               <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
-                                <label>
-                                <button type="button" class="btn-attach-thumb">
-                                  <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                </button>
+                                <label for="file">
+                                <div type="button" class="btn-attach-thumb">
+                                  <i class="ico-plus-xlg"></i>
+                                </div>
+                                </label>
                                 <input
                                   class="input_file"
+                                  id="file"
                                   name="imgFile"
                                   type="file"
                                   accept="image/*"
                                   style="display: none"
                                 />
-                                </label>
                                 <div class="attach-img" style="display: none;">
 
                                   <!-- 이미지 파일 들어가는곳 -->
