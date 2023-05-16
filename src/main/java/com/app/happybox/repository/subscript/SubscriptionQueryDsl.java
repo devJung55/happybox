@@ -13,11 +13,14 @@ public interface SubscriptionQueryDsl {
     //    최신 Top8
     public List<Subscription> findTop8OrderByDate_QueryDSL();
 
-//    판매순 Top N 조회
+    //    판매순 Top N 조회
     public List<Subscription> findTopNByOrderCountOrderByOrderCount_QueryDSL(Long limit);
 
     //    이번달 최신 Top3
     public List<Subscription> findTop3BetweenDateOrderByDateDesc_QueryDSL(LocalDateTime startDate, LocalDateTime endDate);
+
+//    좋아요 Top3
+    public List<Subscription> findTop3OrderByLikeCount();
 
     //    리뷰글 많은 순 조회 Top4
     public List<Subscription> findTopNOrderByReviewCount_QueryDSL(Long limit);

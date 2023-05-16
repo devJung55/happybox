@@ -5,6 +5,7 @@ import com.app.happybox.entity.reply.ReviewBoardReply;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -27,6 +28,9 @@ public class ReviewBoard extends Board {
 
     @ColumnDefault(value="0")
     private Integer reviewBoardReplyCount;
+
+    @NotNull
+    private String welfareName;
     /* ============= */
 
     /* 작성한 유저 */
@@ -34,10 +38,10 @@ public class ReviewBoard extends Board {
     @JoinColumn
     private Member member;
 
-    /* 리뷰할 복지관 */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private Welfare welfare;
+//    /* 리뷰할 복지관 */
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn
+//    private Welfare welfare;
 
     /* 게시글 댓글 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
@@ -47,32 +51,49 @@ public class ReviewBoard extends Board {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<ReviewBoardLike> reviewBoardLikes = new ArrayList<>();
 
-    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating, Member member, Welfare welfare) {
-        super(boardTitle, boardContent);
-        this.reviewRating = reviewRating;
-        this.member = member;
-        this.welfare = welfare;
-    }
+    /* 리뷰 파일 List */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<BoardFile> reviewBoardFiles = new ArrayList<>();
 
     @Builder
-    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, Member member, Welfare welfare, List<ReviewBoardReply> reviewBoardReplies, List<ReviewBoardLike> reviewBoardLikes) {
-        super(id, boardTitle, boardContent, boardFiles);
+    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> reviewBoardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, String welfareName, Member member, List<ReviewBoardReply> reviewBoardReplies, List<ReviewBoardLike> reviewBoardLikes) {
+        super(id, boardTitle, boardContent, reviewBoardFiles);
         this.reviewRating = reviewRating;
         this.reviewLikeCount = reviewLikeCount;
         this.reviewBoardReplyCount = reviewBoardReplyCount;
+        this.welfareName = welfareName;
         this.member = member;
-        this.welfare = welfare;
         this.reviewBoardReplies = reviewBoardReplies;
         this.reviewBoardLikes = reviewBoardLikes;
+        this.reviewBoardFiles = reviewBoardFiles;
     }
+
+    //    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating, Member member, Welfare welfare) {
+//        super(boardTitle, boardContent);
+//        this.reviewRating = reviewRating;
+//        this.member = member;
+//        this.welfare = welfare;
+//    }
+//
+//    @Builder
+//    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, Member member, Welfare welfare, List<ReviewBoardReply> reviewBoardReplies, List<ReviewBoardLike> reviewBoardLikes) {
+//        super(id, boardTitle, boardContent, boardFiles);
+//        this.reviewRating = reviewRating;
+//        this.reviewLikeCount = reviewLikeCount;
+//        this.reviewBoardReplyCount = reviewBoardReplyCount;
+//        this.member = member;
+//        this.welfare = welfare;
+//        this.reviewBoardReplies = reviewBoardReplies;
+//        this.reviewBoardLikes = reviewBoardLikes;
+//    }
 
     public void setMember(Member member) {
         this.member = member;
     }
 
-    public void setWelfare(Welfare welfare) {
-        this.welfare = welfare;
-    }
+//    public void setWelfare(Welfare welfare) {
+//        this.welfare = welfare;
+//    }
 
     public void setReviewLikeCount(Integer reviewLikeCount) {
         this.reviewLikeCount = reviewLikeCount;

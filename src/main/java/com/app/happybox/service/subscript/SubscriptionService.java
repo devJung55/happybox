@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,11 +24,17 @@ public interface SubscriptionService {
     //    리뷰 많은순 N개 조회
     public List<SubscriptionDTO> findByReviews(Long limit);
 
+    //    좋아요 많은순 3개 조회
+    public List<SubscriptionDTO> findTop3ByLikeCount();
+
     //    검색 조회
     public Page<SubscriptionDTO> findBySearch(Pageable pageable, SubscriptionSearchDTO searchDTO);
 
     //    상세 조회
     public SubscriptionDTO findByIdWithDetail(Long id);
+
+//    달(month)로 조회
+    public List<SubscriptionDTO> findAllBetweenDate(LocalDateTime dateTime);
 
     default SubscriptionDTO subscriptionToDTO(Subscription subscription, List<FoodDTO> foodList) {
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder()

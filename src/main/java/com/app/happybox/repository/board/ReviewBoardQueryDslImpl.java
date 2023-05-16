@@ -10,7 +10,6 @@ import org.springframework.data.domain.*;
 import java.util.List;
 import java.util.Optional;
 
-import static com.app.happybox.entity.board.QReviewBoard.*;
 import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 
 
@@ -23,8 +22,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         ReviewBoard reviewBoard = query.select(QReviewBoard.reviewBoard)
                 .from(QReviewBoard.reviewBoard)
                 .join(QReviewBoard.reviewBoard.member).fetchJoin()
-                .rightJoin(QReviewBoard.reviewBoard.welfare)
-                .join(QReviewBoard.reviewBoard.boardFiles).fetchJoin()
+                .join(QReviewBoard.reviewBoard.reviewBoardFiles).fetchJoin()
                 .where(QReviewBoard.reviewBoard.id.eq(id))
                 .fetchOne();
         return Optional.of(reviewBoard);
@@ -45,8 +43,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         List<ReviewBoard> reviewBoards =  query.select(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .join(reviewBoard.welfare).fetchJoin()
-                .join(reviewBoard.boardFiles).fetchJoin()
+                .join(reviewBoard.reviewBoardFiles).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -60,8 +57,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         List<ReviewBoard> reviewBoards = query.select(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .rightJoin(reviewBoard.welfare).fetchJoin()
-                .join(reviewBoard.boardFiles).fetchJoin()
+                .join(reviewBoard.reviewBoardFiles).fetchJoin()
                 .orderBy(reviewBoard.reviewLikeCount.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -75,7 +71,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
         List<ReviewBoard> reviewBoardList = query.select(reviewBoard)
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
-                .join(reviewBoard.boardFiles).fetchJoin()
+                .join(reviewBoard.reviewBoardFiles).fetchJoin()
                 .where(reviewBoard.member.id.eq(memberId))
                 .orderBy(reviewBoard.id.desc())
                 .offset(pageable.getOffset())
@@ -91,7 +87,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     public Page<ReviewBoard> findReviewBoardListDescWithPaging_QueryDSL(Pageable pageable) {
         List<ReviewBoard> reviewBoardList = query.select(reviewBoard)
                 .from(reviewBoard)
-                .join(reviewBoard.boardFiles).fetchJoin()
+                .join(reviewBoard.reviewBoardFiles).fetchJoin()
                 .join(reviewBoard.member).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

@@ -33,9 +33,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> temp() {
-
-        return null;
+    public List<ProductDTO> findTop8ReplyCount() {
+        return productRepository.findTop8WithDetailOrderByReplyCount_QueryDSL()
+                .stream()
+                .map(this::productToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -28,7 +28,7 @@ public interface RecipeBoardService {
     public List<RecipeBoard> findRecipeBoardReplyCountByMemberId_QueryDSL(Long memberId);
 
     //    레시피 추천순 Top5
-    public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL();
+    public List<RecipeBoardDTO> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL();
 
     //    마이페이지 게시물건수 조회
     public Long getCountByMemberId(Long memberId);
@@ -47,7 +47,7 @@ public interface RecipeBoardService {
                 .recipeBoardContent(recipeBoard.getBoardContent())
                 .likeCount(recipeBoard.getRecipeLikeCount())
                 .replyCount(recipeBoard.getRecipeBoardReplyCount())
-                .boardFiles(recipeBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .boardFiles(recipeBoard.getRecipeBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }
 
@@ -69,7 +69,7 @@ public interface RecipeBoardService {
                 .recipeBoardTitle(recipeBoard.getBoardTitle())
                 .recipeBoardContent(recipeBoard.getBoardContent())
                 .recipeBoardRegisterDate(recipeBoard.getCreatedDate())
-                .boardFiles(recipeBoard.getBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .boardFiles(recipeBoard.getRecipeBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }
 }

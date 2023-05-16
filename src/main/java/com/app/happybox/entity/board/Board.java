@@ -32,8 +32,8 @@ public abstract class Board extends Period {
     /* ============= */
 
     /* 게시판 파일 List */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", orphanRemoval = true, cascade = CascadeType.REMOVE)
-    private List<BoardFile> boardFiles = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
+//    private List<BoardFile> boardFiles = new ArrayList<>();
 
     public Board(String boardTitle, String boardContent) {
         this.boardTitle = boardTitle;
@@ -52,14 +52,14 @@ public abstract class Board extends Period {
         this.boardContent = boardContent;
     }
 
-    public void setBoardFiles(List<BoardFile> boardFiles) {
-        this.boardFiles = boardFiles;
-    }
+//    public void setBoardFiles(List<BoardFile> boardFiles) {
+//        this.boardFiles = boardFiles;
+//    }
 
     public Board(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
-        this.boardFiles = boardFiles;
+//        this.boardFiles = boardFiles;
     }
 }
