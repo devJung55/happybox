@@ -35,7 +35,7 @@ public class SecurityConfig {
     private static final String ADMIN_PATH = "/admin/**";
     private static final String MEMBER_PATH = "/member/**";
     private static final String WELFARE_PATH = "/welfares/**";
-    private static final String DISTRIBUTOR_PATH = "/distributors/**";
+    private static final String DISTRIBUTOR_PATH = "/product/**";
     private static final String BOARD_PATH = "**/boards/**";
     private static final String CS_PATH = "**/CS/**";
     private static final String MYPAGE_PATH = "/mypage/**";
@@ -47,7 +47,7 @@ public class SecurityConfig {
     private static final String WRITE_PATH = "/**/write";
     private static final String WELFARE_WRITE_PATH = "/**/welfare/**/write";
     private static final String MEMBER_WRITE_PATH = "/**/MEMBER/**/write";
-    private static final String DISTRIBUTOR_WRITE_PATH = "/**/DISTRIBUTOR/**/write";
+    private static final String DISTRIBUTOR_WRITE_PATH = "/**/product/**/write";
 
 
     //    ignore 경로
@@ -56,7 +56,7 @@ public class SecurityConfig {
     private static final String LOGIN_PAGE = "/member/login";
 
     //    로그인 ACTION 경로
-    private static final String MEMBER_LOGIN_PROCESSING_URL = "/member/login";
+    private static final String MEMBER_LOGIN_PROCESSING_URL = "/login";
 
     //    로그아웃 경로
     private static final String LOGOUT_URL = "/logout";
@@ -130,10 +130,12 @@ public class SecurityConfig {
                 .loginProcessingUrl(MEMBER_LOGIN_PROCESSING_URL)
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationFailureHandler)
+                .permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_URL))
                 .logoutSuccessUrl(LOGOUT_SUCCESS_URL)
                 .invalidateHttpSession(Boolean.TRUE)
+                .permitAll()
                 .and()
                 .rememberMe()
                 .rememberMeParameter("remember-me")

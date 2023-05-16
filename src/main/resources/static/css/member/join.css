@@ -285,6 +285,14 @@ button[disabled] {
   padding: 60px 100px 90px;
 }
 
+.subscription-area {
+  width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 60px 100px 90px;
+  display: none;
+}
+
 .join-container2 .join-area .join-title {
   font-size: 26px;
   color: #333333;
@@ -311,6 +319,36 @@ button[disabled] {
 
 .form-group + .form-group {
   margin-top: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 30px;
+}
+
+.textarea-box-count {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 15px 15px 15px;
+  border-radius: 6px;
+}
+
+.textarea-box-count textarea {
+  border: 0;
+  width: 100%;
+  min-height: 60px;
+  height: 100%;
+  resize: none;
+  font-size: 13px;
+  white-space: pre-wrap;
+  color: #333;
+}
+
+.textarea-box-count .txt-count {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-size: 12px;
+  color: #333;
 }
 
 .join-container2 .join-area .form-group .form-head {
