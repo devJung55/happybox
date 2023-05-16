@@ -1,13 +1,16 @@
 package com.app.happybox.service.user;
 
+import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.repository.user.WelfareRepository;
+import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -38,5 +41,35 @@ public class WelfareServiceImpl implements WelfareService {
     @Override
     public Optional<Welfare> getDetail(Long welfareId) {
         return welfareRepository.findWelfareById_QueryDSL(welfareId);
+    }
+
+//    복지관 회원가입
+    @Override
+    public void join(WelfareDTO welfareDTO, PasswordEncoder passwordEncoder) {
+        welfareDTO.setUserPassword(passwordEncoder.encode(welfareDTO.getUserPassword()));
+        welfareDTO.setUserRole(Role.WELFARE);
+        welfareDTO.setUserStatus(UserStatus.REGISTERED);
+        welfareDTO.setWelfarePointTotal(1000);
+        welfareRepository.save(toWelfareEntity(welfareDTO));
+    }
+
+    @Override
+    public boolean existsByUserId(String userId) {
+        return false;
+    }
+
+    @Override
+    public boolean existsByUserPhoneNumber(String userPhoneNumber) {
+        return false;
+    }
+
+    @Override
+    public boolean existsByUserEmail(String userEmail) {
+        return false;
+    }
+
+    @Override
+    public Optional<Welfare> findByUserId(String userId) {
+        return Optional.empty();
     }
 }

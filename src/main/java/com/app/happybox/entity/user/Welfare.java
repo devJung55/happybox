@@ -57,8 +57,8 @@ public class Welfare extends User {
 
 
     @Builder
-    public Welfare(String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, Role userRole, String welfareName, Integer welfarePointTotal) {
-        super(userId, userPassword, address, userEmail, userPhoneNumber, userRole);
+    public Welfare(Long id, String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String welfareName, Integer welfarePointTotal) {
+        super(id, userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
         this.welfareName = welfareName;
         this.welfarePointTotal = welfarePointTotal;
     }
