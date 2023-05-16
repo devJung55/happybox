@@ -53,6 +53,15 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
     }
 
     @Override
+    public List<Subscription> findTop3OrderByLikeCount() {
+        List<Subscription> subscriptionList = getSubscriptionJPAQuery()
+                .orderBy(subscription.subscriptLikeCount.desc())
+                .limit(3L)
+                .fetch();
+        return subscriptionList;
+    }
+
+    @Override
     public List<Subscription> findTopNOrderByReviewCount_QueryDSL(Long limit) {
         List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .orderBy(subscription.reviewCount.asc())

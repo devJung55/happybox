@@ -26,7 +26,7 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
     @Override
     public List<Product> findTop8WithDistributorAndReviewCountOrderByDate_QueryDSL() {
         List<Product> ProductList = getProductJPAQuery()
-                .orderBy(product.createdDate.desc())
+                .orderBy(product.id.desc())
                 .limit(8L)
                 .fetch();
         return ProductList;
@@ -97,6 +97,14 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
         return new PageImpl<>(productList, pageable, count);
     }
 
+    @Override
+    public List<Product> findTop8WithDetailOrderByReplyCount_QueryDSL() {
+        return getProductJPAQuery()
+                .limit(8L)
+                .orderBy(product.productReplyCount.desc())
+                .fetch();
+    }
+
     private JPAQuery<Product> getProductJPAQuery() {
         return query.select(product)
                 .from(product)
@@ -109,7 +117,7 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
         OrderSpecifier orderSpecifier = null;
         ProductSearchOrder searchOrder = productSearchDTO.getProductSearchOrder();
 
-        if(searchOrder == null) {
+        if (searchOrder == null) {
             return new OrderSpecifier(Order.DESC, product.id);
         }
 
