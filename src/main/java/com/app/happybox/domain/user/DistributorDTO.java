@@ -1,24 +1,16 @@
 package com.app.happybox.domain.user;
 
 import com.app.happybox.entity.user.Address;
-import com.app.happybox.type.Gender;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
+@Getter @NoArgsConstructor @Data
+public class DistributorDTO {
 
-
-@Data
-@Getter
-@NoArgsConstructor
-public class WelfareDTO {
-
-//    Wefare 전체 컬럼
     private Long id;
     private String userId;
     private String userPassword;
@@ -27,13 +19,10 @@ public class WelfareDTO {
     private String userPhoneNumber;
     private UserStatus userStatus;
     private Role userRole;
-    private String welfareName;
-    private Integer welfarePointTotal;
-
-//    연관된 DTO 작성
+    private String distributorName;
 
     @Builder
-    public WelfareDTO(Long id, String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String welfareName, Integer welfarePointTotal) {
+    public DistributorDTO(Long id, String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String distributorName) {
         this.id = id;
         this.userId = userId;
         this.userPassword = userPassword;
@@ -42,7 +31,6 @@ public class WelfareDTO {
         this.userPhoneNumber = userPhoneNumber;
         this.userStatus = userStatus;
         this.userRole = userRole;
-        this.welfareName = welfareName;
-        this.welfarePointTotal = welfarePointTotal;
+        this.distributorName = distributorName;
     }
 }

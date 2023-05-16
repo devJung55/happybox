@@ -16,17 +16,16 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/member/*", method = RequestMethod.POST)
+@RequestMapping(value = "/member/*"/*, method = RequestMethod.POST*/)
 @Slf4j
-public class memberController {
+public class MemberController {
 
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
     //    일반회원 회원가입으로 이동
     @GetMapping("join")
-    public String goToJoinForm(MemberDTO memberDTO, Model model){
-        model.addAttribute("memberDTO",memberDTO);
+    public String JoinForm(MemberDTO memberDTO){
         return "/member/member-join";
     }
 
@@ -36,7 +35,7 @@ public class memberController {
         log.info("들어왔냐?");
         memberService.join(memberDTO,passwordEncoder);
         log.info(memberDTO.toString());
-        return new RedirectView("/main/welfare");
+        return new RedirectView("/member/login");
     }
 
 //    logIn폼으로 이동
