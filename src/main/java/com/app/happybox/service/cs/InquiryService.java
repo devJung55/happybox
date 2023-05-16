@@ -18,6 +18,9 @@ public interface InquiryService {
 //    문의내역 목록 및 상세?
     public Page<InquiryDTO> getInquiryListById(Pageable pageable, Long id);
 
+//    마이페이지 문의내역 목록
+    public Page<InquiryDTO> getListByMemberId(Pageable pageable, Long memberId);
+
 //    문의사항 DTO로 바꾸기
     default InquiryDTO toInquiryDTO(Inquiry inquiry) {
         return InquiryDTO.builder().id(inquiry.getId())
@@ -75,8 +78,21 @@ public interface InquiryService {
                 .build();
     }
 
-//    마이페이지 문의내역 목록
-    public Page<InquiryDTO> getInquiryListByMemberId(Pageable pageable, Long memberId);
+    default InquiryDTO mypageToInquiryDTO(Inquiry inquiry) {
+        return InquiryDTO.builder().id(inquiry.getId())
+                .inquiryTitle(inquiry.getInquiryTitle())
+                .inquiryContent(inquiry.getInquiryContent())
+                .createdDate(inquiry.getCreatedDate())
+                .updatedDate(inquiry.getUpdatedDate())
+                .inquiryType(inquiry.getInquiryType())
+                .inquiryStatus(inquiry.getInquiryStatus())
+                .inquiryFileDTOS(
+                        inquiry.getInquiryFiles().stream()
+                                .map(this::toInquiryFileDTO)
+                                .collect(Collectors.toList())
+                )
+                .build();
+    }
 
 //    마이페이지 문의답변
     public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId);

@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문내역</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/order-list.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/order-list.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
 
-
-                <!-- // top-bar.html -->
-
+                <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
 
                 <div class="frame-sm">
 
-
-                        <!-- // side-bar.html -->
-                        
+                    <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
 
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
@@ -33,15 +37,7 @@
                                 <div class="menu-title-area">
                                     <div class="title-menu">
                                         <h3 class="title-menu">주문내역</h3>
-                                        <!-- <div class="right">
-                                            <div class="input-group-wrap box-type">
-                                                <div class="input-group w200">
-                                                    <input type="text" id="item1-1" name="srchProductNm" class="input-text" placeholder="주문 상품명 검색">
-                                                </div>
-                                            </div>
-                                        </div> -->
                                     </div>
-                                    <!-- <img class="ico-btn-search" src="../../../static/img/mypage/search.png"></img> -->
                                 </div>
                                 <div class="search-box ui-toggle on">
                                     <div class="input-group-form text-right w-full">
@@ -52,7 +48,7 @@
                                             <button type="button" id="btnInit" class="btn-form btn-link-txt5">
                                                 <span>초기화</span>
                                             </button>
-                                            <img class="ico-btn-refresh" src="../../../static/img/mypage/reset.png" width="15">
+                                            <img class="ico-btn-refresh" src="/img/mypage/reset.png" width="15">
                                         </div>
                                     </div>
                                     <div class="search-detail ui-toggle-content">
@@ -136,34 +132,8 @@
                                     </div>
                                 </li>
 
-                                <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
-                                    <div class="prd-info-area productCart-info-area">
-                                        <div class="inner">
-                                            <div class="column img">
-                                                <label for="check-product-25415N">
-                                                    <img src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230222/IMG1677WIW053910362_100_100.jpg">
-                                                </label>
-                                            </div>
-                                            <div class="column tit">
-                                                <p class="tit">
-                                                    <a href="javascript:void(0)" class="productNm">맛있닭 저염 스팀 닭가슴살 100g</a>
-                                                </p>
-                                            </div>
-                                            <div class="column price">
-                                                <div class="price-div">
-                                                    <span class="order__count">1</span>개 /
-                                                    <span class="num productCart-price-25415 brand-cd-1042 partner-cd-299 productCart-price-25415" id="productCart-price-20230418000014810723">2,090</span>원
-                                                </div>
-                                            </div>
-                                            <div class="column btn">
-                                                <button type="button" class="btn-x-sm deleteUserCart">
-                                                    <i class="ico-x-black"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
                             </ul>
+
                         </div><!--// frame-cnt-inner -->
 
                         <div class="page-bottom"><!-- // 페이징 -->
@@ -178,8 +148,11 @@
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
-<script src="../../../static/js/mypage/user/order-list.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/CS/common.js"></script>
+<script src="/js/mypage/user/order-list.js"></script>
 </html>

@@ -88,7 +88,7 @@ public class SecurityConfig {
 
     /* 파비콘은 필터에 거치지 않고 바로 들어오게 해줌 */
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
+    public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON)
 //                전체 서비스 filterChain 안거치고 접근
@@ -97,13 +97,13 @@ public class SecurityConfig {
 
     /* 거쳐야할 필터들을 설정 */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
 //                마이페이지 권한 설정
-                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
+//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
 //
 //
 //                  작성페이지 권한 설정
@@ -144,10 +144,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-
-
-
 
 
 }

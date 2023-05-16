@@ -2,6 +2,7 @@ package com.app.happybox.repository.order;
 
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import com.app.happybox.type.PurchaseStatus;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
     private final JPAQueryFactory query;
 
     @Override
-    public Page<MemberOrderProductItem> findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
+    public Page<MemberOrderProductItem> findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId/*, LocalDateTime searchStartDate, LocalDateTime searchEndDate*/) {
         List<MemberOrderProductItem> memberOrderProductItemList = query.select(memberOrderProductItem)
                 .from(memberOrderProductItem)
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
@@ -27,7 +28,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
                 .where(memberOrderProductItem.memberOrderProduct.member.id.eq(memberId))
                 .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CONFIRMED))
-                .where(memberOrderProductItem.createdDate.between(searchStartDate, searchEndDate))
+//                .where(memberOrderProductItem.createdDate.between(searchStartDate, searchEndDate))
                 .orderBy(memberOrderProductItem.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
