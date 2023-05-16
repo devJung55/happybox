@@ -49,11 +49,11 @@ public class InquiryRepositoryTests {
 
     @Test
     public void fileSaveTest() {
-        Inquiry inquiry = inquiryRepository.findById(91L).get();
+        Inquiry inquiry = inquiryRepository.findById(204L).get();
 
-        InquiryFile inquiryFile1 = new InquiryFile("2023/05/09", UUID.randomUUID().toString(), "문의사항1.png", FileRepresent.REPRESENT);
-        InquiryFile inquiryFile2 = new InquiryFile("2023/05/09", UUID.randomUUID().toString(), "문의사항2.png", FileRepresent.ORDINARY);
-        InquiryFile inquiryFile3 = new InquiryFile("2023/05/09", UUID.randomUUID().toString(), "문의사항3.png", FileRepresent.ORDINARY);
+        InquiryFile inquiryFile1 = new InquiryFile("2023/05/16", UUID.randomUUID().toString(), "문의사항1.png", FileRepresent.REPRESENT);
+        InquiryFile inquiryFile2 = new InquiryFile("2023/05/16", UUID.randomUUID().toString(), "문의사항2.png", FileRepresent.ORDINARY);
+        InquiryFile inquiryFile3 = new InquiryFile("2023/05/16", UUID.randomUUID().toString(), "문의사항3.png", FileRepresent.ORDINARY);
 
         List<InquiryFile> inquiryFiles = new ArrayList<>(Arrays.asList(inquiryFile1, inquiryFile2, inquiryFile3));
 

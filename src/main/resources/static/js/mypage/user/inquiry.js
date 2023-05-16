@@ -5,18 +5,20 @@
 const $arrows = $(".arrow-0deg");
 const $inquiryDetail = $(".ui-accordion-view");
 
-$arrows.each((i, arrow) => {
-    $(arrow).on("click", function() {
-        if($(arrow).hasClass("arrow-0deg")) {
-            $(arrow).closest("a").next().css("display", "block");
-            $(arrow).removeClass("arrow-0deg");
-            $(arrow).addClass("arrow-180deg");
-        } else {
-            $(arrow).closest("a").next().css("display", "none");
-            $(arrow).removeClass("arrow-180deg");
-            $(arrow).addClass("arrow-0deg");
-        }
-    })
+$(".inquiry__list__append").on("click", ".arrow-0deg", function() {
+    $(this).each((i, arrow) => {
+        $(arrow).on("click", function() {
+            if($(arrow).hasClass("arrow-0deg")) {
+                $(arrow).closest("a").next().css("display", "block");
+                $(arrow).removeClass("arrow-0deg");
+                $(arrow).addClass("arrow-180deg");
+            } else {
+                $(arrow).closest("a").next().css("display", "none");
+                $(arrow).removeClass("arrow-180deg");
+                $(arrow).addClass("arrow-0deg");
+            }
+        })
+    });
 });
 
 /* 이미지 모달 이벤트 */
@@ -47,14 +49,57 @@ let page = 0;
 
 function showInquiryList(inquiries) {
     let text = "";
+    let str = "";
+    let answer = "";
+    let image = "";
+
     inquiries.content.forEach(inquiry => {
+        if(inquiry.inquiryAnswerDTO != null) {
+            const formattedDate = formatDate(new Date(inquiry.inquiryAnswerDTO.createdDate));
+            answer = `
+                    <div class="answer" style="margin-top: 5px;">
+                        <div class="info">
+                            <span class="name">from. 행복상자</span>
+                            <span class="date">${formattedDate}</span>
+                        </div>
+                        <p class="txt">
+                            <span style="white-space:pre-line">${inquiry.inquiryAnswerDTO.inquiryAnswerContent}</span>
+                        </p>
+                    </div>
+            `;
+
+            str = "<span class=\"state-wait complete\">답변완료</span>";
+        } else {
+            answer = "";
+            str = "<span class=\"state-wait\">답변대기</span>";
+        }
+
+        if(inquiry.inquiryFileDTOS.length != 0) {
+            for (let i = 0; i < inquiry.inquiryFileDTOS.length; i++) {
+                image += `
+                    <li>
+                        <a href="javascript:void(0)">
+                            <img class="thumnail" src="/image/display?fileName=${inquiry.inquiryFileDTOS[i].filePath}/${inquiry.inquiryFileDTOS[i].fileUuid}_${inquiry.inquiryFileDTOS[i].fileOrgName}">
+                        </a>
+                    </li>
+                `;
+            }
+        } else {
+            image = "";
+        }
+
         const formattedDate = formatDate(new Date(inquiry.createdDate));
         text += `
+                    <input type="hidden" name="inquiryId" value="${inquiry.id}">
                     <li class="border-bottom">
                         <a href="javascript:void(0)" class="title-div ui-accordion-click">
                             <div class="subject">
-                                <span class="state-wait">답변대기</span>
-                                <span class="state-wait complete">답변완료</span>
+                `;
+
+        text += str;
+
+        text += `
+                                
                                 <span class="classify inquiry__title">${inquiry.inquiryTitle}</span>
                             </div>
                             <div class="right">
@@ -68,14 +113,14 @@ function showInquiryList(inquiries) {
                                     <p class="txt">
                                         <span style="white-space:pre-wrap">${inquiry.inquiryContent}</span>
                                     </p>
-                                    <div class="bottom">
+                                    <div class="bottom" style="margin-bottom: 5px;">
                                         <div class="added-file thumDtlQuestion">
                                             <ul class="thum-list">
-                                                <li>
-                                                    <a href="javascript:void(0)">
-                                                        <img class="thumnail" src="https://file.rankingdak.com/image/RANK/REVIEW/US_RV_IMG1/20230415/IMG1681Teg570545730.png">
-                                                    </a>
-                                                </li>
+                `;
+
+        text += image;
+
+        text += `
                                             </ul>
                                         </div>
                                         <ul class="sep-list type3">
@@ -83,17 +128,22 @@ function showInquiryList(inquiries) {
                                         </ul>
                                     </div>
                                 </div>
+                `;
+
+        text += answer;
+
+        text += `
                             </div>
                         </div>
                     </li>
                 `;
     });
     $inquiryAppend.append(text);
-    displayPagination(inquiries.totalPages);
+    displayPaginationInquiry(inquiries.totalPages);
 }
 
 
-function displayPagination(totalPages) {
+function displayPaginationInquiry(totalPages) {
     const $pagination = $(".pagination");
     $pagination.empty();
 

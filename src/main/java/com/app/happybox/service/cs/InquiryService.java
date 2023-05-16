@@ -59,7 +59,6 @@ public interface InquiryService {
                 .inquiryAnswerContent(inquiryAnswer.getInquiryAnswerContent())
                 .createdDate(inquiryAnswer.getCreatedDate())
                 .updatedDate(inquiryAnswer.getUpdatedDate())
-                .inquiry(inquiryAnswer.getInquiry())
                 .inquiryAnswerFileDTOS(
                         inquiryAnswer.getInquiryAnswerFiles().stream()
                         .map(this::toInquiryAnswerFileDTO)

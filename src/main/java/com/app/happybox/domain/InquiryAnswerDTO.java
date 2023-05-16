@@ -17,6 +17,5 @@ public class InquiryAnswerDTO {
     private String inquiryAnswerContent;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private Inquiry inquiry;
     private List<InquiryAnswerFileDTO> inquiryAnswerFileDTOS;
 }
