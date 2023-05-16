@@ -56,16 +56,12 @@ public class ReviewBoard extends Board {
     private List<BoardFile> reviewBoardFiles = new ArrayList<>();
 
     @Builder
-    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> reviewBoardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, String welfareName, Member member, List<ReviewBoardReply> reviewBoardReplies, List<ReviewBoardLike> reviewBoardLikes) {
+    public ReviewBoard(Long id, String boardTitle, String boardContent, List<BoardFile> reviewBoardFiles, Integer reviewRating, Integer reviewLikeCount, Integer reviewBoardReplyCount, String welfareName) {
         super(id, boardTitle, boardContent, reviewBoardFiles);
         this.reviewRating = reviewRating;
         this.reviewLikeCount = reviewLikeCount;
         this.reviewBoardReplyCount = reviewBoardReplyCount;
         this.welfareName = welfareName;
-        this.member = member;
-        this.reviewBoardReplies = reviewBoardReplies;
-        this.reviewBoardLikes = reviewBoardLikes;
-        this.reviewBoardFiles = reviewBoardFiles;
     }
 
     //    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating, Member member, Welfare welfare) {

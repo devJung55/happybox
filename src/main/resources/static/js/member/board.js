@@ -46,6 +46,15 @@ function showList(reviewList){
     let text ="";
     reviewList.content.forEach((reviewDetail, i) => {
         console.log(reviewDetail);
+
+        // 기본 이미지 경로
+        let filePath = "";
+        let boardFiles = reviewDetail.reviewBoardFiles;
+
+        if(boardFiles){
+            filePath = '/image/display?fileName=' + boardFiles[0].filePath + "/t_" + boardFiles[0].fileUuid + "_" + boardFiles[0].fileOrgName;
+        }
+
         text += `
     <article class="board-item-wrap">
                   <div class="profile-area">
@@ -59,8 +68,8 @@ function showList(reviewList){
                         </div>
                         <div class="writer-info-wrap">
                           <div class="writer-info">
-                            <div class="writer-name">${reviewDetail.memberName}</div>
-                            <span class="write-date">${reviewDetail.reviewBoardRegisterDate}</span>
+                            <div class="writer-name">${reviewDetail.memberDTO.memberName}</div>
+                            <span class="write-date">${reviewDetail.boardRegisterDate}</span>
                           </div>
                           <div>
                             <div id="welfare-name">${reviewDetail.welfareName}</div>
@@ -92,12 +101,12 @@ function showList(reviewList){
                     </a>
                   </div>
                   <a href="javascript:void(0)"
-                    ><h3 class="board-title">${reviewDetail.reviewBoardTitle}</h3>
-                    <p class="board-content">${reviewDetail.reviewBoardContent}
+                    ><h3 class="board-title">${reviewDetail.boardTitle}</h3>
+                    <p class="board-content">${reviewDetail.boardContent}
                     </p>
                     <picture>
                       <img
-                        src="/files/display?${reviewDetail.boardFiles[0].filePath + "/t_" + reviewDetail.boardFiles[0].fileUuid + "_" + reviewDetail.boardFiles[0].fileOrgName}"
+                        src="${filePath}"
                         class="board-image"
                     /></picture>
                     <div class="board-item-bottom">

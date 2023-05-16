@@ -19,10 +19,9 @@
       <section id="contents" class="container">
         <div class="content-wrap">
           <div class="frame-sm">
-            <form th:action="@{/user-board/review-board-insert}"
-                  th:object="${reviewBoard}"
+            <form
                   method="post"
-                  enctype="multipart/form-data" name="form" id="counselRegFrm">
+                  name="form" id="counselRegFrm">
               <div class="frame-right">
                 <div class="frame-cnt-inner">
                   <div class="menu-title-area">
@@ -49,10 +48,9 @@
                           <td class="text-left">
                             <div class="input-group w-full">
                               <input
+                                      name="boardTitle"
                                 type="text"
-                                th:field="*{boardTitle}"
                                 id="vQuestionTitle"
-                                title=""
                                 class="input-text"
                                 placeholder="제목을 입력해주세요"
                                 value=""
@@ -71,7 +69,7 @@
                               <div class="input-group w-full">
                                 <input
                                   type="text"
-                                  th:field="*{welfareName}"
+                                  name="welfareName"
                                   id="vQuestionTitle"
                                   title=""
                                   class="input-text"
@@ -110,9 +108,9 @@
                           <td class="text-left">
                             <div class="textarea-box-count h230">
                               <textarea
+                                      name="boardContent"
                                 id="vQuestionCont"
                                 placeholder="내용을 입력하세요"
-                                th:field="*{boardContent}"
                               ></textarea>
                               <div class="txt-count">
                                 <span id="counter">0</span> / <span class="total">1,000</span>
