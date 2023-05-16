@@ -28,7 +28,7 @@
     border-style: outset;
 }
 
-.fixed-img img{
+.fixed-img img {
     width: 30px;
     height: auto;
 }
@@ -48,7 +48,7 @@
     text-align: center;
 }
 
-.welfare-top .img img{
+.welfare-top .img img {
     width: 750px;
 }
 
@@ -90,7 +90,7 @@
     text-align: center;
 }
 
-.refrig-banner a img{
+.refrig-banner a img {
     width: 770px;
 }
 
@@ -113,7 +113,7 @@
     background-color: white;
 }
 
-.detail-top-wrap:after{
+.detail-top-wrap:after {
     display: block;
     content: '';
     clear: both;
@@ -133,6 +133,7 @@
     width: 23px;
     height: 23px;
 }
+
 .rating-point img {
     width: 23px;
     height: 23px;
@@ -181,12 +182,12 @@
     gap: 10px;
 }
 
-.like-btn{
+.like-btn {
     display: block;
     width: 100%;
 }
 
-.like-btn img{
+.like-btn img {
     width: 30px;
     height: 30px;
 }
@@ -275,7 +276,7 @@
     display: table-row;
 }
 
-.dl-row > dt{
+.dl-row > dt {
     display: table-cell;
     vertical-align: top;
     width: 100px;
@@ -334,15 +335,15 @@
     line-height: 16px;
 }
 
-.drop-box:focus{
+.drop-box:focus {
     border: 1.5px solid #FA0101;
     box-sizing: border-box;
     border-radius: 4px;
 }
 
 select {
-    -webkit-appearance:none; 
-    appearance:none;
+    -webkit-appearance: none;
+    appearance: none;
     background: url('../../img/welfare/down.png') no-repeat 97% 50%/15px auto;
 }
 
@@ -358,7 +359,7 @@ option {
     width: 100% !important;
 }
 
-.add-fee a:not(.text-primary){
+.add-fee a:not(.text-primary) {
     padding: 17px 14px;
 }
 
@@ -388,7 +389,7 @@ option {
     margin-top: 7px;
 }
 
-.add-fee-bottom{
+.add-fee-bottom {
     font-size: 0;
 }
 
@@ -443,21 +444,21 @@ option {
     text-align: left;
 }
 
-.radio-check ul li{
+.radio-check ul li {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 40px;
 }
 
-.radio-check ul li:first-child{
+.radio-check ul li:first-child {
     margin-bottom: 10px;
 }
 
 .custom-radio {
     position: relative;
     display: inline-block;
-} 
+}
 
 input[type="checkbox"], input[type="radio"] {
     -webkit-box-sizing: border-box;
@@ -473,7 +474,7 @@ input[type="checkbox"], input[type="radio"] {
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
 }
 
@@ -624,9 +625,10 @@ input[type="checkbox"], input[type="radio"] {
     margin-left: 10px;
 }
 
-.total-area .price strong{
+.total-area .price strong {
     font-size: 26px;
 }
+
 .get-total-price .price strong {
     color: #ff0000;
     font-size: 28px;
@@ -640,7 +642,7 @@ input[type="checkbox"], input[type="radio"] {
 
 /* 버튼 + 모달 */
 .btn-area {
-    
+
     position: relative;
     text-align: center;
     align-items: stretch;
@@ -665,7 +667,7 @@ input[type="checkbox"], input[type="radio"] {
     cursor: pointer;
 }
 
-.btn-area .subscribe-btn{
+.btn-area .subscribe-btn {
     vertical-align: top;
     flex-grow: 1;
     -webkit-box-flex: 1;
@@ -687,7 +689,7 @@ input[type="checkbox"], input[type="radio"] {
     position: relative;
 }
 
-.btn-area .subscribe-btn span{
+.btn-area .subscribe-btn span {
     font-weight: 700;
     font-size: 18px;
     line-height: 1.8;
@@ -719,7 +721,7 @@ input[type="checkbox"], input[type="radio"] {
     margin-left: 4px;
 }
 
-.review-tit .text-primary{
+.review-tit .text-primary {
     font-weight: 400;
     font-size: 16px;
 }
@@ -748,7 +750,7 @@ input[type="checkbox"], input[type="radio"] {
     border-right: 1px solid #80808061;
 }
 
-.review-detail .img{
+.review-detail .img {
     position: relative;
     float: right;
     width: 100px;
@@ -756,13 +758,13 @@ input[type="checkbox"], input[type="radio"] {
     overflow: hidden;
 }
 
-.review-detail .img img{
+.review-detail .img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.review-detail .img .added{
+.review-detail .img .added {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -801,7 +803,7 @@ input[type="checkbox"], input[type="radio"] {
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
 }
 
@@ -882,10 +884,8 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 
-
-
 /* ==========================================카카오맵================================== */
-.placeMapSection-container{
+.placeMapSection-container {
     padding: 13px;
 }
 
@@ -1035,6 +1035,7 @@ input[type="checkbox"], input[type="radio"] {
     opacity: 0.35;
     cursor: auto;
 }
+
 .swiper-button-prev {
     left: 0;
     right: auto;
@@ -1099,17 +1100,17 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 
-
-
 /*============= 복지관 사진 ========================*/
-.welfare-info-img{
+.welfare-info-img {
     text-align: center;
     margin-bottom: 10px;
 }
+
 .welfare-info-img img {
     width: 100px;
     height: 100px;
 }
+
 /*=====================================*/
 /*============= 복지관 소개 ========================*/
 .welfare-intro-area {
@@ -1120,13 +1121,13 @@ input[type="checkbox"], input[type="radio"] {
     position: relative;
 }
 
-.welfare-info-list{
+.welfare-info-list {
     margin: 0px auto;
     width: 100%;
     text-align: center;
 }
 
-.welfare-info-list img{
+.welfare-info-list img {
     padding-top: 30px;
     max-width: 100%;
     vertical-align: top;
@@ -1140,7 +1141,7 @@ input[type="checkbox"], input[type="radio"] {
     padding: 20px;
 }
 
-.edit-btn-area button{
+.edit-btn-area button {
     width: 60px;
     font-size: 18px;
     font-weight: 600;
@@ -1160,10 +1161,10 @@ input[type="checkbox"], input[type="radio"] {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-  }
+}
 
 
-  .delete-modal-shape {
+.delete-modal-shape {
     border: 1px solid gray;
     position: absolute;
     width: 400px;
@@ -1176,22 +1177,11 @@ input[type="checkbox"], input[type="radio"] {
     padding: 20px;
 }
 
-.modal-header .delete-img{
+.modal-header .delete-img {
     position: absolute;
     width: 30px;
     height: 30px;
 }
-
-
-.modal-body {
-    padding: 8px 0;
-    text-align: center;
-    font-size: 18px;
-    margin: 30px;
-    font-weight: bold;
-    color: #FF5938;
-}
-
 
 .modal-footer {
     display: flex;
@@ -1215,12 +1205,14 @@ input[type="checkbox"], input[type="radio"] {
     align-items: center;
     display: flex;
 }
-  .confirm-delete:hover {
+
+.confirm-delete:hover {
     background-color: #FF5938;
     color: white;
     font-weight: bold;
-  }
-  .cancel-delete {
+}
+
+.cancel-delete {
     cursor: pointer;
     display: block;
     width: 100%;
@@ -1230,12 +1222,118 @@ input[type="checkbox"], input[type="radio"] {
     justify-content: center;
     align-items: center;
     display: flex;
-  }
-  .cancel-delete:hover {
+}
+
+.cancel-delete:hover {
     background-color: #FF5938;
     color: white;
     font-weight: bold;
-  }
+}
 
-  
-  /* ============================================== ================================= */
+/* 모달창 기본 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal::-webkit-scrollbar{
+    display: none;
+}
+
+/* 모달창 내용 스타일 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 825px;
+}
+
+.modal-content .modal-title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title p {
+    font-weight: bold;
+}
+
+.modal-title .date {
+    color: #ccc;
+    margin-right: 46px;
+}
+
+.modal-name {
+    margin-top: 21px;
+}
+
+.modal-name h3, .modal-name p {
+    text-align: center;.modal-title p
+}
+
+.food-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-list .food img {
+    width: 200px;
+}
+
+.food-list .food {
+    display: flex;
+    justify-content: space-around;
+}
+
+.food span {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* 닫기 버튼 스타일 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-body {
+    margin-top: 20px;
+}
+
+/* ============================================== ================================= */

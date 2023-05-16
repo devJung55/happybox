@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -58,14 +59,16 @@ public class WelfareController {
     @GetMapping("detail/{id}")
     public String goDetail(@PathVariable Long id, Model model) {
         model.addAttribute("subscription", subscriptionService.findByIdWithDetail(id));
+        model.addAttribute("foodCalendars", foodCalendarService.getFoodCalendars(id));
         return "welfare/welfareDetail";
     }
 
-    @GetMapping("detail/calendar")
-    @ResponseBody
-    public List<FoodCalendarDTO> foodCalendars(@RequestBody FoodCalendarSearchDTO searchDTO) {
-        return foodCalendarService.getFoodCalendars(searchDTO.getToday(), searchDTO.getSubId());
-    }
+    /* food 가져오는걸로 변경하기 */
+//    @GetMapping("detail/calendar")
+//    @ResponseBody
+//    public List<FoodCalendarDTO> foodCalendars(@RequestBody FoodCalendarSearchDTO searchDTO) {
+//        return foodCalendarService.getFoodCalendars(searchDTO.getToday(), searchDTO.getSubId());
+//    }
 
     @PostMapping("/add/{subscriptionId}")
     @ResponseBody

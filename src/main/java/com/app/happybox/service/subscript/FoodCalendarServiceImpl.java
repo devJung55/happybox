@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +21,8 @@ public class FoodCalendarServiceImpl implements FoodCalendarService {
 
 
     @Override
-    public List<FoodCalendarDTO> getFoodCalendars(LocalDate today, Long subId) {
-        List<FoodCalendar> foodCalendars = foodCalendarRepository.findAllWithFoodListBySubscriptionAndDateBetween_QueryDSL(today, subId);
+    public List<FoodCalendarDTO> getFoodCalendars(Long subId) {
+        List<FoodCalendar> foodCalendars = foodCalendarRepository.findAllWithFoodListBySubscription_QueryDSL(subId);
         return foodCalendars.stream().map(this::foodCalendarToDTO).collect(Collectors.toList());
     }
 }

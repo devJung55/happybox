@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public interface FoodCalendarService {
 
-    public List<FoodCalendarDTO> getFoodCalendars(LocalDate today, Long subId);
+    public List<FoodCalendarDTO> getFoodCalendars(Long subId);
 
     default FoodCalendarDTO foodCalendarToDTO(FoodCalendar foodCalendar) {
         return FoodCalendarDTO.builder()
