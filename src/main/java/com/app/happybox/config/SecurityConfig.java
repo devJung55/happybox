@@ -53,7 +53,7 @@ public class SecurityConfig {
     //    ignore 경로
     private static final String IGNORE_FAVICON = "/favicon.png";
     //    로그인 FORM 경로
-    private static final String LOGIN_PAGE = "/member/member-login";
+    private static final String LOGIN_PAGE = "/member/login";
 
     //    로그인 ACTION 경로
     private static final String MEMBER_LOGIN_PROCESSING_URL = "/member/login";
@@ -92,29 +92,28 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON)
 //                전체 서비스 filterChain 안거치고 접근
-                .antMatchers(MAIN_PATH,MEMBER_PATH, WELFARE_PATH, DISTRIBUTOR_PATH, BOARD_PATH, CS_PATH)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
     /* 거쳐야할 필터들을 설정 */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-
         http
                 .authorizeRequests()
 //                마이페이지 권한 설정
                 .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
                 .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
                 .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
-
-
+//
+//
 //                  작성페이지 권한 설정
-                    .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
-                    .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
-                    .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
+                .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
+                .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
 
-    //                관리자 페이지 권한 설정
-                    .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+                //                관리자 페이지 권한 설정
+                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+                .anyRequest().permitAll()
 
 //                기타 설정
                 .and()
@@ -122,9 +121,8 @@ public class SecurityConfig {
                 .exceptionHandling()
                 /* 인가, 인증 Exception Handler */
                 .accessDeniedHandler(accessDeniedHandler)
-                .authenticationEntryPoint(authenticationEntryPoint);
-
-        http
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .and()
                 .formLogin()
                 .loginPage(LOGIN_PAGE)
                 .usernameParameter("userId")
@@ -143,9 +141,8 @@ public class SecurityConfig {
                 .tokenValiditySeconds(REMEMBER_ME_TOKEN_EXPIRED)
                 .userDetailsService(userDetailsService)
                 .authenticationSuccessHandler(authenticationSuccessHandler);
+
         return http.build();
-
-
     }
 
 

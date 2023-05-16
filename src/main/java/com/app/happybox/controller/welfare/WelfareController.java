@@ -4,10 +4,12 @@ import com.app.happybox.domain.FoodCalendarDTO;
 import com.app.happybox.domain.FoodCalendarSearchDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.domain.SubscriptionCartDTO;
+import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.service.product.SubscriptionCartService;
 import com.app.happybox.service.subscript.FoodCalendarService;
 import com.app.happybox.service.subscript.SubscriptionService;
+import com.app.happybox.service.user.WelfareService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,9 +17,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +37,8 @@ public class WelfareController {
     private final SubscriptionCartService subscriptionCartService;
     @Qualifier("foodCalendar")
     private final FoodCalendarService foodCalendarService;
+    private final WelfareService welfareService;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("list")
     public String goWelfareList(Model model) {
@@ -67,5 +73,19 @@ public class WelfareController {
         log.info(subscriptionCartDTO.toString());
         // 임시로 회원아이디 1L 넣어둠, 추후 변경
         return subscriptionCartService.saveCart(subscriptionCartDTO, 1L, subscriptionId);
+    }
+
+    //    복지관 회원가입 폼
+    @GetMapping("join")
+    public String goToJoinForm(WelfareDTO welfareDTO){
+        return "/member/welfare-join";
+    }
+
+    //    복지관 회원가입 완료
+    @PostMapping("join")
+    public RedirectView join(WelfareDTO welfareDTO){
+        welfareService.join(welfareDTO,passwordEncoder);
+        log.info(welfareDTO.toString());
+        return new RedirectView("/member/login");
     }
 }
