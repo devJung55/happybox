@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReviewBoardQueryDsl {
-//    작성하기
-    public void save(ReviewBoardDTO reviewBoardDTO);
 
 //    상세보기
     public Optional<ReviewBoard> findById_QueryDSL(Long id);

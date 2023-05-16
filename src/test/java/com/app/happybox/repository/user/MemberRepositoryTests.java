@@ -42,7 +42,6 @@ class MemberRepositoryTests {
                 .userPassword("asd1234")
                 .userPhoneNumber("010-6484-4195")
                 .userRole(Role.MEMBER)
-                .userStatus(UserStatus.REGISTERED)
                 .build();
         memberRepository.save(member);
     }

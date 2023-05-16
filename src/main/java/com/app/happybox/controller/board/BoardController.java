@@ -81,20 +81,23 @@ public class BoardController {
                         pageable.getPageSize()));
     }
 
+    //    리뷰 게시판 상세보기
     @GetMapping("review-board-detail/{id}")
-    public String goDetail(@PathVariable Long id, Model model){
+    public String goReviewDetail(@PathVariable Long id, Model model){
         model.addAttribute("review", reviewBoardService.getDetail(id));
         return "user-board/review-board-detail";
     }
 
-    @GetMapping("write")
-    public void goToWriteForm(ReviewBoardDTO reviewBoardDTO) { }
+    //    리뷰 게시판 작성하기
+    @GetMapping("review-board-insert")
+    public void goToReviewWrite(ReviewBoardDTO reviewBoardDTO) { }
 
-    @PostMapping("write")
-    public RedirectView write(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
-        Long memberId = userDetail.getId();
-//        Long subscriptionId = memberService.findSubscriptionById(memberId);
-//        reviewBoardService.write(reviewBoardDTO, memberId, subscriptionId);
+    @PostMapping("review-board-insert")
+    public RedirectView ReviewWrite(@ModelAttribute("reviewBoardDTO") ReviewBoardDTO reviewBoardDTO/*@AuthenticationPrincipal UserDetail userDetail*/) {
+//        Long memberId = userDetail.getId();
+        Long memberId = 7L;
+        reviewBoardService.write(reviewBoardDTO, memberId);
+        log.info(reviewBoardDTO.toString());
         return new RedirectView("/user-board/review-board-list");
     }
 
@@ -103,6 +106,26 @@ public class BoardController {
     public Slice<RecipeBoardDTO> getRecipeBoardList(@PageableDefault(page=1, size=5) Pageable pageable) {
         return recipeBoardService.getRecipeBoards(PageRequest.of(pageable.getPageNumber() - 1,
                 pageable.getPageSize()));
+    }
+
+    //    레시피 게시판 상세보기
+    @GetMapping("recipe-board-detail/{id}")
+    public String goRecipeDetail(@PathVariable Long id, Model model){
+        model.addAttribute("recipe", recipeBoardService.getRecipeBoardDetailById(id));
+        return "user-board/recipe-board-detail";
+    }
+
+    //    레시피 게시판 작성하기
+    @GetMapping("recipe-board-insert")
+    public void goToRecipeWrite(ReviewBoardDTO reviewBoardDTO) { }
+
+    @PostMapping("recipe-board-insert")
+    public RedirectView RecipeWrite(@ModelAttribute("recipeBoardDTO") RecipeBoardDTO recipeBoardDTO/*, @AuthenticationPrincipal UserDetail userDetail*/) {
+//        Long memberId = userDetail.getId();
+        Long memberId = 1L;
+//        recipeBoardService.write(recipeBoardDTO, memberId);
+        log.info(recipeBoardDTO.toString());
+        return new RedirectView("/user-board/recipe-board-list");
     }
 
     //    기부 게시판 리스트

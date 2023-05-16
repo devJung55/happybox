@@ -19,7 +19,8 @@
       <section id="contents" class="container">
         <div class="content-wrap">
           <div class="frame-sm">
-            <form id="counselRegFrm" name="review" action="/user-board/review-board-insert" method="post">
+            <form th:action="@{/user-board/review-board-insert}" method="post"
+                  enctype="multipart/form-data" name="form" id="counselRegFrm">
               <div class="frame-right">
                 <div class="frame-cnt-inner">
                   <div class="menu-title-area">
@@ -101,14 +102,14 @@
                         <tr>
                           <th class="text-left" scope="row">
                             <div class="in-tb">
-                              문의내용 <em class="es"><span class="blind">필수입력</span></em>
+                              내용 <em class="es"><span class="blind">필수입력</span></em>
                             </div>
                           </th>
                           <td class="text-left">
                             <div class="textarea-box-count h230">
                               <textarea
                                 id="vQuestionCont"
-                                placeholder="문의내용을 입력하세요"
+                                placeholder="내용을 입력하세요"
                                 name="boardContent"
                               ></textarea>
                               <div class="txt-count">
@@ -123,6 +124,7 @@
                           <td class="text-left">
                             <div class="file-add-boxes">
                               <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
+                                <label>
                                 <button type="button" class="btn-attach-thumb">
                                   <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                 </button>
@@ -133,16 +135,11 @@
                                   accept="image/*"
                                   style="display: none"
                                 />
+                                </label>
                                 <div class="attach-img" style="display: none;">
-                                  <img
-                                    src=""
-                                    style="width: 68px; height: 68px"
-                                  /><button
-                                    type="button"
-                                    class="btn-x-xs2 btn_del"
-                                  >
-                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
-                                  </button>
+
+                                  <!-- 이미지 파일 들어가는곳 -->
+
                                 </div>
                               </div>
                               <div class="div-attach-thumb" id="US_RV_IMG2_attachThumb">
@@ -226,6 +223,14 @@
   <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script th:inline="javascript">
+    let fileDTOS = null;
+    let reviewBoardDTO = [[${reviewBoardDTO}]];
+    if(reviewBoardDTO == null || reviewBoardDTO == undefined){
+    }else {
+      fileDTOS = reviewBoardDTO.fileDTOS;
+    }
+  </script>
   <script src="/js/main/header.js"></script>
   <script src="/js/member/board-insert.js"></script>
 </html>

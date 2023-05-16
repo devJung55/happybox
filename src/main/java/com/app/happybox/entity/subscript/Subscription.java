@@ -16,7 +16,7 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_SUBSCRIPTION")
 @Getter @ToString(exclude = {
-        "foodCalendars", "subscriptionLikes", "orderSubscriptions", "reviewBoards", "welfare"
+        "foodCalendars", "subscriptionLikes", "orderSubscriptions", "welfare"
 }) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
 public class Subscription extends Period {
@@ -66,9 +66,9 @@ public class Subscription extends Period {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
     private List<OrderSubscription> orderSubscriptions = new ArrayList<>();
 
-    /* 구독 후기 List */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
-    private List<ReviewBoard> reviewBoards = new ArrayList<>();
+//    /* 구독 후기 List */
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
+//    private List<ReviewBoard> reviewBoards = new ArrayList<>();
 
     /* 구독 좋아요 List */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
