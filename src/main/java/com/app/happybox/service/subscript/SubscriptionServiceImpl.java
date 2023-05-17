@@ -1,6 +1,6 @@
 package com.app.happybox.service.subscript;
 
-import com.app.happybox.domain.FoodCalendarDTO;
+import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.entity.subscript.*;
 import com.app.happybox.exception.SubscriptionNotFoundException;
@@ -16,8 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

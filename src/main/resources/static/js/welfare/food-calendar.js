@@ -107,7 +107,7 @@ let welfare = new Welfare(id, calendarId, body, title, start, end, UserName, isR
 /* 이벤트 객체 생성 -> 화면으로 Model 객체 보내서 Js로 받은 후 넘겨주는 형식 */
 const event = {
     id: '1',    // iD번째 스캐줄
-    calendarId: '2',    // 스케쥴의 ID(Random으로 뽑기)
+    calendarId: `${Math.ceil(Math.random() * 3)}`,    // 스케쥴의 ID(Random으로 뽑기)
     body: '안녕하세요 오태양입니다.', // 스케쥴의 설명
     title: '가정식 백반',   // 화면에 뿌려지는 이름
     state: 'option:양많이',   // 현재 상태 (별필요없음)
@@ -137,30 +137,53 @@ const event2 = {
     isReadOnly: true,
 };
 
-const calendar = new Calendar(container, options);
+let calendar = new Calendar(container, options);
 
-console.log(calendar);
+/* ajax 세팅 */
+const CALENDAR_REQ_URL = "/welfare/detail/calendar";
+const SEARCH = {
+    today: new Date().toISOString().split("T")[0],
+    subId: subscription.id
+}
+let eventList = new Array();
 
-const eventList = new Array();
+/* ajax */
+function doSearch() {
+    $doAjax("GET", CALENDAR_REQ_URL, SEARCH, (foodCalendars) => {
+        eventList = new Array();
 
-foodCalendars.forEach((calendar, i) => {
-    let event = {
-        id: i,
-        calendarId: '1',
-        title: calendar.foodCalendarTitle,
-        body: calendar.foodCalendarDescription,
-        attendees: calendar.foodList,
-        start: calendar.startDate,
-        end: calendar.endDate,
-        isReadOnly: true,
-    };
-    eventList.push(event);
-});
+        /* success 시 반복문 돌면서 event 생성 */
+        foodCalendars.forEach((calendar, i) => {
+            let event = {
+                id: i,
+                calendarId: `${Math.ceil(Math.random() * 3)}`,
+                title: calendar.foodCalendarTitle,
+                body: calendar.foodCalendarDescription,
+                attendees: calendar.foodList,
+                start: calendar.startDate,
+                end: calendar.endDate,
+                isReadOnly: true,
+            };
+            eventList.push(event);
+        });
 
-eventList.push(welfare);
+        // 밑의 음식 swiper에 데이터 꽃기
+        showFoodList(foodCalendars);
+
+        /* welfare push */
+        eventList.push(welfare);
+
+        /* 캘린더 이벤트 초기화 */
+        calendar.clear();
+
+        calendar.createEvents(eventList);
+    });
+}
+
+/* 화면 로딩시 ajax 실행 */
+doSearch();
 
 /* 이벤트 생성 */
-calendar.createEvents(eventList);
 
 calendar.setTheme({
     common: {
@@ -188,28 +211,6 @@ calendar.setOptions({
     },
 });
 
-/* 포멧 설정(custom) */
-
-/* function formatTime(time) {
-    const hours = `${time.getHours()}`.padStart(2, '0');
-    const minutes = `${time.getMinutes()}`.padStart(2, '0');
-  
-    return `${hours}:${minutes}`;
-  }
-  
-  calendar.setOptions({
-    template: {
-      time(event) {
-        const { start, end, title } = event;
-  
-        return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`;
-      },
-      allday(event) {
-        return `<span style="color: gray;">${event.title}</span>`;
-      },
-    },
-  }); */
-
 
 // 팝업을 통해 이벤트를 생성
 calendar.on('beforeCreateEvent', (eventObj) => {
@@ -220,11 +221,6 @@ calendar.on('beforeCreateEvent', (eventObj) => {
         },
     ]);
 });
-
-// calendar.on('clickEvent', ({ event }) => {
-//     const el = document.getElementById('clicked-event');
-//     el.innerText = event.title;
-// });
 
 
 // ==================================================== 캘린더 버튼
@@ -243,6 +239,11 @@ $('#calender-prev').click(() => {
     $('.year').text(prevYear + '년');
     $('.month').text(prevMonthIndex + 1 + '월');
 
+    /* search 설정 */
+    SEARCH.today = prevDate.toISOString().split("T")[0];
+    /* ajax 실행 */
+    doSearch();
+
     calendar.prev();
 });
 
@@ -255,6 +256,11 @@ $('#calender-next').click(() => {
 
     $('.year').text(nextYear + '년');
     $('.month').text(nextMonthIndex + 1 + '월');
+
+    /* search 설정 */
+    SEARCH.today = nextDate.toISOString().split("T")[0];
+    /* ajax 실행 */
+    doSearch();
 
     calendar.next();
 });
@@ -333,20 +339,20 @@ calendar.on("clickEvent", function (e) {
 
     $(".food-list").html(text);
 
-    $("#cart-modal").css("display", "block");
+    $("#food-modal").css("display", "block");
 });
 
 /* ========= 장바구니 모달창 ========= */
 // 닫기 버튼을 클릭했을 때
 $(".close").on("click", function () {
-    $("#cart-modal").css("display", "none");
+    $("#food-modal").css("display", "none");
 });
 
 
 // 모달창 외부를 클릭했을 때
 $(window).on("click", function (event) {
     if ($(event.target).is('.modal')) {
-        $("#cart-modal").css("display", "none");
+        $("#food-modal").css("display", "none");
     }
 });
 

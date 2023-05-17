@@ -66,6 +66,8 @@
 .detail-top-wrap {
     padding-top: 70px;
     display: flex;
+    justify-content: space-between;
+    gap: 8px;
 }
 
 .welfare-img-area {
@@ -638,6 +640,26 @@ input[type="checkbox"], input[type="radio"] {
 
 .get-total-price {
     border-top: 1px solid rgb(0 0 0 / 5%);
+    padding-top: 10px;
+}
+
+.like-productCart-btn {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.like-productCart-btn a {
+    padding: 2px;
+}
+
+.like-productCart-btn a:hover {
+    background-color: #eee;
+}
+
+.productCart-btn img {
+    width: 30px;
+    height: 30px;
 }
 
 /* 버튼 + 모달 */
@@ -992,7 +1014,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .frame-slide-overlap .swiper-container {
-    padding: 0 20px;
+    padding: 0 12px;
 }
 
 .swiper-container {
@@ -1266,6 +1288,10 @@ input[type="checkbox"], input[type="radio"] {
     width: 825px;
 }
 
+#cart-modal .modal-content {
+    width: 315px;
+}
+
 .modal-content .modal-title {
     border-bottom: 1px solid #ccc;
     padding-bottom: 8px;
@@ -1334,6 +1360,57 @@ input[type="checkbox"], input[type="radio"] {
 
 .modal-body {
     margin-top: 20px;
+}
+
+.cart-product-info {
+    display: flex;
+    margin-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-product-info div:first-child {
+    padding-right: 12px;
+    border-right: 1px solid #ccc;
+}
+
+.cart-product-info div:nth-child(2) {
+    padding-left: 12px;
+}
+
+.cart-product-info div:nth-child(2) p {
+    margin-bottom: 4px;
+}
+
+.cart-info {
+    margin-bottom: 4px;
+}
+
+.modal-btn-wrap {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#modal-yesBtn {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+#modal-yesBtn {
+    background-color: #4CAF50;
+}
+
+#modal-yesBtn:hover {
+    background-color: #45a049;
 }
 
 /* ============================================== ================================= */

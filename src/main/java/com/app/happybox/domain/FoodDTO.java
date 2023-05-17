@@ -1,6 +1,5 @@
-package com.app.happybox.entity.subscript;
+package com.app.happybox.domain;
 
-import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;

@@ -2,15 +2,9 @@ package com.app.happybox.entity.board;
 
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.domain.user.WelfareDTO;
-import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.reply.ReplyDTO;
-import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.subscript.SubscriptionDTO;
-import com.app.happybox.entity.user.Member;
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

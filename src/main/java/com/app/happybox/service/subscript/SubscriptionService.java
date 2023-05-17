@@ -1,17 +1,16 @@
 package com.app.happybox.service.subscript;
 
 import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.domain.FoodDTO;
+import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.entity.subscript.*;
 import com.app.happybox.entity.user.Address;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface SubscriptionService {
 
