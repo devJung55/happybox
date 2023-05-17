@@ -109,6 +109,21 @@ public class MypageController {
         return new RedirectView("/main/login");
     }
 
+//    회원정보수정
+    @GetMapping("member/edit")
+    public String updateMemberInfo(Model model) {
+        memberService.getDetail(1L).ifPresent(member ->{
+                log.info(member.toString());
+                model.addAttribute("member", member);
+        });
+        return "/mypage/member/member-editor-form";
+    }
+
+    @PostMapping("member/edit")
+    public RedirectView updateMemberInfo(MemberDTO memberDTO) {
+        return new RedirectView("/mypage/member/edit");
+    }
+
 //    배송지정보수정
     @GetMapping("member/address-editor")
     public String updateMemberDeliveryAddress(Model model) {
