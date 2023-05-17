@@ -14,4 +14,7 @@ public interface UserService extends UserDetailsService {
 
     //    휴대폰 중복체크
     public Boolean existsUserByUserPhoneNumber(String userPhoneNumber);
+
+//    회원 탈퇴
+    public void updateUserStatusByUserId(Long userId);
 }

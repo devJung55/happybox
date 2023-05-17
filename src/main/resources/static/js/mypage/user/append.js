@@ -1,6 +1,8 @@
 const $append = $(".article__wrap");
 let page = 0;
 
+myPageService.recipeBoardListAjax();
+
 function showRecipeBoardList(recipeBoards) {
     let text = "";
     let image = "";
@@ -10,7 +12,7 @@ function showRecipeBoardList(recipeBoards) {
             for (let i = 0; i < recipeBoard.boardFiles.length; i++) {
                 if(i == 0) {
                     image = `
-                        <img src="/image/display?fileName=${recipeBoard.boardFiles[i].filePath}/${recipeBoard.boardFiles[i].fileUuid}_${recipeBoard.boardFiles[i].fileOrgName}">
+                        <img class="board-image" src="/image/display?fileName=${recipeBoard.boardFiles[i].filePath}/${recipeBoard.boardFiles[i].fileUuid}_${recipeBoard.boardFiles[i].fileOrgName}">
                     `;
                 }
             }

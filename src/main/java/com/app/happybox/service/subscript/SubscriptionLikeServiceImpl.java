@@ -1,12 +1,9 @@
 package com.app.happybox.service.subscript;
 
-import com.app.happybox.entity.reply.Reply;
-import com.app.happybox.entity.reply.ReplyLike;
+import com.app.happybox.domain.SubscriptionLikeDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.entity.user.Member;
-import com.app.happybox.entity.user.User;
-import com.app.happybox.exception.ReplyNotFoundException;
 import com.app.happybox.exception.SubscriptionNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.subscript.SubscriptionLikeRepository;
@@ -15,8 +12,14 @@ import com.app.happybox.repository.user.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -60,5 +63,12 @@ public class SubscriptionLikeServiceImpl implements SubscriptionLikeService {
     @Override
     public boolean checkLike(Long subscriptionId, Long memberId) {
         return subscriptionLikeRepository.checkMemberLikesSubscription_QueryDSL(memberId, subscriptionId);
+    }
+
+    @Override
+    public Page<SubscriptionLikeDTO> getListSubscriptionBookmarkByMemberId(Pageable pageable, Long memberId) {
+        Page<SubscriptionLike> subscriptionLikes = subscriptionLikeRepository.findSubscriptionBookmarkByMemberIdWithPaging_QueryDSL(pageable, memberId);
+        List<SubscriptionLikeDTO> subscriptionLikeDTOS = subscriptionLikes.get().map(this::subscriptionLikeToDTO).collect(Collectors.toList());
+        return new PageImpl<>(subscriptionLikeDTOS, pageable, subscriptionLikes.getTotalElements());
     }
 }
