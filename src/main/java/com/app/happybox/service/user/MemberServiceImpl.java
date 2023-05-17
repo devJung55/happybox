@@ -122,6 +122,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Optional<Member> findDeliveryInfoById(Long memberId) {
+        Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);
+        return member;
+    }
+
+    @Override
     public void updateMemberInfoById(Member member) {
         memberRepository.setMemberInfoById_QueryDSL(member);
     }
