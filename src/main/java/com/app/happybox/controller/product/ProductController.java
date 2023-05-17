@@ -76,7 +76,7 @@ public class ProductController {
 
     @PostMapping("/detail/reply/like/{replyId}")
     @ResponseBody
-    public boolean addLike(@PathVariable Long replyId) {
+    public boolean checkLike(@PathVariable Long replyId) {
         log.info("================== 들어옴 ===============");
         // 임시 session 값 1
         return replyLikeService.checkOutLike(replyId, 1L);

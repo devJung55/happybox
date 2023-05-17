@@ -1,29 +1,13 @@
 /* 복지관 상세페이지 */
 
-/* ================================하트 클릭 이벤트 =====================================================*/
-$('.like-btn').on('click', function () {
-    var $image = $(this).find('img');
-    var src = $image.attr('src');
-    var activeSrc = '../../static/img/mypage/heart-pull.png';
-    var defaultSrc = '../../static/img/mypage/heart.png';
+/* =================================== 구독 옵션 ============================================ */
 
-    if (src === defaultSrc) {
-        $image.attr('src', activeSrc);
-    } else {
-        $image.attr('src', defaultSrc);
-    }
-});
-
-/* =================================== Radio 버튼활성화 이벤트 ============================================ */
-/* const $radioLabels = $('.custom-radio label');
-
-$radioLabels.on('click', function() {
-  const $clickedRadio = $(this).prev('input[type="radio"]');
-  $radioLabels.siblings('input[type="radio"]').prop('checked', false);
-  $clickedRadio.prop('checked', true);
-});
-
-$radioLabels.filter(':has(input[type="radio"]:checked)').trigger('click'); */
+const SUB_OPTIONS = {
+    NORMAL: "NORMAL",
+    LOW_SALT: "LOW_SALT",
+    MORE_AMT: "MORE_AMT",
+    LESS_AMT: "LESS_AMT",
+}
 
 
 /* ======================Radio 버튼 활성화 및, 선택된 가격으로 총 상품 가격으로 선택 ========================*/
@@ -33,7 +17,6 @@ const $orderNormalTotalPrice = $('.orderNormalTotalPrice');
 $radioLabels.on('click', function () {
     const $clickedRadio = $(this).prev('input[type="radio"]');
     const $totalPrice = $('.total-price');
-    const $specialTotalPrice = $('.special-total-price');
     let selectedPrice = '';
 
     $radioLabels.siblings('input[type="radio"]').prop('checked', false);
@@ -43,7 +26,7 @@ $radioLabels.on('click', function () {
         $totalPrice.show();
         selectedPrice = $totalPrice.text();
         $clickedRadio.val(selectedPrice);
-    } 
+    }
 
     $orderNormalTotalPrice.html(selectedPrice);
 });
@@ -51,11 +34,13 @@ $radioLabels.on('click', function () {
 $radioLabels.filter(':has(input[type="radio"]:checked)').trigger('click');
 
 /* ========================카카오맵 js ======================================================================*/
+const WELFARE_ADDRESS = subscription.address;
+
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
 /* db에 있는 location이 들어갈 곳 */
-geocoder.addressSearch("서울시 노원구 석계로 49 현대아파트 105동", function (result, status) {
+geocoder.addressSearch(`${WELFARE_ADDRESS.firstAddress} ${WELFARE_ADDRESS.addressDetail}`, function (result, status) {
     // 정상적으로 검색이 완료됐으면
     if (status === kakao.maps.services.Status.OK) {
         /* 좌표 알아내는 코드 */
@@ -107,176 +92,206 @@ geocoder.addressSearch("서울시 노원구 석계로 49 현대아파트 105동"
     }
 });
 
-/* ============================================= 스크롤 이벤트 =================================== */
-// const $fixedDiv = $('.welfare-info-area');
-// const $fixedPosition = 300; // 고정시킬 위치 값
-// const initialPosition = $fixedDiv.offset();
-// const initialTop = initialPosition.top;
-// const initialRight = $(window).width()*1.23 - ($fixedDiv.offset().left + $fixedDiv.outerWidth());
+/* ============================================= 음식 리스트 뿌리기 =================================== */
 
-// $(window).scroll(function() {
-//   const currentPosition = $(window).scrollTop();
-//   // 스크롤 위치가 고정시킬 위치보다 크거나 같을 때
-//   if (currentPosition >= $fixedPosition) {
-//     $fixedDiv.addClass('fixed');
-//     $fixedDiv.css({
-//       'top': 10,
-//       'right': initialRight
-//     });
-//   } else {
-//     $fixedDiv.removeClass('fixed');
-//     $fixedDiv.removeAttr('style');
-//   }
+function showFoodList(foodCalendars) {
+    let $container = $(".swiperDataContainer");
+    let count = 0;
+    let limit;
 
-//   if (Math.floor(currentPosition) == Math.floor(($(document).height() - $(window).height()))) {
-//     console.log("아래닸냐");
-//     $fixedDiv.css({'top':-250, 'right':initialRight});
-//   }
-// });
+    // container 안의 음식 비우기
+    $container.empty();
 
+    foodCalendars.forEach(calendar => {
+        // 음식 리스트 길이가 0 이면 return
+        if (calendar.foodList.length == 0) return;
 
-/* =================================================================================================== */
+        // list append
+        appendFood(calendar.foodList[0], $container);
+
+        // 카운트 증가
+        ++count;
+    });
+
+    limit = Math.floor(count / 3);
+    $container.data("limit", limit);
+}
+
+function appendFood(food, $target) {
+    let text;
+    let filePath = "/img/welfare/welfare_img_default.png";
+
+    /* 추후 주석풀기 */
+    // if(food.filePath == null || food.fileOrgName == null || food.fileUuid == null) filePath = "/img/welfare/welfare_img_default.png";
+    // else filePath = `/image/display?fileName=${food.filePath}/t_${food.fileUuid}_${food.fileOrgName}`;
+
+    text = `
+        <li
+            class="bnr-item-slide swiper-slide swiper-slide-active"
+            style="width: 227px; margin-right: 20px">
+            <div class="bnr-item">
+                <div class="img">
+                    <img
+                            alt=""
+                            src="${filePath}"
+                            data-loaded="true"
+                    />
+                </div>
+                <em class="tit text-elps"
+                >${food.foodName}</em
+                >
+            </div>
+        </li>
+    `
+
+    $target.append(text);
+}
 
 /* ============================================== 리스트 스와이프========================================= */
-let globalIndex = 0;
-let nextCheck;
+const MARGIN = 20;
 
-let itemListIndex = 0;
-let timerListIndex = 0;
-let recommendIndex = 0;
-// 임시
-let recommendIndex2 = 0;
+const $prevBtn = $(".swiper-button-prev");
+const $nextBtn = $(".swiper-button-next");
 
-const $swiperBtnNext = $(".swiper-button-next");
-const $swiperBtnPrev = $(".swiper-button-prev");
-const THREE = 3;
+$nextBtn.each((i, e) => {
+    $(e).on("click", function () {
+        if ($(this).hasClass("swiper-button-disabled")) return;
 
-// 다음 슬라이드 불러옴
-$swiperBtnNext.on("click", function (e) {
-    // 버튼이 disabled 면 그냥 리턴
-    if ($(this).hasClass("swiper-button-disabled")) return;
+        let $dataContainer = $($(this).prev().prev());
+        let offsetWidth = 742;
+        let indexLimit = $dataContainer.data("limit");
+        let offset;
 
-    let displayCount = $(e.target).hasClass("swiper-button-displayCount2") ? 2 : 4;
-    
+        let i = $dataContainer.data("index");
+        offset = offsetWidth * ++i;
 
-    swipe(e, THREE, this, addDisabledClass);
-});
+        $dataContainer.css({'transform': `translateX(-${offset}px)`});
+        $dataContainer.data("index", i);
 
-$swiperBtnPrev.on("click", function (e) {
-    // 버튼이 disabled 면 그냥 리턴
-    if ($(this).hasClass("swiper-button-disabled")) return;
+        if (i + 2 > indexLimit) $(this).addClass("swiper-button-disabled");
 
-    let displayCount = $(e.target).hasClass("swiper-button-displayCount2") ? 2 : 4;
-
-    swipe(e, THREE, this, addDisabledClass);
-});
-
-// itemSwiper 실행 함수
-function itemSwiper($itemList, $button, transformWidth) {
-    $button.removeClass("swiper-button-disabled");
-    $itemList.css({
-        transform: `translateX(${transformWidth}px)`,
+        $(this).prev().removeClass("swiper-button-disabled");
     });
-}
+});
 
-// 실제 slider 움직이는 함수
-function swipe(e, displayCount, button, callback) {
-    let $itemList = $(e.target).siblings("ul.swiperDataContainer");
+$prevBtn.each((i, e) => {
+    $(e).on("click", function () {
+        if ($(this).hasClass("swiper-button-disabled")) return;
 
-    let $li = $itemList.find("li");
-    // 각각 다른 인덱스 변수를 분기처리하여 증가시켜줌
-    let index = setitemListIndex(e);
+        let $dataContainer = $($(this).prev());
+        let offsetWidth = 742;
+        let offset;
 
-    let marginRight = Number($li[0].style.marginRight.replace("px", ""));
-    let itemCount = $li.length;
-    let itemWidth = $li[0].clientWidth + marginRight;
+        let i = $dataContainer.data("index");
+        offset = offsetWidth * --i;
 
-    // console.log(itemCount, itemWidth);
+        $dataContainer.css({'transform': `translateX(-${offset}px)`});
+        $dataContainer.data("index", i);
 
-    let swipeLimit = itemCount / THREE - 1;
-    let siblingBtn = $(button).siblings('.swiper-btn');
+        if (i - 1 < 0) $(this).addClass("swiper-button-disabled");
 
-    callback(swipeLimit, button);
-
-    // 움직이는 width 길이
-    let transformWidth = itemWidth * THREE * index * -1;
-    itemSwiper($itemList, siblingBtn, transformWidth);
-}
-
-function setitemListIndex(e) {
-    nextCheck = $(e.target).hasClass("swiper-button-next");
-    let i;
-
-    if (nextCheck) {
-        i = $(".swiper-button-next").index(e.target);
-    } else i = $(".swiper-button-prev").index(e.target);
-
-    switch (i) {
-        case 0:
-            globalIndex = nextCheck ? ++itemListIndex : --itemListIndex;
-            break;
-        case 1:
-            globalIndex = nextCheck ? ++timerListIndex : --timerListIndex;
-            break;
-        case 2:
-            globalIndex = nextCheck ? ++recommendIndex : --recommendIndex;
-            break;
-        case 3:
-            globalIndex = nextCheck ? ++recommendIndex2 : --recommendIndex2;
-            break;
-        default:
-            break;
-    }
-
-    return globalIndex;
-}
-
-function addDisabledClass(swipeLimit, button) {
-    if (nextCheck && globalIndex + 1 > swipeLimit) {
-        console.log(globalIndex + 1, swipeLimit, button);
-        $(button).addClass("swiper-button-disabled");
-        return;
-    }
-
-    if (globalIndex - 1 < 0) {
-        $(button).addClass("swiper-button-disabled");
-        return;
-    }
-}
+        $(this).next().removeClass("swiper-button-disabled");
+    });
+});
 
 /* =================================================================================================== */
+/* ================ 장바구니 ================ */
+
+const SUB_OPTIONS_CLIENT = {
+    NORMAL: "옵션 선택안함",
+    LOW_SALT: "저염식",
+    MORE_AMT: "양 많이",
+    LESS_AMT: "양 적게"
+};
+
+const CART_URL = `/welfare/cart/add/${subscription.id}`;
+$(".productCart-btn").on("click", function () {
+    /* 장바구니 */
+    $(".cart-name").text(subscription.subscriptionTitle)
+    $(".cart-welfare").text(subscription.welfareName);
+    $(".cart-price").text(subscription.subscriptionPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + " 원");
+    $(".cart-option").text(SUB_OPTIONS_CLIENT[$("select[name='option']").val()]);
+
+    $("#cart-modal").css("display", "block");
+});
+
+// 닫기 버튼을 클릭했을 때
+$(".close").on("click", function () {
+    $("#cart-modal").css("display", "none");
+});
+
+// 예 버튼을 클릭했을 때
+$("#modal-yesBtn").on("click", function () {
+    console.log($(".quantity-input").val());
+    console.log(CART_URL);
+    $doAjaxPost("POST",
+        CART_URL, // 장바구니 URL
+        {
+            subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
+            subOption: $("select[name='option']").val()
+        },
+        (result) => {  // callback
+            $("#cart-modal").css("display", "none");
+
+            console.log(result);
+        }
+    );
+
+});
+
+// 모달창 외부를 클릭했을 때
+$(window).on("click", function (event) {
+    if ($(event.target).is('.modal')) {
+        $("#cart-modal").css("display", "none");
+    }
+});
+
+/* 찜하기 */
+const SUB_LIKE_URL = `/welfare/detail/like/${subscription.id}`;
+const likeSrc = "/img/mypage/heart-pull.png";
+const unlikeSrc = "/img/mypage/heart.png";
+/* 이미 좋아요인지 검사 */
+
+$(".like-btn img").attr("src", `${isLike ? likeSrc : unlikeSrc}`);
+
+/* 좋아요 눌렀을 때 */
+function checkLike() {
+    $doAjax("POST", SUB_LIKE_URL, {}, (result) => {
+        $(".like-btn img").attr("src", `${result ? unlikeSrc : likeSrc}`);
+    });
+}
 
 /* ====================================상단으로 이동하기=================================== */
-$(document).ready(function() {
+$(document).ready(function () {
     // "fixed-img" 버튼 숨기기
     $('.fixed-img').hide();
-  
+
     // 스크롤 이벤트 처리
-    $(window).scroll(function() {
-      // 스크롤 위치가 200 픽셀보다 크면 "fixed-img" 버튼 보이기
-      if ($(this).scrollTop() > 200) {
-        $('.fixed-img').fadeIn();
-      } else {
-        // 그렇지 않으면 숨기기
-        $('.fixed-img').fadeOut();
-      }
+    $(window).scroll(function () {
+        // 스크롤 위치가 200 픽셀보다 크면 "fixed-img" 버튼 보이기
+        if ($(this).scrollTop() > 200) {
+            $('.fixed-img').fadeIn();
+        } else {
+            // 그렇지 않으면 숨기기
+            $('.fixed-img').fadeOut();
+        }
     });
-  
+
     // "fixed-img" 버튼에 대한 클릭 이벤트 처리
-    $('.fixed-img').click(function() {
-      // 문서 맨 위로 스크롤
-      $('html, body').animate({scrollTop: 0}, 'slow');
+    $('.fixed-img').click(function () {
+        // 문서 맨 위로 스크롤
+        $('html, body').animate({scrollTop: 0}, 'slow');
     });
-  });
+});
 /* =================================================================================================== */
 /* ==================================== 슬라이드 이미지 뿌리기   =================================================== */
 
 const $slide = $('.slide-img-wrap');
 
 function showSlideImg() {
-    
-    let text = 
-                `
+
+    let text =
+        `
                     <li class="bnr-item-slide swiper-slide swiper-slide-active" style="width: 227px; margin-right: 20px">
                         <div class="bnr-item">
                             <div class="img">
@@ -297,13 +312,13 @@ function showSlideImg() {
 
 const $showDelete = $(".delete-btn");
 const $cancelDelete = $(".cancel-delete");
-$showDelete.on('click', function(e){
+$showDelete.on('click', function (e) {
     $(".delete-modal").show();
-    $('.confirm-delete').on('click', function(){
-        $(location).attr('href','../../templates/welfare/dontae-list.html');
+    $('.confirm-delete').on('click', function () {
+        $(location).attr('href', '../../templates/welfare/dontae-list.html');
     });
 })
-$cancelDelete.on('click', function(e){
+$cancelDelete.on('click', function (e) {
     $(".delete-modal").hide();
 })
 

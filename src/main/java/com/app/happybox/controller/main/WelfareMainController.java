@@ -1,6 +1,5 @@
 package com.app.happybox.controller.main;
 
-import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.service.board.DonationBoardService;
 import com.app.happybox.service.board.ReviewBoardService;
 import com.app.happybox.service.subscript.SubscriptionService;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

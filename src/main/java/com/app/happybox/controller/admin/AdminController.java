@@ -4,6 +4,7 @@ import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.OrderSubscriptionDTO;
 import com.app.happybox.domain.PageDTO;
 import com.app.happybox.domain.product.ProductDTO;
+import com.app.happybox.domain.user.UserFileDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.file.UserFile;
@@ -101,7 +102,7 @@ public class AdminController {
     @GetMapping("member-detail")
     public String[] getMemberDetail(@RequestParam("memberId") Long memberId, Model model) {
         Member memberInfo = memberService.getDetail(memberId).get();
-        UserFile userFile = userFileService.getDetail(memberId);
+        UserFileDTO userFile = userFileService.getDetail(memberId);
         String filePath = "";
         String fileUuid = "";
         String fileOrgName = "";

@@ -6,21 +6,14 @@ import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
-import com.app.happybox.entity.reply.Reply;
-import com.app.happybox.entity.reply.ReplyDTO;
-import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public interface ReviewBoardService {
     // 상세보기
