@@ -41,6 +41,9 @@ public interface MemberService{
     //    마이페이지 배송지정보조회
     public Optional<Member> findDeliveryInfoById(Long memberId);
 
+    //    배송지정보수정
+    public void updateMemberDeliveryAddressByMemberId(Member member);
+
 //    회원정보수정
     public void updateMemberInfoById(Member member);
 

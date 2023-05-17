@@ -127,6 +127,7 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
+
     @Override
     public void updateMemberInfoById(Member member) {
         memberRepository.setMemberInfoById_QueryDSL(member);
