@@ -1,37 +1,12 @@
-const $noticeList = $(".notice-list");
 const $useInfoList = $(".use-info-list");
 const $faqList = $(".faq-list");
 
 // 임시
-// for (let i = 0; i < 10; i++) {
-//     addNotice();
-//     addInfo();
-//     addFAQ();
-// }
-
-function addNotice() {
-    let text = "";
-    lists.forEach((list, i) => {
-        const formattedDate = formatDate(new Date(list.createdDate));
-        text+= `
-            <div class="board-wrap">
-                <div class="text-center number">
-                    <span>${list.id}</span>
-                </div>
-                <div class="text-left flex1">
-                    <a href="/cs/notice-detail/${list.id}" class="title-elps">
-                        ${list.noticeTitle}
-                    </a>
-                </div>
-                <div class="text-center">
-                    <span>${formattedDate}</span>
-                </div>
-            </div>
-        `;
-    })
-    $noticeList.append(text);
+for (let i = 0; i < 10; i++) {
+    addInfo();
+    addFAQ();
 }
-addNotice();
+
 
 function addInfo(info) {
     let text;
@@ -75,7 +50,7 @@ function addFAQ() {
     <div class="board-wrap use-info">
         <div class="text-left flex1">
             <a href="javascript:void(0)" class="title-elps">
-                결제 후 적립으 어떻게 되나요?
+                결제 후 적립은 어떻게 되나요?
             </a>
         </div>
         <div class="text-center arrow-wrap">

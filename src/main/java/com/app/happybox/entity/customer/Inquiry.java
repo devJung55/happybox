@@ -52,4 +52,14 @@ public class Inquiry extends Period {
     public void setInquiryStatus(InquiryStatus inquiryStatus) {
         this.inquiryStatus = inquiryStatus;
     }
+
+    @Builder // DTO entity로 만들기 위한 빌더
+    public Inquiry(Long id, String inquiryTitle, String inquiryContent, User user, InquiryType inquiryType, List<InquiryFile> inquiryFiles) {
+        this.id = id;
+        this.inquiryTitle = inquiryTitle;
+        this.inquiryContent = inquiryContent;
+        this.user = user;
+        this.inquiryType = inquiryType;
+        this.inquiryFiles = inquiryFiles;
+    }
 }

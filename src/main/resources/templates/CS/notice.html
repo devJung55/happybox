@@ -21,97 +21,80 @@
             <!-- 사이드바는 타임리프 fragment로 묶을것. 임시로 list.js에 load() 사용 -->
             <div th:insert="~{CS/sidebar :: sidebar}"></div>
             <div class="frame-right">
-                <form id="frm" name="frm" action="/cs/notice-list" method="get">
-                    <div class="frame-cnt-inner">
-                        <div class="form-wrap">
-                            <div class="menu-title-area">
-                                <h3 class="title-menu">공지사항</h3>
-                                <div class="right">
-                                    <div class="input-group-wrap box-type">
-                                        <div class="input-group w225">
-                                            <div class="input-group-form">
-                                                <div class="ui-select select-box" data-value="">
-                                                    <a class="select-value">
-                                                        <span id="value">전체</span>
-                                                    </a>
-                                                    <!-- 검색조건 -->
-                                                    <input id="srchType" name="srchType" type="hidden" />
-                                                    <div class="select-list disNone">
-                                                        <ul>
-                                                            <li
-                                                                    class="srchOpt"
-                                                                    data-value="전체"
+                <div class="frame-cnt-inner">
+                    <div class="form-wrap">
+                        <div class="menu-title-area">
+                            <h3 class="title-menu">공지사항</h3>
+                            <div class="right">
+                                <div class="input-group-wrap box-type">
+                                    <div class="input-group w225">
+                                        <div class="input-group-form">
+                                            <div class="ui-select select-box" data-value="">
+                                                <a class="select-value">
+                                                    <span id="value">전체</span>
+                                                </a>
+                                                <!-- 검색조건 -->
+                                                <input id="srchType" name="srchType" type="hidden" />
+                                                <div class="select-list disNone">
+                                                    <ul>
+                                                        <li
+                                                                class="srchOpt"
+                                                                data-value="전체"
+                                                        >
+                                                            <a><span>전체</span></a>
+                                                        </li>
+                                                        <li
+                                                                class="srchOpt"
+                                                                data-value="제목"
+                                                        >
+                                                            <a class="selected"
+                                                            ><span>제목</span></a
                                                             >
-                                                                <a><span>전체</span></a>
-                                                            </li>
-                                                            <li
-                                                                    class="srchOpt"
-                                                                    data-value="제목"
-                                                            >
-                                                                <a class="selected"
-                                                                ><span>제목</span></a
-                                                                >
-                                                            </li>
-                                                            <li
-                                                                    class="srchOpt"
-                                                                    data-value="내용"
-                                                            >
-                                                                <a><span>내용</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                        </li>
+                                                        <li
+                                                                class="srchOpt"
+                                                                data-value="내용"
+                                                        >
+                                                            <a><span>내용</span></a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <!--// input-group-form -->
-                                            <input
-                                                    type="text"
-                                                    id="item1-1"
-                                                    class="input-text"
-                                                    name="keyword"
-                                            />
-                                            <span class="input-group-btn">
-                                                        <button
-                                                                type="button"
-                                                                class="btn-icon-search"
-                                                                id="noticeSrch"
-                                                        >
-                                                            <i class="ico-btn-search"></i>
-                                                        </button>
-                                                    </span>
                                         </div>
-                                        <!--// input-group -->
+                                        <!--// input-group-form -->
+                                        <input
+                                                type="text"
+                                                id="item1-1"
+                                                class="input-text"
+                                                name="keyword"
+                                        />
+                                        <span class="input-group-btn">
+                                            <button
+                                                    type="button"
+                                                    class="btn-icon-search"
+                                                    id="noticeSrch"
+                                            >
+                                                <i class="ico-btn-search"></i>
+                                            </button>
+                                        </span>
                                     </div>
-                                    <!--// input-group-wrap -->
+                                    <!--// input-group -->
                                 </div>
+                                <!--// input-group-wrap -->
                             </div>
                         </div>
-                        <div class="board-list notice-list"></div>
                     </div>
-                    <div th:if="${pageDTO.total != 0}" class="page-bottom">
-                        <div class="pagination mt20" style="margin-top: 30px;"><!-- // 페이징 -->
-                            <a th:if="${pageDTO.prev}" th:href="'javascript:pageMove(' + ${pageDTO.startPage - 1} + ')'" class="btn-page prev"><span class="blind">&lt;</span></a>
-                            <th:block th:each="page : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                                <a th:if="${pageDTO.pageNum == page}" class="current"><span th:text="${page}"></span></a>
-                                <a th:unless="${pageDTO.pageNum == page}" th:href="'javascript:pageMove(' + ${page} + ')'" ><span th:text="${page}"></span></a>
-                            </th:block>
-                            <a th:if="${pageDTO.next}" th:href="'javascript:pageMove(' + ${pageDTO.endPage + 1} + ')'" class="btn-page next"><span class="blind">&gt;</span></a>
-                        </div><!--// pagination -->
-                    </div>
-                </form>
+                    <div class="board-list notice-list"></div>
+                </div>
+                <!-- 페이지 들어올 곳 -->
+                <div class="page-bottom"></div>
             </div>
         </div>
     </div>
 </section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script th:inline="javascript">
-    let lists = [[${lists}]]
-    let pageDTO = [[${pageDTO}]]
-</script>
 <script src="/js/CS/common.js"></script>
 <script src="/js/CS/search.js"></script>
-<script src="/js/CS/list.js"></script>
 <script src="/js/CS/notice-page.js"></script>
-<!-- 임시 사이드바 js 이후 th fragment로 대체 -->
-<!--    <script src="../../static/js/CS/sidebar.js"></script>-->
 </html>

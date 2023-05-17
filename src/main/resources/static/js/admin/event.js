@@ -187,6 +187,7 @@ function getFilePath(formData, attachBtn, i) {
             Uuid[i] = data.uuids;
             path[i] = data.paths;
             showThumb(attachBtn, data)
+            addFile();
         }
     })
 }

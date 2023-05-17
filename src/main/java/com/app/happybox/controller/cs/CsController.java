@@ -1,17 +1,22 @@
 package com.app.happybox.controller.cs;
 
+import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.PageDTO;
 import com.app.happybox.entity.customer.NoticeSearch;
+import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.cs.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,27 +25,19 @@ import org.springframework.web.bind.annotation.*;
 public class CsController {
     @Qualifier("notice")
     private final NoticeService noticeService;
+    @Qualifier("inquiry")
+    private final InquiryService inquiryService;
 
-    //    공지사항 리스트 및 검색조건
-    @GetMapping("notice-list")
-    public String getNoticeList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @RequestParam(value = "srchType", required = false) String srchType, @RequestParam(value = "keyword", required = false) String keyword, Model model) {
-        NoticeSearch noticeSearch = new NoticeSearch();
-        if(srchType != null) {
-            switch(srchType){
-                case "제목" : noticeSearch.setNoticeTitle(keyword);
-                    break;
-                case "내용" : noticeSearch.setNoticeContent(keyword);
-                    break;
-                case "전체" : noticeSearch.setNoticeWhole(keyword);
-                    break;
-            }
-        }
-        PageRequest getPage = PageRequest.of(page - 1, 10);
-        Page<NoticeDTO> lists = noticeService.getNoticeList(getPage, noticeSearch);
-        model.addAttribute("pageDTO", new PageDTO(lists));
-        model.addAttribute("lists", lists.getContent());
+    //    공지사항 리스트
+    @GetMapping("notice")
+    public void getNoticeList() {;}
 
-        return "/CS/notice";
+    //    검색을 통해 가져온 리스트
+    @GetMapping("search")
+    @ResponseBody
+    public Page<NoticeDTO> searchList(@PageableDefault(page = 1) Pageable pageable, NoticeSearch noticeSearch) {
+        Page<NoticeDTO> notices = noticeService.getNoticeList(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), noticeSearch);
+        return notices;
     }
 
 //    공지사항 상세페이지로 이동
@@ -51,5 +48,19 @@ public class CsController {
         return "/CS/notice-detail";
     }
 
+    //    문의 작성 페이지로 이동
+    @GetMapping("write-inquiry")
+    public void goToInquiry(InquiryDTO inquiryDTO) {;}
 
+    //    문의 작성
+    @PostMapping("write")
+    public RedirectView writeInquiry(InquiryDTO inquiryDTO) {
+        inquiryService.inquiryWrite(inquiryDTO);
+    //    나중에 마이페이지 문의 목록으로 이동해야 함
+        return new RedirectView("/cs/notice");
+    }
+
+    //    FAQ로 이동
+    @GetMapping("faq")
+    public void goFAQ() {;}
 }
