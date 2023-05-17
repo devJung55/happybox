@@ -122,12 +122,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Optional<Member> findDeliveryInfoById(Long memberId) {
-        Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);
-        return member;
-    }
-
-    @Override
     public void updateMemberInfoById(Member member) {
         memberRepository.setMemberInfoById_QueryDSL(member);
     }
@@ -137,6 +131,11 @@ public class MemberServiceImpl implements MemberService {
     public void updateUserStatusById(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         member.setUserStatus(UserStatus.UNREGISTERED);
+    }
+
+    @Override
+    public void updateMemberDeliveryAddressByMemberId(Member member) {
+        memberRepository.setMemberDeliveryAddressByMemberId(member);
     }
 
     @Override

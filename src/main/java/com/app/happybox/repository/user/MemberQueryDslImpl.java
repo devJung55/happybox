@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -75,12 +76,6 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .fetchOne());
     }
 
-    //    마이페이지 배송지정보
-    @Override
-    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.eq(member)).fetchOne());
-    }
-
     @Override
     public Page<Member> findAllWithPaging_QueryDSL(Pageable pageable) {
         List<Member> memberList = query.select(member)
@@ -103,5 +98,16 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         return memberDatail;
     }
 
-
+    @Override
+    @Transactional
+    public void setMemberDeliveryAddressByMemberId(Member member) {
+        query.update(QMember.member)
+                .set(QMember.member.deliveryName, member.getDeliveryName())
+                .set(QMember.member.deliveryPhoneNumber, member.getDeliveryPhoneNumber())
+                .set(QMember.member.memberDeliveryAddress.zipcode, member.getMemberDeliveryAddress().getZipcode())
+                .set(QMember.member.memberDeliveryAddress.firstAddress, member.getMemberDeliveryAddress().getFirstAddress())
+                .set(QMember.member.memberDeliveryAddress.addressDetail, member.getMemberDeliveryAddress().getAddressDetail())
+                .where(QMember.member.id.eq(member.getId()))
+                .execute();
+    }
 }

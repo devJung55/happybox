@@ -58,7 +58,8 @@
                                             <tr>
                                                 <th scope="row">받는분</th>
                                                 <td>
-                                                    <input type="text" name="" title="" class="input-text w-full removeEmoji" th:field="${member.deliveryName}">
+                                                    <input type="hidden" th:field="${member.id}">
+                                                    <input type="text" title="" class="input-text w-full removeEmoji" th:field="${member.deliveryName}">
                                                 </td>
                                             </tr>
                                             <tr class="row-th-top">
@@ -67,10 +68,10 @@
                                                     <div class="input-group-wrap box-type" style="display: flex;">
                                                         <div class="input-group">
                                                             <div class="input-group-cell w160">
-                                                                <input type="text" id="postcode" class="input-text" placeholder="우편번호" th:field="${member.memberDeliveryAddress.zipcode}" readonly>
+                                                                <input type="text" id="postcode" name="zipcode" class="input-text" placeholder="우편번호" th:field="${member.memberDeliveryAddress.zipcode}" readonly>
                                                             </div>
                                                             <div class="input-group-cell">
-                                                                <input type="text" id="address" class="input-text" placeholder="기본주소" th:field="${member.memberDeliveryAddress.firstAddress}" readonly>
+                                                                <input type="text" id="address" name="firstAddress" class="input-text" placeholder="기본주소" th:field="${member.memberDeliveryAddress.firstAddress}" readonly>
                                                             </div>
                                                             <span class="input-group-btn" onclick="sample6_execDaumPostcode()">
                                                                 <a href="javascript:void(0)" class="btn-ex-white">
@@ -79,13 +80,13 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <input type="text" id="detailAddress" name="receiverAddrDtl" class="input-text w-full removeEmoji" placeholder="상세주소" th:field="${member.memberDeliveryAddress.addressDetail}">
+                                                    <input type="text" id="detailAddress" name="addressDetail" class="input-text w-full removeEmoji" placeholder="상세주소" th:field="${member.memberDeliveryAddress.addressDetail}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">전화번호</th>
                                                 <td>
-                                                    <input type="text" class="input-text w-full" maxlength="11" placeholder="ex) 01099991234" th:field="${member.deliveryPhoneNumber}">
+                                                    <input type="text" class="input-text w-full" name="deliveryPhoneNumber" maxlength="11" placeholder="ex) 01099991234" th:field="${member.deliveryPhoneNumber}">
                                                 </td>
                                             </tr>
                                         </tbody>
