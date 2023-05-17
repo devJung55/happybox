@@ -132,7 +132,7 @@ public class BoardController {
     @ResponseBody
     public void deleteReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long reviewBoardId) {
         // 임시 session 값 1저장
-         reviewBoardReplyService.deleteReply(replyDTO, reviewBoardId, 1L);
+//         reviewBoardReplyService.deleteReply(replyDTO, reviewBoardId, 1L);
          log.info("===============들어옴");
     }
 
