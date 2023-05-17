@@ -45,7 +45,7 @@ public class RecipeBoardReplyService implements ReplyService {
     }
 
     @Override
-    public void deleteReply(ReplyDTO replyDTO, Long refId, Long userId) {
+    public void deleteReply(Long replyId) {
 
     }
 
