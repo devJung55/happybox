@@ -15,7 +15,7 @@ public interface MemberQueryDsl {
     public Optional<Member> logIn(String memberId, String memberPassword);
 
 //    아이디 찾기
-    public Optional<String> findMemberIdByPhoneNumber(String memberPhoneNumber);
+    public Optional<String> findMemberIdByPhoneNumber(String userPhoneNumber);
 
 //    아이디 찾기(memberEmail)
     public Optional<String> findMemberIdByEmail(String memberEmail);
@@ -31,6 +31,8 @@ public interface MemberQueryDsl {
 
 //    관리자 회원 조회
     public Optional<Member> findMemberById_QueryDSL(Long memberId);
+
+
 }
 
 
