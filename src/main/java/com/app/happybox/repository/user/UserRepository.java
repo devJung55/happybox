@@ -3,6 +3,8 @@ package com.app.happybox.repository.user;
 import com.app.happybox.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface UserRepository extends JpaRepository<User, Long> {
 
 //    아이디중복체크
@@ -14,5 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //    휴대폰 중복체크
     public Boolean existsUserByUserPhoneNumber(String userPhoneNumber);
 
-//
+//    id로 회원조회(UserDetailService)
+    public Optional<User> findByUserId(String userName);
 }

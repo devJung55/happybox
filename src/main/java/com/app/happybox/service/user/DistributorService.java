@@ -25,6 +25,9 @@ public interface DistributorService {
     //    회원가입
     public void join(DistributorDTO distributorDTO, PasswordEncoder passwordEncoder);
 
+    //    유통업체 명 중복검사
+    public boolean existsByDistributorName(String distributorName);
+
     default Distributor toDistributorEntity(DistributorDTO distributorDTO){
         return Distributor.builder()
                 .address(distributorDTO.getAddress())

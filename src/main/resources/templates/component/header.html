@@ -28,7 +28,8 @@
         <!-- header_util -->
         <div class="util">
             <ul>
-                <li><a href="javascript:void(0)">로그아웃</a></li>
+                <li th:if="${userDetail == null}"><a href="/login">로그인</a></li>
+                <li th:if="${userDetail != null}"><a href="/logout">로그아웃</a></li>
                 <li><a href="javascript:void(0)">정보수정</a></li>
                 <li><a href="javascript:void(0)">주문조회</a></li>
             </ul>
@@ -125,4 +126,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/main/header.js"></script>
+<script>
+    console.log(userDetail);
+</script>
 </html>

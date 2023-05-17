@@ -120,6 +120,7 @@
   padding: 3px 0 0 26px;
   font-size: 12px;
   color: #999;
+  display: none;
 }
 
 .terms-toggle-box .terms-inner-list {
@@ -626,6 +627,8 @@ button[disabled] {
 
 .error {
   color: #ff1d1d9e;
+  margin-top: 6px;
+  font-size: 13px;
 }
 
 .join-area .form-group-area + .btn-bottom-area {

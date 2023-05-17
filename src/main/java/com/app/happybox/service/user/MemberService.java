@@ -4,13 +4,12 @@ import com.app.happybox.entity.user.Member;
 import com.app.happybox.domain.user.MemberDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-public interface MemberService extends UserDetailsService {
+public interface MemberService{
 
     //    회원가입
     public void join(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
