@@ -1,6 +1,8 @@
 package com.app.happybox.service.user;
 
+import com.app.happybox.entity.user.User;
 import com.app.happybox.repository.user.UserRepository;
+import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -33,5 +35,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean existsUserByUserPhoneNumber(String userPhoneNumber) {
         return userRepository.existsUserByUserPhoneNumber(userPhoneNumber);
+    }
+
+    @Override
+    public void updateUserStatusByUserId(Long userId) {
+        userRepository.findById(userId).ifPresent(user -> user.setUserStatus(UserStatus.UNREGISTERED));
     }
 }

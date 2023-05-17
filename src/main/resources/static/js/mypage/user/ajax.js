@@ -21,8 +21,41 @@ let myPageService = (function() {
         })
     }
 
-    return {recipeBoardListAjax: recipeBoardListAjax, inquiryListAjax: inquiryListAjax}
-}());
+    function orderListAjax(page) {
+        $.ajax({
+            url: "/mypage/member/order-list",
+            data: {"page": page, "memberId": memberId},
+            success: function(orderList) {
+                showOrderList(orderList);
+            }
+        })
+    }
 
-myPageService.recipeBoardListAjax();
-myPageService.inquiryListAjax();
+    function recipeBoardBookmarkAjax(page) {
+        $.ajax({
+            url: "/mypage/member/recipe-bookmark-list",
+            data: {"page": page, "memberId": memberId},
+            success: function (bookmarkList) {
+                showRecipeBoardBookmarkList(bookmarkList);
+            }
+        })
+    }
+
+    function subscriptionBookmarkAjax(page) {
+        $.ajax({
+            url: "/mypage/member/subscrition-bookmark-list",
+            data: {"page": page, "memberId": memberId},
+            success: function (bookmarkList) {
+                showSubscriptionBookmarkList(bookmarkList);
+            }
+        })
+    }
+
+    return {
+        recipeBoardListAjax: recipeBoardListAjax,
+        inquiryListAjax: inquiryListAjax,
+        orderListAjax: orderListAjax,
+        recipeBoardBookmarkAjax: recipeBoardBookmarkAjax,
+        subscriptionBookmarkAjax: subscriptionBookmarkAjax
+    }
+}());

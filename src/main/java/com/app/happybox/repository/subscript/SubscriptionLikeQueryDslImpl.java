@@ -35,7 +35,7 @@ public class SubscriptionLikeQueryDslImpl implements SubscriptionLikeQueryDsl {
     }
 
     @Override
-    public Page<SubscriptionLike> findSubscriptionByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
+    public Page<SubscriptionLike> findSubscriptionBookmarkByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         List<SubscriptionLike> subscriptionLikeList = query.select(subscriptionLike)
                 .from(subscriptionLike)
                 .where(subscriptionLike.member.id.eq(memberId))

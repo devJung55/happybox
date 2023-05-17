@@ -1,18 +1,19 @@
 package com.app.happybox.controller.mypage;
 
-import com.app.happybox.domain.InquiryDTO;
-import com.app.happybox.domain.MemberOrderProductItemDTO;
-import com.app.happybox.domain.OrderSubscriptionDTO;
+import com.app.happybox.domain.*;
 import com.app.happybox.entity.board.RecipeBoardDTO;
-import com.app.happybox.entity.customer.Inquiry;
+import com.app.happybox.entity.user.Address;
+import com.app.happybox.service.board.RecipeBoardLikeService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
+import com.app.happybox.service.subscript.SubscriptionLikeService;
+import com.app.happybox.service.user.MemberService;
+import com.app.happybox.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class MypageController {
     private final RecipeBoardService recipeBoardService;
     private final InquiryService inquiryService;
     private final MemberOrderProductItemService memberOrderProductItemService;
+    private final UserService userService;
+    private final RecipeBoardLikeService recipeBoardLikeService;
+    private final SubscriptionLikeService subscriptionLikeService;
+    private final MemberService memberService;
 
     @GetMapping("member/board")
     public void getUserRecipeBoardList() {;}
@@ -61,6 +66,59 @@ public class MypageController {
     public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
         Page<MemberOrderProductItemDTO> orderList = memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(page - 1, 5), memberId);
         return orderList;
+    }
+
+//    레시피 찜 목록
+    @GetMapping("member/recipe-bookmark")
+    public void getRecipeBookmarkList() {;}
+
+//    레시피 찜 목록
+    @ResponseBody
+    @GetMapping("member/recipe-bookmark-list")
+    public Page<RecipeBoardLikeDTO> getRecipeBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
+        Page<RecipeBoardLikeDTO> bookmarkList = recipeBoardLikeService.getListByMemberId(PageRequest.of(page - 1, 8), memberId);
+        return bookmarkList;
+    }
+
+//    복지관 찜 목록
+    @GetMapping("member/subscription-bookmark")
+    public String getSubscriptionBookmarkList() {
+        return "/mypage/member/welfare-bookmark";
+    }
+
+//    복지관 찜 목록
+    @ResponseBody
+    @GetMapping("member/subscrition-bookmark-list")
+    public Page<SubscriptionLikeDTO> getSubscriptionBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
+        Page<SubscriptionLikeDTO> bookmarkList = subscriptionLikeService.getListSubscriptionBookmarkByMemberId(PageRequest.of(page - 1, 8), memberId);
+        return bookmarkList;
+    }
+
+//    회원 탈퇴
+    @GetMapping("member/unregister")
+    public String unregister() {
+        return "/mypage/member/withdrawal";
+    }
+
+//    회원 탈퇴
+    @PostMapping("member/unregister")
+    public RedirectView unregister(Long userId) {
+        userService.updateUserStatusByUserId(userId);
+        return new RedirectView("/main/login");
+    }
+
+//    배송지정보수정
+    @GetMapping("member/address-editor")
+    public String updateMemberDeliveryAddress(Model model) {
+        memberService.getDetail(1L).ifPresent(member -> model.addAttribute("member", member));
+        return "/mypage/member/address-editor-form";
+    }
+
+//    배송지정보수정
+    @PostMapping("member/address-editor")
+    public RedirectView updateMemberDeliveryAddress(AddressDTO addressDTO) {
+        log.info(addressDTO.toString());
+        return new RedirectView("/mypage/member/address-editor");
     }
 
 //    비밀번호 인증

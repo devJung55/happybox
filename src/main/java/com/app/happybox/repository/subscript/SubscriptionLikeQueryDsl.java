@@ -14,5 +14,5 @@ public interface SubscriptionLikeQueryDsl {
     public void deleteUserLikeByUserAndSubscription(Member member, Subscription subscription);
 
 //    마이페이지 구독 조회
-    public Page<SubscriptionLike> findSubscriptionByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId);
+    public Page<SubscriptionLike> findSubscriptionBookmarkByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId);
 }

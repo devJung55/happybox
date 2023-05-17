@@ -2,10 +2,7 @@ package com.app.happybox.entity.file;
 
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.type.FileRepresent;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -19,4 +16,11 @@ public class ProductFile extends Files {
     //    파일이 대표 파일인지 여부
     @Enumerated(EnumType.STRING)
     private FileRepresent fileRepresent;
+
+    @Builder
+    public ProductFile(String filePath, String fileUuid, String fileOrgName, Product product, FileRepresent fileRepresent) {
+        super(filePath, fileUuid, fileOrgName);
+        this.product = product;
+        this.fileRepresent = fileRepresent;
+    }
 }
