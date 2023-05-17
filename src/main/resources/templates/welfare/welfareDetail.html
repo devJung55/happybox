@@ -44,14 +44,6 @@
     </div>
     <div class="detail-content-wrap">
         <!-- 상단 복지관 소개 -->
-        <div class="edit-btn-area">
-            <button type="button" id="modify">
-                <label for="modify">수정</label>
-            </button>
-            <button type="button" id="delete" class="delete-btn">
-                <label for="delete">삭제</label>
-            </button>
-        </div>
         <div class="detail-top-wrap frame-sm">
             <div class="welfare-img-area">
                 <div class="welfare-top">
@@ -80,21 +72,21 @@
                                                     id="calender-prev"
                                                     class="btn"
                                             >
-                                                        <span class="auto-flex">
-                                                            <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    width="24"
-                                                                    height="24"
-                                                                    fill="none"
-                                                                    viewBox="0 0 24 24"
-                                                            >
-                                                                <path
-                                                                        fill-rule="evenodd"
-                                                                        d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
-                                                                        fill="#1a1a1a"
-                                                                ></path>
-                                                            </svg>
-                                                        </span>
+                                                <span class="auto-flex">
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="24"
+                                                            height="24"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                                fill-rule="evenodd"
+                                                                d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z"
+                                                                fill="#1a1a1a"
+                                                        ></path>
+                                                    </svg>
+                                                </span>
                                             </button>
                                         </div>
                                         <div>
@@ -103,21 +95,21 @@
                                                     id="calender-next"
                                                     class="btn"
                                             >
-                                                        <span class="auto-flex">
-                                                            <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    width="24"
-                                                                    height="24"
-                                                                    fill="none"
-                                                                    viewBox="0 0 24 24"
-                                                            >
-                                                                <path
-                                                                        fill-rule="evenodd"
-                                                                        d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
-                                                                        fill="#1a1a1a"
-                                                                ></path>
-                                                            </svg>
-                                                        </span>
+                                                <span class="auto-flex">
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="24"
+                                                            height="24"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                                fill-rule="evenodd"
+                                                                d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z"
+                                                                fill="#1a1a1a"
+                                                        ></path>
+                                                    </svg>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -926,21 +918,23 @@
         <!-- 복지관 후기 나오는 부분 TOP4 메소드 사용해서 4개만 뽑아오기 -->
     </div>
 </section>
-<!--  삭제 모달 부분  -->
-<section class="delete-modal">
-    <div class="delete-modal-shape">
-        <div class="modal-header">
-            <!-- <img src="/img/welfare/delete-btn.png" class="delete-img"> -->
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-title">
+            <p>금주의 음식</p>
+            <div class="date">
+                <span id="startDate">2023.01.01</span> - <span id="endDate">2023.01.01</span>
+            </div>
+            <span class="close">&times;</span>
         </div>
-        <div class="modal-body">
-            <p>정말로 삭제하겠습니까?</p>
+        <div class="modal-name">
+            <h3></h3>
+            <p></p>
         </div>
-        <div class="modal-footer">
-            <span class="confirm-delete">확인</span>
-            <span class="cancel-delete">취소</span>
+        <div class="food-list">
         </div>
     </div>
-</section>
+</div>
 <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -950,10 +944,11 @@
 ></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/main/header.js"></script>
-<script>
-    $(window).scroll(function (e) {
-        e.preventDefault();
-    });
+<script th:inline="javascript">
+    let subscription = [[${subscription}]];
+    let foodCalendars = [[${foodCalendars}]];
+    console.log(subscription);
+    console.log(foodCalendars);
 </script>
 <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
 <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>

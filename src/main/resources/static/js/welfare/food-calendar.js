@@ -19,8 +19,8 @@ const options = {
     /* 수정안하고 select만할때는 true, 수정 원할 시 false(Default) */
     isReadOnly: true,
     usageStatistics: false,
-    useFormPopup: true,
-    useDetailPopup: true,
+    useFormPopup: false,
+    useDetailPopup: false,
     month: DEFAULT_MONTH_OPTIONS,
     gridSelection: true,
     eventFilter: (event) => !!event.isVisible,
@@ -76,6 +76,7 @@ function Welfare(id, calendarId, body, title, start, end, UserName, isReadOnly) 
     this.isReadOnly = true;
 };
 
+/* 복지관정보 */
 let id = "2";
 let calendarId = "2";
 let body = "안녕하세요";
@@ -97,8 +98,7 @@ let dateString = year + '-' + month + '-' + day;
 /* ==================== =============================================== ===============================================*/
 
 
-let welfare1 = new Welfare("1", "2", "아령", "청국장", "", "2023-05-01", "2023-05-05", "태양");
-let welfare2 = new Welfare(id, calendarId, body, title, start, end, UserName, isReadOnly);
+let welfare = new Welfare(id, calendarId, body, title, start, end, UserName, isReadOnly);
 
 /* =============================================================================================== */
 
@@ -118,7 +118,7 @@ const event = {
 };
 
 const event1 = {
-    id: '2',
+    id: '1',
     calendarId: '1',
     title: '헬스 푸드(정지영)',
     body: '안녕하세요 오태양입니다.',
@@ -128,7 +128,7 @@ const event1 = {
 };
 
 const event2 = {
-    id: '3',
+    id: '1',
     calendarId: '3',
     title: '캐밥 데이',
     body: '안녕하세요 오태양입니다.',
@@ -141,15 +141,26 @@ const calendar = new Calendar(container, options);
 
 console.log(calendar);
 
+const eventList = new Array();
+
+foodCalendars.forEach((calendar, i) => {
+    let event = {
+        id: i,
+        calendarId: '1',
+        title: calendar.foodCalendarTitle,
+        body: calendar.foodCalendarDescription,
+        attendees: calendar.foodList,
+        start: calendar.startDate,
+        end: calendar.endDate,
+        isReadOnly: true,
+    };
+    eventList.push(event);
+});
+
+eventList.push(welfare);
 
 /* 이벤트 생성 */
-calendar.createEvents([
-    event, // event 객체
-    event1,
-    event2,
-    welfare1,
-    welfare2,
-]);
+calendar.createEvents(eventList);
 
 calendar.setTheme({
     common: {
@@ -269,8 +280,73 @@ $('#today').click(() => {
 
 /* ======================================= 이벤트 생성 ========================================== */
 
+function dateConverter(date) {
+    // 버그로 인해 수동으로 했음...
+    const months = {
+        Jan: "01",
+        Feb: "02",
+        Mar: "03",
+        Apr: "04",
+        May: "05",
+        Jun: "06",
+        Jul: "07",
+        Aug: "08",
+        Sep: "09",
+        Oct: "10",
+        Nov: "11",
+        Dec: "12",
+    }
+
+    let day = date.toString().split(" ")[2];
+    let month = months[date.toString().split(" ")[1]];
+    let year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+}
+
 $('.toastui-calendar-daygrid-cell').on('change', function () {
     console.log("앙들엉왔다");
     $(this).css('background-color', 'red');
-})
+});
+
+calendar.on("clickEvent", function (e) {
+    let text = ``;
+
+    console.log(e);
+    $("#startDate").text(dateConverter(e.event.start.d.d));
+    $("#endDate").text(dateConverter(e.event.end.d.d));
+
+    $(".modal-name h3").text(e.event.title);
+    $(".modal-name p").text(e.event.body);
+
+    let attendees = e.event.attendees;
+
+    for (let i = 0; i < attendees.length; i++) {
+        let filePath = `/image/display/${attendees[i].filePath}/t_${attendees[i].fileUuid}_${attendees[i].fileOrgName}`;
+        text += `
+            <div class="food">
+                <img src="/img/welfare/welfare_img_default.png" alt="">
+                <span>${attendees[i].foodName}</span>
+            </div>
+        `
+    }
+
+    $(".food-list").html(text);
+
+    $("#cart-modal").css("display", "block");
+});
+
+/* ========= 장바구니 모달창 ========= */
+// 닫기 버튼을 클릭했을 때
+$(".close").on("click", function () {
+    $("#cart-modal").css("display", "none");
+});
+
+
+// 모달창 외부를 클릭했을 때
+$(window).on("click", function (event) {
+    if ($(event.target).is('.modal')) {
+        $("#cart-modal").css("display", "none");
+    }
+});
 

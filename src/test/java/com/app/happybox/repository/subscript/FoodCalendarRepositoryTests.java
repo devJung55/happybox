@@ -1,7 +1,6 @@
 package com.app.happybox.repository.subscript;
 
 import com.app.happybox.entity.subscript.FoodCalendar;
-import com.app.happybox.repository.user.WelfareRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,6 @@ import javax.transaction.Transactional;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional @Rollback(false)
@@ -47,7 +43,7 @@ class FoodCalendarRepositoryTests {
     public void findAllWithFoodListBySubscriptionAndDateBetween_QueryDSL() {
         // given
         foodCalendarRepository
-                .findAllWithFoodListBySubscriptionAndDateBetween_QueryDSL(LocalDate.now(), 3L)
+                .findAllWithFoodListBySubscription_QueryDSL(LocalDate.now(), 3L)
                 .stream().map(FoodCalendar::toString).forEach(log::info);
 
         // when
