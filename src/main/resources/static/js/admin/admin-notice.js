@@ -13,7 +13,7 @@ function showNoticeList(noticeLists) {
                         <input type="checkbox" name="check">
                     </label>
                 </td>
-                <td id="notice-id" class="show-modal">${noticeList.id}</td>
+                <td class="show-modal notice-id">${noticeList.id}</td>
                 <td class="show-modal">${noticeList.noticeTitle}</td>
                 <td class="show-modal">${noticeList.noticeContent}</td>
                 <td class="show-modal">관리자</td>
@@ -240,7 +240,7 @@ $deleteButton.on('click', function () {
 
     $checkBoxs.each((i, v) => {
         if (v.checked) {
-            checkBoxArr.push($('#notice-id').eq(i).text())
+            checkBoxArr.push($('.notice-id').eq(i).text())
         }
     });
 
