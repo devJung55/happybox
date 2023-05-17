@@ -1,5 +1,6 @@
 package com.app.happybox.controller.user;
 
+import com.app.happybox.service.user.DistributorService;
 import com.app.happybox.service.user.MemberService;
 import com.app.happybox.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
 public class UserRestController {
 
     private final UserService userService;
+    private final DistributorService distributorService;
 
 //    아이디 중복검사
     @GetMapping("checkUserId")
@@ -31,6 +32,12 @@ public class UserRestController {
     @GetMapping("checkUserEmail")
     public Boolean checkUserEmail(@RequestParam("userEmail")String userEmail){
         return userService.existsUserByUserEmail(userEmail);
+    }
+
+//    유통업체명 중복검사
+    @GetMapping("checkDistributorName")
+    public Boolean checkDistributorName(@RequestParam("distributorName")String distributorName){
+        return distributorService.existsByDistributorName(distributorName);
     }
 
 }

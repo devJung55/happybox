@@ -33,7 +33,6 @@ let joinBlurMessages = [
   '비밀번호를 입력하세요.',
   '비밀번호 확인을 위해 한번 더 입력하세요.',
   '이름을 입력하세요.',
-  '상세주소를 입력하세요.',
   '이메일을 입력하세요.',
   '생년월일을 입력하세요.',
 ];
@@ -58,22 +57,22 @@ $('#member-join-general-birthday-text').on('focus', function () {
 
 // coolsms 할때 필요함
 
-// /* 인증번호 입력 버튼 */
-// $(".join-check-btn").on("click", function(){
-//   if($(".join-check").val() == code){
-//       let modalMessage = "인증이 완료되었습니다.";
-//       showWarnModal(modalMessage);
-//       console.log(joinCheck);
-//       joinCheck = true;
-//       return;
-//   }
-//   joinCheck = false;
-// });
+/* 인증번호 입력 버튼 */
+$(".join-check-btn").on("click", function(){
+  if($(".join-check").val() == code){
+      let modalMessage = "인증이 완료되었습니다.";
+      showWarnModal(modalMessage);
+      console.log(joinCheck);
+      joinCheck = true;
+      return;
+  }
+  joinCheck = false;
+});
 
 $joinInputs.on('blur', function () {
   let i = $joinInputs.index($(this));
   let value = $(this).val();
-  console.log(value);
+  console.log(value +" 인덱스번호: "+ i);
 
   if (!value) {
     $joinHelp.eq(i).text(joinBlurMessages[i]);
@@ -141,12 +140,12 @@ $joinInputs.on('blur', function () {
   if (i == 0) {
     $('#btn-id-check').click(function () {
       $.ajax({
-        type: 'POST',
+        type: 'get',
         url: '/checkUserId',
         data: { userId: value },
         success: function (result) {
           $joinHelp.eq(i).show();
-          if (!result) {
+          if (result) {
             joinCheckAll[i] = false;
             $joinHelp.eq(i).text('중복된 아이디입니다.');
           } else {
@@ -157,68 +156,24 @@ $joinInputs.on('blur', function () {
       });
     });
   } else if (i == 4) {
-      $(".join-phone-btn").click(function () {
-          $.ajax({
-              type: "POST",
-              url: "/checkUserPhoneNumber",
-              data: {userPhoneNumber: value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)},
-              success: function (result) {
-                  let message;
-                  if (!result) {
-                      message = "중복된 휴대폰 번호입니다.";
-                      $joinHelp.eq(i).show();
-                      $joinHelp.eq(i).css('color', 'red')
-                      $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
-                      phoneNumberCheck = false;
-                      joinCheckAll[i] = false;
-                  } else {
-                    message = "사용가능한 휴대폰 번호입니다.";
-                    $joinHelp.eq(i).show();
-                    $joinHelp.eq(i).css('color','blue');
-                    $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
-                    phoneNumberCheck = true;
-                    joinCheckAll[i] = true;
-                  }/*else {
-                      let modalMessage = "인증번호가 전송되었습니다.";
-                      showWarnModal(modalMessage);
-                      $joinHelp.eq(i).hide();
-                      console.log(i);
-                      $joinInputs.eq(i).css('border', '1px solid #05AE68');
-                      phoneNumberCheck = true;
-                      joinCheckAll[i] = true;
-                      let phone = $(".join-phone").val().replaceAll("-", "");
-                      console.log(phone);
-                      $.ajax({
-                          type: "POST",
-                          url: "/member/checkSms",
-                          data: {memberPhone: phone},
-                          success: function(data) {
-                              console.log(data);
-                              code = data;
-                          }
-                      });
-                  }*/
-                  $joinHelp.eq(i).text(message);
-              }
-          });
-      });
-  } else if (i == 7) {
+    console.log("이메일 중복체크에 들어옴?" + i);
       $.ajax({
-          type: "POST",
+          type: "get",
           url: "/checkUserEmail",
           data: {userEmail: value},
           success: function (result) {
               let message;
-              if (!result) {
+              if (result) {
                   message = "중복된 이메일입니다.";
                   $joinHelp.eq(i).show();
-                  $joinHelp.eq(i).css('color', 'red')
-                  $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+                  $joinHelp.eq(i).text(message);
                   joinCheckAll[i] = false;
               } else {
+                  message = "사용가능한 이메일입니다.";
+                  $joinHelp.eq(i).show();
+                  $joinHelp.eq(i).text(message);
                   joinCheckAll[i] = true;
               }
-              $joinHelp.eq(i).text(message);
           }
       });
   }
@@ -296,15 +251,15 @@ $arrows.each((i, e) => {
 
 function termsBtn() {
   if (!$('#member-join-general-agree-terms-check').is(':checked')) {
-    //$('#member-join-general-agree-terms-check-error').html('<p class="valid error">회원가입 약관에 동의해주세요.</p>');
+    $('#member-join-general-agree-terms-check-error').show().html('<p class="valid error">회원가입 약관에 동의해주세요.</p>');
   } else {
-    //$('#member-join-general-agree-terms-check-error').html('');
+    $('#member-join-general-agree-terms-check-error').html('');
   }
 
   if (!$('#member-join-general-agree-user-info-check').is(':checked')) {
-    //$('#member-join-general-agree-user-info-check-error').html('<p class="valid error">개인정보처리방침에 동의해주세요.</p>');
+    $('#member-join-general-agree-user-info-check-error').show().html('<p class="valid error">개인정보처리방침에 동의해주세요.</p>');
   } else {
-    //$('#member-join-general-agree-user-info-check-error').html('');
+    $('#member-join-general-agree-user-info-check-error').html('');
   }
 
   if (
@@ -322,28 +277,28 @@ function termsBtn() {
 function termsBtnClick() {
   if ($('.terms-btn-wrap button').hasClass('btn-primary')) {
     // 이메일, SMS 수신 미동의 시 처리
-    // if (
-    //   !$('#member-join-general-agree-email-check').is(':checked') ||
-    //   !$('#member-join-general-agree-sms-check').is(':checked')
-    // ) {
-    //   if (
-    //     confirm(
-    //       '이메일, SMS 수신에 동의하지 않으시는 경우, 할인쿠폰의 발급 또는 이벤트 참여가 제한될 수 있습니다. 이메일, SMS 수신에 동의하시겠습니까?'
-    //     )
-    //   ) {
-    //     $('#member-join-general-agree-sms-check').prop('checked', true);
-    //     $('#member-join-general-agree-email-check').prop('checked', true);
-    //   }
-    // }
-    // if (!$('#member-join-general-agree2-user-info-check').is(':checked')) {
-    //   if (
-    //     confirm(
-    //       '(선택) 개인정보 수집 및 이용 동의하지 않으시는 경우, 추천아이디를 제한될 수 있습니다. (선택) 개인정보 수집 및 이용 동의하시겠습니까?'
-    //     )
-    //   ) {
-    //     $('#member-join-general-agree2-user-info-check').prop('checked', true);
-    //   }
-    // }
+    if (
+      !$('#member-join-general-agree-email-check').is(':checked') ||
+      !$('#member-join-general-agree-sms-check').is(':checked')
+    ) {
+      if (
+        confirm(
+          '이메일, SMS 수신에 동의하지 않으시는 경우, 할인쿠폰의 발급 또는 이벤트 참여가 제한될 수 있습니다. 이메일, SMS 수신에 동의하시겠습니까?'
+        )
+      ) {
+        $('#member-join-general-agree-sms-check').prop('checked', true);
+        $('#member-join-general-agree-email-check').prop('checked', true);
+      }
+    }
+    if (!$('#member-join-general-agree2-user-info-check').is(':checked')) {
+      if (
+        confirm(
+          '(선택) 개인정보 수집 및 이용 동의하지 않으시는 경우, 추천아이디를 제한될 수 있습니다. (선택) 개인정보 수집 및 이용 동의하시겠습니까?'
+        )
+      ) {
+        $('#member-join-general-agree2-user-info-check').prop('checked', true);
+      }
+    }
     $('.terms-section').css('display', 'none');
     $('.join-container2').css('display', 'block');
     if (!$('#member-join-general-agree2-user-info-check').is(':checked')) {
@@ -529,3 +484,53 @@ function alertModal(errorMsg) {
 }, 2000);
 }
 
+
+
+/* ======================================= 휴대폰 중복검사 및 인증 ==================================================   */
+// else if (i == 3) {
+//   $(".join-phone-btn").click(function () {
+//     $.ajax({
+//       type: "get",
+//       url: "/checkUserPhoneNumber",
+//       data: {userPhoneNumber: value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)},
+//       success: function (result) {
+//         let message;
+//         if (result) {
+//           message = "중복된 휴대폰 번호입니다.";
+//           $joinHelp.eq(i).show();
+//           $joinHelp.eq(i).css('color', 'red')
+//           $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+//           phoneNumberCheck = false;
+//           joinCheckAll[i] = false;
+//         } else {
+//           message = "사용가능한 휴대폰 번호입니다.";
+//           $joinHelp.eq(i).show();
+//           $joinHelp.eq(i).css('color','blue');
+//           $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+//           phoneNumberCheck = true;
+//           joinCheckAll[i] = true;
+//         }/*else {
+//                       let modalMessage = "인증번호가 전송되었습니다.";
+//                       showWarnModal(modalMessage);
+//                       $joinHelp.eq(i).hide();
+//                       console.log(i);
+//                       $joinInputs.eq(i).css('border', '1px solid #05AE68');
+//                       phoneNumberCheck = true;
+//                       joinCheckAll[i] = true;
+//                       let phone = $(".join-phone").val().replaceAll("-", "");
+//                       console.log(phone);
+//                       $.ajax({
+//                           type: "POST",
+//                           url: "/member/checkSms",
+//                           data: {memberPhone: phone},
+//                           success: function(data) {
+//                               console.log(data);
+//                               code = data;
+//                           }
+//                       });
+//                   }*/
+//         $joinHelp.eq(i).text(message);
+//       }
+//     });
+//   });
+// }

@@ -132,16 +132,6 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.setMemberInfoById_QueryDSL(member);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByUserId(username).orElseThrow(()-> new UsernameNotFoundException(username + " not found"));
-        return UserDetail.builder()
-                .id(member.getId())
-                .userId((member.getUserId()))
-                .userPassword(member.getUserPassword())
-                .userRole(member.getUserRole())
-                .build();
-    }
 
     @Override
     public void updateUserStatusById(Long memberId) {

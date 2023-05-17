@@ -1,6 +1,8 @@
 package com.app.happybox.service.user;
 
-public interface UserService {
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface UserService extends UserDetailsService {
 //    관리자 회원 삭제
     public void deleteByMemberId(Long userId);
 

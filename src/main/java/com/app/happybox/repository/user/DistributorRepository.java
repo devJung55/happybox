@@ -18,4 +18,7 @@ public interface DistributorRepository extends JpaRepository<Distributor, Long>,
     //    이메일 중복검사
     public boolean existsByUserEmail(String userEmail);
 
+    //    유통업체 명 중복검사
+    public boolean existsByDistributorName(String distributorName);
+
 }

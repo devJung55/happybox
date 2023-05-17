@@ -17,7 +17,7 @@ public class UserRandomKey {
 //    private Long id;
 //
 //    @NotNull
-//    private String randomKey;
+//    private String ranKey;
 //
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn

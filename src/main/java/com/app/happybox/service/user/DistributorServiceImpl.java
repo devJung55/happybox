@@ -52,4 +52,10 @@ public class DistributorServiceImpl implements DistributorService {
         distributorDTO.setUserStatus(UserStatus.REGISTERED);
         distributorRepository.save(toDistributorEntity(distributorDTO));
     }
+
+//    유통이름 중복체크
+    @Override
+    public boolean existsByDistributorName(String distributorName) {
+        return distributorRepository.existsByDistributorName(distributorName);
+    }
 }
