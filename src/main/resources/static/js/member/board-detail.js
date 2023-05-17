@@ -53,6 +53,7 @@ const $files = review.files;
 const setList = $('.detail-container');
 
 function showDetail(){
+    console.log(review);
     let text ="";
         text += `
     <div class="slider__sec">
@@ -67,7 +68,9 @@ function showDetail(){
             <div class="slick-list draggable">
               <div class="slick-track" style="opacity: 1; height: 100%">
               `
-    review.boardFiles.forEach((file, i) => {
+    review.reviewBoardFiles.forEach((file, i) => {
+        console.log(file);
+        let filePath = '/image/display?fileName=' + file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName;
             text +=
             `
                 <div
@@ -88,7 +91,7 @@ function showDetail(){
                     <div class="slider__list" style="width: 100%; display: inline-block">
                       <figure>
                         <img
-                          src="/files/display?${review.boardFiles[i].filePath + "/t_" + review.boardFiles[i].fileUuid + "_" + review.boardFiles[i].fileOrgName}"
+                        src="${filePath}"
                         />
                       </figure>
                     </div>
@@ -109,7 +112,7 @@ function showDetail(){
               </svg>
             </button>
             <div class="slick-counter">
-              <span class="current">1</span> / <span class="total">3</span>
+              <span class="current">1</span> / <span class="total">${review.reviewBoardFiles.length}</span>
             </div>
           </div>
           <div class="refrig-bnr">
@@ -152,10 +155,10 @@ function showDetail(){
             </button>
           </div>
           <span class="writer-button-wrap">
-            <p class="writer-name">${review.memberName}</p>
+            <p class="writer-name">${review.memberDTO.memberName}</p>
           </span>
           <h3 class="info-area__name">
-            <span class="strong">${review.reviewBoardTitle}</span>
+            <span class="strong">${review.boardTitle}</span>
           </h3>
           <div class="info-area__box">
             <div class="info-area__box-list">
@@ -171,7 +174,7 @@ function showDetail(){
                             <img class="rating__point five" src="/img/mypage/rating.png">
                         </em>
                 <div class="detail-content">
-                    ${review.reviewBoardContent}
+                    ${review.boardContent}
                 </div>
               </div>
             </div>

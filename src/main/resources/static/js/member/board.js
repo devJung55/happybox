@@ -1,59 +1,30 @@
 /* recipe-board.html */
 /* review-board.html */
 
-$(".sort-btn").on('click', function(e){
-    e.preventDefault();
-
-    // 현재 클릭한 요소의 하위 .tit-type 요소에만 active 클래스 추가
-    $(this).find('.tit-type').addClass('active').end().siblings().find('.tit-type').removeClass('active');
-
-    // 모든 .tit-type 요소에서 active 클래스 제거
-    $(".tit-type").not($(this).find('.tit-type')).removeClass("active");
-});
-
-$(document).ready(function() {
-    // 최신순 클릭 이벤트
-    $('.last-pop-btn a:first-child').click(function() {
-      // 최신순에 'on' 클래스 추가, 인기순에서 'on' 클래스 제거
-      $(this).addClass('on');
-      $(this).siblings().removeClass('on');
-
-      setList.empty();
-        $doAjax("/user-board/review-board-list/recent", {
-            page: 1,
-            size: 5
-        });
-    });
-
-    // 인기순 클릭 이벤트
-    $('.last-pop-btn a:last-child').click(function() {
-      // 인기순에 'on' 클래스 추가, 최신순에서 'on' 클래스 제거
-      $(this).addClass('on');
-      $(this).siblings().removeClass('on');
-
-        setList.empty();
-        $doAjax("/user-board/review-board-list/popular", {
-            page: 1,
-            size: 5
-        });
-    });
-  });
 
 const setList = $('.list-append-wrap');
-// let page = 1;
+let page = 1;
+let previousItemCount = 0; // 이전에 추가된 항목 수를 저장하는 변수
 
-function showList(reviewList){
+function showList(reviewBoardDTOS){
+    if (reviewBoardDTOS.content.length === 0 && previousItemCount === 0) {
+        $(window).off('scroll');
+        return;
+    }
+
+    // 이전에 추가된 항목 수를 업데이트
+    previousItemCount = reviewBoardDTOS.content.length;
+
     let text ="";
-    reviewList.content.forEach((reviewDetail, i) => {
-        console.log(reviewDetail);
+    console.log(reviewBoardDTOS);
+    reviewBoardDTOS.content.forEach((reviewDetail, i) => {
 
         // 기본 이미지 경로
         let filePath = "";
         let boardFiles = reviewDetail.reviewBoardFiles;
 
-        if(boardFiles){
-            for (let i = 0; i < boardFiles.length; i++) {
-                boardFiles[i].fileRepresent = "REPRESENT";
+        for (let i = 0; i < boardFiles.length; i++) {
+            if(boardFiles[i].fileRepresent == "REPRESENT"){
                 filePath = '/image/display?fileName=' + boardFiles[i].filePath + "/t_" + boardFiles[i].fileUuid + "_" + boardFiles[i].fileOrgName;
             }
         }
@@ -95,7 +66,7 @@ function showList(reviewList){
                               />
                               <img
                                 class="rating__point five"
-                                src="/img/mypage/rating.png"
+                                src="/img/mypage/rating-pull.png"
                               />
                             </em>
                           </div>
@@ -138,27 +109,82 @@ function showList(reviewList){
     setList.append(text);
 }
 
-showList(reviewList);
 
-function $doAjax(url, data) {
+// 최신순 클릭 이벤트
+$('.last-pop-btn a:first-child').click(function(e) {
+    e.preventDefault();
+
+    // 최신순에 'on' 클래스 추가, 인기순에서 'on' 클래스 제거
+    $(this).addClass('on');
+    $(this).siblings().removeClass('on');
+
+    // 초기화 후 첫 페이지 데이터 로드
+    setList.empty();
+    page = 1;
+    loadReviewBoardList('/user-board/review-board-list/recent', { page: page });
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+            page++;
+            loadReviewBoardList('/user-board/review-board-list/recent', { page: page });
+            // 이전에 추가된 항목 수를 업데이트
+            previousItemCount = setList.children('.board-item-wrap').length;
+        }
+    });
+});
+
+// 인기순 클릭 이벤트
+$('.last-pop-btn a:last-child').click(function(e) {
+    e.preventDefault();
+
+    // 인기순에 'on' 클래스 추가, 최신순에서 'on' 클래스 제거
+    $(this).addClass('on');
+    $(this).siblings().removeClass('on');
+
+    // 초기화 후 첫 페이지 데이터 로드
+    setList.empty();
+    page = 1;
+    loadReviewBoardList('/user-board/review-board-list/popular', { page: page });
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+            page++;
+            loadReviewBoardList('/user-board/review-board-list/popular', { page: page });
+            // 이전에 추가된 항목 수를 업데이트
+            previousItemCount = setList.children('.board-item-wrap').length;
+        }
+    });
+});
+
+// 리뷰 게시물 목록 로드 함수
+function loadReviewBoardList(url, data) {
     $.ajax({
         type: "GET",
         url: url,
         data: data,
         dataType: "json",
-        success: function (response) {
+        success: function(response) {
             showList(response);
+            console.log(response.content.length);
         }
     });
 }
 
 
+// 초기 페이지 로드
+loadReviewBoardList('/user-board/review-board-list/recent', { page: page });
 
-// $(window).scroll(
-//     function() {
-//         if (Math.ceil($(window).scrollTop()) >= $(document).height() - $(window).height() - 50) {
-//             page++;
-//             $doAjax(page, "/user-board/review-board-list/popular");
-//         }
-//     }
-// );
+// 스크롤 이벤트 핸들러
+$(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+        page++;
+        if ($('.last-pop-btn a:last-child').text() == "최신순") {
+            loadReviewBoardList('/user-board/review-board-list/recent', { page: page });
+        } else if ($('.last-pop-btn a:last-child').text() == "인기순") {
+            loadReviewBoardList('/user-board/review-board-list/popular', { page: page });
+        }
+
+        // 이전에 추가된 항목 수를 업데이트
+        previousItemCount = setList.children('.board-item-wrap').length;
+    }
+});
+
+
