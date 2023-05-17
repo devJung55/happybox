@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보수정</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/member/member.css">
-    <link rel="stylesheet" href="../../../static/css/member/join.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/member/member.css">
+    <link rel="stylesheet" href="/css/member/join.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
     <div class="wrap">
-        <section id="contents" class="container">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+        <section class="container">
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-                
-                <div class="frame-sm">
-
-
-                    <!-- // side-bar.html -->
-
-
+                <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
+                <div class="frame-sm" style="margin-top: 30px;">
+                    <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area" style="margin-bottom: 6px;">
                                 <h3 class="title-menu">회원정보수정</h3>
                             </div><!--// menu-title-area -->
                             <section id="contents" class="container" style="border-top: 1px solid #666;">
-                                <form id="join-general-form" name="join-general-form">
+                                <form id="join-general-form" name="editForm" th:method="post" th:object="${member}" style="zoom: 90%">
                                 <div class="join-container join-container2" style="background-color: #fff; padding: 0;">
                                     <div class="join-area" style="margin: 0; padding: 15px 100px 90px;">
                                             <fieldset class="form-group-area">
@@ -45,36 +45,36 @@
                                                     </div>
                                                     <!--// form-head -->
                                                     <div class="input-group type-lg w-full">
-                                                        <input type="text" id="member-join-general-id-text" name="member-join-general-id-text" class="input-text w571 join-input" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능" style="background: #F3F6FF;" readonly/>
+                                                        <input type="text" th:field="*{userId}" id="member-join-general-id-text" name="member-join-general-id-text" class="input-text w571 join-input" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능" style="background: #F3F6FF;" readonly/>
                                                     </div>
                                                     <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                                 </div>
                                                 <!--// form-group -->
                                 
                                                 <div class="form-group">
-                                                <div class="form-head">
-                                                    <label for="member-join-general-pw-text" class="form-label">비밀번호<i class="es2"></i></label>
-                                                </div>
-                                                <!--// form-head -->
-                                                <div class="input-group type-lg w-full">
-                                                    <input type="password" id="member-join-general-pw-text" name="member-join-general-pw-text" class="input-text w571 join-input" placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"/>
-                                                </div>
-                                                <p class="valid error help" id="pw-error-text1" style="display: none"></p>
-                                                <div class="input-group type-lg w-full">
-                                                    <input type="password" id="member-join-general-pw-confirm-text" name="member-join-general-pw-confirm-text" class="input-text w571 join-input" placeholder="비밀번호 확인"/>
-                                                </div>
-                                                <p class="valid error help" id="pw-error-text1" style="display: none"></p>
+                                                    <div class="form-head">
+                                                        <label for="member-join-general-pw-text" class="form-label">비밀번호<i class="es2"></i></label>
+                                                    </div>
+                                                    <!--// form-head -->
+                                                    <div class="input-group type-lg w-full">
+                                                        <input type="password" th:field="*{userPassword}" id="member-join-general-pw-text" name="member-join-general-pw-text" class="input-text w571 join-input" placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"/>
+                                                    </div>
+                                                    <p class="valid error help" id="pw-error-text1" style="display: none"></p>
+                                                    <div class="input-group type-lg w-full">
+                                                        <input type="password" th:field="*{userPassword}" id="member-join-general-pw-confirm-text" name="member-join-general-pw-confirm-text" class="input-text w571 join-input" placeholder="비밀번호 확인"/>
+                                                    </div>
+                                                    <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                                 </div>
                                                 <!--// form-group -->
                                                 <div class="form-group">
-                                                <div class="form-head">
-                                                    <label for="member-general-join-name-text" class="form-label">이름<i class="es2"></i></label>
-                                                </div>
-                                                <!--// form-head -->
-                                                <div class="input-group type-lg w-full">
-                                                    <input type="text" id="member-general-join-name-text" name="member-general-join-name-text" class="input-text w571 join-input" placeholder="2자 이상 입력" value=""/>
-                                                </div>
-                                                <p class="valid error help" id="pw-error-text1" style="display: none"></p>
+                                                    <div class="form-head">
+                                                        <label for="member-general-join-name-text" class="form-label">이름<i class="es2"></i></label>
+                                                    </div>
+                                                    <!--// form-head -->
+                                                    <div class="input-group type-lg w-full">
+                                                        <input type="text" th:field="*{memberName}" id="member-general-join-name-text" name="member-general-join-name-text" class="input-text w571 join-input" placeholder="2자 이상 입력" value=""/>
+                                                    </div>
+                                                    <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-head">
@@ -82,7 +82,37 @@
                                                     </div>
                                                     <!--// form-head -->
                                                     <div class="input-group type-lg w-full">
-                                                        <input type="text" id="member-general-join-phone-text" name="member-general-join-phone-text" class="input-text w571" placeholder="휴대폰 번호" value=""/>
+                                                        <input type="text" th:field="*{userPhoneNumber}" id="member-general-join-phone-text" name="member-general-join-phone-text" class="input-text w571" placeholder="휴대폰 번호" value=""/>
+                                                    </div>
+                                                    <p class="valid error" id="pw-error-text1" style="display: none"></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-head">
+                                                        <label for="" class="form-label">주소<i class="es2"></i></label>
+                                                    </div>
+                                                    <!--// form-head -->
+                                                    <div class="input-group type-lg w-full">
+                                                        <input type="text" th:field="*{address.firstAddress}" id="address-kakao" name="address.firstAddress" class="input-text w571" placeholder="주소" readonly/>
+                                                    </div>
+                                                    <p class="valid error" id="pw-error-text1" style="display: none"></p>
+                                                  </div>
+                                                <div class="form-group">
+                                                    <div class="form-head">
+                                                    <label for="" class="form-label">우편번호<i class="es2"></i></label>
+                                                    </div>
+                                                    <!--// form-head -->
+                                                    <div class="input-group type-lg w-full">
+                                                    <input type="text" th:field="*{address.zipcode}" id="zone-code" name="address.zipcode" class="input-text w571" placeholder="우편번호" readonly/>
+                                                    </div>
+                                                    <p class="valid error" id="pw-error-text1" style="display: none"></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-head">
+                                                      <label for="" class="form-label">상세주소<i class="es2"></i></label>
+                                                    </div>
+                                                    <!--// form-head -->
+                                                    <div class="input-group type-lg w-full">
+                                                      <input type="text" th:field="*{address.addressDetail}" id="address-kakao" name="address.addressDetail" class="input-text w571" placeholder="상세주소"/>
                                                     </div>
                                                     <p class="valid error" id="pw-error-text1" style="display: none"></p>
                                                 </div>
@@ -92,7 +122,7 @@
                                                     </div>
                                                     <!--// form-head -->
                                                     <div class="input-group type-lg w-full">
-                                                        <input type="text" id="member-join-general-email-text" name="member-join-general-email-text" class="input-text w571 join-input" placeholder="이메일 주소" value=""/>
+                                                        <input type="text" th:field="*{userEmail}" id="member-join-general-email-text" name="member-join-general-email-text" class="input-text w571 join-input" placeholder="이메일 주소" value=""/>
                                                         <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                                     </div>
                                                 </div>
@@ -103,7 +133,7 @@
                                                     </div>
                                                     <!--// form-head -->
                                                     <div class="input-group type-lg w-full">
-                                                        <input type="text" id="member-join-general-birthday-text" name="member-join-general-birthday-text" class="input-text w571 join-input" placeholder="ex) 19970101" value="" maxlength="8"/>
+                                                        <input type="text" th:field="*{memberBirth}" id="member-join-general-birthday-text" name="member-join-general-birthday-text" class="input-text w571 join-input" placeholder="ex) 19970101" value="" maxlength="8" readonly/>
                                                         <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                                     </div>
                                                 </div>
@@ -115,17 +145,17 @@
                                                     <ul class="form-horiz-list">
                                                         <li>
                                                             <div class="custom-radio">
-                                                                <input type="radio" id="member-join-general-gender-N" class="radio" name="member-join-general-gender" value="male" checked/><label for="member-join-general-gender-N">선택안함</label>
+                                                                <input type="radio" id="member-join-general-gender-N" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-N">선택안함</label>
                                                             </div>
                                                         </li>
                                                         <li>
                                                             <div class="custom-radio">
-                                                                <input type="radio" id="member-join-general-gender-M" class="radio" name="member-join-general-gender" value="male"/><label for="member-join-general-gender-M">남자</label>
+                                                                <input type="radio" id="member-join-general-gender-M" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-M">남자</label>
                                                             </div>
                                                         </li>
                                                         <li>
                                                             <div class="custom-radio">
-                                                                <input type="radio" id="member-join-general-gender-F" class="radio" name="member-join-general-gender" value="female"/><label for="member-join-general-gender-F">여자</label>
+                                                                <input type="radio" id="member-join-general-gender-F" class="radio" name="member-join-general-gender" value="female" readonly/><label for="member-join-general-gender-F">여자</label>
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -144,8 +174,10 @@
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="../../../static/js/join/join.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/join/join.js"></script>
 </html>
