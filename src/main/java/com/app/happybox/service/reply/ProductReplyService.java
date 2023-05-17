@@ -58,6 +58,11 @@ public class ProductReplyService implements ReplyService {
     }
 
     @Override
+    public void deleteReply(ReplyDTO replyDTO, Long refId, Long userId) {
+
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public ProductReply replyToEntity(ReplyDTO replyDTO, Long refId, Long userId) {
         Product product = productRepository.findById(refId).orElseThrow(ProductNotFoundException::new);

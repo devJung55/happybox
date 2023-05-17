@@ -41,18 +41,24 @@
           <div class="write-content-wrap">
             <form>
               <textarea class="write-textarea" placeholder="댓글 남기기"></textarea
-              ><button class="write-regist-btn" type="button" disabled="">
+              ><button class="write-regist-btn" type="button">
                 <span class="regist">등록</span>
               </button>
             </form>
           </div>
         </div>
       </section>
-      <div class="review-list-wrap"></div>
+      <div class="review-list-wrap">
+
+      </div>
+      <div tyle="padding-bottom: 32px;">
+        <button class="more-review">더보기<span>+</span></button>
+      </div>
     </section>
     <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="/js/common/ajax.js"></script>
   <script th:inline="javascript">
     let review = [[${review}]]
   </script>

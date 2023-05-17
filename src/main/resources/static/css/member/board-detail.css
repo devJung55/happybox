@@ -527,6 +527,7 @@ figure {
     line-height: 19px;
     padding-bottom: 21px;
     border-bottom: 1px solid #ddd;
+    position: relative;
 }
 
 .review-list:last-child {
@@ -635,4 +636,20 @@ figure {
 .user-id {
     color: #333;
     font-size: 16px;
+}
+
+.more-review {
+    width: 100%;
+    background-color: rgb(250, 250, 250);
+    color: #2e2e2e;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 58px;
+}
+
+.more-review:hover {
+    background-color: #eee;
 }
