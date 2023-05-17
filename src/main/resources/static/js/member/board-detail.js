@@ -268,7 +268,8 @@ function appendReplyList(reply, isPrepend) {
             position: absolute;
             right: 17px;
             top: -15px;"
-            onclick="deleteReply()"
+            onclick="deleteReply(this)"
+            data-id="${reply.id}"
         >X</span>
         <div class="user-info-wrap">
             <div class="user-info">
@@ -398,25 +399,52 @@ $replyWriteBtn.on("click", function () {
 /* 댓글 삭제 */
 const xBtn = $('.xBtn');
 const deleteUrl = `/user-board/review-board-detail/reply/delete/${review.id}`;
+// 삭제 버튼 클릭 시 deleteReply 함수 호출
 
-function deleteReply() {
-    $doAjaxPost("POST",
-        deleteUrl,
-        {},
-        (result) => {
-            let count = Number($(".review-count span").text());
+// xBtn.on('click', function(){
+//     $doAjaxPost("DELETE",
+//         deleteUrl,
+//         {},
+//         (result) => {
+//             let count = Number($(".review-count span").text());
+//             // 댓글수 증가
+//             $(".review-count span").text(--count);
+//             $(".reply-count").text(count);
+//             // 댓글 내용 초기화
+//             console.log(result);
+//             window.location.reload();
+//         }
+//     );
+// })
+
+function deleteReply(deleteBtn) {
+    let id = $(deleteBtn).data("id");
+    $.ajax({
+        url: deleteUrl + `/${id}`,
+        type: 'DELETE',
+        dataType: 'JSON',
+        success: function(result) {
+            // let count = Number($(".review-count span").text());
             // 댓글수 감소
-            $(".review-count span").text(--count);
-            $(".reply-count").text(count);
+            // $(".review-count span").text(--count);
+            // $(".reply-count").text(count);
             console.log(result);
-        });
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+    window.location.reload();
 }
+
+
 
 /* 댓글 좋아요 */
 const $replyLikeBtn = $(".review-rec-btn");
 const REPLY_LIKE_URL = "/user-board/review-board-detail/reply/like";
 
 function checkOutLike(likeBtn) {
+    console.log(likeBtn);
     let id = $(likeBtn).data("id");
     let $value = $(likeBtn).find(".rec-count");
     let count = Number($value.text());

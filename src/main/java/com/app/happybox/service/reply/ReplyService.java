@@ -11,7 +11,7 @@ public interface ReplyService {
 
     public ReplyDTO saveReply(ReplyDTO replyDTO, Long refId, Long userId);
 
-    public void deleteReply(Long replyId);
+    public void deleteReply(Long replyId, Long refId, Long userId);
 
     default <T extends Reply> ReplyDTO replyToDTO(T reply) {
         return ReplyDTO.builder()
