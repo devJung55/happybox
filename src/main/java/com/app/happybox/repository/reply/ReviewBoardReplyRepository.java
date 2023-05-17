@@ -11,10 +11,10 @@ import java.util.List;
 
 public interface ReviewBoardReplyRepository extends JpaRepository<ReviewBoardReply, Long>, ReviewBoardReplyQueryDsl {
     //    최신순
-    @Query("select r from ReviewBoardReply r join r.user where r.id = :id order by r.createdDate desc")
+    @Query("select r from ReviewBoardReply r join r.user where r.reviewBoard.id = :id order by r.createdDate desc")
     public Slice<ReviewBoardReply> findAllByReviewBoardId(Pageable pageable, Long id);
 
     //    인기순
-    @Query("select r from ReviewBoardReply r join r.user where r.id = :id order by r.replyLikeCount desc")
+    @Query("select r from ReviewBoardReply r join r.user where r.reviewBoard.id = :id order by r.replyLikeCount desc")
     public Slice<ReviewBoardReply> findAllByReviewBoardIdOrderByLikeCount(Pageable pageable, Long id);
 }

@@ -3,10 +3,7 @@ package com.app.happybox.entity.reply;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,6 +15,7 @@ public class ReviewBoardReply extends Reply {
     @JoinColumn
     private ReviewBoard reviewBoard;
 
+    @Builder
     public ReviewBoardReply(String replyContent, User user, ReviewBoard reviewBoard) {
         super(replyContent, user);
         this.reviewBoard = reviewBoard;

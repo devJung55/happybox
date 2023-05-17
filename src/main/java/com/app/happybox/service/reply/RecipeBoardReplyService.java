@@ -45,6 +45,11 @@ public class RecipeBoardReplyService implements ReplyService {
     }
 
     @Override
+    public void deleteReply(ReplyDTO replyDTO, Long refId, Long userId) {
+
+    }
+
+    @Override
     public RecipeBoardReply replyToEntity(ReplyDTO replyDTO, Long refId, Long userId) {
         return null;
     }
