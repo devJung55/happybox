@@ -267,8 +267,28 @@ input[name="welfare-selection"] {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 68px;
-    height: 68px;
+    width: 70px;
+    height: 70px;
+}
+
+.btn-attach-thumb img {
+    width: 100%;
+    height: 100%;
+}
+
+.x-image {
+    cursor: pointer;
+    padding-left: 2px;
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 59px;
+    width: 9px;
+    height: 14px;
+    background: #00000094;
+    color: #fff;
+    line-height: 13px;
+    border-radius: 2px;
 }
 
 .ico-plus-xlg {

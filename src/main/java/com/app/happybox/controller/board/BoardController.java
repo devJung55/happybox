@@ -3,6 +3,7 @@ package com.app.happybox.controller.board;
 import com.app.happybox.entity.board.*;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.file.QBoardFile;
+import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.provider.UserDetail;
@@ -10,6 +11,8 @@ import com.app.happybox.repository.board.DonationBoardRepository;
 import com.app.happybox.service.board.DonationBoardService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.board.ReviewBoardService;
+import com.app.happybox.service.reply.ReplyLikeService;
+import com.app.happybox.service.reply.ReviewBoardReplyService;
 import com.app.happybox.service.subscript.SubscriptionService;
 import com.app.happybox.service.user.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -53,6 +56,10 @@ public class BoardController {
     private final MemberService memberService;
     @Qualifier
     private final SubscriptionService subscriptionService;
+    @Qualifier
+    private final ReviewBoardReplyService reviewBoardReplyService;
+    @Qualifier
+    private final ReplyLikeService replyLikeService;
 
     @GetMapping("review-board-list")
     public String goRecentList(){
@@ -101,6 +108,59 @@ public class BoardController {
 
         log.info("=====================" + reviewBoardDTO);
     }
+
+    //    리뷰 게시판 수정하기
+    @GetMapping("review-board-modify/{id}")
+    public String goReviewModify(Model model, @PathVariable Long id){
+        model.addAttribute("reviewBoardDTO", reviewBoardService.getDetail(id));
+        return "user-board/review-board-modify";
+    }
+
+
+
+    //    댓글 목록
+    @GetMapping("review-board-detail/reply/{id}")
+    @ResponseBody
+    public Slice<ReplyDTO> reviewReplies(@PageableDefault(page = 1, size = 5) Pageable pageable, @PathVariable Long id, Boolean isReviewByDate) {
+        log.info(reviewBoardReplyService.findAllByRefId(
+                PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()),
+                id,
+                isReviewByDate
+        ).getContent().toString());
+        return reviewBoardReplyService.findAllByRefId(
+                PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()),
+                id,
+                isReviewByDate // 최신순 or 인기순
+        );
+    }
+
+
+    //    댓글 작성
+    @PostMapping("review-board-detail/reply/write/{reviewBoardId}")
+    @ResponseBody
+    public ReplyDTO writeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long reviewBoardId) {
+        // 임시 session 값 1저장
+        return reviewBoardReplyService.saveReply(replyDTO, reviewBoardId, 1L);
+    }
+
+    //    댓글 삭제
+    @DeleteMapping("review-board-detail/reply/delete/{reviewBoardId}/{replyId}")
+    public String deleteReply(@PathVariable Long replyId, @PathVariable Long reviewBoardId) {
+        // 임시 session 값 1저장
+         reviewBoardReplyService.deleteReply(replyId, reviewBoardId, 1L);
+         log.info("===============들어옴");
+         return "user-board/review-board-detail";
+    }
+    //  댓글 좋아요
+    @PostMapping("review-board-detail/reply/like/{replyId}")
+    @ResponseBody
+    public boolean checkLike(@PathVariable Long replyId) {
+        log.info("================== 들어옴 ===============");
+        // 임시 session 값 1
+        return replyLikeService.checkOutLike(replyId, 1L);
+    }
+
+    /* ==================================================================== */
 
     //    레시피 게시판 리스트 (최신순)
     @GetMapping("recipe-board-list/recent")

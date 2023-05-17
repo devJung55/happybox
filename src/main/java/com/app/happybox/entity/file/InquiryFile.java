@@ -25,4 +25,9 @@ public class InquiryFile extends Files {
     public void setInquiry(Inquiry inquiry) {
         this.inquiry = inquiry;
     }
+
+    @Builder // toEntity를 위한 빌더
+    public InquiryFile(Long id, String filePath, String fileUuid, String fileOrgName) {
+        super(id, filePath, fileUuid, fileOrgName);
+    }
 }

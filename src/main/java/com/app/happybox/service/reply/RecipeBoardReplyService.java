@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +43,12 @@ public class RecipeBoardReplyService implements ReplyService {
     @Override
     public ReplyDTO saveReply(ReplyDTO replyDTO, Long refId, Long userId) {
         return null;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteReply(Long replyId, Long refId, Long userId) {
+
     }
 
     @Override

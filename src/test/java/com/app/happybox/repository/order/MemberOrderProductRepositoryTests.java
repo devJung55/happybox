@@ -37,37 +37,39 @@ class MemberOrderProductRepositoryTests {
 
     @Test
     public void saveTest() {
-//        // given
-//        Optional<Member> member = memberRepository.findById(2L);
-//        Optional<Product> product = productRepository.findById(9L);
-//
-//        // when
-//        if (!member.isPresent() || !product.isPresent()) fail("member 혹은 product 존재 하지 않음");
-//
-//        MemberOrderProductItem item = new MemberOrderProductItem(300L, product.get());
-//        MemberOrderProduct memberOrderProduct = new MemberOrderProduct(
-//                member.get().getAddress(),
-//                member.get()
-//        );
-//
-//        List<MemberOrderProductItem> items = new ArrayList<>(Arrays.asList(item));
-//
-//        memberOrderProduct.addProducts(items);
-//        items.forEach(i -> {
-//            Product itemProduct = i.getProduct();
-//            Long productStock = itemProduct.getProductStock();
-//
-//            if(productStock - i.getOrderAmount() < 0) {
-//                throw new NotEnoughStockException("상품 수량이 부족합니다.");
-//            }
-//
-//            itemProduct.setProductStock(productStock - i.getOrderAmount());
-//        });
-//
-//        memberOrderProductRepository.save(memberOrderProduct);
-//
-//        // then
-//        log.info(memberOrderProduct.toString());
+        // given
+        Optional<Member> member = memberRepository.findById(1L);
+        Optional<Product> product = productRepository.findById(232L);
+
+        // when
+        if (!member.isPresent() || !product.isPresent()) fail("member 혹은 product 존재 하지 않음");
+
+        MemberOrderProductItem item = new MemberOrderProductItem(1L, product.get());
+        MemberOrderProduct memberOrderProduct = new MemberOrderProduct(
+                "정지영",
+                "01012341234",
+                member.get().getAddress(),
+                member.get()
+        );
+
+        List<MemberOrderProductItem> items = new ArrayList<>(Arrays.asList(item));
+
+        memberOrderProduct.addProducts(items);
+        items.forEach(i -> {
+            Product itemProduct = i.getProduct();
+            Long productStock = itemProduct.getProductStock();
+
+            if(productStock - i.getOrderAmount() < 0) {
+                throw new NotEnoughStockException("상품 수량이 부족합니다.");
+            }
+
+            itemProduct.setProductStock(productStock - i.getOrderAmount());
+        });
+
+        memberOrderProductRepository.save(memberOrderProduct);
+
+        // then
+        log.info(memberOrderProduct.toString());
     }
 
     @Test

@@ -1,8 +1,10 @@
 package com.app.happybox.repository.product;
 
+import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.domain.product.ProductSearchDTO;
 import com.app.happybox.repository.user.DistributorRepository;
+import com.app.happybox.type.FileRepresent;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @SpringBootTest
 @Transactional @Rollback(false)
@@ -21,6 +24,9 @@ import java.util.Optional;
 class ProductRepositoryTests {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductFileRepository productFileRepository;
 
     @Autowired
     private DistributorRepository distributorRepository;
@@ -32,12 +38,23 @@ class ProductRepositoryTests {
             Product product = new Product("지영이꼬추", 2_800, distributor);
 
             product.setProductStock(2_000L);
+        distributorRepository.findById(42L).ifPresent(distributor -> {
+            Product product = new Product("카스", 4_000, distributor);
+            product.setProductStock(5_000L);
             productRepository.save(product);
         });
 
         // when
 
         // then
+    }
+
+    @Test
+    public void fileSaveTest() {
+        Product product = productRepository.findById(236L).get();
+        ProductFile productFile = new ProductFile("2023/05/17", UUID.randomUUID().toString(), "상품 이미지", product, FileRepresent.REPRESENT);
+
+        productFileRepository.save(productFile);
     }
 
     @Test

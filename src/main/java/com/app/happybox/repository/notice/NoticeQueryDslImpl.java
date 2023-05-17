@@ -22,9 +22,11 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
 
     @Override
     public Page<Notice> findNoticeListWithPaging_QueryDSL(Pageable pageable, NoticeSearch noticeSearch) {
-        BooleanExpression noticeTitleContains = noticeSearch.getNoticeTitle() == null ? null : notice.noticeTitle.contains(noticeSearch.getNoticeTitle());
-        BooleanExpression noticeContentContains = noticeSearch.getNoticeContent() == null ? null : notice.noticeContent.contains(noticeSearch.getNoticeContent());
-        BooleanExpression noticeWholeContains = noticeSearch.getNoticeWhole() == null ? null : notice.noticeTitle.contains(noticeSearch.getNoticeWhole()).or(notice.noticeContent.contains(noticeSearch.getNoticeWhole()));
+        NoticeSearch search = doSearch(noticeSearch);
+
+        BooleanExpression noticeTitleContains = search.getNoticeTitle() == null ? null : notice.noticeTitle.contains(search.getNoticeTitle());
+        BooleanExpression noticeContentContains = search.getNoticeContent() == null ? null : notice.noticeContent.contains(search.getNoticeContent());
+        BooleanExpression noticeWholeContains = search.getNoticeWhole() == null ? null : notice.noticeTitle.contains(search.getNoticeWhole()).or(notice.noticeContent.contains(noticeSearch.getNoticeWhole()));
 
         List<Notice> noticePage = query.select(notice)
                 .from(notice)
@@ -36,6 +38,21 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
         Long count = query.select(notice.count()).from(notice).where(noticeTitleContains, noticeContentContains, noticeWholeContains).fetchOne();
 
         return new PageImpl<>(noticePage, pageable, count);
+    }
+
+    //    검색 조건 분기처리
+    private NoticeSearch doSearch(NoticeSearch noticeSearch) {
+        if(noticeSearch != null) {
+            switch(noticeSearch.getSearchType()){
+                case "제목" : noticeSearch.setNoticeTitle(noticeSearch.getKeyword());
+                    break;
+                case "내용" : noticeSearch.setNoticeContent(noticeSearch.getKeyword());
+                    break;
+                case "전체" : noticeSearch.setNoticeWhole(noticeSearch.getKeyword());
+                    break;
+            }
+        }
+        return noticeSearch;
     }
 
     @Override

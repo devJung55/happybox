@@ -41,4 +41,6 @@ public interface UserService extends UserDetailsService {
 
 
 
+//    회원 탈퇴
+    public void updateUserStatusByUserId(Long userId);
 }

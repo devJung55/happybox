@@ -4,8 +4,11 @@ import com.app.happybox.domain.InquiryAnswerDTO;
 import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.customer.InquiryAnswer;
+import com.app.happybox.entity.file.InquiryFile;
 import com.app.happybox.repository.inquiry.InquiryAnswerRepository;
+import com.app.happybox.repository.inquiry.InquiryFileRepository;
 import com.app.happybox.repository.inquiry.InquiryRepository;
+import com.app.happybox.repository.user.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +28,8 @@ import java.util.stream.Collectors;
 public class InquiryServiceImpl implements InquiryService {
     private final InquiryRepository inquiryRepository;
     private final InquiryAnswerRepository inquiryAnswerRepository;
+    private final MemberRepository memberRepository;
+    private final InquiryFileRepository inquiryFileRepository;
 
     //    문의 목록
     @Override
@@ -64,5 +70,18 @@ public class InquiryServiceImpl implements InquiryService {
     public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId) {
         List<InquiryAnswer> inquiryAnswers = inquiryAnswerRepository.findByUserId_QueryDSL(memberId);
         return inquiryAnswers.stream().map(this::toInquiryAnswerDTO).collect(Collectors.toList());
+    }
+
+    //    문의등록
+    @Override
+    @Transactional
+    public void inquiryWrite(InquiryDTO inquiryDTO) {
+        Inquiry inquiry = toInquiryEntity(inquiryDTO);
+//        임시로 1번으로 할당, 로그인 회원가입 완료되면 세션에서 받아온 id값 전달
+        inquiry.setUser(memberRepository.findById(1L).get());
+        inquiryRepository.save(inquiry);
+        List<InquiryFile> inquiryFiles = toInquiryEntity(inquiryDTO).getInquiryFiles();
+        inquiryFiles.forEach(inquiryFile -> inquiryFile.setInquiry(inquiry));
+        inquiryFileRepository.saveAll(inquiryFiles);
     }
 }
