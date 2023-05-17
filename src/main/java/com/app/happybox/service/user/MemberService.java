@@ -38,14 +38,14 @@ public interface MemberService{
     //    아이디로 전체 정보 조회(MemberDetailService)
     public Optional<Member> findByUserId(String userId);
 
+    //    마이페이지 배송지정보조회
+    public Optional<Member> findDeliveryInfoById(Long memberId);
+
 //    회원정보수정
     public void updateMemberInfoById(Member member);
 
 //    회원탈퇴
     public void updateUserStatusById(Long memberId);
-
-//    배송지정보수정
-    public void updateMemberDeliveryAddressByMemberId(Member member);
 
 //    관리자 회원 목록
     public Page<Member> getList(Pageable pageable);
