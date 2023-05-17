@@ -51,6 +51,15 @@ let myPageService = (function() {
         })
     }
 
+    function topBarAjax() {
+        $.ajax({
+            url: "/mypage/member/top-bar",
+            success: function (count) {
+                count;
+            }
+        })
+    }
+
     return {
         recipeBoardListAjax: recipeBoardListAjax,
         inquiryListAjax: inquiryListAjax,

@@ -1,8 +1,10 @@
 package com.app.happybox.controller.mypage;
 
 import com.app.happybox.domain.*;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.user.Address;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.service.board.RecipeBoardLikeService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.cs.InquiryService;
@@ -116,20 +118,23 @@ public class MypageController {
 
 //    배송지정보수정
     @PostMapping("member/address-editor")
-    public RedirectView updateMemberDeliveryAddress(AddressDTO addressDTO) {
-        log.info(addressDTO.toString());
+    public RedirectView updateMemberDeliveryAddress(MemberDTO memberDTO) {
+        Member member = memberService.toMemberEntity(memberDTO);
+        memberService.updateMemberDeliveryAddressByMemberId(member);
         return new RedirectView("/mypage/member/address-editor");
     }
 
 //    비밀번호 인증
     @GetMapping("member/checkPassword")
     public String checkMemberPassword() {
+
         return "/mypage/member/member-editor";
     }
 
 //    비밀번호 인증
     @PostMapping("member/checkPassword")
     public RedirectView checkMemberPassword(String password) {
+
         return new RedirectView("/mypage/member/member-editor-form");
     }
 }
