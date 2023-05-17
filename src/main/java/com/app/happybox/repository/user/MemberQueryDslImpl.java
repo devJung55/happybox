@@ -98,6 +98,12 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         return memberDatail;
     }
 
+    //    마이페이지 배송지정보
+    @Override
+    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId) {
+        return Optional.ofNullable(query.select(member).from(member).where(member.eq(member)).fetchOne());
+    }
+
     @Override
     @Transactional
     public void setMemberDeliveryAddressByMemberId(Member member) {

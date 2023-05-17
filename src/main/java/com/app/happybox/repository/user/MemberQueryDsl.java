@@ -23,7 +23,10 @@ public interface MemberQueryDsl {
 //    비밀번호 찾기
     public Optional<String> findMemberPwByPhoneNumber(String memberPhoneNumber);
 
-//    관리자 회원 목록
+    //    마이페이지 배송지정보
+    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId);
+
+    //    관리자 회원 목록
     public Page<Member> findAllWithPaging_QueryDSL(Pageable pageable);
 
 //    관리자 회원 조회
