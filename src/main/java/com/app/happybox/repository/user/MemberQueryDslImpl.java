@@ -42,15 +42,20 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .fetchOne());
     }
 
-//    아이디 찾기(memberPhone)
+    //    아이디 찾기(memberPhone)
     @Override
-    public Optional<String> findMemberIdByPhoneNumber(String memberPhoneNumber) {
-        return Optional.ofNullable(query.select(member.userId)
+    public Optional<String> findMemberIdByPhoneNumber(String userPhoneNumber) {
+        String id = query.select(member.userId)
                 .from(member)
-                .where(member.userPhoneNumber.eq(memberPhoneNumber))
-                .fetchOne());
+                .where(member.userPhoneNumber.eq(userPhoneNumber))
+                .fetchOne();
+        //    조회 했을 때 정보가 없는지 여부 판단
+        if (id != null) {
+            return Optional.of(id);
+        } else {
+            return Optional.of("");
+        }
     }
-
 
     //    아이디 찾기(memberEmail)
     @Override
@@ -97,4 +102,6 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .fetchOne());
         return memberDatail;
     }
+
+
 }

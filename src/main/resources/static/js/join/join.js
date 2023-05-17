@@ -136,6 +136,7 @@ $joinInputs.on('blur', function () {
     return;
   }
 
+  console.log("i의 숫자는?:" + i);
   // 아이디 중복 검사
   if (i == 0) {
     $('#btn-id-check').click(function () {

@@ -54,6 +54,9 @@ public interface MemberService extends UserDetailsService {
 //    회원 조회
     public Optional<Member> getDetail(Long memberId);
 
+    //    인증 번호 발급
+    public void checkSMS(String memberPhone, String code);
+
     //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder()
