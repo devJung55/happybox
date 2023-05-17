@@ -1,5 +1,6 @@
 package com.app.happybox.service.user;
 
+import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.user.UserRepository;
@@ -39,7 +40,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsUserByUserPhoneNumber(userPhoneNumber);
     }
 
-//    UserDetail의 값불러오기
+//    id로 주소 조회
+    @Override
+    public AddressDTO findAddressById(Long id) {
+        return toAddressDTO(userRepository.findAddressById(id).get());
+    }
+
+    //    UserDetail의 값불러오기
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUserId(username).orElseThrow(()-> new UsernameNotFoundException(username + " not found"));

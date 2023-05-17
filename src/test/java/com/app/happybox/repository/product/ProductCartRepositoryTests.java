@@ -27,8 +27,8 @@ class ProductCartRepositoryTests {
 
     @Test
     public void saveTest() {
-        memberRepository.findById(1L).ifPresent(member -> {
-            productRepository.findById(9L).ifPresent(product -> {
+        memberRepository.findById(2L).ifPresent(member -> {
+            productRepository.findById(8L).ifPresent(product -> {
                 ProductCart productCart = new ProductCart(30L, product, member);
                 cartRepository.save(productCart);
             });

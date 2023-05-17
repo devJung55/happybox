@@ -35,10 +35,10 @@ class MemberOrderProductRepositoryTests {
     @Autowired
     private ProductRepository productRepository;
 
-//    @Test
-//    public void saveTest() {
+    @Test
+    public void saveTest() {
 //        // given
-//        Optional<Member> member = memberRepository.findById(1L);
+//        Optional<Member> member = memberRepository.findById(2L);
 //        Optional<Product> product = productRepository.findById(9L);
 //
 //        // when
@@ -68,7 +68,7 @@ class MemberOrderProductRepositoryTests {
 //
 //        // then
 //        log.info(memberOrderProduct.toString());
-//    }
+    }
 
     @Test
     public void findOrderCountByMemberIdAndOrderStatus_QueryDSL_Test() {

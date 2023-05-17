@@ -1,6 +1,5 @@
 package com.app.happybox.controller.main;
 
-import com.app.happybox.entity.subscript.SubscriptionDTO;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.board.DonationBoardService;
 import com.app.happybox.service.board.ReviewBoardService;
