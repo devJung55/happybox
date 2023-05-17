@@ -22,24 +22,24 @@
                     <li>
                         <a href="javascirpt:void(0)" class="menu">활동관리</a>
                         <ul class="depth2">
-                            <li class=""><a href="javascirpt:void(0)">게시물</a></li>
-                            <li class=""><a href="javascirpt:void(0)">댓글</a></li>
+                            <li class=""><a th:href="@{/mypage/member/board}">게시물</a></li>
+                            <!--<li class=""><a href="javascirpt:void(0)">댓글</a></li>-->
                             <li class=""><a href="javascirpt:void(0)">복지관 후기</a></li>
-                            <li class=""><a href="javascirpt:void(0)">찜 목록</a></li>
+                            <li class=""><a th:href="@{/mypage/member/subscription-bookmark}">찜 목록</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascirpt:void(0)" class="menu">주문관리</a>
                         <ul class="depth2">
-                            <li class=""><a href="javascirpt:void(0)">주문내역</a></li>
-                            <li class=""><a href="javascirpt:void(0)">반품내역</a></li>
+                            <li class=""><a th:href="@{/mypage/member/order}">주문내역</a></li>
+                            <!--<li class=""><a href="javascirpt:void(0)">반품내역</a></li>-->
                         </ul>
                     </li>
                     <li>
                         <a href="javascirpt:void(0)" class="menu">문의관리</a>
                         <ul class="depth2">
                             <li>
-                                <a href="javascirpt:void(0)">문의내역</a>
+                                <a th:href="@{/mypage/member/inquiry}">문의내역</a>
                             </li>
                         </ul>
                     </li>
@@ -50,10 +50,10 @@
                                 <a href="javascirpt:void(0)">회원정보수정</a>
                             </li>
                             <li>
-                                <a href="javascirpt:void(0)">배송지정보수정</a>
+                                <a th:href="@{/mypage/member/address-editor}">배송지정보수정</a>
                             </li>
                             <li>
-                                <a href="javascirpt:void(0)">회원탈퇴</a>
+                                <a th:href="@{/mypage/member/unregister}">회원탈퇴</a>
                             </li>
                         </ul>
                     </li>

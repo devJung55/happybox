@@ -28,14 +28,14 @@ public class InquiryAnswerRepositoryTests {
 
     @Test
     public void saveTest() {
-        Inquiry inquiry = inquiryRepository.findById(91L).get();
-        InquiryAnswer inquiryAnswer = new InquiryAnswer("문의내역 답변", inquiry);
+        Inquiry inquiry = inquiryRepository.findById(202L).get();
+        InquiryAnswer inquiryAnswer = new InquiryAnswer("문의내역 답변완료", inquiry);
         inquiryAnswerRepository.save(inquiryAnswer);
         inquiry.setInquiryStatus(InquiryStatus.COMPLETE);
 
-        InquiryAnswerFile inquiryAnswerFile1 = new InquiryAnswerFile("2023/05/09", UUID.randomUUID().toString(), "답변사항1.png", FileRepresent.REPRESENT);
-        InquiryAnswerFile inquiryAnswerFile2 = new InquiryAnswerFile("2023/05/09", UUID.randomUUID().toString(), "답변사항2.png", FileRepresent.ORDINARY);
-        InquiryAnswerFile inquiryAnswerFile3 = new InquiryAnswerFile("2023/05/09", UUID.randomUUID().toString(), "답변사항3.png", FileRepresent.ORDINARY);
+        InquiryAnswerFile inquiryAnswerFile1 = new InquiryAnswerFile("2023/05/17", UUID.randomUUID().toString(), "답변사항1.png", FileRepresent.REPRESENT);
+        InquiryAnswerFile inquiryAnswerFile2 = new InquiryAnswerFile("2023/05/17", UUID.randomUUID().toString(), "답변사항2.png", FileRepresent.ORDINARY);
+        InquiryAnswerFile inquiryAnswerFile3 = new InquiryAnswerFile("2023/05/17", UUID.randomUUID().toString(), "답변사항3.png", FileRepresent.ORDINARY);
 
         inquiryAnswerFile1.setInquiryAnswer(inquiryAnswer);
         inquiryAnswerFile2.setInquiryAnswer(inquiryAnswer);
