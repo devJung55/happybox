@@ -18,19 +18,19 @@ public class SubscriptionLikeQueryDslImpl implements SubscriptionLikeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public boolean checkMemberLikesSubscription_QueryDSL(Member member, Subscription subscription) {
+    public boolean checkMemberLikesSubscription_QueryDSL(Long memberId, Long subscriptionId) {
         Long count = query.select(subscriptionLike.count())
                 .from(subscriptionLike)
-                .where(subscriptionLike.member.eq(member).and(subscriptionLike.subscription.eq(subscription)))
+                .where(subscriptionLike.member.id.eq(memberId).and(subscriptionLike.subscription.id.eq(subscriptionId)))
                 .fetchOne();
 
         return count > 0;
     }
 
     @Override
-    public void deleteUserLikeByUserAndSubscription(Member member, Subscription subscription) {
+    public void deleteUserLikeByUserAndSubscription(Long memberId, Long subscriptionId) {
         query.delete(subscriptionLike)
-                .where(subscriptionLike.member.eq(member).and(subscriptionLike.subscription.eq(subscription)))
+                .where(subscriptionLike.member.id.eq(memberId).and(subscriptionLike.subscription.id.eq(subscriptionId)))
                 .execute();
     }
 

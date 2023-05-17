@@ -1,6 +1,5 @@
 package com.app.happybox.domain;
 
-import com.app.happybox.entity.subscript.FoodDTO;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;

@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface UserFileQueryDsl {
 //    회원 프로필 사진 조회
-    public UserFile findById_QueryDSL(Long userId);
+    public Optional<UserFile> findById_QueryDSL(Long userId);
 }

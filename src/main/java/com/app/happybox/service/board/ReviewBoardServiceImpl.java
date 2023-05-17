@@ -88,7 +88,7 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
     @Override
     public Slice<ReviewBoardDTO> getReviewBoards(Pageable pageable) {
         Slice<ReviewBoard> reviewBoards =
-                reviewBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 10));
+                reviewBoardRepository.findAllByIdDescWithPaging_QueryDSL(pageable);
         List<ReviewBoardDTO> collect = reviewBoards.get().map(board -> reviewBoardToDTO(board)).collect(Collectors.toList());
 
         return new SliceImpl<>(collect, pageable, reviewBoards.hasNext());
@@ -97,7 +97,7 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
     @Override
     public Slice<ReviewBoardDTO> getPopularReviewBoards(Pageable pageable) {
         Slice<ReviewBoard> reviewBoards =
-                reviewBoardRepository.findAllByLikeCountDescWithPaging_QueryDSL(PageRequest.of(0, 10));
+                reviewBoardRepository.findAllByLikeCountDescWithPaging_QueryDSL(pageable);
         List<ReviewBoardDTO> collect = reviewBoards.get().map(board -> reviewBoardToDTO(board)).collect(Collectors.toList());
         return new SliceImpl<>(collect, pageable, reviewBoards.hasNext());
     }

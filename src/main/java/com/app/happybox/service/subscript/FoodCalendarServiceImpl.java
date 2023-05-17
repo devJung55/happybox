@@ -1,6 +1,7 @@
 package com.app.happybox.service.subscript;
 
 import com.app.happybox.domain.FoodCalendarDTO;
+import com.app.happybox.domain.FoodCalendarSearchDTO;
 import com.app.happybox.entity.subscript.FoodCalendar;
 import com.app.happybox.repository.subscript.FoodCalendarRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,11 @@ public class FoodCalendarServiceImpl implements FoodCalendarService {
 
 
     @Override
-    public List<FoodCalendarDTO> getFoodCalendars(Long subId) {
-        List<FoodCalendar> foodCalendars = foodCalendarRepository.findAllWithFoodListBySubscription_QueryDSL(subId);
+    public List<FoodCalendarDTO> getFoodCalendars(FoodCalendarSearchDTO searchDTO) {
+        if(searchDTO.getSubId() == null) throw new IllegalArgumentException("searchDTO subId not exists");
+        if(searchDTO.getToday() == null) searchDTO.setToday(LocalDate.now());
+
+        List<FoodCalendar> foodCalendars = foodCalendarRepository.findAllWithFoodListBySubscription_QueryDSL(searchDTO);
         return foodCalendars.stream().map(this::foodCalendarToDTO).collect(Collectors.toList());
     }
 }

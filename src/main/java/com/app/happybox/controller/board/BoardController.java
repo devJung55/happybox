@@ -55,11 +55,7 @@ public class BoardController {
     private final SubscriptionService subscriptionService;
 
     @GetMapping("review-board-list")
-    public String goRecentList(@PageableDefault(page=1, size=5) Pageable pageable, Model model){
-        model.addAttribute("reviewList",
-                reviewBoardService.getReviewBoards(PageRequest.of(
-                        pageable.getPageNumber() - 1,
-                        pageable.getPageSize())));
+    public String goRecentList(){
         return "user-board/review-board-list";
     }
 
@@ -67,18 +63,22 @@ public class BoardController {
     @GetMapping("review-board-list/popular")
     @ResponseBody
     public Slice<ReviewBoardDTO> goPopularList(@PageableDefault(page=1, size=5) Pageable pageable) {
-        return reviewBoardService.getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
+        Slice<ReviewBoardDTO> reviewBoardDTOS = reviewBoardService.getPopularReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
                         pageable.getPageSize()));
+        return reviewBoardDTOS;
     }
 
     //    리뷰 게시판 리스트(최신순)
     @GetMapping("review-board-list/recent")
     @ResponseBody
     public Slice<ReviewBoardDTO> goRecentList(@PageableDefault(page=1, size=5) Pageable pageable) {
-        return reviewBoardService
+        Slice<ReviewBoardDTO> reviewBoardDTOS =
+                reviewBoardService
                 .getReviewBoards(PageRequest.of(pageable.getPageNumber() - 1,
                         pageable.getPageSize()));
+        return reviewBoardDTOS;
     }
+
 
     //    리뷰 게시판 상세보기
     @GetMapping("review-board-detail/{id}")

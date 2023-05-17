@@ -1,7 +1,5 @@
-package com.app.happybox.entity.subscript;
+package com.app.happybox.domain;
 
-import com.app.happybox.domain.AddressDTO;
-import com.app.happybox.entity.user.Address;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;

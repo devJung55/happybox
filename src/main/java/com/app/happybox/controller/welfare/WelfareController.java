@@ -1,12 +1,16 @@
 package com.app.happybox.controller.welfare;
 
+import com.app.happybox.domain.FoodCalendarDTO;
+import com.app.happybox.domain.FoodCalendarSearchDTO;
 import com.app.happybox.domain.SubscriptionCartDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
-import com.app.happybox.entity.subscript.SubscriptionDTO;
+import com.app.happybox.domain.SubscriptionDTO;
+import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.service.product.SubscriptionCartService;
 import com.app.happybox.service.subscript.FoodCalendarService;
+import com.app.happybox.service.subscript.SubscriptionLikeService;
 import com.app.happybox.service.subscript.SubscriptionService;
 import com.app.happybox.service.user.WelfareService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,6 +36,8 @@ import java.time.LocalDateTime;
 public class WelfareController {
     @Qualifier("subscription")
     private final SubscriptionService subscriptionService;
+    @Qualifier("subscriptionLike")
+    private final SubscriptionLikeService subscriptionLikeService;
     @Qualifier("subscriptionCartService")
     private final SubscriptionCartService subscriptionCartService;
     @Qualifier("foodCalendar")
@@ -56,18 +63,29 @@ public class WelfareController {
     @GetMapping("detail/{id}")
     public String goDetail(@PathVariable Long id, Model model) {
         model.addAttribute("subscription", subscriptionService.findByIdWithDetail(id));
-        model.addAttribute("foodCalendars", foodCalendarService.getFoodCalendars(id));
+
+        // 좋아요 이미 눌렀는지 검사
+        model.addAttribute("isLike", subscriptionLikeService.checkLike(id, 1L));
         return "welfare/welfareDetail";
     }
 
     /* food 가져오는걸로 변경하기 */
-//    @GetMapping("detail/calendar")
-//    @ResponseBody
-//    public List<FoodCalendarDTO> foodCalendars(@RequestBody FoodCalendarSearchDTO searchDTO) {
-//        return foodCalendarService.getFoodCalendars(searchDTO.getToday(), searchDTO.getSubId());
-//    }
+    @GetMapping("detail/calendar")
+    @ResponseBody
+    public List<FoodCalendarDTO> foodCalendars(FoodCalendarSearchDTO searchDTO) {
+        return foodCalendarService.getFoodCalendars(searchDTO);
+    }
 
-    @PostMapping("/add/{subscriptionId}")
+    // 좋아요
+    @PostMapping("detail/like/{subscriptionId}")
+    @ResponseBody
+    public boolean checkLike(@PathVariable Long subscriptionId) {
+        // 임시 회원아이디 1L
+        return subscriptionLikeService.checkOutLike(subscriptionId, 1L);
+    }
+
+     // 장바구니
+    @PostMapping("cart/add/{subscriptionId}")
     @ResponseBody
     public Long registerCart(@RequestBody SubscriptionCartDTO subscriptionCartDTO, @PathVariable Long subscriptionId) {
         log.info(subscriptionCartDTO.toString());
@@ -77,14 +95,14 @@ public class WelfareController {
 
     //    복지관 회원가입 폼
     @GetMapping("join")
-    public String goToJoinForm(WelfareDTO welfareDTO){
+    public String goToJoinForm(WelfareDTO welfareDTO) {
         return "/member/welfare-join";
     }
 
     //    복지관 회원가입 완료
     @PostMapping("join")
-    public RedirectView join(WelfareDTO welfareDTO, SubscriptionWelFareDTO subscriptionWelFareDTO){
-        welfareService.join(welfareDTO,subscriptionWelFareDTO,passwordEncoder);
+    public RedirectView join(WelfareDTO welfareDTO, SubscriptionWelFareDTO subscriptionWelFareDTO) {
+        welfareService.join(welfareDTO, subscriptionWelFareDTO, passwordEncoder);
         log.info("welfareDTO:" + welfareDTO);
         log.info("subscriptionWelFareDTO:" + subscriptionWelFareDTO);
         return new RedirectView("/login");
