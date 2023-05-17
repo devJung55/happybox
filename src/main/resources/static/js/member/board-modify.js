@@ -8,19 +8,54 @@ const insertData = {
 
 $(function() {
     $(".rating-point img").each(function(index) {
-      $(this).on("click", function() {
-        $(".rating-point img").attr("src", "/img/mypage/rating.png");
-        $(this).prevAll().addBack().attr("src", "/img/mypage/rating-pull.png");
+        $(this).on("click", function() {
+            $(".rating-point img").attr("src", "/img/mypage/rating.png");
+            $(this).prevAll().addBack().attr("src", "/img/mypage/rating-pull.png");
 
-          var pullCount = $(".rating-point img[src='/img/mypage/rating-pull.png']").length;
-          console.log("rating-pull.png 개수: " + pullCount);
-      });
+            var pullCount = $(".rating-point img[src='/img/mypage/rating-pull.png']").length;
+            console.log("rating-pull.png 개수: " + pullCount);
+        });
     });
-  });
+});
 
 function send() {
 
 }
+function showFiles(reviewBoardDTO) {
+    reviewBoardDTO.reviewBoardFiles.forEach((file, i) => {
+        console.log(file);
+        let filePath = '/image/display?fileName=' + file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName;
+        text +=
+            `
+                <div
+                  class="slick-slide"
+                  data-slick-index="0"
+                  aria-hidden="true"
+                  style="
+                    width: 400px;
+                    height: 400px;
+                    position: relative;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 1;
+                  "
+                  tabindex="-1"
+                >
+                  <div>
+                    <div class="slider__list" style="width: 100%; display: inline-block">
+                      <figure>
+                        <img
+                        src="${filePath}"
+                        />
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+                 `
+    });
+}
+
+showFiles();
 
 /* 파일 등록 */
 const $fileAttachBtn = $(".btn-attach-thumb");
@@ -100,7 +135,7 @@ $("form[name='form']").on("submit", function (e) {
     insertData.boardContent = boardContent;
 
     $.ajax({
-        url: '/user-board/review-board-insert',
+        url: '/user-board/review-board-modify',
         data: JSON.stringify(insertData),
         contentType: "application/json; charset=utf-8",
         method: 'post',

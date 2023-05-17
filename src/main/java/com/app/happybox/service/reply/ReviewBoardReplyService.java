@@ -32,6 +32,7 @@ public class ReviewBoardReplyService implements ReplyService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Slice<ReplyDTO> findAllByRefId(Pageable pageable, Long id, Boolean isReviewByDate) {
         // 최신순 인기순 정렬 메소드 따로 만들기 (Query이용)
         Slice<ReviewBoardReply> reviewBoardReplySlice = null;
@@ -62,17 +63,14 @@ public class ReviewBoardReplyService implements ReplyService {
     }
 
     @Override
-    public void deleteReply(Long replyId) {
-        reviewBoardReplyRepository.findById(replyId).ifPresent(
-                reviewBoardReply -> {
-                    reviewBoardReplyRepository.delete(reviewBoardReply);
-                    reviewBoardReplyRepository.findById(reviewBoardReply.getReviewBoard().getId()).ifPresent(
-                            reviewBoard -> {
-                                reviewBoard.setReplyLikeCount(reviewBoard.getReplyLikeCount() - 1);
-                            }
-                    );
-                }
-        );
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteReply(Long replyId, Long refId, Long userId) {
+        reviewBoardReplyRepository.deleteById(replyId);
+        ReviewBoard reviewBoard = reviewBoardRepository.findById(refId).orElseThrow(ProductNotFoundException::new);
+
+        int replyCount = reviewBoard.getReviewBoardReplyCount() - 1;
+        reviewBoard.setReviewBoardReplyCount(replyCount);
+
     }
 
     @Override

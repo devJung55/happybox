@@ -21,11 +21,11 @@
             <div class="frame-sm">
                 <form
                         method="post"
-                        name="form" id="counselRegFrm">
+                        name="form" id="counselRegFrm"
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area">
-                                <h3 class="title-menu">게시글 작성하기</h3>
+                                <h3 class="title-menu">게시글 수정하기</h3>
                             </div>
                             <!--// menu-title-area -->
 
@@ -111,12 +111,13 @@
                                       name="boardContent"
                                       id="vQuestionCont"
                                       placeholder="내용을 입력하세요"
+                                      th:text="${reviewBoardDTO.boardContent}"
                               ></textarea>
                                             </div>
                                         </td>
                                     </tr>
                                     <!-- 첨부파일 영역 -->
-                                    <tr class="attach-file-line">
+                                    <tr class="attach-file-line" >
                                         <th class="text-left" scope="row"></th>
                                         <td class="text-left">
                                             <div class="file-add-boxes">
@@ -157,7 +158,8 @@
                                                     />
                                                     <div class="attach-img" style="display: none;">
                                                         <img
-                                                                src=""
+<!--                                                                th:src="@{/image/display?fileName=} + "-->
+<!--                                                                th:src="'/image/display?fileName='+${reviewDTO.reviewBoardFiles[0].filePath}+'/t_'+${reviewDTO.reviewBoardFiles[0].fileUuid}+'_'+${reviewDTO.reviewBoardFiles[0].fileOrgName}"-->
                                                                 style="width: 68px; height: 68px"
                                                         />
                                                         <button
@@ -209,7 +211,7 @@
                                     <span>취소하기</span>
                                 </button>
                                 <button type="submit" class="btn-basic-lg2 btn-primary">
-                                    <span>작성하기</span>
+                                    <span>수정하기</span>
                                 </button>
                             </div>
                         </div>
@@ -234,7 +236,8 @@
     } else {
         fileDTOS = reviewBoardDTO.fileDTOS;
     }
+    console.log(reviewBoardDTO);
 </script>
 <script src="/js/main/header.js"></script>
-<script src="/js/member/board-insert.js"></script>
+<script src="/js/member/board-modify.js"></script>
 </html>

@@ -58,7 +58,8 @@ public class ProductReplyService implements ReplyService {
     }
 
     @Override
-    public void deleteReply(Long replyId) {
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteReply(Long replyId, Long refId, Long userId) {
 
     }
 
