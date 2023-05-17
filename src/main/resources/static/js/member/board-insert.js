@@ -111,5 +111,3 @@ $("form[name='form']").on("submit", function (e) {
         }
     })
 });
-
-
