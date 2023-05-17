@@ -3,46 +3,46 @@
 
 
 /* 텍스트 더보기 */
-$('.info-area__box').on('click', function() {
+$('.info-area__box').on('click', function () {
     $(this).find('.info-area__box-list').css('height', '100%');
-  });
+});
 
 /* 이미지 slide 이벤트 */
 
-$(document).ready(function() {
+$(document).ready(function () {
     // 변수 설정
     var slideIndex = 0;
     var slideLength = $(".slider__sec .slick-slide").length;
-  
+
     // 이전 버튼 클릭 시
-    $(".swiper-button-prev").on("click", function() {
-      if (slideIndex === 0) {
-        slideIndex = slideLength - 1;
-      } else {
-        slideIndex--;
-      }
-      $(".slider__sec .slick-slide").removeClass("slick-current");
-      $(".slider__sec .slick-slide")
-        .eq(slideIndex)
-        .addClass("slick-current");
-      $(".slick-counter .current").text(slideIndex + 1);
+    $(".swiper-button-prev").on("click", function () {
+        if (slideIndex === 0) {
+            slideIndex = slideLength - 1;
+        } else {
+            slideIndex--;
+        }
+        $(".slider__sec .slick-slide").removeClass("slick-current");
+        $(".slider__sec .slick-slide")
+            .eq(slideIndex)
+            .addClass("slick-current");
+        $(".slick-counter .current").text(slideIndex + 1);
     });
-  
+
     // 다음 버튼 클릭 시
-    $(".swiper-button-next").on("click", function() {
-      if (slideIndex === slideLength - 1) {
-        slideIndex = 0;
-      } else {
-        slideIndex++;
-      }
-      $(".slider__sec .slick-slide").removeClass("slick-current");
-      $(".slider__sec .slick-slide")
-        .eq(slideIndex)
-        .addClass("slick-current");
-      $(".slick-counter .current").text(slideIndex + 1);
-      console.log(this);
+    $(".swiper-button-next").on("click", function () {
+        if (slideIndex === slideLength - 1) {
+            slideIndex = 0;
+        } else {
+            slideIndex++;
+        }
+        $(".slider__sec .slick-slide").removeClass("slick-current");
+        $(".slider__sec .slick-slide")
+            .eq(slideIndex)
+            .addClass("slick-current");
+        $(".slick-counter .current").text(slideIndex + 1);
+        console.log(this);
     });
-    
+
     // 첫 번째 사진에 slick-current 클래스 추가
     $(".slider__sec .slick-slide")
         .eq(slideIndex)
@@ -52,10 +52,10 @@ $(document).ready(function() {
 const $files = review.files;
 const setList = $('.detail-container');
 
-function showDetail(){
+function showDetail() {
     console.log(review);
-    let text ="";
-        text += `
+    let text = "";
+    text += `
     <div class="slider__sec">
           <div class="slider slick-initialized slick-slider">
             <button class="swiper-button-prev swiper-btn">
@@ -71,7 +71,7 @@ function showDetail(){
     review.reviewBoardFiles.forEach((file, i) => {
         console.log(file);
         let filePath = '/image/display?fileName=' + file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName;
-            text +=
+        text +=
             `
                 <div
                   class="slick-slide"
@@ -98,9 +98,9 @@ function showDetail(){
                   </div>
                 </div>
                  `
-             })
+    })
     text +=
-            `
+        `
               </div>
             </div>
             
@@ -187,41 +187,110 @@ function showDetail(){
 showDetail();
 
 
-
-  /* 댓글 관련 js */
-
+/* 댓글 관련 js */
+const $moreReview = $(".more-review");
 const $reviewListWrap = $(".review-list-wrap");
 
-/* 임시 이미지 갯수 */
-const imgCount = 7;
+// 현재 페이지
+let page = 1;
+// 정렬 순서
+let isReviewByDate = null;
+// 마지막 여부
+let isLastPage = false;
 
-/* 임시 리뷰 요소 append */
-for (let i = 0; i < imgCount; i++) {
+/* common/ajax.js */
+$doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+    {},
+    (result) => {
+        console.log(result);
+        result.content.forEach((reply) => appendReplyList(reply));
+        if (result.last) $moreReview.css("display", "none");
+    }
+);
+
+$moreReview.on("click", function () {
+    $doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+        {page: ++page, isReviewByDate: isReviewByDate},
+        (result) => {
+            console.log(result);
+            result.content.forEach((reply) => appendReplyList(reply));
+            if (result.last) $(this).css("display", "none");
+        }
+    );
+});
+
+// 최신순
+$(".reivewDate").on("click", function () {
+    page = 1;
+    isReviewByDate = true
+    $reviewListWrap.empty();
+    $doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+        {page: page, isReviewByDate: isReviewByDate},
+        (result) => {
+            result.content.forEach((reply) => appendReplyList(reply));
+            $moreReview.css("display", "block")
+        }
+    );
+});
+
+// 인기순
+$(".orderLikeCount").on("click", function () {
+    page = 1;
+    isReviewByDate = false;
+    $reviewListWrap.empty();
+    $doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+        {page: page, isReviewByDate: isReviewByDate},
+        (result) => {
+            result.content.forEach((reply) => appendReplyList(reply));
+            $moreReview.css("display", "block")
+        }
+    );
+});
+
+const USER_ROLE = {
+    MEMBER: "일반",
+    WELFARE: "복지관"
+}
+
+window.scroll()
+
+/* 댓글 append */
+function appendReplyList(reply, isPrepend) {
+
+    let date = reply.updatedDate.split("T")[0];
+
     let text = `
     <div class="review-list">
+        <span
+            class="xBtn" 
+            style="
+            cursor: pointer;
+            position: absolute;
+            right: 17px;
+            top: -15px;"
+            onclick="deleteReply()"
+        >X</span>
         <div class="user-info-wrap">
             <div class="user-info">
-                <span class="user-type">일반</span>
-                <span class="user-id">kjp1234</span>
+                <span class="user-type">${USER_ROLE[reply.userRole]}</span>
+                <span class="user-id">${reply.userId}</span>
             </div>
         </div>
         <div class="review-wrap">
             <div>
                 <h3 class="review-item-name">
-                    [4.22원데이] 더라인 순면 피그먼트
+                    ${review.boardTitle}
                 </h3>
             </div>
             <p class="review-content">
-                이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무
-                데치면 질겨지니 2분안쪽으로 데쳐서 초고추장 찍어서 먹으면
-                그곳이 천국입니다
+                ${reply.replyContent}
             </p>
             <div class="review-footer">
-                <span class="review-date">2022.11.12</span>
+                <span class="review-date">${date}</span>
                 <div class="review-btn-wrap">
-                    <button class="review-rec-btn">
+                    <button data-id="${reply.id}" onclick="checkOutLike(this)" class="review-rec-btn">
                         <span>도움돼요</span>
-                        <span class="rec-count">1</span>
+                        <span class="rec-count">${reply.replyLikeCount ? reply.replyLikeCount : 0}</span>
                     </button>
                     <button class="review-rec-btn update_review">
                         <span>수정하기</span>
@@ -231,6 +300,12 @@ for (let i = 0; i < imgCount; i++) {
         </div>
     </div>
     `;
+
+    // prepend 검사
+    if (isPrepend) {
+        $reviewListWrap.prepend(text);
+        return;
+    }
     $reviewListWrap.append(text);
 }
 
@@ -256,7 +331,7 @@ $updateReviewBtn.on("click", function () {
 
     let parent = $(this).parent().parent().parent();
 
-    if(parent.hasClass(ON_UPDATE)) return;
+    if (parent.hasClass(ON_UPDATE)) return;
 
     let text = `
     <div class="write-content-wrap">
@@ -287,17 +362,80 @@ $updateReviewBtn.on("click", function () {
     });
 
     /* 등록취소 이벤트 걸기 */
-    $(".write-cancel-btn").on("click", function() {
+    $(".write-cancel-btn").on("click", function () {
         $(this).parent().parent().remove();
         parent.removeClass(ON_UPDATE);
     })
 });
 
+/* 댓글 작성 */
+const REPLY_URL = `/user-board/review-board-detail/reply/write/${review.id}`;
+
+const $replyWriteBtn = $(".write-regist-btn");
+
+$replyWriteBtn.on("click", function () {
+    if ($('.write-textarea').val() == "") {
+        return;
+    }
+
+    $doAjaxPost("POST",
+        REPLY_URL,
+        {replyContent: $('.write-textarea').val()},
+        (result) => {
+            let count = Number($(".review-count span").text());
+            // 댓글 맨위에 append
+            appendReplyList(result, true);
+            // 댓글수 증가
+            $(".review-count span").text(++count);
+            $(".reply-count").text(count);
+            // 댓글 내용 초기화
+            $('.write-textarea').val("");
+            console.log(result);
+        }
+    );
+});
+
+/* 댓글 삭제 */
+const xBtn = $('.xBtn');
+const deleteUrl = `/user-board/review-board-detail/reply/delete/${review.id}`;
+
+function deleteReply() {
+    $doAjaxPost("POST",
+        deleteUrl,
+        {},
+        (result) => {
+            let count = Number($(".review-count span").text());
+            // 댓글수 감소
+            $(".review-count span").text(--count);
+            $(".reply-count").text(count);
+            console.log(result);
+        });
+}
+
+/* 댓글 좋아요 */
+const $replyLikeBtn = $(".review-rec-btn");
+const REPLY_LIKE_URL = "/user-board/review-board-detail/reply/like";
+
+function checkOutLike(likeBtn) {
+    let id = $(likeBtn).data("id");
+    let $value = $(likeBtn).find(".rec-count");
+    let count = Number($value.text());
+
+    $doAjaxPost("POST",
+        REPLY_LIKE_URL + `/${id}`,
+        {},
+        (result) => {
+            $value.text(result ? --count : ++count);
+        });
+}
+
+/* ======================================================================================= */
+
 /* 하트 이벤트 */
-$('.btn-heart').on('click', function(){
-    if($(this).hasClass('on')){
+$('.btn-heart').on('click', function () {
+    if ($(this).hasClass('on')) {
         $(this).removeClass('on');
-    } else{
+    } else {
         $(this).addClass('on');
         heartInsert();
     }
