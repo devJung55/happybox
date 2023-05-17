@@ -34,6 +34,10 @@ class ProductRepositoryTests {
     @Test
     public void saveTest() {
         // given
+        distributorRepository.findById(3L).ifPresent(distributor -> {
+            Product product = new Product("지영이꼬추", 2_800, distributor);
+
+            product.setProductStock(2_000L);
         distributorRepository.findById(42L).ifPresent(distributor -> {
             Product product = new Product("카스", 4_000, distributor);
             product.setProductStock(5_000L);
