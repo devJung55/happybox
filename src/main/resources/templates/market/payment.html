@@ -152,38 +152,13 @@
                                 </div>
                             </div>
                             <ul class="productCart-list">
-                                <li>
-                                    <div class="prd-info-area">
-                                        <div class="inner">
-                                            <div class="column img">
-                                                <a href="javascript:void(0);">
-                                                    <img
-                                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg"
-                                                            alt=""
-                                                    />
-                                                </a>
-                                            </div>
-                                            <div class="column tit">
-                                                <p class="tit">관악복지관</p>
-                                                <p class="desc">서울시 관악구 봉천동</p>
-                                                <ul class="price-item">
-                                                    <li>
-                                                        <span class="num">18,900</span>
-                                                        원
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="column price w70">
-                                                <span class="num">18,900</span>
-                                                원
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                <!-- 화면에 뿌려지는 곳 -->
                             </ul>
                             <div class="total-price-area">
-                                <span>
-                                    <input type="number" name="">
+                                <span class="title-list">
+                                    총상품 가격 :
+                                    <input type="number" id="goBoot" class="input-text total-price" onkeyup="chkNumber(this)" name="" style="border: none" value="" readonly>
+                                    원
                                 </span>
                             </div>
                         </div>
@@ -219,19 +194,19 @@
     let orderTitle = "오태양";
     let productCount = "100";
     let productPrice = "100"
-    let TotalPrice = productCount * productPrice;
     let orderId = "1";
+    let total = document.getElementById('goBoot').value;
+
 
     const APIKEY = "64619d883049c8001d9686b3";
 
     /*부트페이 결제 API*/
     $('#goPayment').on('click', function () {
         BootPay.request({
-            price: TotalPrice, //실제 결제되는 가격
+            price: parseFloat(total), //실제 결제되는 가격
 
             // 관리자로그인 -> 결제설치 -> 인증키 및 보안 -> WEB Application ID
             application_id: APIKEY,
-
             name: '(주)HappyBox', //결제창에서 보여질 이름
             pg: '',
             method: 'card', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
@@ -241,7 +216,7 @@
                     item_name: orderTitle, //상품명
                     qty: productCount, //수량
                     unique: '123', //해당 상품을 구분짓는 primary key
-                    price: TotalPrice, //상품 단가
+                    price: total, //상품 단가
                 }
             ],
             order_id: '고유order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
@@ -268,18 +243,18 @@
         }).done(function (data) {
             //결제가 정상적으로 완료되면 수행됩니다
             //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
-            $.ajax({
-                url: "/order/product", // 컨트롤러 주소
-                type: "POST",
-                data: {TotalPrice: TotalPrice, orderId: orderId}, // 결제정보 객체 paymetnVO
-                success: function (result) {
-                    location.href = result;
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-            console.log(data);
+            // $.ajax({
+            //     url: "/order/product", // 컨트롤러 주소
+            //     type: "POST",
+            //     data: {TotalPrice: TotalPrice, orderId: orderId}, // 결제정보 객체 paymetnVO
+            //     success: function (result) {
+            //         location.href = result;
+            //     },
+            //     error: function (error) {
+            //         console.log(error);
+            //     }
+            // });
+            // console.log(data);
         });
     });
 </script>

@@ -161,18 +161,18 @@ function showCarts() {
                                 </a>
                             </div>
                             <div class="column tit">
-                                <p class="tit">${cart.productDTO.productName}</p>
-                                <p class="desc">${cart.cartOrderAmount}</p>
+                                <p class="tit" style="color: rgb(31 94 211); font-weight: bold">${cart.productDTO.productName}</p>
+                                <p class="desc" onkeyup="chkNumber(this)">${cart.cartOrderAmount} 개</p>
                                 <ul class="price-item">
                                     <li>
                                             상품가격 : 
-                                            <span class="num">${cart.productDTO.productPrice}</span>
+                                            <span class="num" onkeyup="chkNumber(this)">${cart.productDTO.productPrice}</span>
                                             원
                                     </li>
                                 </ul>
                             </div>
                             <div class="column price w70">
-                                <span class="num" id="price-list">${cart.productDTO.productPrice * cart.cartOrderAmount}</span>
+                                <span class="num" id="price-list" onkeyup="chkNumber(this)">${cart.productDTO.productPrice * cart.cartOrderAmount}</span>
                                 원
                             </div>
                         </div>
@@ -186,12 +186,27 @@ function showCarts() {
 }
 showCarts();
 
-const $totalPrice = $('#total-price');
-const $priceList = $('#price-list');
+const $totalPrice = $('.total-price');
 let totalPrice = 0;
 
-$priceList.children().each(function() {
-    totalPrice += parseInt($(this).text());
-});
+$carts.forEach((cart) => {
+    totalPrice += cart.productDTO.productPrice * cart.cartOrderAmount;
+})
+$totalPrice.val(totalPrice);
 
-$totalPrice.html(totalPrice);
+
+/* ===================================================================================*/
+
+// 천단위 콤마 (소수점포함)
+function numberWithCommas(num) {
+    let parts = num.toString().split(".");
+    return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+}
+
+// 숫자 체크(숫자 이외 값 모두 제거)
+function chkNumber(obj){
+    let tmpValue = $(obj).val().replace(/[^0-9,]/g,'');
+    tmpValue = tmpValue.replace(/[,]/g,'');
+    // 천단위 콤마 처리 후 값 강제변경
+    obj.value = numberWithCommas(tmpValue);
+}

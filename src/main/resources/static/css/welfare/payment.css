@@ -558,6 +558,21 @@ input[readonly] {
     font-weight: 700;
 }
 
+.total-price-area {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+
+}
+
+.total-price {
+    color: red !important;
+    font-size: 20px !important;
+    font-weight: 800;
+    width: 150px !important;
+    padding-left: 20px;
+}
+
 .prd-info-area .column.tit .tit {
     font-size: 15px;
     color: #333;
@@ -1003,9 +1018,9 @@ input[type="checkbox"], input[type="radio"] {
     vertical-align: top;
     flex-grow: 1;
     margin: 0 3px 0 0;
-    background: #FF5938;
+    background: rgba(31, 94, 211, 0.61);
     color: #fff;
-    border: 1px solid #FF5938;
+    border: 1px solid rgba(31, 94, 211, 0.61);
     min-width: 280px;
     height: 56px;
     border-radius: 6px;
