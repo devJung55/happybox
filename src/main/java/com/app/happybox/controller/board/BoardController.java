@@ -103,8 +103,8 @@ public class BoardController {
     @PostMapping("review-board-insert")
     @ResponseBody
     public void ReviewWrite(@RequestBody ReviewBoardDTO reviewBoardDTO) {
-        Long memberId = 1L;
-        reviewBoardService.write(reviewBoardDTO, memberId);
+        Long userId = 1L;
+        reviewBoardService.write(reviewBoardDTO, userId);
 
         log.info("=====================" + reviewBoardDTO);
     }
@@ -114,6 +114,18 @@ public class BoardController {
     public String goReviewModify(Model model, @PathVariable Long id){
         model.addAttribute("reviewBoardDTO", reviewBoardService.getDetail(id));
         return "user-board/review-board-modify";
+    }
+
+    @PostMapping("review-board-modify")
+    @ResponseBody
+    public String goReviewModify(@RequestBody ReviewBoardDTO reviewBoardDTO) {
+        Long userId = 1L;
+
+        log.info(reviewBoardDTO.toString());
+
+        reviewBoardService.update(reviewBoardDTO, userId);
+        log.info(reviewBoardDTO.getId().toString());
+        return "/user-board/review-board-detail/" + reviewBoardDTO.getId();
     }
 
 

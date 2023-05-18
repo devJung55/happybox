@@ -22,6 +22,12 @@ public interface ReviewBoardService {
     //    작성하기
     public void write(ReviewBoardDTO reviewBoardDTO, Long memberId);
 
+    // 수정
+    public void update(ReviewBoardDTO reviewBoardDTO, Long memberId);
+
+    // 삭제
+    public void delete(Long id);
+
     //    현재 시퀀스 가져오기
     public ReviewBoard getCurrentSequence();
 
