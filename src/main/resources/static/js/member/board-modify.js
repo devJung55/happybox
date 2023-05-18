@@ -1,14 +1,17 @@
-
 const insertData = {
-    boardTitle:"",
+    id: reviewBoardDTO.id,
+    boardTitle: "",
     boardContent: "",
     welfareName: "",
-    reviewBoardFiles: new Array(3)
+    reviewBoardFiles: new Array()
 }
 
-$(function() {
-    $(".rating-point img").each(function(index) {
-        $(this).on("click", function() {
+// 기존 file list 를 insertData에 담음
+insertData.reviewBoardFiles = fileDTOS;
+
+$(function () {
+    $(".rating-point img").each(function (index) {
+        $(this).on("click", function () {
             $(".rating-point img").attr("src", "/img/mypage/rating.png");
             $(this).prevAll().addBack().attr("src", "/img/mypage/rating-pull.png");
 
@@ -18,41 +21,180 @@ $(function() {
     });
 });
 
-function send() {
+const setList = $('.board-form');
+function showList(){
+    let text='';
+    text +=
+        `
+        <table>
+            <caption>
+                내용 작성
+            </caption>
+            <colgroup>
+                <col style="width: 180px"/>
+                <col style="width: auto"/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th class="text-left" scope="row">
+                    <div class="in-tb">
+                        제목<em class="es"><span class="blind">필수입력</span></em>
+                    </div>
+                </th>
+                <td class="text-left">
+                    <div class="input-group w-full">
+                        <input
+                                name="boardTitle"
+                                type="text"
+                                id="vQuestionTitle"
+                                class="input-text"
+                                placeholder="제목을 입력해주세요"
+                                value="${reviewBoardDTO.boardTitle}"
+                        />
+                    </div>
+                </td>
+            </tr>
 
+            <tr>
+                <th class="text-left" scope="row" style="padding-top: 0;">
+                    <div class="in-tb">
+                        복지관명<em class="es"><span class="blind">필수입력</span></em>
+                    </div>
+                </th>
+                <td class="text-left" style="padding-top: 0;">
+                    <div class="input-group w-full">
+                        <input
+                                type="text"
+                                name="welfareName"
+                                id="vQuestionTitle"
+                                title=""
+                                class="input-text"
+                                placeholder="복지관명을 입력해주세요"
+                                value="${reviewBoardDTO.welfareName}"
+                        />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="text-left" scope="row" style="padding-top: 0;">
+                    <div class="in-tb">
+                        별점<em class="es"><span class="blind">필수입력</span></em>
+                    </div>
+                </th>
+                <td class="text-left" style="padding-top: 0;">
+                    <div class="input-group w-full">
+                        <em class="rating-point">
+                            <img class="rating__point one" src="/img/mypage/rating-pull.png">
+                            <img class="rating__point two" src="/img/mypage/rating-pull.png">
+                            <img class="rating__point three" src="/img/mypage/rating-pull.png">
+                            <img class="rating__point four" src="/img/mypage/rating-pull.png">
+                            <img class="rating__point five" src="/img/mypage/rating-pull.png">
+                        </em>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="text-left" scope="row">
+                    <div class="in-tb">
+                        내용 <em class="es"><span class="blind">필수입력</span></em>
+                    </div>
+                </th>
+                <td class="text-left">
+                    <div class="textarea-box-count h230">
+      <textarea
+              name="boardContent"
+              id="vQuestionCont"
+              placeholder="내용을 입력하세요"
+      >${reviewBoardDTO.boardContent}</textarea>
+                    </div>
+                </td>
+            </tr>
+            <!-- 첨부파일 영역 -->
+            <tr class="attach-file-line" >
+                <th class="text-left" scope="row"></th>
+                <td class="text-left">
+                    <div class="file-add-boxes">
+
+                        <!-- 사진 들어가는 곳 -->
+                    </div>
+                </td>
+            </tr>
+            <!--// 첨부파일 영역 -->
+            </tbody>
+        </table>
+        `
+    setList.append(text);
 }
-function showFiles(reviewBoardDTO) {
+
+showList();
+
+const setFile = $('.file-add-boxes');
+function showFiles() {
+    console.log(reviewBoardDTO);
     reviewBoardDTO.reviewBoardFiles.forEach((file, i) => {
         console.log(file);
+        let text ='';
         let filePath = '/image/display?fileName=' + file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName;
         text +=
             `
-                <div
-                  class="slick-slide"
-                  data-slick-index="0"
-                  aria-hidden="true"
-                  style="
-                    width: 400px;
-                    height: 400px;
-                    position: relative;
-                    left: 0px;
-                    top: 0px;
-                    z-index: 1;
-                  "
-                  tabindex="-1"
-                >
-                  <div>
-                    <div class="slider__list" style="width: 100%; display: inline-block">
-                      <figure>
-                        <img
-                        src="${filePath}"
-                        />
-                      </figure>
-                    </div>
-                  </div>
+            <div class="div-attach-thumb" id="US_RV_IMG_attachThumb">
+                <button type="button" class="btn-attach-thumb" style="display: none;">
+                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                </button>
+                <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none">
+                <div class="attach-img" style="display: block;">
+                    <img
+                    src="${filePath}" 
+                    style="width: 68px; height: 68px">
+                    <button type="button" class="btn-x-xs2 btn_del">
+                        <i class="ico-x-white"></i><span class="blind">삭제</span>
+                    </button>
                 </div>
-                 `
+            </div>
+            `
+        setFile.append(text);
     });
+    let text = '';
+    if(reviewBoardDTO.reviewBoardFiles.length < 3){
+        for(let i=0; i< 3 - reviewBoardDTO.reviewBoardFiles.length; i++) {
+            text +=
+                `
+                <div class="div-attach-thumb" id="US_RV_IMG_attachThumb">
+                <button type="button" class="btn-attach-thumb">
+                    <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                </button>
+                <input
+                        class="input_file"
+                        name="imgFile"
+                        type="file"
+                        accept="image/*"
+                        style="display: none"
+                />
+                <div class="attach-img" style="display: none;">
+                    <img
+                             src=""
+                            style="width: 68px; height: 68px"
+                    />
+                    <button
+                            type="button"
+                            class="btn-x-xs2 btn_del"
+                    >
+                        <i class="ico-x-white"></i><span class="blind">삭제</span>
+                    </button>
+                </div>
+            </div>
+                `
+        }
+    }
+    text +=
+        `
+        <p class="text-guide-md">
+            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+        </p>
+        `
+    setFile.append(text);
 }
 
 showFiles();
@@ -77,14 +219,14 @@ const fileAjax = (data, index) => {
         processData: false,
         contentType: false,
         success: function (result) {
-            if(result){
+            if (result) {
                 let file = new Object();
 
                 file.filePath = result.paths[0];
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                insertData.reviewBoardFiles[index] = file;
+                insertData.reviewBoardFiles.push(file);
                 console.log(insertData);
             }
         }
@@ -123,6 +265,21 @@ $imgFile.each((i, e) => {
     });
 });
 
+
+$(document).ready(function() {
+    $('.btn_del').on('click', function(e) {
+        e.preventDefault();
+        var $attachImg = $(this).parent('.attach-img');
+        var $img = $attachImg.find('img');
+        var $btnAttachThumb = $(this).closest('.div-attach-thumb').find('.btn-attach-thumb');
+
+        $img.attr('src', '');
+        $attachImg.css('display', 'none');
+        $btnAttachThumb.css('display', 'inline-block');
+    });
+});
+
+
 $("form[name='form']").on("submit", function (e) {
     e.preventDefault();
 
@@ -140,8 +297,7 @@ $("form[name='form']").on("submit", function (e) {
         contentType: "application/json; charset=utf-8",
         method: 'post',
         success: function (result) {
-            // redirect 경로
-            location.href = "/user-board/review-board-list";
+            location.href = result;
         }
     })
 });

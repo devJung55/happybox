@@ -53,7 +53,7 @@
                                                         id="vQuestionTitle"
                                                         class="input-text"
                                                         placeholder="제목을 입력해주세요"
-                                                        th:value="${reviewBoardDTO.boardTitle}"
+                                                        value=""
                                                 />
                                             </div>
                                         </td>
@@ -74,7 +74,7 @@
                                                         title=""
                                                         class="input-text"
                                                         placeholder="복지관명을 입력해주세요"
-                                                        th:value="${reviewBoardDTO.welfareName}"
+                                                        value=""
                                                 />
                                             </div>
                                         </td>
@@ -135,6 +135,7 @@
                                                         <img
                                                                 src=""
                                                                 style="width: 68px; height: 68px"
+                                                                id="image"
                                                         />
                                                         <button
                                                                 type="button"
@@ -159,6 +160,7 @@
                                                         <img
                                                                 src=""
                                                                 style="width: 68px; height: 68px"
+                                                                id="image"
                                                         />
                                                         <button
                                                                 type="button"
@@ -183,6 +185,7 @@
                                                         <img
                                                                 src=""
                                                                 style="width: 68px; height: 68px"
+                                                                id="image"
                                                         />
                                                         <button
                                                                 type="button"
@@ -229,7 +232,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let fileDTOS = null;
-    let reviewBoardDTO = [[${reviewBoardDTO}]];
+    let review = [[${review}]];
     if (reviewBoardDTO == null || reviewBoardDTO == undefined) {
     } else {
         fileDTOS = reviewBoardDTO.fileDTOS;

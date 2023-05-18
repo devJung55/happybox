@@ -88,6 +88,17 @@ $imgFile.each((i, e) => {
     });
 });
 
+$(document).ready(function() {
+    $('#image').click(function() {
+        $('.input_file').click();
+    });
+
+    $('.input_file').change(function() {
+        var file = this.files[0];
+        // 파일 처리 로직을 수행합니다.
+    });
+});
+
 $("form[name='form']").on("submit", function (e) {
     e.preventDefault();
 

@@ -25,7 +25,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .join(QReviewBoard.reviewBoard.reviewBoardFiles).fetchJoin()
                 .where(QReviewBoard.reviewBoard.id.eq(id))
                 .fetchOne();
-        return Optional.of(reviewBoard);
+        return Optional.ofNullable(reviewBoard);
     }
 
     @Override
