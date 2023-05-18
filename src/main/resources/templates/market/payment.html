@@ -181,6 +181,11 @@
                                     </div>
                                 </li>
                             </ul>
+                            <div class="total-price-area">
+                                <span>
+                                    <input type="number" name="">
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -279,11 +284,11 @@
     });
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/market/payment-product.js"></script>
 <script th:inline="javascript">
     let userDetail = [[${userDetail}]];
-    let carts = [[${carts}]];
+    let carts = [[${productCartDTOS}]];
     console.log(userDetail);
     console.log(carts);
 </script>
+<script src="/js/market/payment-product.js"></script>
 </html>

@@ -4,6 +4,7 @@ import com.app.happybox.domain.product.ProductCartDTO;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.product.ProductSearchDTO;
 import com.app.happybox.entity.reply.ReplyDTO;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.product.ProductCartService;
 import com.app.happybox.service.product.ProductService;
 import com.app.happybox.service.reply.ProductReplyService;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -69,23 +71,27 @@ public class ProductController {
 
     @PostMapping("/detail/reply/write/{productId}")
     @ResponseBody
-    public ReplyDTO writeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long productId) {
+    public ReplyDTO writeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long productId, @AuthenticationPrincipal UserDetail userDetail) {
+        Long id = userDetail.getId();
         // 임시 session 값 1저장
-        return productReplyService.saveReply(replyDTO, productId, 1L);
+        return productReplyService.saveReply(replyDTO, productId, id);
     }
 
     @PostMapping("/detail/reply/like/{replyId}")
     @ResponseBody
-    public boolean checkLike(@PathVariable Long replyId) {
+    public boolean checkLike(@PathVariable Long replyId, @AuthenticationPrincipal UserDetail userDetail) {
         log.info("================== 들어옴 ===============");
         // 임시 session 값 1
-        return replyLikeService.checkOutLike(replyId, 1L);
+        Long id = userDetail.getId();
+        return replyLikeService.checkOutLike(replyId, id);
     }
 
     @PostMapping("/cart/add/{productId}")
     @ResponseBody
-    public Long registerCart(@RequestBody ProductCartDTO productCartDTO, @PathVariable Long productId) {
+    public Long registerCart(@RequestBody ProductCartDTO productCartDTO, @PathVariable Long productId, @AuthenticationPrincipal UserDetail userDetail) {
         // 임시로 회원이디 1L 넣어둠, 추후 변경
-        return productCartService.saveCart(productCartDTO, 1L, productId);
+        Long id = userDetail.getId();
+        return productCartService.saveCart(productCartDTO, id, productId);
     }
+
 }
