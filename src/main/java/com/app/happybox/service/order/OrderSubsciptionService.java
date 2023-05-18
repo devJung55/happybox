@@ -16,4 +16,7 @@ public interface OrderSubsciptionService {
                 .orderStartDate(orderSubscription.getCreatedDate())
                 .build();
     }
+
+//    일반 마이페이지 구독한 수 조회
+    public Long getMySubscriptionCountByMemberId(Long id);
 }

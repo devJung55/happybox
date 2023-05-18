@@ -24,19 +24,14 @@
         <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
-
                 <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
-
                 <div class="frame-sm">
-
                     <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
-
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area">
                                 <h3 class="title-menu">회원 탈퇴</h3>
-                            </div><!--// menu-title-area -->
-
+                            </div>
                             <div class="board-form type3">
                                 <div class="input-guide-box type2">
                                     <div class="inner">
@@ -48,7 +43,7 @@
                                         </div>
                                     </div>
                                 </div><!--// input-guide-box -->
-                                <form id="frm" name="withdrawalForm" action="">
+                                <form id="frm" name="withdrawalForm" th:action="@{/mypage/member/unregister}" th:method="post">
                                     <div class="secess-area">
                                         <fieldset class="form-group-area">
                                             <div class="form-group">
@@ -65,10 +60,10 @@
                                             <button type="button" class="btn-basic-lg2 btn-default-ex btn_cancel">
                                                 <span>취소</span>
                                             </button>
-                                            <button type="button" class="btn-basic-lg2 btn-black btn_submit">
+                                            <button type="submit" class="btn-basic-lg2 btn-black btn_submit">
                                                 <span>확인</span>
                                             </button>
-                                        </div><!--// btn-bottom-area -->
+                                        </div>
                                     </div>
                                 </form>
                             </div>

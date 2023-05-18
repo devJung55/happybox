@@ -84,4 +84,9 @@ public class InquiryServiceImpl implements InquiryService {
         inquiryFiles.forEach(inquiryFile -> inquiryFile.setInquiry(inquiry));
         inquiryFileRepository.saveAll(inquiryFiles);
     }
+
+    @Override
+    public Long getInquiryCountByUserId(Long id) {
+        return inquiryRepository.findInquiryCountByUserId_QueryDSL(id);
+    }
 }

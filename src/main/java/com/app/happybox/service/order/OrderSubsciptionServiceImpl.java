@@ -28,4 +28,9 @@ public class OrderSubsciptionServiceImpl implements OrderSubsciptionService {
 
         return new PageImpl<>(orderSubscriptionDTOList, pageable, orderSubscriptions.getTotalElements());
     }
+
+    @Override
+    public Long getMySubscriptionCountByMemberId(Long id) {
+        return orderSubscriptionRepository.findSubscriptionCountByMemberId_QueryDSL(id);
+    }
 }

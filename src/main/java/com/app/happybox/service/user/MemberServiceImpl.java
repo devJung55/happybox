@@ -30,7 +30,7 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-
+    private final PasswordEncoder passwordEncoder;
 
     //    Member 회원가입
     @Override
@@ -130,7 +130,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void updateMemberInfoById(Member member) {
-        memberRepository.setMemberInfoById_QueryDSL(member);
+        memberRepository.setMemberInfoById_QueryDSL(passwordEncoder, member);
     }
 
 

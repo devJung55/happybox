@@ -1,7 +1,9 @@
 package com.app.happybox.service.user;
 
 import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.user.Address;
+import com.app.happybox.entity.user.Member;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
@@ -38,8 +40,6 @@ public interface UserService extends UserDetailsService {
                 .zipcode(address.getZipcode())
                 .build();
     }
-
-
 
 //    회원 탈퇴
     public void updateUserStatusByUserId(Long userId);

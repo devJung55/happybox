@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     //    회원정보수정
     @Override
-    public void setMemberInfoById_QueryDSL(Member member) {
+    public void setMemberInfoById_QueryDSL(PasswordEncoder passwordEncoder, Member member) {
         query.update(QMember.member)
-                .set(QMember.member.userPassword, member.getUserPassword())
+                .set(QMember.member.userPassword, passwordEncoder.encode(member.getUserPassword()))
                 .set(QMember.member.memberName, member.getMemberName())
                 .set(QMember.member.userPhoneNumber, member.getUserPhoneNumber())
                 .set(QMember.member.userEmail, member.getUserEmail())

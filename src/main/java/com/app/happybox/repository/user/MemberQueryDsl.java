@@ -4,12 +4,13 @@ import com.app.happybox.entity.user.Member;
 import com.querydsl.core.Tuple;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
 public interface MemberQueryDsl {
     //    회원정보수정
-    public void setMemberInfoById_QueryDSL(Member member);
+    public void setMemberInfoById_QueryDSL(PasswordEncoder passwordEncoder, Member member);
 
     //    member 로그인
     public Optional<Member> logIn(String memberId, String memberPassword);

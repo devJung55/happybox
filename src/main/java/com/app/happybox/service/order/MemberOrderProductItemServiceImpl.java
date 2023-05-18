@@ -3,6 +3,8 @@ package com.app.happybox.service.order;
 import com.app.happybox.domain.MemberOrderProductItemDTO;
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import com.app.happybox.repository.order.MemberOrderProductItemRepository;
+import com.app.happybox.repository.order.MemberOrderProductQueryDsl;
+import com.app.happybox.repository.order.MemberOrderProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,11 +23,17 @@ import java.util.stream.Collectors;
 @Qualifier("memberOrderProductItem")
 public class MemberOrderProductItemServiceImpl implements MemberOrderProductItemService {
     private final MemberOrderProductItemRepository memberOrderProductItemRepository;
+    private final MemberOrderProductRepository memberOrderProductRepository;
 
     @Override
     public Page<MemberOrderProductItemDTO> getListByIdAndSearchDate(Pageable pageable, Long memberId/*, LocalDateTime searchStartDate, LocalDateTime searchEndDate*/) {
         Page<MemberOrderProductItem> list =  memberOrderProductItemRepository.findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(pageable, memberId/*, searchStartDate, searchEndDate*/);
         List<MemberOrderProductItemDTO> listDTO = list.get().map(this::toMemberOrderProductItemDTO).collect(Collectors.toList());
         return new PageImpl<>(listDTO, pageable, list.getTotalElements());
+    }
+
+    @Override
+    public Long getOrderCountByMemberId(Long id) {
+        return memberOrderProductRepository.findOrderCountByMemberIdAndOrderStatus_QueryDSL(id);
     }
 }
