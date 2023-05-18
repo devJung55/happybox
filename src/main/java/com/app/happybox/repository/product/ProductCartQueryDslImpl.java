@@ -1,11 +1,14 @@
 package com.app.happybox.repository.product;
 
+import com.app.happybox.entity.file.ProductFile;
+import com.app.happybox.entity.product.Product;
 import com.app.happybox.entity.product.ProductCart;
 import com.app.happybox.entity.product.QProductCart;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.happybox.entity.product.QProductCart.productCart;
 
@@ -39,4 +42,15 @@ public class ProductCartQueryDslImpl implements ProductCartQueryDsl {
                 .where(productCart.id.in(ids))
                 .fetch();
     }
+
+//    cart id로 product조회
+    @Override
+    public Optional<Product> findProductById(Long id) {
+        return Optional.ofNullable(query.select(productCart.product)
+                .from(productCart)
+                .where(productCart.id.eq(id))
+                .fetchOne()
+        );
+    }
+//      product ID로 file조회
 }

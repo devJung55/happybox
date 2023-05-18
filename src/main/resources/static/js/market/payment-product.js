@@ -147,7 +147,7 @@ const $carts = carts;
 const $cartArea = $('.productCart-list');
 function showCarts() {
     let text = "";
-    $carts.forEach((cart,i) => {
+    $carts.forEach((cart) => {
         text = `
                 <li>
                     <div class="prd-info-area">
@@ -161,18 +161,18 @@ function showCarts() {
                                 </a>
                             </div>
                             <div class="column tit">
-                                <p class="tit">${cart[i].productName}</p>
-                                <p class="desc">${cart[i].cartOrderAmount}</p>
-                                <p class="desc">${cart[i].createdDate}</p>
+                                <p class="tit">${cart.productDTO.productName}</p>
+                                <p class="desc">${cart.cartOrderAmount}</p>
                                 <ul class="price-item">
                                     <li>
-                                        <span class="num">18,900</span>
-                                        원
+                                            상품가격 : 
+                                            <span class="num">${cart.productDTO.productPrice}</span>
+                                            원
                                     </li>
                                 </ul>
                             </div>
                             <div class="column price w70">
-                                <span class="num">18,900</span>
+                                <span class="num" id="price-list">${cart.productDTO.productPrice * cart.cartOrderAmount}</span>
                                 원
                             </div>
                         </div>
@@ -185,3 +185,13 @@ function showCarts() {
 
 }
 showCarts();
+
+const $totalPrice = $('#total-price');
+const $priceList = $('#price-list');
+let totalPrice = 0;
+
+$priceList.children().each(function() {
+    totalPrice += parseInt($(this).text());
+});
+
+$totalPrice.html(totalPrice);
