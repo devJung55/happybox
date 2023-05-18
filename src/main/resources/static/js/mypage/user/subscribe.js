@@ -36,3 +36,15 @@ $subscribeButton.on("click", function() {
         $subscribeButton.css("color", "#FF5938");
     }
 });
+
+/*---------------------------------------------------------*/
+
+const $welfareThumnail = $(".lozad");
+const $welfareImg = $(".welfare__img");
+
+let filePath = $userFile.filePath;
+let fileUuid = $userFile.fileUuid;
+let fileOrgName = $userFile.fileOrgName;
+
+$welfareThumnail.attr("src", `/image/display?fileName=${filePath}/${fileUuid}_${fileOrgName}`);
+$welfareImg.attr("src", `/image/display?fileName=${filePath}/${fileUuid}_${fileOrgName}`);

@@ -36,7 +36,7 @@ class UserRepositoryTests {
 
     @Test
     public void userFilesaveTest() {
-        UserFile userFile = new UserFile("2023/05/12", UUID.randomUUID().toString(), "프로필 사진", userRepository.findById(1L).get());
+        UserFile userFile = new UserFile("2023/05/18", UUID.randomUUID().toString(), "프로필 사진", userRepository.findById(26L).get());
         userFileRepository.save(userFile);
     }
 }

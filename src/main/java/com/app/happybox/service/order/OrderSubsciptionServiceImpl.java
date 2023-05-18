@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,5 +33,10 @@ public class OrderSubsciptionServiceImpl implements OrderSubsciptionService {
     @Override
     public Long getMySubscriptionCountByMemberId(Long id) {
         return orderSubscriptionRepository.findSubscriptionCountByMemberId_QueryDSL(id);
+    }
+
+    @Override
+    public OrderSubscriptionDTO getSubscriptionDetailByMemberId(Long memberId) {
+        return mypageToOrderSubscriptionDTO(orderSubscriptionRepository.findSubscriptionByMemberId_QueryDSL(memberId).get());
     }
 }

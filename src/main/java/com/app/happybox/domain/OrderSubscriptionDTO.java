@@ -8,15 +8,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
+@Builder
 public class OrderSubscriptionDTO {
-    private Long memberId;  // 구독자 PK
+    private Long id;
+    private Long memberId;  // PK
+    private Long welfareId;  // PK
     private String memberName;
+    private String welfareName;
+    private String subscriptionTitle;
+    private String subscriptionContent;
     private LocalDateTime orderStartDate;
-
-    @Builder
-    public OrderSubscriptionDTO(Long memberId, String memberName, LocalDateTime orderStartDate) {
-        this.memberId = memberId;
-        this.memberName = memberName;
-        this.orderStartDate = orderStartDate;
-    }
 }
