@@ -17,6 +17,8 @@ const $supplierInfoList = $(".supplier-info-list");
 let productPrice = $product.productPrice;
 let productFiles = $product.productFileDTOS;
 let productFileRep = $product.productFileDTOS[0];
+let productName = $product.productName;
+let id = $product.id;
 
 console.log($product);
 
@@ -50,9 +52,12 @@ $(".reply-count").text($product.productReplyCount);
 $(".review-count span").text($product.productReplyCount);
 
 // 상품 대표사진
-const filePath = "/image/display?fileName=" + productFileRep.filePath + '/t_' + productFileRep.fileUuid + '_' + productFileRep.fileOrgName;
-$(".represent-img").attr("src", filePath);
-$(".info-img-thumbnail img").attr("src", filePath);
+let filePath = "";
+if (productFileRep) {
+    filePath = "/image/display?fileName=" + productFileRep.filePath + '/t_' + productFileRep.fileUuid + '_' + productFileRep.fileOrgName;
+} else {
+    filePath = "/img/market/no_img_market.png";
+}
 
 productFiles.forEach((file) => {
     let text;
@@ -385,3 +390,22 @@ function checkOutLike(likeBtn) {
             $value.text(result ? --count : ++count);
         });
 }
+
+
+
+
+/* =====================================  결제하기 버튼 눌렀을때 AJAX    ==================================================== */
+const $payBtn = $('#payment');
+const $amount = $('#amount');
+let productCartDTO = [$amount,productName];
+
+$payBtn.on('click', function () {
+    $doAjaxPost(
+        "post",`/product/cart/add/${id}`,
+        {productCartDTO:productCartDTO},
+        function () {
+            location.href="/order/product";
+        }
+    );
+});
+
