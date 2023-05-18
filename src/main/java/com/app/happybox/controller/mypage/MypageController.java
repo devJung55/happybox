@@ -4,22 +4,22 @@ import com.app.happybox.aspect.annotation.MypageHeaderValues;
 import com.app.happybox.domain.*;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
-import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.board.RecipeBoardLikeService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
+import com.app.happybox.service.order.OrderSubsciptionService;
 import com.app.happybox.service.subscript.SubscriptionLikeService;
 import com.app.happybox.service.user.MemberService;
+import com.app.happybox.service.user.UserFileService;
 import com.app.happybox.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +37,18 @@ public class MypageController {
     private final RecipeBoardLikeService recipeBoardLikeService;
     private final SubscriptionLikeService subscriptionLikeService;
     private final MemberService memberService;
+    private final OrderSubsciptionService orderSubsciptionService;
+    private final UserFileService userFileService;
+
+//    나의 구독 상세보기
+    @MypageHeaderValues
+    @GetMapping("member/subscribe")
+    public String getSubscribeDetail(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+        OrderSubscriptionDTO orderSubscriptionDTO = orderSubsciptionService.getSubscriptionDetailByMemberId(userDetail.getId());
+        model.addAttribute("subscription", orderSubscriptionDTO);
+        model.addAttribute("userFile", userFileService.getDetail(orderSubscriptionDTO.getWelfareId()));
+        return "/mypage/member/subscribe";
+    }
 
     @MypageHeaderValues
     @GetMapping("member/board")
@@ -66,7 +78,7 @@ public class MypageController {
 //    구매 내역 목록
     @MypageHeaderValues
     @GetMapping("member/order")
-    public String getOrderList(){
+    public String getOrderList(@AuthenticationPrincipal UserDetail userDetail){
         return "/mypage/member/order-list";
     }
 
