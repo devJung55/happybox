@@ -17,7 +17,8 @@
                         <input type="file" id="profile__label" style="display: none;">
                         <span class="img">
                             <!-- <i class="ico-cou-level01"></i> -->
-                            <img class="user__profile__img" src="/img/mypage/user__profile.jpg">
+                            <img class="user__profile__img" th:if="${userFile} == 'null'" src="/img/mypage/nomalProfile.png">
+                            <img class="user__profile__img imgPath" th:unless="${userFile} != 'null'" src=`/image/display?fileName=${userFile.filePath}/${userFile.fileUuid}_${userFile.fileOrgName}`>
                             <span class="img__editor__wrap">
                                 <img class="img__editor" src="/img/mypage/img_editor.webp">
                             </span>
@@ -25,6 +26,9 @@
                     </label>
                     <div class="top-bar-txt">
                         <p class="greeting"><strong class="name" th:text="${userName}"></strong>님 반갑습니다.</p>
+                        <p th:text="${userFile.filePath}"></p>
+                        <p th:text="${userFile.fileUuid}"></p>
+                        <p th:text="${userFile.fileOrgName}"></p>
                         <ul class="sep-list user-info-list type3">
                             <li>일반회원</li>
                             <li id="groupPointRateText">1% 적립</li>
@@ -35,7 +39,7 @@
                             </li>
                         </ul>
                     </div>
-                </div><!--// user-info -->
+                </div>
 
                 <dl class="column order">
                     <dt>구독</dt>
@@ -56,8 +60,14 @@
                     <dt>문의내역</dt>
                     <dd><a href="javascript:void(0)"><strong class="num" id="couponCountText" th:text="${inquiryCount}"></strong>개</a></dd>
                 </dl>
-            </div><!--// inner -->
-        </div><!--// user-info-box -->
+            </div>
+        </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:inline="javascript">
+    let $userFile = [[${userFile}]];
+
+    console.log($userFile)
+</script>
 </html>

@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 구독</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/subscribe.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/subscribe.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-
+                <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm">
-
-
-                    <!-- // side-bar.html -->
-
-
+                    <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area">
@@ -34,7 +34,7 @@
                             </div>
                             <div class="subscribe-wrap">
                                 <div class="subscribe__list">
-                                    <ul>
+                                    <ul th:object="${subscription}">
                                         <li class="welfare__list">
                                             <div class="list-inner ui-toggle">
                                                 <div class="txt-area">
@@ -42,48 +42,40 @@
                                                         <div class="post-info">
                                                             <span class="user-level">
                                                                 <i class="ico-user-level01">
-                                                                    <span class="blind">노원복지관</span>
+                                                                    <span class="" th:text="*{welfareName}"></span>
                                                                 </i>
                                                             </span>
                                                             <ul class="sep-list type3">
-                                                                <li class="before"><span class="date start">2023.04.01</span> ~ <span class="date finish">2023.05.01</span></li>
+                                                                <li class="before">
+                                                                    <span class="date start" th:text="${#temporals.format(subscription.orderStartDate, 'yyyy.MM.dd')}"></span>
+                                                                </li>
                                                             </ul>
                                                             <span class="badge-sm-primary">구독취소</span>
                                                         </div><!--// post-info -->
                                                         <p class="review">
-                                                            <span>Oh태양Oh태양Oh태양Oh태양Oh태양Oh태양Oh태양 추천하는 행복박스</span>
+                                                            <span th:text="*{subscriptionTitle}"></span>
                                                         </p>
                                                     </div>
                                                     <div class="img">
-                                                        <img class="lozad" src="https://file.rankingdak.com/image/RANK/REVIEW/PD_RV_IMG1/20230406/IMG1680QRe732662402.jpeg">
+                                                        <img class="lozad" src="">
                                                     </div>
                                                 </div><!--// txt-area -->
                         
                                                 <button type="button" class="btn-link-txt2 ui-toggle-btn btnMoreReview detail__button">
-                                                    <img class="arrow-0deg arrow" src="../../../static/img/mypage/inquiry-arrow.png" width="18">
+                                                    <img class="arrow-0deg arrow" src="/img/mypage/inquiry-arrow.png" width="18">
                                                     <span class="txt-change">더보기</span>
                                                 </button>
                                                 
                                                 <div class="ui-toggle-content goods-review-detail hide welfare__detail" style="display: none;">
                                                     <div class="answer-box">
                                                         <p class="answer-message">
-                                                            <span style="white-space:pre-wrap">
-안녕하세요~ 닭대리입니다🐔
-바쁘신 와중에 회원님의 소중한 후기 감사드립니다!
-수령하신 제품의 문의 및 불편사항은
-언제든지 1:1문의 또는 고객센터로 문의부탁드립니다❤
-                                                            
-오늘도 랭킹닭컴과 건강한 득근하시길 바랍니닭 ᕙ(•̀‸•́ ‶)ᕗ
-                                                            </span>
+                                                            <span style="white-space:pre-wrap" th:text="*{subscriptionContent}"></span>
                                                         </p>
                                                     </div>
-
                                                     <div class="thumbnail-area">
-                                                        <img class="welfare__img" src="https://file.rankingdak.com/image/RANK/REVIEW/PD_RV_IMG1/20230406/IMG1680QRe732662402.jpeg">
+                                                        <img class="welfare__img" src="">
                                                     </div>
                                                 </div><!--// 복지관 상세보기 -->
-
-
                                             </div>
                                         </li>
                                     </ul>
@@ -94,8 +86,14 @@
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
-<script src="../../../static/js/mypage/user/subscribe.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script th:inline="javascript">
+    let $userFile = [[${userFile}]];
+</script>
+<script src="/js/mypage/user/top.js"></script>
+<script src="/js/mypage/user/subscribe.js"></script>
 </html>

@@ -16,14 +16,13 @@
                     <li>
                         <a href="javascirpt:void(0)" class="menu">구독관리</a>
                         <ul class="depth2">
-                            <li><a href="javascirpt:void(0)">나의 구독</a></li>
+                            <li><a th:href="@{/mypage/member/subscribe}">나의 구독</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascirpt:void(0)" class="menu">활동관리</a>
                         <ul class="depth2">
                             <li class=""><a th:href="@{/mypage/member/board}">게시물</a></li>
-                            <!--<li class=""><a href="javascirpt:void(0)">댓글</a></li>-->
                             <li class=""><a href="javascirpt:void(0)">복지관 후기</a></li>
                             <li class=""><a th:href="@{/mypage/member/subscription-bookmark}">찜 목록</a></li>
                         </ul>
@@ -32,7 +31,6 @@
                         <a href="javascirpt:void(0)" class="menu">주문관리</a>
                         <ul class="depth2">
                             <li class=""><a th:href="@{/mypage/member/order}">주문내역</a></li>
-                            <!--<li class=""><a href="javascirpt:void(0)">반품내역</a></li>-->
                         </ul>
                     </li>
                     <li>
