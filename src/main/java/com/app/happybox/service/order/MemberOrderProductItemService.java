@@ -14,6 +14,9 @@ public interface MemberOrderProductItemService {
 //    마이페이지 주문내역(일반회원)
     public Page<MemberOrderProductItemDTO> getListByIdAndSearchDate(Pageable pageable, Long memberId/*, LocalDateTime searchStartDate, LocalDateTime searchEndDate*/);
 
+//    일반 마이페이지 주문건수 조회
+    public Long getOrderCountByMemberId(Long id);
+
     default MemberOrderProductItemDTO toMemberOrderProductItemDTO(MemberOrderProductItem memberOrderProductItem){
         return MemberOrderProductItemDTO.builder()
                 .id(memberOrderProductItem.getId())

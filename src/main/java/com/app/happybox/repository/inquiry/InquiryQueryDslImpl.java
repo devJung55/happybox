@@ -44,10 +44,10 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
     }
 
     @Override
-    public Long findInquiryCountByDistributorId_QueryDSL(Long distributorId) {
+    public Long findInquiryCountByUserId_QueryDSL(Long id) {
         Long count = query.select(inquiry.id.count())
                 .from(inquiry)
-                .where(inquiry.user.id.eq(distributorId))
+                .where(inquiry.user.id.eq(id))
                 .fetchOne();
 
         return count;

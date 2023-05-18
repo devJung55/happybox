@@ -79,23 +79,37 @@ public interface MemberService{
                 .build();
     }
 
-    //    Member -> MemberDTO
-//    default MemberDTO toMemberDTO(Member member){
+//        Member -> MemberDTO
+    default MemberDTO toMemberDTO(Member member){
+        return MemberDTO.builder()
+                .id(member.getId())
+                .userId(member.getUserId())
+                .address(member.getAddress())
+                .memberDeliveryAddress(member.getMemberDeliveryAddress())
+                .memberBirth(member.getMemberBirth())
+                .userEmail(member.getUserEmail())
+                .memberGender(member.getMemberGender())
+                .memberName(member.getMemberName())
+                .userPassword(member.getUserPassword())
+                .userPhoneNumber(member.getUserPhoneNumber())
+                .deliveryName(member.getDeliveryName())
+                .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
+                .userRole(member.getUserRole())
+                .userStatus(member.getUserStatus())
+                .build();
+    }
+
+//    default MemberDTO toMemberDTO(Member member) {
 //        return MemberDTO.builder()
 //                .id(member.getId())
-//                .userId(member.getUserId())
-//                .userAddress(member.getAddress())
-//                .memberDeliveryAddress(member.getMemberDeliveryAddress())
-//                .memberBirth(member.getMemberBirth().toString())
-//                .userEmail(member.getUserEmail())
-//                .memberGender(member.getMemberGender())
 //                .memberName(member.getMemberName())
+//                .memberBirth(member.getMemberBirth())
+//                .userId(member.getUserId())
+//                .userEmail(member.getUserEmail())
 //                .userPassword(member.getUserPassword())
 //                .userPhoneNumber(member.getUserPhoneNumber())
-//                .deliveryName(member.getDeliveryName())
-//                .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
-//                .userRole(member.getUserRole())
-//                .userStatus(member.getUserStatus())
+//                .address(member.getAddress())
+//                .memberGender(member.getMemberGender())
 //                .build();
 //    }
 

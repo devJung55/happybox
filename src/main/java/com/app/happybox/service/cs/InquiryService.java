@@ -30,6 +30,9 @@ public interface InquiryService {
 //    문의 사항 작성
     public void inquiryWrite(InquiryDTO inquiryDTO);
 
+//    마이페이지 문의 건수 조회
+    public Long getInquiryCountByUserId(Long id);
+
 //    문의사항 DTO로 바꾸기
     default InquiryDTO toInquiryDTO(Inquiry inquiry) {
         return InquiryDTO.builder().id(inquiry.getId())

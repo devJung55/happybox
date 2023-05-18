@@ -1,0 +1,75 @@
+/* 모달 */
+/* 스타일 설정 */
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 0;
+    align-items: center;
+    font-family: 'Noto Sans KR';
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 30px;
+    /* padding-bottom: 20px; */
+    border: 1px solid #888;
+    width: 400px;
+    height: 130px;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    bottom: 45px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#closeModalBtn{
+    background-color: #FF5938;
+    border-radius: 5px;
+    padding: 8px 30px;
+    margin: 0;
+    /*margin-top: 15px;*/
+    color: #FFF;
+    position: relative;
+     top: 1px;
+}
+
+/* 애니메이션 효과 */
+.modal-content {
+    animation: modalzoom 0.3s;
+}
+
+@keyframes modalzoom {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* 모달 */

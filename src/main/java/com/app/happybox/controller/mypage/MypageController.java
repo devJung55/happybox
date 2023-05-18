@@ -1,10 +1,12 @@
 package com.app.happybox.controller.mypage;
 
+import com.app.happybox.aspect.annotation.MypageHeaderValues;
 import com.app.happybox.domain.*;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.board.RecipeBoardLikeService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.cs.InquiryService;
@@ -16,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,30 +38,33 @@ public class MypageController {
     private final SubscriptionLikeService subscriptionLikeService;
     private final MemberService memberService;
 
+    @MypageHeaderValues
     @GetMapping("member/board")
-    public void getUserRecipeBoardList() {;}
+    public void getUserRecipeBoardList(@AuthenticationPrincipal UserDetail userDetail) {;}
 
 //    나의 게시물 목록(레시피)
     @ResponseBody
     @GetMapping("member/recipe-board")
-    public Page<RecipeBoardDTO> getUserRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
-        Page<RecipeBoardDTO> recipeBoards = recipeBoardService.getListByMemberId(PageRequest.of(page - 1, 3), memberId);
+    public Page<RecipeBoardDTO> getUserRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        Page<RecipeBoardDTO> recipeBoards = recipeBoardService.getListByMemberId(PageRequest.of(page - 1, 3), userDetail.getId());
         return recipeBoards;
     }
 
 //    나의 문의내역 목록
+    @MypageHeaderValues
     @GetMapping("member/inquiry")
-    public void getInquiryList() {;}
+    public void getInquiryList(@AuthenticationPrincipal UserDetail userDetail) {;}
 
 //    나의 문의내역 목록
     @ResponseBody
     @GetMapping("member/inquiry-list")
-    public Page<InquiryDTO> getInquiryList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
-        Page<InquiryDTO> inquiries = inquiryService.getListByMemberId(PageRequest.of(page - 1, 8), memberId);
+    public Page<InquiryDTO> getInquiryList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        Page<InquiryDTO> inquiries = inquiryService.getListByMemberId(PageRequest.of(page - 1, 8), userDetail.getId());
         return inquiries;
     }
 
 //    구매 내역 목록
+    @MypageHeaderValues
     @GetMapping("member/order")
     public String getOrderList(){
         return "/mypage/member/order-list";
@@ -65,69 +72,78 @@ public class MypageController {
 
     @ResponseBody
     @GetMapping("member/order-list")
-    public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
-        Page<MemberOrderProductItemDTO> orderList = memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(page - 1, 5), memberId);
+    public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        Page<MemberOrderProductItemDTO> orderList = memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(page - 1, 5), userDetail.getId());
         return orderList;
     }
 
 //    레시피 찜 목록
+    @MypageHeaderValues
     @GetMapping("member/recipe-bookmark")
-    public void getRecipeBookmarkList() {;}
+    public void getRecipeBookmarkList(@AuthenticationPrincipal UserDetail userDetail) {;}
 
 //    레시피 찜 목록
     @ResponseBody
     @GetMapping("member/recipe-bookmark-list")
-    public Page<RecipeBoardLikeDTO> getRecipeBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
-        Page<RecipeBoardLikeDTO> bookmarkList = recipeBoardLikeService.getListByMemberId(PageRequest.of(page - 1, 8), memberId);
+    public Page<RecipeBoardLikeDTO> getRecipeBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        Page<RecipeBoardLikeDTO> bookmarkList = recipeBoardLikeService.getListByMemberId(PageRequest.of(page - 1, 8), userDetail.getId());
         return bookmarkList;
     }
 
 //    복지관 찜 목록
+    @MypageHeaderValues
     @GetMapping("member/subscription-bookmark")
-    public String getSubscriptionBookmarkList() {
+    public String getSubscriptionBookmarkList(@AuthenticationPrincipal UserDetail userDetail) {
         return "/mypage/member/welfare-bookmark";
     }
 
 //    복지관 찜 목록
     @ResponseBody
     @GetMapping("member/subscrition-bookmark-list")
-    public Page<SubscriptionLikeDTO> getSubscriptionBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Long memberId) {
-        Page<SubscriptionLikeDTO> bookmarkList = subscriptionLikeService.getListSubscriptionBookmarkByMemberId(PageRequest.of(page - 1, 8), memberId);
+    public Page<SubscriptionLikeDTO> getSubscriptionBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        Page<SubscriptionLikeDTO> bookmarkList = subscriptionLikeService.getListSubscriptionBookmarkByMemberId(PageRequest.of(page - 1, 8), userDetail.getId());
         return bookmarkList;
     }
 
 //    회원 탈퇴
+    @MypageHeaderValues
     @GetMapping("member/unregister")
-    public String unregister() {
+    public String unregister(@AuthenticationPrincipal UserDetail userDetail) {
         return "/mypage/member/withdrawal";
     }
 
 //    회원 탈퇴
     @PostMapping("member/unregister")
-    public RedirectView unregister(Long userId) {
-        userService.updateUserStatusByUserId(userId);
-        return new RedirectView("/main/login");
+    public RedirectView unregisterPost(@AuthenticationPrincipal UserDetail userDetail) {
+        userService.updateUserStatusByUserId(userDetail.getId());
+        return new RedirectView("/member/login");
     }
 
 //    회원정보수정
+    @MypageHeaderValues
     @GetMapping("member/edit")
-    public String updateMemberInfo(Model model) {
-        memberService.getDetail(1L).ifPresent(member ->{
-                log.info(member.toString());
-                model.addAttribute("member", member);
+    public String updateMemberInfo(Model model, @AuthenticationPrincipal UserDetail userDetail) {
+        memberService.getDetail(userDetail.getId()).ifPresent(member -> {
+            model.addAttribute("member", memberService.toMemberDTO(member));
         });
         return "/mypage/member/member-editor-form";
     }
 
+//    회원정보수정
     @PostMapping("member/edit")
     public RedirectView updateMemberInfo(MemberDTO memberDTO) {
-        return new RedirectView("/mypage/member/edit");
+        log.info(memberDTO.toString());
+//        Member member = memberService.toMemberEntity(memberDTO);
+//        log.info(member.toString());
+//        memberService.updateMemberInfoById(member);
+        return new RedirectView("/mypage/member/edit?update=ok");
     }
 
 //    배송지정보수정
+    @MypageHeaderValues
     @GetMapping("member/address-editor")
-    public String updateMemberDeliveryAddress(Model model) {
-        memberService.getDetail(1L).ifPresent(member -> model.addAttribute("member", member));
+    public String updateMemberDeliveryAddress(Model model, @AuthenticationPrincipal UserDetail userDetail) {
+        memberService.getDetail(userDetail.getId()).ifPresent(member -> model.addAttribute("member", member));
         return "/mypage/member/address-editor-form";
     }
 
@@ -136,12 +152,13 @@ public class MypageController {
     public RedirectView updateMemberDeliveryAddress(MemberDTO memberDTO) {
         Member member = memberService.toMemberEntity(memberDTO);
         memberService.updateMemberDeliveryAddressByMemberId(member);
-        return new RedirectView("/mypage/member/address-editor");
+        return new RedirectView("/mypage/member/address-editor?update=ok");
     }
 
 //    비밀번호 인증
+    @MypageHeaderValues
     @GetMapping("member/checkPassword")
-    public String checkMemberPassword() {
+    public String checkMemberPassword(@AuthenticationPrincipal UserDetail userDetail) {
 
         return "/mypage/member/member-editor";
     }
