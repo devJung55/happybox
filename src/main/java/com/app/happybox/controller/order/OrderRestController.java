@@ -39,5 +39,9 @@ public class OrderRestController {
         return memberService.findDeliveryInfoById(id).get();
     }
 
+    @PostMapping("add/cart")
+    public void addCart(){
+
+    }
 
 }
