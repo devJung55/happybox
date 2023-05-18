@@ -2,6 +2,7 @@ package com.app.happybox.service.user;
 
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.user.MemberRepository;
 import com.app.happybox.type.Role;
@@ -19,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -28,7 +30,6 @@ import java.util.Optional;
 @Qualifier("member") @Primary
 @Slf4j
 public class MemberServiceImpl implements MemberService {
-
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -121,25 +122,32 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+//    배송지정보수정
     @Override
     public Optional<Member> findDeliveryInfoById(Long memberId) {
         Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);
         return member;
     }
 
-
-    @Override
-    public void updateMemberInfoById(Member member) {
-        memberRepository.setMemberInfoById_QueryDSL(passwordEncoder, member);
+//    회원정보수정
+    @Override @Transactional
+    public void updateMemberInfoById(MemberDTO memberDTO) {
+        Member member = memberRepository.findById(memberDTO.getId()).orElseThrow(UserNotFoundException::new);
+        member.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword().split(",")[0]));
+        member.setMemberName(memberDTO.getMemberName());
+        member.setUserPhoneNumber(memberDTO.getUserPhoneNumber());
+        member.setAddress(memberDTO.getAddress());
+        member.setUserEmail(memberDTO.getUserEmail());
     }
 
-
+//    회원탈퇴 = 회원상태 변경
     @Override
     public void updateUserStatusById(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         member.setUserStatus(UserStatus.UNREGISTERED);
     }
 
+//    배송지정보수정
     @Override
     public void updateMemberDeliveryAddressByMemberId(Member member) {
         memberRepository.setMemberDeliveryAddressByMemberId(member);

@@ -33,6 +33,7 @@ $reset.on("click", function() {
 
 /*-----------------------------------------------------------------*/
 
+
 myPageService.orderListAjax();
 
 const $orderAppend = $(".productCart-list");
@@ -43,6 +44,14 @@ function showOrderList(orderList) {
     let total = "";
     let img = "";
 
+    if(orderList.content.length == 0) {
+        text = `
+                <div class="no-data-type1">
+                    <p class="message">기간 내에 주문내역이 없습니다.</p>
+                </div>
+            `;
+        $orderAppend.append(text);
+    }
     orderList.content.forEach(order => {
         total = order.productPrice * order.orderStock;
 
@@ -90,6 +99,7 @@ function showOrderList(orderList) {
                 </div>
             </li>
                 `;
+
     });
     $orderAppend.append(text);
     displayPaginationOrder(orderList.totalPages);

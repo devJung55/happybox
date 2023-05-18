@@ -55,6 +55,7 @@
                                                 </div>
                                                 <!--// form-head -->
                                                 <div class="input-group type-lg w-full">
+                                                    <input type="hidden" th:field="*{id}">
                                                     <input type="text" th:field="*{userId}" id="member-join-general-id-text" name="member-join-general-id-text" class="input-text w571 join-input" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능" style="background: #F3F6FF;" readonly/>
                                                 </div>
                                                 <p class="valid error help" id="pw-error-text1" style="display: none"></p>

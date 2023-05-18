@@ -6,6 +6,7 @@ import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.user.UserRepository;
 import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Qualifier("user") @Primary
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -45,6 +47,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public AddressDTO findAddressById(Long id) {
         return toAddressDTO(userRepository.findAddressById(id).get());
+    }
+
+    @Override
+    public User getDetailByUserId(Long id) {
+        return userRepository.findById(id).get();
     }
 
     //    UserDetail의 값불러오기

@@ -8,6 +8,8 @@ import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
 import com.app.happybox.service.order.OrderSubsciptionService;
 import com.app.happybox.service.user.UserFileService;
+import com.app.happybox.service.user.UserService;
+import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -29,6 +31,7 @@ public class MypageControllerAspect {
     private final RecipeBoardService recipeBoardService;
     private final InquiryService inquiryService;
     private final UserFileService userFileService;
+    private final UserService userService;
 
     @Before("@annotation(com.app.happybox.aspect.annotation.MypageHeaderValues)")
     public void setHeaderInfoValue(JoinPoint joinPoint) throws Throwable {
@@ -47,11 +50,16 @@ public class MypageControllerAspect {
         Long boardCount = recipeBoardService.getCountByMemberId(id);
         Long inquiryCount = inquiryService.getInquiryCountByUserId(id);
         UserFileDTO userFileDTO = userFileService.getDetail(id);
+//        Role userRole = userService.getDetailByUserId(id).getUserRole();
+//        log.info(id + " : userDetailID");
+//        log.info(userService.getDetailByUserId(id).getUserRole() + "");
+
         request.setAttribute("subscribeCount", subscribeCount); // 내가 구독한 구독 수
         request.setAttribute("orderCount", orderCount);         // 주문 건수
         request.setAttribute("boardCount", boardCount);         // 게시물 건수
         request.setAttribute("inquiryCount", inquiryCount);     // 문의 건수 조회
         request.setAttribute("userName", userName);             // 회원이름
+//        request.setAttribute("userRole", userRole);             // 회원타입
         request.setAttribute("userFile", userFileDTO);          // 회원 프로필사진
    }
 }

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,20 +21,6 @@ import static com.app.happybox.entity.user.QMember.member;
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
     private final JPAQueryFactory query;
-
-    //    회원정보수정
-    @Override
-    public void setMemberInfoById_QueryDSL(PasswordEncoder passwordEncoder, Member member) {
-        query.update(QMember.member)
-                .set(QMember.member.userPassword, passwordEncoder.encode(member.getUserPassword()))
-                .set(QMember.member.memberName, member.getMemberName())
-                .set(QMember.member.userPhoneNumber, member.getUserPhoneNumber())
-                .set(QMember.member.userEmail, member.getUserEmail())
-                .set(QMember.member.memberBirth, member.getMemberBirth())
-                .set(QMember.member.memberGender, member.getMemberGender())
-                .where(QMember.member.eq(member))
-                .execute();
-    }
 
     /* member Login */
     @Override

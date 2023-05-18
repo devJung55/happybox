@@ -4,6 +4,7 @@ import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.entity.user.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
@@ -24,6 +25,8 @@ public interface UserService extends UserDetailsService {
     //    id로 주소 조회
     public AddressDTO findAddressById(Long id);
 
+//    회원 정보 조회
+    public User getDetailByUserId(Long id);
 
     default Address toAddress(AddressDTO addressDTO){
         return Address.builder()
