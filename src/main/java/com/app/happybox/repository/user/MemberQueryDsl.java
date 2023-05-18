@@ -9,9 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 
 public interface MemberQueryDsl {
-    //    회원정보수정
-    public void setMemberInfoById_QueryDSL(PasswordEncoder passwordEncoder, Member member);
-
     //    member 로그인
     public Optional<Member> logIn(String memberId, String memberPassword);
 
