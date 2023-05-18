@@ -397,6 +397,7 @@ function checkOutLike(likeBtn) {
 /* =====================================  결제하기 버튼 눌렀을때 AJAX    ==================================================== */
 const $payBtn = $('#payment');
 const $amount = $('#amount');
+console.log($amount);
 let productCartDTO = [$amount,productName];
 
 $payBtn.on('click', function () {
