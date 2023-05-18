@@ -45,7 +45,7 @@ public interface MemberService{
     public void updateMemberDeliveryAddressByMemberId(Member member);
 
 //    회원정보수정
-    public void updateMemberInfoById(Member member);
+    public void updateMemberInfoById(MemberDTO memberDTO);
 
 //    회원탈퇴
     public void updateUserStatusById(Long memberId);

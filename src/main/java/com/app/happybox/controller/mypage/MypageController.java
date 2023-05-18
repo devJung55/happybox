@@ -50,6 +50,7 @@ public class MypageController {
         return "/mypage/member/subscribe";
     }
 
+//    나의 게시물 목록(레시피)
     @MypageHeaderValues
     @GetMapping("member/board")
     public void getUserRecipeBoardList(@AuthenticationPrincipal UserDetail userDetail) {;}
@@ -82,6 +83,7 @@ public class MypageController {
         return "/mypage/member/order-list";
     }
 
+    //    구매 내역 목록
     @ResponseBody
     @GetMapping("member/order-list")
     public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
@@ -144,10 +146,7 @@ public class MypageController {
 //    회원정보수정
     @PostMapping("member/edit")
     public RedirectView updateMemberInfo(MemberDTO memberDTO) {
-        log.info(memberDTO.toString());
-//        Member member = memberService.toMemberEntity(memberDTO);
-//        log.info(member.toString());
-//        memberService.updateMemberInfoById(member);
+        memberService.updateMemberInfoById(memberDTO);
         return new RedirectView("/mypage/member/edit?update=ok");
     }
 
