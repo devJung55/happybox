@@ -33,7 +33,7 @@ public class ChatController {
     // 이 때 클라이언트에서는 /pub/chat/message 로 요청을 하게 되고 이것을 controller 가 받아서 처리합니다.
     // 처리가 완료되면 /sub/chat/room/roomId 로 메시지가 전송됩니다.
     @MessageMapping("/chat/enterUser")
-    public void enterUser(@Payload ChatDTO chat, SimpMessageHeaderAccessor headerAccessor){
+    public void enterUser(@Payload ChatDTO chat, SimpMessageHeaderAccessor headerAccessor) {
 
         //채팅방 유저 +1;
         repository.increaseUser(chat.getRoomId());
@@ -42,27 +42,27 @@ public class ChatController {
         String userUUID = repository.addUser(chat.getRoomId(), chat.getSender());
 
         //반환 결과를 socket session 에 userUUID 로 저장
-        headerAccessor.getSessionAttributes().put("userUUID",userUUID);
-        headerAccessor.getSessionAttributes().put("roomId",chat.getRoomId());
+        headerAccessor.getSessionAttributes().put("userUUID", userUUID);
+        headerAccessor.getSessionAttributes().put("roomId", chat.getRoomId());
 
         chat.setMessage(chat.getSender() + "님이 입장하셨습니다.");
-        template.convertAndSend("/sub/chat/room/"+chat.getRoomId(),chat);
+        template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), chat);
     }
 
     //해당유저
     @MessageMapping("/chat/sendMessage")
-    public void sendMessage(@Payload ChatDTO chat){
+    public void sendMessage(@Payload ChatDTO chat) {
 
-        log.info("chat : {}",chat);
+        log.info("chat : {}", chat);
         chat.setMessage(chat.getMessage());
-        template.convertAndSend("/sub/chat/room/"+chat.getRoomId(),chat);
+        template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), chat);
     }
 
     //유저 퇴장 시에는 EventListener 를 통해서 유저 퇴장을 확인
     @EventListener
-    public void webSocketDisconnectListener(SessionDisconnectEvent event){
+    public void webSocketDisconnectListener(SessionDisconnectEvent event) {
 
-        log.info("DisconnectEvent : {}",event);
+        log.info("DisconnectEvent : {}", event);
 
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
@@ -70,16 +70,16 @@ public class ChatController {
         String userUUID = (String) headerAccessor.getSessionAttributes().get("userUUID");
         String roomId = (String) headerAccessor.getSessionAttributes().get("roomId");
 
-        log.info("headAccessor : {}",headerAccessor);
+        log.info("headAccessor : {}", headerAccessor);
 
         // 채팅방 유저 -1
         repository.decreaseUser(roomId);
 
         //채팅방 유저 리스트에서 UUID 유저 닉네임 조회 및 리스트에서 유저 삭제
         String userName = repository.getUserName(roomId, userUUID);
-        repository.deleteUser(roomId,userUUID);
+        repository.deleteUser(roomId, userUUID);
 
-        if(userName != null){
+        if (userName != null) {
             log.info("User Disconnected : " + userName);
 
             ChatDTO chat = ChatDTO.builder()
@@ -88,14 +88,14 @@ public class ChatController {
                     .message(userName + "님이 퇴장하였습니다.")
                     .build();
 
-            template.convertAndSend("/sub/chat/room/" + roomId,chat);
+            template.convertAndSend("/sub/chat/room/" + roomId, chat);
         }
     }
 
     // 채팅에 참여한 유저 리스트 반환
-    @GetMapping("/chat/uselist")
+    @GetMapping("/chat/userList")
     @ResponseBody
-    public List<String> userList(String roomId){
+    public List<String> userList(String roomId) {
 
         return repository.getUserList(roomId);
     }
@@ -103,8 +103,8 @@ public class ChatController {
     // 채팅에 참여한 유저 닉네임 중복 확인
     @GetMapping("/chat/duplicateName")
     @ResponseBody
-    public String isDuplicateName(@RequestParam("roomId")String roomId ,
-                                  @RequestParam("username")String username){
+    public String isDuplicateName(@RequestParam("roomId") String roomId,
+                                  @RequestParam("username") String username) {
 
         String userName = repository.isDuplicateName(roomId, username);
         log.info("DuplicateName : {}", userName);

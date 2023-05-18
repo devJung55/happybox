@@ -4,12 +4,12 @@ import com.app.happybox.domain.chat.ChatRoom;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
 
-@Data
-@Component
+@Repository
 @Slf4j
 public class ChatRepository {
     private Map<String, ChatRoom> chatRoomMap;
