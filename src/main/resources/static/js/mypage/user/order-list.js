@@ -9,7 +9,6 @@ $radios.on("click", function() {
         if($(radio).hasClass("default")) {
             $(radio).removeClass("default");
             text = $($(this).children()[1]).text();
-            console.log(text);
         }
     });
     
@@ -53,6 +52,7 @@ function showOrderList(orderList) {
         $orderAppend.append(text);
     }
     orderList.content.forEach(order => {
+        const formattedDate = formatDate(new Date(order.createdDate));
         total = order.productPrice * order.orderStock;
 
         if(order.productFiles.length != 0) {
@@ -82,6 +82,9 @@ function showOrderList(orderList) {
                         <div class="column tit">
                             <p class="tit">
                                 <a href="javascript:void(0)" class="productNm">${order.productName}</a>
+                                <div>
+                                    <a href="javascript:void(0)" class="productNm">${formattedDate}</a>
+                                </div>
                             </p>
                         </div>
                         <div class="column price">
@@ -89,11 +92,6 @@ function showOrderList(orderList) {
                                 <span class="order__count">${order.orderStock}</span>개 /
                                 <span class="num productCart-price-25415 brand-cd-1042 partner-cd-299 productCart-price-25415" id="productCart-price-20230418000014810723">${total}</span>원
                             </div>
-                        </div>
-                        <div class="column btn">
-                            <button type="button" class="btn-x-sm deleteUserCart">
-                                <i class="ico-x-black"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -136,3 +134,63 @@ $(".pagination").on("click", "a", function(e) {
     myPageService.orderListAjax(page);
 });
 
+
+/*----------------------------------------------------------------- 기간별 조회*/
+
+
+let date;
+
+function getOrdersByPeriod(date) {
+    let now = new Date();   // 현재 날짜
+    let setDate = new Date(now.getTime() - (date * 24 * 60 * 60 * 1000));    // 사용자가 설정한 날짜 구하기
+
+    console.log(date)
+    if(date == 1) {
+        $orderAppend.empty();
+        myPageService.orderListAjax();
+    }
+
+    let searchDateDTO = {
+        "year": setDate.getFullYear(),
+        "month": setDate.getMonth() + 1,
+        "day": setDate.getDate()
+    }
+    $orderAppend.empty();
+    myPageService.orderListBySearchDate(searchDateDTO);
+}
+
+$(".searchButton").on("click", function() {
+    $(".custom-radio").each((i, v) => {
+        if($(v).hasClass("default")) {
+            date = $($(v).children()[1]).text();
+            console.log(date)
+            switch (text) {
+                case '2주일':
+                    date = 14;
+                    break;
+                case '1개월':
+                    date = 30;
+                    break;
+                case '3개월':
+                    date = 90;
+                    break;
+                case '6개월':
+                    date = 180;
+                    break;
+                case '9개월':
+                    date = 270;
+                    break;
+                case '12개월':
+                    date = 365;
+                    break;
+                case '전체조회':
+                    date = 1;
+                    break;
+                default:
+                    date = null;
+                    break;
+            }
+        }
+    })
+    getOrdersByPeriod(date);
+});
