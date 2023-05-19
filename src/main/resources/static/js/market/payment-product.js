@@ -100,51 +100,49 @@ $(document).ready(function () {
 const $address = $(".checkbox");
 
 
-$(document).ready(function () {
-
-    $address.change(function () {
-        if ($(this).is(':checked')) {
-            $.ajax({
-                url: '/orders/purchaser/' + userDetail.id,
-                type: 'get',
-                data: {id:userDetail.id},
-                success: function (response) {
-                    console.log(response);
-                    $("#memberName").val(response.memberName);
-                    $("#postcode").val(response.address.zipcode);
-                    $("#address").val(response.address.firstAddress);
-                    $("#detailAddress").val(response.address.addressDetail);
-                    $("#userPhoneNumber").val(response.userPhoneNumber);
-                }
-            });
-        } else {
-            $('#payment input').val("");
-        }
-    });
-
-    $.ajax({
-        url: '/orders/member/'+ userDetail.id,
-        type: 'get',
-        data: {id:userDetail.id},
-        success: function (response) {
-            $("#purchaserName").html(response.memberName);
-            $("#purchaserPhone").html(response.userPhoneNumber);
-            $("#purchaserEmail").html(response.userEmail);
-            if (response.userRole == "MEMBER") {
-                $("#purchaserRole").html("일반회원");
-            } else if (response.userRole == "WELFARE") {
-                $("#purchaserRole").html("복지관회원");
-            } else if (response.userRole == "DISTRIBUTOR") {
-                $("#purchaserRole").html("유통회원");
+$address.change(function () {
+    if ($(this).is(':checked')) {
+        $.ajax({
+            url: '/orders/purchaser/' + userDetail.id,
+            type: 'get',
+            data: {id: userDetail.id},
+            success: function (response) {
+                console.log(response);
+                $("#memberName").val(response.memberName);
+                $("#postcode").val(response.address.zipcode);
+                $("#address").val(response.address.firstAddress);
+                $("#detailAddress").val(response.address.addressDetail);
+                $("#userPhoneNumber").val(response.userPhoneNumber);
             }
-        }
-    });
-
+        });
+    } else {
+        $('#payment input').val("");
+    }
 });
+
+$.ajax({
+    url: '/orders/member/' + userDetail.id,
+    type: 'get',
+    data: {id: userDetail.id},
+    success: function (response) {
+        $("#purchaserName").html(response.memberName);
+        $("#purchaserPhone").html(response.userPhoneNumber);
+        $("#purchaserEmail").html(response.userEmail);
+        if (response.userRole == "MEMBER") {
+            $("#purchaserRole").html("일반회원");
+        } else if (response.userRole == "WELFARE") {
+            $("#purchaserRole").html("복지관회원");
+        } else if (response.userRole == "DISTRIBUTOR") {
+            $("#purchaserRole").html("유통회원");
+        }
+    }
+});
+
 
 /* ====================================== 장바구니 정보 불러오기  ============================================== */
 const $carts = carts;
 const $cartArea = $('.productCart-list');
+
 function showCarts() {
     let text = "";
     $carts.forEach((cart) => {
@@ -184,6 +182,7 @@ function showCarts() {
     })
 
 }
+
 showCarts();
 
 const $totalPrice = $('.total-price');
@@ -204,9 +203,9 @@ function numberWithCommas(num) {
 }
 
 // 숫자 체크(숫자 이외 값 모두 제거)
-function chkNumber(obj){
-    let tmpValue = $(obj).val().replace(/[^0-9,]/g,'');
-    tmpValue = tmpValue.replace(/[,]/g,'');
+function chkNumber(obj) {
+    let tmpValue = $(obj).val().replace(/[^0-9,]/g, '');
+    tmpValue = tmpValue.replace(/[,]/g, '');
     // 천단위 콤마 처리 후 값 강제변경
     obj.value = numberWithCommas(tmpValue);
 }

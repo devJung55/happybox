@@ -35,11 +35,11 @@ public class SubscriptionOrderServiceImpl implements SubscriptionOrderService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     // 장바구니 id들과 회원 id 받아옴
-    public Integer saveSubscriptionOrder(List<Long> subscriptionCartIds, Long memberId, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO) {
-        if (subscriptionCartIds.isEmpty()) return -1;
+    public Integer saveSubscriptionOrder(OrderInfoDTO orderInfoDTO) {
+        if (orderInfoDTO.getCartIds().isEmpty()) return -1;
 
         // 회원 ID로 회원 find
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> {
+        Member member = memberRepository.findById(orderInfoDTO.getId()).orElseThrow(() -> {
             throw new UserNotFoundException(); // 회원 조회 실패 시 예외 발생
         });
 
@@ -49,7 +49,7 @@ public class SubscriptionOrderServiceImpl implements SubscriptionOrderService {
         // 알맞은 회원 타입이 아닐 경우 예외 발생
         if (!isMember) throw new UserRoleUnsuitableException();
 
-        List<SubscriptionCart> subscriptionCarts = subscriptionCartRepository.findAllByIdsWithDetail_QueryDSL(subscriptionCartIds);
+        List<SubscriptionCart> subscriptionCarts = subscriptionCartRepository.findAllByIdsWithDetail_QueryDSL(orderInfoDTO.getCartIds());
 
         if (subscriptionCarts.isEmpty()) throw new CartNotFoundException();
 
@@ -58,7 +58,7 @@ public class SubscriptionOrderServiceImpl implements SubscriptionOrderService {
                         new OrderSubscription(
                                 orderInfoDTO.getDeliveryName(),
                                 orderInfoDTO.getDeliveryPhoneNumber(),
-                                new Address(addressDTO.getZipcode(), addressDTO.getFirstAddress(), addressDTO.getAddressDetail()),
+                                new Address(orderInfoDTO.getAddressDTO().getZipcode(), orderInfoDTO.getAddressDTO().getFirstAddress(), orderInfoDTO.getAddressDTO().getAddressDetail()),
                                 subscriptionCart.getSubscription(),
                                 subscriptionCart.getMember(),
                                 subscriptionCart.getSubOption()
@@ -76,7 +76,7 @@ public class SubscriptionOrderServiceImpl implements SubscriptionOrderService {
         });
 
         // 장바구니 삭제
-        subscriptionCartRepository.deleteAllById(subscriptionCartIds);
+        subscriptionCartRepository.deleteAllById(orderInfoDTO.getCartIds());
 
         return orderSubscriptions.size();
     }
