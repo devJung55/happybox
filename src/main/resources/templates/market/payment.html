@@ -203,7 +203,7 @@
     /*부트페이 결제 API*/
     $('#goPayment').on('click', function () {
         BootPay.request({
-            price: parseFloat(total), //실제 결제되는 가격
+            price: total, //실제 결제되는 가격
 
             // 관리자로그인 -> 결제설치 -> 인증키 및 보안 -> WEB Application ID
             application_id: APIKEY,
