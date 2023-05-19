@@ -322,3 +322,23 @@ $cancelDelete.on('click', function (e) {
     $(".delete-modal").hide();
 })
 
+/* ==============================================  구독하기 버튼 눌렀을 때 장바구니로 이동 ================================= */
+
+const $sub = $('.subscribe-btn');
+
+$sub.on('click', function () {
+
+    console.log($(".quantity-input").val());
+    console.log(CART_URL);
+    $doAjaxPost("POST",
+        CART_URL, // 장바구니 URL
+        {
+            subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
+            subOption: $("select[name='option']").val()
+        },
+        (result) => {  // callback
+            location.href="/order/subscription";
+        }
+    );
+
+});
