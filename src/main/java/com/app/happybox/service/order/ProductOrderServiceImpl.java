@@ -46,11 +46,11 @@ public class ProductOrderServiceImpl implements ProductOrderService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     // 장바구니 id들과 회원 id 받아옴
-    public Long saveProductOrder(List<Long> productCartIds, Long userId, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO) {
-        if(productCartIds.isEmpty()) return -1L;
+    public Long saveProductOrder(OrderInfoDTO orderInfoDTO) {
+        if(orderInfoDTO.getCartIds().isEmpty()) return -1L;
 
         // 회원 ID로 회원 find
-        User user = userRepository.findById(userId).orElseThrow(() -> {
+        User user = userRepository.findById(orderInfoDTO.getId()).orElseThrow(() -> {
             throw new UserNotFoundException(); // 회원 조회 실패 시 예외 발생
         });
 
@@ -64,7 +64,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
         // 알맞은 회원 타입이 아닐 경우 예외 발생
         if (!isMember && !isWelfare) throw new UserRoleUnsuitableException();
 
-        List<ProductCart> productCarts = productCartRepository.findAllByIdsWithDetail_QueryDSL(productCartIds);
+        List<ProductCart> productCarts = productCartRepository.findAllByIdsWithDetail_QueryDSL(orderInfoDTO.getCartIds());
 
         if(productCarts.isEmpty()) throw new CartNotFoundException();
 
@@ -73,7 +73,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
             MemberOrderProduct orderProduct = new MemberOrderProduct(
                     orderInfoDTO.getDeliveryName(),
                     orderInfoDTO.getDeliveryPhoneNumber(),
-                    new Address(addressDTO.getZipcode(), addressDTO.getFirstAddress(), addressDTO.getAddressDetail()),
+                    new Address(orderInfoDTO.getAddressDTO().getZipcode(), orderInfoDTO.getAddressDTO().getFirstAddress(), orderInfoDTO.getAddressDTO().getAddressDetail()),
                     member
             );
 
@@ -94,7 +94,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
             WelfareOrderProduct orderProduct = new WelfareOrderProduct(
                     orderInfoDTO.getDeliveryName(),
                     orderInfoDTO.getDeliveryPhoneNumber(),
-                    new Address(addressDTO.getZipcode(), addressDTO.getFirstAddress(), addressDTO.getAddressDetail()),
+                    new Address(orderInfoDTO.getAddressDTO().getZipcode(), orderInfoDTO.getAddressDTO().getFirstAddress(), orderInfoDTO.getAddressDTO().getAddressDetail()),
                     welfare
             );
 
@@ -111,7 +111,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
             payment = new Payment(paymentAmount, welfare, orderProduct);
         }
         // 장바구니 내역 삭제
-        productCartRepository.deleteAllById(productCartIds);
+        productCartRepository.deleteAllById(orderInfoDTO.getCartIds());
 
         // 결제내역 저장
         paymentRepository.save(payment);
