@@ -6,10 +6,12 @@ import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.type.FileRepresent;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
 @Entity @Table(name = "TBL_BOARD_FILE")
+@DynamicInsert
 @Getter @ToString(exclude = "board") @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BoardFile extends Files {
     @EqualsAndHashCode.Include
@@ -48,5 +50,9 @@ public class BoardFile extends Files {
 
     public  void setRecipeBoard(RecipeBoard recipeBoard) {
         this.recipeBoard = recipeBoard;
+    }
+
+    public void setFileRepresent(FileRepresent fileRepresent) {
+        this.fileRepresent = fileRepresent;
     }
 }

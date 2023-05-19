@@ -43,8 +43,8 @@ public class RecipeBoard extends Board {
     private List<BoardFile> recipeBoardFiles = new ArrayList<>();
 
     @Builder
-    public RecipeBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, Integer recipeLikeCount, Integer recipeBoardReplyCount, Member member, List<RecipeBoardReply> recipeBoardReplies, List<RecipeBoardLike> recipeBoardLikes, List<BoardFile> recipeBoardFiles) {
-        super(id, boardTitle, boardContent, boardFiles);
+    public RecipeBoard(Long id, String boardTitle, String boardContent, Integer recipeLikeCount, Integer recipeBoardReplyCount, Member member, List<RecipeBoardReply> recipeBoardReplies, List<RecipeBoardLike> recipeBoardLikes, List<BoardFile> recipeBoardFiles) {
+        super(id, boardTitle, boardContent, recipeBoardFiles);
         this.recipeLikeCount = recipeLikeCount;
         this.recipeBoardReplyCount = recipeBoardReplyCount;
         this.member = member;
