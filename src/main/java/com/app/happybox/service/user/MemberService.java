@@ -47,14 +47,11 @@ public interface MemberService{
 //    회원정보수정
     public void updateMemberInfoById(MemberDTO memberDTO);
 
-//    회원탈퇴
-    public void updateUserStatusById(Long memberId);
-
 //    관리자 회원 목록
     public Page<MemberDTO> getList(Pageable pageable);
 
 //    회원 조회
-    public Optional<Member> getDetail(Long memberId);
+    public MemberDTO getDetail(Long memberId);
 
     //    인증 번호 발급
     public void checkSMS(String memberPhone, String code);

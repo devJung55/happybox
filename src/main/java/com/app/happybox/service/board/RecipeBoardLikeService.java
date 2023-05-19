@@ -13,6 +13,9 @@ public interface RecipeBoardLikeService {
     //    마이페이지 찜 목록
     public Page<RecipeBoardLikeDTO> getListByMemberId(Pageable pageable, Long memberId);
 
+//    마이페이지 찜 취소
+    public void cancelBookmarkRecipeById(Long id);
+
     default RecipeBoardLikeDTO recipeBoardLikeToDTO(RecipeBoardLike recipeBoardLike) {
         return RecipeBoardLikeDTO.builder()
                 .id(recipeBoardLike.getId())

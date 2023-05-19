@@ -18,6 +18,9 @@ public interface OrderSubsciptionService {
 //    마이페이지 구독 상세보기
     public OrderSubscriptionDTO getSubscriptionDetailByMemberId(Long memberId);
 
+//    마이페이지 구독취소
+    public void cancelSubscribeById(Long id);
+
     default OrderSubscriptionDTO adminToOrderSubscriptionDTO(OrderSubscription orderSubscription) {
         return OrderSubscriptionDTO.builder()
                 .memberId(orderSubscription.getMember().getId())
@@ -28,7 +31,7 @@ public interface OrderSubsciptionService {
 
     default OrderSubscriptionDTO mypageToOrderSubscriptionDTO(OrderSubscription orderSubscription) {
         return OrderSubscriptionDTO.builder()
-                .id(orderSubscription.getSubscription().getId())
+                .id(orderSubscription.getId())
                 .welfareId(orderSubscription.getSubscription().getWelfare().getId())
                 .welfareName(orderSubscription.getSubscription().getWelfare().getWelfareName())
                 .subscriptionTitle(orderSubscription.getSubscription().getSubscriptionTitle())

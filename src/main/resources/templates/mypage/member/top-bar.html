@@ -35,10 +35,23 @@
                     <div class="top-bar-txt">
                         <p class="greeting"><strong class="name" th:text="${userName}"></strong> 님 반갑습니다.</p>
                         <ul class="sep-list user-info-list type3">
-                            <li th:text="${userRole}"></li>
-                            <li th:if="${userRole} == 'MEMBER'">일반회원</li>
-                            <li th:if="${userRole}  == 'DISTRIBUTOR'">유통회원</li>
-                            <li th:if="${userRole} == 'WELFARE'">복지관회원</li>
+                            <li class="userType"></li>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script th:inline="javascript">
+                                let userType = "";
+                                const $userRole = [[${userRole}]];
+                                const $userType = $(".userType");
+
+                                if($userRole == 'MEMBER') {
+                                    userType = "일반회원";
+                                } else if($userRole == 'DISTRIBUTOR') {
+                                    userType = "유통회원";
+                                } else {
+                                    userType = "복지관회원";
+                                }
+
+                                $userType.text(userType);
+                            </script>
                             <li id="groupPointRateText">1% 적립</li>
                             <li class="orange-entryItem">
                                 <a href="javascript:void(0)">

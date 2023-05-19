@@ -4,10 +4,12 @@ import com.app.happybox.aspect.annotation.MypageHeaderValues;
 import com.app.happybox.domain.*;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
+import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.board.RecipeBoardLikeService;
 import com.app.happybox.service.board.RecipeBoardService;
+import com.app.happybox.service.board.ReviewBoardService;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
 import com.app.happybox.service.order.OrderSubsciptionService;
@@ -42,6 +44,7 @@ public class MypageController {
     private final MemberService memberService;
     private final OrderSubsciptionService orderSubsciptionService;
     private final UserFileService userFileService;
+    private final ReviewBoardService reviewBoardService;
 
 //    나의 구독 상세보기
     @MypageHeaderValues
@@ -49,8 +52,17 @@ public class MypageController {
     public String getSubscribeDetail(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         OrderSubscriptionDTO orderSubscriptionDTO = orderSubsciptionService.getSubscriptionDetailByMemberId(userDetail.getId());
         model.addAttribute("subscription", orderSubscriptionDTO);
-        model.addAttribute("userFile", userFileService.getDetail(orderSubscriptionDTO.getWelfareId()));
+        if(orderSubscriptionDTO != null) {
+            model.addAttribute("userProfile", userFileService.getDetail(orderSubscriptionDTO.getWelfareId()));
+        }
         return "/mypage/member/subscribe";
+    }
+
+//    구독 취소
+    @ResponseBody
+    @GetMapping("member/subscribe-cancel")
+    public void cancelSubscribe(Long id) {
+        orderSubsciptionService.cancelSubscribeById(id);
     }
 
 //    나의 게시물 목록(레시피)
@@ -61,11 +73,22 @@ public class MypageController {
 //    나의 게시물 목록(레시피)
     @ResponseBody
     @GetMapping("member/recipe-board")
-    public Page<RecipeBoardDTO> getUserRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String setDate, String currentDate) {
-        log.info(setDate + "----------------------------");
-        log.info(currentDate + "------------------------------");
+    public Page<RecipeBoardDTO> getUserRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<RecipeBoardDTO> recipeBoards = recipeBoardService.getListByMemberId(PageRequest.of(page - 1, 3), userDetail.getId());
         return recipeBoards;
+    }
+
+//    나의 리뷰 목록
+    @MypageHeaderValues
+    @GetMapping("member/review")
+    public void getReviewBoardList(@AuthenticationPrincipal UserDetail userDetail) {;}
+
+//    나의 리뷰 목록
+    @ResponseBody
+    @GetMapping("member/review-board")
+    public Page<ReviewBoardDTO> getReviewBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        Page<ReviewBoardDTO> reviewBoards = reviewBoardService.getReviewListByMemberId(PageRequest.of(page - 1, 5), userDetail.getId());
+        return reviewBoards;
     }
 
 //    나의 문의내역 목록
@@ -100,12 +123,6 @@ public class MypageController {
         }
 
         Page<MemberOrderProductItemDTO> orderList = memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(page - 1, 5), userDetail.getId(), searchDateDTO);
-
-        orderList.stream().forEach(v -> {
-            log.info(v.getCreatedDate() + "");
-            log.info(v.getProductPrice() + "");
-            log.info(v.getProductName() + "");
-        });
         return orderList;
     }
 
@@ -120,6 +137,20 @@ public class MypageController {
     public Page<RecipeBoardLikeDTO> getRecipeBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<RecipeBoardLikeDTO> bookmarkList = recipeBoardLikeService.getListByMemberId(PageRequest.of(page - 1, 8), userDetail.getId());
         return bookmarkList;
+    }
+
+//    레시피 찜 취소
+    @ResponseBody
+    @GetMapping("member/recipe-bookmark-cancel")
+    public void calcelBookmarkRecipeBoard(Long id) {
+        recipeBoardLikeService.cancelBookmarkRecipeById(id);
+    }
+
+//    레시피 찜 취소
+    @ResponseBody
+    @GetMapping("member/subscription-bookmark-cancel")
+    public void calcelBookmarkSubscription(Long id) {
+        subscriptionLikeService.cancelSubscriptionById(id);
     }
 
 //    복지관 찜 목록
@@ -137,27 +168,25 @@ public class MypageController {
         return bookmarkList;
     }
 
-//    회원 탈퇴
+//    회원탈퇴
     @MypageHeaderValues
     @GetMapping("member/unregister")
     public String unregister(@AuthenticationPrincipal UserDetail userDetail) {
         return "/mypage/member/withdrawal";
     }
 
-//    회원 탈퇴
+//    회원탈퇴
     @PostMapping("member/unregister")
     public RedirectView unregisterPost(@AuthenticationPrincipal UserDetail userDetail) {
         userService.updateUserStatusByUserId(userDetail.getId());
-        return new RedirectView("/member/login");
+        return new RedirectView("/login");
     }
 
 //    회원정보수정
     @MypageHeaderValues
     @GetMapping("member/edit")
     public String updateMemberInfo(Model model, @AuthenticationPrincipal UserDetail userDetail) {
-        memberService.getDetail(userDetail.getId()).ifPresent(member -> {
-            model.addAttribute("member", memberService.toMemberDTO(member));
-        });
+        model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
         return "/mypage/member/member-editor-form";
     }
 
@@ -172,7 +201,7 @@ public class MypageController {
     @MypageHeaderValues
     @GetMapping("member/address-editor")
     public String updateMemberDeliveryAddress(Model model, @AuthenticationPrincipal UserDetail userDetail) {
-        memberService.getDetail(userDetail.getId()).ifPresent(member -> model.addAttribute("member", member));
+        model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
         return "/mypage/member/address-editor-form";
     }
 
