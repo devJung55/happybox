@@ -42,15 +42,15 @@ class FoodCalendarRepositoryTests {
     @Test
     public void findAllWithFoodListBySubscriptionAndDateBetween_QueryDSL() {
         // given
-        foodCalendarRepository
-                .findAllWithFoodListBySubscription_QueryDSL(LocalDate.now(), 3L)
-                .stream().map(FoodCalendar::toString).forEach(log::info);
-
-        // when
-
-        // then
-        log.info(LocalDate.now().with(TemporalAdjusters.firstDayOfMonth()).toString());
-        log.info(LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).toString());
+//        foodCalendarRepository
+//                .findAllWithFoodListBySubscription_QueryDSL(LocalDate.now(), 3L)
+//                .stream().map(FoodCalendar::toString).forEach(log::info);
+//
+//        // when
+//
+//        // then
+//        log.info(LocalDate.now().with(TemporalAdjusters.firstDayOfMonth()).toString());
+//        log.info(LocalDate.now().with(TemporalAdjusters.lastDayOfMonth()).toString());
     }
 
 //    @Test

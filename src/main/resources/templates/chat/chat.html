@@ -40,8 +40,18 @@
 <div class="chat-message-container">
 
 </div>
+<div class="chat-history-container">
+    <h3>채팅 내역 보기</h3>
+    <input type="text" name="historyRoomId">
+    <button type="button" name="historyRoomId">내역 확인</button>
+    <div class="chat-history">
+
+    </div>
+</div>
 <div>
-    <button type="button" name="createRoom">채팅방 생성</button>
+    <h3>채팅방 생성</h3>
+    <input type="text" name="roomName">
+    <button type="button" name="createRoom">생성</button>
 </div>
 <div>
     <ul class="chat-list">
@@ -72,14 +82,47 @@
     });
 
     $("button[name='createRoom']").on("click", function () {
+
+        let roomName = $("input[name='roomName']").val();
+
+        if (roomName === "" || roomName == null) {
+            return;
+        }
+
         $.ajax({
             type: "POST",
             url: "/chat/createroom",
-            data: JSON.stringify({roomName: "testRoom"}),
+            data: JSON.stringify({roomName: roomName}),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (chatRoom) {
                 showChatRoom(chatRoom);
+            }
+        });
+    });
+
+    // 채팅내역 조회
+    $("button[name='historyRoomId']").on("click", function () {
+
+        let roomId = $("input[name='historyRoomId']").val();
+
+        if (roomId === "" || roomId == null) {
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/chat/history",
+            data: {roomId: roomId},
+            dataType: "json",
+            success: function (chatList) {
+                console.log(chatList);
+                chatList.forEach(chat => {
+                    let text = `
+                          <p>${chat}</p>
+                    `
+                    $(".chat-history").append(text);
+                })
             }
         });
     });

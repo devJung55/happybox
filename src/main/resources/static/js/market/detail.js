@@ -385,3 +385,11 @@ function checkOutLike(likeBtn) {
             $value.text(result ? --count : ++count);
         });
 }
+
+let data = {
+    ids: new Array()
+}
+
+cartDTOs.forEach(cart => {
+    ids.push(cart.id)
+})

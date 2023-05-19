@@ -1,13 +1,12 @@
 package com.app.happybox.controller.chat;
 
-import com.app.happybox.domain.chat.ChatRoom;
-import com.app.happybox.repository.chat.ChatRepository;
+import com.app.happybox.entity.chat.ChatRoom;
+import com.app.happybox.service.chat.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
 public class ChatRoomController {
 
     // ChatRepository Bean 가져오기
-    private final ChatRepository repository;
+    private final ChatService chatService;
 
     @GetMapping("")
     public String goChatRoom() {
@@ -30,7 +29,7 @@ public class ChatRoomController {
     @ResponseBody
     public List<ChatRoom> ChatRoomList() {
 
-        List<ChatRoom> chatRooms = repository.findAllRoom();
+        List<ChatRoom> chatRooms = chatService.findAllRoom();
         log.info("Show All Chat_Room List : {}", chatRooms);
 
         return chatRooms;
@@ -39,12 +38,10 @@ public class ChatRoomController {
     // 채팅방 생성 (리스트로 리다이렉트)
     @PostMapping("/createroom")
     @ResponseBody
-    public ChatRoom createRoom(@RequestBody String roomName, RedirectAttributes rttr) {
+    public ChatRoom createRoom(@RequestBody String roomName) {
 
-        ChatRoom chatRoom = repository.createChatRoom(roomName);
+        ChatRoom chatRoom = chatService.createChatRoom(roomName);
         log.info("Create ChatRoom : {}", chatRoom);
-
-        rttr.addFlashAttribute("roomName", chatRoom);
 
         return chatRoom;
     }
@@ -56,7 +53,7 @@ public class ChatRoomController {
     public String joinRoom(String roomId, Model model) {
 
         log.info("roomId : {}", roomId);
-        model.addAttribute("room", repository.findByRoomId(roomId));
+        model.addAttribute("room", chatService.findByRoomId(roomId));
 
         return "chatroom";
     }

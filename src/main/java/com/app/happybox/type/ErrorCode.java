@@ -2,6 +2,8 @@ package com.app.happybox.type;
 
 import lombok.Getter;
 
+import java.util.logging.LogRecord;
+
 @Getter
 public enum ErrorCode {
     /* ===== AUTH ===== */
@@ -15,7 +17,8 @@ public enum ErrorCode {
     CART_NOT_FOUND("NOT_FOUND_004", "CART_NOT_FOUND", 404),
     SUBSCRIPTION_NOT_FOUND("NOT_FOUND_005", "SUBSCRIPTION_NOT_FOUND", 404),
     LIKE_NOT_FOUND("NOT_FOUND_006", "LIKE_NOT_FOUND", 404),
-    REPLY_NOT_FOUND("NOT_FOUND_006", "REPLY_NOT_FOUND", 404);
+    REPLY_NOT_FOUND("NOT_FOUND_006", "REPLY_NOT_FOUND", 404),
+    CHAT_ROOM_NOT_FOUND("NOT_FOUND_007", "CHAT_ROOM_NOT_FOUND", 404);
 
     private final String code;
     private final String message;

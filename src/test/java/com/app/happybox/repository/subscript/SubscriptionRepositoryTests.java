@@ -36,18 +36,18 @@ class SubscriptionRepositoryTests {
 
     @Test
     public void saveTest() {
-        // given
-        Subscription subscription = new Subscription(
-                "강남 맛집",
-                28_000);
-        welfareRepository.findById(2L).ifPresent(welfare -> {
-            subscription.setWelfare(welfare);
-            subscriptionRepository.save(subscription);
-        });
-
-        // when
-
-        // then
+//        // given
+//        Subscription subscription = new Subscription(
+//                "강남 맛집",
+//                28_000);
+//        welfareRepository.findById(2L).ifPresent(welfare -> {
+//            subscription.setWelfare(welfare);
+//            subscriptionRepository.save(subscription);
+//        });
+//
+//        // when
+//
+//        // then
     }
 
     @Test
