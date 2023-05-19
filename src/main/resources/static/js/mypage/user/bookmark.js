@@ -74,7 +74,7 @@ function showRecipeBoardBookmarkList(bookmarkList) {
         // text += displayPaginationRecipeBookmark(bookmarkList.totalPages);
     });
     $recipeBookmarkAppend.append(text);
-    displayPaginationRecipeBookmark(bookmarkList.totalPages);
+    showPage(bookmarkList);
 }
 
 
@@ -102,56 +102,11 @@ function showSubscriptionBookmarkList(welfareList) {
         `;
     });
     $welfareBookmarkAppend.append(text);
-    displayPaginationWelfareBookmark(welfareList.totalPages);
+    showPage(welfareList);
 }
 
-function displayPaginationRecipeBookmark(totalPages) {
-    const $pagination = $(".pagination");
-    $pagination.empty();
 
-    if (page - 1 > 0) {
-        $pagination.append(`<a href="javascript:void(0)" class="btn-page prev"><span class="blind2">&lt;</span></a>`);
-    }
-
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === page + 1) {
-            // 현재 페이지를 텍스트로 표시
-            $pagination.append(`<a href="javascript:void(0)" id="prev" class="arrow current"><span>${i}</span></a>`);
-        } else {
-            // 다른 페이지는 a 태그로 표시
-            $pagination.append(`<a href="#" class="current"><span>${i}</span></a>`);
-        }
-    }
-
-    if (page - 1 < totalPages - 1) {
-        $pagination.append(`<a href="javascript:void(0)" id="next" class="arrow btn-page next"><span class="blind2">&gt;</span></a>`);
-    }
-}
-
-function displayPaginationWelfareBookmark(totalPages) {
-    const $pagination = $(".pagination");
-    $pagination.empty();
-
-    if (page - 1 > 0) {
-        $pagination.append(`<a href="javascript:void(0)" class="btn-page prev"><span class="blind2">&lt;</span></a>`);
-    }
-
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === page + 1) {
-            // 현재 페이지를 텍스트로 표시
-            $pagination.append(`<a href="javascript:void(0)" id="prev" class="arrow current"><span>${i}</span></a>`);
-        } else {
-            // 다른 페이지는 a 태그로 표시
-            $pagination.append(`<a href="#" class="current"><span>${i}</span></a>`);
-        }
-    }
-
-    if (page - 1 < totalPages - 1) {
-        $pagination.append(`<a href="javascript:void(0)" id="next" class="arrow btn-page next"><span class="blind2">&gt;</span></a>`);
-    }
-}
-
-$(".pagination").on("click", "a", function(e) {
+$(".paging-div").on("click", "a", function(e) {
     e.preventDefault();
     const targetPage = $(this).text();
     page = parseInt(targetPage);
