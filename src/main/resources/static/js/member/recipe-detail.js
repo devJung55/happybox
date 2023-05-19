@@ -1,5 +1,4 @@
-/* review-board-detail.html */
-
+/* recipe-board-detail.html */
 
 /* 텍스트 더보기 */
 $('.info-area__box').on('click', function () {
@@ -48,11 +47,11 @@ $(document).ready(function () {
         .addClass("slick-current");
 });
 
-const $files = review.files;
+const $files = recipe.files;
 const setList = $('.detail-container');
 
 function showDetail() {
-    console.log(review);
+    console.log(recipe);
     let text = "";
     text += `
     <div class="slider__sec">
@@ -67,7 +66,7 @@ function showDetail() {
             <div class="slick-list draggable">
               <div class="slick-track" style="opacity: 1; height: 100%">
               `
-    review.reviewBoardFiles.forEach((file, i) => {
+    recipe.recipeBoardFiles.forEach((file, i) => {
         console.log(file);
         let filePath = '/image/display?fileName=' + file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName;
         text +=
@@ -111,7 +110,7 @@ function showDetail() {
               </svg>
             </button>
             <div class="slick-counter">
-              <span class="current">1</span> / <span class="total">${review.reviewBoardFiles.length}</span>
+              <span class="current">1</span> / <span class="total">${recipe.recipeBoardFiles.length}</span>
             </div>
           </div>
           <div class="refrig-bnr">
@@ -154,26 +153,16 @@ function showDetail() {
             </button>
           </div>
           <span class="writer-button-wrap">
-            <p class="writer-name">${review.memberDTO.memberName}</p>
+            <p class="writer-name">${recipe.memberName}</p>
           </span>
           <h3 class="info-area__name">
-            <span class="strong">${review.boardTitle}</span>
+            <span class="strong">${recipe.boardTitle}</span>
           </h3>
           <div class="info-area__box">
             <div class="info-area__box-list">
               <div class="info-area__box-cont">
-                <p id="welfare-name">
-                    ${review.welfareName}
-                </p>
-                        <em class="rating-point">
-                            <img class="rating__point one" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point two" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point three" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point four" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point five" src="/img/mypage/rating.png">
-                        </em>
                 <div class="detail-content">
-                    ${review.boardContent}
+                    ${recipe.boardContent}
                 </div>
               </div>
             </div>
@@ -198,7 +187,7 @@ let isReviewByDate = null;
 let isLastPage = false;
 
 /* common/ajax.js */
-$doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+$doAjax("get", `/user-board/recipe-board-detail/reply/${recipe.id}`,
     {},
     (result) => {
         console.log(result);
@@ -208,7 +197,7 @@ $doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
 );
 
 $moreReview.on("click", function () {
-    $doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+    $doAjax("get", `/user-board/recipe-board-detail/reply/${recipe.id}`,
         {page: ++page, isReviewByDate: isReviewByDate},
         (result) => {
             console.log(result);
@@ -223,7 +212,7 @@ $(".reivewDate").on("click", function () {
     page = 1;
     isReviewByDate = true
     $reviewListWrap.empty();
-    $doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+    $doAjax("get", `/user-board/recipe-board-detail/reply/${recipe.id}`,
         {page: page, isReviewByDate: isReviewByDate},
         (result) => {
             result.content.forEach((reply) => appendReplyList(reply));
@@ -237,7 +226,7 @@ $(".orderLikeCount").on("click", function () {
     page = 1;
     isReviewByDate = false;
     $reviewListWrap.empty();
-    $doAjax("get", `/user-board/review-board-detail/reply/${review.id}`,
+    $doAjax("get", `/user-board/recipe-board-detail/reply/${recipe.id}`,
         {page: page, isReviewByDate: isReviewByDate},
         (result) => {
             result.content.forEach((reply) => appendReplyList(reply));
@@ -279,7 +268,7 @@ function appendReplyList(reply, isPrepend) {
         <div class="review-wrap">
             <div>
                 <h3 class="review-item-name">
-                    ${review.boardTitle}
+                    ${recipe.boardTitle}
                 </h3>
             </div>
             <p class="review-content">
@@ -369,11 +358,12 @@ $updateReviewBtn.on("click", function () {
 });
 
 /* 댓글 작성 */
-const REPLY_URL = `/user-board/review-board-detail/reply/write/${review.id}`;
+const REPLY_URL = `/user-board/recipe-board-detail/reply/write/${recipe.id}`;
 
 const $replyWriteBtn = $(".write-regist-btn");
 
 $replyWriteBtn.on("click", function () {
+    console.log("들어옴");
     if ($('.write-textarea').val() == "") {
         return;
     }
@@ -397,7 +387,7 @@ $replyWriteBtn.on("click", function () {
 
 /* 댓글 삭제 */
 const xBtn = $('.xBtn');
-const deleteUrl = `/user-board/review-board-detail/reply/delete/${review.id}`;
+const deleteUrl = `/user-board/recipe-board-detail/reply/delete/${recipe.id}`;
 // 삭제 버튼 클릭 시 deleteReply 함수 호출
 
 // xBtn.on('click', function(){
@@ -440,7 +430,7 @@ function deleteReply(deleteBtn) {
 
 /* 댓글 좋아요 */
 const $replyLikeBtn = $(".review-rec-btn");
-const REPLY_LIKE_URL = "/user-board/review-board-detail/reply/like";
+const REPLY_LIKE_URL = "/user-board/recipe-board-detail/reply/like";
 
 function checkOutLike(likeBtn) {
     console.log(likeBtn);
@@ -471,7 +461,7 @@ $('.btn-heart').on('click', function () {
 function heartInsert() {
     $.ajax({
         type: "POST",
-        url: "/user-board/review-board-detail/heart-insert",
+        url: "/user-board/recipe-board-detail/heart-insert",
         data: data,
         dataType: "json",
         success: function (response) {

@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RecipeBoardQueryDsl {
+    // 현재 시퀀스 가져오기
+    public RecipeBoard getCurrentSequence_QueryDsl();
+
     //    목록 페이징(최신순)
     public Slice<RecipeBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable);
 

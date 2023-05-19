@@ -2,12 +2,23 @@ package com.app.happybox.service.board;
 
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
+import com.app.happybox.entity.board.ReviewBoard;
+import com.app.happybox.entity.board.ReviewBoardDTO;
+import com.app.happybox.entity.file.BoardFile;
+import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.user.Member;
+import com.app.happybox.exception.BoardNotFoundException;
+import com.app.happybox.exception.UserNotFoundException;
+import com.app.happybox.repository.board.BoardFileRepository;
 import com.app.happybox.repository.board.RecipeBoardRepository;
+import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.type.FileRepresent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,11 +30,66 @@ import java.util.stream.Collectors;
 @Qualifier("recipeBoard")
 public class RecipeBoardServiceImpl implements RecipeBoardService {
     private final RecipeBoardRepository recipeBoardRepository;
+    private final MemberRepository memberRepository;
+    private final BoardFileRepository boardFileRepository;
+
+    @Override
+    public RecipeBoardDTO getDetail(Long id) {
+        RecipeBoard recipeBoard = recipeBoardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
+        return recipeBoardToDTO(recipeBoard);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void write(RecipeBoardDTO recipeBoardDTO, Long memberId) {
+        List<BoardFileDTO> boardFileDTOS = recipeBoardDTO.getRecipeBoardFiles();
+        // 아이디 조회 실패 시 Exception
+        Member member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
+
+        // 게시판에 setMember
+        RecipeBoard recipeBoard = toRecipeBoardEntity(recipeBoardDTO);
+        recipeBoard.setMember(member);
+
+        // recipeBoard 영속화
+        recipeBoardRepository.save(recipeBoard);
+
+        log.info(boardFileDTOS.toString());
+
+        int index = 0;
+
+        // boardFile recipeBoard set 후 영속화
+        for (int i = 0; i < boardFileDTOS.size(); i++) {
+            BoardFile boardFile = toBoardFileEntity(boardFileDTOS.get(i));
+            if(index < 1) boardFile.setFileRepresent(FileRepresent.REPRESENT);
+
+            boardFile.setRecipeBoard(recipeBoard);
+            boardFileRepository.save(boardFile);
+
+            index++;
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void update(RecipeBoardDTO recipeBoardDTO, Long memberId) {
+
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public RecipeBoard getCurrentSequence() {
+        return recipeBoardRepository.getCurrentSequence_QueryDsl();
+    }
 
     @Override
     public Slice<RecipeBoardDTO> getRecipeBoards(Pageable pageable) {
         Slice<RecipeBoard> recipeBoards =
-                recipeBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 10));
+                recipeBoardRepository.findAllByIdDescWithPaging_QueryDSL(pageable);
         List<RecipeBoardDTO> collect = recipeBoards.get().map(board -> recipeBoardToDTO(board)).collect(Collectors.toList());
         return new SliceImpl<>(collect, pageable, recipeBoards.hasNext());
     }
@@ -31,7 +97,7 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     @Override
     public Slice<RecipeBoardDTO> getPopularRecipeBoards(Pageable pageable) {
         Slice<RecipeBoard> recipeBoards =
-                recipeBoardRepository.findAllByLikeCountDescWithPaging_QueryDSL(PageRequest.of(0, 10));
+                recipeBoardRepository.findAllByLikeCountDescWithPaging_QueryDSL(pageable);
         List<RecipeBoardDTO> collect = recipeBoards.get().map(board -> recipeBoardToDTO(board)).collect(Collectors.toList());
 
         return new SliceImpl<>(collect, pageable, recipeBoards.hasNext());

@@ -1,23 +1,10 @@
-/* reivew-board-insert.html */
+/* recipe-board-insert.html */
 
 const insertData = {
     boardTitle:"",
     boardContent: "",
-    welfareName: "",
-    reviewBoardFiles: new Array(3)
+    recipeBoardFiles: new Array()
 }
-
-$(function() {
-    $(".rating-point img").each(function(index) {
-      $(this).on("click", function() {
-        $(".rating-point img").attr("src", "/img/mypage/rating.png");
-        $(this).prevAll().addBack().attr("src", "/img/mypage/rating-pull.png");
-
-          var pullCount = $(".rating-point img[src='/img/mypage/rating-pull.png']").length;
-          console.log("rating-pull.png 개수: " + pullCount);
-      });
-    });
-  });
 
 function send() {
 
@@ -50,7 +37,7 @@ const fileAjax = (data, index) => {
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                insertData.reviewBoardFiles[index] = file;
+                insertData.recipeBoardFiles.push(file);
                 console.log(insertData);
             }
         }
@@ -104,21 +91,19 @@ $("form[name='form']").on("submit", function (e) {
     e.preventDefault();
 
     let boardTitle = $("input[name='boardTitle']").val();
-    let welfareName = $("input[name='welfareName']").val();
     let boardContent = $("textarea[name='boardContent']").val();
 
     insertData.boardTitle = boardTitle;
-    insertData.welfareName = welfareName;
     insertData.boardContent = boardContent;
 
     $.ajax({
-        url: '/user-board/review-board-insert',
+        url: '/user-board/recipe-board-insert',
         data: JSON.stringify(insertData),
         contentType: "application/json; charset=utf-8",
         method: 'post',
         success: function (result) {
             // redirect 경로
-            location.href = "/user-board/review-board-list";
+            location.href = "/user-board/recipe-board-list";
         }
     })
 });

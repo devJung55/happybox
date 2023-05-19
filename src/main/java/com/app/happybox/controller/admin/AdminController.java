@@ -61,17 +61,17 @@ public class AdminController {
     public String[] getRecipeBoardDetail(@RequestParam("recipeBoardId") Long recipeBoardId) {
         RecipeBoardDTO recipeBoardDTO = recipeBoardService.getRecipeBoardDetailById(recipeBoardId).get();
         String[] recipeBoard = {
-                recipeBoardDTO.getRecipeBoardTitle(),
+                recipeBoardDTO.getBoardTitle(),
                 recipeBoardDTO.getMemberName(),
-                String.valueOf(recipeBoardDTO.getRecipeBoardRegisterDate()).split("T")[0].replaceAll("-", "."),
-                recipeBoardDTO.getRecipeBoardContent()
+                String.valueOf(recipeBoardDTO.getBoardRegisterDate()).split("T")[0].replaceAll("-", "."),
+                recipeBoardDTO.getBoardContent()
         };
 
 //        for (int i = 0; i < recipeBoard.length; i++) {
 //            log.info(recipeBoardDTO.getBoardFiles().get(i).getFileOrgName());
 //            log.info(recipeBoard[i]);
 //        }
-        recipeBoardDTO.getBoardFiles().stream().map(BoardFileDTO::toString).forEach(log::info);
+        recipeBoardDTO.getRecipeBoardFiles().stream().map(BoardFileDTO::toString).forEach(log::info);
 
         return recipeBoard;
     }

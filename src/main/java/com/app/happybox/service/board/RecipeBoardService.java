@@ -10,11 +10,27 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public interface RecipeBoardService {
+    // 상세보기
+    public RecipeBoardDTO getDetail(Long id);
+
+    // 작성하기
+    public void write(RecipeBoardDTO recipeBoardDTO, Long memberId);
+
+    // 수정
+    public void update(RecipeBoardDTO recipeBoardDTO, Long memberId);
+
+    // 삭제
+    public void delete(Long id);
+
+    //    현재 시퀀스 가져오기
+    public RecipeBoard getCurrentSequence();
+
     //    목록 페이징(최신순)
     public Slice<RecipeBoardDTO> getRecipeBoards(Pageable pageable);
 
@@ -43,11 +59,12 @@ public interface RecipeBoardService {
         return RecipeBoardDTO.builder()
                 .id(recipeBoard.getId())
                 .memberName(recipeBoard.getMember().getMemberName())
-                .recipeBoardTitle(recipeBoard.getBoardTitle())
-                .recipeBoardContent(recipeBoard.getBoardContent())
-                .likeCount(recipeBoard.getRecipeLikeCount())
-                .replyCount(recipeBoard.getRecipeBoardReplyCount())
-                .boardFiles(recipeBoard.getRecipeBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .boardTitle(recipeBoard.getBoardTitle())
+                .boardContent(recipeBoard.getBoardContent())
+                .boardRegisterDate(recipeBoard.getUpdatedDate().toLocalDate())
+                .recipeLikeCount(recipeBoard.getRecipeLikeCount())
+                .recipeReplyCount(recipeBoard.getRecipeBoardReplyCount())
+                .recipeBoardFiles(boardFileToDTO(recipeBoard.getRecipeBoardFiles()))
                 .build();
     }
 
@@ -66,10 +83,43 @@ public interface RecipeBoardService {
                 .id(recipeBoard.getId())
                 .memberId(recipeBoard.getMember().getId())
                 .memberName(recipeBoard.getMember().getMemberName())
-                .recipeBoardTitle(recipeBoard.getBoardTitle())
-                .recipeBoardContent(recipeBoard.getBoardContent())
-                .recipeBoardRegisterDate(recipeBoard.getCreatedDate())
-                .boardFiles(recipeBoard.getRecipeBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .boardTitle(recipeBoard.getBoardTitle())
+                .boardContent(recipeBoard.getBoardContent())
+                .boardRegisterDate(recipeBoard.getUpdatedDate().toLocalDate())
+                .recipeBoardFiles(recipeBoard.getRecipeBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .build();
+    }
+
+    default RecipeBoard toRecipeBoardEntity(RecipeBoardDTO recipeBoardDTO){
+        return RecipeBoard.builder()
+                .id(recipeBoardDTO.getId())
+                .boardTitle(recipeBoardDTO.getBoardTitle())
+                .boardContent(recipeBoardDTO.getBoardContent())
+                .build();
+    }
+
+    default List<BoardFileDTO> boardFileToDTO(List<BoardFile> recipeBoardFiles){
+        List<BoardFileDTO> boardFileDTOS = new ArrayList<>();
+        recipeBoardFiles.forEach(
+                boardFile -> {
+                    BoardFileDTO boardFileDTO = BoardFileDTO.builder()
+                            .id(boardFile.getId())
+                            .fileUuid(boardFile.getFileUuid())
+                            .filePath(boardFile.getFilePath())
+                            .fileOrgName(boardFile.getFileOrgName())
+                            .fileRepresent(boardFile.getFileRepresent())
+                            .build();
+                    boardFileDTOS.add(boardFileDTO);
+                }
+        );
+        return boardFileDTOS;
+    }
+
+    default BoardFile toBoardFileEntity(BoardFileDTO boardFileDTO){
+        return BoardFile.builder()
+                .fileUuid(boardFileDTO.getFileUuid())
+                .filePath(boardFileDTO.getFilePath())
+                .fileOrgName(boardFileDTO.getFileOrgName())
                 .build();
     }
 }
