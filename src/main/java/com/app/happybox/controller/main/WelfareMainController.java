@@ -39,6 +39,7 @@ public class WelfareMainController {
         model.addAttribute("recent", subscriptionService.findRecentTop8());
         model.addAttribute("topSale", subscriptionService.findByOrderCount(8L));
         model.addAttribute("donation", donationBoardService.findTop3OrderByDate_QueryDSL());
+        model.addAttribute("reviews", reviewBoardService.findTop8Recent());
         return "index/index";
     }
 

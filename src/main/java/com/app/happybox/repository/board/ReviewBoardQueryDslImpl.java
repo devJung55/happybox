@@ -29,6 +29,15 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
     }
 
     @Override
+    public List<ReviewBoard> findTop8OrderByDate_QueryDSL() {
+        return query.select(reviewBoard)
+                .from(reviewBoard)
+                .join(reviewBoard.member).fetchJoin()
+                .join(reviewBoard.reviewBoardFiles).fetchJoin()
+                .fetch();
+    }
+
+    @Override
     public ReviewBoard getCurrentSequence_QueryDsl() {
         return query.select(reviewBoard)
                 .from(reviewBoard)

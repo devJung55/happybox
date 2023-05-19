@@ -9,6 +9,7 @@ import com.app.happybox.service.product.ProductCartService;
 import com.app.happybox.service.product.ProductService;
 import com.app.happybox.service.reply.ProductReplyService;
 import com.app.happybox.service.reply.ReplyLikeService;
+import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,8 +53,12 @@ public class ProductController {
     }
 
     @GetMapping("/detail/{id}")
-    public String goDetail(@PathVariable Long id, Model model) {
+    public String goDetail(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetail userDetail) {
         model.addAttribute("product", productService.findById(id));
+        if(userDetail != null) {
+            model.addAttribute("userId", userDetail.getUserId());
+            model.addAttribute("userRole", userDetail.getUserRole());
+        }
 
         return "market/market-detail";
     }
@@ -72,9 +77,15 @@ public class ProductController {
     @PostMapping("/detail/reply/write/{productId}")
     @ResponseBody
     public ReplyDTO writeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long productId, @AuthenticationPrincipal UserDetail userDetail) {
-        Long id = userDetail.getId();
-        // 임시 session 값 1저장
-        return productReplyService.saveReply(replyDTO, productId, id);
+        if(userDetail != null) {
+            // 유통업자 제외
+            if(userDetail.getUserRole() == Role.DISTRIBUTOR) {
+                return null;
+            }
+            return productReplyService.saveReply(replyDTO, productId, userDetail.getId());
+        }
+        // 비로그인 제외
+        return null;
     }
 
     @PostMapping("/detail/reply/like/{replyId}")
