@@ -71,6 +71,13 @@ public class OrderController {
     }
 
 
+//    장바구니로 이동
+    @GetMapping("subscription")
+    public String goWelfareOrderForm(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        return "welfare/payment";
+    }
+
+
     @PostMapping("subscription")
     @ResponseBody
     public Integer register(@RequestBody OrderInfoDTO orderInfoDTO, @AuthenticationPrincipal UserDetail userDetail) {

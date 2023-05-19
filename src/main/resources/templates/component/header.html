@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -28,8 +30,8 @@
         <!-- header_util -->
         <div class="util">
             <ul>
-                <li th:if="${userDetail == null}"><a href="/login">로그인</a></li>
-                <li th:if="${userDetail != null}"><a href="/logout">로그아웃</a></li>
+                <li sec:authorize="!isAuthenticated()"><a href="/login">로그인</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/logout">로그아웃</a></li>
                 <li><a href="javascript:void(0)">정보수정</a></li>
                 <li><a href="javascript:void(0)">주문조회</a></li>
             </ul>
