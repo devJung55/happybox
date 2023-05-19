@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
+import java.time.LocalDateTime;
+
 @Getter @Setter @ToString @NoArgsConstructor
 @RedisHash(value = "chat", timeToLive = 25200L)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,10 +28,10 @@ public class ChatMessage {
     private String roomId;// 방 번호
     private String sender;//채팅을 보낸 사람
     private String message;// 메세지
-    private String time; // 채팅 발송 시간
+    private LocalDateTime time; // 채팅 발송 시간
 
     @Builder
-    public ChatMessage(MessageType type, String roomId, String sender, String message, String time) {
+    public ChatMessage(MessageType type, String roomId, String sender, String message, LocalDateTime time) {
         this.type = type;
         this.roomId = roomId;
         this.sender = sender;

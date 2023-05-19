@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,10 @@ public class ChatMessageService {
 
     @Transactional
     public ChatMessageDTO save(ChatMessageDTO chatMessageDTO) {
-        chatMessageRepository.save(chatMessageToEntity(chatMessageDTO));
+        ChatMessage chatMessage = chatMessageToEntity(chatMessageDTO);
+        // 현재 시간으로 저장
+        chatMessage.setTime(LocalDateTime.now());
+        chatMessageRepository.save(chatMessage);
         return chatMessageDTO;
     }
 
@@ -35,7 +39,7 @@ public class ChatMessageService {
                 .message(chatMessage.getMessage())
                 .roomId(chatMessage.getRoomId())
                 .sender(chatMessage.getSender())
-                .time(chatMessage.getTime())
+                .time(chatMessage.getTime().toString())
                 .type(chatMessage.getType())
                 .build();
     }
@@ -45,7 +49,6 @@ public class ChatMessageService {
                 .message(chatMessageDTO.getMessage())
                 .roomId(chatMessageDTO.getRoomId())
                 .sender(chatMessageDTO.getSender())
-                .time(chatMessageDTO.getTime())
                 .type(chatMessageDTO.getType())
                 .build();
     }
