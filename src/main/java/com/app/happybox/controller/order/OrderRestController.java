@@ -1,6 +1,7 @@
 package com.app.happybox.controller.order;
 
 import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.User;
@@ -30,13 +31,13 @@ public class OrderRestController {
     }
 
     @GetMapping("purchaser/{id}")
-    public Member getPurchaser(@PathVariable(value = "id")Long Id){
-        return memberService.findDeliveryInfoById(Id).get();
+    public MemberDTO getPurchaser(@PathVariable(value = "id")Long Id){
+        return memberService.findDeliveryInfoById(Id);
     }
 
     @GetMapping("member/{id}")
-    public Member getMember(@PathVariable(value = "id")Long id){
-        return memberService.findDeliveryInfoById(id).get();
+    public MemberDTO getMember(@PathVariable(value = "id")Long id){
+        return memberService.findDeliveryInfoById(id);
     }
 
     @PostMapping("add/cart")
