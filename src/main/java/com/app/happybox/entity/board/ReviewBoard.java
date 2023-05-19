@@ -87,9 +87,13 @@ public class ReviewBoard extends Board {
         this.member = member;
     }
 
-//    public void setWelfare(Welfare welfare) {
-//        this.welfare = welfare;
-//    }
+    public void setWelfareName(String welfareName) {
+        this.welfareName = welfareName;
+    }
+
+    public void setReviewRating(Integer reviewRating) {
+        this.reviewRating = reviewRating;
+    }
 
     public void setReviewLikeCount(Integer reviewLikeCount) {
         this.reviewLikeCount = reviewLikeCount;

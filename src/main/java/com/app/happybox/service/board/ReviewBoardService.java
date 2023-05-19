@@ -22,6 +22,12 @@ public interface ReviewBoardService {
     //    작성하기
     public void write(ReviewBoardDTO reviewBoardDTO, Long memberId);
 
+    // 수정
+    public void update(ReviewBoardDTO reviewBoardDTO, Long memberId);
+
+    // 삭제
+    public void delete(Long id);
+
     //    현재 시퀀스 가져오기
     public ReviewBoard getCurrentSequence();
 
@@ -34,6 +40,8 @@ public interface ReviewBoardService {
     //    마이페이지 나의후기 목록
     public Page<ReviewBoardDTO> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId);
 
+    //    메인 최신순 Top 8
+    public List<ReviewBoardDTO> findTop8Recent();
 
     default ReviewBoardDTO reviewBoardToDTO(ReviewBoard reviewBoard){
         return ReviewBoardDTO.builder()

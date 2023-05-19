@@ -5,7 +5,7 @@
 }
 
 .subscribe__list ul {
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 .goods-review-list .review-item {
@@ -251,8 +251,8 @@ img.lozad {
     height: 110px;
     overflow: hidden;
     position: absolute;
-    right: 0;
-    top: 62px;
+    right: 11px;
+    top: 45px;
 }
 
 .arrow-0deg {

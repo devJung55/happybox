@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,20 +21,6 @@ import static com.app.happybox.entity.user.QMember.member;
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
     private final JPAQueryFactory query;
-
-    //    회원정보수정
-    @Override
-    public void setMemberInfoById_QueryDSL(Member member) {
-        query.update(QMember.member)
-                .set(QMember.member.userPassword, member.getUserPassword())
-                .set(QMember.member.memberName, member.getMemberName())
-                .set(QMember.member.userPhoneNumber, member.getUserPhoneNumber())
-                .set(QMember.member.userEmail, member.getUserEmail())
-                .set(QMember.member.memberBirth, member.getMemberBirth())
-                .set(QMember.member.memberGender, member.getMemberGender())
-                .where(QMember.member.eq(member))
-                .execute();
-    }
 
     /* member Login */
     @Override
@@ -75,12 +64,6 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .fetchOne());
     }
 
-    //    마이페이지 배송지정보
-    @Override
-    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.eq(member)).fetchOne());
-    }
-
     @Override
     public Page<Member> findAllWithPaging_QueryDSL(Pageable pageable) {
         List<Member> memberList = query.select(member)
@@ -103,5 +86,22 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         return memberDatail;
     }
 
+    //    마이페이지 배송지정보
+    @Override
+    public Optional<Member> findDeliveryAddressByMemberId_QueryDSL(Long memberId) {
+        return Optional.ofNullable(query.select(member).from(member).where(member.eq(member)).fetchOne());
+    }
 
+    @Override
+    @Transactional
+    public void setMemberDeliveryAddressByMemberId(Member member) {
+        query.update(QMember.member)
+                .set(QMember.member.deliveryName, member.getDeliveryName())
+                .set(QMember.member.deliveryPhoneNumber, member.getDeliveryPhoneNumber())
+                .set(QMember.member.memberDeliveryAddress.zipcode, member.getMemberDeliveryAddress().getZipcode())
+                .set(QMember.member.memberDeliveryAddress.firstAddress, member.getMemberDeliveryAddress().getFirstAddress())
+                .set(QMember.member.memberDeliveryAddress.addressDetail, member.getMemberDeliveryAddress().getAddressDetail())
+                .where(QMember.member.id.eq(member.getId()))
+                .execute();
+    }
 }

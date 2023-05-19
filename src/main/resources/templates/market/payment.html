@@ -14,7 +14,7 @@
 <section class="payment-container">
     <div class="payment-wrap">
         <div class="page-title-area">
-            <h2 class="page-title">구독/결제</h2>
+            <h2 class="page-title">상품/결제</h2>
         </div>
         <div class="payment-area">
             <form id="payment" name="payment" action="">
@@ -26,17 +26,15 @@
                 <!-- 구독자 정보 -->
                 <div class="order-address">
                     <ul class="info-txt">
-                        <li class="info__after">오태양</li>
-                        <li class="info__after">01071228966</li>
-                        <li>jung_7122@naver.com</li>
+                        <li class="info__after" id="purchaserName">오태양</li>
+                        <li class="info__after" id="purchaserPhone">01071228966</li>
+                        <li id="purchaserEmail">jung_7122@naver.com</li>
                     </ul>
                 </div>
                 <div class="order-address">
                     <ul class="info-txt">
                         <li class="subscribe-date">
-                            <span class="start-date">2023-04-26</span>
-                            ~
-                            <span class="end-date">2023-05-26</span>
+                            <span id="purchaserRole">일반회원</span>
                         </li>
                     </ul>
                 </div>
@@ -64,6 +62,7 @@
                                 <input
                                         type="text"
                                         name=""
+                                        id="memberName"
                                         title=""
                                         class="input-text w-full removeEmoji"
                                         value=""
@@ -127,6 +126,7 @@
                                         type="text"
                                         name=""
                                         title=""
+                                        id="userPhoneNumber"
                                         class="input-text w-full"
                                         maxlength="11"
                                         placeholder="휴대폰 번호를 입력해 주세요."
@@ -140,7 +140,7 @@
                     <div class="order-item-box">
                         <div class="userOrderList">
                             <div class="delivery-state normal">
-                                <h4 class="tit">구독한 복지관</h4>
+                                <h4 class="tit">상품 리스트</h4>
                                 <div class="right-dlv-info">
                                     <img
                                             src="/img/welfare/delivery.png"
@@ -152,100 +152,16 @@
                                 </div>
                             </div>
                             <ul class="productCart-list">
-                                <li>
-                                    <div class="prd-info-area">
-                                        <div class="inner">
-                                            <div class="column img">
-                                                <a href="javascript:void(0);">
-                                                    <img
-                                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg"
-                                                            alt=""
-                                                    />
-                                                </a>
-                                            </div>
-                                            <div class="column tit">
-                                                <p class="tit">관악복지관</p>
-                                                <p class="desc">서울시 관악구 봉천동</p>
-                                                <ul class="price-item">
-                                                    <li>
-                                                        <span class="num">18,900</span>
-                                                        원
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="column price w70">
-                                                <span class="num">18,900</span>
-                                                원
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                <!-- 화면에 뿌려지는 곳 -->
                             </ul>
+                            <div class="total-price-area">
+                                <span class="title-list">
+                                    총상품 가격 :
+                                    <input type="number" id="goBoot" class="input-text total-price" onkeyup="chkNumber(this)" name="" style="border: none" value="" readonly>
+                                    원
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="order-info">
-                    <div class="list-head">
-                        <div class="order-banner text-center">
-                            <p>
-                                <strong>기부 포인트</strong>
-                                <em>
-                                    <span>1000P</span>
-                                    이상 사용가능
-                                </em>
-                            </p>
-                        </div>
-                        <h3 class="title-list">기부 포인트 사용</h3>
-                    </div>
-                    <div class="lineless-table type1">
-                        <table>
-                            <caption>
-                                기부 포인트 사용
-                            </caption>
-                            <colgroup>
-                                <col style="width: 190px"/>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <span class="tit"> 포인트 사용 </span>
-                                </th>
-                                <td>
-                                    <div class="order-point">
-                                        <div class="input-group-wrap box-type">
-                                            <div class="input-group">
-                                                <input
-                                                        type="text"
-                                                        id="point"
-                                                        class="input-text ui-point-input"
-                                                        placeholder="1,000P부터 사용가능"
-                                                />
-                                                <span class="input-group-btn">
-                                                                <button
-                                                                        type="button"
-                                                                        class="btn-x-xs btn-input-del"
-                                                                >
-                                                                    <i class="ico-x-normal"></i>
-                                                                    <span class="blind">삭제</span>
-                                                                </button>
-                                                                <button
-                                                                        type="button"
-                                                                        class="btn-ex-grey"
-                                                                >
-                                                                    <span>전액사용</span>
-                                                                </button>
-                                                            </span>
-                                            </div>
-                                        </div>
-                                        <p class="point-guide">
-                                            사용 가능 기부 포인트
-                                            <em class="text-num-bold">2,000</em>P
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
                 <div class="order-info">
@@ -278,19 +194,19 @@
     let orderTitle = "오태양";
     let productCount = "100";
     let productPrice = "100"
-    let TotalPrice = productCount * productPrice;
     let orderId = "1";
+    let total = document.getElementById('goBoot').value;
+
 
     const APIKEY = "64619d883049c8001d9686b3";
 
     /*부트페이 결제 API*/
     $('#goPayment').on('click', function () {
         BootPay.request({
-            price: TotalPrice, //실제 결제되는 가격
+            price: total, //실제 결제되는 가격
 
             // 관리자로그인 -> 결제설치 -> 인증키 및 보안 -> WEB Application ID
             application_id: APIKEY,
-
             name: '(주)HappyBox', //결제창에서 보여질 이름
             pg: '',
             method: 'card', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
@@ -300,7 +216,7 @@
                     item_name: orderTitle, //상품명
                     qty: productCount, //수량
                     unique: '123', //해당 상품을 구분짓는 primary key
-                    price: TotalPrice, //상품 단가
+                    price: total, //상품 단가
                 }
             ],
             order_id: '고유order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
@@ -327,21 +243,27 @@
         }).done(function (data) {
             //결제가 정상적으로 완료되면 수행됩니다
             //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
-            $.ajax({
-                url: "/order/product", // 컨트롤러 주소
-                type: "POST",
-                data: {TotalPrice: TotalPrice, orderId: orderId}, // 결제정보 객체 paymetnVO
-                success: function (result) {
-                    location.href = result;
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-            console.log(data);
+            // $.ajax({
+            //     url: "/order/product", // 컨트롤러 주소
+            //     type: "POST",
+            //     data: {TotalPrice: TotalPrice, orderId: orderId}, // 결제정보 객체 paymetnVO
+            //     success: function (result) {
+            //         location.href = result;
+            //     },
+            //     error: function (error) {
+            //         console.log(error);
+            //     }
+            // });
+            // console.log(data);
         });
     });
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/welfare/payment.js"></script>
+<script th:inline="javascript">
+    let userDetail = [[${userDetail}]];
+    let carts = [[${productCartDTOS}]];
+    console.log(userDetail);
+    console.log(carts);
+</script>
+<script src="/js/market/payment-product.js"></script>
 </html>

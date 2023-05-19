@@ -112,9 +112,6 @@
                                       id="vQuestionCont"
                                       placeholder="내용을 입력하세요"
                               ></textarea>
-                                                <div class="txt-count">
-                                                    <span id="counter">0</span> / <span class="total">1,000</span>
-                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -138,6 +135,7 @@
                                                         <img
                                                                 src=""
                                                                 style="width: 68px; height: 68px"
+                                                                id="image"
                                                         />
                                                         <button
                                                                 type="button"
@@ -162,6 +160,7 @@
                                                         <img
                                                                 src=""
                                                                 style="width: 68px; height: 68px"
+                                                                id="image"
                                                         />
                                                         <button
                                                                 type="button"
@@ -186,6 +185,7 @@
                                                         <img
                                                                 src=""
                                                                 style="width: 68px; height: 68px"
+                                                                id="image"
                                                         />
                                                         <button
                                                                 type="button"
@@ -232,7 +232,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let fileDTOS = null;
-    let reviewBoardDTO = [[${reviewBoardDTO}]];
+    let review = [[${review}]];
     if (reviewBoardDTO == null || reviewBoardDTO == undefined) {
     } else {
         fileDTOS = reviewBoardDTO.fileDTOS;

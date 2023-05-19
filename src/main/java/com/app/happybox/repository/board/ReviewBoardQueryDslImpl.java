@@ -25,7 +25,16 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .join(QReviewBoard.reviewBoard.reviewBoardFiles).fetchJoin()
                 .where(QReviewBoard.reviewBoard.id.eq(id))
                 .fetchOne();
-        return Optional.of(reviewBoard);
+        return Optional.ofNullable(reviewBoard);
+    }
+
+    @Override
+    public List<ReviewBoard> findTop8OrderByDate_QueryDSL() {
+        return query.select(reviewBoard)
+                .from(reviewBoard)
+                .join(reviewBoard.member).fetchJoin()
+                .join(reviewBoard.reviewBoardFiles).fetchJoin()
+                .fetch();
     }
 
     @Override

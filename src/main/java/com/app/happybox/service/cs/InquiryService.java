@@ -21,6 +21,18 @@ public interface InquiryService {
 //    마이페이지 문의내역 목록
     public Page<InquiryDTO> getListByMemberId(Pageable pageable, Long memberId);
 
+//    문의 답변 목록 및 상세?
+    public Page<InquiryAnswerDTO> getInquiryAnswerListById(Pageable pageable, Long id);
+
+//    마이페이지 문의답변
+    public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId);
+
+//    문의 사항 작성
+    public void inquiryWrite(InquiryDTO inquiryDTO);
+
+//    마이페이지 문의 건수 조회
+    public Long getInquiryCountByUserId(Long id);
+
 //    문의사항 DTO로 바꾸기
     default InquiryDTO toInquiryDTO(Inquiry inquiry) {
         return InquiryDTO.builder().id(inquiry.getId())
@@ -48,9 +60,6 @@ public interface InquiryService {
                 .fileOrgName(inquiryFile.getFileOrgName())
                 .build();
     }
-
-//    문의 답변 목록 및 상세?
-    public Page<InquiryAnswerDTO> getInquiryAnswerListById(Pageable pageable, Long id);
 
 //    문의 답변 사항 DTO로 바꾸기
     default InquiryAnswerDTO toInquiryAnswerDTO(InquiryAnswer inquiryAnswer) {
@@ -93,6 +102,29 @@ public interface InquiryService {
                 .build();
     }
 
-//    마이페이지 문의답변
-    public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId);
+    //    문의사항 DTO entity로 바꾸기
+    default Inquiry toInquiryEntity(InquiryDTO inquiryDTO) {
+        return Inquiry.builder()
+                .id(inquiryDTO.getId())
+                .inquiryTitle(inquiryDTO.getInquiryTitle())
+                .inquiryContent(inquiryDTO.getInquiryContent())
+                .inquiryType(inquiryDTO.getInquiryType())
+                .inquiryFiles(inquiryDTO.getInquiryFileDTOS().stream()
+                        .map(this::toInquiryFileEntity)
+                        .collect(Collectors.toList())
+                )
+                .build();
+    }
+
+    //    문의사항 FIle entity로 바꾸기
+    default InquiryFile toInquiryFileEntity(InquiryFileDTO inquiryFileDTO) {
+        return InquiryFile.builder()
+                .id(inquiryFileDTO.getId())
+                .filePath(inquiryFileDTO.getFilePath())
+                .fileUuid(inquiryFileDTO.getFileUuid())
+                .fileOrgName(inquiryFileDTO.getFileOrgName())
+                .build();
+    }
+
+
 }

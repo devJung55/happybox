@@ -2,6 +2,7 @@ package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.QRecipeBoard;
 import com.app.happybox.entity.board.RecipeBoard;
+import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.type.FileRepresent;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +12,21 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.board.QRecipeBoard.recipeBoard;
+import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 
 
 @RequiredArgsConstructor
 public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     private final JPAQueryFactory query;
+
+    @Override
+    public RecipeBoard getCurrentSequence_QueryDsl() {
+        return query.select(recipeBoard)
+                .from(recipeBoard)
+                .orderBy(recipeBoard.id.desc())
+                .limit(1)
+                .fetchOne();
+    }
 
     @Override
     public Slice<RecipeBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {

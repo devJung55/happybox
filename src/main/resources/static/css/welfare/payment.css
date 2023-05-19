@@ -420,6 +420,11 @@ input[readonly] {
     border: 1px solid #ff6001;
 }
 
+.productCart-list li{
+    padding: 10px;
+    background-color: #eeeeee63;
+}
+
 
 
 /* ============================================================== */
@@ -548,9 +553,24 @@ input[readonly] {
 }
 
 .prd-info-area .column.price .num {
-    font-size: 18px;
+    font-size: 20px;
     color: #333;
     font-weight: 700;
+}
+
+.total-price-area {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+
+}
+
+.total-price {
+    color: red !important;
+    font-size: 20px !important;
+    font-weight: 800;
+    width: 150px !important;
+    padding-left: 20px;
 }
 
 .prd-info-area .column.tit .tit {
@@ -571,6 +591,8 @@ input[readonly] {
     display: inline-block;
     vertical-align: middle;
     margin-right: 4px;
+    padding: 0 !important;
+
 }
 
 .cart-list .prd-info-area .column.tit .price-item > li:first-child .num {
@@ -996,9 +1018,9 @@ input[type="checkbox"], input[type="radio"] {
     vertical-align: top;
     flex-grow: 1;
     margin: 0 3px 0 0;
-    background: #FF5938;
+    background: rgba(31, 94, 211, 0.61);
     color: #fff;
-    border: 1px solid #FF5938;
+    border: 1px solid rgba(31, 94, 211, 0.61);
     min-width: 280px;
     height: 56px;
     border-radius: 6px;

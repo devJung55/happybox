@@ -17,8 +17,14 @@ const $supplierInfoList = $(".supplier-info-list");
 let productPrice = $product.productPrice;
 let productFiles = $product.productFileDTOS;
 let productFileRep = $product.productFileDTOS[0];
+let productName = $product.productName;
+let id = $product.id;
 
-console.log($product);
+const USER_ROLE = {
+    MEMBER: "일반",
+    WELFARE: "복지관",
+    DISTRIBUTOR: "유통"
+}
 
 const category = {
     VEGETABLES: "야채",
@@ -50,12 +56,30 @@ $(".reply-count").text($product.productReplyCount);
 $(".review-count span").text($product.productReplyCount);
 
 // 상품 대표사진
-const filePath = "/image/display?fileName=" + productFileRep.filePath + '/t_' + productFileRep.fileUuid + '_' + productFileRep.fileOrgName;
+let filePath = "";
+if (productFileRep) {
+    filePath = "/image/display?fileName=" + productFileRep.filePath + '/t_' + productFileRep.fileUuid + '_' + productFileRep.fileOrgName;
+} else {
+    filePath = "/img/market/no_img_market.png";
+}
+
+// 대표사진 표시
 $(".represent-img").attr("src", filePath);
-$(".info-img-thumbnail img").attr("src", filePath);
+
+// 댓글 작성자 (로그인) 시
+
+if($userId) {
+    $(".reply-writer-info").append(
+        `
+        <span class="user-type">${USER_ROLE[$userRole]}</span>
+        <span class="user-id">${$userId}</span>
+    `
+    );
+}
+
 
 productFiles.forEach((file) => {
-    let text;
+    /*let text;
     let filePath = file.filePath + '/t_' + file.fileUuid + '_' + file.fileOrgName;
 
     text = `
@@ -64,7 +88,7 @@ productFiles.forEach((file) => {
             </button>
         `
 
-    $imgContainer.append(text);
+    $imgContainer.append(text);*/
 });
 
 // 현재 페이지
@@ -122,13 +146,6 @@ $(".orderLikeCount").on("click", function () {
         }
     );
 });
-
-const USER_ROLE = {
-    MEMBER: "일반",
-    WELFARE: "복지관"
-}
-
-window.scroll()
 
 /* 댓글 append */
 function appendReplyList(reply, isPrepend) {
@@ -319,10 +336,10 @@ $(".productCart-btn").on("click", function () {
 $(".close").on("click", function () {
     $("#cart-modal").css("display", "none");
 });
-
+console.log("주문 수량은???????",$(".quantity-input").val());
 // 예 버튼을 클릭했을 때
 $("#modal-yesBtn").on("click", function () {
-    console.log($(".quantity-input").val());
+
     $doAjaxPost("POST",
         CART_URL + $product.id, // 상품 ID
         {cartOrderAmount: $(".quantity-input").val()}, // 주문수량
@@ -356,15 +373,19 @@ $replyWriteBtn.on("click", function () {
         REPLY_URL,
         {replyContent: $('.write-textarea').val()},
         (result) => {
-            let count = Number($(".review-count span").text());
-            // 댓글 맨위에 append
-            appendReplyList(result, true);
-            // 댓글수 증가
-            $(".review-count span").text(++count);
-            $(".reply-count").text(count);
-            // 댓글 내용 초기화
-            $('.write-textarea').val("");
-            console.log(result);
+            if(result) {
+                let count = Number($(".review-count span").text());
+                // 댓글 맨위에 append
+                appendReplyList(result, true);
+                // 댓글수 증가
+                $(".review-count span").text(++count);
+                $(".reply-count").text(count);
+                // 댓글 내용 초기화
+                $('.write-textarea').val("");
+            } else {
+                alert("댓글을 작성할 수 없습니다.");
+            }
+
         }
     );
 });
@@ -390,6 +411,21 @@ let data = {
     ids: new Array()
 }
 
-cartDTOs.forEach(cart => {
-    ids.push(cart.id)
-})
+/* =====================================  결제하기 버튼 눌렀을때 AJAX    ==================================================== */
+const $payBtn = $('#payment');
+
+$payBtn.on('click', function () {
+    console.log($('#amount').val());
+    let data = {
+        cartOrderAmount : $('#amount').val(),
+        productName : productName
+    }
+
+    $doAjaxPost(
+        "post",`/product/cart/add/${id}`,
+        data,
+        function () {
+            location.href="/order/product";
+        }
+    );
+});

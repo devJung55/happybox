@@ -28,7 +28,8 @@
         <!-- header_util -->
         <div class="util">
             <ul>
-                <li><a href="javascript:void(0)">로그아웃</a></li>
+                <li th:if="${userDetail == null}"><a href="/login">로그인</a></li>
+                <li th:if="${userDetail != null}"><a href="/logout">로그아웃</a></li>
                 <li><a href="javascript:void(0)">정보수정</a></li>
                 <li><a href="javascript:void(0)">주문조회</a></li>
             </ul>
@@ -65,11 +66,11 @@
                 </li>
             </ul>
             <div class="productCart-modal" style="display: none">
-                <a href="javascript:void(0)">
+                <a href="/order/subscription">
                     <img src="/img/header/sub_cart.png" alt="">
                     <span class="cart-title">구독 장바구니</span>
                 </a>
-                <a href="javascript:void(0)">
+                <a href="/order/product">
                     <img src="/img/header/product_cart.png" alt="">
                     <span class="cart-title">상품 장바구니</span>
                 </a>

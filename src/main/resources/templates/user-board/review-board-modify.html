@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>리뷰 게시글 수정하기</title>
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css"/>
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/member/member.css"/>
+    <link rel="stylesheet" href="/css/member/board-insert.css"/>
+</head>
+<body>
+<header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+<root style="zoom: 90%">
+    <header></header>
+    <section id="contents" class="container">
+        <div class="content-wrap">
+            <div class="frame-sm">
+                <form
+                        method="post"
+                        name="form" id="counselRegFrm"
+                    <div class="frame-right">
+                        <div class="frame-cnt-inner">
+                            <div class="menu-title-area">
+                                <h3 class="title-menu">게시글 수정하기</h3>
+                            </div>
+                            <!--// menu-title-area -->
+                            <div class="board-form type2">
+
+                            </div>
+                            <!--// board-form -->
+
+                            <div class="btn-bottom-area">
+                                <button type="button" class="btn-basic-lg2 btn-grey3">
+                                    <span>취소하기</span>
+                                </button>
+                                <button type="submit" class="btn-basic-lg2 btn-primary">
+                                    <span>수정하기</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--// frame-cnt-inner -->
+                    </div>
+                    <!--// frame-right -->
+                </form>
+            </div>
+            <!--// frame-sm -->
+        </div>
+        <!--// content-wrap -->
+    </section>
+    <footer></footer>
+</root>
+<footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    let fileDTOS = null;
+    let reviewBoardDTO = [[${reviewBoardDTO}]];
+    if (reviewBoardDTO == null || reviewBoardDTO == undefined) {
+    } else {
+        fileDTOS = reviewBoardDTO.fileDTOS;
+    }
+
+
+
+    console.log(reviewBoardDTO);
+</script>
+<script src="/js/main/header.js"></script>
+<script src="/js/member/board-modify.js"></script>
+</html>

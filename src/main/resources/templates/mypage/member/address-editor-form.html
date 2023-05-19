@@ -5,34 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보수정</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/address-editor-form.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/address-editor-form.css">
+    <link rel="stylesheet" href="/css/mypage/user/modal.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
+    <!--모달창-->
+    <div id="myModal" class="modal" th:if="${#strings.equals(param.update, 'ok')}">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>프로필 정보가 성공적으로 수정되었습니다.</p>
+            <button id="closeModalBtn">확인</button>
+        </div>
+    </div>
+    <!--모달창-->
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-                
+                <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm">
-
-
-                    <!-- // side-bar.html -->
-
-
+                    <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area" style="margin-bottom: 6px;">
                                 <h3 class="title-menu">배송지정보수정</h3>
                             </div><!--// menu-title-area -->
-                            <form id="ordFrm" name="addressForm" action="">
+                            <form id="ordFrm" name="addressForm" method="post">
                                 <div class="order-info" id="orderUserInfo">
                                     <div class="list-head">
                                         <h3 class="title-list">주문자 정보</h3>
@@ -40,9 +50,9 @@
                                 </div>
                                 <div class="order-address">
                                     <ul class="info-txt">
-                                        <li class="info__after">정지영</li>
-                                        <li class="info__after">01071228966</li>
-                                        <li>jung_7122@naver.com</li>
+                                        <li class="info__after" th:text="${member.memberName}"></li>
+                                        <li class="info__after" th:text="${member.userPhoneNumber}"></li>
+                                        <li th:text="${member.userEmail}"></li>
                                     </ul>
                                 </div>
                                 <div class="list-head-sub">
@@ -58,7 +68,8 @@
                                             <tr>
                                                 <th scope="row">받는분</th>
                                                 <td>
-                                                    <input type="text" name="" title="" class="input-text w-full removeEmoji" value="">
+                                                    <input type="hidden" th:field="${member.id}">
+                                                    <input type="text" title="" class="input-text w-full removeEmoji" th:field="${member.deliveryName}">
                                                 </td>
                                             </tr>
                                             <tr class="row-th-top">
@@ -67,10 +78,10 @@
                                                     <div class="input-group-wrap box-type" style="display: flex;">
                                                         <div class="input-group">
                                                             <div class="input-group-cell w160">
-                                                                <input type="text" id="postcode" name="receiverPost" class="input-text" placeholder="우편번호" value="" readonly>
+                                                                <input type="text" id="postcode" name="zipcode" class="input-text" placeholder="우편번호" th:field="${member.memberDeliveryAddress.zipcode}" readonly>
                                                             </div>
                                                             <div class="input-group-cell">
-                                                                <input type="text" id="address" name="receiverAddr" class="input-text" placeholder="기본주소" value="" readonly>
+                                                                <input type="text" id="address" name="firstAddress" class="input-text" placeholder="기본주소" th:field="${member.memberDeliveryAddress.firstAddress}" readonly>
                                                             </div>
                                                             <span class="input-group-btn" onclick="sample6_execDaumPostcode()">
                                                                 <a href="javascript:void(0)" class="btn-ex-white">
@@ -79,13 +90,13 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <input type="text" id="detailAddress" name="receiverAddrDtl" class="input-text w-full removeEmoji" placeholder="상세주소" value="">
+                                                    <input type="text" id="detailAddress" name="addressDetail" class="input-text w-full removeEmoji" placeholder="상세주소" th:field="${member.memberDeliveryAddress.addressDetail}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">전화번호</th>
                                                 <td>
-                                                    <input type="text" name="" title="" class="input-text w-full" maxlength="11" placeholder="ex) 01099991234">
+                                                    <input type="text" class="input-text w-full" name="deliveryPhoneNumber" maxlength="11" placeholder="ex) 01099991234" th:field="${member.deliveryPhoneNumber}">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -101,6 +112,7 @@
                 </div><!-- // frame-sm -->
             </div><!-- // content-wrap -->
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 
     <input type="hidden" id="sample6_postcode" placeholder="우편번호">
@@ -109,7 +121,9 @@
     <input type="hidden" id="sample6_detailAddress" placeholder="상세주소">
     <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/mypage/user/modal.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -160,5 +174,5 @@
         }).open();
     }
 </script>
-<script src="../../../static/js/mypage/user/address-editor.js"></script>
+<script src="/js/mypage/user/address-editor.js"></script>
 </html>

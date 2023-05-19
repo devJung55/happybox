@@ -1,14 +1,22 @@
 package com.app.happybox.service.user;
 
+import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.entity.user.User;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.user.UserRepository;
+import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 @Qualifier("user") @Primary
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -17,21 +25,49 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(userId);
     }
 
-//    아이디 중복검사
+    //    아이디 중복검사
     @Override
     public Boolean existsUserByUserId(String userId) {
         return userRepository.existsUserByUserId(userId);
     }
 
-//    이메일 중복검사
+    //    이메일 중복검사
     @Override
     public Boolean existsUserByUserEmail(String userEmail) {
         return userRepository.existsUserByUserEmail(userEmail);
     }
 
-//    휴대폰 중복검사
+    //    휴대폰 중복검사
     @Override
     public Boolean existsUserByUserPhoneNumber(String userPhoneNumber) {
         return userRepository.existsUserByUserPhoneNumber(userPhoneNumber);
+    }
+
+//    id로 주소 조회
+    @Override
+    public AddressDTO findAddressById(Long id) {
+        return toAddressDTO(userRepository.findAddressById(id).get());
+    }
+
+    @Override
+    public User getDetailByUserId(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    //    UserDetail의 값불러오기
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUserId(username).orElseThrow(()-> new UsernameNotFoundException(username + " not found"));
+        return UserDetail.builder()
+                .id(user.getId())
+                .userId((user.getUserId()))
+                .userPassword(user.getUserPassword())
+                .userRole(user.getUserRole())
+                .build();
+    }
+
+    @Override
+    public void updateUserStatusByUserId(Long userId) {
+        userRepository.findById(userId).ifPresent(user -> user.setUserStatus(UserStatus.UNREGISTERED));
     }
 }

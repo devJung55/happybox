@@ -1,4 +1,3 @@
-/* recipe-board.html */
 /* review-board.html */
 
 

@@ -45,38 +45,6 @@ public class MemberController {
         return "member/member-login";
     }
 
-//    아이디 중복 검사
-    @PostMapping("checkId")
-    @ResponseBody
-    public String checkId(String userId){
-        if (memberService.existsByUserId(userId)){
-            return "success";
-        }else {
-            return "false";
-        }
-    }
-
-//    휴대폰 중복 검사
-    @PostMapping("checkPhoneNumber")
-    @ResponseBody
-    public String checkPhoneNumber(String userPhoneNumber){
-        if (memberService.existsByUserPhoneNumber(userPhoneNumber)){
-            return "success";
-        }else {
-            return "false";
-        }
-    }
-
-//    이메일 중복검사
-    @PostMapping("checkEmail")
-    @ResponseBody
-    public String checkEmail(String userEmail){
-        if (memberService.existsByUserEmail(userEmail)){
-            return "success";
-        }else {
-            return "false";
-        }
-    }
 
     //    아이디 찾기
     @GetMapping("find-id")

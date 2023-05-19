@@ -4,10 +4,12 @@ import com.app.happybox.domain.product.ProductCartDTO;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.product.ProductSearchDTO;
 import com.app.happybox.entity.reply.ReplyDTO;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.product.ProductCartService;
 import com.app.happybox.service.product.ProductService;
 import com.app.happybox.service.reply.ProductReplyService;
 import com.app.happybox.service.reply.ReplyLikeService;
+import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,8 +53,12 @@ public class ProductController {
     }
 
     @GetMapping("/detail/{id}")
-    public String goDetail(@PathVariable Long id, Model model) {
+    public String goDetail(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetail userDetail) {
         model.addAttribute("product", productService.findById(id));
+        if(userDetail != null) {
+            model.addAttribute("userId", userDetail.getUserId());
+            model.addAttribute("userRole", userDetail.getUserRole());
+        }
 
         return "market/market-detail";
     }
@@ -69,23 +76,33 @@ public class ProductController {
 
     @PostMapping("/detail/reply/write/{productId}")
     @ResponseBody
-    public ReplyDTO writeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long productId) {
-        // 임시 session 값 1저장
-        return productReplyService.saveReply(replyDTO, productId, 1L);
+    public ReplyDTO writeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long productId, @AuthenticationPrincipal UserDetail userDetail) {
+        if(userDetail != null) {
+            // 유통업자 제외
+            if(userDetail.getUserRole() == Role.DISTRIBUTOR) {
+                return null;
+            }
+            return productReplyService.saveReply(replyDTO, productId, userDetail.getId());
+        }
+        // 비로그인 제외
+        return null;
     }
 
     @PostMapping("/detail/reply/like/{replyId}")
     @ResponseBody
-    public boolean checkLike(@PathVariable Long replyId) {
+    public boolean checkLike(@PathVariable Long replyId, @AuthenticationPrincipal UserDetail userDetail) {
         log.info("================== 들어옴 ===============");
         // 임시 session 값 1
-        return replyLikeService.checkOutLike(replyId, 1L);
+        Long id = userDetail.getId();
+        return replyLikeService.checkOutLike(replyId, id);
     }
 
     @PostMapping("/cart/add/{productId}")
     @ResponseBody
-    public Long registerCart(@RequestBody ProductCartDTO productCartDTO, @PathVariable Long productId) {
+    public Long registerCart(@RequestBody ProductCartDTO productCartDTO, @PathVariable Long productId, @AuthenticationPrincipal UserDetail userDetail) {
         // 임시로 회원이디 1L 넣어둠, 추후 변경
-        return productCartService.saveCart(productCartDTO, 1L, productId);
+        Long id = userDetail.getId();
+        return productCartService.saveCart(productCartDTO, id, productId);
     }
+
 }

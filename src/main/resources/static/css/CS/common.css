@@ -483,6 +483,10 @@ html {
     font-weight: 700;
 }
 
+.change-page {
+    cursor: pointer;
+}
+
 .page-bottom .right-area {
     position: absolute;
     bottom: 4px;

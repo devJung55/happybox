@@ -73,4 +73,8 @@ public class Member extends User {
         this.deliveryName = deliveryName;
         this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 }

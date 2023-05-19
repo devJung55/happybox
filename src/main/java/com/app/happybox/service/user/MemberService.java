@@ -4,13 +4,12 @@ import com.app.happybox.entity.user.Member;
 import com.app.happybox.domain.user.MemberDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-public interface MemberService extends UserDetailsService {
+public interface MemberService{
 
     //    회원가입
     public void join(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
@@ -40,16 +39,19 @@ public interface MemberService extends UserDetailsService {
     public Optional<Member> findByUserId(String userId);
 
     //    마이페이지 배송지정보조회
-    public Optional<Member> findDeliveryInfoById(Long memberId);
+    public MemberDTO findDeliveryInfoById(Long memberId);
+
+    //    배송지정보수정
+    public void updateMemberDeliveryAddressByMemberId(Member member);
 
 //    회원정보수정
-    public void updateMemberInfoById(Member member);
+    public void updateMemberInfoById(MemberDTO memberDTO);
 
 //    회원탈퇴
     public void updateUserStatusById(Long memberId);
 
 //    관리자 회원 목록
-    public Page<Member> getList(Pageable pageable);
+    public Page<MemberDTO> getList(Pageable pageable);
 
 //    회원 조회
     public Optional<Member> getDetail(Long memberId);
@@ -60,6 +62,7 @@ public interface MemberService extends UserDetailsService {
     //    MemberDTO -> Member
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder()
+                .id(memberDTO.getId())
                 .address(memberDTO.getAddress())
                 .memberGender(memberDTO.getMemberGender())
                 .memberName(memberDTO.getMemberName())
@@ -76,23 +79,37 @@ public interface MemberService extends UserDetailsService {
                 .build();
     }
 
-    //    Member -> MemberDTO
-//    default MemberDTO toMemberDTO(Member member){
+//        Member -> MemberDTO
+    default MemberDTO toMemberDTO(Member member){
+        return MemberDTO.builder()
+                .id(member.getId())
+                .userId(member.getUserId())
+                .address(member.getAddress())
+                .memberDeliveryAddress(member.getMemberDeliveryAddress())
+                .memberBirth(member.getMemberBirth())
+                .userEmail(member.getUserEmail())
+                .memberGender(member.getMemberGender())
+                .memberName(member.getMemberName())
+                .userPassword(member.getUserPassword())
+                .userPhoneNumber(member.getUserPhoneNumber())
+                .deliveryName(member.getDeliveryName())
+                .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
+                .userRole(member.getUserRole())
+                .userStatus(member.getUserStatus())
+                .build();
+    }
+
+//    default MemberDTO toMemberDTO(Member member) {
 //        return MemberDTO.builder()
 //                .id(member.getId())
-//                .userId(member.getUserId())
-//                .userAddress(member.getAddress())
-//                .memberDeliveryAddress(member.getMemberDeliveryAddress())
-//                .memberBirth(member.getMemberBirth().toString())
-//                .userEmail(member.getUserEmail())
-//                .memberGender(member.getMemberGender())
 //                .memberName(member.getMemberName())
+//                .memberBirth(member.getMemberBirth())
+//                .userId(member.getUserId())
+//                .userEmail(member.getUserEmail())
 //                .userPassword(member.getUserPassword())
 //                .userPhoneNumber(member.getUserPhoneNumber())
-//                .deliveryName(member.getDeliveryName())
-//                .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
-//                .userRole(member.getUserRole())
-//                .userStatus(member.getUserStatus())
+//                .address(member.getAddress())
+//                .memberGender(member.getMemberGender())
 //                .build();
 //    }
 

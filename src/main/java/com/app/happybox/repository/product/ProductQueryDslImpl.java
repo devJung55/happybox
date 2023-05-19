@@ -105,6 +105,7 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
                 .fetch();
     }
 
+
     private JPAQuery<Product> getProductJPAQuery() {
         return query.select(product)
                 .from(product)

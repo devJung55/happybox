@@ -23,35 +23,71 @@ $(".inquiry__list__append").on("click", ".arrow-0deg", function() {
 
 /* 이미지 모달 이벤트 */
 
-const $imgModal = $(".layer-wrap");
-const $imgFiles = $(".added-file");
-const $closeButton = $(".btn-x-md2");
 const $inquiryTitle = $(".inquiry__title");
 
-$imgFiles.on("click", function() {
-    if($imgModal.css("display") == "none") {
-        $imgModal.css("display", "block");
+
+$("#frm").on("click", ".thumnail", function() {
+    const $imgModal = $(".layer-wrap");
+    const $closeButton = $(".btn-x-md2");
+    let src = "";
+
+    if($imageModalAppend.css("display") == "none") {
+        console.log($imageModalAppend)
+        $imageModalAppend.css("display", "block");
+        src = $(this).attr("src");
+        showImageModal(src);
     }
+
+    $closeButton.on("click", function() {
+        if($imgModal.css("display") == "block") {
+            $imgModal.css("display", "none");
+        }
+    });
 });
 
-$closeButton.on("click", function() {
-    if($imgModal.css("display") == "block") {
-        $imgModal.css("display", "none");
-    }
-});
 
 
 /*------------------------------------------------------------------------------*/
 
-
+myPageService.inquiryListAjax();
 const $inquiryAppend = $(".inquiry__list__append");
+const $imageModalAppend = $("#thumDtlPop");
 let page = 0;
+
+function showImageModal(src) {
+    let text = "";
+
+    text = `
+        <div class="layer-wrap" id="popup-sample01" style="display:none">
+            <div class="layer-pop img-view-popup">
+                <div class="layer-inner">
+                    <div class="layer-content">
+                        <div class="img-auto-slide">
+                            <div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-autoheight">
+                                <ul class="swiper-wrapper" style="height: 126px; transform: translate3d(0px, 0px, 0px);">
+                                    <li class="swiper-slide swiper-slide-active" style="width: 510px; margin-right: 1px;">
+                                        <img src="${src}">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-x-md2 ui-close-pop">
+                        <img class="close__modal" src="/img/mypage/close-button.webp" width="30">
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    $imageModalAppend.append(text);
+}
 
 function showInquiryList(inquiries) {
     let text = "";
     let str = "";
     let answer = "";
     let image = "";
+    let answerImage = "";
 
     inquiries.content.forEach(inquiry => {
         if(inquiry.inquiryAnswerDTO != null) {
@@ -65,6 +101,26 @@ function showInquiryList(inquiries) {
                         <p class="txt">
                             <span style="white-space:pre-line">${inquiry.inquiryAnswerDTO.inquiryAnswerContent}</span>
                         </p>
+                        <div class="bottom" style="margin-bottom: 5px;">
+                            <div class="added-file thumDtlQuestion">
+                                <ul class="thum-list">
+                    `;
+
+            for (let i = 0; i < inquiry.inquiryAnswerDTO.inquiryAnswerFileDTOS.length; i++) {
+                answerImage += `
+                    <li style="width: 70px; height: 70px; margin-right: 7px;">
+                        <a href="javascript:void(0)">
+                            <img class="thumnail" src="/image/display?fileName=${inquiry.inquiryAnswerDTO.inquiryAnswerFileDTOS[i].filePath}/${inquiry.inquiryAnswerDTO.inquiryAnswerFileDTOS[i].fileUuid}_${inquiry.inquiryAnswerDTO.inquiryAnswerFileDTOS[i].fileOrgName}">
+                        </a>
+                    </li>
+                `;
+            }
+            answer += answerImage;
+
+            answer += `
+                                </ul>
+                            </div>
+                        </div>
                     </div>
             `;
 

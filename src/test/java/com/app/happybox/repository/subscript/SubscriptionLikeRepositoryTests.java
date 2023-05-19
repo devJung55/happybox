@@ -97,7 +97,7 @@ class SubscriptionLikeRepositoryTests {
 
     @Test
     public void findSubscriptionByMemberIdWithPaging_QueryDSL_Test() {
-        subscriptionLikeRepository.findSubscriptionByMemberIdWithPaging_QueryDSL(PageRequest.of(0, 1), 1L)
+        subscriptionLikeRepository.findSubscriptionBookmarkByMemberIdWithPaging_QueryDSL(PageRequest.of(0, 1), 1L)
                 .stream().forEach(subscriptionLike -> {
                     log.info(subscriptionLike.getSubscription().toString());
                     log.info(subscriptionLike.getSubscription().getWelfare().toString());

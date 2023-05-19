@@ -7,3 +7,18 @@ function formatDate(date) {
 
     return `${year}.${month}.${day}`;
 }
+
+/* 검색하기 */
+function $searchAjax(type, url, data, callback) {
+    $.ajax({
+        type: type,
+        url: url,
+        data: data,
+        dataType: "json",
+        success: function(result) {
+            if(callback) {
+                callback(result)
+            }
+        }
+    })
+}

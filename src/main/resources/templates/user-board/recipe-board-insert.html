@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>레시피 게시글 작성하기</title>
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../static/css/global/global.css" />
-    <link rel="stylesheet" href="../../static/css/component/header.css" />
-    <link rel="stylesheet" href="../../static/css/component/footer.css" />
-    <link rel="stylesheet" href="../../static/css/member/member.css" />
-    <link rel="stylesheet" href="../../static/css/member/board-insert.css" />
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css" />
+    <link rel="stylesheet" href="/css/component/header.css" />
+    <link rel="stylesheet" href="/css/component/footer.css" />
+    <link rel="stylesheet" href="/css/member/member.css" />
+    <link rel="stylesheet" href="/css/member/board-insert.css" />
   </head>
   <body>
-    <root style="zoom: 90%">
-      <header></header>
+  <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+  <root style="zoom: 90%">
       <section id="contents" class="container">
         <div class="content-wrap">
           <div class="frame-sm">
-            <form id="counselRegFrm" name="counselRegFrm" action="" method="post">
+            <form id="counselRegFrm" name="form" method="post">
               <div class="frame-right">
                 <div class="frame-cnt-inner">
                   <div class="menu-title-area">
@@ -46,7 +46,7 @@
                             <div class="input-group w-full">
                               <input
                                 type="text"
-                                name="vQuestionTitle"
+                                name="boardTitle"
                                 id="vQuestionTitle"
                                 title=""
                                 class="input-text"
@@ -68,11 +68,8 @@
                               <textarea
                                 id="vQuestionCont"
                                 placeholder="내용을 입력하세요"
-                                name="vQuestionCont"
+                                name="boardContent"
                               ></textarea>
-                              <div class="txt-count">
-                                <span id="counter">0</span> / <span class="total">1,000</span>
-                              </div>
                             </div>
                           </td>
                         </tr>
@@ -96,6 +93,7 @@
                                   <img
                                     src=""
                                     style="width: 68px; height: 68px"
+                                    id="image"
                                   /><button
                                     type="button"
                                     class="btn-x-xs2 btn_del"
@@ -119,6 +117,7 @@
                                   <img
                                     src=""
                                     style="width: 68px; height: 68px"
+                                    id="image"
                                   /><button
                                     type="button"
                                     class="btn-x-xs2 btn_del"
@@ -142,6 +141,7 @@
                                   <img
                                     src=""
                                     style="width: 68px; height: 68px"
+                                    id="image"
                                   /><button
                                     type="button"
                                     class="btn-x-xs2 btn_del"
@@ -165,6 +165,7 @@
                                   <img
                                     src=""
                                     style="width: 68px; height: 68px"
+                                    id="image"
                                   /><button
                                     type="button"
                                     class="btn-x-xs2 btn_del"
@@ -188,6 +189,7 @@
                                   <img
                                     src=""
                                     style="width: 68px; height: 68px"
+                                    id="image"
                                   /><button
                                     type="button"
                                     class="btn-x-xs2 btn_del"
@@ -211,6 +213,7 @@
                                   <img
                                     src=""
                                     style="width: 68px; height: 68px"
+                                    id="image"
                                   /><button
                                     type="button"
                                     class="btn-x-xs2 btn_del"
@@ -234,6 +237,7 @@
                                   <img
                                     src=""
                                     style="width: 68px; height: 68px"
+                                    id="image"
                                   /><button
                                     type="button"
                                     class="btn-x-xs2 btn_del"
@@ -243,7 +247,7 @@
                                 </div>
                               </div>
                               <p class="text-guide-md">
-                                - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 8장까지 첨부 가능합니다.
                               </p>
                             </div>
                           </td>
@@ -258,7 +262,7 @@
                     <button type="button" class="btn-basic-lg2 btn-grey3">
                       <span>취소하기</span>
                     </button>
-                    <button type="button" class="btn-basic-lg2 btn-primary">
+                    <button type="submit" class="btn-basic-lg2 btn-primary">
                       <span>작성하기</span>
                     </button>
                   </div>
@@ -274,11 +278,13 @@
       </section>
       <footer></footer>
     </root>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script>
-    $('header').load('../../templates/component/header.html');
-    $('footer').load('../../templates/component/footer.html');
+  <script th:inline="javascript">
+    let fileDTOS = null;
+    let recipe = [[${recipe}]];
   </script>
-  <script src="../../static/js/member/board-insert.js"></script>
+  <script src="/js/main/header.js"></script>
+  <script src="/js/member/recipe-write.js"></script>
 </html>

@@ -1,4 +1,4 @@
-/* recipe-board-insert.html */
+/* reivew-board-insert.html */
 
 const insertData = {
     boardTitle:"",
@@ -86,6 +86,17 @@ $imgFile.each((i, e) => {
                 $imgDiv.eq(i).css('dispaly', 'none');
             }
         };
+    });
+});
+
+$(document).ready(function() {
+    $('#image').click(function() {
+        $('.input_file').click();
+    });
+
+    $('.input_file').change(function() {
+        var file = this.files[0];
+        // 파일 처리 로직을 수행합니다.
     });
 });
 

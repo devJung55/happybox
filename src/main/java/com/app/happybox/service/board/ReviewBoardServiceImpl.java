@@ -10,6 +10,7 @@ import com.app.happybox.entity.user.Member;
 import com.app.happybox.exception.BoardNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.board.BoardFileRepository;
+import com.app.happybox.repository.board.ReviewBoardFileRepository;
 import com.app.happybox.repository.board.ReviewBoardRepository;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.MemberRepository;
@@ -38,9 +39,7 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 
     @Override
     public ReviewBoardDTO getDetail(Long id) {
-        ReviewBoard reviewBoard = reviewBoardRepository.findById_QueryDSL(id).orElseThrow(() -> {
-            throw new BoardNotFoundException();
-        });
+        ReviewBoard reviewBoard = reviewBoardRepository.findById_QueryDSL(id).orElseThrow(BoardNotFoundException::new);
         return reviewBoardToDTO(reviewBoard);
     }
 
@@ -79,6 +78,57 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         }
     }
 
+    @Override @Transactional
+    public void update(ReviewBoardDTO reviewBoardDTO, Long memberId) {
+        List<BoardFileDTO> boardFileDTOS = reviewBoardDTO.getReviewBoardFiles();
+
+
+        ReviewBoard reviewBoard = reviewBoardRepository.findById(reviewBoardDTO.getId()).orElseThrow(BoardNotFoundException::new);
+
+        reviewBoard.setBoardTitle(reviewBoardDTO.getBoardTitle());
+        reviewBoard.setBoardContent(reviewBoardDTO.getBoardContent());
+        reviewBoard.setWelfareName(reviewBoardDTO.getWelfareName());
+
+        // 기존파일 삭제
+        boardFileRepository.deleteByReviewBoardId(reviewBoardDTO.getId());
+
+//        reviewBoardDTO.getReviewBoardFiles().forEach(file -> {
+//            log.info("============ 파일 반복문 ===========");
+//            // 새로운 파일
+//            BoardFile boardFile = toBoardFileEntity(file);
+//
+//
+//            boardFile.setReviewBoard(reviewBoard);
+//            boardFileRepository.save(boardFile);
+//        });
+        int count = 0;
+
+        for (int i = 0; i < boardFileDTOS.size(); i++) {
+            if(boardFileDTOS.get(i) == null) continue;
+
+            if (count == 0) {
+                boardFileDTOS.get(i).setFileRepresent(FileRepresent.REPRESENT);
+                count++;
+            } else {
+                boardFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
+            }
+
+            boardFileDTOS.get(i).setReviewBoardDTO(reviewBoardToDTO(getCurrentSequence()));
+            // 엔티티
+            BoardFile boardFile = toBoardFileEntity(boardFileDTOS.get(i));
+
+            boardFile.setReviewBoard(reviewBoard);
+
+            boardFileRepository.save(boardFile);
+        }
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
     //    현재 시퀀스 가져오기
     @Override
     public ReviewBoard getCurrentSequence() {
@@ -105,6 +155,12 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
     @Override
     public Page<ReviewBoardDTO> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
         return null;
+    }
+
+    @Override
+    public List<ReviewBoardDTO> findTop8Recent() {
+        List<ReviewBoard> reviewBoards = reviewBoardRepository.findTop8OrderByDate_QueryDSL();
+        return reviewBoards.stream().map(this::reviewBoardToDTO).collect(Collectors.toList());
     }
 
 

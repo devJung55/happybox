@@ -2,6 +2,7 @@ package com.app.happybox.service.user;
 
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.user.MemberRepository;
 import com.app.happybox.type.Role;
@@ -14,23 +15,26 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Qualifier("member") @Primary
 @Slf4j
 public class MemberServiceImpl implements MemberService {
-
     private final MemberRepository memberRepository;
-
+    private final PasswordEncoder passwordEncoder;
 
     //    Member 회원가입
     @Override
@@ -94,6 +98,7 @@ public class MemberServiceImpl implements MemberService {
     //    id로 정보 조회(UserDetail 용)
     @Override
     public Optional<Member> findByUserId(String userId) {
+
         return memberRepository.findByUserId(userId);
     }
 
@@ -121,38 +126,42 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+//    배송지정보수정
     @Override
-    public Optional<Member> findDeliveryInfoById(Long memberId) {
-        Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);
-        return member;
+    public MemberDTO findDeliveryInfoById(Long memberId) {
+         return toMemberDTO(memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId).get());
     }
 
-    @Override
-    public void updateMemberInfoById(Member member) {
-        memberRepository.setMemberInfoById_QueryDSL(member);
+//    회원정보수정
+    @Override @Transactional
+    public void updateMemberInfoById(MemberDTO memberDTO) {
+        Member member = memberRepository.findById(memberDTO.getId()).orElseThrow(UserNotFoundException::new);
+        member.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword().split(",")[0]));
+        member.setMemberName(memberDTO.getMemberName());
+        member.setUserPhoneNumber(memberDTO.getUserPhoneNumber());
+        member.setAddress(memberDTO.getAddress());
+        member.setUserEmail(memberDTO.getUserEmail());
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByUserId(username).orElseThrow(()-> new UsernameNotFoundException(username + " not found"));
-        return UserDetail.builder()
-                .id(member.getId())
-                .userId((member.getUserId()))
-                .userPassword(member.getUserPassword())
-                .userRole(member.getUserRole())
-                .build();
-    }
-
+//    회원탈퇴 = 회원상태 변경
     @Override
     public void updateUserStatusById(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         member.setUserStatus(UserStatus.UNREGISTERED);
     }
 
+//    배송지정보수정
     @Override
-    public Page<Member> getList(Pageable pageable) {
+    public void updateMemberDeliveryAddressByMemberId(Member member) {
+        memberRepository.setMemberDeliveryAddressByMemberId(member);
+    }
+
+    @Override
+    public Page<MemberDTO> getList(Pageable pageable) {
         Page<Member> memberList = memberRepository.findAllWithPaging_QueryDSL(pageable);
-        return memberList;
+        List<MemberDTO> memberDTOList = memberList.get().map(this::toMemberDTO).collect(Collectors.toList());
+
+        return new PageImpl<>(memberDTOList, pageable, memberList.getTotalElements());
     }
 
     @Override
