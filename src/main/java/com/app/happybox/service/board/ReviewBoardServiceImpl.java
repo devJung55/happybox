@@ -125,8 +125,9 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
     }
 
     @Override
-    public void delete(Long id) {
-
+    public void delete(Long id, Long memberId) {
+        ReviewBoard reviewBoard = reviewBoardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
+        reviewBoardRepository.delete(reviewBoard);
     }
 
     //    현재 시퀀스 가져오기

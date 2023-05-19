@@ -26,7 +26,7 @@ public interface ReviewBoardService {
     public void update(ReviewBoardDTO reviewBoardDTO, Long memberId);
 
     // 삭제
-    public void delete(Long id);
+    public void delete(Long id, Long memberId);
 
     //    현재 시퀀스 가져오기
     public ReviewBoard getCurrentSequence();

@@ -90,13 +90,15 @@ $imgFile.each((i, e) => {
 });
 
 $(document).ready(function() {
-    $('#image').click(function() {
-        $('.input_file').click();
-    });
+    $('.btn_del').on('click', function(e) {
+        e.preventDefault();
+        var $attachImg = $(this).parent('.attach-img');
+        var $img = $attachImg.find('img');
+        var $btnAttachThumb = $(this).closest('.div-attach-thumb').find('.btn-attach-thumb');
 
-    $('.input_file').change(function() {
-        var file = this.files[0];
-        // 파일 처리 로직을 수행합니다.
+        $img.attr('src', '');
+        $attachImg.css('display', 'none');
+        $btnAttachThumb.css('display', 'inline-block');
     });
 });
 

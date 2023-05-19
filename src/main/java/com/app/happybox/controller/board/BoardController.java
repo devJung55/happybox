@@ -133,7 +133,15 @@ public class BoardController {
     }
 
     //    리뷰 게시글 삭제
+    @DeleteMapping("review-board-detail/delete/{id}")
+    public String deleteReviewReply(@PathVariable Long id) {
+        Long userId = 1L;
 
+        // 임시 session 값 1저장
+        reviewBoardService.delete(id, userId);
+        log.info("===============들어옴");
+        return "user-board/review-board-list";
+    }
 
     //    리뷰 게시글 좋아요
 
@@ -170,6 +178,7 @@ public class BoardController {
          log.info("===============들어옴");
          return "user-board/review-board-detail";
     }
+
     //  리뷰 댓글 좋아요
     @PostMapping("review-board-detail/reply/like/{replyId}")
     @ResponseBody
@@ -206,7 +215,6 @@ public class BoardController {
                                 pageable.getPageSize()));
         return recipeBoardDTOS;
     }
-
 
     //    레시피 게시판 상세보기
     @GetMapping("recipe-board-detail/{id}")
