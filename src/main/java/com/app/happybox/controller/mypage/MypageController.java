@@ -25,6 +25,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/mypage/*")
 @RequiredArgsConstructor
@@ -58,7 +61,9 @@ public class MypageController {
 //    나의 게시물 목록(레시피)
     @ResponseBody
     @GetMapping("member/recipe-board")
-    public Page<RecipeBoardDTO> getUserRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+    public Page<RecipeBoardDTO> getUserRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String setDate, String currentDate) {
+        log.info(setDate + "----------------------------");
+        log.info(currentDate + "------------------------------");
         Page<RecipeBoardDTO> recipeBoards = recipeBoardService.getListByMemberId(PageRequest.of(page - 1, 3), userDetail.getId());
         return recipeBoards;
     }
@@ -86,8 +91,15 @@ public class MypageController {
     //    구매 내역 목록
     @ResponseBody
     @GetMapping("member/order-list")
-    public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
-        Page<MemberOrderProductItemDTO> orderList = memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(page - 1, 5), userDetail.getId());
+    public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String year, String month, String day) {
+        SearchDateDTO searchDateDTO = new SearchDateDTO();
+
+        if(year != null) {
+            LocalDateTime setDate = LocalDateTime.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0);
+            searchDateDTO.setSetDate(setDate);
+        }
+
+        Page<MemberOrderProductItemDTO> orderList = memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(page - 1, 5), userDetail.getId(), searchDateDTO);
         return orderList;
     }
 

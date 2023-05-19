@@ -1,5 +1,6 @@
 package com.app.happybox.repository.order;
 
+import com.app.happybox.domain.SearchDateDTO;
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 
 public interface MemberOrderProductItemQueryDsl {
 //    마이페이지 주문내역(일반회원)
-    public Page<MemberOrderProductItem> findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId/*, LocalDateTime searchStartDate, LocalDateTime searchEndDate*/);
+    public Page<MemberOrderProductItem> findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId, SearchDateDTO searchDateDTO);
 
 //    마이페이지 취소내역(일반회원)
     public Page<MemberOrderProductItem> findCancleListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId, LocalDateTime searchStartDate, LocalDateTime searchEndDate);

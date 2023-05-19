@@ -230,7 +230,7 @@
 .prd-info-area .column.tit .tit {
     font-size: 15px;
     color: #333;
-    margin-top: 31px;
+    margin: 10px 0 0 0;
 }
 
 .prd-info-area .column.price {

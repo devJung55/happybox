@@ -4,7 +4,7 @@ let myPageService = (function() {
     function recipeBoardListAjax(page) {
         $.ajax({
             url: "/mypage/member/recipe-board/",
-            data: {"page": page, "memberId": memberId},
+            data: {"page": page},
             success: function(recipeBoards) {
                 showRecipeBoardList(recipeBoards);
             }
@@ -14,7 +14,7 @@ let myPageService = (function() {
     function inquiryListAjax(page) {
         $.ajax({
             url: "/mypage/member/inquiry-list/",
-            data: {"page": page, "memberId": memberId},
+            data: {"page": page},
             success: function(inquiries) {
                 showInquiryList(inquiries);
             }
@@ -24,8 +24,19 @@ let myPageService = (function() {
     function orderListAjax(page) {
         $.ajax({
             url: "/mypage/member/order-list",
-            data: {"page": page, "memberId": memberId},
+            data: {"page": page},
             success: function(orderList) {
+                showOrderList(orderList);
+            }
+        })
+    }
+
+    function orderListBySearchDate(searchDateDTO) {
+        $.ajax({
+            url: "/mypage/member/order-list",
+            data: searchDateDTO,
+            success: function(orderList) {
+                console.log(orderList)
                 showOrderList(orderList);
             }
         })
@@ -34,7 +45,7 @@ let myPageService = (function() {
     function recipeBoardBookmarkAjax(page) {
         $.ajax({
             url: "/mypage/member/recipe-bookmark-list",
-            data: {"page": page, "memberId": memberId},
+            data: {"page": page},
             success: function (bookmarkList) {
                 showRecipeBoardBookmarkList(bookmarkList);
             }
@@ -44,18 +55,9 @@ let myPageService = (function() {
     function subscriptionBookmarkAjax(page) {
         $.ajax({
             url: "/mypage/member/subscrition-bookmark-list",
-            data: {"page": page, "memberId": memberId},
+            data: {"page": page},
             success: function (bookmarkList) {
                 showSubscriptionBookmarkList(bookmarkList);
-            }
-        })
-    }
-
-    function topBarAjax() {
-        $.ajax({
-            url: "/mypage/member/top-bar",
-            success: function (count) {
-                count;
             }
         })
     }
@@ -65,6 +67,7 @@ let myPageService = (function() {
         inquiryListAjax: inquiryListAjax,
         orderListAjax: orderListAjax,
         recipeBoardBookmarkAjax: recipeBoardBookmarkAjax,
-        subscriptionBookmarkAjax: subscriptionBookmarkAjax
+        subscriptionBookmarkAjax: subscriptionBookmarkAjax,
+        orderListBySearchDate: orderListBySearchDate
     }
 }());
