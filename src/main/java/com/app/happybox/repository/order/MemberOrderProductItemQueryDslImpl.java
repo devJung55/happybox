@@ -41,7 +41,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(memberOrderProductItem.id.count()).from(memberOrderProductItem).fetchOne();
+        Long count = query.select(memberOrderProductItem.id.count()).from(memberOrderProductItem).where(orderDateBetween).fetchOne();
 
         return new PageImpl<>(memberOrderProductItemList, pageable, count);
     }

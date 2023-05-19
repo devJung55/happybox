@@ -100,6 +100,12 @@ public class MypageController {
         }
 
         Page<MemberOrderProductItemDTO> orderList = memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(page - 1, 5), userDetail.getId(), searchDateDTO);
+
+        orderList.stream().forEach(v -> {
+            log.info(v.getCreatedDate() + "");
+            log.info(v.getProductPrice() + "");
+            log.info(v.getProductName() + "");
+        });
         return orderList;
     }
 

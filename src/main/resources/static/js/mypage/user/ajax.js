@@ -36,7 +36,6 @@ let myPageService = (function() {
             url: "/mypage/member/order-list",
             data: searchDateDTO,
             success: function(orderList) {
-                console.log(orderList)
                 showOrderList(orderList);
             }
         })

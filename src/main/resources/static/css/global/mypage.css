@@ -49,34 +49,77 @@
     margin-top: 5px;
 }
 
-.page-bottom {
-    position: relative;
+/*.page-bottom {*/
+/*    position: relative;*/
+/*}*/
+
+/*.board-list ~ .page-bottom {*/
+/*    margin-top: 30px;*/
+/*}*/
+
+/*.pagination {*/
+/*    margin-top: 60px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.pagination > a {*/
+/*    height: 25px;*/
+/*    padding: 0 1px;*/
+/*    margin: 0 8px 0;*/
+/*    color: #999;*/
+/*}*/
+
+/*.pagination > a.current, .pagination > a.on {*/
+/*    !*border-bottom: 2px solid #FF5938;*!*/
+/*    color: #FF5938;*/
+/*    font-weight: 700;*/
+/*}*/
+
+/*.page-bottom .right-area {*/
+/*    position: absolute;*/
+/*    bottom: 4px;*/
+/*    right: 0;*/
+/*}*/
+
+.paging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+    gap: 12px;
+    user-select: none;
 }
 
-.board-list ~ .page-bottom {
-    margin-top: 30px;
+.paging a {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #FF5938;
+    border-radius: 3px;
+    background-color: #FF5938;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.pagination {
-    margin-top: 60px;
-    text-align: center;
+.paging #currentPage {
+    width: 28px;
+    height: 28px;
+    background-color: #333;
+    color: #fff;
+    background-color: #000;
+    border-radius: 3px; /* Adjust to your desired roundness */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.pagination > a {
-    height: 25px;
-    padding: 0 1px;
-    margin: 0 8px 0;
-    color: #999;
+/* Styling for page numbers on hover */
+.paging a:hover {
+    background-color: #345995; /* Darken the color a bit on hover */
+    color: #fff;
 }
 
-.pagination > a.current, .pagination > a.on {
-    /*border-bottom: 2px solid #FF5938;*/
-    color: #FF5938;
-    font-weight: 700;
-}
-
-.page-bottom .right-area {
-    position: absolute;
-    bottom: 4px;
-    right: 0;
-}
