@@ -157,5 +157,11 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         return null;
     }
 
+    @Override
+    public List<ReviewBoardDTO> findTop8Recent() {
+        List<ReviewBoard> reviewBoards = reviewBoardRepository.findTop8OrderByDate_QueryDSL();
+        return reviewBoards.stream().map(this::reviewBoardToDTO).collect(Collectors.toList());
+    }
+
 
 }

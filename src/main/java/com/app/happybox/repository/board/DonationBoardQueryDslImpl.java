@@ -3,6 +3,7 @@ package com.app.happybox.repository.board;
 import com.app.happybox.entity.board.DonationBoard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import static com.app.happybox.entity.board.QDonationBoard.donationBoard;
 
 
 @RequiredArgsConstructor
+@Slf4j
 public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     private final JPAQueryFactory query;
 
@@ -32,13 +34,14 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
 
     @Override
     public List<DonationBoard> findTop3OrderByDate_QueryDSL() {
-        return query.select(donationBoard)
+        List<DonationBoard> fetch = query.select(donationBoard)
                 .from(donationBoard)
                 .join(donationBoard.welfare)
-                .join(donationBoard.donationBoardFiles).fetchJoin()
+                .leftJoin(donationBoard.donationBoardFiles).fetchJoin()
                 .orderBy(donationBoard.createdDate.desc())
                 .limit(3L)
                 .fetch();
+        return fetch;
     }
 
     @Override

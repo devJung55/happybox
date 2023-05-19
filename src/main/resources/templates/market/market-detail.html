@@ -111,10 +111,7 @@
                     </div>
                 </div>
                 <!--  -->
-                <div class="reply-writer-info">
-                    <span class="user-type">일반</span>
-                    <span class="user-id">kjp1234</span>
-                </div>
+                <div class="reply-writer-info"></div>
                 <div class="write-content-wrap">
                     <form>
                         <textarea
@@ -237,9 +234,12 @@
 <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/header.js"></script>
 <script src="/js/common/ajax.js"></script>
 <script th:inline="javascript">
-    let $product = [[${product}]];
+    const $product = [[${product}]];
+    const $userId = [[${userId}]];
+    const $userRole = [[${userRole}]];
 </script>
 <script src="/js/market/detail.js"></script>
 </html>

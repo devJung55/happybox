@@ -15,6 +15,8 @@ public interface ReviewBoardQueryDsl {
 //    상세보기
     public Optional<ReviewBoard> findById_QueryDSL(Long id);
 
+    public List<ReviewBoard> findTop8OrderByDate_QueryDSL();
+
 // 현재 시퀀스 가져오기
     public ReviewBoard getCurrentSequence_QueryDsl();
 
