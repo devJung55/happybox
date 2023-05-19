@@ -124,9 +124,8 @@ public class MemberServiceImpl implements MemberService {
 
 //    배송지정보수정
     @Override
-    public Optional<Member> findDeliveryInfoById(Long memberId) {
-        Optional<Member> member = memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId);
-        return member;
+    public MemberDTO findDeliveryInfoById(Long memberId) {
+         return toMemberDTO(memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId).get());
     }
 
 //    회원정보수정
