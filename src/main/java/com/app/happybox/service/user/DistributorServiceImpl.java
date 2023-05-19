@@ -3,6 +3,7 @@ package com.app.happybox.service.user;
 import com.app.happybox.domain.user.DistributorDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.user.Distributor;
+import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.user.DistributorRepository;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
@@ -39,8 +40,9 @@ public class DistributorServiceImpl implements DistributorService {
     }
 
     @Override
-    public Optional<Distributor> getDetail(Long distributorId) {
-        return distributorRepository.findDistributorById_QueryDSL(distributorId);
+    public DistributorDTO getDetail(Long distributorId) {
+        Distributor distributor = distributorRepository.findDistributorById_QueryDSL(distributorId).orElseThrow(UserNotFoundException::new);
+        return toDistributorDTO(distributor);
     }
 
 //    유통 회원가입

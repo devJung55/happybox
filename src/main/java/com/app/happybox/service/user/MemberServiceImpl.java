@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,7 +24,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -95,6 +98,7 @@ public class MemberServiceImpl implements MemberService {
     //    id로 정보 조회(UserDetail 용)
     @Override
     public Optional<Member> findByUserId(String userId) {
+
         return memberRepository.findByUserId(userId);
     }
 
@@ -153,9 +157,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Page<Member> getList(Pageable pageable) {
+    public Page<MemberDTO> getList(Pageable pageable) {
         Page<Member> memberList = memberRepository.findAllWithPaging_QueryDSL(pageable);
-        return memberList;
+        List<MemberDTO> memberDTOList = memberList.get().map(this::toMemberDTO).collect(Collectors.toList());
+
+        return new PageImpl<>(memberDTOList, pageable, memberList.getTotalElements());
     }
 
     @Override
