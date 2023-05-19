@@ -20,7 +20,11 @@ let productFileRep = $product.productFileDTOS[0];
 let productName = $product.productName;
 let id = $product.id;
 
-console.log($product);
+const USER_ROLE = {
+    MEMBER: "일반",
+    WELFARE: "복지관",
+    DISTRIBUTOR: "유통"
+}
 
 const category = {
     VEGETABLES: "야채",
@@ -58,6 +62,21 @@ if (productFileRep) {
 } else {
     filePath = "/img/market/no_img_market.png";
 }
+
+// 대표사진 표시
+$(".represent-img").attr("src", filePath);
+
+// 댓글 작성자 (로그인) 시
+
+if($userId) {
+    $(".reply-writer-info").append(
+        `
+        <span class="user-type">${USER_ROLE[$userRole]}</span>
+        <span class="user-id">${$userId}</span>
+    `
+    );
+}
+
 
 productFiles.forEach((file) => {
     let text;
@@ -127,13 +146,6 @@ $(".orderLikeCount").on("click", function () {
         }
     );
 });
-
-const USER_ROLE = {
-    MEMBER: "일반",
-    WELFARE: "복지관"
-}
-
-window.scroll()
 
 /* 댓글 append */
 function appendReplyList(reply, isPrepend) {
@@ -361,15 +373,19 @@ $replyWriteBtn.on("click", function () {
         REPLY_URL,
         {replyContent: $('.write-textarea').val()},
         (result) => {
-            let count = Number($(".review-count span").text());
-            // 댓글 맨위에 append
-            appendReplyList(result, true);
-            // 댓글수 증가
-            $(".review-count span").text(++count);
-            $(".reply-count").text(count);
-            // 댓글 내용 초기화
-            $('.write-textarea').val("");
-            console.log(result);
+            if(result) {
+                let count = Number($(".review-count span").text());
+                // 댓글 맨위에 append
+                appendReplyList(result, true);
+                // 댓글수 증가
+                $(".review-count span").text(++count);
+                $(".reply-count").text(count);
+                // 댓글 내용 초기화
+                $('.write-textarea').val("");
+            } else {
+                alert("댓글을 작성할 수 없습니다.");
+            }
+
         }
     );
 });

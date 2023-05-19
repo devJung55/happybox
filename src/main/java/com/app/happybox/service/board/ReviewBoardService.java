@@ -40,6 +40,8 @@ public interface ReviewBoardService {
     //    마이페이지 나의후기 목록
     public Page<ReviewBoardDTO> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId);
 
+    //    메인 최신순 Top 8
+    public List<ReviewBoardDTO> findTop8Recent();
 
     default ReviewBoardDTO reviewBoardToDTO(ReviewBoard reviewBoard){
         return ReviewBoardDTO.builder()

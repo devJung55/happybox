@@ -1,12 +1,16 @@
-// 임시로 8개 넣어둠
-for (let i = 0; i < 7; i++) {
-    // 임시 함수들
-    appendIndex1();
-    // appendIndex3();
-}
+// 복지관 리뷰
+reviews.forEach(review => appendReview(review));
 
-function appendIndex1() {
+function appendReview(review) {
     let text;
+
+    let filePath = "/img/welfare/welfare_img_default.png";
+
+    if (review.reviewBoardFiles.length > 0) {
+        // 대표사진 검사
+        let repFile = review.reviewBoardFiles.filter(file => file.fileRepresent === "REPRESENT")[0];
+        filePath = '/images/display/' + repFile.filePath + '/t_' + repFile.fileUuid + '_' + repFile.fileOrgName;
+    }
 
     text = `
             <li
@@ -14,40 +18,39 @@ function appendIndex1() {
             style="width: 320px; margin-right: 20px">
             <div class="prd-item">
                 <div class="img">
-                    <a href="javascript:void(0)">
+                    <a href="/user-board/review-board-detail/${review.id}">
                         <img
-                            src="https://file.rankingdak.com/image/RANK/PRODUCT/MOBILE/20230413/IMG1681JtI348145628.jpg"
+                            src="${filePath}"
                         />
                     </a>
                 </div>
                 <div class="timer time-desc">
                     <span class="timer-title">
-                        노원구 복지관 리뷰
+                        ${review.boardContent}
                     </span>
                 </div>
                 <div class="desc-bottom">
                     <div class="top">
                         <em class="imgbadge-dlv">
-                            <span>정기배송</span>
+                            <span>${review.boardRegisterDate}</span>
                         </em>
-                        <div class="rating-simply">
-                            <span class="rating-star"></span>
-                            <span class="score">0</span>
-                            <span class="total-num">5</span>
-                        </div>
+                        <div class="rating-simply">`
+    for (let i = 0; i < review.reviewRating; i++) {
+        text += `<span class="rating-star"></span>`;
+    }
+
+    text += `</div>
                     </div>
                     <p class="tit">
                         <a
-                            href="/product/view?productCd=F000005527"
+                            href="/user-board/review-board-detail/${review.id}"
                             class="text-elps2">
-                            노원구 복지관 최고네요!
-                            </a
-                        >
+                            ${review.boardContent}
+                        </a>
                     </p>
                     <div class="price-info">
-                        <span class="sale"><strong>58</strong>%</span>
                         <span class="price">
-                            <em class="num">19,200</em>원
+                            <em class="num">${review.memberDTO.userId}</em>
                         </span>
                     </div>
                 </div>
@@ -63,7 +66,7 @@ topSale.forEach((sub, i) => {
 
     let filePath = "/img/welfare/welfare_img_default.png";
 
-    if(sub.representFood != null) filePath = '/images/display/' +  sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
+    if (sub.representFood != null) filePath = '/images/display/' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
     text = `
         <li
@@ -111,7 +114,7 @@ recentSub.forEach((sub, i) => {
 
     let filePath = "/img/welfare/welfare_img_default.png";
 
-    if(sub.representFood != null) filePath = '/images/display/' +  sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
+    if (sub.representFood != null) filePath = '/images/display/' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
     text =
         `
@@ -119,14 +122,13 @@ recentSub.forEach((sub, i) => {
             class="bnr-item-slide swiper-slide swiper-slide-active"
             style="width: 256.25px; margin-right: 25px"
         >
-            <div class="bnr-item">
+            <a class="bnr-item" href="/welfare/detail/${sub.id}">
                 <div class="img">
                     <img src='${filePath}'/>
                 </div>
                 <em class="tit text-elps">${sub.subscriptionTitle}</em>
                 <span class="desc"">${sub.welfareName}</span>
-                <a href="/product/view?productCd=24931" class="btn-blank"></a>
-            </div>
+            </a>
         </li>
     `
 
@@ -136,8 +138,14 @@ recentSub.forEach((sub, i) => {
 let $donationWrap = $(".donationWrap");
 
 donation.forEach(board => {
+
     let text;
-    let filePath = '/images/display/' +  board.boardFiles[0].filePath + '/t_' + board.boardFiles[0].fileUuid + '_' + board.boardFiles[0].fileOrgName;
+
+    let filePath = "/img/welfare/welfare_img_default.png";
+
+    if (board.donationBoardFiles.length > 0) {
+        filePath = '/images/display/' + board.boardFiles[0].filePath + '/t_' + board.boardFiles[0].fileUuid + '_' + board.boardFiles[0].fileOrgName;
+    }
 
     text = `
         <li class="swiper-slide" style="width: 340px">
