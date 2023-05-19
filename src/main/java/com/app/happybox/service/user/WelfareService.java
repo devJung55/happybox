@@ -21,10 +21,10 @@ public interface WelfareService {
     public void updateUserStatusById(Long welfareId);
 
 //    관리자 복지관회원 목록
-    public Page<Welfare> getList(Pageable pageable);
+    public Page<WelfareDTO> getList(Pageable pageable);
 
 //    관리자 복지관회원 조회
-    public Optional<Welfare> getDetail(Long welfareId);
+    public WelfareDTO getDetail(Long welfareId);
 
     //    회원가입
     public void join(WelfareDTO welfareDTO, SubscriptionWelFareDTO subscriptionWelFareDTO, PasswordEncoder passwordEncoder);
@@ -63,5 +63,18 @@ public interface WelfareService {
                 .build();
     }
 
-
+    default WelfareDTO toWelfareDTO(Welfare welfare) {
+        return WelfareDTO.builder()
+                .address(welfare.getAddress())
+                .createdDate(welfare.getCreatedDate())
+                .id(welfare.getId())
+                .userEmail(welfare.getUserEmail())
+                .userId(welfare.getUserId())
+                .userPhoneNumber(welfare.getUserPhoneNumber())
+                .userRole(welfare.getUserRole())
+                .userStatus(welfare.getUserStatus())
+                .welfareName(welfare.getWelfareName())
+                .welfarePointTotal(welfare.getWelfarePointTotal())
+                .build();
+    }
 }

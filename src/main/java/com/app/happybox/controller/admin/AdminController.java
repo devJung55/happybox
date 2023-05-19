@@ -4,7 +4,9 @@ import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.OrderSubscriptionDTO;
 import com.app.happybox.domain.PageDTO;
 import com.app.happybox.domain.product.ProductDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.domain.user.UserFileDTO;
+import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.file.UserFile;
@@ -84,7 +86,7 @@ public class AdminController {
 //    회원 목록
     @GetMapping("member-list")
     public String getMemberList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
-        Page<Member> list = memberService.getList(PageRequest.of(page - 1, 10));
+        Page<MemberDTO> list = memberService.getList(PageRequest.of(page - 1, 10));
         model.addAttribute("members", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
         return "/admin/admin-memberList";
@@ -143,7 +145,7 @@ public class AdminController {
     @GetMapping("distributor-detail/{distributorId}")
     public String getDistributorDetail(@PathVariable Long distributorId, Model model) {
         Page<ProductDTO> list = productService.getListByDistributorId(PageRequest.of(0, 5), distributorId);
-        model.addAttribute("distributors", distributorService.getList(PageRequest.of(0, 5)));
+        model.addAttribute("distributor", distributorService.getDetail(distributorId));
         model.addAttribute("distributorId", distributorId);
         model.addAttribute("userFile", userFileService.getDetail(distributorId));
         model.addAttribute("products", list.getContent());
@@ -184,7 +186,7 @@ public class AdminController {
 //    복지관회원 목록
     @GetMapping("welfare-list")
     public String getWelfareList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
-        Page<Welfare> list = welfareService.getList(PageRequest.of(0, 5));
+        Page<WelfareDTO> list = welfareService.getList(PageRequest.of(0, 5));
         model.addAttribute("welfares", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
         return "/admin/admin-welfareList";
@@ -195,8 +197,7 @@ public class AdminController {
     public String getWelfareDetail(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @PathVariable Long welfareId, Model model) {
         String subsciberName = null;
         Page<OrderSubscriptionDTO> list = orderSubsciptionService.getListByWelfareId(PageRequest.of(0, 5), welfareId, subsciberName);
-
-        model.addAttribute("welfare",welfareService.getDetail(welfareId).get());
+        model.addAttribute("welfare",welfareService.getDetail(welfareId));
         model.addAttribute("subscribers", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
         model.addAttribute("userFile", userFileService.getDetail(welfareId));
