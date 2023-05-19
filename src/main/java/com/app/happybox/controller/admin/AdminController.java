@@ -100,37 +100,37 @@ public class AdminController {
     }
 
 //    회원 조회
-    @ResponseBody
-    @GetMapping("member-detail")
-    public String[] getMemberDetail(@RequestParam("memberId") Long memberId, Model model) {
-        Member memberInfo = memberService.getDetail(memberId).get();
-        UserFileDTO userFile = userFileService.getDetail(memberId);
-        String filePath = "";
-        String fileUuid = "";
-        String fileOrgName = "";
-
-        if(userFile == null) {
-            filePath = null;
-            fileUuid = null;
-            fileOrgName = null;
-        } else {
-            filePath = userFile.getFilePath();
-            fileUuid = userFile.getFileUuid();
-            fileOrgName = userFile.getFileOrgName();
-        }
-
-        String[] member = {
-                filePath,
-                fileUuid,
-                fileOrgName,
-                memberInfo.getMemberName(),
-                memberInfo.getUserPhoneNumber(),
-                memberInfo.getUserEmail(),
-                String.valueOf(memberInfo.getMemberBirth()).replaceAll("-", "."),
-                String.valueOf(memberInfo.getMemberGender())
-        };
-        return member;
-    }
+//    @ResponseBody
+//    @GetMapping("member-detail")
+//    public String[] getMemberDetail(@RequestParam("memberId") Long memberId, Model model) {
+//        Member memberInfo = memberService.getDetail(memberId).get();
+//        UserFileDTO userFile = userFileService.getDetail(memberId);
+//        String filePath = "";
+//        String fileUuid = "";
+//        String fileOrgName = "";
+//
+//        if(userFile == null) {
+//            filePath = null;
+//            fileUuid = null;
+//            fileOrgName = null;
+//        } else {
+//            filePath = userFile.getFilePath();
+//            fileUuid = userFile.getFileUuid();
+//            fileOrgName = userFile.getFileOrgName();
+//        }
+//
+//        String[] member = {
+//                filePath,
+//                fileUuid,
+//                fileOrgName,
+//                memberInfo.getMemberName(),
+//                memberInfo.getUserPhoneNumber(),
+//                memberInfo.getUserEmail(),
+//                String.valueOf(memberInfo.getMemberBirth()).replaceAll("-", "."),
+//                String.valueOf(memberInfo.getMemberGender())
+//        };
+//        return member;
+//    }
 
 //    유통회원 목록
     @GetMapping("distributor-list")

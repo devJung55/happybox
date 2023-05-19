@@ -32,26 +32,28 @@ class OrderSubscriptionRepositoryTests {
     @Autowired
     private SubscriptionRepository subscriptionRepository;
 
-//    @Test
-//    public void saveTest(){
-//        // given
-//        Optional<Member> member = memberRepository.findById(1L);
-//        Optional<Subscription> subscription = subscriptionRepository.findById(3L);
-//        Address address = new Address("11111", "서울시 역삼동", "코리아IT");
-//
-//        // when
-//        if (!member.isPresent() || !subscription.isPresent()) fail("member 혹은 subscription 없음.");
-//
-//        OrderSubscription orderSubscription = new OrderSubscription(
-//                address,
-//                subscription.get(),
-//                member.get()
-//        );
-//
-//        orderSubscriptionRepository.save(orderSubscription);
-//
-//        // then
-//    }
+    @Test
+    public void saveTest(){
+        // given
+        Optional<Member> member = memberRepository.findById(259L);
+        Optional<Subscription> subscription = subscriptionRepository.findById(27L);
+        Address address = new Address("11111", "서울시 역삼동", "코리아IT");
+
+        // when
+        if (!member.isPresent() || !subscription.isPresent()) fail("member 혹은 subscription 없음.");
+
+        OrderSubscription orderSubscription = new OrderSubscription(
+                "정지영",
+                "01012344321",
+                address,
+                subscription.get(),
+                member.get()
+        );
+
+        orderSubscriptionRepository.save(orderSubscription);
+
+        // then
+    }
 
     @Test
     public void findSubscriptionByMemberId_QueryDSL_Test() {

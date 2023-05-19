@@ -11,6 +11,16 @@ let myPageService = (function() {
         })
     }
 
+    function reviewBoardListAjax(page) {
+        $.ajax({
+            url: "/mypage/member/review-board",
+            data: {"page": page},
+            success: function(reviewBoards) {
+                showReviewBoardList(reviewBoards);
+            }
+        })
+    }
+
     function inquiryListAjax(page) {
         $.ajax({
             url: "/mypage/member/inquiry-list/",
@@ -61,12 +71,43 @@ let myPageService = (function() {
         })
     }
 
+    function cancelSubscribe(id) {
+        $.ajax({
+            url: "/mypage/member/subscribe-cancel",
+            data: {"id": id},
+        })
+    }
+
+    function cancelBookmarkRecipeBoard(id) {
+        $.ajax({
+            url: "/mypage/member/recipe-bookmark-cancel",
+            data: {"id": id},
+            success: function() {
+                location.reload();
+            }
+        })
+    }
+
+    function cancelBookmarkSubscription(id) {
+        $.ajax({
+            url: "/mypage/member/subscription-bookmark-cancel",
+            data: {"id": id},
+            success: function() {
+                location.reload();
+            }
+        })
+    }
+
     return {
         recipeBoardListAjax: recipeBoardListAjax,
+        reviewBoardListAjax: reviewBoardListAjax,
         inquiryListAjax: inquiryListAjax,
         orderListAjax: orderListAjax,
         recipeBoardBookmarkAjax: recipeBoardBookmarkAjax,
         subscriptionBookmarkAjax: subscriptionBookmarkAjax,
-        orderListBySearchDate: orderListBySearchDate
+        orderListBySearchDate: orderListBySearchDate,
+        cancelSubscribe: cancelSubscribe,
+        cancelBookmarkRecipeBoard: cancelBookmarkRecipeBoard,
+        cancelBookmarkSubscription: cancelBookmarkSubscription
     }
 }());

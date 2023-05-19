@@ -71,4 +71,9 @@ public class SubscriptionLikeServiceImpl implements SubscriptionLikeService {
         List<SubscriptionLikeDTO> subscriptionLikeDTOS = subscriptionLikes.get().map(this::subscriptionLikeToDTO).collect(Collectors.toList());
         return new PageImpl<>(subscriptionLikeDTOS, pageable, subscriptionLikes.getTotalElements());
     }
+
+    @Override
+    public void cancelSubscriptionById(Long id) {
+        subscriptionLikeRepository.deleteById(id);
+    }
 }

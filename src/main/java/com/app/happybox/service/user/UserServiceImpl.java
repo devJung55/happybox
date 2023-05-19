@@ -1,6 +1,7 @@
 package com.app.happybox.service.user;
 
 import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.entity.order.OrderSubscription;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.user.UserRepository;
@@ -12,6 +13,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,7 +55,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getDetailByUserId(Long id) {
-        return userRepository.findById(id).get();
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()) {
+            return user.get();
+        } else {
+            return null;
+        }
     }
 
     //    UserDetail의 값불러오기
@@ -66,7 +75,8 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
-    @Override
+//    회원탈퇴
+    @Override @Transactional
     public void updateUserStatusByUserId(Long userId) {
         userRepository.findById(userId).ifPresent(user -> user.setUserStatus(UserStatus.UNREGISTERED));
     }

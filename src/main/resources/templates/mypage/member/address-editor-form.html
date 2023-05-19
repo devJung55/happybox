@@ -41,7 +41,7 @@
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area" style="margin-bottom: 6px;">
                                 <h3 class="title-menu">배송지정보수정</h3>
-                            </div><!--// menu-title-area -->
+                            </div>
                             <form id="ordFrm" name="addressForm" method="post">
                                 <div class="order-info" id="orderUserInfo">
                                     <div class="list-head">
@@ -50,9 +50,9 @@
                                 </div>
                                 <div class="order-address">
                                     <ul class="info-txt">
-                                        <li class="info__after" th:text="${member.memberName}"></li>
-                                        <li class="info__after" th:text="${member.userPhoneNumber}"></li>
-                                        <li th:text="${member.userEmail}"></li>
+                                        <li class="info__after" th:text="${memberDTO.memberName}"></li>
+                                        <li class="info__after" th:text="${memberDTO.userPhoneNumber}"></li>
+                                        <li th:text="${memberDTO.userEmail}"></li>
                                     </ul>
                                 </div>
                                 <div class="list-head-sub">
@@ -68,8 +68,8 @@
                                             <tr>
                                                 <th scope="row">받는분</th>
                                                 <td>
-                                                    <input type="hidden" th:field="${member.id}">
-                                                    <input type="text" title="" class="input-text w-full removeEmoji" th:field="${member.deliveryName}">
+                                                    <input type="hidden" th:field="${memberDTO.id}">
+                                                    <input type="text" title="" class="input-text w-full removeEmoji" th:field="${memberDTO.deliveryName}">
                                                 </td>
                                             </tr>
                                             <tr class="row-th-top">
@@ -78,10 +78,10 @@
                                                     <div class="input-group-wrap box-type" style="display: flex;">
                                                         <div class="input-group">
                                                             <div class="input-group-cell w160">
-                                                                <input type="text" id="postcode" name="zipcode" class="input-text" placeholder="우편번호" th:field="${member.memberDeliveryAddress.zipcode}" readonly>
+                                                                <input type="text" id="postcode" name="zipcode" class="input-text" placeholder="우편번호" th:field="${memberDTO.memberDeliveryAddress.zipcode}" readonly>
                                                             </div>
                                                             <div class="input-group-cell">
-                                                                <input type="text" id="address" name="firstAddress" class="input-text" placeholder="기본주소" th:field="${member.memberDeliveryAddress.firstAddress}" readonly>
+                                                                <input type="text" id="address" name="firstAddress" class="input-text" placeholder="기본주소" th:field="${memberDTO.memberDeliveryAddress.firstAddress}" readonly>
                                                             </div>
                                                             <span class="input-group-btn" onclick="sample6_execDaumPostcode()">
                                                                 <a href="javascript:void(0)" class="btn-ex-white">
@@ -90,13 +90,13 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <input type="text" id="detailAddress" name="addressDetail" class="input-text w-full removeEmoji" placeholder="상세주소" th:field="${member.memberDeliveryAddress.addressDetail}">
+                                                    <input type="text" id="detailAddress" name="addressDetail" class="input-text w-full removeEmoji" placeholder="상세주소" th:field="${memberDTO.memberDeliveryAddress.addressDetail}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">전화번호</th>
                                                 <td>
-                                                    <input type="text" class="input-text w-full" name="deliveryPhoneNumber" maxlength="11" placeholder="ex) 01099991234" th:field="${member.deliveryPhoneNumber}">
+                                                    <input type="text" class="input-text w-full" name="deliveryPhoneNumber" maxlength="11" placeholder="ex) 01099991234" th:field="${memberDTO.deliveryPhoneNumber}">
                                                 </td>
                                             </tr>
                                         </tbody>

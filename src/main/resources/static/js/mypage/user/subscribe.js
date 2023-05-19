@@ -24,9 +24,12 @@ $detailButton.on("click", function() {
 /* 구독 상태 클릭이벤트 */
 
 const $subscribeButton = $(".badge-sm-primary");
+const id = $(".orderSubscriptionId").val();
 
 $subscribeButton.on("click", function() {
     if($subscribeButton.text() == '구독취소') {
+        myPageService.cancelSubscribe(id);
+
         $subscribeButton.text("구독하기");
         $subscribeButton.css("border", "1px solid #666666");
         $subscribeButton.css("color", "#666666");
@@ -42,9 +45,9 @@ $subscribeButton.on("click", function() {
 const $welfareThumnail = $(".lozad");
 const $welfareImg = $(".welfare__img");
 
-let filePath = $userFile.filePath;
-let fileUuid = $userFile.fileUuid;
-let fileOrgName = $userFile.fileOrgName;
+let userProfilePath = $userProfile.filePath;
+let userProfileUuid = $userProfile.fileUuid;
+let userProfileOrgName = $userProfile.fileOrgName;
 
-$welfareThumnail.attr("src", `/image/display?fileName=${filePath}/${fileUuid}_${fileOrgName}`);
-$welfareImg.attr("src", `/image/display?fileName=${filePath}/${fileUuid}_${fileOrgName}`);
+$welfareThumnail.attr("src", `/image/display?fileName=${userProfilePath}/${userProfileUuid}_${userProfileOrgName}`);
+$welfareImg.attr("src", `/image/display?fileName=${userProfilePath}/${userProfileUuid}_${userProfileOrgName}`);

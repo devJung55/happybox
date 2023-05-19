@@ -25,4 +25,9 @@ public class RecipeBoardLikeServiceImpl implements RecipeBoardLikeService {
         List<RecipeBoardLikeDTO> recipeBoardLikeDTOS = recipeBoardLikes.get().map(this::recipeBoardLikeToDTO).collect(Collectors.toList());
         return new PageImpl<>(recipeBoardLikeDTOS, pageable, recipeBoardLikes.getTotalElements());
     }
+
+    @Override
+    public void cancelBookmarkRecipeById(Long id) {
+        recipeBoardLikeRepository.deleteById(id);
+    }
 }

@@ -15,6 +15,9 @@ public interface SubscriptionLikeService {
     //    마이페이지 복지관 찜 목록
     public Page<SubscriptionLikeDTO> getListSubscriptionBookmarkByMemberId(Pageable pageable, Long memberId);
 
+    //    복지관 구독 취소
+    public void cancelSubscriptionById(Long id);
+
     default SubscriptionLikeDTO subscriptionLikeToDTO(SubscriptionLike subscriptionLike) {
         return SubscriptionLikeDTO.builder()
                 .id(subscriptionLike.getId())

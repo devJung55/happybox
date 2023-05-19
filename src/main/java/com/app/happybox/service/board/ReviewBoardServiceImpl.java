@@ -153,9 +153,12 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         return new SliceImpl<>(collect, pageable, reviewBoards.hasNext());
     }
 
+//    마이페이지 나의 리뷰 목록
     @Override
-    public Page<ReviewBoardDTO> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-        return null;
+    public Page<ReviewBoardDTO> getReviewListByMemberId(Pageable pageable, Long memberId) {
+        Page<ReviewBoard> reviewBoards = reviewBoardRepository.findAllByMemberIdDescWithPaging_QueryDSL(pageable, memberId);
+        List<ReviewBoardDTO> reviewBoardDTOS = reviewBoards.get().map(this::reviewBoardToDTO).collect(Collectors.toList());
+        return new PageImpl<>(reviewBoardDTOS, pageable, reviewBoards.getTotalElements());
     }
 
     @Override

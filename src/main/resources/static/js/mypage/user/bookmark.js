@@ -54,6 +54,7 @@ function showRecipeBoardBookmarkList(bookmarkList) {
         const formattedDate = formatDate(new Date(board.createdDate));
         text += `
             <li class="ext-li colum">
+                <input type="hidden" class="id" value="${board.id}">
                 <div class="prd-item type-sm2">
                     <figure class="img w180">
                         <a href="javascript:void(0)">
@@ -84,6 +85,7 @@ function showSubscriptionBookmarkList(welfareList) {
     welfareList.content.forEach(board => {
         text += `
             <li class="ext-li colum">
+                <input type="hidden" class="id" value="${board.id}">
                 <div class="prd-item type-sm2">
                     <figure class="img w180">
                         <a href="javascript:void(0)">
@@ -117,5 +119,17 @@ $(".paging-div").on("click", "a", function(e) {
     } else if(window.location.pathname == "/mypage/member/recipe-bookmark") {
         $recipeBookmarkAppend.empty();
         myPageService.recipeBoardBookmarkAjax(page);
+    }
+});
+
+
+/*복지관, 레시피 게시물 찜 삭제*/
+$("#wishList").on("click", ".like__wrap", function() {
+    let id = $($(this).parent().siblings()[0]).val();
+
+    if(window.location.pathname == "/mypage/member/subscription-bookmark") {
+        myPageService.cancelBookmarkSubscription(id);
+    } else if(window.location.pathname == "/mypage/member/recipe-bookmark") {
+        myPageService.cancelBookmarkRecipeBoard(id);
     }
 });
