@@ -51,7 +51,7 @@ public interface MemberService{
     public void updateUserStatusById(Long memberId);
 
 //    관리자 회원 목록
-    public Page<Member> getList(Pageable pageable);
+    public Page<MemberDTO> getList(Pageable pageable);
 
 //    회원 조회
     public Optional<Member> getDetail(Long memberId);

@@ -4,6 +4,7 @@ import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Welfare;
+import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.WelfareRepository;
 import com.app.happybox.type.Role;
@@ -12,12 +13,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,14 +43,16 @@ public class WelfareServiceImpl implements WelfareService {
     }
 
     @Override
-    public Page<Welfare> getList(Pageable pageable) {
+    public Page<WelfareDTO> getList(Pageable pageable) {
         Page<Welfare> welfares = welfareRepository.findAllWithPaging_QueryDSL(pageable);
-        return welfares;
+        List<WelfareDTO> welfareDTOList = welfares.get().map(this::toWelfareDTO).collect(Collectors.toList());
+        return new PageImpl<>(welfareDTOList, pageable, welfares.getTotalElements());
     }
 
     @Override
-    public Optional<Welfare> getDetail(Long welfareId) {
-        return welfareRepository.findWelfareById_QueryDSL(welfareId);
+    public WelfareDTO getDetail(Long welfareId) {
+        Welfare welfare = welfareRepository.findById(welfareId).orElseThrow(UserNotFoundException::new);
+        return toWelfareDTO(welfare);
     }
 
 //    복지관 회원가입

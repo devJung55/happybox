@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -30,10 +31,12 @@ public class WelfareDTO {
     private String welfareName;
     private Integer welfarePointTotal;
 
+    private LocalDateTime createdDate;
+
 //    연관된 DTO 작성
 
     @Builder
-    public WelfareDTO(Long id, String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String welfareName, Integer welfarePointTotal) {
+    public WelfareDTO(Long id, String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole, String welfareName, Integer welfarePointTotal, LocalDateTime createdDate) {
         this.id = id;
         this.userId = userId;
         this.userPassword = userPassword;
@@ -44,5 +47,6 @@ public class WelfareDTO {
         this.userRole = userRole;
         this.welfareName = welfareName;
         this.welfarePointTotal = welfarePointTotal;
+        this.createdDate = createdDate;
     }
 }

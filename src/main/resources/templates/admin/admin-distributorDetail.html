@@ -41,7 +41,7 @@
                 <div class="go-list-box">
                     <!--<span class="go-list">← 리스트로 돌아가기</span>-->
                 </div>
-                <div class="detail-box-wrap" th:each="distributor : ${distributors}" th:object="${distributor}">
+                <div class="detail-box-wrap" th:object="${distributor}">
                     <div class="detail-box">
                         <div class="board-info-detail-box">
                             <span>유통업자 정보</span>
@@ -87,7 +87,7 @@
                                 <li class="content-list">
                                     <span>등록날짜</span>
                                     <div class="content-input">
-                                        <input type="text" th:value="*{#temporals.format(createdDate, 'yyyy.MM.dd')}" readonly/>
+                                        <input type="text" th:value="*{#temporals.format(createdDate, 'yyyy-MM-dd')}" readonly/>
                                     </div>
                                 </li>
                             </ul>

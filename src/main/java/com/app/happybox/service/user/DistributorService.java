@@ -20,13 +20,27 @@ public interface DistributorService {
     public Page<Distributor> getList(Pageable pageable);
 
 //    관리자 회원조회
-    public Optional<Distributor> getDetail(Long distributorId);
+    public DistributorDTO getDetail(Long distributorId);
 
     //    회원가입
     public void join(DistributorDTO distributorDTO, PasswordEncoder passwordEncoder);
 
     //    유통업체 명 중복검사
     public boolean existsByDistributorName(String distributorName);
+
+    default DistributorDTO toDistributorDTO(Distributor distributor) {
+        return DistributorDTO.builder()
+                .id(distributor.getId())
+                .address(distributor.getAddress())
+                .distributorName(distributor.getDistributorName())
+                .userEmail(distributor.getUserEmail())
+                .userId(distributor.getUserId())
+                .userPhoneNumber(distributor.getUserPhoneNumber())
+                .userRole(distributor.getUserRole())
+                .userStatus(distributor.getUserStatus())
+                .createdDate(distributor.getCreatedDate())
+                .build();
+    }
 
     default Distributor toDistributorEntity(DistributorDTO distributorDTO){
         return Distributor.builder()
