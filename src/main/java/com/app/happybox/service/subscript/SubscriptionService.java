@@ -35,6 +35,9 @@ public interface SubscriptionService {
 //    달(month)로 조회
     public List<SubscriptionDTO> findAllBetweenDate(LocalDateTime dateTime);
 
+    //    구독했는지 확인하기 위해 조회
+    public Boolean existsByWelfareId(Long welfareId);
+
     default SubscriptionDTO subscriptionToDTO(Subscription subscription, List<FoodDTO> foodList) {
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder()
                 .id(subscription.getId())

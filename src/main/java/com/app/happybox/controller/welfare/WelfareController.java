@@ -109,4 +109,10 @@ public class WelfareController {
         return new RedirectView("/login");
     }
 
+//    구독했는지 확인
+    @GetMapping("check")
+    public Boolean checkSubscribe(@RequestParam("welfareId") Long welfareId){
+        return subscriptionService.existsByWelfareId(welfareId);
+    }
+
 }

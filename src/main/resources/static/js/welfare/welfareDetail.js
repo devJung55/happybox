@@ -309,27 +309,39 @@ function showSlideImg() {
 }
 
 /* ==============================================  수정삭제를 위한 모달 ================================= */
-
-const $showDelete = $(".delete-btn");
-const $cancelDelete = $(".cancel-delete");
-$showDelete.on('click', function (e) {
-    $(".delete-modal").show();
-    $('.confirm-delete').on('click', function () {
-        $(location).attr('href', '../../templates/welfare/dontae-list.html');
-    });
-})
-$cancelDelete.on('click', function (e) {
-    $(".delete-modal").hide();
-})
+// const $showDelete = $(".delete-btn");
+// const $cancelDelete = $(".cancel-delete");
+// $showDelete.on('click', function (e) {
+//     $(".delete-modal").show();
+//     $('.confirm-delete').on('click', function () {
+//         $(location).attr('href', '../../templates/welfare/dontae-list.html');
+//     });
+// })
+// $cancelDelete.on('click', function (e) {
+//     $(".delete-modal").hide();
+// })
 
 /* ==============================================  구독하기 버튼 눌렀을 때 장바구니로 이동 ================================= */
 
 const $sub = $('.subscribe-btn');
-
+const $cancelDelete = $(".cancel-delete");
+const CHECK_CART_URL = "/welfare/check";
 $sub.on('click', function () {
+    console.log(subscription.welfareId);
+    $doAjax("GET",
+        CHECK_CART_URL,
+        {welfareId: subscription.welfareId},
+        (result) => {
+            if (!result) {
+                $('.delete-modal').show();
+            } else {
+                $('.modal-body').html("구독 하시겠습니까?");
+                $('.delete-modal').show();
+            }
+        });
+});
 
-    console.log($(".quantity-input").val());
-    console.log(CART_URL);
+$('.confirm-delete').on('click', function () {
     $doAjaxPost("POST",
         CART_URL, // 장바구니 URL
         {
@@ -337,8 +349,14 @@ $sub.on('click', function () {
             subOption: $("select[name='option']").val()
         },
         (result) => {  // callback
-            location.href="/order/subscription";
+            location.href = "/order/subscription";
         }
     );
-
 });
+
+$cancelDelete.on('click', function () {
+    $('.delete-modal').hide();
+})
+
+console.log($(".quantity-input").val());
+console.log(CART_URL);
