@@ -26,7 +26,7 @@ public interface RecipeBoardService {
     public void update(RecipeBoardDTO recipeBoardDTO, Long memberId);
 
     // 삭제
-    public void delete(Long id);
+    public void delete(Long id, Long memberId);
 
     //    현재 시퀀스 가져오기
     public RecipeBoard getCurrentSequence();
