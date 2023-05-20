@@ -10,6 +10,7 @@ import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.board.DonationBoardRepository;
 import com.app.happybox.service.board.DonationBoardService;
 import com.app.happybox.service.board.RecipeBoardService;
+import com.app.happybox.service.board.ReviewBoardLikeService;
 import com.app.happybox.service.board.ReviewBoardService;
 import com.app.happybox.service.reply.RecipeBoardReplyService;
 import com.app.happybox.service.reply.ReplyLikeService;
@@ -47,22 +48,15 @@ import java.util.UUID;
 @Slf4j
 public class BoardController {
 
-    @Qualifier
     private final ReviewBoardService reviewBoardService;
-    @Qualifier
     private final RecipeBoardService recipeBoardService;
-    @Qualifier
     private final DonationBoardService donationBoardService;
-    @Qualifier
     private final MemberService memberService;
-    @Qualifier
     private final SubscriptionService subscriptionService;
-    @Qualifier
     private final ReviewBoardReplyService reviewBoardReplyService;
-    @Qualifier
     private final ReplyLikeService replyLikeService;
-    @Qualifier
     private final RecipeBoardReplyService recipeBoardReplyService;
+    private final ReviewBoardLikeService reviewBoardLikeService;
 
     //    리뷰 게시판 이동
     @GetMapping("review-board-list")
@@ -93,8 +87,11 @@ public class BoardController {
 
     //    리뷰 게시판 상세보기
     @GetMapping("review-board-detail/{id}")
-    public String goReviewDetail(@PathVariable Long id, Model model){
+    public String goReviewDetail(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetail userDetail){
         model.addAttribute("review", reviewBoardService.getDetail(id));
+
+        // 좋아요 이미 눌렀는지 검사
+        model.addAttribute("isLike", reviewBoardLikeService.checkLike(id, userDetail.getId()));
         return "user-board/review-board-detail";
     }
 
@@ -106,9 +103,9 @@ public class BoardController {
 
     @PostMapping("review-board-insert")
     @ResponseBody
-    public void reviewWrite(@RequestBody ReviewBoardDTO reviewBoardDTO) {
-        Long userId = 1L;
-        reviewBoardService.write(reviewBoardDTO, userId);
+    public void reviewWrite(@RequestBody ReviewBoardDTO reviewBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
+
+        reviewBoardService.write(reviewBoardDTO, userDetail.getId());
 
         log.info("=====================" + reviewBoardDTO);
     }
@@ -122,28 +119,30 @@ public class BoardController {
 
     @PostMapping("review-board-modify")
     @ResponseBody
-    public String goReviewModify(@RequestBody ReviewBoardDTO reviewBoardDTO) {
-        Long userId = 1L;
+    public String goReviewModify(@RequestBody ReviewBoardDTO reviewBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
 
         log.info(reviewBoardDTO.toString());
 
-        reviewBoardService.update(reviewBoardDTO, userId);
+        reviewBoardService.update(reviewBoardDTO, userDetail.getId());
         log.info(reviewBoardDTO.getId().toString());
         return "/user-board/review-board-detail/" + reviewBoardDTO.getId();
     }
 
     //    리뷰 게시글 삭제
     @DeleteMapping("review-board-detail/delete/{id}")
-    public String deleteReviewReply(@PathVariable Long id) {
-        Long userId = 1L;
-
+    public String deleteReviewBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetail userDetail) {
         // 임시 session 값 1저장
-        reviewBoardService.delete(id, userId);
+        reviewBoardService.delete(id, userDetail.getId());
         log.info("===============들어옴");
         return "user-board/review-board-list";
     }
 
     //    리뷰 게시글 좋아요
+    @PostMapping("review-board-detail/like/{id}")
+    @ResponseBody
+    public boolean checkLike(@PathVariable Long id, @AuthenticationPrincipal UserDetail userDetail) {
+        return reviewBoardLikeService.checkOutLike(id, userDetail.getId());
+    }
 
     //    댓글 목록
     @GetMapping("review-board-detail/reply/{id}")
@@ -304,17 +303,52 @@ public class BoardController {
 
     //    기부 게시판 리스트
     @GetMapping("donate-list")
-    public Page<DonationBoardDTO> getDonateBoardList(int page, int size) {
-        return donationBoardService.getList(PageRequest.of(page, size));
+    public String goDonateList(){
+        return "user-board/donate-list";
     }
 
+//    @GetMapping("donate-list")
+//    public Page<DonationBoardDTO> getDonateBoardList(int page, int size) {
+//        return donationBoardService.getList(PageRequest.of(page, size));
+//    }
+
 //    기부 게시판 상세보기
+    @GetMapping("donate-detail/{id}")
+    public String goDonateDetail(Model model, @PathVariable Long id){
+        model.addAttribute("donate", donationBoardService.getDetail(id));
+        return "user-board/donate-detail";
+    }
 
 //    기부 게시판 작성
+    @GetMapping("donate-insert")
+    public void goDonateWrite(Model model) {
+        model.addAttribute("donate", new DonationBoardDTO());
+}
+
+    @PostMapping("donate-insert")
+    @ResponseBody
+    public void DonateWrite(@RequestBody DonationBoardDTO donationBoardDTO) {
+        Long userId = 1L;
+        donationBoardService.write(donationBoardDTO, userId);
+
+        log.info("=====================" + donationBoardDTO);
+    }
 
 //    기부 게시판 수정
+    @GetMapping("donate-modify/{id}")
+    public String goDonateModify(Model model, @PathVariable Long id){
+        model.addAttribute("donationBoardDTO", donationBoardService.getDetail(id));
+        return "user-board/donate-modify";
+    }
 
 //    기부 게시판 삭제
+    @DeleteMapping("donate-detail/delete/{id}")
+    public void deleteDonate(@PathVariable Long id) {
+        Long userId = 1L;
 
+        // 임시 session 값 1저장
+        donationBoardService.delete(id, userId);
+        log.info("===============들어옴");
+    }
 
 }

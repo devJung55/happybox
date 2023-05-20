@@ -151,8 +151,13 @@ function showDetail() {
                 />
               </svg>
             </button>
-            <button type="button" class="btn-heart">
-            </button>
+            <div class="like-btn-wrap">
+                <a href="javascript:checkLike()">
+                    <span class="like-btn">
+                        <img src="/img/mypage/heart.png" alt=""/>
+                    </span>
+                </a>
+            </div>
           </div>
           <span class="writer-button-wrap">
             <p class="writer-name">${review.memberDTO.memberName}</p>
@@ -420,23 +425,6 @@ $replyWriteBtn.on("click", function () {
 /* 댓글 삭제 */
 const xBtn = $('.xBtn');
 const deleteUrl = `/user-board/review-board-detail/reply/delete/${review.id}`;
-// 삭제 버튼 클릭 시 deleteReply 함수 호출
-
-// xBtn.on('click', function(){
-//     $doAjaxPost("DELETE",
-//         deleteUrl,
-//         {},
-//         (result) => {
-//             let count = Number($(".review-count span").text());
-//             // 댓글수 증가
-//             $(".review-count span").text(--count);
-//             $(".reply-count").text(count);
-//             // 댓글 내용 초기화
-//             console.log(result);
-//             window.location.reload();
-//         }
-//     );
-// })
 
 function deleteReply(deleteBtn) {
     let id = $(deleteBtn).data("id");
@@ -479,25 +467,29 @@ function checkOutLike(likeBtn) {
 }
 
 /* ======================================================================================= */
+const BOARD_LIKE_URL = `/user-board/review-board-detail/like/${review.id}`;
+const likeSrc = "/img/mypage/heart-pull.png";
+const unlikeSrc = "/img/mypage/heart.png";
+/* 이미 좋아요인지 검사 */
 
-/* 하트 이벤트 */
-$('.btn-heart').on('click', function () {
-    if ($(this).hasClass('on')) {
-        $(this).removeClass('on');
-    } else {
-        $(this).addClass('on');
-        heartInsert();
-    }
-});
+$(".like-btn img").attr("src", `${isLike ? likeSrc : unlikeSrc}`);
 
-function heartInsert() {
-    $.ajax({
-        type: "POST",
-        url: "/user-board/review-board-detail/heart-insert",
-        data: data,
-        dataType: "json",
-        success: function (response) {
-            showList(response);
-        }
+/* 좋아요 눌렀을 때 */
+function checkLike() {
+    console.log(isLike);
+    $doAjax("POST", BOARD_LIKE_URL, {}, (result) => {
+        $(".like-btn img").attr("src", `${result ? unlikeSrc : likeSrc}`);
     });
 }
+
+
+
+// /* 하트 이벤트 */
+// $('.btn-heart').on('click', function () {
+//     if ($(this).hasClass('on')) {
+//         $(this).removeClass('on');
+//     } else {
+//         $(this).addClass('on');
+//         heartInsert();
+//     }
+// });

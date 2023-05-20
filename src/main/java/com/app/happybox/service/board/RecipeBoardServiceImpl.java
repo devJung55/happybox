@@ -69,16 +69,57 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
         }
     }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Override @Transactional
     public void update(RecipeBoardDTO recipeBoardDTO, Long memberId) {
+        List<BoardFileDTO> boardFileDTOS = recipeBoardDTO.getRecipeBoardFiles();
+
+        RecipeBoard recipeBoard = recipeBoardRepository.findById(recipeBoardDTO.getId()).orElseThrow(BoardNotFoundException::new);
+
+        recipeBoard.setBoardTitle(recipeBoardDTO.getBoardTitle());
+        recipeBoard.setBoardContent(recipeBoardDTO.getBoardContent());
+
+        // 기존파일 삭제
+        Long deleteCount = boardFileRepository.deleteByRecipeBoardId(recipeBoardDTO.getId());
+
+        log.info("============== {} ============", deleteCount);
+
+//        reviewBoardDTO.getReviewBoardFiles().forEach(file -> {
+//            log.info("============ 파일 반복문 ===========");
+//            // 새로운 파일
+//            BoardFile boardFile = toBoardFileEntity(file);
+//
+//
+//            boardFile.setReviewBoard(reviewBoard);
+//            boardFileRepository.save(boardFile);
+//        });
+        int count = 0;
+
+        for (int i = 0; i < boardFileDTOS.size(); i++) {
+            if(boardFileDTOS.get(i) == null) continue;
+
+            if (count == 0) {
+                boardFileDTOS.get(i).setFileRepresent(FileRepresent.REPRESENT);
+                count++;
+            } else {
+                boardFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
+            }
+
+            boardFileDTOS.get(i).setRecipeBoardDTO(recipeBoardToDTO(getCurrentSequence()));
+            // 엔티티
+            BoardFile boardFile = toBoardFileEntity(boardFileDTOS.get(i));
+
+            boardFile.setRecipeBoard(recipeBoard);
+
+            boardFileRepository.save(boardFile);
+        }
 
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Long id) {
-
+    public void delete(Long id, Long memberId) {
+        RecipeBoard recipeBoard = recipeBoardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
+        recipeBoardRepository.delete(recipeBoard);
     }
 
     @Override

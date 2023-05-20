@@ -5,13 +5,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>기부 상세</title>
-        <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-        <link rel="stylesheet" href="../../static/css/global/global.css" />
-        <link rel="stylesheet" href="../../static/css/CS/common.css" />
-        <link rel="stylesheet" href="../../static/css/welfare/donate-detail.css" />
+        <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+        <link rel="stylesheet" href="/css/global/global.css" />
+        <link rel="stylesheet" href="/css/component/header.css" />
+        <link rel="stylesheet" href="/css/component/footer.css" />
+        <link rel="stylesheet" href="/css/CS/common.css" />
+        <link rel="stylesheet" href="/css/welfare/donate-detail.css" />
     </head>
     <body>
-        <header></header>
+    <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section class="container donate-detail">
             <div class="content-wrap frame-sm">
                 <div class="page-title-area">
@@ -104,11 +106,9 @@
                 </div>
             </div>
         </section>
-        <footer></footer>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $('header').load('../../templates/component/header.html');
-        $('footer').load('../../templates/component/footer.html');
-    </script>
+    <script src="/js/common/ajax.js"></script>
+    <script src="/js/main/header.js"></script>
 </html>

@@ -1,6 +1,7 @@
 package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.DonationBoard;
+import com.app.happybox.entity.board.ReviewBoard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +14,22 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.board.QDonationBoard.donationBoard;
+import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 
 
 @RequiredArgsConstructor
 @Slf4j
 public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     private final JPAQueryFactory query;
+
+    @Override
+    public DonationBoard getCurrentSequence_QueryDsl() {
+        return query.select(donationBoard)
+                .from(donationBoard)
+                .orderBy(donationBoard.id.desc())
+                .limit(1)
+                .fetchOne();
+    }
 
     @Override
     public Page<DonationBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {
