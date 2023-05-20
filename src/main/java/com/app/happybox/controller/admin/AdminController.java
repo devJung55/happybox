@@ -53,11 +53,10 @@ public class AdminController {
         Page<ReviewBoardDTO> list = reviewBoardService.getList(PageRequest.of(page - 1, 10));
         model.addAttribute("reviewBoards", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
-
         return "/admin/admin-reviewBoardList";
     }
 
-//    후기기 게시물 조회
+//    후기 게시물 조회
     @ResponseBody
     @GetMapping("reviewBoard-detail")
     public ReviewBoardDTO getReviewBoardDetail(@RequestParam("reviewBoardId") Long reviewBoardId) {
@@ -69,7 +68,6 @@ public class AdminController {
     @GetMapping("recipeBoard-list")
     public String getRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<RecipeBoardDTO> list = recipeBoardService.getList(PageRequest.of(page - 1, 10));
-
         model.addAttribute("recipeBoards", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
 
