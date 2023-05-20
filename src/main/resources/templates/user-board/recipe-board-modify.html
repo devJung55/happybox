@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>리뷰 게시글 수정하기</title>
+    <title>레시피 게시글 수정하기</title>
     <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
     <link rel="stylesheet" href="/css/global/global.css"/>
     <link rel="stylesheet" href="/css/component/header.css"/>
@@ -21,29 +21,29 @@
                 <form
                         method="post"
                         name="form" id="counselRegFrm"
-                    <div class="frame-right">
-                        <div class="frame-cnt-inner">
-                            <div class="menu-title-area">
-                                <h3 class="title-menu">게시글 수정하기</h3>
-                            </div>
-                            <!--// menu-title-area -->
-                            <div class="board-form type2">
-
-                            </div>
-                            <!--// board-form -->
-
-                            <div class="btn-bottom-area">
-                                <button type="button" class="btn-basic-lg2 btn-grey3">
-                                    <span>취소하기</span>
-                                </button>
-                                <button type="submit" class="btn-basic-lg2 btn-primary">
-                                    <span>수정하기</span>
-                                </button>
-                            </div>
+                <div class="frame-right">
+                    <div class="frame-cnt-inner">
+                        <div class="menu-title-area">
+                            <h3 class="title-menu">게시글 수정하기</h3>
                         </div>
-                        <!--// frame-cnt-inner -->
+                        <!--// menu-title-area -->
+                        <div class="board-form type2">
+
+                        </div>
+                        <!--// board-form -->
+
+                        <div class="btn-bottom-area">
+                            <button type="button" class="btn-basic-lg2 btn-grey3">
+                                <span>취소하기</span>
+                            </button>
+                            <button type="submit" class="btn-basic-lg2 btn-primary">
+                                <span>수정하기</span>
+                            </button>
+                        </div>
                     </div>
-                    <!--// frame-right -->
+                    <!--// frame-cnt-inner -->
+                </div>
+                <!--// frame-right -->
                 </form>
             </div>
             <!--// frame-sm -->
@@ -56,9 +56,8 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let fileDTOS = null;
-    let reviewBoardDTO = [[${reviewBoardDTO}]];
-    console.log(reviewBoardDTO);
+    let recipeBoardDTO = [[${recipeBoardDTO}]];
 </script>
 <script src="/js/main/header.js"></script>
-<script src="/js/member/board-modify.js"></script>
+<script src="/js/member/recipe-modify.js"></script>
 </html>

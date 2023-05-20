@@ -1,6 +1,7 @@
 package com.app.happybox.repository.board;
 
 import com.app.happybox.entity.board.DonationBoard;
+import com.app.happybox.entity.board.ReviewBoard;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -8,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DonationBoardQueryDsl {
+    // 현재 시퀀스 가져오기
+    public DonationBoard getCurrentSequence_QueryDsl();
+
 //    기부 게시글 목록 페이징 처리(최신순)
     public Page<DonationBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable);
 

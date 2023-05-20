@@ -32,10 +32,12 @@ public class DonationBoard extends Board {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "donationBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
     private List<BoardFile> donationBoardFiles = new ArrayList<>();
 
-    public DonationBoard(String boardTitle, String boardContent, DonateType donateType, String donateLocation, List<BoardFile> donationBoardFiles) {
-        super(boardTitle, boardContent);
+    @Builder
+    public DonationBoard(Long id, String boardTitle, String boardContent, List<BoardFile> boardFiles, DonateType donateType, String donateLocation, Welfare welfare, List<BoardFile> donationBoardFiles) {
+        super(id, boardTitle, boardContent, boardFiles);
         this.donateType = donateType;
         this.donateLocation = donateLocation;
+        this.welfare = welfare;
         this.donationBoardFiles = donationBoardFiles;
     }
 
@@ -43,4 +45,7 @@ public class DonationBoard extends Board {
         this.welfare = welfare;
     }
 
+    public void setDonateType(DonateType donateType) {
+        this.donateType = donateType;
+    }
 }
