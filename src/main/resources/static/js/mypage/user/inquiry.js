@@ -84,12 +84,13 @@ let page = 0;
 
 function showInquiryList(inquiries) {
     let text = "";
-    let str = "";
-    let answer = "";
-    let image = "";
-    let answerImage = "";
 
     inquiries.content.forEach(inquiry => {
+        let str = "";
+        let answer = "";
+        let image = "";
+        let answerImage = "";
+
         if(inquiry.inquiryAnswerDTO != null) {
             const formattedDate = formatDate(new Date(inquiry.inquiryAnswerDTO.createdDate));
             answer = `
@@ -180,7 +181,7 @@ function showInquiryList(inquiries) {
                                             </ul>
                                         </div>
                                         <ul class="sep-list type3">
-                                            <li><a href="javascript:void(0)" class="btn_delete">삭제</a></li>
+                                            <li><a href="javascript:void(0)" class="btn_delete"></a></li>
                                         </ul>
                                     </div>
                                 </div>

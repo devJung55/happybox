@@ -47,9 +47,9 @@ $showModal.on('click', function(e){
 })
 
 /* 상세 모달 닫기 */
-const $modalCancel = $("#Capa_1");
+const $eventModalCancel = $("#Capa_1");
 
-$modalCancel.on("click", function(e) {
+$eventModalCancel.on("click", function(e) {
     $(".modal").hide();
 });
 
@@ -91,14 +91,14 @@ $cancelIntro.on('click', function(e) {
 
 /* 삭제 모달 */
 
-const $showDelete = $(".delete-button");
-const $cancelDelete = $(".cancel-delete");
+const $eventShowDelete = $(".delete-button");
+const $eventCancelDelete = $(".cancel-delete");
 
-$showDelete.on('click', function(e){
+$eventShowDelete.on('click', function(e){
     $(".delete-modal").show();
 })
 
-$cancelDelete.on('click', function(e){
+$eventCancelDelete.on('click', function(e){
     $(".delete-modal").hide();
 })
 
