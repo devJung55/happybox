@@ -82,7 +82,6 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
     public void update(ReviewBoardDTO reviewBoardDTO, Long memberId) {
         List<BoardFileDTO> boardFileDTOS = reviewBoardDTO.getReviewBoardFiles();
 
-
         ReviewBoard reviewBoard = reviewBoardRepository.findById(reviewBoardDTO.getId()).orElseThrow(BoardNotFoundException::new);
 
         reviewBoard.setBoardTitle(reviewBoardDTO.getBoardTitle());
@@ -90,7 +89,9 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         reviewBoard.setWelfareName(reviewBoardDTO.getWelfareName());
 
         // 기존파일 삭제
-        boardFileRepository.deleteByReviewBoardId(reviewBoardDTO.getId());
+        Long deleteCount = boardFileRepository.deleteByReviewBoardId(reviewBoardDTO.getId());
+
+        log.info("============== {} ============", deleteCount);
 
 //        reviewBoardDTO.getReviewBoardFiles().forEach(file -> {
 //            log.info("============ 파일 반복문 ===========");
