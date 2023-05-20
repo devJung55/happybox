@@ -173,7 +173,6 @@ function showProductDetail(product) {
 }
 
 function showReviewBoardDetail(reviewBoard) {
-    console.log(reviewBoard)
     let text = "";
     let img = "";
     const $reviewDetailAppend = $(".content-detail");
@@ -184,7 +183,6 @@ function showReviewBoardDetail(reviewBoard) {
 
     for (let i = 0; i < 3; i++) {
         if(i < reviewBoard.reviewBoardFiles.length) {
-            console.log(reviewBoard.reviewBoardFiles[i])
             img += `
                     <div class="content-img list-img">
                         <img src=/image/display?fileName=${reviewBoard.reviewBoardFiles[i].filePath}/${reviewBoard.reviewBoardFiles[i].fileUuid}_${reviewBoard.reviewBoardFiles[i].fileOrgName}">
@@ -252,7 +250,6 @@ function showRecipeBoardDetail(recipeBoard) {
 
         for (let i = 0; i < 7; i++) {
             if(i < recipeBoard.recipeBoardFiles.length) {
-                console.log(recipeBoard.recipeBoardFiles[i])
                 img += `
                     <div class="content-img list-img img__width">
                         <img src=/image/display?fileName=${recipeBoard.recipeBoardFiles[i].filePath}/${recipeBoard.recipeBoardFiles[i].fileUuid}_${recipeBoard.recipeBoardFiles[i].fileOrgName}">
@@ -348,7 +345,7 @@ $reviewBoardUI.on("click", function() {
     adminService.reviewBoardDetail(reviewBoardId);
 });
 
-/*-- 회원 삭제 --*/
+/*-- 삭제 --*/
 const $userCheckBox = $(".check__box");
 const $confirm = $(".confirm-delete");
 
@@ -362,6 +359,9 @@ $confirm.on("click", function() {
             if(url == "/admin/member-list") {
                 adminService.removeUser($($(v).parent().siblings()[0]).text());
             } else if(url == "/admin/recipeBoard-list") {
+                adminService.removeBoard($($(v).parent().parent().siblings()[0]).text());
+            } else if(url == "/admin/reviewBoard-list") {
+                console.log($($(v).parent().parent().siblings()[0]).text());
                 adminService.removeBoard($($(v).parent().parent().siblings()[0]).text());
             }
         }

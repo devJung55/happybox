@@ -88,8 +88,6 @@ public class MypageController {
     @GetMapping("member/review-board")
     public Page<ReviewBoardDTO> getReviewBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<ReviewBoardDTO> reviewBoards = reviewBoardService.getReviewListByMemberId(PageRequest.of(page - 1, 5), userDetail.getId());
-
-        log.info(page + "--------------page");
         return reviewBoards;
     }
 
@@ -173,7 +171,7 @@ public class MypageController {
 //    회원정보수정
     @MypageHeaderValues
     @GetMapping("member/edit")
-    public String updateMemberInfo(Model model, @AuthenticationPrincipal UserDetail userDetail) {
+    public String updateMemberInfo(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
         return "/mypage/member/member-editor-form";
     }
@@ -188,7 +186,7 @@ public class MypageController {
 //    배송지정보수정
     @MypageHeaderValues
     @GetMapping("member/address-editor")
-    public String updateMemberDeliveryAddress(Model model, @AuthenticationPrincipal UserDetail userDetail) {
+    public String updateMemberDeliveryAddress(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
         return "/mypage/member/address-editor-form";
     }
