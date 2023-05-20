@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,18 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+	<link rel="stylesheet" href="/css/admin/admin-default.css">
+    <link rel="stylesheet" href="/css/admin/admin-modal.css">
+    <link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
 	<section class="header-section">
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-title-layout">
-					<img class="logo-image" src="../../static/img/header/Logo-main.png" alt="">
+					<img class="logo-image" src="/img/header/Logo-main.png" alt="">
                 </div>
             </div>
             <div>
@@ -30,13 +31,10 @@
         </div>
     </section>
     <main class="main-section">
-        <!-- 임시 사이드바 -->
-        <div id="side-bar"></div>
-        <!-- 임시 사이드바 끝 -->
+		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
         <section class="content-section">
             <div class="container">
 				<div class="container-margin">
-					<!-- 헤더 -->
 					<section class="board-info-box-layout">
 						<div class="board-info-box">
 							<div class="board-info-title-box">
@@ -60,125 +58,17 @@
 											<th>작성 날짜</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr class="reviewBoard__tr" th:each="board : ${reviewBoards}" th:object="${board}">
 										<td>
 											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
+												<input type="checkbox" name="check">
+											</label>
 										</td>
-										<td class="show-modal">1</td>
+										<td class="show-modal" th:text="*{id}"></td>
 										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">임**</td>
-										<td class="show-modal">2023.01.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">2</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">3</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">4</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">5</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">6</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">7</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">8</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">9</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">10</td>
-										<td class="show-modal">리뷰 게시판</td>
-										<td class="show-modal">이 복지관 정말 좋은거 같아요!</td>
-										<td class="show-modal">이**</td>
-										<td class="show-modal">2023.02.11</td>
+										<td class="show-modal"th:text="*{boardTitle}"></td>
+										<td class="show-modal"th:text="*{memberDTO.memberName}"></td>
+										<td class="show-modal"th:text="*{boardRegisterDate}"></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -261,64 +151,66 @@
 			</div>
 			<form class="content-info" action>
 				<main class="content-detail">
-					<div class="content-img-wrapper">
-                        <div class="content-img list-img">
-                            <img
-                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-                            />
-                        </div>
-                        <div class="content-img list-img">
-                            <img
-                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-                            />
-                        </div>
-                        <div class="content-img list-img">
-                            <img
-                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-                            />
-                        </div>
-					</div>
-					<ul class="content-list-wrap">
-						<li class="content-list">
-							<span>제목</span>
-							<div class="content-input">
-								<input type="text" value="이 복지관 정말 좋은거 같아요!!" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>닉네임</span>
-							<div class="content-input">
-								<input type="text" value="장군님" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>카테고리</span>
-							<div class="content-input">
-								<input type="text" value="리뷰 게시판" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>작성날짜</span>
-							<div class="content-input">
-								<input type="text" value="2023.01.11" readonly/>
-							</div>
-						</li>
-						<li class="content-list txt-align">
-							<span>내용</span>
-							<div class="content-input">
-								<textarea class="normal-textarea" cols="30" rows="10" name="" readonly>
-메론 비쉬시아즈와 킹크랩, 아보카도의 조화가 좋은 요리입니다.
-아몬드 젤리를 더해 시각과 식감에 특별함을 더했으며, 사과를 넣어 입 안이 깔끔하게 마무리될 수 있도록 하였습니다.
-아주 맛있게 잘 됐습니다.</textarea>
-							</div>
-						</li>
-					</ul>
+<!--					<div class="content-img-wrapper">-->
+<!--                        <div class="content-img list-img">-->
+<!--                            <img-->
+<!--                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"-->
+<!--                            />-->
+<!--                        </div>-->
+<!--                        <div class="content-img list-img">-->
+<!--                            <img-->
+<!--                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"-->
+<!--                            />-->
+<!--                        </div>-->
+<!--                        <div class="content-img list-img">-->
+<!--                            <img-->
+<!--                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"-->
+<!--                            />-->
+<!--                        </div>-->
+<!--					</div>-->
+<!--					<ul class="content-list-wrap">-->
+<!--						<li class="content-list">-->
+<!--							<span>제목</span>-->
+<!--							<div class="content-input">-->
+<!--								<input type="text" value="이 복지관 정말 좋은거 같아요!!" readonly/>-->
+<!--							</div>-->
+<!--						</li>-->
+<!--						<li class="content-list">-->
+<!--							<span>닉네임</span>-->
+<!--							<div class="content-input">-->
+<!--								<input type="text" value="장군님" readonly/>-->
+<!--							</div>-->
+<!--						</li>-->
+<!--						<li class="content-list">-->
+<!--							<span>카테고리</span>-->
+<!--							<div class="content-input">-->
+<!--								<input type="text" value="리뷰 게시판" readonly/>-->
+<!--							</div>-->
+<!--						</li>-->
+<!--						<li class="content-list">-->
+<!--							<span>작성날짜</span>-->
+<!--							<div class="content-input">-->
+<!--								<input type="text" value="2023.01.11" readonly/>-->
+<!--							</div>-->
+<!--						</li>-->
+<!--						<li class="content-list txt-align">-->
+<!--							<span>내용</span>-->
+<!--							<div class="content-input">-->
+<!--								<textarea class="normal-textarea" cols="30" rows="10" name="" readonly>-->
+<!--메론 비쉬시아즈와 킹크랩, 아보카도의 조화가 좋은 요리입니다.-->
+<!--아몬드 젤리를 더해 시각과 식감에 특별함을 더했으며, 사과를 넣어 입 안이 깔끔하게 마무리될 수 있도록 하였습니다.-->
+<!--아주 맛있게 잘 됐습니다.</textarea>-->
+<!--							</div>-->
+<!--						</li>-->
+<!--					</ul>-->
 				</main>
 			</form>
 		</div>
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/event.js"></script>
+<script src="/js/admin/menuLoad.js"></script>
+<script src="/js/admin/event.js"></script>
+<script src="/js/admin/sidebar.js"></script>
+<script src="/js/admin/ajax.js"></script>
 </html>

@@ -32,14 +32,10 @@
         </div>
     </section>
     <main class="main-section">
-        <!-- 임시 사이드바 -->
 		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
-        <!-- 임시 사이드바 끝 -->
         <section class="content-section">
             <div class="container">
-                <div class="go-list-box">
-                    <!--<span class="go-list">← 리스트로 돌아가기</span>-->
-                </div>
+                <div class="go-list-box"></div>
                 <div class="detail-box-wrap">
                     <div class="detail-box">
                         <div class="board-info-detail-box">
@@ -54,7 +50,7 @@
 									/>
 									<img
 										th:if="${userFile != null}"
-										src="/files/display?" + th:value="${userFile.getFilePath + '/t_' + userFile.getFileUuid + '_' + userFile.getFileOrgName}"
+										src="/image/display?fileName=" + th:value="${userFile.getFilePath + '/' + userFile.getFileUuid + '_' + userFile.getFileOrgName}"
 									/>
 								</div>
                             </div>
@@ -95,13 +91,10 @@
                     <div class="detail-list">
                         <div class="board-info-detail-box">
                             <span>구독자 목록</span>
-                            <div class="delete-box">
-                                <button class="delete-button">목록 삭제</button>
-                            </div>
                         </div>
                         <div class="table-box detail-table">
                             <div class="info-table">
-								<table class="table" th:each="subscriber : ${subscribers}" th:object="${subscriber}">
+								<table class="table">
 									<thead>
 										<tr>
 											<th>
@@ -112,19 +105,19 @@
                                             <th>등록날짜</th>
 										</tr>
 									</thead>
-									<tr>
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal" th:text="*{memberId}"></td>
-										<td class="show-modal" th:text="*{memberName}"></td>
-										<td class="show-modal" th:text="*{#temporals.format(orderStartDate, 'yyyy.MM.dd')}"></td>
-									</tr>
+                                    <div th:each="subscriber : ${subscribers}" th:object="${subscriber}">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="check">
+                                            </td>
+                                            <td class="show-modal" th:text="*{memberId}"></td>
+                                            <td class="show-modal" th:text="*{memberName}"></td>
+                                            <td class="show-modal" th:text="*{#temporals.format(orderStartDate, 'yyyy.MM.dd')}"></td>
+                                        </tr>
+                                    </div>
 								</table>
-								<!-- 페이지 버튼 -->
 								<div th:if="${pageDTO.total != 0}" class="page-button-box-layout">
 									<div class="page-button-box">
-										<!-- 페이지 번호 -->
 										<div class="">
 											<div class="page-button-margin">
 												<div>

@@ -26,8 +26,17 @@ let adminService = (function() {
             url: "/admin/recipeBoard-detail",
             data: {"recipeBoardId": recipeBoardId},
             success: function(recipeBoard) {
-                console.log("success");
                 showRecipeBoardDetail(recipeBoard);
+            }
+        })
+    }
+
+    function reviewBoardDetail(reviewBoardId) {
+        $.ajax({
+            url: "/admin/reviewBoard-detail",
+            data: {"reviewBoardId": reviewBoardId},
+            success: function(reviewBoard) {
+                showReviewBoardDetail(reviewBoard);
             }
         })
     }
@@ -51,7 +60,7 @@ let adminService = (function() {
             }
         })
     }
-    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, removeUser: removeUser, removeBoard: removeBoard}
+    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, reviewBoardDetail: reviewBoardDetail, removeUser: removeUser, removeBoard: removeBoard}
 })();
 
 function showMemberDetail(member) {
@@ -73,9 +82,7 @@ function showMemberDetail(member) {
         <div class="content-img-wrapper">
             <label>
                 <div class="content-img one-img">
-                    <img
-                    src= ${src}
-                    />
+                    <img src= ${src}/>
                 </div>
                 <input type="file" name="file" accept="image/*" style="display: none" readonly/>
             </label>
@@ -165,44 +172,142 @@ function showProductDetail(product) {
     $mainTag.append(text);
 }
 
+function showReviewBoardDetail(reviewBoard) {
+    console.log(reviewBoard)
+    let text = "";
+    let img = "";
+    const $reviewDetailAppend = $(".content-detail");
+    
+    text += `
+        <div class="content-img-wrapper">
+            `;
+
+    for (let i = 0; i < 3; i++) {
+        if(i < reviewBoard.reviewBoardFiles.length) {
+            console.log(reviewBoard.reviewBoardFiles[i])
+            img += `
+                    <div class="content-img list-img">
+                        <img src=/image/display?fileName=${reviewBoard.reviewBoardFiles[i].filePath}/${reviewBoard.reviewBoardFiles[i].fileUuid}_${reviewBoard.reviewBoardFiles[i].fileOrgName}">
+                    </div>
+                `;
+        } else {
+            img += `
+                    <div class="content-img list-img">
+                        <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"/>
+                    </div>
+                `;
+        }
+    }
+
+        text += img;
+
+        text += `
+        </div>
+            <ul class="content-list-wrap">
+                <li class="content-list">
+                    <span>제목</span>
+                    <div class="content-input">
+                        <input type="text" value="${reviewBoard.boardTitle}" readonly/>
+                    </div>
+                </li>
+                <li class="content-list">
+                    <span>닉네임</span>
+                    <div class="content-input">
+                        <input type="text" value="${reviewBoard.memberName}" readonly/>
+                    </div>
+                </li>
+                <li class="content-list">
+                    <span>카테고리</span>
+                    <div class="content-input">
+                        <input type="text" value="리뷰 게시판" readonly/>
+                    </div>
+                </li>
+                <li class="content-list">
+                    <span>작성날짜</span>
+                    <div class="content-input">
+                        <input type="text" value="${reviewBoard.boardRegisterDate}" readonly/>
+                    </div>
+                </li>
+                <li class="content-list txt-align">
+                    <span>내용</span>
+                    <div class="content-input">
+                        <textarea class="normal-textarea" cols="30" rows="10" name="" readonly>${reviewBoard.boardContent}</textarea>
+                    </div>
+                </li>
+            </ul>
+    `;
+    $reviewDetailAppend.empty();
+    $reviewDetailAppend.append(text);
+}
+
 function showRecipeBoardDetail(recipeBoard) {
     let text = "";
-    const $ulTag = $(".content-list-wrap");
+    let img = "";
+    const $recipeDetailAppend = $(".content-detail");
 
-    text = `
-        <li class="content-list">
-            <span>제목</span>
-            <div class="content-input">
-                <input type="text" value="${recipeBoard[0]}" readonly/>
-            </div>
-        </li>
-        <li class="content-list">
-            <span>이름</span>
-            <div class="content-input">
-                <input type="text" value="${recipeBoard[1]}" readonly/>
-            </div>
-        </li>
-        <li class="content-list">
-            <span>카테고리</span>
-            <div class="content-input">
-                <input type="text" value="레시피 게시판" readonly/>
-            </div>
-        </li>
-        <li class="content-list">
-            <span>작성날짜</span>
-            <div class="content-input">
-                <input type="text" value="${recipeBoard[2]}" readonly/>
-            </div>
-        </li>
-        <li class="content-list txt-align">
-            <span>내용</span>
-            <div class="content-input">
-                <textarea class="normal-textarea" cols="30" rows="10" name="" readonly>${recipeBoard[3]}</textarea>
-            </div>
-        </li>
+    text += `
+        <div class="content-img-wrapper board-wrapper">
+            <label>
+            `;
+
+        for (let i = 0; i < 7; i++) {
+            if(i < recipeBoard.recipeBoardFiles.length) {
+                console.log(recipeBoard.recipeBoardFiles[i])
+                img += `
+                    <div class="content-img list-img img__width">
+                        <img src=/image/display?fileName=${recipeBoard.recipeBoardFiles[i].filePath}/${recipeBoard.recipeBoardFiles[i].fileUuid}_${recipeBoard.recipeBoardFiles[i].fileOrgName}">
+                    </div>
+                `;
+            } else {
+                img += `
+                    <div class="content-img list-img img__width">
+                        <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6">
+                    </div>
+                `;
+            }
+        }
+
+    text += img;
+
+    text += `
+                </div>
+            </label>
+        </div>
+        <ul class="content-list-wrap recipeBoard__detail__modal">
+            <li class="content-list">
+                <span>제목</span>
+                <div class="content-input">
+                    <input type="text" value="${recipeBoard.boardTitle}" readonly/>
+                </div>
+            </li>
+            <li class="content-list">
+                <span>이름</span>
+                <div class="content-input">
+                    <input type="text" value="${recipeBoard.memberName}" readonly/>
+                </div>
+            </li>
+            <li class="content-list">
+                <span>카테고리</span>
+                <div class="content-input">
+                    <input type="text" value="레시피 게시판" readonly/>
+                </div>
+            </li>
+            <li class="content-list">
+                <span>작성날짜</span>
+                <div class="content-input">
+                    <input type="text" value="${recipeBoard.boardRegisterDate}" readonly/>
+                </div>
+            </li>
+            <li class="content-list txt-align">
+                <span>내용</span>
+                <div class="content-input">
+                    <textarea class="normal-textarea" cols="30" rows="10" name="" readonly>${recipeBoard.boardContent}</textarea>
+                </div>
+            </li>
+        </ul>
     `;
-    $ulTag.empty();
-    $ulTag.append(text);
+    $recipeDetailAppend.empty();
+    $recipeDetailAppend.append(text);
 }
 
 /*-- 페이징 처리 --*/
@@ -233,6 +338,14 @@ const $recipeBoardUl = $(".recipeBoard__tr");
 $recipeBoardUl.on("click", function() {
     let recipeBoardId = $($(this).children()[1]).text();
     adminService.recipeBoardDetail(recipeBoardId);
+});
+
+/*-- 후기 게시물 상세보기 모달 --*/
+const $reviewBoardUI = $(".reviewBoard__tr");
+
+$reviewBoardUI.on("click", function() {
+    let reviewBoardId = $($(this).children()[1]).text();
+    adminService.reviewBoardDetail(reviewBoardId);
 });
 
 /*-- 회원 삭제 --*/

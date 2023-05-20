@@ -55,7 +55,7 @@
 									/>
 									<img
 										th:if="${userFile != null}"
-										src="/files/display?" + th:value="${userFile.getFilePath + '/t_' + userFile.getFileUuid + '_' + userFile.getFileOrgName}"
+										src="/image/display?fileName=" + th:value="${userFile.getFilePath + '/' + userFile.getFileUuid + '_' + userFile.getFileOrgName}"
 									/>
                                 </div>
                             </div>
@@ -96,13 +96,10 @@
                     <div class="detail-list">
                         <div class="board-info-detail-box">
                             <span>게제 목록</span>
-                            <div class="delete-box">
-                                <button class="delete-button">목록 삭제</button>
-                            </div>
                         </div>
                         <div class="table-box detail-table">
                             <div class="info-table">
-								<table class="table" th:each="product : ${products}" th:object="${product}">
+								<table class="table">
 									<thead>
 										<tr>
 											<th>
@@ -114,15 +111,17 @@
                                             <th>수량</th>
 										</tr>
 									</thead>
-									<tr class="product__tr">
-										<td>
-											<input type="checkbox" name="check">
-										</td>
-										<td class="show-modal" th:text="*{id}"></td>
-										<td class="show-modal" th:text="*{productName}"></td>
-										<td class="show-modal" th:text="*{productPrice + '원'}"></td>
-										<td class="show-modal" th:text="*{productStock + '개'}"></td>
-									</tr>
+									<div th:each="product : ${products}" th:object="${product}">
+										<tr class="product__tr">
+											<td>
+												<input type="checkbox" name="check">
+											</td>
+											<td class="show-modal" th:text="*{id}"></td>
+											<td class="show-modal" th:text="*{productName}"></td>
+											<td class="show-modal" th:text="*{productPrice + '원'}"></td>
+											<td class="show-modal" th:text="*{productStock + '개'}"></td>
+										</tr>
+									</div>
 								</table>
 								<!-- 페이지 버튼 -->
 								<div th:if="${pageDTO.total != 0}" class="page-button-box-layout">
