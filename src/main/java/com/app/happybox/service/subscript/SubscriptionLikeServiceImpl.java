@@ -34,8 +34,8 @@ public class SubscriptionLikeServiceImpl implements SubscriptionLikeService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean checkOutLike(Long subscriptionId, Long memberId) {
+        Member member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
         boolean check = subscriptionLikeRepository.checkMemberLikesSubscription_QueryDSL(memberId, subscriptionId);
-        log.info(String.valueOf(check));
         Subscription subscription = subscriptionRepository.findById(subscriptionId).orElseThrow(SubscriptionNotFoundException::new);
 
         if(check) {
@@ -47,8 +47,6 @@ public class SubscriptionLikeServiceImpl implements SubscriptionLikeService {
             subscription.setSubscriptLikeCount(--replyLikeCount);
 
         } else {
-            Member member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
-
             // 저장
             subscriptionLikeRepository.save(new SubscriptionLike(member, subscription));
 

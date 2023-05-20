@@ -67,7 +67,8 @@ public class WelfareController {
         model.addAttribute("subscription", subscriptionService.findByIdWithDetail(id));
 
         // 좋아요 이미 눌렀는지 검사
-        model.addAttribute("isLike", subscriptionLikeService.checkLike(id, userDetail.getId()));
+        boolean checkLike = userDetail != null && subscriptionLikeService.checkLike(id, userDetail.getId());
+        model.addAttribute("isLike", checkLike);
         return "welfare/welfareDetail";
     }
 
@@ -81,9 +82,17 @@ public class WelfareController {
     // 좋아요
     @PostMapping("detail/like/{subscriptionId}")
     @ResponseBody
-    public boolean checkLike(@PathVariable Long subscriptionId, @AuthenticationPrincipal UserDetail userDetail) {
-        // 임시 회원아이디 1L
-        return subscriptionLikeService.checkOutLike(subscriptionId, userDetail.getId());
+    public Integer checkLike(@PathVariable Long subscriptionId, @AuthenticationPrincipal UserDetail userDetail) {
+
+        int result = 0;
+        // 비로그인시
+        if(userDetail == null) {
+            return -1;
+        }
+        boolean check = subscriptionLikeService.checkOutLike(subscriptionId, userDetail.getId());
+        // 좋아요
+        result = check ? 1 : 0;
+        return result;
     }
 
      // 장바구니

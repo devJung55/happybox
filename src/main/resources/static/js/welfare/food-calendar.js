@@ -170,9 +170,6 @@ function doSearch() {
         // 밑의 음식 swiper에 데이터 꽃기
         showFoodList(foodCalendars);
 
-        /* welfare push */
-        eventList.push(welfare);
-
         /* 캘린더 이벤트 초기화 */
         calendar.clear();
 
@@ -345,14 +342,15 @@ calendar.on("clickEvent", function (e) {
 /* ========= 장바구니 모달창 ========= */
 // 닫기 버튼을 클릭했을 때
 $(".close").on("click", function () {
-    $("#food-modal").css("display", "none");
+    let i = $(".close").index($(this));
+    $(".modal").eq(i).css("display", "none");
 });
 
 
 // 모달창 외부를 클릭했을 때
 $(window).on("click", function (event) {
     if ($(event.target).is('.modal')) {
-        $("#food-modal").css("display", "none");
+        $(".modal").css("display", "none");
     }
 });
 
