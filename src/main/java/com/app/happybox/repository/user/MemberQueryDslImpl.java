@@ -104,4 +104,10 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .where(QMember.member.id.eq(member.getId()))
                 .execute();
     }
+
+//    이메일로 회원 찾기(OAuth)
+    @Override
+    public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail) {
+        return Optional.ofNullable(query.select(member).from(member).where(member.userEmail.eq(memberEmail)).fetchOne());
+    }
 }

@@ -77,6 +77,11 @@ public abstract class User extends Period {
         this.userRole = userRole;
     }
 
+    public void setMember(String userEmail, String userPhoneNumber) {
+        this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
+    }
+
     public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
     }

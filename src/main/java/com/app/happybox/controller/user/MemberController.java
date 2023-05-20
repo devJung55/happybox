@@ -39,6 +39,11 @@ public class MemberController {
         return new RedirectView("/member/login");
     }
 
+    //    logIn폼으로 이동
+    @GetMapping("login")
+    public String goToLoginForm(){
+        return "member/member-login";
+    }
 
     //    아이디 찾기
     @GetMapping("find-id")

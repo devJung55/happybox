@@ -74,6 +74,13 @@ public class Member extends User {
         this.deliveryPhoneNumber = deliveryPhoneNumber;
     }
 
+
+    public Member update(String userEmail, String userPhoneNumber, String memberName) {
+        setMember(userEmail, userPhoneNumber);
+        this.memberName = memberName;
+        return this;
+    }
+
     public void setMemberName(String memberName) {
         this.memberName = memberName;
     }
