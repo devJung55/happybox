@@ -52,7 +52,7 @@ public class ReviewBoard extends Board {
     private List<ReviewBoardLike> reviewBoardLikes = new ArrayList<>();
 
     /* 리뷰 파일 List */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reviewBoard", orphanRemoval = true)
     private List<BoardFile> reviewBoardFiles = new ArrayList<>();
 
     @Builder
