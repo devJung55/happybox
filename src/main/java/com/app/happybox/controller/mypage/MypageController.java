@@ -111,7 +111,7 @@ public class MypageController {
         return "/mypage/member/order-list";
     }
 
-    //    구매 내역 목록
+//    구매 내역 목록
     @ResponseBody
     @GetMapping("member/order-list")
     public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String year, String month, String day) {
@@ -146,13 +146,6 @@ public class MypageController {
         recipeBoardLikeService.cancelBookmarkRecipeById(id);
     }
 
-//    레시피 찜 취소
-    @ResponseBody
-    @GetMapping("member/subscription-bookmark-cancel")
-    public void calcelBookmarkSubscription(Long id) {
-        subscriptionLikeService.cancelSubscriptionById(id);
-    }
-
 //    복지관 찜 목록
     @MypageHeaderValues
     @GetMapping("member/subscription-bookmark")
@@ -168,24 +161,17 @@ public class MypageController {
         return bookmarkList;
     }
 
-//    회원탈퇴
-    @MypageHeaderValues
-    @GetMapping("member/unregister")
-    public String unregister(@AuthenticationPrincipal UserDetail userDetail) {
-        return "/mypage/member/withdrawal";
-    }
-
-//    회원탈퇴
-    @PostMapping("member/unregister")
-    public RedirectView unregisterPost(@AuthenticationPrincipal UserDetail userDetail) {
-        userService.updateUserStatusByUserId(userDetail.getId());
-        return new RedirectView("/login");
+//    복지관 찜 취소
+    @ResponseBody
+    @GetMapping("member/subscription-bookmark-cancel")
+    public void calcelBookmarkSubscription(Long id) {
+        subscriptionLikeService.cancelSubscriptionById(id);
     }
 
 //    회원정보수정
     @MypageHeaderValues
     @GetMapping("member/edit")
-    public String updateMemberInfo(Model model, @AuthenticationPrincipal UserDetail userDetail) {
+    public String updateMemberInfo(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
         return "/mypage/member/member-editor-form";
     }
@@ -200,7 +186,7 @@ public class MypageController {
 //    배송지정보수정
     @MypageHeaderValues
     @GetMapping("member/address-editor")
-    public String updateMemberDeliveryAddress(Model model, @AuthenticationPrincipal UserDetail userDetail) {
+    public String updateMemberDeliveryAddress(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
         return "/mypage/member/address-editor-form";
     }
@@ -211,6 +197,20 @@ public class MypageController {
         Member member = memberService.toMemberEntity(memberDTO);
         memberService.updateMemberDeliveryAddressByMemberId(member);
         return new RedirectView("/mypage/member/address-editor?update=ok");
+    }
+
+//    회원탈퇴
+    @MypageHeaderValues
+    @GetMapping("member/unregister")
+    public String unregister(@AuthenticationPrincipal UserDetail userDetail) {
+        return "/mypage/member/withdrawal";
+    }
+
+//    회원탈퇴
+    @PostMapping("member/unregister")
+    public RedirectView unregisterPost(@AuthenticationPrincipal UserDetail userDetail) {
+        userService.updateUserStatusByUserId(userDetail.getId());
+        return new RedirectView("/login");
     }
 
 //    비밀번호 인증

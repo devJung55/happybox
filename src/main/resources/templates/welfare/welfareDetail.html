@@ -310,6 +310,20 @@
         <!-- 복지관 후기 나오는 부분 TOP4 메소드 사용해서 4개만 뽑아오기 -->
     </div>
 </section>
+<section class="delete-modal">
+    <div class="delete-modal-shape">
+        <div class="modal-header">
+            <h4>구독 확인</h4>
+        </div>
+        <div class="modal-body">
+            <p>이미 장바구니에 담겨있는 복지관입니다.</p>
+        </div>
+        <div class="modal-footer">
+            <span class="confirm-delete">확인</span>
+            <span class="cancel-delete">취소</span>
+        </div>
+    </div>
+</section>
 <div id="food-modal" class="modal">
     <div class="modal-content">
         <div class="modal-title">
@@ -366,7 +380,7 @@
     $(".welfare-title").text(subscription.subscriptionTitle);
     $(".welfare-name").text(subscription.welfareName);
     $(".total-price").text(subscription.subscriptionPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
-    $("#sub-order-count").text(subscription.orderCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+    // $("#sub-order-count").text(subscription.orderCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
     console.log(subscription);
 </script>
 <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>

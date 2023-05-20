@@ -78,7 +78,7 @@ public interface RecipeBoardService {
                 .build();
     }
 
-    default RecipeBoardDTO mypageRecipeBoardToDTO(RecipeBoard recipeBoard){ // 지영이
+    default RecipeBoardDTO mypageRecipeBoardToDTO(RecipeBoard recipeBoard){
         return RecipeBoardDTO.builder()
                 .id(recipeBoard.getId())
                 .memberId(recipeBoard.getMember().getId())

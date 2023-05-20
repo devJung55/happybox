@@ -3,7 +3,7 @@
 //import com.app.happybox.entity.board.ReviewBoard;
 //import com.app.happybox.entity.board.ReviewBoardLike;
 //import com.app.happybox.entity.user.Member;
-//import com.app.happybox.repository.subscript.SubscriptionRepository;
+//import com.app.happybox.repository.subscript.SubscriptizonRepository;
 //import com.app.happybox.repository.user.MemberRepository;
 //import lombok.extern.slf4j.Slf4j;
 //import org.junit.jupiter.api.Assertions;
