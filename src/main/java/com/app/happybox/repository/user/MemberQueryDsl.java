@@ -32,6 +32,9 @@ public interface MemberQueryDsl {
 
 //    배송지정보수정
     public void setMemberDeliveryAddressByMemberId(Member member);
+
+//    메일로 해당 회원 찾기(OAuth용)
+    public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail);
 }
 
 
