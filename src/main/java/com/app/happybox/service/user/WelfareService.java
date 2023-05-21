@@ -55,6 +55,19 @@ public interface WelfareService {
                 .build();
     }
 
+    default Welfare toWelfareJoinEntity(WelfareDTO welfareDTO){
+        return Welfare.builder()
+                .address(welfareDTO.getAddress())
+                .userEmail(welfareDTO.getUserEmail())
+                .userId(welfareDTO.getUserId())
+                .userPassword(welfareDTO.getUserPassword())
+                .userPhoneNumber(welfareDTO.getUserPhoneNumber())
+                .userRole(welfareDTO.getUserRole())
+                .userStatus(welfareDTO.getUserStatus())
+                .welfareName(welfareDTO.getWelfareName())
+                .build();
+    }
+
     default Subscription toSubscriptionEntity(SubscriptionWelFareDTO subscriptionWelFareDTO){
         return Subscription.builder()
                 .subscriptionContent(subscriptionWelFareDTO.getSubscriptionContent())
