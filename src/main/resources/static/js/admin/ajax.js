@@ -60,7 +60,17 @@ let adminService = (function() {
             }
         })
     }
-    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, reviewBoardDetail: reviewBoardDetail, removeUser: removeUser, removeBoard: removeBoard}
+
+    function removePayment(id) {
+        $.ajax({
+            url: "/admin/remove-payment",
+            data: {"id": id},
+            success: function() {
+                location.reload();
+            }
+        })
+    }
+    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, reviewBoardDetail: reviewBoardDetail, removeUser: removeUser, removeBoard: removeBoard, removePayment: removePayment}
 })();
 
 function showMemberDetail(member) {
@@ -412,7 +422,6 @@ $reviewBoardUI.on("click", function() {
 });
 
 /*-- 삭제 --*/
-const $userCheckBox = $(".check__box");
 const $confirm = $(".confirm-delete");
 
 $confirm.on("click", function() {

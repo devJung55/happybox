@@ -217,14 +217,12 @@ public class MypageController {
     @MypageHeaderValues
     @GetMapping("member/checkPassword")
     public String checkMemberPassword(@AuthenticationPrincipal UserDetail userDetail) {
-
         return "/mypage/member/member-editor";
     }
 
 //    비밀번호 인증
     @PostMapping("member/checkPassword")
     public RedirectView checkMemberPassword(String password) {
-
         return new RedirectView("/mypage/member/member-editor-form");
     }
 }

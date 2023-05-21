@@ -3,6 +3,7 @@ package com.app.happybox.controller.admin;
 import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.OrderSubscriptionDTO;
 import com.app.happybox.domain.PageDTO;
+import com.app.happybox.domain.PaymentDTO;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.domain.user.UserFileDTO;
@@ -22,6 +23,7 @@ import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.board.ReviewBoardService;
 import com.app.happybox.service.cs.NoticeService;
 import com.app.happybox.service.order.OrderSubsciptionService;
+import com.app.happybox.service.payment.PaymentService;
 import com.app.happybox.service.product.ProductService;
 import com.app.happybox.service.user.*;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +51,7 @@ public class AdminController {
     private final BoardService boardService;
     private final ReviewBoardService reviewBoardService;
     private final DonationBoardService donationBoardService;
+    private final PaymentService paymentService;
 
 //    기부 게시물 목록
     @GetMapping("donationBoard-list")
@@ -222,6 +225,22 @@ public class AdminController {
         model.addAttribute("pageDTO", new PageDTO(list));
         model.addAttribute("userFile", userFileService.getDetail(welfareId));
         return "/admin/admin-welfareDetail";
+    }
+
+//    결제 목록
+    @GetMapping("payment-list")
+    public String getPaymentList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
+        Page<PaymentDTO> list = paymentService.getList(PageRequest.of(page - 1, 10));
+        model.addAttribute("payments", list.getContent());
+        model.addAttribute("pageDTO", new PageDTO(list));
+        return "/admin/admin-orderList";
+    }
+
+//    결제 삭제
+    @ResponseBody
+    @GetMapping("remove-payment")
+    public void removePayment(@RequestParam("id") Long id) {
+        paymentService.removePayment(id);
     }
 
     /* =================================== 공지사항 ======================================== */
