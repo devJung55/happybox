@@ -226,7 +226,7 @@ $(document).ready(function () {
         // 누른 버튼의 index 추출
         console.log(index);
         // 그 index 로 insertData 안의 파일 삭제
-        insertData.reviewBoardFiles[index] = null;
+        insertData.recipeBoardFiles[index] = null;
 
         $img.attr('src', '');
         $attachImg.css('display', 'none');

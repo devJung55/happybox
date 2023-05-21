@@ -32,7 +32,7 @@
           <div class="boardList-content-section-box">
             <section class="write-button-box">
               <div class="write-button-layout">
-                <button type="button" class="write-button">
+                <a <a th:inline="text" th:href="${userId == null ? '/user-board/recipe-board-list' : '/user-board/recipe-board-insert'}" class="write-button">
                   본인의 레시피를 자유롭게 작성해주세요!
                   <span>
                     <span class="write-button-icon-box">
@@ -46,7 +46,7 @@
                       </svg>
                     </span>
                   </span>
-                </button>
+                </a>
               </div>
             </section>
             <section class="boardList-content">
@@ -70,6 +70,7 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script th:inline="javascript">
     let recipeList = [[${recipeList}]]
+    let userId = [[${userId}]]
   </script>
   <script src="/js/main/header.js"></script>
   <script src="/js/member/recipe-list.js"></script>

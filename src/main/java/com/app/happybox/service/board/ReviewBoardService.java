@@ -103,6 +103,7 @@ public interface ReviewBoardService {
                 .boardTitle(reviewBoardDTO.getBoardTitle())
                 .boardContent(reviewBoardDTO.getBoardContent())
                 .welfareName(reviewBoardDTO.getWelfareName())
+                .reviewRating(reviewBoardDTO.getReviewRating())
                 .build();
     }
 
