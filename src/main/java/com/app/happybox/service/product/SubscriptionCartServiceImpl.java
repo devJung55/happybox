@@ -54,4 +54,14 @@ public class SubscriptionCartServiceImpl implements SubscriptionCartService {
 
         return cart.getId();
     }
+
+    //    subscription으로 카트 있는지 확인
+    @Override
+    public Long subscriptionCartCheck(Long subscriptionId) {
+        if(subscriptionCartRepository.existCartBySubscriptionId(subscriptionId).isPresent()){
+            return 1L;
+        }else {
+            return 2L;
+        }
+    }
 }

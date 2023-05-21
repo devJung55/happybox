@@ -325,34 +325,41 @@ function showSlideImg() {
 
 const $sub = $('.subscribe-btn');
 const $cancelDelete = $(".cancel-delete");
-const CHECK_CART_URL = "/welfare/check";
+const CHECK_CART_URL = "/welfare/cart/check";
 $sub.on('click', function () {
-    console.log(subscription.welfareId);
-    $doAjax("GET",
-        CHECK_CART_URL,
-        {welfareId: subscription.welfareId},
-        (result) => {
-            if (!result) {
-                $('.delete-modal').show();
-            } else {
-                $('.modal-body').html("구독 하시겠습니까?");
-                $('.delete-modal').show();
-            }
-        });
+    console.log(subscription.id);
+    $doAjax("GET"
+    ,CHECK_CART_URL
+    ,{subscriptionId: subscription.id}
+    ,(result) => {
+        console.log(result)
+        if (result == 1){
+            $('.delete-modal').show();
+            $('.confirm-delete').on('click', function () {
+                $('.delete-modal').hide();
+            });
+        }else if(result == 2) {
+            $('.modal-body').html("구독 하시겠습니까?");
+            $('.delete-modal').show();
+            $('.confirm-delete').on('click', function () {
+                $doAjaxPost("POST",
+                    CART_URL, // 장바구니 URL
+                    {
+                        subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
+                        subOption: $("select[name='option']").val()
+                    },
+                    (result) => {  // callback
+                        location.href = "/order/subscription";
+                    }
+                );
+            });
+        }
+        })
+    $('.delete-modal').show();
+
 });
 
-$('.confirm-delete').on('click', function () {
-    $doAjaxPost("POST",
-        CART_URL, // 장바구니 URL
-        {
-            subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
-            subOption: $("select[name='option']").val()
-        },
-        (result) => {  // callback
-            location.href = "/order/subscription";
-        }
-    );
-});
+
 
 $cancelDelete.on('click', function () {
     $('.delete-modal').hide();
