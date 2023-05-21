@@ -20,6 +20,10 @@
     border-radius: 20px;
 }
 
+.confirm-id-layout {
+    display: none;
+}
+
 .result-cnt {
     text-align: center;
 }
