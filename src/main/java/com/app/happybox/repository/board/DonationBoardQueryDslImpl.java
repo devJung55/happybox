@@ -59,6 +59,8 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     public Page<DonationBoard> findAllWithPaging_QueryDSL(Pageable pageable) {
         List<DonationBoard> donationBoardList = query.select(donationBoard)
                 .from(donationBoard)
+                .leftJoin(donationBoard.donationBoardFiles).fetchJoin()
+                .join(donationBoard.welfare).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

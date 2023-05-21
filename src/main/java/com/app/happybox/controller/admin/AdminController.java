@@ -7,6 +7,7 @@ import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.domain.user.UserFileDTO;
 import com.app.happybox.domain.user.WelfareDTO;
+import com.app.happybox.entity.board.DonationBoardDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
@@ -16,6 +17,7 @@ import com.app.happybox.entity.user.Distributor;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.service.board.BoardService;
+import com.app.happybox.service.board.DonationBoardService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.board.ReviewBoardService;
 import com.app.happybox.service.cs.NoticeService;
@@ -46,8 +48,20 @@ public class AdminController {
     private final RecipeBoardService recipeBoardService;
     private final BoardService boardService;
     private final ReviewBoardService reviewBoardService;
+    private final DonationBoardService donationBoardService;
 
-//    리뷰 게시물 목록
+//    기부 게시물 목록
+    @GetMapping("donationBoard-list")
+    public String getDonationList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
+        Page<DonationBoardDTO> list = donationBoardService.adminGetList(PageRequest.of(page - 1, 10));
+        model.addAttribute("donationBoards", list.getContent());
+        model.addAttribute("pageDTO", new PageDTO(list));
+
+        list.forEach(v -> log.info(v.getBoardRegisterDate() + ":;;"));
+        return "admin/admin-donateBoardList";
+    }
+
+//    후기 게시물 목록
     @GetMapping("reviewBoard-list")
     public String getReviewBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<ReviewBoardDTO> list = reviewBoardService.getList(PageRequest.of(page - 1, 10));

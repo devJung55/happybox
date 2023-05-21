@@ -3,7 +3,6 @@ package com.app.happybox.service.board;
 import com.app.happybox.entity.board.*;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
-import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.exception.BoardNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
@@ -22,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -149,7 +147,9 @@ public class DonationBoardServiceImpl implements DonationBoardService {
     }
 
     @Override
-    public Page<DonationBoard> findAllWithPaging_QueryDSL(Pageable pageable) {
-        return null;
+    public Page<DonationBoardDTO> adminGetList(Pageable pageable) {
+        Page<DonationBoard> donationBoards = donationBoardRepository.findAllWithPaging_QueryDSL(pageable);
+        List<DonationBoardDTO> donationBoardDTOS = donationBoards.get().map(this::adminDonationBoardToDTO).collect(Collectors.toList());
+        return new PageImpl<>(donationBoardDTOS, pageable, donationBoards.getTotalElements());
     }
 }
