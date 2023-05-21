@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface WelfareService {
 //    회원정보수정
-    public void updateWelfareInfoById(Welfare welfare);
+    public void updateWelfareInfoById(WelfareDTO welfareDTO);
 
 //    회원탈퇴
     public void updateUserStatusById(Long welfareId);
