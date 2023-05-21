@@ -29,11 +29,12 @@ import java.util.stream.Collectors;
 public class WelfareServiceImpl implements WelfareService {
     private final WelfareRepository welfareRepository;
     private final SubscriptionRepository subscriptionRepository;
-
+    private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void updateWelfareInfoById(Welfare welfare) {
-        welfareRepository.setWelfareInfoById_QueryDSL(welfare);
+    public void updateWelfareInfoById(WelfareDTO welfareDTO) {
+        welfareDTO.setUserPassword(passwordEncoder.encode(welfareDTO.getUserPassword()));
+        welfareRepository.setWelfareInfoById_QueryDSL(toWelfareEntity(welfareDTO));
     }
 
     @Override
