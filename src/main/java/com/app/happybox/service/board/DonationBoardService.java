@@ -2,8 +2,6 @@ package com.app.happybox.service.board;
 
 import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.board.DonationBoardDTO;
-import com.app.happybox.entity.board.ReviewBoard;
-import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
 import org.springframework.data.domain.Page;
@@ -36,7 +34,7 @@ public interface DonationBoardService {
     public List<DonationBoardDTO> findTop3OrderByDate_QueryDSL();
 
     //    관리자 기부글 목록
-    public Page<DonationBoard> findAllWithPaging_QueryDSL(Pageable pageable);
+    public Page<DonationBoardDTO> adminGetList(Pageable pageable);
 
 
     default DonationBoardDTO donationBoardToDTO(DonationBoard donationBoard){
@@ -46,6 +44,19 @@ public interface DonationBoardService {
                 .boardContent(donationBoard.getBoardContent())
                 .donateType(donationBoard.getDonateType())
                 .donateLocation(donationBoard.getDonateLocation())
+                .donationBoardFiles(donationBoard.getDonationBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .build();
+    }
+
+    default DonationBoardDTO adminDonationBoardToDTO(DonationBoard donationBoard){
+        return DonationBoardDTO.builder()
+                .id(donationBoard.getId())
+                .boardTitle(donationBoard.getBoardTitle())
+                .boardContent(donationBoard.getBoardContent())
+                .donateType(donationBoard.getDonateType())
+                .donateLocation(donationBoard.getDonateLocation())
+                .welfareName(donationBoard.getWelfare().getWelfareName())
+                .boardRegisterDate(donationBoard.getCreatedDate())
                 .donationBoardFiles(donationBoard.getDonationBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
     }
