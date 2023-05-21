@@ -91,6 +91,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionRepository.existsByWelfareId(welfareId);
     }
 
+    //    subscription id로 조회
+    @Override
+    public Boolean existsById(Long id) {
+        return subscriptionRepository.existsById(id);
+    }
+
+
     private List<SubscriptionDTO> collectFoodList(List<Subscription> subscriptions) {
         List<SubscriptionDTO> collect = subscriptions.stream().map(subscription -> {
             List<FoodCalendar> foodCalendars = getFoodCalendars(subscription.getId());

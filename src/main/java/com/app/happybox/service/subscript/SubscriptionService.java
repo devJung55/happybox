@@ -38,6 +38,11 @@ public interface SubscriptionService {
     //    구독했는지 확인하기 위해 조회
     public Boolean existsByWelfareId(Long welfareId);
 
+    //    subscription id로 조회
+    public Boolean existsById(Long id);
+
+
+
     default SubscriptionDTO subscriptionToDTO(Subscription subscription, List<FoodDTO> foodList) {
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder()
                 .id(subscription.getId())
