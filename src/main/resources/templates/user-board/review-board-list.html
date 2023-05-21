@@ -32,7 +32,7 @@
           <div class="boardList-content-section-box">
             <section class="write-button-box">
               <div class="write-button-layout">
-                <button type="button" class="write-button">
+                <a th:inline="text" th:href="${userId == null ? '/user-board/review-board-list' : '/user-board/review-board-insert'}"  class="write-button">
                   본인의 후기를 자유롭게 작성해주세요!
                   <span>
                     <span class="write-button-icon-box">
@@ -46,7 +46,7 @@
                       </svg>
                     </span>
                   </span>
-                </button>
+                </a>
               </div>
             </section>
             <section class="boardList-content">
@@ -74,6 +74,7 @@
   <script src="/js/common/ajax.js"></script>
   <script th:inline="javascript">
     let reviewList = [[${reviewList}]]
+    let userId = [[${userId}]];
   </script>
   <script src="/js/main/header.js"></script>
   <script src="/js/member/board.js"></script>

@@ -171,13 +171,24 @@ function showDetail() {
                 <p id="welfare-name">
                     ${review.welfareName}
                 </p>
-                        <em class="rating-point">
-                            <img class="rating__point one" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point two" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point three" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point four" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point five" src="/img/mypage/rating.png">
-                        </em>
+                `
+        text +=
+            `
+                <em class="rating-point">
+                    <img class="rating__point one"  src="/img/mypage/rating-pull.png">
+                    <img class="rating__point two"
+                    src="${review.reviewRating > 1 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                    <img class="rating__point three"
+                    src="${review.reviewRating > 2 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                    <img class="rating__point four"
+                    src="${review.reviewRating > 3 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                     <img class="rating__point five"
+                    src="${review.reviewRating > 4 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                </em>
+             `
+
+        text +=
+            `
                 <div class="detail-content">
                     ${review.boardContent}
                 </div>
