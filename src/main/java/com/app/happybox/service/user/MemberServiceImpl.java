@@ -136,7 +136,12 @@ public class MemberServiceImpl implements MemberService {
     @Override @Transactional
     public void updateMemberInfoById(MemberDTO memberDTO) {
         Member member = memberRepository.findById(memberDTO.getId()).orElseThrow(UserNotFoundException::new);
-        member.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword().split(",")[0]));
+
+        log.info(memberDTO.getUserPassword());
+
+        if(memberDTO.getUserPassword() != null && memberDTO.getUserPassword() == " ,") {
+            member.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword().split(",")[0]));
+        }
         member.setMemberName(memberDTO.getMemberName());
         member.setUserPhoneNumber(memberDTO.getUserPhoneNumber());
         member.setAddress(memberDTO.getAddress());
