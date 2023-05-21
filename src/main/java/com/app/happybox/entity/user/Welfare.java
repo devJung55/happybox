@@ -66,4 +66,8 @@ public class Welfare extends User {
     public void setWelfarePointTotal(Integer welfarePointTotal) {
         this.welfarePointTotal = welfarePointTotal;
     }
+
+    public void setWelfareName(String welfareName) {
+        this.welfareName = welfareName;
+    }
 }

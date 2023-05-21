@@ -104,5 +104,15 @@ public class Subscription extends Period {
         this.orderCount = orderCount;
     }
 
+    public void setSubscriptionTitle(String subscriptionTitle) {
+        this.subscriptionTitle = subscriptionTitle;
+    }
 
+    public void setSubscriptionContent(String subscriptionContent) {
+        this.subscriptionContent = subscriptionContent;
+    }
+
+    public void setSubscriptionPrice(Integer subscriptionPrice) {
+        this.subscriptionPrice = subscriptionPrice;
+    }
 }
