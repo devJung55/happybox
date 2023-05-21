@@ -41,6 +41,19 @@ spring:
       max-file-size: 40MB
       file-size-threshold: 100MB
 
+  #send-email
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 'happywelfarebox@gmail.com'
+    password: 'gihftlfbtgdcdbuo'
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   #OAuth2
   security:
     oauth2:

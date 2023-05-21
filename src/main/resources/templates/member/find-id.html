@@ -97,7 +97,6 @@
                                                 id="find-member-pw-phone-btn"
                                                 class="btn-basic-lg2 w-full btn-dim"
                                                 style="display: none;"
-                                                onclick="goCheck()"
                                                 disabled
                                         >
                                             <span>확인</span>
@@ -137,19 +136,6 @@
                                     </div>
                                     <!--// input-group -->
                                     <div id="find-member-pw-email-error"></div>
-                                    <div class="input-group type-lg w-full" id="certiNoEmailArea"
-                                         style="display: none;">
-                                        <label for="find-member-pw-certi-no-text" class="blind">인증번호 입력</label>
-                                        <input
-                                                type="text"
-                                                id="find-member-pw-certi-no-text"
-                                                name="find-member-pw-certi-no-text"
-                                                class="input-text email-code-input"
-                                                placeholder="인증번호 입력"
-                                                value=""
-                                        />
-                                        <span class="timer"><div id="find-member-pw-certi-timer-text"></div></span>
-                                    </div>
                                     <div id="certiNoEmailErrorArea"></div>
                                     <div
                                             class="btn-bottom-area"
@@ -158,17 +144,10 @@
                                     >
                                         <button
                                                 type="button"
-                                                id="find-member-pw-certi-email-btn"
+                                                id="find-member-id-certi-email-btn"
                                                 class="btn-basic-lg2 w-full btn-dim"
-                                        >
-                                            <span>인증번호 받기</span>
-                                        </button>
-                                        <button
-                                                type="button"
-                                                id="find-member-pw-email-btn"
-                                                class="btn-basic-lg2  w-full btn-dim"
-                                                style="display: none;"
-                                                onclick=""
+                                                onclick="goCheck()"
+                                                disabled
                                         >
                                             <span>확인</span>
                                         </button>
@@ -192,18 +171,17 @@
                         고객님의 아이디는
                         <br/>
                         <strong class="text-primary">
-                            [asd123]
                         </strong>
                         입니다.
                     </p>
                 </div>
                 <div class="btn-bottom-area">
-                    <a href="javascript:void(0)" class="btn-basic-lg2 btn-primary-line"
+                    <a href="/member/find-pw" class="btn-basic-lg2 btn-primary-line"
                     ><span>비밀번호찾기</span></a
                     >
                     <button
                             type="button"
-                            class="btn-basic-lg2 btn-primary"
+                            class="btn-basic-lg2 btn-primary go-to-login"
                     >
                         <span>확인</span>
                     </button>

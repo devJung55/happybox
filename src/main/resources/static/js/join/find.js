@@ -1,5 +1,5 @@
 /* find-id.html */
-$('.confirm-id-layout').hide();
+// $('.confirm-id-layout').hide();
 let step = 1;
 
 const $radios = $("input[name='find-member-pw-radio']");
@@ -8,6 +8,13 @@ const $phoneCodeInput = $('#certiNoPhoneArea');
 const $emailInput = $('.email-input');
 const $emailCodeInput = $('#certiNoEmailArea');
 const $phoneBtn = $('#find-member-pw-certi-phone-btn');
+// 아이디 찾기에서 이메일 버튼
+const $IdEmailBtn = $('#find-member-id-certi-email-btn');
+
+// 인증번호 입력창
+const $confirmCode = $('#find-member-pw-certi-no-text');
+
+// 비밀번호 찾기에서 이메일 받는 버튼
 const $emailBtn = $('#find-member-pw-certi-email-btn');
 const phoneRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 let code;
@@ -97,6 +104,8 @@ function goCheck() {
 
     $('.find-id-layout').hide();
     $('.confirm-id-layout').show();
+    $('.find-pw-layout').hide();
+    $('.change-pw-layout').show();
 
     /* 전화번호로 확인한 결과가 나오는 창으로 스크롤바가 맨 위쪽으로 가는 애니메이션 */
     $([document.documentElement, document.body]).animate(
@@ -112,13 +121,79 @@ let identification = "";
 let noId = "고객님의 아이디가 존재하지 않습니다"
 
 $("#find-member-pw-phone-btn").on("click", function() {
+    let confirmCode = $confirmCode.val();
     let phone = $phoneInput.val();
-    console.log(phone)
+    if (confirmCode == code) {
+        $.ajax({
+            type: "POST",
+            url: "/find-id-phone",
+            data: { userPhone: phone },
+            success: function(data) {
+                identification = "[" + data + "]";
+                if(data == ""){
+                    $(".message").html(noId);
+                }else{
+                    $(".text-primary").html(identification);
+                }
+                goCheck();
+            }
+        });
+    } else { alert("인증번호를 확인해주세요") }
+});
+
+/* 해당 전화번호로 이메일 조회할 수 있도록 하기, 위에랑 겹처서 따로 뺌 */
+$('.reset-password').on('click', function () {
+    let phone = $phoneInput.val();
     $.ajax({
-        type: "POST",
-        url: "/member/find-id",
-        data: { memberPhone: phone },
+        url: "/find-email-phone",
+        type: "post",
+        data: { userPhone: phone },
         success: function(data) {
+            $('input[name=userEmail]').val(data)
+        }, error: function () {
+            let text = `
+                    <div class="result-cnt">
+                        <p class="message">
+                            회원님의 이메일이 존재하지 않습니다.
+                            <br/>
+                            <strong class="text-primary">[전화번호]</strong>
+                            를 다시 한 번 확인해주세요
+                        </p>
+                    </div>
+                `;
+            $('.type2').html(text);
+        }
+    })
+})
+
+/* 이메일을 정규식에 맞게 검사하면 인증버튼 활성화 */
+$emailInput.keyup(function(){
+    if(emailRegex.test($emailInput.val())){
+        $IdEmailBtn.addClass('btn-primary');
+        $IdEmailBtn.removeClass('btn-dim');
+        $IdEmailBtn.attr('disabled', false);
+        $emailBtn.addClass('btn-primary');
+        $emailBtn.removeClass('btn-dim');
+        $emailBtn.attr('disabled', false);
+        return;
+    }
+    $IdEmailBtn.addClass('btn-dim');
+    $IdEmailBtn.removeClass('btn-primary');
+    $IdEmailBtn.attr('disabled', true);
+    $emailBtn.addClass('btn-dim');
+    $emailBtn.removeClass('btn-primary');
+    $emailBtn.attr('disabled', true);
+});
+
+// 이메일로 아이디 찾기
+$IdEmailBtn.on('click', function () {
+    let email = $emailInput.val();
+    // 인증번호 보내기
+    $.ajax({
+        url: "/find-id-email",
+        type: "post",
+        data: { userEmail : email},
+        success: function (data) {
             identification = "[" + data + "]";
             if(data == ""){
                 $(".message").html(noId);
@@ -126,26 +201,43 @@ $("#find-member-pw-phone-btn").on("click", function() {
                 $(".text-primary").html(identification);
             }
         }
-    });
-});
+    })
 
+})
 
-
-$emailInput.keyup(function(){
-    if(emailRegex.test($emailInput.val())){
-        $emailBtn.addClass('btn-primary');
-        $emailBtn.removeClass('btn-dim');
-        return;
-    }
-    $emailBtn.addClass('btn-dim');
-    $emailBtn.removeClass('btn-primary');
-});
-
+/* (비밀번호 찾기에서) 버튼 누르면 이메일로 링크 보내기 */
 $emailBtn.on('click', function(){
-    $emailCodeInput.css('display', 'block');
-    $emailBtn.hide();
     $('#find-member-pw-email-btn').show();
-
+    $.ajax({
+        url: "/sendMail",
+        type: "post",
+        data: { "userEmail" : $emailInput.val()},
+        success: function (answer) {
+            let text = `
+                    <div class="result-cnt">
+                        <p class="message">
+                            이메일이 발송되었습니다.
+                            <br/>
+                            <strong class="text-primary">[링크]</strong>
+                            를 확인해 주시고 비밀번호를 변경해주세요
+                        </p>
+                    </div>
+                `;
+            $('.type2').html(text);
+        }, error: function () {
+            let text = `
+                <div class="result-cnt">
+                    <p class="message">
+                        이메일 발송에 실패했습니다.
+                        <br/>
+                        <strong class="text-primary">[이메일]</strong>
+                        을 다시 한 번 확인해주세요
+                    </p>
+                </div>
+            `;
+            $('.type2').html(text);
+        }
+    })
 });
 
 $('.email-code-input').keyup(function(){
@@ -155,3 +247,7 @@ $('.email-code-input').keyup(function(){
         return;
     }
 });
+
+$('.go-to-login').on('click', function () {
+    location.href = "/login";
+})
