@@ -79,16 +79,21 @@
 }
 
 .inquire-img {
-    width: 130px;
     height: 130px;
+    max-width: 150px;
     display: flex;
     justify-content: center;
     border: none;
 }
 
+.inquire-img img {
+    height: 100%;
+    width: 100%;
+}
+
 .write-inquire {
     width: 520px;
-    height: 420px;
+    height: 431px;
     background-color: #fff;
 }
 

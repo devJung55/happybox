@@ -5,10 +5,13 @@ import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.customer.InquiryAnswer;
 import com.app.happybox.entity.file.InquiryFile;
+import com.app.happybox.exception.InquiryNotFoundException;
+import com.app.happybox.repository.inquiry.InquiryAnswerFileRepository;
 import com.app.happybox.repository.inquiry.InquiryAnswerRepository;
 import com.app.happybox.repository.inquiry.InquiryFileRepository;
 import com.app.happybox.repository.inquiry.InquiryRepository;
 import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.type.InquiryStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,6 +31,7 @@ import java.util.stream.Collectors;
 public class InquiryServiceImpl implements InquiryService {
     private final InquiryRepository inquiryRepository;
     private final InquiryAnswerRepository inquiryAnswerRepository;
+    private final InquiryAnswerFileRepository inquiryAnswerFileRepository;
     private final MemberRepository memberRepository;
     private final InquiryFileRepository inquiryFileRepository;
 
@@ -58,6 +62,28 @@ public class InquiryServiceImpl implements InquiryService {
         return new PageImpl<>(inquiryLists, pageable, inquiries.getTotalElements());
     }
 
+    @Override
+    public InquiryAnswerDTO saveInquiryAnswer(Long inquiryId, InquiryAnswerDTO inquiryAnswerDTO) {
+        Inquiry inquiry = inquiryRepository.findById(inquiryId).orElseThrow(InquiryNotFoundException::new);
+        InquiryAnswer inquiryAnswer = toInquiryAnswerEntity(inquiryAnswerDTO);
+
+        inquiryAnswer.setInquiry(inquiry);
+        InquiryAnswer savedAnswer = inquiryAnswerRepository.save(inquiryAnswer);
+
+        inquiry.setInquiryStatus(InquiryStatus.COMPLETE);
+
+        inquiryAnswerDTO.getInquiryAnswerFileDTOS()
+                .stream()
+                .map(this::toInquiryAnswerFileEntity)
+                .forEach(file -> {
+                    file.setInquiryAnswer(inquiryAnswer);
+                    inquiryAnswerFileRepository.save(file);
+                });
+
+        return toInquiryAnswerDTO(savedAnswer);
+    }
+
+
     //    문의 답변 목록
     @Override
     public Page<InquiryAnswerDTO> getInquiryAnswerListById(Pageable pageable, Long id) {
@@ -79,6 +105,7 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry inquiry = toInquiryEntity(inquiryDTO);
 //        임시로 1번으로 할당, 로그인 회원가입 완료되면 세션에서 받아온 id값 전달
         inquiry.setUser(memberRepository.findById(id).get());
+        inquiry.setInquiryStatus(InquiryStatus.STANDBY);
         inquiryRepository.save(inquiry);
         if(inquiryDTO.getInquiryFileDTOS() != null) {
             List<InquiryFile> inquiryFiles = toInquiryEntity(inquiryDTO).getInquiryFiles();
@@ -90,5 +117,22 @@ public class InquiryServiceImpl implements InquiryService {
     @Override
     public Long getInquiryCountByUserId(Long id) {
         return inquiryRepository.findInquiryCountByUserId_QueryDSL(id);
+    }
+
+    @Override
+    public Page<InquiryDTO> getInquiries(Pageable pageable) {
+        Page<Inquiry> inquiryPage = inquiryRepository.findInquiryListWithPaging_QueryDSL(pageable);
+        List<InquiryDTO> inquiryDTOList = inquiryPage.get().map(this::toInquiryDTO).collect(Collectors.toList());
+
+        return new PageImpl<>(inquiryDTOList, pageable, inquiryPage.getTotalElements());
+    }
+
+
+    // 상세보기
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public InquiryDTO getInquiryDetailById(Long id) {
+        Inquiry inquiry = inquiryRepository.findInquiryByInquiryId_QueryDSL(id).orElseThrow(InquiryNotFoundException::new);
+        return toInquiryDTO(inquiry);
     }
 }

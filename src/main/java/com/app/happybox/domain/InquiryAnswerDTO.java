@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,5 +18,5 @@ public class InquiryAnswerDTO {
     private String inquiryAnswerContent;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private List<InquiryAnswerFileDTO> inquiryAnswerFileDTOS;
+    private List<InquiryAnswerFileDTO> inquiryAnswerFileDTOS = new ArrayList<>();
 }
