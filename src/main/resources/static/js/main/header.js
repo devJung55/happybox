@@ -199,7 +199,6 @@ $chatShowBtn.on("click", function () {
 function showChatWindowData() {
     // pageNum 초기화
     pageNum = 1;
-    $moreWelfares.css("display", "inline-block");
 
     // 복지관 목록
     chatAjax(WELFARE_REQ_URL, {page: pageNum}, (result) => {
@@ -208,6 +207,9 @@ function showChatWindowData() {
         result.content.forEach(welfare => appendWelfares(welfare));
         // 마지막 여부 담기
         isLast = result.last;
+
+        // 마지막이면 더보기 버튼 표시 안함
+        if(isLast) $moreWelfares.css("display", "none");
     });
 
     // 회원의 채팅방 목록
@@ -418,7 +420,12 @@ function sendMessage(event) {
 
 // 채팅 메시지 표시
 function prependChatMessage(message) {
-    let isMyMessage = message.myMessage || message.sender == null;
+    console.log(message);
+    let isMyMessage = message.myMessage;
+
+    if(isMyMessage == null) {
+        isMyMessage = false;
+    }
 
     let text = `
         <li>
@@ -434,7 +441,11 @@ function prependChatMessage(message) {
 function appendInputChatMessage(message) {
     console.log(message);
 
-    let isMyMessage = message.myMessage || message.sender == null;
+    let isMyMessage = message.myMessage;
+
+    if(isMyMessage == null) {
+        isMyMessage = true;
+    }
 
     let text = `
         <li>

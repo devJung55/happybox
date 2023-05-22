@@ -32,10 +32,10 @@ public class ChatMessageService {
     }
 
     @Transactional
-    public ChatMessageDTO save(ChatMessageDTO chatMessageDTO, String sender) {
+    public ChatMessageDTO save(ChatMessageDTO chatMessageDTO, Long sender) {
         ChatMessage chatMessage = chatMessageToEntity(chatMessageDTO);
         // senderId 저장
-        chatMessage.setSender(sender);
+        chatMessage.setSenderId(sender);
         // 현재 시간으로 저장
         chatMessage.setTime(LocalDateTime.now());
         chatMessageRepository.save(chatMessage);
@@ -55,7 +55,7 @@ public class ChatMessageService {
         return ChatMessageDTO.builder()
                 .message(chatMessage.getMessage())
                 .roomId(chatMessage.getRoomId())
-                .sender(chatMessage.getSender())
+                .senderId(chatMessage.getSenderId())
                 .time(chatMessage.getTime().toString())
                 .type(chatMessage.getType())
                 .build();
@@ -65,7 +65,7 @@ public class ChatMessageService {
         return ChatMessage.builder()
                 .message(chatMessageDTO.getMessage())
                 .roomId(chatMessageDTO.getRoomId())
-                .sender(chatMessageDTO.getSender())
+                .senderId(chatMessageDTO.getSenderId())
                 .type(chatMessageDTO.getType())
                 .build();
     }

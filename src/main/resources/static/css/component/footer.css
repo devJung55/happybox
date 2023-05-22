@@ -501,12 +501,12 @@ input[name='send-msg'] {
 .msg-float-left {
     float: left;
     margin-left: 12px;
-    background-color: #fcca34 !important;
 }
 
 .msg-float-right {
     float: right;
     margin-right: 6px;
+    background-color: #fcca34 !important;
 }
 
 .chat-close {

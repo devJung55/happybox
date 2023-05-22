@@ -26,15 +26,15 @@ public class ChatMessage {
     private MessageType type; //메시지 타입
     @Indexed
     private String roomId;// 방 번호
-    private String sender;//채팅을 보낸 사람
+    private Long senderId;//채팅을 보낸 사람
     private String message;// 메세지
     private LocalDateTime time; // 채팅 발송 시간
 
     @Builder
-    public ChatMessage(MessageType type, String roomId, String sender, String message, LocalDateTime time) {
+    public ChatMessage(MessageType type, String roomId, Long senderId, String message, LocalDateTime time) {
         this.type = type;
         this.roomId = roomId;
-        this.sender = sender;
+        this.senderId = senderId;
         this.message = message;
         this.time = time;
     }

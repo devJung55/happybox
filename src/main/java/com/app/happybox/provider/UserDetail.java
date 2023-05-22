@@ -34,7 +34,7 @@ public class UserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority(Role.MEMBER.getSecurityRole()), new SimpleGrantedAuthority(Role.ADMIN.getSecurityRole()), new SimpleGrantedAuthority(Role.WELFARE.getSecurityRole()), new SimpleGrantedAuthority(Role.DISTRIBUTOR.getSecurityRole()));
+        return authorities;
     }
 
     @Override
