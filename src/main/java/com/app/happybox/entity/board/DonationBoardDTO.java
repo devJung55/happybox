@@ -1,5 +1,6 @@
 package com.app.happybox.entity.board;
 
+import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.type.DonateType;
 import lombok.Builder;
@@ -35,6 +36,9 @@ public class DonationBoardDTO {
     /* 기부한 날짜 */
     private LocalDateTime boardRegisterDate;
 
+    /* 작성한 복지관 */
+    private WelfareDTO welfareDTO;
+
     /*-- 파일 리스트 --*/
     private List<BoardFileDTO> donationBoardFiles = new ArrayList<>();
 
@@ -56,5 +60,9 @@ public class DonationBoardDTO {
         this.welfarePoint = welfarePoint;
         this.boardRegisterDate = boardRegisterDate;
         this.donationBoardFiles = donationBoardFiles;
+    }
+
+    public void setWelfareDTO(WelfareDTO welfareDTO) {
+        this.welfareDTO = welfareDTO;
     }
 }

@@ -5,10 +5,7 @@ import com.app.happybox.entity.board.ReviewBoard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,15 +29,29 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
     }
 
     @Override
-    public Page<DonationBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {
+    public Slice<DonationBoard> findAllByIdDescWithPaging_QueryDSL(Pageable pageable) {
         List<DonationBoard> donationBoards = query.select(donationBoard)
                 .from(donationBoard)
                 .join(donationBoard.welfare).fetchJoin()
                 .join(donationBoard.donationBoardFiles).fetchJoin()
+                .orderBy(donationBoard.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
-        return new PageImpl<>(donationBoards);
+        return checkLastPage(pageable, donationBoards);
+    }
+
+    @Override
+    public Slice<DonationBoard> findAllByPointDescWithPaging_QueryDSL(Pageable pageable) {
+        List<DonationBoard> donationBoards = query.select(donationBoard)
+                .from(donationBoard)
+                .join(donationBoard.welfare).fetchJoin()
+                .join(donationBoard.donationBoardFiles).fetchJoin()
+                .orderBy(donationBoard.welfare.welfarePointTotal.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        return checkLastPage(pageable, donationBoards);
     }
 
     @Override
@@ -68,5 +79,19 @@ public class DonationBoardQueryDslImpl implements DonationBoardQueryDsl {
         Long count = query.select(donationBoard.id.count()).from(donationBoard).fetchOne();
 
         return new PageImpl<>(donationBoardList, pageable, count);
+    }
+
+    //    hasNext true인지 false인지 체크하는 메소드(마지막 페이지 체크)
+    private Slice<DonationBoard> checkLastPage(Pageable pageable, List<DonationBoard> donationBoards) {
+
+        boolean hasNext = false;
+
+        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
+        if (donationBoards.size() > pageable.getPageSize()) {
+            hasNext = true;
+            donationBoards.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(donationBoards, pageable, hasNext);
     }
 }
