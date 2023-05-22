@@ -13,10 +13,7 @@ import com.app.happybox.type.FileRepresent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,12 +36,14 @@ public class DonationBoardServiceImpl implements DonationBoardService {
         log.info(boardFileDTOS.toString());
         // 아이디 조회 실패 시 Exception
         Welfare welfare = welfareRepository.findById(welfareId).orElseThrow(UserNotFoundException::new);
+        Integer point = 1000;
 
         // 게시판에 setMember
         DonationBoard donationBoard = toDonationBoardEntity(donationBoardDTO);
         donationBoard.setWelfare(welfare);
 
         donationBoardRepository.save(donationBoard);
+        welfare.setWelfarePointTotal(welfare.getWelfarePointTotal() + point);
 
         int index = 0;
 
@@ -112,7 +111,11 @@ public class DonationBoardServiceImpl implements DonationBoardService {
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id, Long welfareId) {
         DonationBoard donationBoard = donationBoardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
+        Welfare welfare = welfareRepository.findById(welfareId).orElseThrow(UserNotFoundException::new);
+        Integer point = 1000;
         donationBoardRepository.delete(donationBoard);
+        welfare.setWelfarePointTotal(welfare.getWelfarePointTotal() - point);
+
     }
 
     @Override
@@ -121,10 +124,21 @@ public class DonationBoardServiceImpl implements DonationBoardService {
     }
 
     @Override
-    public Page<DonationBoardDTO> getList(Pageable pageable) {
-        Page<DonationBoard> donationBoards = donationBoardRepository.findAllByIdDescWithPaging_QueryDSL(PageRequest.of(0, 10));
+    public Slice<DonationBoardDTO> getRecentList(Pageable pageable) {
+        Slice<DonationBoard> donationBoards =
+                donationBoardRepository.findAllByIdDescWithPaging_QueryDSL(pageable);
         List<DonationBoardDTO> collect = donationBoards.get().map(board -> donationBoardToDTO(board)).collect(Collectors.toList());
-        return new PageImpl<>(collect, pageable, donationBoards.getTotalElements());
+
+        return new SliceImpl<>(collect, pageable, donationBoards.hasNext());
+    }
+
+    @Override
+    public Slice<DonationBoardDTO> getPopularList(Pageable pageable) {
+        Slice<DonationBoard> donationBoards =
+                donationBoardRepository.findAllByPointDescWithPaging_QueryDSL(pageable);
+        List<DonationBoardDTO> collect = donationBoards.get().map(board -> donationBoardToDTO(board)).collect(Collectors.toList());
+
+        return new SliceImpl<>(collect, pageable, donationBoards.hasNext());
     }
 
     @Override

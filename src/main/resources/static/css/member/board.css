@@ -488,3 +488,128 @@ a.hasImage {
 }
 
 
+/* ===============기부게시판 용================ */
+
+.donate-li {
+    position: relative;
+    padding: 0 0 0 70px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.rank-num {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    font-size: 22px;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1;
+    padding-bottom: 9px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #333;
+}
+
+.danate-info-area {
+    padding: 20px 0;
+    position: relative;
+}
+
+.danate-info-area .inner {
+    display: table;
+    table-layout: auto;
+    width: 100%;
+}
+
+.column {
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+}
+
+.inner .img{
+    width: 110px;
+    height: 110px;
+    vertical-align: middle;
+    overflow: hidden;
+    position: relative;
+}
+
+.inner .img a {
+    display: block;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.inner .img img {
+    width: 110px;
+    height: 110px;
+}
+
+.inner .tit {
+    padding: 0 10px 0 15px;
+    text-align: left;
+    height: 45px;
+    width: 120px;
+}
+
+.inner .tit .welfare-name{
+    font-size: 13px;
+    line-height: 19px;
+    color: #333;
+    font-weight: bold;
+}
+
+.inner .tit .title{
+    margin-top: 2px;
+    line-height: 22px;
+    font-size: 15px;
+    color: #333;
+}
+
+.text-elps2 {
+    display: block;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+}
+
+.inner .donate-location {
+    font-size: 12px;
+    color: #666;
+    padding: 0 0 10px;
+    font-weight: normal;
+}
+
+.inner .count{
+    width: 100px;
+    vertical-align: middle;
+    text-align: center;
+    word-break: keep-all;
+}
+}
+
+.inner .count .num {
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+}
+
+.inner .point{
+    width: 100px;
+    vertical-align: middle;
+    text-align: left;
+    word-break: keep-all;
+    font-size: 12px;
+    color: #666;
+}
+
+.inner .point span{
+    color: #FA0101;
+    font-size: 14px;
+    font-weight: 600;
+}
+
