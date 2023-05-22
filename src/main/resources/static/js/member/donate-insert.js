@@ -184,7 +184,7 @@ $("form[name='form']").on("submit", function (e) {
             donateType = "FOOD";
 
     }
-    let donateLocation = $("input[name='donate-location']").val();
+    let donateLocation = $("input[name='donateLocation']").val();
 
     insertData.boardTitle = boardTitle;
     insertData.boardContent = boardContent;

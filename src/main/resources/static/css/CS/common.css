@@ -277,7 +277,7 @@ html {
     display: table-cell;
     float: left;
     width: 100%;
-    z-index: 2;
+    z-index: 1;
 }
 
 .input-text {
