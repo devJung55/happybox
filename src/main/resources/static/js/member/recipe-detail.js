@@ -49,9 +49,9 @@ $(document).ready(function () {
 
 const $files = recipe.files;
 const setList = $('.detail-container');
+console.log(recipe);
 
 function showDetail() {
-    console.log(recipe);
     let text = "";
     text += `
     <div class="slider__sec">
@@ -149,8 +149,13 @@ function showDetail() {
                 />
               </svg>
             </button>
-            <button type="button" class="btn-heart">
-            </button>
+            <div class="like-btn-wrap">
+                <a href="javascript:checkRecipeLike()">
+                    <span class="like-btn">
+                        <img src="/img/mypage/heart.png" alt=""/>
+                    </span>
+                </a>
+            </div>
           </div>
           <span class="writer-button-wrap">
             <p class="writer-name">${recipe.memberName}</p>
@@ -434,24 +439,17 @@ function checkOutLike(likeBtn) {
 
 /* ======================================================================================= */
 
-/* 하트 이벤트 */
-$('.btn-heart').on('click', function () {
-    if ($(this).hasClass('on')) {
-        $(this).removeClass('on');
-    } else {
-        $(this).addClass('on');
-        heartInsert();
-    }
-});
+const BOARD_LIKE_URL = `/user-board/recipe-board-detail/like/${recipe.id}`;
+const likeSrc = "/img/mypage/heart-pull.png";
+const unlikeSrc = "/img/mypage/heart.png";
+/* 이미 좋아요인지 검사 */
 
-function heartInsert() {
-    $.ajax({
-        type: "POST",
-        url: "/user-board/recipe-board-detail/heart-insert",
-        data: data,
-        dataType: "json",
-        success: function (response) {
-            showList(response);
-        }
+$(".like-btn img").attr("src", `${isLike ? likeSrc : unlikeSrc}`);
+
+/* 좋아요 눌렀을 때 */
+function checkRecipeLike() {
+    console.log(isLike);
+    $doAjax("POST", BOARD_LIKE_URL, {}, (result) => {
+        $(".like-btn img").attr("src", `${result ? unlikeSrc : likeSrc}`);
     });
 }

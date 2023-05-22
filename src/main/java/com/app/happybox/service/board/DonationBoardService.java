@@ -42,9 +42,13 @@ public interface DonationBoardService {
                 .id(donationBoard.getId())
                 .boardTitle(donationBoard.getBoardTitle())
                 .boardContent(donationBoard.getBoardContent())
+                .welfareName(donationBoard.getWelfare().getWelfareName())
+                .welfarePhone(donationBoard.getWelfare().getUserPhoneNumber())
+                .welfarePoint(donationBoard.getWelfare().getWelfarePointTotal())
                 .donateType(donationBoard.getDonateType())
+                .boardRegisterDate(donationBoard.getUpdatedDate())
                 .donateLocation(donationBoard.getDonateLocation())
-                .donationBoardFiles(donationBoard.getDonationBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
+                .donationBoardFiles(boardFileToDTO(donationBoard.getDonationBoardFiles()))
                 .build();
     }
 

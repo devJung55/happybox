@@ -2,16 +2,12 @@ package com.app.happybox.controller.board;
 
 import com.app.happybox.entity.board.*;
 import com.app.happybox.entity.file.BoardFileDTO;
-import com.app.happybox.entity.file.QBoardFile;
 import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.repository.board.DonationBoardRepository;
-import com.app.happybox.service.board.DonationBoardService;
-import com.app.happybox.service.board.RecipeBoardService;
-import com.app.happybox.service.board.ReviewBoardLikeService;
-import com.app.happybox.service.board.ReviewBoardService;
+import com.app.happybox.service.board.*;
 import com.app.happybox.service.reply.RecipeBoardReplyService;
 import com.app.happybox.service.reply.ReplyLikeService;
 import com.app.happybox.service.reply.ReviewBoardReplyService;
@@ -57,6 +53,7 @@ public class BoardController {
     private final ReplyLikeService replyLikeService;
     private final RecipeBoardReplyService recipeBoardReplyService;
     private final ReviewBoardLikeService reviewBoardLikeService;
+    private final RecipeBoardLikeService recipeBoardLikeService;
 
     //    리뷰 게시판 이동
     @GetMapping("review-board-list")
@@ -93,6 +90,7 @@ public class BoardController {
 
         // 좋아요 이미 눌렀는지 검사
         model.addAttribute("isLike", reviewBoardLikeService.checkLike(id, userDetail.getId()));
+        log.info(userDetail.getId().toString());
         return "user-board/review-board-detail";
     }
 
@@ -222,9 +220,18 @@ public class BoardController {
 
     //    레시피 게시판 상세보기
     @GetMapping("recipe-board-detail/{id}")
-    public String goRecipeDetail(@PathVariable Long id, Model model){
+    public String goRecipeDetail(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetail userDetail){
         model.addAttribute("recipe", recipeBoardService.getDetail(id));
+        // 좋아요 이미 눌렀는지 검사
+        model.addAttribute("isLike", recipeBoardLikeService.checkLike(id, userDetail.getId()));
         return "user-board/recipe-board-detail";
+    }
+
+    //    레시피 게시글 좋아요
+    @PostMapping("recipe-board-detail/like/{id}")
+    @ResponseBody
+    public boolean checkRecipeLike(@PathVariable Long id, @AuthenticationPrincipal UserDetail userDetail) {
+        return recipeBoardLikeService.checkOutLike(id, userDetail.getId());
     }
 
     //    레시피 게시판 작성하기
@@ -235,8 +242,8 @@ public class BoardController {
 
     @PostMapping("recipe-board-insert")
     @ResponseBody
-    public void recipeWrite(@RequestBody RecipeBoardDTO recipeBoardDTO) {
-        Long userId = 1L;
+    public void recipeWrite(@RequestBody RecipeBoardDTO recipeBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
+        Long userId = userDetail.getId();
         recipeBoardService.write(recipeBoardDTO, userId);
 
         log.info("=====================" + recipeBoardDTO);
@@ -303,8 +310,6 @@ public class BoardController {
         return replyLikeService.checkOutLike(replyId, userDetail.getId());
     }
 
-
-
     /* ==================================================== */
 
     //    기부 게시판 리스트
@@ -333,8 +338,8 @@ public class BoardController {
 
     @PostMapping("donate-insert")
     @ResponseBody
-    public void DonateWrite(@RequestBody DonationBoardDTO donationBoardDTO) {
-        Long userId = 1L;
+    public void DonateWrite(@RequestBody DonationBoardDTO donationBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
+        Long userId = userDetail.getId();
         donationBoardService.write(donationBoardDTO, userId);
 
         log.info("=====================" + donationBoardDTO);
@@ -349,8 +354,8 @@ public class BoardController {
 
 //    기부 게시판 삭제
     @DeleteMapping("donate-detail/delete/{id}")
-    public void deleteDonate(@PathVariable Long id) {
-        Long userId = 1L;
+    public void deleteDonate(@PathVariable Long id, @AuthenticationPrincipal UserDetail userDetail) {
+        Long userId = userDetail.getId();
 
         // 임시 session 값 1저장
         donationBoardService.delete(id, userId);

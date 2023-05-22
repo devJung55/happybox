@@ -56,7 +56,10 @@
 //        }
 //    }
 //
-//    private boolean checkMemberAlreadyLikes(Member member, RecipeBoard recipeBoard){
-//        return recipeBoardLikeRepository.checkMemberLikesRecipeBoard_QueryDSL(member, recipeBoard);
+//    @Test
+//    private boolean checkMemberAlreadyLikes(){
+//        Long memberId = 61L;
+//        Long recipeBoardId = 124L;
+//        return recipeBoardLikeRepository.checkMemberLikesRecipeBoard_QueryDSL(memberId, recipeBoardId);
 //    }
 //}
