@@ -23,7 +23,7 @@
                 <div class="frame-wrap">
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
-                            <div class="board-form">
+                            <form class="board-form" id="counselRegFrm" name="form" method="post">
                                 <table>
                                     <tr>
                                         <th class="text-left">
@@ -52,7 +52,7 @@
                                                 </div>
                                                 <input
                                                     type="text"
-                                                    name="inquiry_title"
+                                                    name="boardTitle"
                                                     class="input-text h40"
                                                     placeholder="제목을 입력해주세요"
                                                     value=""
@@ -68,10 +68,10 @@
                                             <div class="input-group w-full">
                                                 <input
                                                     type="text"
-                                                    name="welfare-selection"
+                                                    name="donate-location"
                                                     class="input-text h40"
                                                     placeholder="무료 급식소를 검색해 주세요."
-                                                    value=""
+                                                    value="임시 급식소"
                                                     readonly="true"
                                                 />
                                                 <span class="input-group-btn">
@@ -98,7 +98,7 @@
                                                 <textarea
                                                     id="vQuestionCont"
                                                     placeholder="기부에 대한 내용을 입력해주세요."
-                                                    name="vQuestionCont"
+                                                    name="boardContent"
                                                 ></textarea>
                                                 <div class="txt-count">
                                                     <span id="counter">0</span> /
@@ -107,88 +107,90 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!-- 첨부파일 영역 -->
                                     <tr class="attach-file-line">
-                                        <th class="text-left"></th>
-                                        <td class="text-left file-box-wrap">
+                                        <th class="text-left" scope="row"></th>
+                                        <td class="text-left">
                                             <div class="file-add-boxes">
-                                                <div class="div-attach-thumb">
-                                                    <button class="btn-attach-thumb">
-                                                        <i class="ico-plus-xlg">
-                                                            <svg
-                                                                height="26px"
-                                                                viewBox="0 0 512 512"
-                                                                width="26px"
-                                                            >
-                                                                <g>
-                                                                    <path
-                                                                        d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
-                                                                    />
-                                                                </g>
-                                                            </svg>
-                                                        </i>
+                                                <div class="div-attach-thumb" id="US_RV_IMG_attachThumb">
+                                                    <button type="button" class="btn-attach-thumb">
+                                                        <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                     </button>
                                                     <input
-                                                        type="file"
-                                                        name="imgFile"
-                                                        style="display: none"
-                                                        accept="image/*"
+                                                            class="input_file"
+                                                            name="imgFile"
+                                                            type="file"
+                                                            accept="image/*"
+                                                            style="display: none"
                                                     />
+                                                    <div class="attach-img" style="display: none;">
+                                                        <img
+                                                                src=""
+                                                                style="width: 68px; height: 68px"
+                                                                id="image"
+                                                        />
+                                                        <button
+                                                                type="button"
+                                                                class="btn-x-xs2 btn_del"
+                                                        >
+                                                            <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="file-add-boxes">
-                                                <div class="div-attach-thumb">
-                                                    <button class="btn-attach-thumb">
-                                                        <i class="ico-plus-xlg">
-                                                            <svg
-                                                                height="26px"
-                                                                viewBox="0 0 512 512"
-                                                                width="26px"
-                                                            >
-                                                                <g>
-                                                                    <path
-                                                                        d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
-                                                                    />
-                                                                </g>
-                                                            </svg>
-                                                        </i>
+                                                <div class="div-attach-thumb" id="US_RV_IMG2_attachThumb">
+                                                    <button type="button" class="btn-attach-thumb">
+                                                        <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                     </button>
                                                     <input
-                                                        type="file"
-                                                        name="imgFile"
-                                                        style="display: none"
-                                                        accept="image/*"
+                                                            class="input_file"
+                                                            name="imgFile"
+                                                            type="file"
+                                                            accept="image/*"
+                                                            style="display: none"
                                                     />
+                                                    <div class="attach-img" style="display: none;">
+                                                        <img
+                                                                src=""
+                                                                style="width: 68px; height: 68px"
+                                                                id="image"
+                                                        />
+                                                        <button
+                                                                type="button"
+                                                                class="btn-x-xs2 btn_del"
+                                                        >
+                                                            <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="file-add-boxes">
-                                                <div class="div-attach-thumb">
-                                                    <button class="btn-attach-thumb">
-                                                        <i class="ico-plus-xlg">
-                                                            <svg
-                                                                height="26px"
-                                                                viewBox="0 0 512 512"
-                                                                width="26px"
-                                                            >
-                                                                <g>
-                                                                    <path
-                                                                        d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
-                                                                    />
-                                                                </g>
-                                                            </svg>
-                                                        </i>
+                                                <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                    <button type="button" class="btn-attach-thumb">
+                                                        <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                     </button>
                                                     <input
-                                                        type="file"
-                                                        name="imgFile"
-                                                        style="display: none"
-                                                        accept="image/*"
+                                                            class="input_file"
+                                                            name="imgFile"
+                                                            type="file"
+                                                            accept="image/*"
+                                                            style="display: none"
                                                     />
+                                                    <div class="attach-img" style="display: none;">
+                                                        <img
+                                                                src=""
+                                                                style="width: 68px; height: 68px"
+                                                                id="image"
+                                                        />
+                                                        <button
+                                                                type="button"
+                                                                class="btn-x-xs2 btn_del"
+                                                        >
+                                                            <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
+                                                <p class="text-guide-md">
+                                                    - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                </p>
                                             </div>
-                                            <p class="text-guide-md">
-                                                - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지
-                                                첨부 가능합니다.
-                                            </p>
                                         </td>
                                     </tr>
                                 </table>
@@ -200,13 +202,13 @@
                                         <span>취소하기</span>
                                     </button>
                                     <button
-                                        type="button"
+                                        type="submit"
                                         class="btn-basic-lg2 btn-primary"
                                     >
                                         <span>기부하기</span>
                                     </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -301,6 +303,10 @@
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/js/common/ajax.js"></script>
+    <script th:inline="javascript">
+        let fileDTOS = null;
+        let donate = [[${donate}]];
+    </script>
     <script src="/js/main/header.js"></script>
-    <script src="/js/welfare/donateInsert.js"></script>
+    <script src="/js/member/donate-insert.js"></script>
 </html>

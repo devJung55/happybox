@@ -10,6 +10,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.stream.Collectors;
 
 public interface RecipeBoardLikeService {
+    public boolean checkOutLike(Long recipeBoardId, Long userId);
+
+    public boolean checkLike(Long recipeBoardId, Long memberId);
+
     //    마이페이지 찜 목록
     public Page<RecipeBoardLikeDTO> getListByMemberId(Pageable pageable, Long memberId);
 

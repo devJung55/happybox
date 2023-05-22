@@ -28,6 +28,8 @@ public class DonationBoardDTO {
 
     /* 기부한 복지관명 */
     private String welfareName;
+    private String welfarePhone;
+    private Integer welfarePoint;
 
     /* 기부한 날짜 */
     private LocalDateTime boardRegisterDate;
@@ -39,13 +41,15 @@ public class DonationBoardDTO {
     }
 
     @Builder
-    public DonationBoardDTO(Long id, String boardTitle, String boardContent, DonateType donateType, String donateLocation, String welfareName, LocalDateTime boardRegisterDate, List<BoardFileDTO> donationBoardFiles) {
+    public DonationBoardDTO(Long id, String boardTitle, String boardContent, DonateType donateType, String donateLocation, String welfareName, String welfarePhone, Integer welfarePoint, LocalDateTime boardRegisterDate, List<BoardFileDTO> donationBoardFiles) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.donateType = donateType;
         this.donateLocation = donateLocation;
         this.welfareName = welfareName;
+        this.welfarePhone = welfarePhone;
+        this.welfarePoint = welfarePoint;
         this.boardRegisterDate = boardRegisterDate;
         this.donationBoardFiles = donationBoardFiles;
     }

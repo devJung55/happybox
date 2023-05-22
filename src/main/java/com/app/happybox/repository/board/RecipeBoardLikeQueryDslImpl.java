@@ -14,11 +14,28 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.app.happybox.entity.board.QRecipeBoardLike.recipeBoardLike;
+import static com.app.happybox.entity.board.QReviewBoardLike.reviewBoardLike;
 
 
 @RequiredArgsConstructor
 public class RecipeBoardLikeQueryDslImpl implements RecipeBoardLikeQueryDsl {
     private final JPAQueryFactory query;
+
+    @Override
+    public boolean checkMemberLikesRecipeBoard_QueryDSL(Long memberId, Long recipeBoardId) {
+        Long count = query.select(recipeBoardLike.count())
+                .from(recipeBoardLike)
+                .where(recipeBoardLike.member.id.eq(memberId).and(recipeBoardLike.recipeBoard.id.eq(recipeBoardId)))
+                .fetchOne();
+        return count > 0;
+    }
+
+    @Override
+    public void deleteUserLikeByUserAndRecipeBoard(Long memberId, Long recipeBoardId) {
+        query.delete(recipeBoardLike)
+                .where(recipeBoardLike.member.id.eq(memberId).and(recipeBoardLike.recipeBoard.id.eq(recipeBoardId)))
+                .execute();
+    }
 
     @Override
     public boolean checkMemberLikesRecipeBoard_QueryDSL(Member member, RecipeBoard recipeBoard) {
