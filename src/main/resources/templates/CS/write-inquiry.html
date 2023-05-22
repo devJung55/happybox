@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="/css/global/global.css" />
     <link rel="stylesheet" href="/css/CS/common.css" />
     <link rel="stylesheet" href="/css/CS/write-inquiry.css" />
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
     <title>1:1 문의</title>
 </head>
 <body>
+<header class="header-stage" th:insert="~{component/header.html :: header}"></header>
 <section class="container">
     <div class="content-wrap frame-sm">
         <div class="page-title-area">
@@ -83,14 +86,14 @@
                                                     readonly="true"
                                             />
                                             <span class="input-group-btn">
-                                                        <button
-                                                                type="button"
-                                                                id="btn_orderProduct"
-                                                                class="btn-form btn-ex-white w150 welfareSearchBtn"
-                                                        >
-                                                            <span>복지관 검색</span>
-                                                        </button>
-                                                    </span>
+                                                <button
+                                                        type="button"
+                                                        id="btn_orderProduct"
+                                                        class="btn-form btn-ex-white w150 welfareSearchBtn"
+                                                >
+                                                    <span>복지관 검색</span>
+                                                </button>
+                                            </span>
                                         </div>
                                     </td>
                                 </tr>
@@ -245,11 +248,12 @@
                                 type="text"
                                 name="welfare-selection"
                                 class="input-text h40"
-                                placeholder="제목을 입력해주세요"
+                                placeholder="선택한 복지관"
                                 value=""
+                                readonly
                         />
                         <span class="input-group-btn">
-                                    <button type="button" class="btn-form btn-ex-white w150">
+                                    <button type="button" class="btn-form btn-ex-white w150 find-btn">
                                         <span>복지관 검색</span>
                                     </button>
                                 </span>
@@ -257,11 +261,15 @@
                 </div>
                 <div id="productPop">
                     <div class="board-list">
+                        <table class="API-table">
+                            <thead class="thead"></thead>
+                            <tbody class="tbody"></tbody>
+                        </table>
                         <ul class="select-form-list">
                             <!-- 데이터 없으면 disNone으로 -->
                             <li>
                                 <div class="no-data">
-                                    <p class="message">내역이 없습니다.</p>
+                                    <p class="find-message">내역이 없습니다.</p>
                                 </div>
                             </li>
                         </ul>
@@ -280,13 +288,13 @@
             <button type="button" class="btn-x-md2 ui-close-pop modalClose" title="닫기">
                 <i class="ico-x-black">
                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        id="Layer_1"
-                        style="enable-background: new 0 0 64 64"
-                        version="1.1"
-                        viewBox="0 0 64 64"
-                        xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            id="Layer_1"
+                            style="enable-background: new 0 0 64 64"
+                            version="1.1"
+                            viewBox="0 0 64 64"
+                            xml:space="preserve"
                     >
                         <style type="text/css">
                             .st0 {
@@ -295,19 +303,19 @@
                         </style>
                         <g>
                             <g
-                                id="Icon-Close"
-                                transform="translate(381.000000, 231.000000)"
+                                    id="Icon-Close"
+                                    transform="translate(381.000000, 231.000000)"
                             >
                             <polyline
-                                class="st0"
-                                id="Fill-16"
-                                points="-370.7,-174.7 -373,-177 -327,-223 -324.7,-220.7 -370.7,-174.7    "
+                                    class="st0"
+                                    id="Fill-16"
+                                    points="-370.7,-174.7 -373,-177 -327,-223 -324.7,-220.7 -370.7,-174.7    "
                             />
-                            <polyline
-                                class="st0"
-                                id="Fill-17"
-                                points="-327,-174.7 -373,-220.7 -370.7,-223 -324.7,-177 -327,-174.7    "
-                            />
+                                <polyline
+                                        class="st0"
+                                        id="Fill-17"
+                                        points="-327,-174.7 -373,-220.7 -370.7,-223 -324.7,-177 -327,-174.7    "
+                                />
                             </g>
                         </g>
                     </svg>
@@ -316,9 +324,67 @@
         </div>
     </div>
 </section>
+<footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- 임시 사이드바 js 이후 th fragment로 대체 -->
 <script src="/js/admin/event.js"></script>
 <script src="/js/CS/inquiry-write.js"></script>
+<script>
+    $('.find-btn').on('click', function () {
+        let queryParams = '집'
+
+        let url = `http://openapi.seoul.go.kr:8088/63455a5a69646576313363576d774c/json/GbFreeMealOrgan/1/10/${queryParams}`;
+        let getUrl = `http://openapi.seoul.go.kr:8088/63455a5a69646576313363576d774c/json/fcltOpenInfo/1/80/`;
+
+        $.ajax({
+            url: getUrl,
+            type: "GET",
+            dataType: 'json',
+            success: function(data) {
+                /* 새로 요청할 때마다 기존에 있는 내역 지워주기 */
+                $('.tbody').empty();
+                console.log(data);
+                let jsonData = data.fcltOpenInfo.row;
+                let table = $('.API-table').addClass('data-table');
+                /* 헤더 생성 */
+                let headerRow = $('<tr>');
+
+                headerRow.append($('<th>').text('시설명'));
+                headerRow.append($('<th>').text('시설주소'));
+                headerRow.append($('<th>').text('전화번호'));
+                headerRow.append($('<th>').text('우편번호'));
+
+                // ... 필요한 만큼 필드 추가
+                $('.thead').html(headerRow);
+
+                // 테이블 내용 생성
+                jsonData.forEach(function(rowData) {
+                    let row = $('<tr class="API-data">');
+                    row.append($('<td>').text(rowData.FCLT_NM));
+                    row.append($('<td>').text(rowData.FCLT_ADDR));
+                    row.append($('<td style="text-align: center">').text(rowData.FCLT_TEL_NO));
+                    row.append($('<td style="text-align: center">').text(rowData.FCLT_ZIPCD));
+
+                    // ... 필요한 만큼 필드 추가
+                    $('.tbody').append(row);
+                });
+                /* 각 행을 누르기 위한 작업 */
+                const $dataRows = $('.tbody .API-data');
+
+                /* 각 행을 누르면 해당 행의 시설명을 가지고 가기 */
+                $dataRows.each((i, v) => {
+                    $(v).on('click', function () {
+                        let value = $(this).children().first().text();
+                        $("input[name=welfare-selection]").val(value)
+                    })
+                })
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+        $('.select-form-list').hide();
+    })
+</script>
 </html>

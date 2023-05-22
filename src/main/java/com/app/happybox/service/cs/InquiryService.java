@@ -28,7 +28,7 @@ public interface InquiryService {
     public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId);
 
 //    문의 사항 작성
-    public void inquiryWrite(InquiryDTO inquiryDTO);
+    public void inquiryWrite(InquiryDTO inquiryDTO, Long id);
 
 //    마이페이지 문의 건수 조회
     public Long getInquiryCountByUserId(Long id);
@@ -104,16 +104,25 @@ public interface InquiryService {
 
     //    문의사항 DTO entity로 바꾸기
     default Inquiry toInquiryEntity(InquiryDTO inquiryDTO) {
-        return Inquiry.builder()
-                .id(inquiryDTO.getId())
-                .inquiryTitle(inquiryDTO.getInquiryTitle())
-                .inquiryContent(inquiryDTO.getInquiryContent())
-                .inquiryType(inquiryDTO.getInquiryType())
-                .inquiryFiles(inquiryDTO.getInquiryFileDTOS().stream()
-                        .map(this::toInquiryFileEntity)
-                        .collect(Collectors.toList())
-                )
-                .build();
+        if (inquiryDTO.getInquiryFileDTOS() != null) {
+            return Inquiry.builder()
+                    .id(inquiryDTO.getId())
+                    .inquiryTitle(inquiryDTO.getInquiryTitle())
+                    .inquiryContent(inquiryDTO.getInquiryContent())
+                    .inquiryType(inquiryDTO.getInquiryType())
+                    .inquiryFiles(inquiryDTO.getInquiryFileDTOS().stream()
+                            .map(this::toInquiryFileEntity)
+                            .collect(Collectors.toList())
+                    )
+                    .build();
+        } else {
+            return Inquiry.builder()
+                    .id(inquiryDTO.getId())
+                    .inquiryTitle(inquiryDTO.getInquiryTitle())
+                    .inquiryContent(inquiryDTO.getInquiryContent())
+                    .inquiryType(inquiryDTO.getInquiryType())
+                    .build();
+        }
     }
 
     //    문의사항 FIle entity로 바꾸기
