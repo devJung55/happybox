@@ -366,6 +366,17 @@ public class BoardController {
         return "user-board/donate-modify";
     }
 
+    @PostMapping("donate-modify")
+    @ResponseBody
+    public String goDonateModify(@RequestBody DonationBoardDTO donationBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
+        Long userId = userDetail.getId();
+
+        log.info(donationBoardDTO.toString());
+        donationBoardService.update(donationBoardDTO, userId);
+        log.info(donationBoardDTO.getId().toString());
+        return "/user-board/modify-detail/" + donationBoardDTO.getId();
+    }
+
 //    기부 게시판 삭제
     @DeleteMapping("donate-detail/delete/{id}")
     @ResponseBody
