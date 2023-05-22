@@ -20,7 +20,7 @@ import java.util.List;
 @DiscriminatorValue("WELFARE")
 @DynamicInsert
 @Getter @ToString(callSuper = true, exclude = {
-        "payments", "welfareOrderProducts", "subscription", "donationBoards"
+        "payments", "welfareOrderProducts", "subscription", "donationBoards", "riders"
 }) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Welfare extends User {
 

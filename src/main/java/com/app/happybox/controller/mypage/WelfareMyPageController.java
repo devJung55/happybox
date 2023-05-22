@@ -4,6 +4,7 @@ package com.app.happybox.controller.mypage;
 import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
+import com.app.happybox.domain.welfare.RiderDTO;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.board.RecipeBoardLikeService;
@@ -12,6 +13,7 @@ import com.app.happybox.service.board.ReviewBoardService;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
 import com.app.happybox.service.order.OrderSubsciptionService;
+import com.app.happybox.service.subscript.RiderService;
 import com.app.happybox.service.subscript.SubscriptionLikeService;
 import com.app.happybox.service.subscript.SubscriptionService;
 import com.app.happybox.service.user.MemberService;
@@ -25,8 +27,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -46,6 +51,8 @@ public class WelfareMyPageController {
     private final OrderSubsciptionService orderSubsciptionService;
     private final UserFileService userFileService;
     private final ReviewBoardService reviewBoardService;
+    private final RiderService riderService;
+
 
 //  복지관 회원 수정 페이지 이동
     @GetMapping("welfare/edit")
@@ -92,6 +99,28 @@ public class WelfareMyPageController {
         subscriptionWelFareDTO.setId(id);
         subscriptionService.updateByDTO(subscriptionWelFareDTO);
         return new RedirectView("/mypage/welfare/subscription/edit");
+    }
+
+    @GetMapping("welfare/rider/write")
+    public String riderWriteForm(RiderDTO riderDTO, Model model, @AuthenticationPrincipal UserDetail userDetail){
+        model.addAttribute("welfareId",userDetail.getId());
+        riderDTO.setWelfareId(userDetail.getId());
+        model.addAttribute("riderDTO", riderDTO);
+        return "/mypage/welfare/rider-register";
+    }
+
+    @PostMapping("welfare/rider/write")
+    public RedirectView riderWrite(RiderDTO riderDTO, @AuthenticationPrincipal UserDetail userDetail){
+        Long welfareId = userDetail.getId();
+        riderDTO.setWelfareId(welfareId);
+        riderService.registerRiderByWelfareId(riderDTO);
+        return new RedirectView("/mypage/welfare/rider/list");
+    }
+
+    @GetMapping("welfare/rider/list")
+    public String goRiderListForm(Model model, @AuthenticationPrincipal UserDetail userDetail){
+        Long welfareId = userDetail.getId();
+        return "/mypage/welfare/rider";
     }
 
 }
