@@ -55,13 +55,18 @@ public class SubscriptionCartServiceImpl implements SubscriptionCartService {
         return cart.getId();
     }
 
+    @Override
+    public void deleteCart(Long id) {
+        subscriptionCartRepository.deleteCart(id);
+    }
+
     //    subscription으로 카트 있는지 확인
     @Override
-    public Long subscriptionCartCheck(Long subscriptionId) {
+    public Integer subscriptionCartCheck(Long subscriptionId) {
         if(subscriptionCartRepository.existCartBySubscriptionId(subscriptionId).isPresent()){
-            return 1L;
+            return 1;
         }else {
-            return 2L;
+            return 2;
         }
     }
 }

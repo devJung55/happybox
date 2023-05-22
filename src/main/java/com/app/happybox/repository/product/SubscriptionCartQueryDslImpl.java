@@ -7,6 +7,7 @@ import com.app.happybox.entity.subscript.Subscription;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,5 +46,14 @@ public class SubscriptionCartQueryDslImpl implements SubscriptionCartQueryDsl {
                 .where(subscriptionCart.subscription.id.eq(subscriptionId))
                 .fetchOne()
         );
+    }
+
+//    memberId로 cart 삭제하기
+    @Override
+    @Transactional
+    public void deleteCart(Long id) {
+        query.delete(subscriptionCart)
+                .where(subscriptionCart.member.id.eq(id))
+                .execute();
     }
 }
