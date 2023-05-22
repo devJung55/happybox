@@ -34,6 +34,9 @@ public interface ProductService {
 //    관리자 상품 상세보기
     public Optional<Product> getDetailById(Long productId);
 
+//    마이페이지 상품 개수 조회
+    public Long getProductCount(Long distributorId);
+
     default ProductDTO productToDTO(Product product) {
         return ProductDTO.builder()
                 .id(product.getId())
@@ -71,6 +74,11 @@ public interface ProductService {
                 .productName(product.getProductName())
                 .productPrice(product.getProductPrice())
                 .productStock(product.getProductStock())
+                .productFileDTOS(
+                        product.getProductFiles().stream()
+                                .map(this::productFileToDTO)
+                                .collect(Collectors.toList())
+                )
                 .build();
     }
 

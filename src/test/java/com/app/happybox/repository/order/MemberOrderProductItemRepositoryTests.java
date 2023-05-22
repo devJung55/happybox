@@ -37,21 +37,16 @@ public class MemberOrderProductItemRepositoryTests {
 
     @Test
     public void findSaleListByWelfareIdAndSearchDateDescWithPagingTest() {
-        LocalDateTime startDate = LocalDateTime.of(2023, 2, 8, 0, 0);
-        LocalDateTime endDate = LocalDateTime.now();
+        SearchDateDTO searchDateDTO = new SearchDateDTO();
 
+        searchDateDTO.setSetDate(LocalDateTime.of(2022, 02, 8, 00, 00));
         memberOrderProductItemRepository
-                .findSaleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 42L, startDate, endDate)
-                .stream().map(MemberOrderProductItem::getMemberOrderProduct).forEach(v -> log.info(v.getMember().toString()));
+                .findSaleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(1, 5), 120L, searchDateDTO)
+                .stream().forEach(v -> log.info(v.getCreatedDate() + ""));
     }
 
     @Test
     public void findSaleCountByDistributorAndPurchaseStatus_QueryDSL_Test() {
-        log.info("saleCount : " + memberOrderProductItemRepository.findSaleCountByDistributorAndPurchaseStatus_QueryDSL(42L));
-    }
-
-    @Test
-    public void findCancleCountByDistributorAndPurchaseStatus_QueryDSL_Test() {
-        log.info("cancleCount : " + memberOrderProductItemRepository.findCancleCountByDistributorAndPurchaseStatus_QueryDSL(42L));
+        log.info("saleCount : " + memberOrderProductItemRepository.findSaleCountByDistributorAndPurchaseStatus_QueryDSL(120L));
     }
 }

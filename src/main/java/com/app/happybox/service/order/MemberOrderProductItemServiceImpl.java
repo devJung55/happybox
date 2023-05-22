@@ -37,4 +37,16 @@ public class MemberOrderProductItemServiceImpl implements MemberOrderProductItem
     public Long getOrderCountByMemberId(Long id) {
         return memberOrderProductRepository.findOrderCountByMemberIdAndOrderStatus_QueryDSL(id);
     }
+
+    @Override
+    public Page<MemberOrderProductItemDTO> getSaleListByDistributorIdAndSearchDate(Pageable pageable, Long distributorId, SearchDateDTO searchDateDTO) {
+        Page<MemberOrderProductItem> productItems = memberOrderProductItemRepository.findSaleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(pageable, distributorId, searchDateDTO);
+        List<MemberOrderProductItemDTO> productItemDTOS = productItems.get().map(this::toMemberOrderProductItemDTO).collect(Collectors.toList());
+        return new PageImpl<>(productItemDTOS, pageable, productItems.getTotalElements());
+    }
+
+    @Override
+    public Long getSalesCountByDistributorId(Long distributorId) {
+        return memberOrderProductItemRepository.findSaleCountByDistributorAndPurchaseStatus_QueryDSL(distributorId);
+    }
 }

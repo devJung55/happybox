@@ -86,6 +86,7 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
     public Page<Product> findAllByDistributorIdWithPaging_QueryDSL(Pageable pageable, Long distributorId) {
         List<Product> productList = query.select(product)
                 .from(product)
+                .leftJoin(product.productFiles).fetchJoin()
                 .join(product.distributor).fetchJoin()
                 .where(product.distributor.id.eq(distributorId))
                 .offset(pageable.getOffset())
@@ -95,6 +96,15 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
         Long count = query.select(product.id.count()).from(product).where(product.distributor.id.eq(distributorId)).fetchOne();
 
         return new PageImpl<>(productList, pageable, count);
+    }
+
+    @Override
+    public Long findCountByDistributor_QueryDSL(Long distributorId) {
+        Long productCount = query.select(product.id.count())
+                .from(product)
+                .where(product.distributor.id.eq(distributorId))
+                .fetchOne();
+        return productCount;
     }
 
     @Override

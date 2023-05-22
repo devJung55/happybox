@@ -5,15 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 목록</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/bookmark.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/bookmark.css">
+    <link rel="stylesheet" href="/css/mypage/user/paging.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
                 <div class="header-stage" th:insert="~{mypage/business/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
@@ -26,84 +35,24 @@
                             </div>
                             
                             <div class="grid-list-wrap ui-compare-select">
-                                <ul id="wishList" class="prd-item-list grid-area-span4 gap33">
-                                    
-                                    <li class="ext-li colum">
-                                        <div class="prd-item type-sm2">
-                                            <figure class="img w180">
-                                                <a href="javascript:void(0)">
-                                                    <img class="lozad" src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230216/IMG1676iqe535748247_330_330.jpg">
-                                                </a>
-                                            </figure>
-                                            <div class="desc-bottom">
-                                                <div class="brand-name">황금 당근</div>
-                                                <p class="origin"><span>27,800</span>원</p>
-                                            </div>
-                                        </div>
-                                    </li><!-- // 게시물 1개 -->
-
-                                    <li class="ext-li colum">
-                                        <div class="prd-item type-sm2">
-                                            <figure class="img w180">
-                                                <a href="javascript:void(0)">
-                                                    <img class="lozad" src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230216/IMG1676iqe535748247_330_330.jpg">
-                                                </a>
-                                            </figure>
-                                            <div class="desc-bottom">
-                                                <div class="brand-name">황금 당근</div>
-                                                <p class="origin"><span>27,800</span>원</p>
-                                            </div>
-                                        </div>
-                                    </li><!-- // 게시물 1개 -->
-
-                                    <li class="ext-li colum">
-                                        <div class="prd-item type-sm2">
-                                            <figure class="img w180">
-                                                <a href="javascript:void(0)">
-                                                    <img class="lozad" src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230216/IMG1676iqe535748247_330_330.jpg">
-                                                </a>
-                                            </figure>
-                                            <div class="desc-bottom">
-                                                <div class="brand-name">황금 당근</div>
-                                                <p class="origin"><span>27,800</span>원</p>
-                                            </div>
-                                        </div>
-                                    </li><!-- // 게시물 1개 -->
-
-                                    <li class="ext-li colum">
-                                        <div class="prd-item type-sm2">
-                                            <figure class="img w180">
-                                                <a href="javascript:void(0)">
-                                                    <img class="lozad" src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230216/IMG1676iqe535748247_330_330.jpg">
-                                                </a>
-                                            </figure>
-                                            <div class="desc-bottom">
-                                                <div class="brand-name">황금 당근</div>
-                                                <p class="origin"><span>27,800</span>원</p>
-                                            </div>
-                                        </div>
-                                    </li><!-- // 게시물 1개 -->
-
-                                </ul><!--// prd-item-list -->
-                            </div><!--// grid-list-wrap -->
-
-
-                            <div class="page-bottom">
-                                <div class="pagination mt20" style="margin-top: 30px;"><!-- // 페이징 -->
-                                    <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
-                                    <a href="javascript:void(0)" class="current"><span>1</span></a>
-                                    <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
-                                </div><!--// pagination -->
+                                <ul id="wishList" class="prd-item-list grid-area-span4 gap33 product__list"></ul>
                             </div>
-
-
-                        </div><!--// frame-cnt-inner -->
+                            <div class="page-bottom">
+                                <div class="pagination mt20" style="margin-top: 30px;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
-<script src="../../../static/js/mypage/user/bookmark.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/CS/common.js"></script>
+<script src="/js/common/ajax.js"></script>
+<script src="/js/market/search.js"></script>
+<script src="/js/mypage/business/ajax.js"></script>
+<script src="/js/mypage/business/product.js"></script>
 </html>

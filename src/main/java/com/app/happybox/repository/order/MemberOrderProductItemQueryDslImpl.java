@@ -24,7 +24,6 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
 
     @Override
     public Page<MemberOrderProductItem> findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId, SearchDateDTO searchDateDTO) {
-        log.info(searchDateDTO.toString());
         LocalDateTime current = LocalDateTime.now();
         BooleanExpression orderDateBetween = searchDateDTO.getSetDate() == null ? null : memberOrderProductItem.createdDate.between(searchDateDTO.getSetDate(), current);
 
@@ -32,7 +31,6 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
                 .from(memberOrderProductItem)
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
                 .join(memberOrderProductItem.product).fetchJoin()
-                .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
                 .where(memberOrderProductItem.memberOrderProduct.member.id.eq(memberId))
                 .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CONFIRMED))
                 .where(orderDateBetween)
@@ -47,34 +45,17 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
     }
 
     @Override
-    public Page<MemberOrderProductItem> findCancleListByMemberIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long memberId, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
-        List<MemberOrderProductItem> memberOrderProductItemList = query.select(memberOrderProductItem)
-                .from(memberOrderProductItem)
-                .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
-                .join(memberOrderProductItem.product).fetchJoin()
-                .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
-                .where(memberOrderProductItem.memberOrderProduct.member.id.eq(memberId))
-                .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CANCELED))
-                .where(memberOrderProductItem.createdDate.between(searchStartDate, searchEndDate))
-                .orderBy(memberOrderProductItem.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
+    public Page<MemberOrderProductItem> findSaleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long distributorId, SearchDateDTO searchDateDTO) {
+        LocalDateTime current = LocalDateTime.now();
+        BooleanExpression orderDateBetween = searchDateDTO.getSetDate() == null ? null : memberOrderProductItem.createdDate.between(searchDateDTO.getSetDate(), current);
 
-        Long count = query.select(memberOrderProductItem.id.count()).from(memberOrderProductItem).fetchOne();
-
-        return new PageImpl<>(memberOrderProductItemList, pageable, count);
-    }
-
-    @Override
-    public Page<MemberOrderProductItem> findSaleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long distributorId, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
         List<MemberOrderProductItem> memberOrderProductItemList = query.select(memberOrderProductItem)
                 .from(memberOrderProductItem)
                 .join(memberOrderProductItem.product).fetchJoin()
                 .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
                 .where(memberOrderProductItem.product.distributor.id.eq(distributorId))
                 .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CONFIRMED))
-                .where(memberOrderProductItem.createdDate.between(searchStartDate, searchEndDate))
+                .where(orderDateBetween)
                 .orderBy(memberOrderProductItem.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -83,6 +64,7 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
         Long count = query.select(memberOrderProductItem.id.count())
                 .from(memberOrderProductItem)
                 .where(memberOrderProductItem.product.distributor.id.eq(distributorId))
+                .where(orderDateBetween)
                 .fetchOne();
 
         return new PageImpl<>(memberOrderProductItemList, pageable, count);
@@ -94,39 +76,6 @@ public class MemberOrderProductItemQueryDslImpl implements MemberOrderProductIte
                 .from(memberOrderProductItem)
                 .where(memberOrderProductItem.product.distributor.id.eq(distributorId))
                 .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CONFIRMED))
-                .fetchOne();
-
-        return count;
-    }
-
-    @Override
-    public Page<MemberOrderProductItem> findCancleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(Pageable pageable, Long distributorId, LocalDateTime searchStartDate, LocalDateTime searchEndDate) {
-        List<MemberOrderProductItem> memberOrderProductItemList = query.select(memberOrderProductItem)
-                .from(memberOrderProductItem)
-                .join(memberOrderProductItem.product).fetchJoin()
-                .join(memberOrderProductItem.memberOrderProduct).fetchJoin()
-                .where(memberOrderProductItem.product.distributor.id.eq(distributorId))
-                .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CANCELED))
-                .where(memberOrderProductItem.createdDate.between(searchStartDate, searchEndDate))
-                .orderBy(memberOrderProductItem.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        Long count = query.select(memberOrderProductItem.id.count())
-                .from(memberOrderProductItem)
-                .where(memberOrderProductItem.product.distributor.id.eq(distributorId))
-                .fetchOne();
-
-        return new PageImpl<>(memberOrderProductItemList, pageable, count);
-    }
-
-    @Override
-    public Long findCancleCountByDistributorAndPurchaseStatus_QueryDSL(Long distributorId) {
-        Long count = query.select(memberOrderProductItem.memberOrderProduct.member.id.count())
-                .from(memberOrderProductItem)
-                .where(memberOrderProductItem.product.distributor.id.eq(distributorId))
-                .where(memberOrderProductItem.memberOrderProduct.purchaseStatus.eq(PurchaseStatus.CANCELED))
                 .fetchOne();
 
         return count;
