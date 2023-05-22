@@ -137,8 +137,6 @@ public class MemberServiceImpl implements MemberService {
     public void updateMemberInfoById(MemberDTO memberDTO) {
         Member member = memberRepository.findById(memberDTO.getId()).orElseThrow(UserNotFoundException::new);
 
-        log.info(memberDTO.getUserPassword());
-
         if(memberDTO.getUserPassword() != null && memberDTO.getUserPassword() == " ,") {
             member.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword().split(",")[0]));
         }

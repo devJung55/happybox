@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
     <link rel="stylesheet" href="/css/member/member.css">
     <link rel="stylesheet" href="/css/member/join.css">
-    <link rel="stylesheet" href="/css/mypage/user/modal.css">
 </head>
 <style>
     .blind {
@@ -22,15 +21,6 @@
     }
 </style>
 <body>
-<!--모달창-->
-<div id="myModal" class="modal" th:if="${#strings.equals(param.update, 'ok')}">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>프로필 정보가 성공적으로 수정되었습니다.</p>
-        <button id="closeModalBtn">확인</button>
-    </div>
-</div>
-<!--모달창-->
 <div class="wrap">
     <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
     <section class="container">
@@ -189,13 +179,12 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/join/join.js"></script>
 <script>
     $(".btn_update").on("click", function() {
         $(document.editForm).attr("href", "/mypage/member/edit");
-        // console.log($(document.editForm).attr("href"));
-        // console.log($(document.editForm).attr("method"));
         $(document.editForm).submit();
     });
 

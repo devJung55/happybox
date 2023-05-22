@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,17 +16,9 @@
     <div class="wrap">
         <section id="contents" class="container">
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-
+                <div class="header-stage" th:insert="~{mypage/business/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm">
-
-
-                    <!-- // side-bar.html -->
-
-
+                    <div class="header-stage" th:insert="~{mypage/business/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area content__header">
