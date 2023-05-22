@@ -5,6 +5,7 @@ import com.app.happybox.domain.*;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.board.ReviewBoardDTO;
+import com.app.happybox.entity.file.UserFile;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.board.RecipeBoardLikeService;
@@ -158,6 +159,14 @@ public class MypageController {
     @GetMapping("member/subscrition-bookmark-list")
     public Page<SubscriptionLikeDTO> getSubscriptionBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<SubscriptionLikeDTO> bookmarkList = subscriptionLikeService.getListSubscriptionBookmarkByMemberId(PageRequest.of(page - 1, 8), userDetail.getId());
+
+        for (int i = 0; i < bookmarkList.getSize() - 1; i++) {
+            for (int j = 0; j < userFileService.getList().size(); j++) {
+                if(userFileService.getList().get(j).getUser().getId() == bookmarkList.getContent().get(i).getWelfareId()) {
+                    bookmarkList.getContent().get(i).setUserFileDTO(userFileService.userFileToDTO(userFileService.getList().get(j)));
+                }
+            }
+        }
         return bookmarkList;
     }
 
@@ -166,6 +175,14 @@ public class MypageController {
     @GetMapping("member/subscription-bookmark-cancel")
     public void calcelBookmarkSubscription(Long id) {
         subscriptionLikeService.cancelSubscriptionById(id);
+    }
+
+//    회원 프로필 설정
+    @ResponseBody
+    @GetMapping("user/profile-update")
+    public void updateProfile(@AuthenticationPrincipal UserDetail userDetail, String filePath, String fileUuid, String fileOrgName) {
+        UserFile userFile = new UserFile(filePath, fileUuid, fileOrgName, userService.getDetailByUserId(userDetail.getId()));
+        userFileService.registerProfile(userFile);
     }
 
 //    회원정보수정

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
     <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
     <link rel="stylesheet" href="/css/mypage/user/order-list.css">
+    <link rel="stylesheet" href="/css/mypage/user/paging.css">
 </head>
 <style>
     .blind {
@@ -24,13 +25,9 @@
         <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
-
                 <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
-
                 <div class="frame-sm">
-
                     <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
-
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <form action="" name="myPageOrderForm">
@@ -96,13 +93,11 @@
                                 </div>
                             </form>
                             <ul class="productCart-list"></ul><!--// list appned-->
-                        </div><!--// frame-cnt-inner -->
-                        <div class="page-bottom"><!-- // 페이징 -->
-                            <div class="pagination mt20" style="margin-top: 30px;">
-                                <div class="paging-div"></div>
-                            </div><!--// pagination -->
                         </div>
-                    </div><!--// frame-right -->
+                        <div class="page-bottom">
+                            <div class="pagination mt20" style="margin-top: 30px;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

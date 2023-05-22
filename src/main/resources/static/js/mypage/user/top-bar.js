@@ -1,11 +1,11 @@
-let filePath = $userFile.filePath;
-let fileUuid = $userFile.fileUuid;
-let fileOrgName = $userFile.fileOrgName;
+/* 프로필 설정 */
 
-console.log("드를어란어ㅣㅏㅇ리나어리")
-console.log($userFile)
-console.log(filePath);
-console.log(fileUuid);
-console.log(fileOrgName);
+console.log("ㄷㄹ어옴")
+console.log($("#profile__label"));
 
-$(".imgPath").attr("src", `/image/display?fileName=${filePath}/${fileUuid}_${fileOrgName}`);
+$("#profile__label").on("change", function() {
+    // 파일 찾아오기
+    const $files = $(this)[i].files;
+
+    console.log($files)
+});

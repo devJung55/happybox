@@ -21,6 +21,7 @@ public interface SubscriptionLikeService {
     default SubscriptionLikeDTO subscriptionLikeToDTO(SubscriptionLike subscriptionLike) {
         return SubscriptionLikeDTO.builder()
                 .id(subscriptionLike.getId())
+                .welfareId(subscriptionLike.getSubscription().getWelfare().getId())
                 .welfareName(subscriptionLike.getSubscription().getWelfare().getWelfareName())
                 .subscriptionPrice(subscriptionLike.getSubscription().getSubscriptionPrice())
                 .build();

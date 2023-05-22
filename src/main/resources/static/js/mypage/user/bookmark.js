@@ -42,7 +42,6 @@ $pageMove.on("click", function() {
 /*---------------------------------------------------------------------------*/
 const $recipeBookmarkAppend = $(".recipeBoard__bookmark__append");
 const $welfareBookmarkAppend = $(".welfare__bookmark__append");
-let page = 0;
 
 myPageService.recipeBoardBookmarkAjax();
 myPageService.subscriptionBookmarkAjax();
@@ -72,24 +71,35 @@ function showRecipeBoardBookmarkList(bookmarkList) {
                 </div>
             </li>
         `;
-        // text += displayPaginationRecipeBookmark(bookmarkList.totalPages);
     });
+    $recipeBookmarkAppend.empty();
     $recipeBookmarkAppend.append(text);
-    showPage(bookmarkList);
 }
 
 
 function showSubscriptionBookmarkList(welfareList) {
     let text = "";
+    let img = "";
 
     welfareList.content.forEach(board => {
+        console.log(board);
+
         text += `
             <li class="ext-li colum">
                 <input type="hidden" class="id" value="${board.id}">
                 <div class="prd-item type-sm2">
                     <figure class="img w180">
                         <a href="javascript:void(0)">
-                            <img class="lozad" src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20230216/IMG1676iqe535748247_330_330.jpg">
+                `;
+                    if(board.userFileDTO != null) {
+                        img = `<img class='lozad' src="/image/display?fileName=${board.userFileDTO.filePath}/${board.userFileDTO.fileUuid}_${board.userFileDTO.fileOrgName}">`;
+                    } else {
+                        img = `<img class="lozad" src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6">`;
+                    }
+
+        text += img;
+
+        text += `
                         </a>
                     </figure>
                     <div class="desc-bottom">
@@ -103,25 +113,9 @@ function showSubscriptionBookmarkList(welfareList) {
             </li>
         `;
     });
+    $welfareBookmarkAppend.empty();
     $welfareBookmarkAppend.append(text);
-    showPage(welfareList);
 }
-
-
-$(".paging-div").on("click", "a", function(e) {
-    e.preventDefault();
-    const targetPage = $(this).text();
-    page = parseInt(targetPage);
-
-    if(window.location.pathname == "/mypage/member/subscription-bookmark") {
-        $welfareBookmarkAppend.empty();
-        myPageService.subscriptionBookmarkAjax(page);
-    } else if(window.location.pathname == "/mypage/member/recipe-bookmark") {
-        $recipeBookmarkAppend.empty();
-        myPageService.recipeBoardBookmarkAjax(page);
-    }
-});
-
 
 /*복지관, 레시피 게시물 찜 삭제*/
 $("#wishList").on("click", ".like__wrap", function() {
