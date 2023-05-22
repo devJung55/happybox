@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -72,7 +73,7 @@
             </li>
         </ul>
     </div>
-    <div class="chat-window chat-window-light" style="display: none;">
+    <div sec:authorize="isAuthenticated()" class="chat-window chat-window-light" style="display: none;">
         <div class="chat-content-wrap">
             <div class="chat-title">
                 <h2>HAPPY BOX</h2>
@@ -177,7 +178,7 @@
             </div>
         </div>
     </div>
-    <button class="chat-show-btn">
+    <button sec:authorize="isAuthenticated()" class="chat-show-btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
             <defs>
                 <style>.cls-1 {
