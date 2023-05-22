@@ -477,11 +477,10 @@ input[name='send-msg'] {
 
 .message-area {
     display: flex;
-    position: relative;
     flex-direction: column;
     margin-top: 8px;
     height: 90%;
-    gap: 19px;
+    gap: 5px;
     overflow-y: scroll;
 }
 
@@ -527,13 +526,6 @@ input[name='send-msg'] {
     justify-content: center;
 }
 
-.message-time {
-    position: absolute;
-    font-size: 9px;
-    right: 8px;
-    bottom: -16px;
-}
-
 .chat-close button:hover {
     transform: scale(1.1);
 }
@@ -548,4 +540,11 @@ input[name='send-msg'] {
     bottom: 30px;
     right: 30px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.2em 0.8em;
+}
+
+.chat-show-btn svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+    margin-top: 7px;
 }

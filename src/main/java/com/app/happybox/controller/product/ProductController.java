@@ -88,6 +88,13 @@ public class ProductController {
         return null;
     }
 
+    @PatchMapping("/detail/reply/modify/{replyId}")
+    @ResponseBody
+    public ReplyDTO modifyReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long replyId) {
+        ReplyDTO updatedReply = productReplyService.updateReply(replyId, replyDTO);
+        return updatedReply;
+    }
+
     @PostMapping("/detail/reply/like/{replyId}")
     @ResponseBody
     public boolean checkLike(@PathVariable Long replyId, @AuthenticationPrincipal UserDetail userDetail) {

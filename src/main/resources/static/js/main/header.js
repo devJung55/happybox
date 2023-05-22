@@ -387,6 +387,8 @@ function onMessageReceived(payload) {
     //console.log("payload 들어오냐? :"+payload);
     let message = JSON.parse(payload.body);
 
+    if(message.sender == null) return;
+
     prependChatMessage(message);
 }
 
@@ -417,10 +419,6 @@ function sendMessage(event) {
 // 채팅 메시지 표시
 function prependChatMessage(message) {
     console.log(message);
-    let date = message.time.toString().split("T")[0];
-    let rawTime = message.time.toString().split("T")[1];
-    let time  = rawTime.split(".")[0];
-
     let isMyMessage = message.myMessage || message.sender == null;
 
     let text = `
@@ -428,7 +426,6 @@ function prependChatMessage(message) {
             <div class="message ${isMyMessage ? 'msg-float-right' : 'msg-float-left'}">
                 <span>${message.message}</span>
             </div>
-            <div class="message-time ${isMyMessage ? 'msg-float-right' : 'msg-float-left'}">${date} ${time}</div>
         </li>
     `;
 

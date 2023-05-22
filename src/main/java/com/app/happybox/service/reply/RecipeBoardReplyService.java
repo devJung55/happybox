@@ -73,6 +73,11 @@ public class RecipeBoardReplyService implements ReplyService {
     }
 
     @Override
+    public ReplyDTO updateReply(Long replyId, ReplyDTO replyDTO) {
+        return null;
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public RecipeBoardReply replyToEntity(ReplyDTO replyDTO, Long refId, Long userId) {
         RecipeBoard recipeBoard = recipeBoardRepository.findById(refId).orElseThrow(ProductNotFoundException::new);

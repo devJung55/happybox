@@ -74,6 +74,11 @@ public class ReviewBoardReplyService implements ReplyService {
     }
 
     @Override
+    public ReplyDTO updateReply(Long replyId, ReplyDTO replyDTO) {
+        return null;
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public ReviewBoardReply replyToEntity(ReplyDTO replyDTO, Long refId, Long userId) {
         ReviewBoard reviewBoard = reviewBoardRepository.findById(refId).orElseThrow(ProductNotFoundException::new);

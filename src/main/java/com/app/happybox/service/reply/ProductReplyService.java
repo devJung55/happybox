@@ -5,6 +5,7 @@ import com.app.happybox.entity.reply.ProductReply;
 import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.exception.ProductNotFoundException;
+import com.app.happybox.exception.ReplyNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.product.ProductRepository;
 import com.app.happybox.repository.reply.ProductReplyRepository;
@@ -61,6 +62,15 @@ public class ProductReplyService implements ReplyService {
     @Transactional(rollbackFor = Exception.class)
     public void deleteReply(Long replyId, Long refId, Long userId) {
 
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ReplyDTO updateReply(Long replyId, ReplyDTO replyDTO) {
+        ProductReply productReply = productReplyRepository.findById(replyId).orElseThrow(ReplyNotFoundException::new);
+        productReply.setReplyContent(replyDTO.getReplyContent());
+
+        return replyToDTO(productReply);
     }
 
     @Override

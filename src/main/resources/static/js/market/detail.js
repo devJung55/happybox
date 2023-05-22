@@ -68,7 +68,7 @@ $(".represent-img").attr("src", filePath);
 
 // 댓글 작성자 (로그인) 시
 
-if($userId) {
+if ($userId) {
     $(".reply-writer-info").append(
         `
         <span class="user-type">${USER_ROLE[$userRole]}</span>
@@ -79,7 +79,7 @@ if($userId) {
 
 
 productFiles.forEach((file) => {
-    /*let text;
+    let text;
     let filePath = file.filePath + '/t_' + file.fileUuid + '_' + file.fileOrgName;
 
     text = `
@@ -87,9 +87,10 @@ productFiles.forEach((file) => {
                 <img src="/image/display?fileName=${filePath}">
             </button>
         `
-
-    $imgContainer.append(text);*/
+    $imgContainer.append(text);
 });
+
+$infoImgThumbnail.attr("src", `/image/display?fileName=${productFiles[0].filePath}/t_${productFiles[0].fileUuid}_${productFiles[0].fileOrgName}`);
 
 // 현재 페이지
 let page = 1;
@@ -110,7 +111,7 @@ $doAjax("get", `/product/detail/reply/${$product.id}`,
 
 $moreReview.on("click", function () {
     $doAjax("get", `/product/detail/reply/${$product.id}`,
-        {page: ++page, isOrderByDate : isOrderByDate},
+        {page: ++page, isOrderByDate: isOrderByDate},
         (result) => {
             console.log(result);
             result.content.forEach((reply) => appendReplyList(reply));
@@ -166,20 +167,20 @@ function appendReplyList(reply, isPrepend) {
                     ${$product.productName}
                 </h3>
             </div>
-            <p class="review-content">
-                ${reply.replyContent}
-            </p>
+            <p class="review-content">${reply.replyContent}</p>
             <div class="review-footer">
                 <span class="review-date">${date}</span>
                 <div class="review-btn-wrap">
                     <button data-id="${reply.id}" onclick="checkOutLike(this)" class="review-rec-btn">
                         <span>도움돼요</span>
                         <span class="rec-count">${reply.replyLikeCount ? reply.replyLikeCount : 0}</span>
-                    </button>
-                    <button class="review-rec-btn update_review">
+                    </button>`;
+    if ($userId == reply.userId) {
+        text += `<button onclick="showReplyUpdate(this)" data-onmodify="false" data-id="${reply.id}" class="review-rec-btn update_review">
                         <span>수정하기</span>
-                    </button>
-                </div>
+                    </button>`;
+    }
+    `</div>
             </div>
         </div>
     </div>
@@ -231,23 +232,33 @@ $reviewOrder.on("click", function () {
 /* 수정버튼은 session에 있는 유저와 댓글 작성자와 비교하여 */
 /* 서로 일치할 때만 표시할 것 */
 /* 수정버튼 클릭시 수정 textarea 등장 */
+
 /* Ajax 콜백함수로 받아서 text에 데이터 꽃기 */
-const $updateReviewBtn = $(".update_review");
+function showReplyUpdate(button) {
 
-$updateReviewBtn.on("click", function () {
-    /* 수정 중임을 의미하는 클래스 */
-    const ON_UPDATE = "review-on-update";
+    let updateBtn = $(button);
 
-    let parent = $(this).parent().parent().parent();
+    // 수정 중이라면 return
+    if (updateBtn.data("onmodify")) return;
 
-    if (parent.hasClass(ON_UPDATE)) return;
+    // 수정창 부모
+    let parent = updateBtn.closest(".review-list");
+    let replyContent = updateBtn.closest(".review-footer").prev(".review-content");
+
+    // 댓글 내용
+    let contentText = replyContent.text();
+    console.log(contentText);
+
+    // 댓글 id
+    let id = updateBtn.data("id");
+
+    updateBtn.data("onmodify", true);
 
     let text = `
     <div class="write-content-wrap">
         <form>
             <textarea
-                class="write-textarea"
-            >이거 엄청나요 망설이신다면 지금당장 구매해보세요. 너무 데치면 질겨지니 2분안쪽으로 데쳐서 초고추장 찍어서 먹으면 그곳이 천국입니다</textarea
+                class="write-textarea">${contentText}</textarea
             ><button class="write-regist-btn" type="button">
                 <span class="regist">등록</span>
             </button>
@@ -260,21 +271,36 @@ $updateReviewBtn.on("click", function () {
 
     /* 수정 form append */
     parent.append(text);
-    parent.addClass(ON_UPDATE);
 
-    /* 등록버튼 이벤트 걸기 */
     /* 등록후 ajax 전송 */
     $(".write-regist-btn").on("click", function () {
-        $(this).parent().parent().remove();
-        parent.removeClass(ON_UPDATE);
+        let data = {
+            replyContent: $(this).prev(".write-textarea").val()
+        }
+
+        $.ajax({
+            type: "patch",
+            url: `/product/detail/reply/modify/${id}`,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                replyContent.text(response.replyContent);
+            }
+        });
+
+        // 수정창 닫기
+        updateBtn.data("onmodify", false);
+        $(this).closest(".write-content-wrap").remove();
     });
 
     /* 등록취소 이벤트 걸기 */
     $(".write-cancel-btn").on("click", function () {
-        $(this).parent().parent().remove();
-        parent.removeClass(ON_UPDATE);
+        // 수정창 닫기
+        $(this).closest(".write-content-wrap").remove();
+        updateBtn.data("onmodify", false);
     });
-});
+}
 
 
 /* 주문수량 설정 */
@@ -336,7 +362,7 @@ $(".productCart-btn").on("click", function () {
 $(".close").on("click", function () {
     $("#cart-modal").css("display", "none");
 });
-console.log("주문 수량은???????",$(".quantity-input").val());
+console.log("주문 수량은???????", $(".quantity-input").val());
 // 예 버튼을 클릭했을 때
 $("#modal-yesBtn").on("click", function () {
 
@@ -373,7 +399,7 @@ $replyWriteBtn.on("click", function () {
         REPLY_URL,
         {replyContent: $('.write-textarea').val()},
         (result) => {
-            if(result) {
+            if (result) {
                 let count = Number($(".review-count span").text());
                 // 댓글 맨위에 append
                 appendReplyList(result, true);
@@ -417,15 +443,15 @@ const $payBtn = $('#payment');
 $payBtn.on('click', function () {
     console.log($('#amount').val());
     let data = {
-        cartOrderAmount : $('#amount').val(),
-        productName : productName
+        cartOrderAmount: $('#amount').val(),
+        productName: productName
     }
 
     $doAjaxPost(
-        "post",`/product/cart/add/${id}`,
+        "post", `/product/cart/add/${id}`,
         data,
         function () {
-            location.href="/order/product";
+            location.href = "/order/product";
         }
     );
 });

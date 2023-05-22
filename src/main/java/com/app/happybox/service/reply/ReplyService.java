@@ -13,6 +13,8 @@ public interface ReplyService {
 
     public void deleteReply(Long replyId, Long refId, Long userId);
 
+    public ReplyDTO updateReply(Long replyId, ReplyDTO replyDTO);
+
     default <T extends Reply> ReplyDTO replyToDTO(T reply) {
         return ReplyDTO.builder()
                 .id(reply.getId())
