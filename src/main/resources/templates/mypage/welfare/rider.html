@@ -75,54 +75,7 @@
                             </div>
 
                             <ul class="productCart-list">
-                                <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
-                                    <div class="prd-info-area productCart-info-area">
-                                        <div class="inner">
-                                            <div class="user__img">
-                                                <img src="/img/mypage/user__profile.jpg">
-                                            </div>
-                                            <div class="user__info">
-                                                <div class="user__name rider__name">
-                                                    <span>정지영</span>
-                                                    <span class="badge-sm-primary delivery__done">배달완료</span>
-                                                </div>
-                                                <div class="rider__phoneNumber welfare__name">
-                                                    <span>010-7122-8966</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="column btn">
-                                            <button type="button" class="btn-x-sm deleteUserCart">
-                                                <i class="ico-x-black"></i>
-                                            </button>
-                                        </div>  
-                                    </div>
-                                </li>
-
-                                <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
-                                    <div class="prd-info-area productCart-info-area">
-                                        <div class="inner">
-                                            <div class="user__img">
-                                                <img src="/img/mypage/user__profile.jpg">
-                                            </div>
-                                            <div class="user__info">
-                                                <div class="user__name rider__name">
-                                                    <span>정지영</span>
-                                                    <span class="badge-sm-primary">배달중</span>
-                                                </div>
-                                                <div class="rider__phoneNumber welfare__name">
-                                                    <span>010-7122-8966</span>
-                                                </div>        
-                                            </div>
-                                        </div>
-                                        <div class="column btn">
-                                            <button type="button" class="btn-x-sm deleteUserCart">
-                                                <i class="ico-x-black"></i>
-                                            </button>
-                                        </div>  
-                                    </div>
-                                </li>
-
+                                    <!--  뿌려지는 곳  -->
                             </ul>
                         </div>
 
@@ -141,5 +94,8 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
-<script src="/js/mypage/user/rider.js"></script>
+<script th:inline="javascript">
+    let riderDTOS = [[${riderDTOS}]];
+</script>
+<script src="/js/mypage/welfare/rider.js"></script>
 </html>

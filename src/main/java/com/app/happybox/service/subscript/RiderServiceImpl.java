@@ -11,11 +11,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,8 +37,10 @@ public class RiderServiceImpl implements RiderService {
     }
 
     @Override
-    public Page<Rider> getRiderListByWelfareIdWithPaging(Pageable pageable, Long welfareId) {
-        return riderRepository.findAllByWelfareIdWithPaging_QueryDSL(pageable, welfareId);
+    public Page<RiderDTO> getRiderListByWelfareIdWithPaging(Pageable pageable, Long welfareId) {
+        Page<Rider> riders = riderRepository.findAllByWelfareIdWithPaging_QueryDSL(pageable, welfareId);
+        List<RiderDTO> riderDTOS = riders.stream().map(this::toRiderDTO).collect(Collectors.toList());
+        return new PageImpl<>(riderDTOS, pageable, riders.getTotalElements());
     }
 
     @Override
