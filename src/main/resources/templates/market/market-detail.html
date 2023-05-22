@@ -85,7 +85,7 @@
                 <h3 class="section-title">상품사진</h3>
                 <div class="info-img-thumbnail">
                     <img
-                            src="https://img-cf.kurly.com/shop/data/goods/1656038418331l0.jpg"
+                            src=""
                     />
                 </div>
                 <div class="info-img-container"></div>
@@ -238,6 +238,7 @@
 <script src="/js/common/ajax.js"></script>
 <script th:inline="javascript">
     const $product = [[${product}]];
+    console.log($product);
     const $userId = [[${userId}]];
     const $userRole = [[${userRole}]];
 </script>

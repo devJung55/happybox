@@ -4,12 +4,12 @@ import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.QWelfare;
 import com.app.happybox.entity.user.Welfare;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.querydsl.jpa.impl.JPAUpdateClause;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,6 +19,7 @@ import static com.app.happybox.entity.user.QWelfare.welfare;
 
 
 @RequiredArgsConstructor
+@Slf4j
 public class WelfareQueryDslImpl implements WelfareQueryDsl {
     private final JPAQueryFactory query;
 
@@ -67,5 +68,26 @@ public class WelfareQueryDslImpl implements WelfareQueryDsl {
                 .fetchOne());
 
         return welfare;
+    }
+
+    @Override
+    public Slice<Welfare> findByWelfareName_QueryDSL(Pageable pageable, String welfareName) {
+        BooleanExpression searchByName = welfareName != null && welfareName != "" ? welfare.welfareName.contains(welfareName) : null;
+        List<Welfare> welfareList = query.select(welfare)
+                .from(welfare)
+                .where(searchByName)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        boolean hasNext = false;
+
+        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
+        if (welfareList.size() > pageable.getPageSize()) {
+            hasNext = true;
+            welfareList.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(welfareList, pageable, hasNext);
     }
 }

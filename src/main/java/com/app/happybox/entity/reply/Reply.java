@@ -43,4 +43,8 @@ public class Reply extends Period {
     public void setReplyLikeCount(Integer replyLikeCount) {
         this.replyLikeCount = replyLikeCount;
     }
+
+    public void setReplyContent(String replyContent) {
+        this.replyContent = replyContent;
+    }
 }

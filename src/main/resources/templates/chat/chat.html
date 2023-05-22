@@ -1,133 +1,141 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>footer</title>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="/css/chat/chat.css">
+    <title>채팅방</title>
 </head>
 <body>
+<!-- 채팅방 입장 -->
 <div>
-    <button class="create_chat">채팅방 생성</button>
+    <h2>채팅방 입장</h2>
+    <form id="usernameForm">
+        <p>아이디</p>
+        <input type="text" id="name">
+        <p>채팅방 UUID</p>
+        <input type="text" id="roomId">
+        <button type="submit" name="userNameSubmit">전송</button>
+    </form>
 </div>
-<div id="footer">
-    <div class="channel_chat_container">
-        <button type="button">
+<!-- 채팅하기 -->
+<div>
+    <h2>채팅하기</h2>
+    <form id="messageForm">
+        <input type="text" id="message">
+        <button type="submit" name="messageSubmit">전송</button>
+    </form>
+</div>
+<div>
+    <h2>채팅방 나가기</h2>
+    <form id="roomExitForm">
+        <p>나갈려는 RoomId 입력.</p>
+        <input type="text" name="exit">
+        <button type="submit">전송</button>
+    </form>
+</div>
+<div class="chat-connection-container">
+</div>
+<div class="chat-message-container">
 
-        </button>
-    </div>
-    <div id="chat_modal">
-        <header class="flex" id="chat_header_container">
-            <div class="flex chat_header_logo_conatainer">
-                <div class="chat_header_logo">
-                    <img width="30" height="30" src="/static/images/components/dodam-favicon.png" alt="">
-                </div>
-                <span class="chat_header_name">
-                        도담도담 채팅
-                    </span>
-            </div>
-            <div class="close_modal_container">
-                <button class="close_modal">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
-                         foundation="[object Object]" class="close_modal_svg" defaultopacity="1" hoveredopacity="1"
-                         margintop="0" marginright="0" marginbottom="0" marginleft="0" withtheme="true">
-                        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
-                              d="M16.4818 4.69668L15.3033 3.51817L10 8.82147L4.69671 3.51817L3.5182 4.69668L8.8215 9.99998L3.51819 15.3033L4.6967 16.4818L10 11.1785L15.3033 16.4818L16.4818 15.3033L11.1785 9.99998L16.4818 4.69668Z"></path>
-                    </svg>
-                </button>
-            </div>
-        </header>
-        <p class="introduce_chat">
-            도담인들의 원활한 소통을 위한 공간입니다.
-        </p>
-        <div class="search_chat_container flex">
-            <input type="text" class="search_chat_input" placeholder="주고받은 메시지 검색">
-        </div>
-        <main id="chat_modal_li_container">
-            <ol>
-                <li class="chat_li flex">
-                    <div class="li_profile_img">
-                        <img src="/static/images/components/dodam-favicon.png" alt="" width="45px" height="45px">
-                    </div>
-                    <div class="li_chat_name_and_history flex">
-                        <div class="li_profile_nickname">
-                            도담도담
-                        </div>
-                        <div class="li_chat_history">
-                            도담도담에 오신 것을 환영합니다!
-                        </div>
-                        <!-- <div class="last_date">4/27(목)</div> -->
-                    </div>
-                    <div class="li_chat_histroy_and_date flex">
-                        <div class="li_date">
-                            <span class="current_msg_date">오후 5:20</span>
-                        </div>
-                        <div class="li_unchecked_msg_container">
-                            <div class="li_unchecked_msg">1</div>
-                        </div>
-                    </div>
-                </li>
-            </ol>
-        </main>
-    </div>
-    <div id="chat_room">
-        <header class="flex" id="header-chat-container">
-            <div class="flex chat_header_logo_conatainer">
-                    <span class="chat_header_name">
-                        정세인
-                    </span>
-            </div>
-            <div class="back_list_container">
-                <button class="back_list">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 48 48" width="24">
-                        <path d="M0 0h48v48h-48z" fill="none"/>
-                        <path d="M40 22h-24.34l11.17-11.17-2.83-2.83-16 16 16 16 2.83-2.83-11.17-11.17h24.34v-4z"/>
-                    </svg>
-                </button>
-            </div>
-        </header>
-        <div class="search_chat_container">
-            <input type="text" class="search_chat_input" placeholder="주고받은 메시지 검색" style="width: 90%;">
-        </div>
-        <main id="main-chat-container">
-            <li>
-                <div class="sender-message">
-                    <div class="sender-name">박다예</div>
-                    <div class="sender-message-box">
-                        <div class="sender-content">졸려</div>
-                        <div class="chat-date">13:58</div>
-                    </div>
-                </div>
-                <div class="receiver-message">
-                    <div class="receiver-name">정세인</div>
-                    <div class="receiver-message-box">
-                        <div class="receiver-content">깨워줄까?</div>
-                        <div class="chat-date">13:58</div>
-                    </div>
-                </div>
-            </li>
-        </main>
-        <footer class="input_msg_container">
-            <input type="text" class="input_msg" id="send-button">
-            <button type="button" class="msg_submit_button">
-                <svg class="submit_btn_svg" xmlns="http://www.w3.org/2000/svg" width="24px"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" style="enable-background:new 0 0 24 24;" version="1.1"
-                     viewBox="0 0 24 24" xml:space="preserve">
-                        <g id="info"/>
-                    <g id="icons">
-                            <path d="M21.5,11.1l-17.9-9C2.7,1.7,1.7,2.5,2.1,3.4l2.5,6.7L16,12L4.6,13.9l-2.5,6.7c-0.3,0.9,0.6,1.7,1.5,1.2l17.9-9   C22.2,12.5,22.2,11.5,21.5,11.1z"
-                                  id="send"/>
-                        </g>
-                    </svg>
-            </button>
-        </footer>
+</div>
+<div class="chat-history-container">
+    <h3>채팅 내역 보기</h3>
+    <input type="text" name="historyRoomId">
+    <button type="button" name="historyRoomId">내역 확인</button>
+    <div class="chat-history">
+
     </div>
 </div>
+<div>
+    <h3>채팅방 생성</h3>
+    <input type="text" name="roomName">
+    <button type="button" name="createRoom">생성</button>
+</div>
+<div>
+    <ul class="chat-list">
+        <h3>채팅방 목록</h3>
+    </ul>
+</div>
+<ul id="list"></ul>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<scirpt src="/js/common/ajax.js"></scirpt>
+<script>
+    let chatRoomList;
+    $.ajax({
+        type: "GET",
+        url: "/chat/list",
+        data: {},
+        dataType: "json",
+        success: function (chatRooms) {
+            chatRoomList = chatRooms;
+            console.log(chatRooms)
+            if (chatRooms.length == 0) {
+                return;
+            }
+            chatRooms.forEach(room => showChatRoom(room));
+        }
+    });
+
+    $("button[name='createRoom']").on("click", function () {
+
+        let roomName = $("input[name='roomName']").val();
+
+        if (roomName === "" || roomName == null) {
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/chat/createroom",
+            data: JSON.stringify({roomName: roomName}),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (chatRoom) {
+                showChatRoom(chatRoom);
+            }
+        });
+    });
+
+    // 채팅내역 조회
+    $("button[name='historyRoomId']").on("click", function () {
+
+        let roomId = $("input[name='historyRoomId']").val();
+
+        if (roomId === "" || roomId == null) {
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/chat/history",
+            data: {roomId: roomId},
+            dataType: "json",
+            success: function (chatList) {
+                console.log(chatList);
+                chatList.forEach(chat => {
+                    let text = `
+                          <p>${chat}</p>
+                    `
+                    $(".chat-history").append(text);
+                })
+            }
+        });
+    });
+
+    function showChatRoom(chatRoom) {
+        let text = `
+            <li>
+                <p>RoomId : ${chatRoom.roomId}</p>
+                <p>RoomName : ${chatRoom.roomName}</p>
+            </li>
+        `
+        $(".chat-list").append(text);
+    }
+</script>
 <script src="/js/chat/chat.js"></script>
 </html>

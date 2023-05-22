@@ -5,6 +5,7 @@ import com.app.happybox.entity.user.Welfare;
 import com.querydsl.core.Tuple;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.Optional;
 
@@ -21,4 +22,7 @@ public interface WelfareQueryDsl {
 
 //    복지관회원 조회
     public Optional<Welfare> findWelfareById_QueryDSL(Long welfareId);
+
+    // 이름으로 검색
+    public Slice<Welfare> findByWelfareName_QueryDSL(Pageable pageable, String welfareName);
 }
