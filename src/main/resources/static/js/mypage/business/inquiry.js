@@ -27,7 +27,6 @@ $(".inquiry__list__append").on("click", ".arrow-0deg", function() {
 
 myPageDistributorService.inquiryListAjax();
 const $inquiryAppend = $(".inquiry__list__append");
-let page = 0;
 
 function showInquiryList(inquiries) {
     let text = "";

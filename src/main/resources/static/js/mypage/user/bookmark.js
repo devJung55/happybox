@@ -133,7 +133,7 @@ function showSubscriptionBookmarkList(welfareList) {
     $welfareBookmarkAppend.append(text);
 }
 
-/*복지관, 레시피 게시물 찜 삭제*/
+/* 복지관, 레시피 게시물 찜 삭제 */
 $("#wishList").on("click", ".like__wrap", function() {
     let id = $($(this).parent().siblings()[0]).val();
 

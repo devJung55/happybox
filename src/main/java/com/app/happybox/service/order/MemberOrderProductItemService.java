@@ -1,10 +1,12 @@
 package com.app.happybox.service.order;
 
+import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.domain.MemberOrderProductItemDTO;
 import com.app.happybox.domain.SearchDateDTO;
 import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.file.ProductFileDTO;
 import com.app.happybox.entity.order.MemberOrderProductItem;
+import com.app.happybox.entity.user.Address;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,9 +20,26 @@ public interface MemberOrderProductItemService {
 //    일반 마이페이지 주문건수 조회
     public Long getOrderCountByMemberId(Long id);
 
+//    마이페이지 판매내역(유통회원)
+    public Page<MemberOrderProductItemDTO> getSaleListByDistributorIdAndSearchDate(Pageable pageable, Long distributorId, SearchDateDTO searchDateDTO);
+
+//    마이페이지 판매건수 조회(유통회원)
+    public Long getSalesCountByDistributorId(Long distributorId);
+
+    default AddressDTO toAddressDTO(Address address) {
+        return AddressDTO.builder()
+                .zipcode(address.getZipcode())
+                .firstAddress(address.getFirstAddress())
+                .addressDetail(address.getAddressDetail())
+                .build();
+    }
+
     default MemberOrderProductItemDTO toMemberOrderProductItemDTO(MemberOrderProductItem memberOrderProductItem){
         return MemberOrderProductItemDTO.builder()
                 .id(memberOrderProductItem.getId())
+                .memberName(memberOrderProductItem.getMemberOrderProduct().getMember().getMemberName())
+                .userPhoneNumber(memberOrderProductItem.getMemberOrderProduct().getReceiverPhoneNumber())
+                .userAddress(toAddressDTO(memberOrderProductItem.getMemberOrderProduct().getOrderAddress()))
                 .productName(memberOrderProductItem.getProduct().getProductName())
                 .orderStock(memberOrderProductItem.getOrderAmount())
                 .productPrice(memberOrderProductItem.getProduct().getProductPrice())

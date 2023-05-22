@@ -11,6 +11,9 @@ import java.util.List;
 @Getter @ToString
 public class MemberOrderProductItemDTO {
     private Long id;
+    private String memberName;
+    private String userPhoneNumber;
+    private AddressDTO userAddress;
     private String productName;
     private Integer productPrice;
     private Long orderStock;
@@ -19,8 +22,11 @@ public class MemberOrderProductItemDTO {
     private List<ProductFileDTO> productFiles;
 
     @Builder
-    public MemberOrderProductItemDTO(Long id, String productName, Integer productPrice, Long orderStock, LocalDateTime createdDate, LocalDateTime updatedDate, List<ProductFileDTO> productFiles) {
+    public MemberOrderProductItemDTO(Long id, String memberName, String userPhoneNumber, AddressDTO userAddress, String productName, Integer productPrice, Long orderStock, LocalDateTime createdDate, LocalDateTime updatedDate, List<ProductFileDTO> productFiles) {
         this.id = id;
+        this.memberName = memberName;
+        this.userPhoneNumber = userPhoneNumber;
+        this.userAddress = userAddress;
         this.productName = productName;
         this.productPrice = productPrice;
         this.orderStock = orderStock;

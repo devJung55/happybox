@@ -68,4 +68,10 @@ public class ProductServiceImpl implements ProductService {
     public Optional<Product> getDetailById(Long productId) {
         return Optional.ofNullable(productRepository.findById(productId).get());
     }
+
+    @Override
+    public Long getProductCount(Long distributorId) {
+        Long productCount = productRepository.findCountByDistributor_QueryDSL(distributorId);
+        return productCount;
+    }
 }

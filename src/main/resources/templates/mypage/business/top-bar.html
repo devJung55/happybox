@@ -70,7 +70,7 @@
                         </span>
                     </label>
                     <div class="top-bar-txt">
-                        <p class="greeting"><strong class="name">정지영</strong>님 반갑습니다.</p>
+                        <p class="greeting"><strong class="name" th:text="${userName}"></strong>님 반갑습니다.</p>
                         <ul class="sep-list user-info-list type3">
                             <li class="userType"></li>
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -100,11 +100,11 @@
                 </div>
                 <dl class="column order">
                     <dt>상품목록</dt>
-                    <dd><a href="javascript:void(0)"><strong class="num" id="orderCountText">123</strong>개</a></dd>
+                    <dd><a href="javascript:void(0)"><strong class="num" id="orderCountText" th:text="${productCount}"></strong>개</a></dd>
                 </dl>
                 <dl class="column order">
                     <dt>판매내역</dt>
-                    <dd><a href="javascript:void(0)"><strong class="num" id="orderCountText">1</strong>건</a></dd>
+                    <dd><a href="javascript:void(0)"><strong class="num" id="orderCountText" th:text="${salesCount}"></strong>건</a></dd>
                 </dl>
                 <dl class="column coupon">
                     <dt>취소내역</dt>
