@@ -147,7 +147,7 @@
     background: url(https://www.rankingdak.com/resources/pc/images/icon/ico_img.png) -280px -120px;
 }
 
-.no-data .message {
+.no-data .find-message {
     color: #333;
     font-size: 15px;
     text-align: center;
@@ -224,7 +224,7 @@
 }
 
 #productPop .board-list {
-    display: block;
+    /*display: block;*/
 }
 
 #productPop .board-list ul {
@@ -376,12 +376,11 @@ button .blind {
 .file-add-boxes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .file-add-boxes .div-attach-thumb ~ .text-guide-md {
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 38px;
     padding: 25px 0;
 }
 
@@ -407,4 +406,59 @@ button .blind {
     border: 0;
     padding: 0;
     background-image: none;
+}
+
+
+/* 데이터 받아올 테이블 */
+.API-table {
+    max-height: 450px; /* 원하는 최대 높이를 지정하세요 */
+    overflow-y: auto; /* 세로 스크롤을 활성화하여 내용이 높이를 초과할 경우 스크롤바 표시 */
+}
+
+.API-table tr {
+    display: flex; /* 행을 플렉스 컨테이너로 설정하여 각 셀이 한 줄에 표시되도록 함 */
+}
+
+.API-table thead th {
+    z-index: 1; /* 다른 내용 위에 나타나도록 설정 */
+    flex: 1;
+}
+
+.API-table tbody {
+    border-collapse: separate; /* 테이블의 셀 경계를 분리 */
+    border-spacing: 0 10px;
+    display: block; /* 내용이 블록 요소처럼 쌓이도록 설정 */
+    max-height: inherit; /* 부모 요소의 최대 높이를 상속 받음 */
+    overflow-y: auto; /* 세로 스크롤을 활성화하여 내용이 높이를 초과할 경우 스크롤바 표시 */
+}
+
+.API-table tbody tr {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.API-table tbody tr:hover {
+    font-weight: bold;
+}
+
+.API-table td {
+    flex: 1; /* 각 셀이 동일한 너비로 자동 분배되도록 설정 */
+    white-space: nowrap; /* 텍스트 줄바꿈을 하지 않고 넘칠 경우 숨김 */
+    overflow: hidden; /* 넘칠 경우 숨김 처리 */
+    text-overflow: ellipsis; /* 넘칠 경우 말줄임표(...)로 표시 */
+}
+
+/* 스크롤바  */
+.tbody::-webkit-scrollbar {
+    width: 5px;  /* 스크롤바의 너비 */
+}
+.tbody::-webkit-scrollbar-thumb {
+    height: 10%; /* 스크롤바의 길이 */
+    background: #e5dddf42; /* 스크롤바의 색상 */
+    border-radius: 3px;
+}
+
+.tbody::-webkit-scrollbar-track {
+    background: #fafafa;  /*스크롤바 뒷 배경 색상*/
+    border-radius: 10px;
 }
