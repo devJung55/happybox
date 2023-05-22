@@ -137,58 +137,8 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="div-attach-thumb" id="US_RV_IMG2_attachThumb">
-                                                    <button type="button" class="btn-attach-thumb">
-                                                        <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                                    </button>
-                                                    <input
-                                                            class="input_file"
-                                                            name="imgFile"
-                                                            type="file"
-                                                            accept="image/*"
-                                                            style="display: none"
-                                                    />
-                                                    <div class="attach-img" style="display: none;">
-                                                        <img
-                                                                src=""
-                                                                style="width: 68px; height: 68px"
-                                                                id="image"
-                                                        />
-                                                        <button
-                                                                type="button"
-                                                                class="btn-x-xs2 btn_del"
-                                                        >
-                                                            <i class="ico-x-white"></i><span class="blind">삭제</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
-                                                    <button type="button" class="btn-attach-thumb">
-                                                        <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
-                                                    </button>
-                                                    <input
-                                                            class="input_file"
-                                                            name="imgFile"
-                                                            type="file"
-                                                            accept="image/*"
-                                                            style="display: none"
-                                                    />
-                                                    <div class="attach-img" style="display: none;">
-                                                        <img
-                                                                src=""
-                                                                style="width: 68px; height: 68px"
-                                                                id="image"
-                                                        />
-                                                        <button
-                                                                type="button"
-                                                                class="btn-x-xs2 btn_del"
-                                                        >
-                                                            <i class="ico-x-white"></i><span class="blind">삭제</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
                                                 <p class="text-guide-md">
-                                                    - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                    - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 첨부 가능합니다.
                                                 </p>
                                             </div>
                                         </td>
@@ -306,6 +256,10 @@
     <script th:inline="javascript">
         let fileDTOS = null;
         let donate = [[${donate}]];
+        if (donationBoardDTO == null || donationBoardDTO == undefined) {
+        } else {
+            fileDTOS = donationBoardDTO.fileDTOS;
+        }
     </script>
     <script src="/js/main/header.js"></script>
     <script src="/js/member/donate-insert.js"></script>

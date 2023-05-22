@@ -15,18 +15,18 @@ public class ReviewBoardLikeQueryDslImpl implements ReviewBoardLikeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public boolean checkMemberLikesReviewBoard_QueryDSL(Long userId, Long reviewBoardId) {
+    public boolean checkMemberLikesReviewBoard_QueryDSL(Long reviewBoardId, Long memberId) {
         Long count = query.select(reviewBoardLike.count())
                 .from(reviewBoardLike)
-                .where(reviewBoardLike.member.id.eq(userId).and(reviewBoardLike.reviewBoard.id.eq(reviewBoardId)))
+                .where(reviewBoardLike.member.id.eq(memberId).and(reviewBoardLike.reviewBoard.id.eq(reviewBoardId)))
                 .fetchOne();
         return count > 0;
     }
 
     @Override
-    public void deleteUserLikeByUserAndReviewBoard(Long userId, Long reviewBoardId) {
+    public void deleteUserLikeByUserAndReviewBoard(Long reviewBoardId, Long memberId) {
         query.delete(reviewBoardLike)
-                .where(reviewBoardLike.member.id.eq(userId).and(reviewBoardLike.reviewBoard.id.eq(reviewBoardId)))
+                .where(reviewBoardLike.member.id.eq(memberId).and(reviewBoardLike.reviewBoard.id.eq(reviewBoardId)))
                 .execute();
     }
 }

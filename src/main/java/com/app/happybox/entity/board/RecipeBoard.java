@@ -6,6 +6,7 @@ import com.app.happybox.entity.user.Member;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Entity @Table(name = "TBL_RECIPE_BOARD")
 @DynamicInsert
+@DynamicUpdate
 @Getter @ToString(exclude = {"recipeBoardReplies", "recipeBoardLikes"}, callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RecipeBoard extends Board {
 
@@ -54,7 +56,6 @@ public class RecipeBoard extends Board {
     }
 
 
-    
     public RecipeBoard(String boardTitle, String boardContent) {
         super(boardTitle, boardContent);
     }

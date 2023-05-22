@@ -33,8 +33,10 @@ public class DonationBoardServiceImpl implements DonationBoardService {
     private final BoardFileRepository boardFileRepository;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void write(DonationBoardDTO donationBoardDTO, Long welfareId) {
         List<BoardFileDTO> boardFileDTOS = donationBoardDTO.getDonationBoardFiles();
+        log.info(boardFileDTOS.toString());
         // 아이디 조회 실패 시 Exception
         Welfare welfare = welfareRepository.findById(welfareId).orElseThrow(UserNotFoundException::new);
 
@@ -44,25 +46,17 @@ public class DonationBoardServiceImpl implements DonationBoardService {
 
         donationBoardRepository.save(donationBoard);
 
-        int count = 0;
+        int index = 0;
 
+        // boardFile donationBoard set 후 영속화
         for (int i = 0; i < boardFileDTOS.size(); i++) {
-            if(boardFileDTOS.get(i) == null) continue;
-
-            if (count == 0) {
-                boardFileDTOS.get(i).setFileRepresent(FileRepresent.REPRESENT);
-                count++;
-            } else {
-                boardFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
-            }
-
-            boardFileDTOS.get(i).setDonationBoardDTO(donationBoardToDTO(getCurrentSequence()));
-            // 엔티티
             BoardFile boardFile = toBoardFileEntity(boardFileDTOS.get(i));
+            if(index < 1) boardFile.setFileRepresent(FileRepresent.REPRESENT);
 
             boardFile.setDonationBoard(donationBoard);
-
             boardFileRepository.save(boardFile);
+
+            index++;
         }
     }
 
@@ -115,6 +109,7 @@ public class DonationBoardServiceImpl implements DonationBoardService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delete(Long id, Long welfareId) {
         DonationBoard donationBoard = donationBoardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
         donationBoardRepository.delete(donationBoard);

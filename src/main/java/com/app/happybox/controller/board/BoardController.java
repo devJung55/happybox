@@ -333,16 +333,17 @@ public class BoardController {
 //    기부 게시판 작성
     @GetMapping("donate-insert")
     public void goDonateWrite(Model model) {
-        model.addAttribute("donate", new DonationBoardDTO());
+        model.addAttribute("donationBoard", new DonationBoardDTO());
 }
 
     @PostMapping("donate-insert")
     @ResponseBody
-    public void DonateWrite(@RequestBody DonationBoardDTO donationBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
+    public void donateWrite(@RequestBody DonationBoardDTO donationBoardDTO, @AuthenticationPrincipal UserDetail userDetail) {
+        log.info("=====================" + donationBoardDTO);
+
         Long userId = userDetail.getId();
         donationBoardService.write(donationBoardDTO, userId);
 
-        log.info("=====================" + donationBoardDTO);
     }
 
 //    기부 게시판 수정

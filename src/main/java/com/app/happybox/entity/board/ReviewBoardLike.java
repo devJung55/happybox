@@ -22,8 +22,8 @@ public class ReviewBoardLike extends Period {
     @JoinColumn
     private Member member;
 
-    public ReviewBoardLike(Member member, ReviewBoard reviewBoard) {
-        this.member = member;
+    public ReviewBoardLike(ReviewBoard reviewBoard, Member member) {
         this.reviewBoard = reviewBoard;
+        this.member = member;
     }
 }
