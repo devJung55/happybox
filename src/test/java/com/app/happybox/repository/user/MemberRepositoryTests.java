@@ -82,6 +82,6 @@ class MemberRepositoryTests {
 
     @Test
     public void Test() {
-        memberService.getDetail(1L).ifPresent(v -> log.info(v.toString()));
+//        memberService.getDetail(1L).ifPresent(v -> log.info(v.toString()));
     }
 }

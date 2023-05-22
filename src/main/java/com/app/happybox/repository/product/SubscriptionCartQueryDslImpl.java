@@ -37,18 +37,18 @@ public class SubscriptionCartQueryDslImpl implements SubscriptionCartQueryDsl {
                 .fetch();
     }
 
-//    구독 Id로 카드 확인
+    //    구독 Id로 카드 확인
     @Override
-    public Optional<Subscription> existCartBySubscriptionId(Long subscriptionId) {
+    public Optional<SubscriptionCart> existCartByMemberIdAndSubscriptionId(Long memberId, Long subscriptionId) {
         return Optional.ofNullable(
-                query.select(subscriptionCart.subscription)
-                .from(subscriptionCart)
-                .where(subscriptionCart.subscription.id.eq(subscriptionId))
-                .fetchOne()
+                query.select(subscriptionCart)
+                        .from(subscriptionCart)
+                        .where(subscriptionCart.member.id.eq(memberId), subscriptionCart.subscription.id.eq(subscriptionId))
+                        .fetchOne()
         );
     }
 
-//    memberId로 cart 삭제하기
+    //    memberId로 cart 삭제하기
     @Override
     @Transactional
     public void deleteCart(Long id) {

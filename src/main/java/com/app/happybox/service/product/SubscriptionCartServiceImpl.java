@@ -38,6 +38,12 @@ public class SubscriptionCartServiceImpl implements SubscriptionCartService {
     public Long saveCart(SubscriptionCartDTO cartDTO, Long memberId, Long subscriptionId) {
         Member member = null;
         Subscription subscription = null;
+
+        // 장바구니가 이미 존재하는가?
+        if (subscriptionCartRepository.existCartByMemberIdAndSubscriptionId(memberId, subscriptionId).isPresent()) {
+            return -1L;
+        }
+
         try {
             member = memberRepository.findById(memberId).orElseThrow(() -> {
                 throw new UserNotFoundException();
@@ -58,15 +64,5 @@ public class SubscriptionCartServiceImpl implements SubscriptionCartService {
     @Override
     public void deleteCart(Long id) {
         subscriptionCartRepository.deleteCart(id);
-    }
-
-    //    subscription으로 카트 있는지 확인
-    @Override
-    public Integer subscriptionCartCheck(Long subscriptionId) {
-        if(subscriptionCartRepository.existCartBySubscriptionId(subscriptionId).isPresent()){
-            return 1;
-        }else {
-            return 2;
-        }
     }
 }

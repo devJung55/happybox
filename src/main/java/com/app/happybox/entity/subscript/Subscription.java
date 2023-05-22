@@ -3,6 +3,7 @@ package com.app.happybox.entity.subscript;
 import com.app.happybox.audity.Period;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.order.OrderSubscription;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.type.SubOption;
 import com.app.happybox.entity.user.Welfare;
 import com.sun.istack.NotNull;

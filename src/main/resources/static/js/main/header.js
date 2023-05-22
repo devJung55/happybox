@@ -418,7 +418,6 @@ function sendMessage(event) {
 
 // 채팅 메시지 표시
 function prependChatMessage(message) {
-    console.log(message);
     let isMyMessage = message.myMessage || message.sender == null;
 
     let text = `

@@ -12,7 +12,7 @@ public interface SubscriptionCartQueryDsl {
 
     public List<SubscriptionCart> findAllByIdsWithDetail_QueryDSL(List<Long> ids);
 
-    public Optional<Subscription> existCartBySubscriptionId(Long subscriptionId);
+    public Optional<SubscriptionCart> existCartByMemberIdAndSubscriptionId(Long memberId, Long subscriptionId);
 
     public void deleteCart(Long id);
 }

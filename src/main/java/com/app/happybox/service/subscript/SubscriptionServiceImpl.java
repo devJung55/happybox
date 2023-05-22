@@ -3,9 +3,10 @@ package com.app.happybox.service.subscript;
 import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
-import com.app.happybox.entity.subscript.*;
+import com.app.happybox.entity.subscript.Food;
+import com.app.happybox.entity.subscript.FoodCalendar;
+import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.exception.SubscriptionNotFoundException;
-import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.subscript.FoodCalendarRepository;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
@@ -80,7 +81,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     }
 
 
-
     @Override
     public List<SubscriptionDTO> findAllBetweenDate(LocalDateTime dateTime) {
         LocalDateTime startDate = dateTime.with(TemporalAdjusters.firstDayOfMonth());
@@ -91,10 +91,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return collectFoodList(monthlySubs);
     }
 
-//    구독했는지 확인하는 용도
+    //    구독했는지 확인하는 용도
     @Override
-    public Boolean existsByWelfareId(Long welfareId) {
-        return subscriptionRepository.existsByWelfareId(welfareId);
+    public Integer existsByMemberIdAndSubscriptionId(Long memberId, Long subscriptionId) {
+        Integer integer = subscriptionRepository.existsByMemberIdAndSubscriptionId(memberId, subscriptionId);
+        log.info("================================= {}", integer);
+        return integer;
     }
 
     //    subscription id로 조회
@@ -103,7 +105,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return subscriptionRepository.existsById(id);
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public void updateByDTO(SubscriptionWelFareDTO subscriptionWelFareDTO) {
         Long id = subscriptionWelFareDTO.getId();
         subscriptionRepository.findById(id).ifPresent(subscription -> {
@@ -113,7 +116,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         });
     }
 
-//    subscription정보 가져오기
+    //    subscription정보 가져오기
     @Override
     public SubscriptionWelFareDTO getSubscriptionWelfareDTO(Long id) {
         Optional<Subscription> optionalSubscription = subscriptionRepository.findById(id);

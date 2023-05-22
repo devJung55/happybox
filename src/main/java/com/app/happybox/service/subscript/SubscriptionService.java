@@ -37,7 +37,7 @@ public interface SubscriptionService {
     public List<SubscriptionDTO> findAllBetweenDate(LocalDateTime dateTime);
 
     //    구독했는지 확인하기 위해 조회
-    public Boolean existsByWelfareId(Long welfareId);
+    public Integer existsByMemberIdAndSubscriptionId(Long memberId, Long welfareId);
 
     //    subscription id로 조회
     public Boolean existsById(Long id);
