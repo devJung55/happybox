@@ -2,12 +2,18 @@ package com.app.happybox.service.board;
 
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardLike;
+import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.exception.BoardNotFoundException;
+import com.app.happybox.exception.SubscriptionNotFoundException;
+import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.board.ReviewBoardLikeRepository;
 import com.app.happybox.repository.board.ReviewBoardRepository;
 import com.app.happybox.repository.user.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -20,20 +26,37 @@ public class ReviewBoardLikeServiceImpl implements ReviewBoardLikeService {
     private final ReviewBoardRepository reviewBoardRepository;
     private final MemberRepository memberRepository;
 
+
     @Override
-    public void insertHeart(Long userId, Long reviewBoardId) {
-        Optional<Member> member = memberRepository.findById(userId);
-        Optional<ReviewBoard> reviewBoard = reviewBoardRepository.findById(reviewBoardId);
+    @Transactional(rollbackFor = Exception.class)
+    public boolean checkOutLike(Long reviewBoardId, Long memberId) {
+        boolean check = reviewBoardLikeRepository.checkMemberLikesReviewBoard_QueryDSL(reviewBoardId, memberId);
+        ReviewBoard reviewBoard = reviewBoardRepository.findById(reviewBoardId).orElseThrow(BoardNotFoundException::new);
 
-        if(!member.isPresent() || !reviewBoard.isPresent()) fail("멤버 혹은 리뷰 보드가 존재하지 않음");
+        if(check) {
+            // 삭제
+            reviewBoardLikeRepository.deleteUserLikeByUserAndReviewBoard(memberId, reviewBoardId);
 
-        if(!reviewBoardLikeRepository.checkMemberLikesReviewBoard_QueryDSL(userId, reviewBoardId)){
-            Integer likeCount = reviewBoard.get().getReviewLikeCount();
+            // 좋아요 수 감소
+            Integer reviewLikeCount = reviewBoard.getReviewLikeCount();
+            reviewBoard.setReviewLikeCount(--reviewLikeCount);
 
-            ReviewBoardLike reviewBoardLike = new ReviewBoardLike(member.get(), reviewBoard.get());
-            reviewBoardLikeRepository.save(reviewBoardLike);
+        } else {
+            Member member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
 
-            reviewBoard.get().setReviewLikeCount(++likeCount);
+            // 저장
+            reviewBoardLikeRepository.save(new ReviewBoardLike(member, reviewBoard));
+
+            // 구독 좋아요 수 증가
+            Integer reviewLikeCount = reviewBoard.getReviewLikeCount();
+            reviewBoard.setReviewLikeCount(++reviewLikeCount);
         }
+
+        return check;
+    }
+
+    @Override
+    public boolean checkLike(Long reviewBoardId, Long memberId) {
+        return reviewBoardLikeRepository.checkMemberLikesReviewBoard_QueryDSL(reviewBoardId, memberId);
     }
 }

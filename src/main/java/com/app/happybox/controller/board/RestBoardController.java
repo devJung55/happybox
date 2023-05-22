@@ -24,8 +24,4 @@ public class RestBoardController {
     @Qualifier
     private final DonationBoardService donationBoardService;
 
-    @GetMapping("heart-insert/{reviewBoardId}")
-    public void insertHeart(@PathVariable Long userId, @PathVariable Long reviewBoardId){
-        reviewBoardLikeService.insertHeart(userId, reviewBoardId);
-    }
 }

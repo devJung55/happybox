@@ -1,22 +1,17 @@
 package com.app.happybox.service.board;
 
+import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
-import com.app.happybox.entity.reply.ProductReply;
-import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.exception.BoardNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.board.BoardFileRepository;
-import com.app.happybox.repository.board.ReviewBoardFileRepository;
 import com.app.happybox.repository.board.ReviewBoardRepository;
-import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.MemberRepository;
-import com.app.happybox.repository.user.WelfareRepository;
 import com.app.happybox.type.FileRepresent;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -160,6 +155,21 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
         Page<ReviewBoard> reviewBoards = reviewBoardRepository.findAllByMemberIdDescWithPaging_QueryDSL(pageable, memberId);
         List<ReviewBoardDTO> reviewBoardDTOS = reviewBoards.get().map(this::reviewBoardToDTO).collect(Collectors.toList());
         return new PageImpl<>(reviewBoardDTOS, pageable, reviewBoards.getTotalElements());
+    }
+
+//    관리자 리뷰 목록
+    @Override
+    public Page<ReviewBoardDTO> getList(Pageable pageable) {
+        Page<ReviewBoard> reviewBoards = reviewBoardRepository.findReviewBoardListDescWithPaging_QueryDSL(pageable);
+        List<ReviewBoardDTO> reviewBoardDTOS = reviewBoards.get().map(this::reviewBoardToDTO).collect(Collectors.toList());
+        return new PageImpl<>(reviewBoardDTOS, pageable, reviewBoards.getTotalElements());
+    }
+
+//    관리자 리뷰 상세
+    @Override
+    public Optional<ReviewBoardDTO> getReviewBoardDetailById(Long reviewBoardId) {
+        Optional<ReviewBoardDTO> reviewBoardDTO = reviewBoardRepository.findById_QueryDSL(reviewBoardId).map(this::reviewBoardToDTO);
+        return reviewBoardDTO;
     }
 
     @Override

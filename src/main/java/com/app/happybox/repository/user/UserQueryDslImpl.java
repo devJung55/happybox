@@ -23,4 +23,31 @@ public class UserQueryDslImpl implements UserQueryDsl {
                 .where(user.id.eq(id))
                 .fetchOne());
     }
+
+    //    전화번호로 회원 id 찾기
+    @Override
+    public String findUserIdByUserPhone_QueryDSL(String userPhoneNumber) {
+        return Optional.ofNullable(query.select(user.userId)
+                .from(user)
+                .where(user.userPhoneNumber.eq(userPhoneNumber))
+                .fetchOne()).orElse("");
+    }
+
+    //    전화번호로 회원 이메일 찾기
+    @Override
+    public Optional<String> findUserEmailByUserPhone_QueryDSL(String userPhoneNumber) {
+        return Optional.ofNullable(query.select(user.userEmail)
+                .from(user)
+                .where(user.userPhoneNumber.eq(userPhoneNumber))
+                .fetchOne());
+    }
+
+    //    이메일로 회원 id 찾기
+    @Override
+    public String findUserIdByEmail_QueryDSL(String userEmail) {
+        return Optional.ofNullable(query.select(user.userId)
+                .from(user)
+                .where(user.userEmail.eq(userEmail))
+                .fetchOne()).orElse("");
+    }
 }

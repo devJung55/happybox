@@ -84,12 +84,13 @@ let page = 0;
 
 function showInquiryList(inquiries) {
     let text = "";
-    let str = "";
-    let answer = "";
-    let image = "";
-    let answerImage = "";
 
     inquiries.content.forEach(inquiry => {
+        let str = "";
+        let answer = "";
+        let image = "";
+        let answerImage = "";
+
         if(inquiry.inquiryAnswerDTO != null) {
             const formattedDate = formatDate(new Date(inquiry.inquiryAnswerDTO.createdDate));
             answer = `
@@ -180,7 +181,7 @@ function showInquiryList(inquiries) {
                                             </ul>
                                         </div>
                                         <ul class="sep-list type3">
-                                            <li><a href="javascript:void(0)" class="btn_delete">삭제</a></li>
+                                            <li><a href="javascript:void(0)" class="btn_delete"></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -206,5 +207,26 @@ $(".paging-div").on("click", "a", function(e) {
     myPageService.inquiryListAjax(page);
 });
 
+function mypageRestPaging(totalPages) {
+    const $pagination = $(".pagination");
+    $pagination.empty();
 
+    if (page > 0) {
+        $pagination.append(`<a href="javascript:void(0)" class="btn-page prev"><span class="blind2">&lt;</span></a>`);
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === page + 1) {
+            // 현재 페이지를 텍스트로 표시
+            $pagination.append(`<a href="javascript:void(0)" id="prev" class="arrow current"><span>${i}</span></a>`);
+        } else {
+            // 다른 페이지는 a 태그로 표시
+            $pagination.append(`<a href="#" class="current"><span>${i}</span></a>`);
+        }
+    }
+
+    if (page < totalPages - 1) {
+        $pagination.append(`<a href="javascript:void(0)" id="next" class="arrow btn-page next"><span class="blind2">&gt;</span></a>`);
+    }
+}
 

@@ -5,11 +5,13 @@ import com.app.happybox.entity.user.QWelfare;
 import com.app.happybox.entity.user.Welfare;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +24,11 @@ public class WelfareQueryDslImpl implements WelfareQueryDsl {
 
 //    복지관 정보수정
     @Override
+    @Transactional
     public void setWelfareInfoById_QueryDSL(Welfare welfare) {
-        query.update(QWelfare.welfare)
+        JPAUpdateClause updateClause = query.update(QWelfare.welfare);
+
+        updateClause
                 .set(QWelfare.welfare.userPassword, welfare.getUserPassword())
                 .set(QWelfare.welfare.welfareName, welfare.getWelfareName())
                 .set(QWelfare.welfare.userPhoneNumber, welfare.getUserPhoneNumber())

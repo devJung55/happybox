@@ -304,36 +304,61 @@ function showSlideImg() {
 }
 
 /* ==============================================  수정삭제를 위한 모달 ================================= */
-
-const $showDelete = $(".delete-btn");
-const $cancelDelete = $(".cancel-delete");
-$showDelete.on('click', function (e) {
-    $(".delete-modal").show();
-    $('.confirm-delete').on('click', function () {
-        $(location).attr('href', '../../templates/welfare/dontae-list.html');
-    });
-})
-$cancelDelete.on('click', function (e) {
-    $(".delete-modal").hide();
-})
+// const $showDelete = $(".delete-btn");
+// const $cancelDelete = $(".cancel-delete");
+// $showDelete.on('click', function (e) {
+//     $(".delete-modal").show();
+//     $('.confirm-delete').on('click', function () {
+//         $(location).attr('href', '../../templates/welfare/dontae-list.html');
+//     });
+// })
+// $cancelDelete.on('click', function (e) {
+//     $(".delete-modal").hide();
+// })
 
 /* ==============================================  구독하기 버튼 눌렀을 때 장바구니로 이동 ================================= */
 
 const $sub = $('.subscribe-btn');
-
+const $cancelDelete = $(".cancel-delete");
+const CHECK_CART_URL = "/welfare/cart/check";
 $sub.on('click', function () {
-
-    console.log($(".quantity-input").val());
-    console.log(CART_URL);
-    $doAjaxPost("POST",
-        CART_URL, // 장바구니 URL
-        {
-            subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
-            subOption: $("select[name='option']").val()
-        },
-        (result) => {  // callback
-            location.href="/order/subscription";
+    console.log(subscription.id);
+    $doAjax("GET"
+    ,CHECK_CART_URL
+    ,{subscriptionId: subscription.id}
+    ,(result) => {
+        console.log(result)
+        if (result == 1){
+            $('.delete-modal').show();
+            $('.confirm-delete').on('click', function () {
+                $('.delete-modal').hide();
+            });
+        }else if(result == 2) {
+            $('.modal-body').html("구독 하시겠습니까?");
+            $('.delete-modal').show();
+            $('.confirm-delete').on('click', function () {
+                $doAjaxPost("POST",
+                    CART_URL, // 장바구니 URL
+                    {
+                        subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
+                        subOption: $("select[name='option']").val()
+                    },
+                    (result) => {  // callback
+                        location.href = "/order/subscription";
+                    }
+                );
+            });
         }
-    );
+        })
+    $('.delete-modal').show();
 
 });
+
+
+
+$cancelDelete.on('click', function () {
+    $('.delete-modal').hide();
+})
+
+console.log($(".quantity-input").val());
+console.log(CART_URL);

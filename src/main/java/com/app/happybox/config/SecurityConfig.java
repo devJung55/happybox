@@ -1,5 +1,6 @@
 package com.app.happybox.config;
 
+import com.app.happybox.service.user.MemberOAuthService;
 import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -78,6 +79,9 @@ public class SecurityConfig {
     private final AuthenticationFailureHandler authenticationFailureHandler;
     private final UserDetailsService userDetailsService;
 
+//    ============================ Service 선언부 =========================================
+    private final MemberOAuthService memberOAuthService;
+
 //    ============================ 필터 체인 설정부  ========================================
 
     /* 비밀번호 암호화 */
@@ -139,7 +143,12 @@ public class SecurityConfig {
                 .key(REMEMBER_ME_TOKEN_KEY)
                 .tokenValiditySeconds(REMEMBER_ME_TOKEN_EXPIRED)
                 .userDetailsService(userDetailsService)
-                .authenticationSuccessHandler(authenticationSuccessHandler);
+                .authenticationSuccessHandler(authenticationSuccessHandler)
+//                OAuth 로그인 관련
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(memberOAuthService);
 
         return http.build();
     }

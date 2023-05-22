@@ -111,7 +111,7 @@ public class MypageController {
         return "/mypage/member/order-list";
     }
 
-    //    구매 내역 목록
+//    구매 내역 목록
     @ResponseBody
     @GetMapping("member/order-list")
     public Page<MemberOrderProductItemDTO> getOrderList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String year, String month, String day) {
@@ -146,13 +146,6 @@ public class MypageController {
         recipeBoardLikeService.cancelBookmarkRecipeById(id);
     }
 
-//    레시피 찜 취소
-    @ResponseBody
-    @GetMapping("member/subscription-bookmark-cancel")
-    public void calcelBookmarkSubscription(Long id) {
-        subscriptionLikeService.cancelSubscriptionById(id);
-    }
-
 //    복지관 찜 목록
     @MypageHeaderValues
     @GetMapping("member/subscription-bookmark")
@@ -166,6 +159,44 @@ public class MypageController {
     public Page<SubscriptionLikeDTO> getSubscriptionBookmarkList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<SubscriptionLikeDTO> bookmarkList = subscriptionLikeService.getListSubscriptionBookmarkByMemberId(PageRequest.of(page - 1, 8), userDetail.getId());
         return bookmarkList;
+    }
+
+//    복지관 찜 취소
+    @ResponseBody
+    @GetMapping("member/subscription-bookmark-cancel")
+    public void calcelBookmarkSubscription(Long id) {
+        subscriptionLikeService.cancelSubscriptionById(id);
+    }
+
+//    회원정보수정
+    @MypageHeaderValues
+    @GetMapping("member/edit")
+    public String updateMemberInfo(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+        model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
+        return "/mypage/member/member-editor-form";
+    }
+
+//    회원정보수정
+    @PostMapping("member/edit")
+    public RedirectView updateMemberInfo(MemberDTO memberDTO) {
+        memberService.updateMemberInfoById(memberDTO);
+        return new RedirectView("/mypage/member/edit?update=ok");
+    }
+
+//    배송지정보수정
+    @MypageHeaderValues
+    @GetMapping("member/address-editor")
+    public String updateMemberDeliveryAddress(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+        model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
+        return "/mypage/member/address-editor-form";
+    }
+
+//    배송지정보수정
+    @PostMapping("member/address-editor")
+    public RedirectView updateMemberDeliveryAddress(MemberDTO memberDTO) {
+        Member member = memberService.toMemberEntity(memberDTO);
+        memberService.updateMemberDeliveryAddressByMemberId(member);
+        return new RedirectView("/mypage/member/address-editor?update=ok");
     }
 
 //    회원탈퇴
@@ -182,49 +213,16 @@ public class MypageController {
         return new RedirectView("/login");
     }
 
-//    회원정보수정
-    @MypageHeaderValues
-    @GetMapping("member/edit")
-    public String updateMemberInfo(Model model, @AuthenticationPrincipal UserDetail userDetail) {
-        model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
-        return "/mypage/member/member-editor-form";
-    }
-
-//    회원정보수정
-    @PostMapping("member/edit")
-    public RedirectView updateMemberInfo(MemberDTO memberDTO) {
-        memberService.updateMemberInfoById(memberDTO);
-        return new RedirectView("/mypage/member/edit?update=ok");
-    }
-
-//    배송지정보수정
-    @MypageHeaderValues
-    @GetMapping("member/address-editor")
-    public String updateMemberDeliveryAddress(Model model, @AuthenticationPrincipal UserDetail userDetail) {
-        model.addAttribute("memberDTO", memberService.getDetail(userDetail.getId()));
-        return "/mypage/member/address-editor-form";
-    }
-
-//    배송지정보수정
-    @PostMapping("member/address-editor")
-    public RedirectView updateMemberDeliveryAddress(MemberDTO memberDTO) {
-        Member member = memberService.toMemberEntity(memberDTO);
-        memberService.updateMemberDeliveryAddressByMemberId(member);
-        return new RedirectView("/mypage/member/address-editor?update=ok");
-    }
-
 //    비밀번호 인증
     @MypageHeaderValues
     @GetMapping("member/checkPassword")
     public String checkMemberPassword(@AuthenticationPrincipal UserDetail userDetail) {
-
         return "/mypage/member/member-editor";
     }
 
 //    비밀번호 인증
     @PostMapping("member/checkPassword")
     public RedirectView checkMemberPassword(String password) {
-
         return new RedirectView("/mypage/member/member-editor-form");
     }
 }
