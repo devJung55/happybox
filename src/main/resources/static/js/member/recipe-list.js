@@ -30,20 +30,20 @@ function showList(recipeBoardDTOS){
 
         text += `
             <article class="board-item-wrap">
-                  <div class="profile-area">
+                 <div class="profile-area">
                     <a href="javascript:void(0)"
                       ><div class="profile-wrap">
-                        <div class="writer-image">
+                        <div class="writer-image rw" style="margin-bottom: 0;">
                           <img
-                            src="https://static.wanted.co.kr/oneid-user/profile_default.png"
+                            src=""
                             alt=""
                           />
                         </div>
                         <div class="writer-info-wrap">
                           <div class="writer-info">
-                            <div class="writer-name">${recipeDetail.memberName}</div>
+                            <div class="writer-name" style="margin-left: 4px; margin-right: 0; width: 50px;">${recipeDetail.memberName}</div>
+                            <span class="write-date" style="width: 40px;">${recipeDetail.boardRegisterDate}</span>
                           </div>
-                          <span class="write-date">${recipeDetail.boardRegisterDate}</span>
                         </div>
                       </div>
                     </a>

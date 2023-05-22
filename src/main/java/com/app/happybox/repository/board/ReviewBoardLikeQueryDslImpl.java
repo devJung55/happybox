@@ -7,6 +7,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import static com.app.happybox.entity.board.QReviewBoardLike.reviewBoardLike;
+import static com.app.happybox.entity.subscript.QSubscriptionLike.subscriptionLike;
 
 
 @RequiredArgsConstructor
@@ -20,5 +21,12 @@ public class ReviewBoardLikeQueryDslImpl implements ReviewBoardLikeQueryDsl {
                 .where(reviewBoardLike.member.id.eq(userId).and(reviewBoardLike.reviewBoard.id.eq(reviewBoardId)))
                 .fetchOne();
         return count > 0;
+    }
+
+    @Override
+    public void deleteUserLikeByUserAndReviewBoard(Long userId, Long reviewBoardId) {
+        query.delete(reviewBoardLike)
+                .where(reviewBoardLike.member.id.eq(userId).and(reviewBoardLike.reviewBoard.id.eq(reviewBoardId)))
+                .execute();
     }
 }

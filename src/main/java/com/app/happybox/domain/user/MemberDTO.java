@@ -1,6 +1,7 @@
 package com.app.happybox.domain.user;
 
 import com.app.happybox.entity.user.Address;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.type.Gender;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
@@ -11,13 +12,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Getter
 @NoArgsConstructor
-public class MemberDTO {
+public class MemberDTO implements Serializable {
 
 //    Member 전체 컬럼
     private Long id;
@@ -54,5 +56,12 @@ public class MemberDTO {
         this.memberDeliveryAddress = memberDeliveryAddress;
         this.deliveryName = deliveryName;
         this.deliveryPhoneNumber = deliveryPhoneNumber;
+    }
+
+//    OAuth 용
+    public MemberDTO(Member member) {
+        this.userEmail = member.getUserEmail();
+        this.userPhoneNumber = member.getUserPhoneNumber();
+        this.memberName = member.getMemberName();
     }
 }

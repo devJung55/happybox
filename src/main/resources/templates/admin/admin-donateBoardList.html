@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,18 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-    <link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+	<link rel="stylesheet" href="/css/admin/admin-default.css">
+    <link rel="stylesheet" href="/css/admin/admin-modal.css">
+    <link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
 	<section class="header-section">
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-title-layout">
-					<img class="logo-image" src="../../static/img/header/Logo-main.png" alt="">
+					<img class="logo-image" src="/img/header/Logo-main.png" alt="">
                 </div>
             </div>
             <div>
@@ -30,9 +31,7 @@
         </div>
     </section>
     <main class="main-section">
-        <!-- 임시 사이드바 -->
-        <div id="side-bar"></div>
-        <!-- 임시 사이드바 끝 -->
+		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
         <section class="content-section">
             <div class="container">
 				<div class="container-margin">
@@ -57,112 +56,56 @@
 											<th>게시글 제목</th>
 											<th>복지관명</th>
 											<th>작성날짜</th>
-											<th>연락처</th>
+											<th>무료급식소</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr th:each="donationBoard : ${donationBoards}" th:object="${donationBoard}">
 										<td>
 											<label class="check-label">
 											    <input type="checkbox" name="check">
                                             </label>
 										</td>
-										<td class="show-modal">1</td>
-										<td class="show-modal">의미있는일에 함께하겠습니다.</td>
-										<td class="show-modal">관악복지관</td>
-										<td class="show-modal">2023.04.27</td>
-										<td class="show-modal">010-7122-8966</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">2</td>
-										<td class="show-modal">의미있는일에 함께하겠습니다.</td>
-										<td class="show-modal">관악복지관</td>
-										<td class="show-modal">2023.04.27</td>
-										<td class="show-modal">010-7122-8966</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">3</td>
-										<td class="show-modal">의미있는일에 함께하겠습니다.</td>
-										<td class="show-modal">관악복지관</td>
-										<td class="show-modal">2023.04.27</td>
-										<td class="show-modal">010-7122-8966</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">4</td>
-										<td class="show-modal">의미있는일에 함께하겠습니다.</td>
-										<td class="show-modal">관악복지관</td>
-										<td class="show-modal">2023.04.27</td>
-										<td class="show-modal">010-7122-8966</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="check-label">
-											    <input type="checkbox" name="check">
-                                            </label>
-										</td>
-										<td class="show-modal">5</td>
-										<td class="show-modal">의미있는일에 함께하겠습니다.</td>
-										<td class="show-modal">관악복지관</td>
-										<td class="show-modal">2023.04.27</td>
-										<td class="show-modal">010-7122-8966</td>
+										<td class="show-modal" th:text="*{id}"></td>
+										<td class="show-modal" th:text="*{boardTitle}"></td>
+										<td class="show-modal" th:text="*{welfareName}"></td>
+										<td class="show-modal" th:text="*{#temporals.format(boardRegisterDate, 'yyyy.MM.dd')}"></td>
+										<td class="show-modal" th:text="*{donateLocation}"></td>
 									</tr>
 								</table>
-								<!-- 페이지 버튼 -->
-								<div class="page-button-box-layout">
+								<div th:if="${pageDTO.total != 0}" class="page-button-box-layout">
 									<div class="page-button-box">
-										<!-- 페이지 번호 -->
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
+													<a th:if="${pageDTO.prev}" th:href="'javascript:setPage(' + ${pageDTO.startPage - 1} + ')'" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
 												</div>
 											</div>
 										</div>
-										<div class="page-button-active page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>1</span>
+										<th:block th:each="page : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
+											<div th:if="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button-active page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>2</span>
+											<div th:unless="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button">
+												<div class="page-button-margin">
+													<div>
+														<span th:text="${page}"></span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>3</span>
-												</div>
-											</div>
-										</div>
+										</th:block>
 										<div class="">
 											<div class="page-button-margin">
 												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
+													<a th:if="${pageDTO.next}" th:href="'javascript:setPage(' + ${pageDTO.endPage + 1} + ')'"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<!-- 페이지 버튼 끝 -->
 							</div>
 						</div>
 					</section>
@@ -200,66 +143,17 @@
 				</a>
 			</div>
 			<form class="content-info" action>
-				<main class="content-detail">
-					<div class="content-img-wrapper">
-                        <div class="content-img list-img">
-                            <img
-                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-                            />
-                        </div>
-                        <div class="content-img list-img">
-                            <img
-                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-                            />
-                        </div>
-                        <div class="content-img list-img">
-                            <img
-                                src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-                            />
-                        </div>
-					</div>
-					<ul class="content-list-wrap">
-						<li class="content-list">
-							<span>제목</span>
-							<div class="content-input">
-								<input type="text" value="의미있는일에 함께하겠습니다." readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>복지관</span>
-							<div class="content-input">
-								<input type="text" value="관악복지관" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>작성날짜</span>
-							<div class="content-input">
-								<input type="text" value="2023.04.27" readonly/>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>연락처</span>
-							<div class="content-input">
-								<input type="text" value="010-7122-8966" readonly/>
-							</div>
-						</li>
-						<li class="content-list txt-align">
-							<span>내용</span>
-							<div class="content-input">
-								<textarea class="normal-textarea" cols="30" rows="10" name="" readonly>
-안녕하세요 여러분!저희가 이번에 저희 도시락이 필요한 곳을 위해서
-다른 지역으로 기부를 하기로 정했습니다!
-의미있는일에 함께 동참할 수 있어 기쁩니다
-감사합니다.</textarea>
-							</div>
-						</li>
-					</ul>
-				</main>
+				<main class="content-detail donationBoard__append"></main>
 			</form>
 		</div>
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/event.js"></script>
+<script th:inline="javascript">
+	let boards = [[${donationBoards}]];
+</script>
+<script src="/js/admin/menuLoad.js"></script>
+<script src="/js/admin/event.js"></script>
+<script src="/js/admin/sidebar.js"></script>
+<script src="/js/admin/ajax.js"></script>
 </html>

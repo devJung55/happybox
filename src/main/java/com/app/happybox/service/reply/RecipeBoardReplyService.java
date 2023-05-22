@@ -39,7 +39,7 @@ public class RecipeBoardReplyService implements ReplyService {
 
         if(isOrderByDate) {
             recipeBoardReplySlice = recipeBoardReplyRepository.findAllByRecipeBoardId(pageable, id);
-        } else recipeBoardReplySlice = recipeBoardReplyRepository.findAllByReviewBoardIdOrderByLikeCount(pageable, id);
+        } else recipeBoardReplySlice = recipeBoardReplyRepository.findAllByRecipeBoardIdOrderByLikeCount(pageable, id);
 
         List<ReplyDTO> replyDTOList = recipeBoardReplySlice
                 .get()

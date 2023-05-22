@@ -50,12 +50,7 @@ public class MypageControllerAspect {
         Long boardCount = recipeBoardService.getCountByMemberId(id);
         Long inquiryCount = inquiryService.getInquiryCountByUserId(id);
         UserFileDTO userFileDTO = userFileService.getDetail(id);
-
-        if(userService.getDetailByUserId(id) != null) {
-            Role userRole = userService.getDetailByUserId(id).getUserRole();
-            request.setAttribute("userRole", userRole);             // 회원타입
-        }
-
+        Role userRole = userService.getDetailByUserId(id).getUserRole();
 
         request.setAttribute("subscribeCount", subscribeCount); // 내가 구독한 구독 수
         request.setAttribute("orderCount", orderCount);         // 주문 건수
@@ -63,5 +58,6 @@ public class MypageControllerAspect {
         request.setAttribute("inquiryCount", inquiryCount);     // 문의 건수 조회
         request.setAttribute("userName", userName);             // 회원이름
         request.setAttribute("userFile", userFileDTO);          // 회원 프로필사진
+        request.setAttribute("userRole", userRole);             // 회원타입
    }
 }

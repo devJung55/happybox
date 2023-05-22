@@ -53,6 +53,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .from(reviewBoard)
                 .join(reviewBoard.member).fetchJoin()
                 .join(reviewBoard.reviewBoardFiles).fetchJoin()
+                .orderBy(reviewBoard.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

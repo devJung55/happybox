@@ -52,6 +52,10 @@ public class BoardFile extends Files {
         this.recipeBoard = recipeBoard;
     }
 
+    public void setDonationBoard(DonationBoard donationBoard) {
+        this.donationBoard = donationBoard;
+    }
+
     public void setFileRepresent(FileRepresent fileRepresent) {
         this.fileRepresent = fileRepresent;
     }

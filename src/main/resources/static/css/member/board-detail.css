@@ -184,7 +184,7 @@ figure {
 
 .info-area__btn {
     position: absolute;
-    right: 5px;
+    right: 35px;
     top: 90px;
 }
 
@@ -362,10 +362,25 @@ figure {
     width: 78px;
 }
 
+.like-btn-wrap {
+    display: inline-block;
+    width: 35px;
+    height: 31px;
+    font-size: 0;
+    background-size: 70%;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 7px;
+}
+
 .like-btn {
-    display: flex;
-    align-items: center;
-    color: #333;
+    display: block;
+    width: 100%;
+}
+
+.like-btn img {
+    width: 25px;
+    height: 25px;
 }
 
 .like-count {

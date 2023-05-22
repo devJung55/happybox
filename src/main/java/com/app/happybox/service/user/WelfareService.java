@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface WelfareService {
 //    회원정보수정
-    public void updateWelfareInfoById(Welfare welfare);
+    public void updateWelfareInfoById(WelfareDTO welfareDTO);
 
 //    회원탈퇴
     public void updateUserStatusById(Long welfareId);
@@ -52,6 +52,19 @@ public interface WelfareService {
                 .userStatus(welfareDTO.getUserStatus())
                 .welfareName(welfareDTO.getWelfareName())
                 .welfarePointTotal(welfareDTO.getWelfarePointTotal())
+                .build();
+    }
+
+    default Welfare toWelfareJoinEntity(WelfareDTO welfareDTO){
+        return Welfare.builder()
+                .address(welfareDTO.getAddress())
+                .userEmail(welfareDTO.getUserEmail())
+                .userId(welfareDTO.getUserId())
+                .userPassword(welfareDTO.getUserPassword())
+                .userPhoneNumber(welfareDTO.getUserPhoneNumber())
+                .userRole(welfareDTO.getUserRole())
+                .userStatus(welfareDTO.getUserStatus())
+                .welfareName(welfareDTO.getWelfareName())
                 .build();
     }
 
