@@ -271,6 +271,12 @@ public class AdminController {
     public void writeNotice(@RequestBody NoticeDTO noticeDTO) { noticeService.noticeWrite(noticeDTO); }
 
     //    공지사항 수정
+    @PatchMapping("notice-update/{noticeId}")
+    @ResponseBody
+    public NoticeDTO updateNotice(@RequestBody NoticeDTO noticeDTO, @PathVariable Long noticeId) {
+        log.info(noticeDTO.toString());
+        return noticeService.updateNotice(noticeId, noticeDTO);
+    }
 
     //    공지사항 삭제
     @ResponseBody
@@ -278,4 +284,9 @@ public class AdminController {
     public void removeNotice(@RequestParam("id") Long id) {
         noticeService.deleteById(id);
     }
+
+    /* ======================================= 문의 사항 ============================================= */
+
+    @GetMapping("admin-inquiryList")
+    public void goInquiry() {;}
 }

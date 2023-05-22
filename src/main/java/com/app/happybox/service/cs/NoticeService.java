@@ -21,6 +21,9 @@ public interface NoticeService {
     //    관리자용 공지사항 목록
     public Page<NoticeDTO> getAdminNoticeList(Pageable pageable);
 
+//    수정
+    public NoticeDTO updateNotice(Long id, NoticeDTO noticeDTO);
+
     //    삭제
     public void deleteById(Long id);
 

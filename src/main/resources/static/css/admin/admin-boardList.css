@@ -24,6 +24,7 @@
 
 
 .board-info-box-layout {
+	min-width: 900px;
 	margin-top: 30px;
 	margin-bottom: 30px;	
 }

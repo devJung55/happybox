@@ -4,6 +4,7 @@ import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.entity.customer.Notice;
 import com.app.happybox.entity.customer.NoticeSearch;
 import com.app.happybox.entity.file.NoticeFile;
+import com.app.happybox.exception.NoticeNotFoundException;
 import com.app.happybox.repository.notice.NoticeFileRepository;
 import com.app.happybox.repository.notice.NoticeRepository;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,24 @@ public class NoticeServiceImpl implements NoticeService {
         Page<Notice> notices = noticeRepository.findNoticeListDescWithPaging_QueryDSL(pageable);
         List<NoticeDTO> noticeList = notices.get().map(this::toNoticeDTO).collect(Collectors.toList());
         return new PageImpl<>(noticeList, pageable, notices.getTotalElements());
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public NoticeDTO updateNotice(Long id, NoticeDTO noticeDTO) {
+        Notice notice = noticeRepository.findById(id).orElseThrow(NoticeNotFoundException::new);
+        notice.setNoticeTitle(noticeDTO.getNoticeTitle());
+        notice.setNoticeContent(noticeDTO.getNoticeContent());
+
+        // 기존 파일 삭제
+        notice.getNoticeFiles().forEach(file -> noticeFileRepository.delete(file));
+
+        noticeDTO.getNoticeFileDTOS().stream().map(this::toNoticeFileEntity).forEach(file -> {
+            file.setNotice(notice);
+            noticeFileRepository.save(file);
+        });
+
+        return noticeDTO;
     }
 
     //    공지 삭제
