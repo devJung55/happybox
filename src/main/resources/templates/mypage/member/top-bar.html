@@ -15,6 +15,47 @@
                 <div class="column user-info">
                     <label for="profile__label">
                         <input type="file" id="profile__label" style="display: none;">
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script>
+                            /* 프로필 설정 */
+
+                            console.log("ㄷㄹ어옴")
+                            console.log($("#profile__label"));
+
+                            $("#profile__label").on("change", function() {
+                                // 파일 찾아오기
+                                const $files = $(this)[0].files[0];
+                                let formData = new FormData();
+                                let uuid = [];
+                                let path = [];
+                                let orgName = [];
+
+                                formData.append("file", $files);
+
+                                /* fileController 보내기 */
+                                $.ajax({
+                                    url: "/image/upload",
+                                    type: "post",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        let userFile = {
+                                            "fileUuid": data.uuids[0],
+                                            "filePath": data.paths[0],
+                                            "fileOrgName": data.orgNames[0]
+                                        }
+                                        $.ajax({
+                                            url: "/mypage/user/profile-update",
+                                            data: userFile,
+                                            success: function() {
+                                                location.reload();
+                                            }
+                                        })
+                                    }
+                                })
+                            });
+                        </script>
                         <span class="img">
                             <img class="user__profile__img nomal" th:if="${userFile.filePath == null}" src="/img/mypage/nomalProfile.png">
                             <img class="user__profile__img imgPath" th:if="${userFile.filePath != null}" src=""/>
@@ -81,4 +122,6 @@
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/mypage/user/top-bar.js"></script>
 </html>

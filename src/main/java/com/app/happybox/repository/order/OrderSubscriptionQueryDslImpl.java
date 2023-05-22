@@ -18,15 +18,32 @@ import static com.app.happybox.entity.order.QOrderSubscription.orderSubscription
 public class OrderSubscriptionQueryDslImpl implements OrderSubscriptionQueryDsl {
     private final JPAQueryFactory query;
 
+//    @Override
+//    public Optional<OrderSubscription> findSubscriptionByMemberId_QueryDSL(Long memberId) {
+//        return Optional.ofNullable(query.select(orderSubscription)
+//                .from(orderSubscription)
+//                .join(orderSubscription.member).fetchJoin()
+//                .join(orderSubscription.subscription).fetchJoin()
+//                .where(orderSubscription.member.id.eq(memberId))
+//                .fetchOne());
+//    }
+
     @Override
     public Optional<OrderSubscription> findSubscriptionByMemberId_QueryDSL(Long memberId) {
-        return Optional.ofNullable(query.select(orderSubscription)
+        List<OrderSubscription> subscriptions = query.select(orderSubscription)
                 .from(orderSubscription)
                 .join(orderSubscription.member).fetchJoin()
                 .join(orderSubscription.subscription).fetchJoin()
                 .where(orderSubscription.member.id.eq(memberId))
-                .fetchOne());
+                .fetch();
+
+        if (!subscriptions.isEmpty()) {
+            return Optional.of(subscriptions.get(0));
+        } else {
+            return Optional.empty();
+        }
     }
+
 
     @Override
     public Long findSubscriptionCountByMemberId_QueryDSL(Long memberId) {

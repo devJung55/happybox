@@ -5,6 +5,7 @@ let myPageService = (function() {
             data: {"page": page},
             success: function(recipeBoards) {
                 showRecipeBoardList(recipeBoards);
+                pagination(recipeBoards);
             }
         })
     }
@@ -15,6 +16,7 @@ let myPageService = (function() {
             data: {"page": page},
             success: function(reviewBoards) {
                 showReviewBoardList(reviewBoards);
+                pagination(reviewBoards);
             }
         })
     }
@@ -25,6 +27,7 @@ let myPageService = (function() {
             data: {"page": page},
             success: function(inquiries) {
                 showInquiryList(inquiries);
+                pagination(inquiries);
             }
         })
     }
@@ -35,6 +38,7 @@ let myPageService = (function() {
             data: {"page": page},
             success: function(orderList) {
                 showOrderList(orderList);
+                pagination(orderList);
             }
         })
     }
@@ -45,6 +49,7 @@ let myPageService = (function() {
             data: searchDateDTO,
             success: function(orderList) {
                 showOrderList(orderList);
+                pagination(orderList);
             }
         })
     }
@@ -55,6 +60,7 @@ let myPageService = (function() {
             data: {"page": page},
             success: function (bookmarkList) {
                 showRecipeBoardBookmarkList(bookmarkList);
+                pagination(bookmarkList);
             }
         })
     }
@@ -65,6 +71,7 @@ let myPageService = (function() {
             data: {"page": page},
             success: function (bookmarkList) {
                 showSubscriptionBookmarkList(bookmarkList);
+                pagination(bookmarkList);
             }
         })
     }
@@ -115,88 +122,73 @@ let myPageService = (function() {
 
 globalThis.page = 1;
 
-
 function setPage(page) {
     globalThis.page = page;
-    adminNoticeService.getNoticeList();
+    let url = window.location.pathname;
+
+    if(url == "/mypage/member/inquiry") {
+        myPageService.inquiryListAjax(page);
+    } else if(url == "/mypage/member/review") {
+        myPageService.reviewBoardListAjax(page);
+    } else if(url == "/mypage/member/board") {
+        myPageService.recipeBoardListAjax(page);
+    } else if(url == "/mypage/member/order") {
+        myPageService.orderListAjax(page);
+    } else if(url == "/mypage/member/recipe-bookmark") {
+        myPageService.recipeBoardBookmarkAjax(page);
+    } else if(url == "/mypage/member/subscription-bookmark") {
+        myPageService.subscriptionBookmarkAjax(page);
+    }
 }
 
 /* 페이지 버튼 append 할 곳 */
 const $contentWrap = $('.pagination');
 
-function pagination(data) {
-    let pageable = data.pageable;
-
+function pagination(get) {
+    let page = get.pageable;
     /* 현재 페이지 */
-    let pageNumber = pageable.pageNumber;
+    let Num = page.pageNumber;
 
-    let count = Math.floor(pageNumber / PAGE_AMOUNT);
+    let count = Math.floor( Num / PAGE_AMOUNT);
     /* 시작 페이지 */
     let startPage = count * PAGE_AMOUNT;
     /* 끝 페이지 */
     let endPage = startPage + PAGE_AMOUNT;
 
-    endPage = endPage > data.totalPages ? data.totalPages : endPage;
+    endPage = endPage > get.totalPages ? get.totalPages : endPage;
 
     let hasPrev = startPage > 1;
-    let hasNext = endPage < data.totalPages;
+    let hasNext = endPage < page.totalPages;
 
     /* 페이지 버튼 추가하는 HTML 코드 작성부 */
-    let text =  "";
+    let paging =  "";
 
-    if (pageable == null) {
-        text = ``;
+    if (page.length == 0) {
+        paging = "";
     } else {
-        text = `
-                <!-- 페이지 버튼 -->
-                <div class="page-button-box-layout">
-                    <div class="page-button-box">
-                        <!-- 페이지 번호 -->
+        paging = `
+            <!-- // 페이징 -->
+                <div class="pagination mt20" style="margin-top: 30px;">
                 `
         if(hasPrev) {
-            text += `
-                        <!-- 페이지 개수 10개 이상 -->
-                        <div class="">
-                            <div class="page-button-margin">
-                                <div>
-                                    <a href="javascript:setPage(${startPage})" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
-                                </div>
-                            </div>
-                        </div>
-                    `
+            paging += ` <a class="btn-page prev" data-page="${startPage}" href="javascript:setPage(${startPage})"><span class="blind">&lt;</span></a> `
         }
-        for(let i = startPage + 1; i < endPage + 1; i++) {
+
+        for (let i = startPage + 1; i < endPage + 1; i++) {
             let page = i
-            /* 현재 페이지가 내가 선택한 페이지 일 경우 */
-            if (pageNumber + 1 == page) {
-                text += `<div onclick="setPage(${i})" class="page-button page-button-active"> `
+            if (Num + 1 != page) {
+                paging += `<a class="change-page" data-page="${page}" href="javascript:setPage(${page})"><span>${page}</span></a> `
             } else {
-                text += ` <div onclick="setPage(${i})" class="page-button"> `
+                paging += ` <a class="current"><span>${page}</span></a>`
             }
-            text += `
-                    <div class="page-button-margin">
-                            <div>
-                                <span>${i}</span>
-                            </div>
-                        </div>
-                    </div>
-                `
         }
 
         if (hasNext) {
-            text += `
-                        <div class="">
-                            <div class="page-button-margin">
-                                <div>
-                                    <a href="javascript:setPage(${endPage + 1})"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 페이지 버튼 끝 -->
-            `
+            paging +=`<a class="btn-page next" data-page="${endPage + 1}" href="javascript:setPage(${endPage + 1})"><span class="blind">&gt;</span></a>`
         }
+        paging += `
+            </div>
+        `;
+        $contentWrap.html(paging);
     }
-    $contentWrap.append(text);
 }

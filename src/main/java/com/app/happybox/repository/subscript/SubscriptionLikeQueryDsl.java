@@ -13,6 +13,6 @@ public interface SubscriptionLikeQueryDsl {
 //    회원의 해당 좋아요 취소(삭제)
     public void deleteUserLikeByUserAndSubscription(Long memberId, Long subscriptionId);
 
-//    마이페이지 구독 조회
+//    마이페이지 구독 목록
     public Page<SubscriptionLike> findSubscriptionBookmarkByMemberIdWithPaging_QueryDSL(Pageable pageable, Long memberId);
 }

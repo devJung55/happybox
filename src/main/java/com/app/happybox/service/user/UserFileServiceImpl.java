@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +28,15 @@ public class UserFileServiceImpl implements UserFileService {
         } else userFileDTO = new UserFileDTO();
 
         return userFileDTO;
+    }
+
+    @Override
+    public void registerProfile(UserFile userFile) {
+        userFileRepository.save(userFile);
+    }
+
+    @Override
+    public List<UserFile> getList() {
+        return userFileRepository.findAll();
     }
 }

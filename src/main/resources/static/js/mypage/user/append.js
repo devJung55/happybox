@@ -1,5 +1,4 @@
 const $append = $(".article__wrap");
-let page = 0;
 
 myPageService.recipeBoardListAjax();
 
@@ -8,7 +7,6 @@ function showRecipeBoardList(recipeBoards) {
     let image = "";
 
     recipeBoards.content.forEach(recipeBoard => {
-        console.log(recipeBoard.recipeBoardFiles);
         if(recipeBoard.recipeBoardFiles.length != 0) {
             for (let i = 0; i < recipeBoard.recipeBoardFiles.length; i++) {
                 if(i == 0) {
@@ -55,14 +53,6 @@ function showRecipeBoardList(recipeBoards) {
                 </article>
             `;
     });
-    $append.append(text);
-    showPage(recipeBoards);
-}
-
-$(".paging-div").on("click", "a", function(e) {
-    e.preventDefault();
-    const targetPage = $(this).text();
-    page = parseInt(targetPage);
     $append.empty();
-    myPageService.recipeBoardListAjax(page);
-});
+    $append.append(text);
+}

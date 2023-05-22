@@ -51,36 +51,7 @@ $(".inquiry__list__append").on("click", ".arrow-0deg", function() {
 
 myPageService.inquiryListAjax();
 const $inquiryAppend = $(".inquiry__list__append");
-// const $imageModalAppend = $("#thumDtlPop");
 let page = 0;
-
-// function showImageModal(src) {
-//     let text = "";
-//
-//     text = `
-//         <div class="layer-wrap" id="popup-sample01" style="display:none">
-//             <div class="layer-pop img-view-popup">
-//                 <div class="layer-inner">
-//                     <div class="layer-content">
-//                         <div class="img-auto-slide">
-//                             <div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-autoheight">
-//                                 <ul class="swiper-wrapper" style="height: 126px; transform: translate3d(0px, 0px, 0px);">
-//                                     <li class="swiper-slide swiper-slide-active" style="width: 510px; margin-right: 1px;">
-//                                         <img src="${src}">
-//                                     </li>
-//                                 </ul>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <button type="button" class="btn-x-md2 ui-close-pop">
-//                         <img class="close__modal" src="/img/mypage/close-button.webp" width="30">
-//                     </button>
-//                 </div>
-//             </div>
-//         </div>
-//     `;
-//     $imageModalAppend.append(text);
-// }
 
 function showInquiryList(inquiries) {
     let text = "";
@@ -195,38 +166,8 @@ function showInquiryList(inquiries) {
                     </li>
                 `;
     });
-    $inquiryAppend.append(text);
-    showPage(inquiries);
-}
-
-$(".paging-div").on("click", "a", function(e) {
-    e.preventDefault();
-    const targetPage = $(this).text();
-    page = parseInt(targetPage);
     $inquiryAppend.empty();
-    myPageService.inquiryListAjax(page);
-});
-
-function mypageRestPaging(totalPages) {
-    const $pagination = $(".pagination");
-    $pagination.empty();
-
-    if (page > 0) {
-        $pagination.append(`<a href="javascript:void(0)" class="btn-page prev"><span class="blind2">&lt;</span></a>`);
-    }
-
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === page + 1) {
-            // 현재 페이지를 텍스트로 표시
-            $pagination.append(`<a href="javascript:void(0)" id="prev" class="arrow current"><span>${i}</span></a>`);
-        } else {
-            // 다른 페이지는 a 태그로 표시
-            $pagination.append(`<a href="#" class="current"><span>${i}</span></a>`);
-        }
-    }
-
-    if (page < totalPages - 1) {
-        $pagination.append(`<a href="javascript:void(0)" id="next" class="arrow btn-page next"><span class="blind2">&gt;</span></a>`);
-    }
+    $inquiryAppend.append(text);
 }
+
 
