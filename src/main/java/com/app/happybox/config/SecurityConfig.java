@@ -105,17 +105,17 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
 //                마이페이지 권한 설정
-                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
-                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
-                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
-
-//                  작성페이지 권한 설정
-                .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
-                .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
-                .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
-
-//                관리자 페이지 권한 설정
-                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+//                .antMatchers(MYPAGE_MEMBER_PATH).hasRole(Role.MEMBER.name())
+//                .antMatchers(MYPAGE_WELFARE_PATH).hasRole(Role.WELFARE.name())
+//                .antMatchers(MYPAGE_DISTRIBUTOR_PATH).hasRole(Role.DISTRIBUTOR.name())
+//
+////                  작성페이지 권한 설정
+//                .antMatchers(MEMBER_WRITE_PATH).hasRole(Role.MEMBER.name())
+//                .antMatchers(WELFARE_WRITE_PATH).hasRole(Role.WELFARE.name())
+//                .antMatchers(DISTRIBUTOR_WRITE_PATH).hasRole(Role.DISTRIBUTOR.name())
+//
+////                관리자 페이지 권한 설정
+//                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
                 .anyRequest().permitAll()
 
 //                기타 설정
