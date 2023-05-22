@@ -2,6 +2,7 @@ package com.app.happybox.controller.order;
 
 import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.domain.OrderInfoDTO;
+import com.app.happybox.domain.SubscriptionCartDTO;
 import com.app.happybox.domain.product.ProductCartDTO;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.entity.board.ReviewBoardDTO;
@@ -13,6 +14,7 @@ import com.app.happybox.service.order.SubscriptionOrderService;
 import com.app.happybox.service.product.ProductCartService;
 import com.app.happybox.service.product.ProductFileService;
 import com.app.happybox.service.product.ProductService;
+import com.app.happybox.service.product.SubscriptionCartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,6 +40,8 @@ public class OrderController {
     private final ProductService productService;
     private final ProductCartService productCartService;
     private final ProductFileService productFileService;
+
+    private final SubscriptionCartService subscriptionCartService;
 
     @GetMapping("product")
     public String goProductOrderForm(@AuthenticationPrincipal UserDetail userDetail, OrderInfoDTO orderInfoDTO ,Model model) {
@@ -71,9 +75,15 @@ public class OrderController {
     }
 
 
-//    장바구니로 이동
+//    결재하기 폼으로 이동
     @GetMapping("subscription")
-    public String goWelfareOrderForm(@AuthenticationPrincipal UserDetail userDetail, Model model){
+    public String goWelfareOrderForm(OrderInfoDTO orderInfoDTO, @AuthenticationPrincipal UserDetail userDetail, Model model){
+        Long id = userDetail.getId();
+        List<SubscriptionCartDTO> subscriptionCartDTOS = subscriptionCartService.findAllByUserId(id);
+        log.info(subscriptionCartDTOS.toString());
+        model.addAttribute("subscriptionCartDTOS",subscriptionCartDTOS);
+        model.addAttribute("userDetail",userDetail);
+        model.addAttribute("orderInfoDTO",orderInfoDTO);
         return "welfare/payment";
     }
 

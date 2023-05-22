@@ -74,6 +74,7 @@ public class WelfareServiceImpl implements WelfareService {
 
 //    복지관 회원가입
     @Override
+    @Transactional
     public void join(WelfareDTO welfareDTO, SubscriptionWelFareDTO subscriptionWelFareDTO, PasswordEncoder passwordEncoder) {
         welfareDTO.setUserPassword(passwordEncoder.encode(welfareDTO.getUserPassword()));
         welfareDTO.setUserRole(Role.WELFARE);

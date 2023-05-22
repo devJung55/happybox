@@ -38,14 +38,11 @@ public class WelfareMainController {
     private final DonationBoardService donationBoardService;
 
     @GetMapping("")
-    public String goMain(Model model, @AuthenticationPrincipal UserDetail userDetail, HttpSession session) {
+    public String goMain(Model model, @AuthenticationPrincipal UserDetail userDetail) {
 //        UserDetail이 있다는 것은 일반 로그인으로 진행한 거기 때문에 세션에 값이 안 담겨있으므로
 //        userDetail의 id값으로 memberDTO를 찾아서 세션에 담아주기
 //        userDetail이 null이라면 oauth로 로그인 했기 때문에 이미 세션에 값이 있음
-        if (userDetail!= null) {
-            MemberDTO memberDTO =  memberService.getDetail(userDetail.getId());
-            session.setAttribute("member", memberDTO);
-        }
+
         /*log.info(userDetail.toString());*/
         model.addAttribute("recent", subscriptionService.findRecentTop8());
         model.addAttribute("topSale", subscriptionService.findByOrderCount(8L));

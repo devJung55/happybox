@@ -65,12 +65,12 @@
                                 </div>
                                 <div class="search-box ui-toggle on">
                                     <div class="welfare__name">
-                                        <span>노원복지관</span>
+                                        <span th:text="${welfareDTO.welfareName}"></span>
                                     </div>
                                 </div>
                             </form>
 
-                            <div class="no-data-type1" style="display: none;"><!-- 주문 내역이 없을 시 -->
+                            <div class="no-data-type1" style="display: none;" th:if="${riderDTOS == null}"><!-- 주문 내역이 없을 시 -->
                                 <p class="message">기간 내에 구독내역이 없습니다.</p>
                             </div>
 
@@ -79,13 +79,7 @@
                             </ul>
                         </div>
 
-                        <div class="page-bottom"><!-- // 페이징 -->
-                            <div class="pagination mt20" style="margin-top: 30px;">
-                                <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
-                                <a href="javascript:void(0)" class="current"><span>1</span></a>
-                                <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
-                            </div><!--// pagination -->
-                        </div>
+                        <div class="paging-div"></div>
 
                     </div>
                 </div>
@@ -93,9 +87,11 @@
         </section>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/mypage/welfare/rider.js"></script>
 <script th:inline="javascript">
     let riderDTOS = [[${riderDTOS}]];
+    let welfareDTO = [[${welfareDTO}]];
 </script>
-<script src="/js/mypage/welfare/rider.js"></script>
+
 </html>

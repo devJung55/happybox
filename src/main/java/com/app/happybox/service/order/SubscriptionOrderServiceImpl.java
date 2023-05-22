@@ -16,6 +16,7 @@ import com.app.happybox.repository.product.SubscriptionCartRepository;
 import com.app.happybox.repository.user.MemberRepository;
 import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 @Service
 @Qualifier("subscription")
 @RequiredArgsConstructor
+@Slf4j
 public class SubscriptionOrderServiceImpl implements SubscriptionOrderService {
     private final MemberRepository memberRepository;
     private final SubscriptionCartRepository subscriptionCartRepository;
@@ -65,13 +67,19 @@ public class SubscriptionOrderServiceImpl implements SubscriptionOrderService {
                         )
                 ).collect(Collectors.toList());
 
+        log.info("=============  1   =================");
         orderSubscriptions.forEach(order -> {
+            log.info("=============  2   =================");
+            log.info(order.toString());
             // 주문 저장
             orderSubscriptionRepository.save(order);
+            log.info("=============  3   =================");
             // 결제내역 저장
             paymentRepository.save(new Payment(order.getSubscription().getSubscriptionPrice().longValue(), order.getMember(), order));
+            log.info("=============  4   =================");
             // 구독 entity 업데이트
             Long orderCount = order.getSubscription().getOrderCount();
+            log.info("=============  1   =================",orderCount.toString());
             order.getSubscription().setOrderCount(++orderCount);
         });
 

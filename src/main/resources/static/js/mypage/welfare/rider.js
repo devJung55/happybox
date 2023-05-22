@@ -1,10 +1,24 @@
 /* 라이더 리스트 뿌리기 */
+function $doAjax(type, url, data, callback) {
+    $.ajax({
+        type: type,
+        url: url,
+        data: data,
+        dataType: "json",
+        success: function (response) {
+            if (callback) {
+                callback(response);
+            }
+        }
+    });
+}
+
 
 const $list = $('.productCart-list');
-
+const PAGE_AMOUNT = 7;
 let $page;
 
-const URL = "/mypage/welfare/rider/list"
+const URL = "/mypage/welfare/getList"
 
 const doSearch = (page) => {
 
@@ -17,11 +31,6 @@ const doSearch = (page) => {
 
     $doAjax("GET", URL, {page: $page}, (result) => {
         console.log(result);
-        $itemCount.text(result.totalElements);
-
-        // 결과 append 전 내용 비우기
-        $itemWrap.empty();
-
         // 결과 append
         result.content.forEach((e) => showList(e));
 
@@ -73,28 +82,39 @@ function showPage(result) {
 function showList(riderDTO) {
 
     let text = "";
+    let filePath = riderDTO.filePath;
+    let fileUuid = riderDTO.fileUuid;
+    let fileOrgName = riderDTO.fileOrgName;
+    let repFilePath = "/img/market/no_img_market.png";
+    let status = riderDTO.deliveryStatus;
+    if(status == "COMPLETED"){
+        status = "배달 완료";
+    }else if(status == "INCOMPLETED"){
+        status = "배달 대기";
+    }else {
+        status = "배달중";
+    }
+
+    if(filePath != null) {
+        repFilePath = "/image/display?fileName=" + filePath + '/t_' + fileUuid + '_' + fileOrgName;
+    }
     text = `
                     <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
                         <div class="prd-info-area productCart-info-area">
                             <div class="inner">
                                 <div class="user__img">
-                                    <img src="/img/mypage/user__profile.jpg">
+                                    <img src="${repFilePath}">
                                 </div>
                                 <div class="user__info">
                                     <div class="user__name rider__name">
                                         <span>${riderDTO.riderName}</span>
-                                        <span class="badge-sm-primary delivery__done">${riderDTO.deliveryStatus}</span>
+                                        <span class="badge-sm-primary delivery__done">${status}</span>
                                     </div>
                                     <div class="rider__phoneNumber welfare__name">
                                         <span>${riderDTO.riderPhoneNumber}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="column btn">
-                                <button type="button" class="btn-x-sm deleteUserCart">
-                                    <i class="ico-x-black"></i>
-                                </button>
-                            </div>  
                         </div>
                     </li> 
                 `
