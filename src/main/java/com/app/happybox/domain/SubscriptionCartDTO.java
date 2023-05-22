@@ -17,14 +17,20 @@ public class SubscriptionCartDTO {
 
     private LocalDateTime updatedDate;
 
+    private Integer subscriptionPrice;
+
     private SubOption subOption;
 
+    private Long subscriptionId;
+
     @Builder
-    public SubscriptionCartDTO(Long id, String subscriptionTitle, LocalDateTime createdDate, LocalDateTime updatedDate, SubOption subOption) {
+    public SubscriptionCartDTO(Long id, String subscriptionTitle, LocalDateTime createdDate, LocalDateTime updatedDate, SubOption subOption,Integer subscriptionPrice ,Long subscriptionId) {
         this.id = id;
         this.subscriptionTitle = subscriptionTitle;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.subOption = subOption;
+        this.subscriptionPrice = subscriptionPrice;
+        this.subscriptionId = subscriptionId;
     }
 }

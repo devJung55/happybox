@@ -97,3 +97,137 @@ $(document).ready(function() {
 
 
 /* ==================================================================================== */
+const $address = $(".checkbox");
+const userId = userDetail.id;
+console.log(userId)
+
+const $startDate = $('.start-date');
+let currentDate = new Date();
+let year = currentDate.getFullYear();
+let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+let day = String(currentDate.getDate()).padStart(2, '0');
+let formattedDate = `${year}-${month}-${day}`;
+$startDate.text(formattedDate);
+
+$address.change(function () {
+    if ($(this).is(':checked')) {
+        $.ajax({
+            url: '/orders/purchaser/' + userId,
+            type: 'get',
+            data: {id: userId},
+            success: function (response) {
+                console.log(response);
+                $("#memberName").val(response.memberName);
+                $("#postcode").val(response.address.zipcode);
+                $("#address").val(response.address.firstAddress);
+                $("#detailAddress").val(response.address.addressDetail);
+                $("#userPhoneNumber").val(response.userPhoneNumber);
+            }
+        });
+    } else {
+        $('#payment input').val("");
+    }
+});
+
+$.ajax({
+    url: '/orders/member/' + userId,
+    type: 'get',
+    data: {id: userId},
+    success: function (response) {
+        $("#purchaserName").html(response.memberName);
+        $("#purchaserPhone").html(response.userPhoneNumber);
+        $("#purchaserEmail").html(response.userEmail);
+        if (response.userRole == "MEMBER") {
+            $("#purchaserRole").html("일반회원");
+        } else if (response.userRole == "WELFARE") {
+            $("#purchaserRole").html("복지관회원");
+        } else if (response.userRole == "DISTRIBUTOR") {
+            $("#purchaserRole").html("유통회원");
+        }
+    }
+});
+
+
+/* ====================================== 장바구니 정보 불러오기  ============================================== */
+const $carts = carts;
+const $cartArea = $('.productCart-list');
+
+function showCarts() {
+    let text = "";
+
+    $carts.forEach((cart) => {
+        let option = cart.subOption;
+        if (option == "NORMAL"){
+            option = "일반식";
+        }else if(option == "LOW_SALT"){
+            option = "저염식";
+        }else if(option == "MORE_AMT"){
+            option = "양많이";
+        }else if(option == "LESS_AMT"){
+            option = "양적게";
+        };
+
+            text = `
+                <li>
+                    <div class="prd-info-area">
+                        <div class="inner">
+                            <div class="column img">
+                                <a href="javascript:void(0);">
+                                    <img
+                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg"
+                                            alt=""
+                                    />
+                                </a>
+                            </div>
+                            <div class="column tit">
+                                <p class="tit" style="color: rgb(31 94 211); font-weight: bold">${cart.subscriptionTitle}</p>
+                                <p class="desc">${option}</p>
+                                <ul class="price-item">
+                                    <li>
+                                            구독료 : 
+                                            <span class="num" onkeyup="chkNumber(this)">${cart.subscriptionPrice}</span>
+                                            원
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="column price w70">
+                                총액:
+                                <span class="num" id="price-list" onkeyup="chkNumber(this)">${cart.subscriptionPrice}</span>
+                                원
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        
+                `
+        $cartArea.append(text);
+    })
+
+}
+
+showCarts();
+
+const $totalPrice = $('.total-price');
+let totalPrice = 0;
+
+$carts.forEach((cart) => {
+    totalPrice += cart.subscriptionPrice;
+})
+$totalPrice.val(totalPrice);
+
+
+/* ===================================================================================*/
+
+// 천단위 콤마 (소수점포함)
+function numberWithCommas(num) {
+    let parts = num.toString().split(".");
+    return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+}
+
+// 숫자 체크(숫자 이외 값 모두 제거)
+function chkNumber(obj) {
+    let tmpValue = $(obj).val().replace(/[^0-9,]/g, '');
+    tmpValue = tmpValue.replace(/[,]/g, '');
+    // 천단위 콤마 처리 후 값 강제변경
+    obj.value = numberWithCommas(tmpValue);
+}

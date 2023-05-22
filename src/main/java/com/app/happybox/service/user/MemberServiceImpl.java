@@ -129,7 +129,7 @@ public class MemberServiceImpl implements MemberService {
 //    배송지정보수정
     @Override
     public MemberDTO findDeliveryInfoById(Long memberId) {
-         return toMemberDTO(memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId).get());
+         return toMemberDTO(memberRepository.findDeliveryAddressByMemberId_QueryDSL(memberId).orElseThrow(UserNotFoundException::new));
     }
 
 //    회원정보수정
@@ -162,7 +162,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberDTO getDetail(Long memberId) {
-        MemberDTO memberDTO = memberRepository.findMemberById_QueryDSL(memberId).map(this::toMemberDTO).get();
-        return memberDTO;
+        Member member = memberRepository.findMemberById_QueryDSL(memberId).orElseThrow(UserNotFoundException::new);
+        return toMemberDTO(member);
     }
 }

@@ -22,6 +22,9 @@ public interface SubscriptionCartService {
                 .subscriptionTitle(subscriptionCart.getSubscription().getSubscriptionTitle())
                 .createdDate(subscriptionCart.getCreatedDate())
                 .updatedDate(subscriptionCart.getUpdatedDate())
+                .subOption(subscriptionCart.getSubOption())
+                .subscriptionPrice(subscriptionCart.getSubscription().getSubscriptionPrice())
+                .subscriptionId(subscriptionCart.getSubscription().getId())
                 .build();
     }
 

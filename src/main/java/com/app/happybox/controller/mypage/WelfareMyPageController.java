@@ -5,6 +5,7 @@ import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.domain.welfare.RiderDTO;
+import com.app.happybox.entity.subscript.Rider;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.board.RecipeBoardLikeService;
@@ -24,13 +25,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -122,9 +122,22 @@ public class WelfareMyPageController {
     @GetMapping("welfare/rider/list")
     public String goRiderListForm(Model model, @AuthenticationPrincipal UserDetail userDetail){
         Long welfareId = userDetail.getId();
-        Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(0, 5), welfareId);
-        model.addAttribute("riderDTOS",riderDTOS);
+        WelfareDTO welfareDTO = welfareService.getDetail(welfareId);
+        log.info(welfareDTO.toString());
+        model.addAttribute("welfareDTO",welfareDTO);
         return "/mypage/welfare/rider";
     }
+    @GetMapping("/welfare/getList")
+    @ResponseBody
+    public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 5) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail){
+
+        log.info("======================= 들어옴?");
+        Long welfareId = userDetail.getId();
+        Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(pageable.getPageNumber()-1,pageable.getPageSize()), welfareId);
+        log.info("페이지=======",riderDTOS.getPageable().toString());
+        riderDTOS.stream().map(RiderDTO::toString).forEach(log::info);
+        return riderDTOS;
+    }
+
 
 }

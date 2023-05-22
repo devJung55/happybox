@@ -39,7 +39,11 @@ public class RiderServiceImpl implements RiderService {
     @Override
     public Page<RiderDTO> getRiderListByWelfareIdWithPaging(Pageable pageable, Long welfareId) {
         Page<Rider> riders = riderRepository.findAllByWelfareIdWithPaging_QueryDSL(pageable, welfareId);
+        log.info("========== Repository====================");
+        log.info(riders.toString());
         List<RiderDTO> riderDTOS = riders.stream().map(this::toRiderDTO).collect(Collectors.toList());
+        log.info("========== Repository====================");
+        log.info(riderDTOS.toString());
         return new PageImpl<>(riderDTOS, pageable, riders.getTotalElements());
     }
 

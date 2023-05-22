@@ -26,9 +26,9 @@
                 <!-- 구독자 정보 -->
                 <div class="order-address">
                     <ul class="info-txt">
-                        <li class="info__after">오태양</li>
-                        <li class="info__after">01071228966</li>
-                        <li>jung_7122@naver.com</li>
+                        <li class="info__after" id="purchaserName">오태양</li>
+                        <li class="info__after" id="purchaserPhone">01071228966</li>
+                        <li id="purchaserEmail">jung_7122@naver.com</li>
                     </ul>
                 </div>
                 <div class="order-info" id="orderUserInfo">
@@ -40,9 +40,8 @@
                 <div class="order-address">
                     <ul class="info-txt">
                         <li class="subscribe-date">
-                            <span class="start-date">2023-04-26</span>
+                            <span class="start-date"></span>
                             ~
-                            <span class="end-date">2023-05-26</span>
                         </li>
                     </ul>
                 </div>
@@ -69,10 +68,10 @@
                             <td>
                                 <input
                                         type="text"
-                                        name=""
+                                        name="deliveryName"
+                                        id="memberName"
                                         title=""
                                         class="input-text w-full removeEmoji"
-                                        value=""
                                 />
                             </td>
                         </tr>
@@ -85,10 +84,9 @@
                                             <input
                                                     type="text"
                                                     id="postcode"
-                                                    name="receiverPost"
+                                                    name="zipcode"
                                                     class="input-text"
                                                     placeholder="우편번호"
-                                                    value=""
                                                     readonly
                                             />
                                         </div>
@@ -96,10 +94,9 @@
                                             <input
                                                     type="text"
                                                     id="address"
-                                                    name="receiverAddr"
+                                                    name="firstAddress"
                                                     class="input-text"
                                                     placeholder="기본주소"
-                                                    value=""
                                                     readonly
                                             />
                                         </div>
@@ -107,22 +104,21 @@
                                                 class="input-group-btn"
                                                 onclick="sample6_execDaumPostcode()"
                                         >
-                                                        <a
-                                                                href="javascript:void(0)"
-                                                                class="btn-ex-white"
-                                                        >
-                                                            <span>우편번호 찾기</span>
-                                                        </a>
-                                                    </span>
+                                            <a
+                                                    href="javascript:void(0)"
+                                                    class="btn-ex-white"
+                                            >
+                                                <span>우편번호 찾기</span>
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
                                 <input
                                         type="text"
                                         id="detailAddress"
-                                        name="receiverAddrDtl"
+                                        name="addressDetail"
                                         class="input-text w-full removeEmoji"
                                         placeholder="상세주소"
-                                        value=""
                                 />
                             </td>
                         </tr>
@@ -131,8 +127,9 @@
                             <td>
                                 <input
                                         type="text"
-                                        name=""
+                                        name="deliveryPhoneNumber"
                                         title=""
+                                        id="userPhoneNumber"
                                         class="input-text w-full"
                                         maxlength="11"
                                         placeholder="휴대폰 번호를 입력해 주세요."
@@ -158,100 +155,17 @@
                                 </div>
                             </div>
                             <ul class="productCart-list">
-                                <li>
-                                    <div class="prd-info-area">
-                                        <div class="inner">
-                                            <div class="column img">
-                                                <a href="javascript:void(0);">
-                                                    <img
-                                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg"
-                                                            alt=""
-                                                    />
-                                                </a>
-                                            </div>
-                                            <div class="column tit">
-                                                <p class="tit">관악복지관</p>
-                                                <p class="desc">서울시 관악구 봉천동</p>
-                                                <ul class="price-item">
-                                                    <li>
-                                                        <span class="num">18,900</span>
-                                                        원
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="column price w70">
-                                                <span class="num">18,900</span>
-                                                원
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                <!-- 화면에 뿌려지는 곳 -->
                             </ul>
+                            <div class="total-price-area">
+                                <span class="title-list">
+                                    총 가격 :
+                                    <input type="number" id="goBoot" class="input-text total-price"
+                                           onkeyup="chkNumber(this)" name="" style="border: none" value="" readonly>
+                                    원
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="order-info">
-                    <div class="list-head">
-                        <div class="order-banner text-center">
-                            <p>
-                                <strong>기부 포인트</strong>
-                                <em>
-                                    <span>1000P</span>
-                                    이상 사용가능
-                                </em>
-                            </p>
-                        </div>
-                        <h3 class="title-list">기부 포인트 사용</h3>
-                    </div>
-                    <div class="lineless-table type1">
-                        <table>
-                            <caption>
-                                기부 포인트 사용
-                            </caption>
-                            <colgroup>
-                                <col style="width: 190px"/>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <span class="tit"> 포인트 사용 </span>
-                                </th>
-                                <td>
-                                    <div class="order-point">
-                                        <div class="input-group-wrap box-type">
-                                            <div class="input-group">
-                                                <input
-                                                        type="text"
-                                                        id="point"
-                                                        class="input-text ui-point-input"
-                                                        placeholder="1,000P부터 사용가능"
-                                                />
-                                                <span class="input-group-btn">
-                                                                <button
-                                                                        type="button"
-                                                                        class="btn-x-xs btn-input-del"
-                                                                >
-                                                                    <i class="ico-x-normal"></i>
-                                                                    <span class="blind">삭제</span>
-                                                                </button>
-                                                                <button
-                                                                        type="button"
-                                                                        class="btn-ex-grey"
-                                                                >
-                                                                    <span>전액사용</span>
-                                                                </button>
-                                                            </span>
-                                            </div>
-                                        </div>
-                                        <p class="point-guide">
-                                            사용 가능 기부 포인트
-                                            <em class="text-num-bold">2,000</em>P
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
                 <div class="order-info">
@@ -280,74 +194,131 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
 <script src="https://js.bootpay.co.kr/bootpay-4.2.8.min.js" type="application/javascript"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script th:inline="javascript">
-    let orderTitle = "오태양";
-    let productCount = "10";
-    let productPrice = "100"
-    let TotalPrice = productCount * productPrice;
-    let orderId = "1";
+    let userDetail = [[${userDetail}]];
+    let carts = [[${subscriptionCartDTOS}]];
+    let orderInfoDTO = [[${orderInfoDTO}]];
+    console.log(userDetail);
+    console.log(carts);
+</script>
+<script src="/js/welfare/payment.js"></script>
+<script>
 
-    const APIKEY = "64619d883049c8001d9686b3";
+    // order info 정보
+    const $zipcode = $('#postcode');
+    const $firstAddress = $('#address');
+    const $addressDetail = $('#detailAddress');
+    const $deliveryName = $('#memberName');
+    const $deliveryPhoneNumber = $('#userPhoneNumber');
 
-    /*부트페이 결제 API*/
-    $('#goPayment').on('click', function () {
-        BootPay.request({
-            price: TotalPrice, //실제 결제되는 가격
+    $(document).ready(function () {
 
-            // 관리자로그인 -> 결제설치 -> 인증키 및 보안 -> WEB Application ID
-            application_id: APIKEY,
+        let $total = $("#goBoot").val();
+        let count = 0;
+        count = carts.length;
+        console.log("카운트 개수는??????");
+        console.log(count);
 
-            name: '(주)HappyBox', //결제창에서 보여질 이름
-            pg: '',
-            method: 'card', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
-            show_agree_window: 1, // 부트페이 정보 동의 창 보이기 여부
-            items: [
-                {
-                    item_name: orderTitle, //상품명
-                    qty: productCount, //수량
-                    unique: '123', //해당 상품을 구분짓는 primary key
-                    price: TotalPrice, //상품 단가
-                }
-            ],
-            order_id: '고유order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
-        }).error(function (data) {
-            //결제 진행시 에러가 발생하면 수행됩니다.
-            console.log(data);
-        }).cancel(function (data) {
-            //결제가 취소되면 수행됩니다.
-            const container = document.querySelector(".modal");
-            const close = document.querySelector(".pay-popup-check");
 
-            //모달창 열기
-            container.style.display = "block";
+        const APIKEY = "64619d883049c8001d9686b3";
+        /*부트페이 결제 API*/
+        $('#goPayment').on('click', function () {
 
-            //모달창 닫기
-            close.addEventListener("click", function () {
-                container.style.display = "none";
-            });
-            console.log(data);
+            /*=====================   선언부   =============================*/
 
-        }).close(function (data) {
-            // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
-            console.log(data);
-        }).done(function (data) {
-            //결제가 정상적으로 완료되면 수행됩니다
-            //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
-            $.ajax({
-                url: "/order/product", // 컨트롤러 주소
-                type: "POST",
-                data: {TotalPrice: TotalPrice, orderId: orderId}, // 결제정보 객체 paymetnVO
-                success: function (result) {
-                    location.href = result;
+            let addressDTO = {
+                zipcode: $zipcode.val(),
+                firstAddress: $firstAddress.val(),
+                addressDetail: $addressDetail.val()
+            };
+
+            console.log(addressDTO)
+
+            let list = [];
+            let cartIds = [];
+            carts.forEach((cart) =>{
+                list.push(cart.subscriptionTitle);
+            })
+            carts.forEach((cart) => {
+                cartIds.push(cart.id);
+            })
+
+            orderInfoDTO = {
+                id: userDetail.id,
+                cartIds: cartIds,
+                deliveryName: $deliveryName.val(),
+                deliveryPhoneNumber: $deliveryPhoneNumber.val(),
+                addressDTO: addressDTO
+            }
+
+
+            /*=====================   선언부   =============================*/
+            console.log("=======DTO 출력하는 곳============")
+            console.log(orderInfoDTO);
+
+            BootPay.request({
+                price: 100, //실제 결제되는 가격
+
+                // 관리자로그인 -> 결제설치 -> 인증키 및 보안 -> WEB Application ID
+                application_id: APIKEY,
+                name: '(주)HappyBox', //결제창에서 보여질 이름
+                pg: '',
+                method: '휴대폰', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
+                show_agree_window: 1, // 부트페이 정보 동의 창 보이기 여부
+                user: {
+                    id: userDetail.id,
+                    username: userDetail.userRole,
                 },
-                error: function (error) {
-                    console.log(error);
-                }
+                items: [
+                    {
+                        item_name: list.toString(), //상품명
+                        qty: count, //수량
+                        unique: '123', //해당 상품을 구분짓는 primary key
+                        price: $total, //상품 단가
+                    }
+                ],
+                order_id: '고유order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
+            }).error(function (data) {
+                //결제 진행시 에러가 발생하면 수행됩니다.
+                console.log(data);
+            }).cancel(function (data) {
+                //결제가 취소되면 수행됩니다.
+                const container = document.querySelector(".modal");
+                const close = document.querySelector(".pay-popup-check");
+
+                //모달창 열기
+                container.style.display = "block";
+
+                //모달창 닫기
+                close.addEventListener("click", function () {
+                    container.style.display = "none";
+                });
+                console.log(data);
+
+            }).close(function (data) {
+                // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
+                console.log(data);
+            }).done(function (data) {
+                //결제가 정상적으로 완료되면 수행됩니다
+                //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
+                $.ajax({
+                    url: "/order/subscription", // 컨트롤러 주소
+                    type: "POST",
+                    data: JSON.stringify(orderInfoDTO), // 결제정보 객체 paymetnVO
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        location.href = "/welfare/list";
+                    },
+                    error: function (error) {
+                        console.log("결제가 취소 되었습니다.");
+                    }
+                });
             });
-            console.log(data);
         });
     });
+
 </script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/welfare/payment.js"></script>
+
 </html>
