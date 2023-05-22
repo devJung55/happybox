@@ -17,6 +17,8 @@ public interface ProductQueryDsl {
     public Page<Product> findAllByProductSearch_QueryDSL(Pageable pageable, ProductSearchDTO productSearchDTO);
 //    마이페이지 상품 목록
     public Page<Product> findAllByDistributorIdWithPaging_QueryDSL(Pageable pageable, Long distributorId);
+//    마이페이지 상품 개수 조회
+    public Long findCountByDistributor_QueryDSL(Long distributorId);
 //    댓글순 8개 조회
     public List<Product> findTop8WithDetailOrderByReplyCount_QueryDSL();
 

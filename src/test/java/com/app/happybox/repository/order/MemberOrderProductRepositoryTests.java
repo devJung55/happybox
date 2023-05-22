@@ -39,7 +39,7 @@ class MemberOrderProductRepositoryTests {
     public void saveTest() {
         // given
         Optional<Member> member = memberRepository.findById(1L);
-        Optional<Product> product = productRepository.findById(232L);
+        Optional<Product> product = productRepository.findById(146L);
 
         // when
         if (!member.isPresent() || !product.isPresent()) fail("member 혹은 product 존재 하지 않음");
