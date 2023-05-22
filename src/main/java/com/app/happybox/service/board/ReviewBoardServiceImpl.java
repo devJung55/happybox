@@ -34,7 +34,7 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 
     @Override
     public ReviewBoardDTO getDetail(Long id) {
-        ReviewBoard reviewBoard = reviewBoardRepository.findById_QueryDSL(id).orElseThrow(BoardNotFoundException::new);
+        ReviewBoard reviewBoard = reviewBoardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
         return reviewBoardToDTO(reviewBoard);
     }
 

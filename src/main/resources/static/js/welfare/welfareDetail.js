@@ -16,17 +16,10 @@ const $orderNormalTotalPrice = $('.orderNormalTotalPrice');
 
 $radioLabels.on('click', function () {
     const $clickedRadio = $(this).prev('input[type="radio"]');
-    const $totalPrice = $('.total-price');
-    let selectedPrice = '';
+    let selectedPrice = subscription.subscriptionPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
     $radioLabels.siblings('input[type="radio"]').prop('checked', false);
     $clickedRadio.prop('checked', true);
-
-    if ($clickedRadio.parent().text().trim() === '1개월 구독') {
-        $totalPrice.show();
-        selectedPrice = $totalPrice.text();
-        $clickedRadio.val(selectedPrice);
-    }
 
     $orderNormalTotalPrice.html(selectedPrice);
 });
@@ -222,7 +215,6 @@ $(".close").on("click", function () {
 
 // 예 버튼을 클릭했을 때
 $("#modal-yesBtn").on("click", function () {
-    console.log($(".quantity-input").val());
     console.log(CART_URL);
     $doAjaxPost("POST",
         CART_URL, // 장바구니 URL
@@ -232,8 +224,6 @@ $("#modal-yesBtn").on("click", function () {
         },
         (result) => {  // callback
             $("#cart-modal").css("display", "none");
-
-            console.log(result);
         }
     );
 
@@ -257,7 +247,12 @@ $(".like-btn img").attr("src", `${isLike ? likeSrc : unlikeSrc}`);
 /* 좋아요 눌렀을 때 */
 function checkLike() {
     $doAjax("POST", SUB_LIKE_URL, {}, (result) => {
-        $(".like-btn img").attr("src", `${result ? unlikeSrc : likeSrc}`);
+        if(result === -1) {
+            $("#like-modal").css("display", "block");
+            return;
+        }
+
+        $(".like-btn img").attr("src", `${result === 1 ? unlikeSrc : likeSrc}`);
     });
 }
 

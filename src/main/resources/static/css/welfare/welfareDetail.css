@@ -1288,6 +1288,11 @@ input[type="checkbox"], input[type="radio"] {
     width: 825px;
 }
 
+#like-modal .modal-content {
+    height: 150px;
+    width: 425px;
+}
+
 #cart-modal .modal-content {
     width: 315px;
 }
