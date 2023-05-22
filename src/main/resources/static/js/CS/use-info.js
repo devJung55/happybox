@@ -15,15 +15,32 @@ const arrowDown = `
     </svg>
 `
 
+// 펼쳐진 답변
+let $openAnswer = null;
+
 $useInfo.on('click', function() {
     let $answerWrap = $(this).next('.answer-wrap');
     let check = $answerWrap.hasClass('disNone');
 
-    if(check) {
+    if (check) {
+        // 만약 먼저 펼쳐놓은 답변이 있다면 닫아주기
+        if ($openAnswer !== null) {
+            $openAnswer.addClass('disNone');
+            $openAnswer.prev('.board-wrap').find('.arrow-wrap').html(arrowDown);
+        }
+
+        // 현재 답변을 펼쳐놓기
         $answerWrap.removeClass('disNone');
         $arrowWrap.html(arrowUp);
+
+        // 펼쳐진 답변 업데이트 해주기
+        $openAnswer = $answerWrap;
     } else {
-        $answerWrap.addClass('disNone') ; 
+        // 펼친 답변 닫기
+        $answerWrap.addClass('disNone');
         $arrowWrap.html(arrowDown);
+
+        // 펼쳐진 답변 초기화
+        $openAnswer = null;
     }
 });
