@@ -33,6 +33,7 @@ public class Rider extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Welfare welfare;
 
+    @Builder
     public Rider(String riderName, String riderPhoneNumber, String filePath, String fileUuid, String fileOrgName, Welfare welfare) {
         this.riderName = riderName;
         this.riderPhoneNumber = riderPhoneNumber;
@@ -44,5 +45,9 @@ public class Rider extends Period {
 
     public void setDeliveryStatus(DeliveryType deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+    }
+
+    public void setWelfare(Welfare welfare) {
+        this.welfare = welfare;
     }
 }
