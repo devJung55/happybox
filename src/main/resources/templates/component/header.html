@@ -59,7 +59,7 @@
         <div class="my-menu">
             <ul>
                 <li>
-                    <a href="javascript:void(0)" class="btn-util-mypage" title=""></a>
+                    <a sec:authorize="isAuthenticated()" href="/mypage/" class="btn-util-mypage"></a>
                 </li>
                 <li>
                     <a href="javascript:showCartModal()" class="btn-util-productCart" title=""></a>
