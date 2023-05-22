@@ -22,8 +22,8 @@ public class RecipeBoardLike extends Period {
     @JoinColumn
     private Member member;
 
-    public RecipeBoardLike(Member member, RecipeBoard recipeBoard) {
-        this.member = member;
+    public RecipeBoardLike(RecipeBoard recipeBoard, Member member) {
         this.recipeBoard = recipeBoard;
+        this.member = member;
     }
 }

@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 public interface DonationBoardService {
     //    기부 게시글 작성
-    public void write(DonationBoardDTO donationBoardDTO, Long memberId);
+    public void write(DonationBoardDTO donationBoardDTO, Long welfareId);
 
     //    기부 게시글 수정
-    public void update(DonationBoardDTO donationBoardDTO, Long memberId);
+    public void update(DonationBoardDTO donationBoardDTO, Long welfareId);
 
     //    기부 게시글 삭제
     public void delete(Long id, Long memberId);
@@ -85,9 +85,9 @@ public interface DonationBoardService {
                 .build();
     }
 
-    default List<BoardFileDTO> boardFileToDTO(List<BoardFile> reviewBoardFiles){
+    default List<BoardFileDTO> boardFileToDTO(List<BoardFile> donationBoardFiles){
         List<BoardFileDTO> boardFileDTOS = new ArrayList<>();
-        reviewBoardFiles.forEach(
+        donationBoardFiles.forEach(
                 boardFile -> {
                     BoardFileDTO boardFileDTO = BoardFileDTO.builder()
                             .id(boardFile.getId())

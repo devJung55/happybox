@@ -41,7 +41,7 @@ public class RecipeBoardLikeServiceImpl implements RecipeBoardLikeService {
 
         if(check) {
             // 삭제
-            recipeBoardLikeRepository.deleteUserLikeByUserAndRecipeBoard(memberId, recipeBoardId);
+            recipeBoardLikeRepository.deleteUserLikeByUserAndRecipeBoard(recipeBoardId, memberId);
 
             // 좋아요 수 감소
             Integer recipeLikeCount = recipeBoard.getRecipeLikeCount();
@@ -51,7 +51,7 @@ public class RecipeBoardLikeServiceImpl implements RecipeBoardLikeService {
             Member member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
 
             // 저장
-            recipeBoardLikeRepository.save(new RecipeBoardLike(member, recipeBoard));
+            recipeBoardLikeRepository.save(new RecipeBoardLike(recipeBoard, member));
 
             // 구독 좋아요 수 증가
             Integer recipeLikeCount = recipeBoard.getRecipeLikeCount();

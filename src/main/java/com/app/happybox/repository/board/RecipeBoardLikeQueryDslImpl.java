@@ -22,7 +22,7 @@ public class RecipeBoardLikeQueryDslImpl implements RecipeBoardLikeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public boolean checkMemberLikesRecipeBoard_QueryDSL(Long memberId, Long recipeBoardId) {
+    public boolean checkMemberLikesRecipeBoard_QueryDSL(Long recipeBoardId, Long memberId) {
         Long count = query.select(recipeBoardLike.count())
                 .from(recipeBoardLike)
                 .where(recipeBoardLike.member.id.eq(memberId).and(recipeBoardLike.recipeBoard.id.eq(recipeBoardId)))
@@ -31,7 +31,7 @@ public class RecipeBoardLikeQueryDslImpl implements RecipeBoardLikeQueryDsl {
     }
 
     @Override
-    public void deleteUserLikeByUserAndRecipeBoard(Long memberId, Long recipeBoardId) {
+    public void deleteUserLikeByUserAndRecipeBoard(Long recipeBoardId, Long memberId) {
         query.delete(recipeBoardLike)
                 .where(recipeBoardLike.member.id.eq(memberId).and(recipeBoardLike.recipeBoard.id.eq(recipeBoardId)))
                 .execute();

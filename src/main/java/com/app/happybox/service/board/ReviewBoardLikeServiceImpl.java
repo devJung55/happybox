@@ -35,7 +35,7 @@ public class ReviewBoardLikeServiceImpl implements ReviewBoardLikeService {
 
         if(check) {
             // 삭제
-            reviewBoardLikeRepository.deleteUserLikeByUserAndReviewBoard(memberId, reviewBoardId);
+            reviewBoardLikeRepository.deleteUserLikeByUserAndReviewBoard(reviewBoardId, memberId);
 
             // 좋아요 수 감소
             Integer reviewLikeCount = reviewBoard.getReviewLikeCount();
@@ -45,7 +45,7 @@ public class ReviewBoardLikeServiceImpl implements ReviewBoardLikeService {
             Member member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
 
             // 저장
-            reviewBoardLikeRepository.save(new ReviewBoardLike(member, reviewBoard));
+            reviewBoardLikeRepository.save(new ReviewBoardLike(reviewBoard, member));
 
             // 구독 좋아요 수 증가
             Integer reviewLikeCount = reviewBoard.getReviewLikeCount();

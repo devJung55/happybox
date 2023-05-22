@@ -4,6 +4,7 @@ import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.type.DonateType;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,8 +13,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Builder @ToString
+@Getter @Setter
+@ToString
 public class DonationBoardDTO {
     private Long id;
 
@@ -35,7 +36,10 @@ public class DonationBoardDTO {
     private LocalDateTime boardRegisterDate;
 
     /*-- 파일 리스트 --*/
-    List<BoardFileDTO> donationBoardFiles;
+    private List<BoardFileDTO> donationBoardFiles = new ArrayList<>();
+
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 
     public DonationBoardDTO(){this.donationBoardFiles = new ArrayList<>();
     }

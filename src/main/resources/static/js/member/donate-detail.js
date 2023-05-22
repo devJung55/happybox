@@ -4,7 +4,23 @@ const setList = $('.form-wrap');
 
 function showList(){
     let date = donate.boardRegisterDate.split("T")[0];
+    let donateType = `${donate.donateType}`;
+    switch (donateType) {
+        case "FOOD":
+            donateType = "음식기부";
+            break;
+        case "VOLUNTEER":
+            donateType = "봉사활동";
+            break;
+        case "DELIVERY":
+            donateType = "무료배달";
+            break;
+        case "ETC":
+            donateType = "노인복지";
+        default:
+            donateType = "음식기부";
 
+    }
     let text ='';
     text +=
         `
@@ -28,7 +44,7 @@ function showList(){
                                         </div>
                                         <div class="plus-cell">
                                             기부 유형:
-                                            <span class="donate-type">${donate.donateType}</span>
+                                            <span class="donate-type">${donateType}</span>
                                         </div>
                                     </div>
                                     <div class="plus-info">
@@ -65,32 +81,7 @@ function showList(){
              text +=
              `
                                     </div>
-                                    <div class="board-wrap prev-article">
-                                        <div class="text-center arti">
-                                            <span class="">이전글</span>
-                                        </div>
-                                        <div class="text-left flex1">
-                                            <a href="javascript:void(0)" class="title-elps">
-                                                정지욱 기부
-                                            </a>
-                                        </div>
-                                        <div class="text-center">
-                                            <span>2023.02.03</span>
-                                        </div>
-                                    </div>
-                                    <div class="board-wrap next-article">
-                                        <div class="text-center arti">
-                                            <span class="">다음글</span>
-                                        </div>
-                                        <div class="text-left flex1">
-                                            <a href="javascript:void(0)" class="title-elps">
-                                                강민구 기부
-                                            </a>
-                                        </div>
-                                        <div class="text-center">
-                                            <span>2023.02.05</span>
-                                        </div>
-                                    </div>
+                                    
         `
     setList.append(text);
 }

@@ -92,7 +92,7 @@ $searchModalWrap.find(".welfareSelect").on("click", () => disNone($searchModalWr
 
 /* 파일 등록 */
 const $fileAttachBtn = $(".btn-attach-thumb");
-const $imgFile = $("input[name='imgFile']");
+const $imgFile = $("input[type='imgFile']");
 
 $fileAttachBtn.on("click", function () {
     let $fileInput = $(this).next();

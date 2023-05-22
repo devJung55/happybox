@@ -64,6 +64,7 @@ public class ReviewBoard extends Board {
         this.welfareName = welfareName;
     }
 
+
     //    public ReviewBoard(String boardTitle, String boardContent, Integer reviewRating, Member member, Welfare welfare) {
 //        super(boardTitle, boardContent);
 //        this.reviewRating = reviewRating;

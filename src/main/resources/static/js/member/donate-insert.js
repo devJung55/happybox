@@ -4,7 +4,7 @@ const $selectVal = $(".select-value");
 const $selectList = $(".select-list");
 const $value = $("#value");
 
-const optionList = ["FOOD", "봉사활동", "무료 배달", "노인복지"];
+const optionList = ["음식기부", "봉사활동", "무료배달", "노인복지"];
 
 const insertData = {
     boardTitle:"",
@@ -83,10 +83,6 @@ $searchModalWrap.find(".modalClose").on("click", () => disNone($searchModalWrap)
 $searchModalWrap.find(".welfareSelect").on("click", () => disNone($searchModalWrap));
 
 
-function send() {
-
-}
-
 /* 파일 등록 */
 const $fileAttachBtn = $(".btn-attach-thumb");
 const $imgFile = $("input[type='file']");
@@ -114,7 +110,7 @@ const fileAjax = (data, index) => {
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                insertData.donateBoardFiles[index] = file;
+                insertData.donationBoardFiles[index] = file;
                 console.log(insertData);
             }
         }
@@ -172,12 +168,30 @@ $("form[name='form']").on("submit", function (e) {
     let boardTitle = $("input[name='boardTitle']").val();
     let boardContent = $("textarea[name='boardContent']").val();
     let donateType = $("#value").text();
+    switch (donateType) {
+        case "음식기부":
+            donateType = "FOOD";
+            break;
+        case "봉사활동":
+            donateType = "VOLUNTEER";
+            break;
+        case "무료배달":
+            donateType = "DELIVERY";
+            break;
+        case "노인복지":
+            donateType = "ETC";
+        default:
+            donateType = "FOOD";
+
+    }
     let donateLocation = $("input[name='donate-location']").val();
 
     insertData.boardTitle = boardTitle;
     insertData.boardContent = boardContent;
     insertData.donateType = donateType;
     insertData.donateLocation = donateLocation;
+
+    insertData.donationBoardFiles = insertData.donationBoardFiles.filter(e => e !== undefined && e !== null);
 
     $.ajax({
         url: '/user-board/donate-insert',

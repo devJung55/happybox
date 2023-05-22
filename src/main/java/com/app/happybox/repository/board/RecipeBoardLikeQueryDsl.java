@@ -9,8 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface RecipeBoardLikeQueryDsl {
-    public boolean checkMemberLikesRecipeBoard_QueryDSL(Long memberId, Long recipeBoardId);
-    public void deleteUserLikeByUserAndRecipeBoard(Long memberId, Long recipeBoardId);
+    public boolean checkMemberLikesRecipeBoard_QueryDSL(Long recipeBoardId, Long memberId);
+    public void deleteUserLikeByUserAndRecipeBoard(Long recipeBoardId, Long memberId);
 
     // 멤버의 좋아요 체크
     public boolean checkMemberLikesRecipeBoard_QueryDSL(Member member, RecipeBoard recipeBoard);

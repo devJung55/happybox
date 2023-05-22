@@ -6,6 +6,7 @@ import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.type.FileRepresent;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class BoardFile extends Files {
 
     //    파일이 대표 파일인지 여부
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'ORDINARY'")
     private FileRepresent fileRepresent;
 
     @ManyToOne(fetch = FetchType.LAZY)
