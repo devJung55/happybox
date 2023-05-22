@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class ChatController {
     private final SimpMessageSendingOperations template;
     private final ChatService chatService;
     private final ChatMessageService chatMessageService;
+    private final HttpSession session;
 
     // MessageMapping 을 통해 websocket 으로 들어오는 메시지를 발신 처리합니다.
     // 이 때 클라이언트에서는 /pub/chat/message 로 요청을 하게 되고 이것을 controller 가 받아서 처리합니다.
@@ -54,13 +56,14 @@ public class ChatController {
 
     //해당유저
     @MessageMapping("/chat/sendMessage")
-    public void sendMessage(@Payload ChatMessageDTO chat, Principal principal) {
+    public void sendMessage(@Payload ChatMessageDTO chat, Authentication authentication) {
 
         log.info("chat : {}", chat);
         chat.setMessage(chat.getMessage());
 
+        Long userId = ((UserDetail) authentication.getPrincipal()).getId();
 
-        ChatMessageDTO savedChat = chatMessageService.save(chat, principal.getName());
+        ChatMessageDTO savedChat = chatMessageService.save(chat, userId);
 
         template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), savedChat);
     }
@@ -115,9 +118,10 @@ public class ChatController {
         }
 
         List<ChatMessageDTO> messages = chatMessageService.findAllChatMessagesByRoomId(roomId);
+        log.info("=============== HISTORY "  + messages.toString());
 
         messages.forEach(message -> {
-            if(message.getSender().equals(userDetail.getUserId())) {
+            if(message.getSenderId().equals(userDetail.getId())) {
                 message.setMyMessage(true);
             }
         });

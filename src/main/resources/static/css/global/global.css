@@ -83,6 +83,10 @@ video {
     padding: 0;
 }
 
+html {
+    zoom: 80%;
+}
+
 body {
     color: #333;
     font-size: 14px;
