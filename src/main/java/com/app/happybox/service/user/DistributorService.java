@@ -1,6 +1,7 @@
 package com.app.happybox.service.user;
 
 import com.app.happybox.domain.user.DistributorDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.user.Distributor;
 import org.springframework.data.domain.Page;
@@ -11,9 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 
 public interface DistributorService {
-//    회원정보수정
-    public void updateDistributorInfoById(Distributor distributor);
-
 //    회원탈퇴
     public void updateUserStatusById(Long distributorId);
 
@@ -31,6 +29,9 @@ public interface DistributorService {
 
     //    유통업체 명 중복검사
     public boolean existsByDistributorName(String distributorName);
+
+//    회원정보수정
+    public void updateDistributorInfoById(DistributorDTO distributorDTO);
 
     default DistributorDTO toDistributorDTO(Distributor distributor) {
         return DistributorDTO.builder()
