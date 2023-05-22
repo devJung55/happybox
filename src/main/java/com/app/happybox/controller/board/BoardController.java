@@ -314,14 +314,27 @@ public class BoardController {
 
     //    기부 게시판 리스트
     @GetMapping("donate-list")
-    public String goDonateList(){
+    public String goDonateList(Model model, @AuthenticationPrincipal UserDetail userDetail){
+        model.addAttribute("userId", userDetail.getId());
         return "user-board/donate-list";
     }
+    //    기부 게시판 최신순
+    @GetMapping("donate-list/recent")
+    @ResponseBody
+    public Slice<DonationBoardDTO> getRecentDonateBoardList(@PageableDefault(page=1, size=5) Pageable pageable) {
+        Slice<DonationBoardDTO> donationBoardDTOS = donationBoardService.getRecentList(PageRequest.of(pageable.getPageNumber() - 1,
+                pageable.getPageSize()));
+        return donationBoardDTOS;
+    }
 
-//    @GetMapping("donate-list")
-//    public Page<DonationBoardDTO> getDonateBoardList(int page, int size) {
-//        return donationBoardService.getList(PageRequest.of(page, size));
-//    }
+    //    기부 게시판 인기순
+    @GetMapping("donate-list/popular")
+    @ResponseBody
+    public Slice<DonationBoardDTO> getPopularDonateBoardList(@PageableDefault(page=1, size=5) Pageable pageable) {
+        Slice<DonationBoardDTO> donationBoardDTOS = donationBoardService.getPopularList(PageRequest.of(pageable.getPageNumber() - 1,
+                pageable.getPageSize()));
+        return donationBoardDTOS;
+    }
 
 //    기부 게시판 상세보기
     @GetMapping("donate-detail/{id}")
@@ -355,10 +368,10 @@ public class BoardController {
 
 //    기부 게시판 삭제
     @DeleteMapping("donate-detail/delete/{id}")
+    @ResponseBody
     public void deleteDonate(@PathVariable Long id, @AuthenticationPrincipal UserDetail userDetail) {
         Long userId = userDetail.getId();
 
-        // 임시 session 값 1저장
         donationBoardService.delete(id, userId);
         log.info("===============들어옴");
     }

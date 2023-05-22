@@ -7,118 +7,76 @@
         <title>기부글 리스트</title>
         <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
         <link rel="stylesheet" href="/css/global/global.css" />
-        <link rel="stylesheet" href="/css/component/header.css" />
-        <link rel="stylesheet" href="/css/component/footer.css" />
-        <link rel="stylesheet" href="/css/CS/common.css" />
-        <link rel="stylesheet" href="/css/welfare/donateList.css" />
+        <link rel="stylesheet" href="/css/component/header.css"/>
+        <link rel="stylesheet" href="/css/component/footer.css"/>
+        <link rel="stylesheet" href="/css/member/member.css" />
+        <link rel="stylesheet" href="/css/member/board.css" />
     </head>
     <body>
     <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
-        <section class="donate-list-container" style="zoom: 80%">
-            <div class="title-area">
-                <h1>복지관 기부 리스트</h1>
-            </div>
-            <div class="frame-sm">
-                <div class="left-area">
-                    <div class="donate-sort">
-                        <h2 class="text-left">
-                            <span>실시간</span>
-                            <img src="/img/welfare/sort-down.png" alt="">
-                        </h2>
-                    </div>
-                    <div class="donate-list-wrap">
-                        <ol class="donate-list left">
-                            <li class="donate-li">
-                                <span class="rank-num">1</span>
-                                <div class="danate-info-area">
-                                    <div class="inner">
-                                        <div class="column img">
-                                            <a href="">
-                                                <img
-                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230222/IMG1677sKQ053864835.jpg"
-                                                    alt=""
-                                                />
-                                            </a>
-                                        </div>
-                                        <div class="column tit">
-                                            <span class="welfare-name">관악복지관</span>
-                                            <p class="title">
-                                                <a href="" class="text-elps2"
-                                                    >무료 급식소 기부 내용입니다.</a
-                                                >
-                                            </p>
-                                            <p class="donate-location">서울시 관악구 봉천동</p>
-                                        </div>
-                                        <div class="column count text-left">
-                                            <span class="num donate-type">음식기부</span>
-                                        </div>
-                                        <div class="column point">
-                                            <span class="donate-point">1000P</span>
-                                            적립
-                                        </div>
-                                    </div>
-                                </div>
+    <root>
+        <section id="board-container">
+            <main class="boardList-content-box">
+                <div class="boardList-title-box">
+                    <div class="boardList-title-box-layout">
+                        <ul>
+                            <li class="sort-btn">
+                                <a href="" class="tit-type">레시피</a>
                             </li>
-                        </ol>
+                            <li class="sort-btn">
+                                <a href="" class="tit-type">리뷰</a>
+                            </li>
+                            <li class="sort-btn">
+                                <a href="" class="tit-type active">기부</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="line-area"></div>
-                <div class="right-area">
-                    <div class="donate-sort">
-                        <h2 class="text-left">
-                            <span>기부순</span>
-                            <img src="/img/welfare/sort-down.png" alt="">
-                        </h2>
-                    </div>
-                    <div class="donate-list-wrap">
-                        <ol class="donate-list right">
-                            <li class="donate-li">
-                                <span class="rank-num">1</span>
-                                <div class="danate-info-area">
-                                    <div class="inner">
-                                        <div class="column img">
-                                            <a href="">
-                                                <img
-                                                    src="https://file.rankingdak.com/image/RANK/PRODUCT/RANKING/20230222/IMG1677sKQ053864835.jpg"
-                                                    alt=""
-                                                />
-                                            </a>
-                                        </div>
-                                        <div class="column tit">
-                                            <span class="welfare-name">관악복지관</span>
-                                            <p class="title">
-                                                <a href="" class="text-elps2"
-                                                    >무료 급식소 기부 내용입니다.</a
-                                                >
-                                            </p>
-                                            <p class="donate-location">서울시 관악구 봉천동</p>
-                                        </div>
-                                        <div class="column count text-left">
-                                            <span class="num donate-type">음식기부</span>
-                                        </div>
-                                        <div class="column point">
-                                            <span class="donate-point">1000P</span>
-                                            적립
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
+                <div class="boardList-content-section-box">
+                    <section class="write-button-box">
+                        <div class="write-button-layout">
+                            <a th:inline="text" th:href="${userId == null ? '/user-board/donate-list' : '/user-board/donate-insert'}" class="write-button">
+                            마음이 따뜻해지는 기부 소식을 전해주세요!
+                            <span>
+                    <span class="write-button-icon-box">
+                      <svg viewBox="0 0 24 24" class="write-button-icon">
+                        <!--모달  버튼-->
+                        <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M17.9338 2.08059C17.5629 1.80534 17.0366 1.83583 16.7002 2.17212L3.43579 15.4323L3.33867 15.5461C3.22211 15.7068 3.1582 15.9013 3.1582 16.1023V19.8947L3.16685 20.0233C3.22958 20.4857 3.62596 20.8421 4.10558 20.8421H7.2678L7.39635 20.8335C7.85877 20.7707 8.21517 20.3744 8.21517 19.8947L8.20652 19.7662C8.14379 19.3038 7.74742 18.9474 7.2678 18.9474H5.05168V16.4956L13.2631 8.28674L15.7123 10.7359L9.7494 16.6985L9.65767 16.8047C9.38244 17.1756 9.41297 17.7019 9.74927 18.0383C10.1192 18.4083 10.719 18.4083 11.0891 18.0384L21.8281 7.30155L21.9198 7.1953C22.195 6.82447 22.1645 6.29818 21.8283 5.96181L18.04 2.17233L17.9338 2.08059ZM17.0521 9.39616L19.8181 6.63032L17.3688 4.18232L14.6031 6.94717L17.0521 9.39616Z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </span>
+                        </a>
+                        </div>
+                    </section>
+                    <section class="boardList-content">
+                        <div id="listContainer">
+                            <div class="last-pop-btn">
+                                <a class="on">최신순</a>
+                                <a class="">기부순</a>
+                            </div>
+                            <!-- ===================================== -->
+                            <div class="list-append-wrap">
+                                <ol>
+
+                                </ol>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </div>
-            <div class="page-bottom"><!-- // 페이징 -->
-                <div class="pagination mt20">
-                    <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
-                    <a href="javascript:void(0)" class="current"><span>1</span></a>
-                    <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
-                </div><!--// pagination -->
-            </div>
+            </main>
         </section>
-        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
+    </root>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/js/common/ajax.js"></script>
+    <script th:inline="javascript">
+        let userId = [[${userId}]]
+    </script>
     <script src="/js/main/header.js"></script>
-    <script src="/js/welfare/donateList.js"></script>
+    <script src="/js/member/donate-list.js"></script>
 </html>

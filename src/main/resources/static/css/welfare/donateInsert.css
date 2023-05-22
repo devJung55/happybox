@@ -376,12 +376,11 @@ button .blind {
 .file-add-boxes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .file-add-boxes .div-attach-thumb ~ .text-guide-md {
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 38px;
     padding: 25px 0;
 }
 

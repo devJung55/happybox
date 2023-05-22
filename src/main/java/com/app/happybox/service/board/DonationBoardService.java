@@ -1,11 +1,14 @@
 package com.app.happybox.service.board;
 
+import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.board.DonationBoard;
 import com.app.happybox.entity.board.DonationBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.user.Welfare;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +27,11 @@ public interface DonationBoardService {
     //    현재 시퀀스 가져오기
     public DonationBoard getCurrentSequence();
 
-    //    기부 게시글 목록 페이징 처리
-    public Page<DonationBoardDTO> getList(Pageable pageable);
+    //    기부 게시글 목록 페이징 처리(최신순)
+    public Slice<DonationBoardDTO> getRecentList(Pageable pageable);
+
+    //    기부 게시글 목록 페이징 처리(기부순)
+    public Slice<DonationBoardDTO> getPopularList(Pageable pageable);
 
     //    기부 게시글 상세 보기
     public DonationBoardDTO getDetail(Long id);
@@ -60,6 +66,8 @@ public interface DonationBoardService {
                 .donateType(donationBoard.getDonateType())
                 .donateLocation(donationBoard.getDonateLocation())
                 .welfareName(donationBoard.getWelfare().getWelfareName())
+                .welfarePhone(donationBoard.getWelfare().getUserPhoneNumber())
+                .welfarePoint(donationBoard.getWelfare().getWelfarePointTotal())
                 .boardRegisterDate(donationBoard.getCreatedDate())
                 .donationBoardFiles(donationBoard.getDonationBoardFiles().stream().map(file -> boardFileToDTO(file)).collect(Collectors.toList()))
                 .build();
@@ -108,6 +116,30 @@ public interface DonationBoardService {
                 .filePath(boardFileDTO.getFilePath())
                 .fileOrgName(boardFileDTO.getFileOrgName())
                 .fileRepresent(boardFileDTO.getFileRepresent())
+                .build();
+    }
+
+    default WelfareDTO toWelfareDTO(Welfare welfare) {
+        return WelfareDTO.builder()
+                .id(welfare.getId())
+                .userId(welfare.getUserId())
+                .userPhoneNumber(welfare.getUserPhoneNumber())
+                .address(welfare.getAddress())
+                .userRole(welfare.getUserRole())
+                .welfareName(welfare.getWelfareName())
+                .welfarePointTotal(welfare.getWelfarePointTotal())
+                .build();
+    }
+
+    default Welfare toWelfareEntity(WelfareDTO welfareDTO){
+        return Welfare.builder()
+                .id(welfareDTO.getId())
+                .userId(welfareDTO.getUserId())
+                .userPhoneNumber(welfareDTO.getUserPhoneNumber())
+                .address(welfareDTO.getAddress())
+                .userRole(welfareDTO.getUserRole())
+                .welfareName(welfareDTO.getWelfareName())
+                .welfarePointTotal(welfareDTO.getWelfarePointTotal())
                 .build();
     }
 }
