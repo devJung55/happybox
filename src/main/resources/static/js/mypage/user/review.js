@@ -1,5 +1,4 @@
 /* review.html */
-let page = 0;
 myPageService.reviewBoardListAjax();
 const $reviewBoardAppend = $(".review__append");
 
@@ -70,14 +69,6 @@ function showReviewBoardList(reviewBoards) {
             <div class="border__bottom"></div>
         `;
     });
-    $reviewBoardAppend.append(text);
-    showPage(reviewBoards);
-}
-
-$(".paging-div").on("click", "a", function(e) {
-    e.preventDefault();
-    const targetPage = $(this).text();
-    page = parseInt(targetPage);
     $reviewBoardAppend.empty();
-    myPageService.reviewBoardListAjax(page);
-});
+    $reviewBoardAppend.append(text);
+}

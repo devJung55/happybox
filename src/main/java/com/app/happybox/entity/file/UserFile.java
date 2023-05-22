@@ -24,5 +24,7 @@ public class UserFile extends Files {
         this.user = user;
     }
 
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

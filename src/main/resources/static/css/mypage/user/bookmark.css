@@ -56,10 +56,6 @@ p.origin {
     margin: 0;
 }
 
-.page-bottom {
-    position: relative;
-}
-
 .board-list ~ .page-bottom {
     margin-top: 30px;
 }
