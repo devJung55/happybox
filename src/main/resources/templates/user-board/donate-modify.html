@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>기부글 수정</title>
+    <link rel="stylesheet" href="/css/global/global.css" />
+    <link rel="stylesheet" href="/css/component/header.css" />
+    <link rel="stylesheet" href="/css/component/footer.css" />
+    <link rel="stylesheet" href="/css/CS/common.css" />
+    <link rel="stylesheet" href="/css/welfare/donateInsert.css" />
+</head>
+<body>
+<header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+<section class="donate-insert-container">
+    <div class="content-wrap frame-sm">
+        <div class="page-title-area">
+            <h2 class="title-page">
+                <a href="javascript:void(0)">기부글 작성</a>
+            </h2>
+        </div>
+        <div class="frame-wrap">
+            <div class="frame-right">
+                <div class="frame-cnt-inner">
+                    <form class="board-form" id="counselRegFrm" name="form" method="post">
+                        <table>
+
+                            <!-- js append 할 곳 -->
+
+                        </table>
+                        <div class="btn-bottom-area">
+                            <button
+                                    type="button"
+                                    class="btn-basic-lg2 btn-grey3"
+                            >
+                                <span>취소하기</span>
+                            </button>
+                            <button
+                                    type="submit"
+                                    class="btn-basic-lg2 btn-primary"
+                            >
+                                <span>수정하기</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="search-modal-wrap disNone">
+    <div class="layer-pop order-search-pop">
+        <div class="layer-inner">
+            <div class="layer-head">
+                <h4 class="layer-pop-title">급식소 검색</h4>
+            </div>
+            <div class="layer-content">
+                <!-- 검색바 -->
+                <div class="search-box ui-toggle on">
+                    <div class="input-group w-full">
+                        <input
+                                type="text"
+                                name="donateLocation"
+                                class="input-text h40"
+                                placeholder="급식소를 검색해주세요."
+                                value=""
+                                readonly
+                        />
+                        <span class="input-group-btn">
+                                    <button type="button" class="btn-form btn-ex-white w150 find-btn">
+                                        <span>급식소 검색</span>
+                                    </button>
+                                </span>
+                    </div>
+                </div>
+                <div id="productPop">
+                    <div class="board-list">
+                        <table class="API-table">
+                            <thead class="thead"></thead>
+                            <tbody class="tbody"></tbody>
+                        </table>
+                        <ul class="select-form-list">
+                            <!-- 데이터 없으면 disNone으로 -->
+                            <li>
+                                <div class="no-data">
+                                    <p class="find-message">내역이 없습니다.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-area">
+                <button type="button" class="btn-basic-md btn-grey3 modalClose">
+                    <span>취소</span>
+                </button>
+                <button type="button" class="btn-basic-md btn-black welfareSelect">
+                    <span>선택</span>
+                </button>
+            </div>
+            <!--// layer-content -->
+            <button type="button" class="btn-x-md2 ui-close-pop modalClose" title="닫기">
+                <i class="ico-x-black">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            id="Layer_1"
+                            style="enable-background: new 0 0 64 64"
+                            version="1.1"
+                            viewBox="0 0 64 64"
+                            xml:space="preserve"
+                    >
+                                <style type="text/css">
+                                    .st0 {
+                                        fill: #333;
+                                    }
+                                </style>
+                        <g>
+                                    <g
+                                            id="Icon-Close"
+                                            transform="translate(381.000000, 231.000000)"
+                                    >
+                                        <polyline
+                                                class="st0"
+                                                id="Fill-16"
+                                                points="-370.7,-174.7 -373,-177 -327,-223 -324.7,-220.7 -370.7,-174.7    "
+                                        />
+                                        <polyline
+                                                class="st0"
+                                                id="Fill-17"
+                                                points="-327,-174.7 -373,-220.7 -370.7,-223 -324.7,-177 -327,-174.7    "
+                                        />
+                                    </g>
+                                </g>
+                            </svg>
+                </i>
+            </button>
+        </div>
+    </div>
+</section>
+<footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/common/ajax.js"></script>
+<script th:inline="javascript">
+    let fileDTOS = null;
+    let donationBoardDTO = [[${donationBoardDTO}]];
+    if (donationBoardDTO == null || donationBoardDTO == undefined) {
+    } else {
+        fileDTOS = donationBoardDTO.fileDTOS;
+    }
+</script>
+<script>
+    $('.find-btn').on('click', function () {
+        /* 요청 url */
+        let url = "http://openapi.seoul.go.kr:8088/63455a5a69646576313363576d774c/json/GbFreeMealOrgan/1/20/";
+
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                /* 새로 요청할 때마다 기존에 있는 내역 지워주기 */
+                $('.tbody').empty();
+                console.log(data);
+                let jsonData = data.GbFreeMealOrgan.row;
+                let table = $('.API-table').addClass('data-table');
+                /* 헤더 생성 */
+                let headerRow = $('<tr>');
+
+                headerRow.append($('<th>').text('시설명'));
+                headerRow.append($('<th>').text('주소'));
+                headerRow.append($('<th>').text('전화번호'));
+                headerRow.append($('<th>').text('팩스'));
+
+                // ... 필요한 만큼 필드 추가
+                $('.thead').html(headerRow);
+
+                // 테이블 내용 생성
+                jsonData.forEach(function(rowData) {
+                    let row = $('<tr class="API-data">');
+                    row.append($('<td>').text(rowData.FAC_NM));
+                    row.append($('<td style="text-align: center">').text(rowData.ADDR));
+                    row.append($('<td style="text-align: center">').text(rowData.TEL));
+                    row.append($('<td style="text-align: center">').text(rowData.FAX));
+
+                    // ... 필요한 만큼 필드 추가
+                    $('.tbody').append(row);
+                });
+                /* 각 행을 누르기 위한 작업 */
+                const $dataRows = $('.tbody .API-data');
+
+                /* 각 행을 누르면 해당 행의 시설명을 가지고 가기 */
+                $dataRows.each((i, v) => {
+                    $(v).on('click', function () {
+                        let value = $(this).children().first().text();
+                        $("input[name=donateLocation]").val(value)
+                    })
+                })
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+        $('.select-form-list').hide();
+    })
+</script>
+<script src="/js/main/header.js"></script>
+<script src="/js/member/donate-modify.js"></script>
+</html>

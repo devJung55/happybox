@@ -115,25 +115,8 @@ function showList() {
 showList();
 
 const goDelete = `/user-board/donate-detail/delete/${donate.id}`;
+
 /* 게시글 삭제 */
-// function deleteBoard() {
-//     $.ajax({
-//         url: goDelete,
-//         type: 'DELETE',
-//         dataType: 'JSON',
-//
-//         contentType: "application/json; charset=utf-8",
-//         success: function(result) {
-//             console.log(result);
-//             location.href = "/user-board/donate-list";
-//         },
-//         error: function(error) {
-//             console.log(error);
-//         }
-//     });
-// }
-
-
 $(".delete-btn").on("click", function () {
     var deleteBtn = $(this);
 
@@ -143,6 +126,25 @@ $(".delete-btn").on("click", function () {
         contentType: "application/json; charset=utf-8",
         success: function() {
             location.href = "/user-board/donate-list";
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+});
+
+const goUpdate = `/user-board/donate-modify/${donate.id}`;
+
+/* 게시글 수정폼 */
+$(".update-btn").on("click", function () {
+    var updateBtn = $(this);
+
+    $.ajax({
+        url: goUpdate,
+        type: 'GET',
+        contentType: "application/json; charset=utf-8",
+        success: function(result) {
+            console.log(result);
         },
         error: function(error) {
             console.log(error);
