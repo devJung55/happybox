@@ -34,4 +34,12 @@ public class Notice extends Period {
         this.noticeContent = noticeContent;
         this.noticeFiles = noticeFiles;
     }
+
+    public void setNoticeTitle(String noticeTitle) {
+        this.noticeTitle = noticeTitle;
+    }
+
+    public void setNoticeContent(String noticeContent) {
+        this.noticeContent = noticeContent;
+    }
 }

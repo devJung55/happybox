@@ -119,9 +119,15 @@ function doSearch(page) {
 }
 
 /* 페이지 로딩될 때 검색 */
-const URLSearch = new URLSearchParams(location.search);
-subSearch.searchText = URLSearch.get("searchText");
-doSearch();
+/* 검색 queryString */
+const searchString = new URLSearchParams(location.search).get("search");
+
+if(searchString) {
+    // 쿼리스트링 value 값을 담음
+    subSearch.searchText = searchString;
+    $input.val(searchString);
+    doSearch();
+}
 
 /* 지역 검색버튼 */
 $searchLocation.on("click", function () {
@@ -229,3 +235,7 @@ function showPage(result) {
 
     $('.page-bottom').html(paging);
 }
+
+
+
+

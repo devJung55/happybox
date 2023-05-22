@@ -105,6 +105,12 @@ $(window).on("click", function (event) {
         $(".productCart-modal").css("display", "none");
     }
 });
+/* ============================ 복지관 검색 ====================================== */
+$("form[name='subSearch']").on("submit", function (e) {
+    e.preventDefault();
+    let $searchVal = $(this).find(".input-search").val();
+    location.href = `/welfare/list?search=${$searchVal}`;
+});
 
 /* ============================ 채팅방 ====================================== */
 

@@ -1,5 +1,6 @@
 package com.app.happybox.type;
 
+import io.lettuce.core.cluster.event.RedirectionEventSupport;
 import lombok.Getter;
 
 import java.util.logging.LogRecord;
@@ -18,7 +19,8 @@ public enum ErrorCode {
     SUBSCRIPTION_NOT_FOUND("NOT_FOUND_005", "SUBSCRIPTION_NOT_FOUND", 404),
     LIKE_NOT_FOUND("NOT_FOUND_006", "LIKE_NOT_FOUND", 404),
     REPLY_NOT_FOUND("NOT_FOUND_006", "REPLY_NOT_FOUND", 404),
-    CHAT_ROOM_NOT_FOUND("NOT_FOUND_007", "CHAT_ROOM_NOT_FOUND", 404);
+    CHAT_ROOM_NOT_FOUND("NOT_FOUND_007", "CHAT_ROOM_NOT_FOUND", 404),
+    NOTICE_NOT_FOUND("NOT_FOUND_008", "NOTICE_NOT_FOUND", 404);
 
     private final String code;
     private final String message;
