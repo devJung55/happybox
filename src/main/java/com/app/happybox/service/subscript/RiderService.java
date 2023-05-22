@@ -11,7 +11,7 @@ public interface RiderService {
     public void registerRiderByWelfareId(RiderDTO riderDTO);
 
 //    라이더 조회
-    public Page<Rider> getRiderListByWelfareIdWithPaging(Pageable pageable, Long welfareId);
+    public Page<RiderDTO> getRiderListByWelfareIdWithPaging(Pageable pageable, Long welfareId);
 
 //    배달상태 변경
     public void updateDeliveryStatusById(Long riderId, DeliveryType deliveryStatus);
@@ -23,6 +23,19 @@ public interface RiderService {
                 .fileOrgName(riderDTO.getFileOrgName())
                 .filePath(riderDTO.getFilePath())
                 .fileUuid(riderDTO.getFileUuid())
+                .build();
+    }
+
+    default RiderDTO toRiderDTO(Rider rider){
+        return RiderDTO.builder()
+                .id(rider.getId())
+                .riderName(rider.getRiderName())
+                .riderPhoneNumber(rider.getRiderPhoneNumber())
+                .fileOrgName(rider.getFileOrgName())
+                .filePath(rider.getFilePath())
+                .fileUuid(rider.getFileUuid())
+                .deliveryStatus(rider.getDeliveryStatus())
+                .welfareId(rider.getWelfare().getId())
                 .build();
     }
 

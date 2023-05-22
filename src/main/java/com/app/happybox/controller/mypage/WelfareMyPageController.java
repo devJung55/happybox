@@ -22,6 +22,8 @@ import com.app.happybox.service.user.UserService;
 import com.app.happybox.service.user.WelfareService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -120,6 +122,8 @@ public class WelfareMyPageController {
     @GetMapping("welfare/rider/list")
     public String goRiderListForm(Model model, @AuthenticationPrincipal UserDetail userDetail){
         Long welfareId = userDetail.getId();
+        Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(0, 5), welfareId);
+        model.addAttribute("riderDTOS",riderDTOS);
         return "/mypage/welfare/rider";
     }
 
