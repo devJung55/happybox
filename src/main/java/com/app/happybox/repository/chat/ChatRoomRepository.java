@@ -11,4 +11,6 @@ public interface ChatRoomRepository extends CrudRepository<ChatRoom, Long> {
     public List<ChatRoom> findAllByUserSetContaining(Long id);
 
     public Optional<ChatRoom> findByRoomId(String roomId);
+
+    public Optional<ChatRoom> findByWelfareId(Long welfareId);
 }

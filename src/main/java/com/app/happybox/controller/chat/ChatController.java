@@ -13,15 +13,20 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,37 +34,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatController {
 
-
     // 아래에서 사용되는 convertAndSend 를 사용하기 위해서 선언
     // convertAndSend 는 객체를 인자로 넘겨주면 자동으로 Message 객체로 변환 후 도착지로 전송한다.
     private final SimpMessageSendingOperations template;
     private final ChatService chatService;
     private final ChatMessageService chatMessageService;
-    private final UserDetailsService userDetailsService;
 
     // MessageMapping 을 통해 websocket 으로 들어오는 메시지를 발신 처리합니다.
     // 이 때 클라이언트에서는 /pub/chat/message 로 요청을 하게 되고 이것을 controller 가 받아서 처리합니다.
     // 처리가 완료되면 /sub/chat/room/roomId 로 메시지가 전송됩니다.
     @MessageMapping("/chat/enterUser")
-    public void enterUser(@Payload ChatMessageDTO chat, SimpMessageHeaderAccessor headerAccessor, @AuthenticationPrincipal UserDetail userDetail) {
+    public void enterUser(@Payload ChatMessageDTO chat, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
 
-        //반환 결과를 socket session에 저장
+        headerAccessor.getSessionAttributes().put("user", principal.getName());
         headerAccessor.getSessionAttributes().put("roomId", chat.getRoomId());
 
-        chat.setMessage(chat.getSender() + "님이 입장하셨습니다.");
-
-        ChatMessageDTO savedChat = chatMessageService.save(chat);
-        template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), savedChat);
+        template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), chat);
     }
 
     //해당유저
     @MessageMapping("/chat/sendMessage")
-    public void sendMessage(@Payload ChatMessageDTO chat) {
+    public void sendMessage(@Payload ChatMessageDTO chat, Principal principal) {
 
         log.info("chat : {}", chat);
         chat.setMessage(chat.getMessage());
 
-        ChatMessageDTO savedChat = chatMessageService.save(chat);
+
+        ChatMessageDTO savedChat = chatMessageService.save(chat, principal.getName());
 
         template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), savedChat);
     }
@@ -74,16 +75,12 @@ public class ChatController {
 
         // stomp 세션에 있던 uuid 와 userDetail의 id를 통해 채팅방 유저 리스트와 room에서 해당 유저를 삭제
         String roomId = (String) headerAccessor.getSessionAttributes().get("roomId");
+        String user = (String) headerAccessor.getSessionAttributes().get("user");
 
         log.info("headAccessor : {}", headerAccessor);
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetail userDetail = (UserDetail) principal;
-
-        log.info(userDetail.toString());
-
         // userDetail의 Id로 채팅방에서 유저 삭제
-        String removedUserName = chatService.deleteUser(roomId, userDetail.getId());
+        String removedUserName = chatService.deleteUser(roomId, user);
 
         // 유저 삭제가 정상적으로 되었을 경우
         if (removedUserName != null) {
@@ -91,7 +88,6 @@ public class ChatController {
 
             ChatMessageDTO chat = ChatMessageDTO.builder()
                     .type(MessageType.LEAVE)
-                    .sender(removedUserName)
                     .message(removedUserName + "님이 퇴장하였습니다.")
                     .build();
 
@@ -110,11 +106,23 @@ public class ChatController {
     }
 
     // 해당 방의 채팅내역 조회
-    @GetMapping("/chat/history")
+    @GetMapping("/chat/history/{roomId}")
     @ResponseBody
-    public List<ChatMessageDTO> chatHistory(String roomId) {
-        log.info(roomId);
-        return chatMessageService.findAllChatMessagesByRoomId(roomId);
+    public List<ChatMessageDTO> chatHistory(@PathVariable String roomId, @AuthenticationPrincipal UserDetail userDetail) {
+        log.info("=============== HISTORY " + userDetail);
+        if (userDetail == null) {
+            return new ArrayList<>();
+        }
+
+        List<ChatMessageDTO> messages = chatMessageService.findAllChatMessagesByRoomId(roomId);
+
+        messages.forEach(message -> {
+            if(message.getSender().equals(userDetail.getUserId())) {
+                message.setMyMessage(true);
+            }
+        });
+
+        return messages;
     }
 
 //    // 채팅에 참여한 유저 닉네임 중복 확인

@@ -1,13 +1,17 @@
 package com.app.happybox.controller.chat;
 
+import com.app.happybox.domain.chat.ChatMessageDTO;
 import com.app.happybox.entity.chat.ChatRoom;
+import com.app.happybox.exception.UserNotFoundException;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.chat.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,7 +20,6 @@ import java.util.List;
 @RequestMapping("/chat")
 public class ChatRoomController {
 
-    // ChatRepository Bean 가져오기
     private final ChatService chatService;
 
     @GetMapping("")
@@ -27,34 +30,59 @@ public class ChatRoomController {
     // 채팅 리스트 확인
     @GetMapping("/list")
     @ResponseBody
-    public List<ChatRoom> ChatRoomList() {
+    public List<ChatRoom> ChatRoomList(@AuthenticationPrincipal UserDetail userDetail) {
 
-        List<ChatRoom> chatRooms = chatService.findAllRoom();
+        log.info("===================" + userDetail.toString());
+        if (userDetail == null) {
+            return new ArrayList<>();
+        }
+
+        List<ChatRoom> chatRooms = chatService.findAllRoomByUserId(userDetail.getId());
         log.info("Show All Chat_Room List : {}", chatRooms);
 
         return chatRooms;
     }
 
-    // 채팅방 생성 (리스트로 리다이렉트)
-    @PostMapping("/createroom")
+    // 채팅방 생성
+    @PostMapping("/createroom/{welfareId}")
     @ResponseBody
-    public ChatRoom createRoom(@RequestBody String roomName) {
+    public ChatRoom createRoom(@PathVariable Long welfareId, @AuthenticationPrincipal UserDetail userDetail) {
 
-        ChatRoom chatRoom = chatService.createChatRoom(roomName);
-        log.info("Create ChatRoom : {}", chatRoom);
+        if (userDetail == null) {
+            throw new UserNotFoundException("로그인되지 않음.");
+        }
 
-        return chatRoom;
+        ChatRoom userChatRoom = chatService.findRoomByUserIdAndWelfareIdReturnIfPresent(userDetail.getId(), welfareId);
+
+        log.info("============== USER_CHAT_ROOM " + userChatRoom);
+
+        if (userChatRoom == null) {
+            ChatRoom chatRoom = chatService.createChatRoom(userDetail.getUserId(), welfareId);
+            log.info("Create ChatRoom : {}", chatRoom);
+            return chatRoom;
+        }
+
+        return userChatRoom;
     }
 
-    // 채팅방 입장 화면
-    // 파라미터로 넘어오는 roomId를 확인 후 해당 roomId 를 기준으로
-    // 채팅방을 찾아서 클라이언트를 chatroom 으로 보낸다.
-    @GetMapping("/chat/joinroom")
-    public String joinRoom(String roomId, Model model) {
+    // 채팅방 입장
+    @PostMapping("/joinroom")
+    @ResponseBody
+    public void joinRoom(@RequestBody ChatMessageDTO chat, @AuthenticationPrincipal UserDetail userDetail) {
 
-        log.info("roomId : {}", roomId);
-        model.addAttribute("room", chatService.findByRoomId(roomId));
+        log.info("==================== joinRoom 들어옴 ==================");
 
-        return "chatroom";
+        if (userDetail == null) {
+            return;
+        }
+
+        ChatRoom userChatRoom = chatService.findRoomByUserIdAndWelfareIdReturnIfPresent(userDetail.getId(), chat.getWelfareId());
+
+        // 채팅 유저와 복지관 id 저장
+        if (userChatRoom == null) {
+            chatService.addUser(chat.getRoomId(), userDetail.getId());
+            chatService.addUser(chat.getRoomId(), chat.getWelfareId());
+            log.info("roomId : {}", chat.getRoomId());
+        }
     }
 }

@@ -10,21 +10,20 @@ import com.app.happybox.repository.user.WelfareRepository;
 import com.app.happybox.type.Role;
 import com.app.happybox.type.UserStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 @Qualifier("welfare") @Primary
 public class WelfareServiceImpl implements WelfareService {
     private final WelfareRepository welfareRepository;
@@ -47,6 +46,15 @@ public class WelfareServiceImpl implements WelfareService {
         Page<Welfare> welfares = welfareRepository.findAllWithPaging_QueryDSL(pageable);
         List<WelfareDTO> welfareDTOList = welfares.get().map(this::toWelfareDTO).collect(Collectors.toList());
         return new PageImpl<>(welfareDTOList, pageable, welfares.getTotalElements());
+    }
+
+    @Override
+    public Slice<WelfareDTO> getListBySearch(Pageable pageable, String welfareName) {
+        Slice<Welfare> welfareSlice = welfareRepository.findByWelfareName_QueryDSL(pageable, welfareName);
+        log.info(welfareSlice.getContent().toString());
+        List<WelfareDTO> welfareDTOS = welfareSlice.get().map(this::toWelfareDTO).collect(Collectors.toList());
+
+        return new SliceImpl<>(welfareDTOS, pageable, welfareSlice.hasNext());
     }
 
     @Override

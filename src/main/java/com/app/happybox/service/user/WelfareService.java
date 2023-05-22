@@ -8,6 +8,7 @@ import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.swing.text.html.Option;
@@ -22,6 +23,9 @@ public interface WelfareService {
 
 //    관리자 복지관회원 목록
     public Page<WelfareDTO> getList(Pageable pageable);
+
+//    복지관회원 이름으로 검색 및 목록
+    public Slice<WelfareDTO> getListBySearch(Pageable pageable, String welfareName);
 
 //    관리자 복지관회원 조회
     public WelfareDTO getDetail(Long welfareId);

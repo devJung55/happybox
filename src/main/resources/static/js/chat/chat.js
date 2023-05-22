@@ -146,32 +146,6 @@ function onMessageReceived(payload) {
     }
 
     messageArea.append(text);
-
-    // // 만약 s3DataUrl 의 값이 null 이 아니라면 => chat 내용이 파일 업로드와 관련된 내용이라면
-    // // img 를 채팅에 보여주는 작업
-    // if (chat.s3DataUrl != null) {
-    //     let imgElement = document.createElement('img');
-    //     imgElement.setAttribute("src", chat.s3DataUrl);
-    //     imgElement.setAttribute("width", "300");
-    //     imgElement.setAttribute("height", "300");
-    //
-    //     let downBtnElement = document.createElement('button');
-    //     downBtnElement.setAttribute("class", "btn fa fa-download");
-    //     downBtnElement.setAttribute("id", "downBtn");
-    //     downBtnElement.setAttribute("name", chat.fileName);
-    //     downBtnElement.setAttribute("onclick", `downloadFile('${chat.fileName}', '${chat.fileDir}')`);
-    //
-    //
-    //     contentElement.appendChild(imgElement);
-    //     contentElement.appendChild(downBtnElement);
-    //
-    // } else {
-    //     // 만약 s3DataUrl 의 값이 null 이라면
-    //     // 이전에 넘어온 채팅 내용 보여주기기
-    //     let messageText = document.createTextNode(chat.message);
-    //     contentElement.appendChild(messageText);
-    // }
-
 }
 
 function exitRoom(e) {

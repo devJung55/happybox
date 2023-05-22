@@ -1,7 +1,10 @@
 package com.app.happybox.repository.user;
 
 import com.app.happybox.entity.user.Welfare;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 

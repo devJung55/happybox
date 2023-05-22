@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -60,6 +61,11 @@ public class WelfareController {
         return subscriptionService.findBySearch(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), subscriptionSearchDTO);
     }
 
+    @GetMapping("/chat/list/search")
+    @ResponseBody
+    public Slice<WelfareDTO> getSearchResult(@PageableDefault(page = 1, size = 5) Pageable pageable, String welfareName) {
+        return welfareService.getListBySearch(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareName);
+    }
     @GetMapping("detail/{id}")
     public String goDetail(@PathVariable Long id, Model model) {
         model.addAttribute("subscription", subscriptionService.findByIdWithDetail(id));

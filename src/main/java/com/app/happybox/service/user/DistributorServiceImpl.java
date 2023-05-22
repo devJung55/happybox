@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,12 @@ public class DistributorServiceImpl implements DistributorService {
     @Override
     public Page<Distributor> getList(Pageable pageable) {
         return distributorRepository.findAllWithPaging_QueryDSL(pageable);
+    }
+
+    @Override
+    public Slice<DistributorDTO> searchByName(Pageable pageable, String searchName) {
+
+        return null;
     }
 
     @Override

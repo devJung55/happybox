@@ -22,10 +22,11 @@ public class UserRoom {
     @Indexed
     private Long userId;
 
-    private Set<String> roomIds = new HashSet<>();
+    private String roomId;
 
     @Builder
-    public UserRoom(Long userId) {
+    public UserRoom(Long userId, String roomId) {
         this.userId = userId;
+        this.roomId = roomId;
     }
 }

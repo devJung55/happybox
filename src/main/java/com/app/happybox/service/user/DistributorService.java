@@ -5,6 +5,7 @@ import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.user.Distributor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -18,6 +19,9 @@ public interface DistributorService {
 
 //    관리자 유통회원 목록
     public Page<Distributor> getList(Pageable pageable);
+
+//    이름으로 검색
+    public Slice<DistributorDTO> searchByName(Pageable pageable, String searchName);
 
 //    관리자 회원조회
     public DistributorDTO getDetail(Long distributorId);

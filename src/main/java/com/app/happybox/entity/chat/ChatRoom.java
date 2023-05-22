@@ -18,10 +18,12 @@ public class ChatRoom {
 
     @Indexed
     private String roomId;  // 채팅방 아이디
+    @Indexed
+    private Long welfareId;
     private String roomName;// 채팅방 이름
     private long userCount; // 채팅방 인원수
 
-    private Map<Long, String> users = new HashMap<>();
+    private Map<String, String> users = new HashMap<>();
 
     @Builder
     public ChatRoom(String roomId, String roomName) {
@@ -30,10 +32,11 @@ public class ChatRoom {
         this.userCount = 0;
     }
 
-    public ChatRoom create(String roomName){
+    public ChatRoom create(String roomName, Long welfareId){
         ChatRoom chatRoom = new ChatRoom();
         chatRoom.roomId = UUID.randomUUID().toString();
         chatRoom.roomName = roomName;
+        chatRoom.welfareId = welfareId;
 
         return chatRoom;
     }
