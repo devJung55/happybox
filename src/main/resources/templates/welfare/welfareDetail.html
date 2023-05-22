@@ -316,7 +316,7 @@
             <h4>구독 확인</h4>
         </div>
         <div class="modal-body">
-            <p>이미 장바구니에 담겨있는 복지관입니다.</p>
+            <p>구독하시겠습니까?</p>
         </div>
         <div class="modal-footer">
             <span class="confirm-delete">확인</span>
@@ -380,6 +380,9 @@
 <script th:inline="javascript">
     let subscription = [[${subscription}]];
     let isLike = [[${isLike}]];
+    let userId = [[${userId}]];
+    console.log("===========================  유저 아이디는??===============================");
+    console.log(userId);
 
     $(".welfare-location").text(subscription.address.firstAddress);
     $(".welfare-title").text(subscription.subscriptionTitle);

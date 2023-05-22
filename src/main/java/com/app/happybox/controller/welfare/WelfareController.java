@@ -66,6 +66,7 @@ public class WelfareController {
     @GetMapping("detail/{id}")
     public String goDetail(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetail userDetail) {
         model.addAttribute("subscription", subscriptionService.findByIdWithDetail(id));
+        model.addAttribute("userId",userDetail.getId());
 
         // 좋아요 이미 눌렀는지 검사
         boolean checkLike = userDetail != null && subscriptionLikeService.checkLike(id, userDetail.getId());
@@ -127,12 +128,27 @@ public class WelfareController {
 
 //    cart안에 있는지 확인
     @GetMapping("cart/check")
-    public Long checkCart(@RequestParam Long subscriptionId){
+    public Integer checkCart(@RequestParam Long subscriptionId){
         log.error("여기에 AJAX 쏴졌냐?>");
-        Long result = subscriptionCartService.subscriptionCartCheck(subscriptionId);
+        Integer result = subscriptionCartService.subscriptionCartCheck(subscriptionId);
         log.error("값이 나왔냐",result.toString());
         return result;
 
     }
 
+//    user id로 cart 삭제
+    @GetMapping("cart/delete")
+    public Boolean deleteCart(@RequestParam Long id){
+        log.error("=============삭제하기 전======================");
+       subscriptionCartService.deleteCart(id);
+        log.error("=============삭제하기 후======================");
+       if(subscriptionCartService.findAllByUserId(id).isEmpty()){
+           log.error("============= 카트안에 비어있을때 ======================");
+           return true;
+       }
+       else {
+           log.error("============= 카트안에 있을때 ======================");
+           return false;
+       }
+    }
 }

@@ -13,8 +13,11 @@ public interface SubscriptionCartService {
 
     public Long saveCart(SubscriptionCartDTO cartDTO, Long memberId, Long subscriptionId);
 
+//    유저 id로 카트 삭제 하기
+    public void deleteCart(Long id);
+
     //    subscription으로 subscription cart 조회하기
-    public Long subscriptionCartCheck(Long subscriptionId);
+    public Integer subscriptionCartCheck(Long subscriptionId);
 
     default SubscriptionCartDTO cartToDTO(SubscriptionCart subscriptionCart) {
         return SubscriptionCartDTO.builder()

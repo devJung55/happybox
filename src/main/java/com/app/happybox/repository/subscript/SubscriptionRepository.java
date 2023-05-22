@@ -17,4 +17,5 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     public Optional<Subscription> findById(Long id);
 
     public Optional<Subscription> findByWelfareId(Long id);
+
 }

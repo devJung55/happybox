@@ -320,40 +320,31 @@ function showSlideImg() {
 
 const $sub = $('.subscribe-btn');
 const $cancelDelete = $(".cancel-delete");
-const CHECK_CART_URL = "/welfare/cart/check";
+const CHECK_CART_URL = "/welfare/cart/delete";
 $sub.on('click', function () {
     console.log(subscription.id);
-    $doAjax("GET"
-    ,CHECK_CART_URL
-    ,{subscriptionId: subscription.id}
-    ,(result) => {
-        console.log(result)
-        if (result == 1){
-            $('.delete-modal').show();
-            $('.confirm-delete').on('click', function () {
-                $('.delete-modal').hide();
-            });
-        }else if(result == 2) {
-            $('.modal-body').html("구독 하시겠습니까?");
+    $doAjax("GET", CHECK_CART_URL, {id: userId}, (result) => {
+        console.log("삭제 됬어?");
+        if(result){
             $('.delete-modal').show();
             $('.confirm-delete').on('click', function () {
                 $doAjaxPost("POST",
-                    CART_URL, // 장바구니 URL
+                    CART_URL,
                     {
-                        subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
+                        subscriptionTitle: subscription.subscriptionTitle,
                         subOption: $("select[name='option']").val()
                     },
-                    (result) => {  // callback
+                    (result) => {
                         location.href = "/order/subscription";
                     }
                 );
             });
+        }else {
+            $('.modal-body p').html("이미 구독한 복지관입니다.")
+            $('.delete-modal').show();
         }
-        })
-    $('.delete-modal').show();
-
+    });
 });
-
 
 
 $cancelDelete.on('click', function () {
