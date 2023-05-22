@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,11 @@ public class ChatMessageService {
     @Transactional
     public List<ChatMessageDTO> findAllChatMessagesByRoomId(String roomId) {
         List<ChatMessage> chatMessages = chatMessageRepository.findAllByRoomId(roomId);
-        Collections.reverse(chatMessages);
+
+        // 날짜순 정렬
+        Comparator<ChatMessage> comparator = Comparator.comparing(ChatMessage::getTime).reversed();
+        Collections.sort(chatMessages, comparator);
+
         return chatMessages.stream().map(this::chatMessageToDTO).collect(Collectors.toList());
     }
 

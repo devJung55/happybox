@@ -247,7 +247,7 @@ $(".like-btn img").attr("src", `${isLike ? likeSrc : unlikeSrc}`);
 /* 좋아요 눌렀을 때 */
 function checkLike() {
     $doAjax("POST", SUB_LIKE_URL, {}, (result) => {
-        if(result === -1) {
+        if (result === -1) {
             $("#like-modal").css("display", "block");
             return;
         }
@@ -319,15 +319,18 @@ function showSlideImg() {
 /* ==============================================  구독하기 버튼 눌렀을 때 장바구니로 이동 ================================= */
 
 const $sub = $('.subscribe-btn');
-const $cancelDelete = $(".cancel-delete");
-const CHECK_CART_URL = "/welfare/cart/delete";
+const $confirm = $(".confirm-delete");
+const CHECK_SUB_URL = "/welfare/sub/check";
 $sub.on('click', function () {
     console.log(subscription.id);
-    $doAjax("GET", CHECK_CART_URL, {id: userId}, (result) => {
-        console.log("삭제 됬어?");
-        if(result){
-            $('.delete-modal').show();
-            $('.confirm-delete').on('click', function () {
+    $doAjax("GET",
+        CHECK_SUB_URL,
+        {subscriptionId: subscription.id},
+        (result) => {
+            console.log(result);
+            if(result !== 0) {
+                $('.delete-modal').show();
+            } else {
                 $doAjaxPost("POST",
                     CART_URL,
                     {
@@ -338,16 +341,13 @@ $sub.on('click', function () {
                         location.href = "/order/subscription";
                     }
                 );
-            });
-        }else {
-            $('.modal-body p').html("이미 구독한 복지관입니다.")
-            $('.delete-modal').show();
+            }
         }
-    });
+    );
 });
 
 
-$cancelDelete.on('click', function () {
+$confirm.on('click', function () {
     $('.delete-modal').hide();
 })
 

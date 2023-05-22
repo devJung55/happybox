@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.index.Indexed;
 import java.time.LocalDateTime;
 
 @Getter @Setter @ToString @NoArgsConstructor
-@RedisHash(value = "chat", timeToLive = 25200L)
+@RedisHash(value = "chat", timeToLive = 86400L)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatMessage {
 

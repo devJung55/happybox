@@ -7,8 +7,6 @@ import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.domain.SubscriptionDTO;
-import com.app.happybox.entity.subscript.Subscription;
-import com.app.happybox.entity.subscript.SubscriptionLike;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.product.SubscriptionCartService;
 import com.app.happybox.service.subscript.FoodCalendarService;
@@ -127,19 +125,11 @@ public class WelfareController {
     }
 
 //    구독했는지 확인
-    @GetMapping("check")
-    public Boolean checkSubscribe(@RequestParam("welfareId") Long welfareId){
-        return subscriptionService.existsByWelfareId(welfareId);
-    }
-
-//    cart안에 있는지 확인
-    @GetMapping("cart/check")
-    public Integer checkCart(@RequestParam Long subscriptionId){
-        log.error("여기에 AJAX 쏴졌냐?>");
-        Integer result = subscriptionCartService.subscriptionCartCheck(subscriptionId);
-        log.error("값이 나왔냐",result.toString());
-        return result;
-
+    @GetMapping("sub/check")
+    @ResponseBody
+    public Integer checkSubscribe(Long subscriptionId, @AuthenticationPrincipal UserDetail userDetail){
+        Integer count = subscriptionService.existsByMemberIdAndSubscriptionId(userDetail.getId(), subscriptionId);
+        return count == null ? 0 : count;
     }
 
 //    user id로 cart 삭제

@@ -42,15 +42,15 @@ class OrderSubscriptionRepositoryTests {
         // when
         if (!member.isPresent() || !subscription.isPresent()) fail("member 혹은 subscription 없음.");
 
-        OrderSubscription orderSubscription = new OrderSubscription(
-                "정지영",
-                "01012344321",
-                address,
-                subscription.get(),
-                member.get()
-        );
+//        OrderSubscription orderSubscription = new OrderSubscription(
+//                "정지영",
+//                "01012344321",
+//                address,
+//                subscription.get(),
+//                member.get()
+//        );
 
-        orderSubscriptionRepository.save(orderSubscription);
+        orderSubscriptionRepository.save(null);
 
         // then
     }

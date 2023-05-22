@@ -2,6 +2,7 @@ package com.app.happybox.repository.subscript;
 
 import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.entity.user.QMember;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.subscript.QSubscription.subscription;
+import static com.app.happybox.entity.user.QMember.member;
 
 
 @RequiredArgsConstructor
@@ -100,6 +102,15 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
                 .fetchOne();
 
         return Optional.ofNullable(sub);
+    }
+
+    @Override
+    public Integer existsByMemberIdAndSubscriptionId(Long memberId, Long subscriptionId) {
+        Integer count = query.select(member.orderSubscriptions.size())
+                .from(member)
+                .where(member.id.eq(memberId), member.orderSubscriptions.any().subscription.id.eq(subscriptionId))
+                .fetchOne();
+        return count;
     }
 
     /* 중복 코드인 Subscription JPAQuery 리턴 */

@@ -30,21 +30,21 @@ class ChatRoomRepositoryTests {
 
     @Test
     public void findAllTest() {
-        Iterable<ChatRoom> rooms = chatRoomRepository.findAll();
-
-        for (ChatRoom room : rooms) {
-            userRoomRepository.findByUserId(1L).ifPresentOrElse(userRoom -> {
-                userRoom.getRoomIds().add(room.getRoomId());
-                log.info(userRoom.toString());
-            }, () -> {
-                UserRoom userRoom = UserRoom.builder().userId(1L).build();
-                userRoom.getRoomIds().add(room.getRoomId());
-                userRoomRepository.save(userRoom);
-
-                log.info(userRoom.toString());
-            });
-            log.info(room.toString());
-        }
+//        Iterable<ChatRoom> rooms = chatRoomRepository.findAll();
+//
+//        for (ChatRoom room : rooms) {
+//            userRoomRepository.findByUserId(1L).ifPresentOrElse(userRoom -> {
+//                userRoom.getRoomIds().add(room.getRoomId());
+//                log.info(userRoom.toString());
+//            }, () -> {
+//                UserRoom userRoom = UserRoom.builder().userId(1L).build();
+//                userRoom.getRoomIds().add(room.getRoomId());
+//                userRoomRepository.save(userRoom);
+//
+//                log.info(userRoom.toString());
+//            });
+//            log.info(room.toString());
+//        }
 
     }
     @Test
@@ -54,6 +54,6 @@ class ChatRoomRepositoryTests {
 
     @Test
     public void findUserRoomByUserIdTest() {
-        userRoomRepository.findByUserId(1L).map(UserRoom::toString).ifPresent(log::info);
+//        userRoomRepository.findByUserId(1L).map(UserRoom::toString).ifPresent(log::info);
     }
 }

@@ -31,5 +31,6 @@ public interface SubscriptionQueryDsl {
     //    구독 상세 조회
     public Optional<Subscription> findByIdWithDetail_QueryDSL(Long id);
 
-
+//    회원의 구독여부 조회
+    public Integer existsByMemberIdAndSubscriptionId(Long memberId, Long subscriptionId);
 }

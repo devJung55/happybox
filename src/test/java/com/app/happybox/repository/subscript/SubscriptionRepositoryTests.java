@@ -84,7 +84,7 @@ class SubscriptionRepositoryTests {
     }
 
     @Test
-    public void findTopNByOrderCountOrderByOrderCount_QueryDSL(){
+    public void findTopNByOrderCountOrderByOrderCount_QueryDSL() {
         // given
         Long limit = 8L;
         List<Subscription> subscriptionList = subscriptionRepository.findTopNByOrderCountOrderByOrderCount_QueryDSL(limit);
@@ -142,7 +142,7 @@ class SubscriptionRepositoryTests {
 //    }
 
     @Test
-    public void findByIdWithDetail_QueryDSL(){
+    public void findByIdWithDetail_QueryDSL() {
         // given
         Subscription subscription = subscriptionRepository.findByIdWithDetail_QueryDSL(3L).orElseThrow(() -> new SubscriptionNotFoundException());
 
@@ -150,5 +150,11 @@ class SubscriptionRepositoryTests {
 
         // then
         log.info(subscription.toString());
+    }
+
+    @Test
+    public void existsByMemberIdAndSubscriptionIdTest() {
+        Integer count = subscriptionRepository.existsByMemberIdAndSubscriptionId(1L, 373L);
+        log.info(String.valueOf(count));
     }
 }

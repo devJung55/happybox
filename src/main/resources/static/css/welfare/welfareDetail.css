@@ -1189,7 +1189,7 @@ input[type="checkbox"], input[type="radio"] {
 .delete-modal-shape {
     border: 1px solid gray;
     position: absolute;
-    width: 400px;
+    width: 280px;
     height: 200px;
     left: 44%;
     top: 30%;
@@ -1205,9 +1205,15 @@ input[type="checkbox"], input[type="radio"] {
     height: 30px;
 }
 
+.modal-header-sub-info {
+    margin: 5px 0;
+}
+
 .modal-footer {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    height: 100%;
     padding-top: 20px;
     font-size: 20px;
     border-top: 1px solid #80808061;
