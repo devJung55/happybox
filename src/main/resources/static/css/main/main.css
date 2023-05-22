@@ -387,10 +387,12 @@ div.banner div {
 
 .prd-item .img a img {
     width: 100%;
+    height: 100%;
     max-width: 100%;
     vertical-align: top;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     border: 0;
-    border-radius: 8px;
 }
 
 .height256 {

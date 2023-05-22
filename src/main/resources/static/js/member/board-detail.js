@@ -143,15 +143,21 @@ function showDetail() {
                 <g id="Layer_1" />
               </svg>
             </button>
-            <button type="button" class="delete-btn">
+            <button type="button" class="delete-btn" onclick="deleteBoard()"
+            data-id="${review.id}">
               <svg viewBox="0 0 448 512" class="delete-button-icon" xmlns="http://www.w3.org/2000/svg">
                 <path
                 d="M432 80h-82.38l-34-56.75C306.1 8.827 291.4 0 274.6 0H173.4C156.6 0 141 8.827 132.4 23.25L98.38 80H16C7.125 80 0 87.13 0 96v16C0 120.9 7.125 128 16 128H32v320c0 35.35 28.65 64 64 64h256c35.35 0 64-28.65 64-64V128h16C440.9 128 448 120.9 448 112V96C448 87.13 440.9 80 432 80zM171.9 50.88C172.9 49.13 174.9 48 177 48h94c2.125 0 4.125 1.125 5.125 2.875L293.6 80H154.4L171.9 50.88zM352 464H96c-8.837 0-16-7.163-16-16V128h288v320C368 456.8 360.8 464 352 464zM224 416c8.844 0 16-7.156 16-16V192c0-8.844-7.156-16-16-16S208 183.2 208 192v208C208 408.8 215.2 416 224 416zM144 416C152.8 416 160 408.8 160 400V192c0-8.844-7.156-16-16-16S128 183.2 128 192v208C128 408.8 135.2 416 144 416zM304 416c8.844 0 16-7.156 16-16V192c0-8.844-7.156-16-16-16S288 183.2 288 192v208C288 408.8 295.2 416 304 416z"
                 />
               </svg>
             </button>
-            <button type="button" class="btn-heart">
-            </button>
+            <div class="like-btn-wrap">
+                <a href="javascript:checkLike()">
+                    <span class="like-btn">
+                        <img src="/img/mypage/heart.png" alt=""/>
+                    </span>
+                </a>
+            </div>
           </div>
           <span class="writer-button-wrap">
             <p class="writer-name">${review.memberDTO.memberName}</p>
@@ -165,13 +171,24 @@ function showDetail() {
                 <p id="welfare-name">
                     ${review.welfareName}
                 </p>
-                        <em class="rating-point">
-                            <img class="rating__point one" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point two" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point three" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point four" src="/img/mypage/rating-pull.png">
-                            <img class="rating__point five" src="/img/mypage/rating.png">
-                        </em>
+                `
+        text +=
+            `
+                <em class="rating-point">
+                    <img class="rating__point one"  src="/img/mypage/rating-pull.png">
+                    <img class="rating__point two"
+                    src="${review.reviewRating > 1 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                    <img class="rating__point three"
+                    src="${review.reviewRating > 2 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                    <img class="rating__point four"
+                    src="${review.reviewRating > 3 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                     <img class="rating__point five"
+                    src="${review.reviewRating > 4 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                </em>
+             `
+
+        text +=
+            `
                 <div class="detail-content">
                     ${review.boardContent}
                 </div>
@@ -184,6 +201,26 @@ function showDetail() {
 }
 
 showDetail();
+const goDelete = `/user-board/review-board-detail/delete/${review.id}`;
+/* 게시글 삭제 */
+function deleteBoard() {
+    $.ajax({
+        url: goDelete,
+        type: 'DELETE',
+        dataType: 'JSON',
+        success: function(result) {
+            console.log(result);
+            location.href = "/user-board/review-board-list";
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+
+
+
 
 
 /* 댓글 관련 js */
@@ -326,6 +363,7 @@ $reviewOrder.on("click", function () {
 const $updateReviewBtn = $(".update_review");
 
 $updateReviewBtn.on("click", function () {
+    console.log("들어옴");
     /* 수정 중임을 의미하는 클래스 */
     const ON_UPDATE = "review-on-update";
 
@@ -339,7 +377,7 @@ $updateReviewBtn.on("click", function () {
             <textarea
                 class="write-textarea"
                 placeholder="댓글 남기기"
-            ></textarea
+            >${reply.content}</textarea
             ><button class="write-regist-btn" type="button">
                 <span class="regist">등록</span>
             </button>
@@ -398,23 +436,6 @@ $replyWriteBtn.on("click", function () {
 /* 댓글 삭제 */
 const xBtn = $('.xBtn');
 const deleteUrl = `/user-board/review-board-detail/reply/delete/${review.id}`;
-// 삭제 버튼 클릭 시 deleteReply 함수 호출
-
-// xBtn.on('click', function(){
-//     $doAjaxPost("DELETE",
-//         deleteUrl,
-//         {},
-//         (result) => {
-//             let count = Number($(".review-count span").text());
-//             // 댓글수 증가
-//             $(".review-count span").text(--count);
-//             $(".reply-count").text(count);
-//             // 댓글 내용 초기화
-//             console.log(result);
-//             window.location.reload();
-//         }
-//     );
-// })
 
 function deleteReply(deleteBtn) {
     let id = $(deleteBtn).data("id");
@@ -457,25 +478,29 @@ function checkOutLike(likeBtn) {
 }
 
 /* ======================================================================================= */
+const BOARD_LIKE_URL = `/user-board/review-board-detail/like/${review.id}`;
+const likeSrc = "/img/mypage/heart-pull.png";
+const unlikeSrc = "/img/mypage/heart.png";
+/* 이미 좋아요인지 검사 */
 
-/* 하트 이벤트 */
-$('.btn-heart').on('click', function () {
-    if ($(this).hasClass('on')) {
-        $(this).removeClass('on');
-    } else {
-        $(this).addClass('on');
-        heartInsert();
-    }
-});
+$(".like-btn img").attr("src", `${isLike ? likeSrc : unlikeSrc}`);
 
-function heartInsert() {
-    $.ajax({
-        type: "POST",
-        url: "/user-board/review-board-detail/heart-insert",
-        data: data,
-        dataType: "json",
-        success: function (response) {
-            showList(response);
-        }
+/* 좋아요 눌렀을 때 */
+function checkLike() {
+    console.log(isLike);
+    $doAjax("POST", BOARD_LIKE_URL, {}, (result) => {
+        $(".like-btn img").attr("src", `${result ? unlikeSrc : likeSrc}`);
     });
 }
+
+
+
+// /* 하트 이벤트 */
+// $('.btn-heart').on('click', function () {
+//     if ($(this).hasClass('on')) {
+//         $(this).removeClass('on');
+//     } else {
+//         $(this).addClass('on');
+//         heartInsert();
+//     }
+// });

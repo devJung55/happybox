@@ -21,4 +21,9 @@ public class UserController {
     public String goToLoginForm(){
         return "member/member-login";
     }
+
+    @GetMapping("/logout")
+    public String logout(){
+        return "/main/welfare";
+    }
 }

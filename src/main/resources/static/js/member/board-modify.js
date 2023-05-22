@@ -7,7 +7,9 @@ const insertData = {
 }
 
 // 기존 file list 를 insertData에 담음
-insertData.reviewBoardFiles = fileDTOS;
+if (reviewBoardDTO != null && reviewBoardDTO != undefined) {
+    insertData.reviewBoardFiles = reviewBoardDTO.reviewBoardFiles;
+}
 
 $(function () {
     $(".rating-point img").each(function (index) {
@@ -22,8 +24,9 @@ $(function () {
 });
 
 const setList = $('.board-form');
-function showList(){
-    let text='';
+
+function showList() {
+    let text = '';
     text +=
         `
         <table>
@@ -38,7 +41,7 @@ function showList(){
             <tr>
                 <th class="text-left" scope="row">
                     <div class="in-tb">
-                        제목<em class="es"><span class="blind">필수입력</span></em>
+                        제목
                     </div>
                 </th>
                 <td class="text-left">
@@ -58,7 +61,7 @@ function showList(){
             <tr>
                 <th class="text-left" scope="row" style="padding-top: 0;">
                     <div class="in-tb">
-                        복지관명<em class="es"><span class="blind">필수입력</span></em>
+                        복지관명
                     </div>
                 </th>
                 <td class="text-left" style="padding-top: 0;">
@@ -131,11 +134,12 @@ function showList(){
 showList();
 
 const setFile = $('.file-add-boxes');
+
 function showFiles() {
     console.log(reviewBoardDTO);
     reviewBoardDTO.reviewBoardFiles.forEach((file, i) => {
         console.log(file);
-        let text ='';
+        let text = '';
         let filePath = '/image/display?fileName=' + file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName;
         text +=
             `
@@ -157,8 +161,8 @@ function showFiles() {
         setFile.append(text);
     });
     let text = '';
-    if(reviewBoardDTO.reviewBoardFiles.length < 3){
-        for(let i=0; i< 3 - reviewBoardDTO.reviewBoardFiles.length; i++) {
+    if (reviewBoardDTO.reviewBoardFiles.length < 3) {
+        for (let i = 0; i < 3 - reviewBoardDTO.reviewBoardFiles.length; i++) {
             text +=
                 `
                 <div class="div-attach-thumb" id="US_RV_IMG_attachThumb">
@@ -181,7 +185,6 @@ function showFiles() {
                             type="button"
                             class="btn-x-xs2 btn_del"
                     >
-                        <i class="ico-x-white"></i><span class="blind">삭제</span>
                     </button>
                 </div>
             </div>
@@ -226,8 +229,7 @@ const fileAjax = (data, index) => {
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                insertData.reviewBoardFiles.push(file);
-                console.log(insertData);
+                insertData.reviewBoardFiles[index] = file;
             }
         }
     });
@@ -266,16 +268,24 @@ $imgFile.each((i, e) => {
 });
 
 
-$(document).ready(function() {
-    $('.btn_del').on('click', function(e) {
+$(document).ready(function () {
+    $('.btn_del').on('click', function (e) {
+        let index = $(".btn_del").index($(this));
         e.preventDefault();
         var $attachImg = $(this).parent('.attach-img');
         var $img = $attachImg.find('img');
         var $btnAttachThumb = $(this).closest('.div-attach-thumb').find('.btn-attach-thumb');
 
+        // 누른 버튼의 index 추출
+        console.log(index);
+        // 그 index 로 insertData 안의 파일 삭제
+        insertData.reviewBoardFiles[index] = null;
+
         $img.attr('src', '');
         $attachImg.css('display', 'none');
         $btnAttachThumb.css('display', 'inline-block');
+
+
     });
 });
 
@@ -291,6 +301,9 @@ $("form[name='form']").on("submit", function (e) {
     insertData.welfareName = welfareName;
     insertData.boardContent = boardContent;
 
+    insertData.reviewBoardFiles = insertData.reviewBoardFiles.filter(e => e !== undefined && e !== null);
+    console.log(insertData.reviewBoardFiles);
+
     $.ajax({
         url: '/user-board/review-board-modify',
         data: JSON.stringify(insertData),
@@ -299,5 +312,5 @@ $("form[name='form']").on("submit", function (e) {
         success: function (result) {
             location.href = result;
         }
-    })
+    });
 });

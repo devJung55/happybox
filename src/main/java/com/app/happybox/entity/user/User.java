@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "TBL_USER")
-@Getter @ToString(exclude = {"replies", "replyLikes"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"replies", "replyLikes", "userRandomKeys"}) @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert/* @DynamicUpdate*/
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User extends Period {
@@ -62,8 +62,8 @@ public abstract class User extends Period {
     private List<ReplyLike> replyLikes = new ArrayList<>();
 
     /* 회원 Random Key */
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
-//    private List<UserRandomKey> userRandomKeys;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<UserRandomKey> userRandomKeys;
 
 
     public User(Long id, String userId, String userPassword, Address address, String userEmail, String userPhoneNumber, UserStatus userStatus, Role userRole) {
@@ -75,6 +75,11 @@ public abstract class User extends Period {
         this.userPhoneNumber = userPhoneNumber;
         this.userStatus = userStatus;
         this.userRole = userRole;
+    }
+
+    public void setMember(String userEmail, String userPhoneNumber) {
+        this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
     }
 
     public void setUserStatus(UserStatus userStatus) {

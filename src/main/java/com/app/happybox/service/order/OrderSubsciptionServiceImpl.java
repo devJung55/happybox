@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,16 @@ public class OrderSubsciptionServiceImpl implements OrderSubsciptionService {
 
     @Override
     public OrderSubscriptionDTO getSubscriptionDetailByMemberId(Long memberId) {
-        return mypageToOrderSubscriptionDTO(orderSubscriptionRepository.findSubscriptionByMemberId_QueryDSL(memberId).get());
+        Optional<OrderSubscription> subscriptionOptional = orderSubscriptionRepository.findSubscriptionByMemberId_QueryDSL(memberId);
+        if (subscriptionOptional.isPresent()) {
+            return mypageToOrderSubscriptionDTO(subscriptionOptional.get());
+        } else {
+            return null;
+        }
+    }
+
+    @Override @Transactional
+    public void cancelSubscribeById(Long id) {
+        orderSubscriptionRepository.findById(id).ifPresent(orderSubscription -> orderSubscriptionRepository.deleteById(id));
     }
 }

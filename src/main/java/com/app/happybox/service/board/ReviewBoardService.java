@@ -14,6 +14,7 @@ import org.springframework.data.domain.Slice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public interface ReviewBoardService {
     // 상세보기
@@ -26,7 +27,7 @@ public interface ReviewBoardService {
     public void update(ReviewBoardDTO reviewBoardDTO, Long memberId);
 
     // 삭제
-    public void delete(Long id);
+    public void delete(Long id, Long memberId);
 
     //    현재 시퀀스 가져오기
     public ReviewBoard getCurrentSequence();
@@ -38,7 +39,13 @@ public interface ReviewBoardService {
     public Slice<ReviewBoardDTO> getPopularReviewBoards(Pageable pageable);
 
     //    마이페이지 나의후기 목록
-    public Page<ReviewBoardDTO> findAllByMemberIdDescWithPaging_QueryDSL(Pageable pageable, Long memberId);
+    public Page<ReviewBoardDTO> getReviewListByMemberId(Pageable pageable, Long memberId);
+
+//    관리자 후기목록
+    public Page<ReviewBoardDTO> getList(Pageable pageable);
+
+//    관리자 후기 상세
+    public Optional<ReviewBoardDTO> getReviewBoardDetailById(Long reviewBoardId);
 
     //    메인 최신순 Top 8
     public List<ReviewBoardDTO> findTop8Recent();
@@ -96,6 +103,7 @@ public interface ReviewBoardService {
                 .boardTitle(reviewBoardDTO.getBoardTitle())
                 .boardContent(reviewBoardDTO.getBoardContent())
                 .welfareName(reviewBoardDTO.getWelfareName())
+                .reviewRating(reviewBoardDTO.getReviewRating())
                 .build();
     }
 

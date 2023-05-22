@@ -4,6 +4,7 @@ import com.app.happybox.domain.AddressDTO;
 import com.app.happybox.domain.FoodDTO;
 import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
+import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.entity.subscript.*;
 import com.app.happybox.entity.user.Address;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,22 @@ public interface SubscriptionService {
 //    달(month)로 조회
     public List<SubscriptionDTO> findAllBetweenDate(LocalDateTime dateTime);
 
+    //    구독했는지 확인하기 위해 조회
+    public Boolean existsByWelfareId(Long welfareId);
+
+    //    subscription id로 조회
+    public Boolean existsById(Long id);
+
+    // subscription 수정
+    public void updateByDTO(SubscriptionWelFareDTO subscriptionWelFareDTO);
+
+    public SubscriptionWelFareDTO getSubscriptionWelfareDTO(Long id);
+
+    public Subscription getId(Long id);
+
+
+
+
     default SubscriptionDTO subscriptionToDTO(Subscription subscription, List<FoodDTO> foodList) {
         SubscriptionDTO subscriptionDTO = SubscriptionDTO.builder()
                 .id(subscription.getId())
@@ -49,6 +66,15 @@ public interface SubscriptionService {
                 .build();
         subscriptionDTO.setFoodList(foodList);
         return subscriptionDTO;
+    }
+
+    default SubscriptionWelFareDTO subscriptionToWelfareDTO(Subscription subscription){
+        return SubscriptionWelFareDTO.builder()
+                .id(subscription.getId())
+                .subscriptionContent(subscription.getSubscriptionContent())
+                .subscriptionPrice(subscription.getSubscriptionPrice())
+                .subscriptionTitle(subscription.getSubscriptionTitle())
+                .build();
     }
 
     default SubscriptionDTO subscriptionToDTO(Subscription subscription, FoodDTO foodDTO) {

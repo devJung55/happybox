@@ -1,6 +1,7 @@
 package com.app.happybox.service.order;
 
 import com.app.happybox.domain.MemberOrderProductItemDTO;
+import com.app.happybox.domain.SearchDateDTO;
 import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.file.ProductFileDTO;
 import com.app.happybox.entity.order.MemberOrderProductItem;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public interface MemberOrderProductItemService {
 //    마이페이지 주문내역(일반회원)
-    public Page<MemberOrderProductItemDTO> getListByIdAndSearchDate(Pageable pageable, Long memberId/*, LocalDateTime searchStartDate, LocalDateTime searchEndDate*/);
+    public Page<MemberOrderProductItemDTO> getListByIdAndSearchDate(Pageable pageable, Long memberId, SearchDateDTO searchDateDTO);
 
 //    일반 마이페이지 주문건수 조회
     public Long getOrderCountByMemberId(Long id);

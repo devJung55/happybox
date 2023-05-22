@@ -390,21 +390,6 @@ const xBtn = $('.xBtn');
 const deleteUrl = `/user-board/recipe-board-detail/reply/delete/${recipe.id}`;
 // 삭제 버튼 클릭 시 deleteReply 함수 호출
 
-// xBtn.on('click', function(){
-//     $doAjaxPost("DELETE",
-//         deleteUrl,
-//         {},
-//         (result) => {
-//             let count = Number($(".review-count span").text());
-//             // 댓글수 증가
-//             $(".review-count span").text(--count);
-//             $(".reply-count").text(count);
-//             // 댓글 내용 초기화
-//             console.log(result);
-//             window.location.reload();
-//         }
-//     );
-// })
 
 function deleteReply(deleteBtn) {
     let id = $(deleteBtn).data("id");
@@ -425,6 +410,7 @@ function deleteReply(deleteBtn) {
     });
     window.location.reload();
 }
+
 
 
 

@@ -4,8 +4,11 @@ const insertData = {
     boardTitle:"",
     boardContent: "",
     welfareName: "",
+    reviewRating: "",
     reviewBoardFiles: new Array(3)
 }
+
+let pullCount;
 
 $(function() {
     $(".rating-point img").each(function(index) {
@@ -13,7 +16,7 @@ $(function() {
         $(".rating-point img").attr("src", "/img/mypage/rating.png");
         $(this).prevAll().addBack().attr("src", "/img/mypage/rating-pull.png");
 
-          var pullCount = $(".rating-point img[src='/img/mypage/rating-pull.png']").length;
+          pullCount = $(".rating-point img[src='/img/mypage/rating-pull.png']").length;
           console.log("rating-pull.png 개수: " + pullCount);
       });
     });
@@ -90,13 +93,15 @@ $imgFile.each((i, e) => {
 });
 
 $(document).ready(function() {
-    $('#image').click(function() {
-        $('.input_file').click();
-    });
+    $('.btn_del').on('click', function(e) {
+        e.preventDefault();
+        var $attachImg = $(this).parent('.attach-img');
+        var $img = $attachImg.find('img');
+        var $btnAttachThumb = $(this).closest('.div-attach-thumb').find('.btn-attach-thumb');
 
-    $('.input_file').change(function() {
-        var file = this.files[0];
-        // 파일 처리 로직을 수행합니다.
+        $img.attr('src', '');
+        $attachImg.css('display', 'none');
+        $btnAttachThumb.css('display', 'inline-block');
     });
 });
 
@@ -110,6 +115,7 @@ $("form[name='form']").on("submit", function (e) {
     insertData.boardTitle = boardTitle;
     insertData.welfareName = welfareName;
     insertData.boardContent = boardContent;
+    insertData.reviewRating = pullCount;
 
     $.ajax({
         url: '/user-board/review-board-insert',

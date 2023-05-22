@@ -136,18 +136,16 @@ public class MemberServiceImpl implements MemberService {
     @Override @Transactional
     public void updateMemberInfoById(MemberDTO memberDTO) {
         Member member = memberRepository.findById(memberDTO.getId()).orElseThrow(UserNotFoundException::new);
-        member.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword().split(",")[0]));
+
+        log.info(memberDTO.getUserPassword());
+
+        if(memberDTO.getUserPassword() != null && memberDTO.getUserPassword() == " ,") {
+            member.setUserPassword(passwordEncoder.encode(memberDTO.getUserPassword().split(",")[0]));
+        }
         member.setMemberName(memberDTO.getMemberName());
         member.setUserPhoneNumber(memberDTO.getUserPhoneNumber());
         member.setAddress(memberDTO.getAddress());
         member.setUserEmail(memberDTO.getUserEmail());
-    }
-
-//    회원탈퇴 = 회원상태 변경
-    @Override
-    public void updateUserStatusById(Long memberId) {
-        Member member = memberRepository.findById(memberId).get();
-        member.setUserStatus(UserStatus.UNREGISTERED);
     }
 
 //    배송지정보수정
@@ -165,8 +163,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Optional<Member> getDetail(Long memberId) {
-        Optional<Member> member = memberRepository.findMemberById_QueryDSL(memberId);
-        return member;
+    public MemberDTO getDetail(Long memberId) {
+        MemberDTO memberDTO = memberRepository.findMemberById_QueryDSL(memberId).map(this::toMemberDTO).get();
+        return memberDTO;
     }
 }

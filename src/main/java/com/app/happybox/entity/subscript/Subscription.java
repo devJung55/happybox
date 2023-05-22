@@ -8,6 +8,7 @@ import com.app.happybox.entity.user.Welfare;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ import java.util.List;
 @Getter @ToString(exclude = {
         "foodCalendars", "subscriptionLikes", "orderSubscriptions", "welfare"
 }) @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DynamicUpdate
+@DynamicUpdate @DynamicInsert
 public class Subscription extends Period {
 
     @EqualsAndHashCode.Include
@@ -104,5 +105,15 @@ public class Subscription extends Period {
         this.orderCount = orderCount;
     }
 
+    public void setSubscriptionTitle(String subscriptionTitle) {
+        this.subscriptionTitle = subscriptionTitle;
+    }
 
+    public void setSubscriptionContent(String subscriptionContent) {
+        this.subscriptionContent = subscriptionContent;
+    }
+
+    public void setSubscriptionPrice(Integer subscriptionPrice) {
+        this.subscriptionPrice = subscriptionPrice;
+    }
 }

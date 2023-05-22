@@ -3,6 +3,7 @@ package com.app.happybox.service.user;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.entity.subscript.Subscription;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.entity.user.Welfare;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,11 +30,18 @@ import java.util.stream.Collectors;
 public class WelfareServiceImpl implements WelfareService {
     private final WelfareRepository welfareRepository;
     private final SubscriptionRepository subscriptionRepository;
+    private final PasswordEncoder passwordEncoder;
 
-
-    @Override
-    public void updateWelfareInfoById(Welfare welfare) {
-        welfareRepository.setWelfareInfoById_QueryDSL(welfare);
+//    회원정보 수정
+    @Override @Transactional
+    public void updateWelfareInfoById(WelfareDTO welfareDTO) {
+        log.error(welfareDTO.toString());
+        Welfare welfare = welfareRepository.findById(welfareDTO.getId()).orElseThrow(UserNotFoundException::new);
+        welfare.setUserPassword(passwordEncoder.encode(welfareDTO.getUserPassword()));
+        welfare.setUserPhoneNumber(welfareDTO.getUserPhoneNumber());
+        welfare.setAddress(welfareDTO.getAddress());
+        welfare.setUserEmail(welfareDTO.getUserEmail());
+        welfare.setWelfareName(welfareDTO.getWelfareName());
     }
 
     @Override

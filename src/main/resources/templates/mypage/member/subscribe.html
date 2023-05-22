@@ -34,7 +34,8 @@
                             </div>
                             <div class="subscribe-wrap">
                                 <div class="subscribe__list">
-                                    <ul th:object="${subscription}">
+                                    <ul th:object="${subscription}" th:if="${subscription != null}">
+                                        <input type="hidden" th:field="*{id}" class="orderSubscriptionId">
                                         <li class="welfare__list">
                                             <div class="list-inner ui-toggle">
                                                 <div class="txt-area">
@@ -60,12 +61,12 @@
                                                         <img class="lozad" src="">
                                                     </div>
                                                 </div><!--// txt-area -->
-                        
+
                                                 <button type="button" class="btn-link-txt2 ui-toggle-btn btnMoreReview detail__button">
                                                     <img class="arrow-0deg arrow" src="/img/mypage/inquiry-arrow.png" width="18">
                                                     <span class="txt-change">더보기</span>
                                                 </button>
-                                                
+
                                                 <div class="ui-toggle-content goods-review-detail hide welfare__detail" style="display: none;">
                                                     <div class="answer-box">
                                                         <p class="answer-message">
@@ -92,8 +93,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
-    let $userFile = [[${userFile}]];
+    let $userProfile = [[${userProfile}]];
 </script>
 <script src="/js/mypage/user/top.js"></script>
+<script src="/js/mypage/user/ajax.js"></script>
 <script src="/js/mypage/user/subscribe.js"></script>
 </html>

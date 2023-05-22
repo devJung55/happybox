@@ -47,26 +47,15 @@ function showList(reviewBoardDTOS){
                           <div>
                             <div id="welfare-name">${reviewDetail.welfareName}</div>
                             <em class="rating-point">
-                              <img
-                                class="rating__point one"
-                                src="/img/mypage/rating-pull.png"
-                              />
-                              <img
-                                class="rating__point two"
-                                src="/img/mypage/rating-pull.png"
-                              />
-                              <img
-                                class="rating__point three"
-                                src="/img/mypage/rating-pull.png"
-                              />
-                              <img
-                                class="rating__point four"
-                                src="/img/mypage/rating-pull.png"
-                              />
-                              <img
-                                class="rating__point five"
-                                src="/img/mypage/rating-pull.png"
-                              />
+                                <img class="rating__point one"  src="/img/mypage/rating-pull.png">
+                                <img class="rating__point two"
+                                src="${reviewDetail.reviewRating > 1 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                                <img class="rating__point three"
+                                src="${reviewDetail.reviewRating > 2 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                                <img class="rating__point four"
+                                src="${reviewDetail.reviewRating > 3 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
+                                 <img class="rating__point five"
+                                src="${reviewDetail.reviewRating > 4 ? '/img/mypage/rating-pull.png' : '/img/mypage/rating.png'}">
                             </em>
                           </div>
                         </div>

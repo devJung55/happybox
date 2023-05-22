@@ -42,7 +42,7 @@
                                 <div class="search-box ui-toggle on">
                                     <div class="input-group-form text-right w-full">
                                         <div class="input-group-btn dis-inb">
-                                            <a href="javascript:void(0)" class="btn-form btn-black"><span>조회하기</span></a>
+                                            <a href="javascript:void(0)" class="btn-form btn-black searchButton"><span>조회하기</span></a>
                                         </div>
                                         <div class="input-group-btn dis-inb reset">
                                             <button type="button" id="btnInit" class="btn-form btn-link-txt5">
@@ -98,9 +98,10 @@
                             <ul class="productCart-list"></ul><!--// list appned-->
                         </div><!--// frame-cnt-inner -->
                         <div class="page-bottom"><!-- // 페이징 -->
-                            <div class="pagination mt20" style="margin-top: 30px;"></div><!--// pagination -->
+                            <div class="pagination mt20" style="margin-top: 30px;">
+                                <div class="paging-div"></div>
+                            </div><!--// pagination -->
                         </div>
-
                     </div><!--// frame-right -->
                 </div>
             </div>
@@ -111,6 +112,8 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/CS/common.js"></script>
+<script src="/js/common/ajax.js"></script>
+<script src="/js/market/search.js"></script>
 <script src="/js/mypage/user/ajax.js"></script>
 <script src="/js/mypage/user/order-list.js"></script>
 </html>

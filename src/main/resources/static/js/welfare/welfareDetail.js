@@ -16,17 +16,10 @@ const $orderNormalTotalPrice = $('.orderNormalTotalPrice');
 
 $radioLabels.on('click', function () {
     const $clickedRadio = $(this).prev('input[type="radio"]');
-    const $totalPrice = $('.total-price');
-    let selectedPrice = '';
+    let selectedPrice = subscription.subscriptionPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
     $radioLabels.siblings('input[type="radio"]').prop('checked', false);
     $clickedRadio.prop('checked', true);
-
-    if ($clickedRadio.parent().text().trim() === '1개월 구독') {
-        $totalPrice.show();
-        selectedPrice = $totalPrice.text();
-        $clickedRadio.val(selectedPrice);
-    }
 
     $orderNormalTotalPrice.html(selectedPrice);
 });
@@ -222,7 +215,6 @@ $(".close").on("click", function () {
 
 // 예 버튼을 클릭했을 때
 $("#modal-yesBtn").on("click", function () {
-    console.log($(".quantity-input").val());
     console.log(CART_URL);
     $doAjaxPost("POST",
         CART_URL, // 장바구니 URL
@@ -232,8 +224,6 @@ $("#modal-yesBtn").on("click", function () {
         },
         (result) => {  // callback
             $("#cart-modal").css("display", "none");
-
-            console.log(result);
         }
     );
 
@@ -257,7 +247,12 @@ $(".like-btn img").attr("src", `${isLike ? likeSrc : unlikeSrc}`);
 /* 좋아요 눌렀을 때 */
 function checkLike() {
     $doAjax("POST", SUB_LIKE_URL, {}, (result) => {
-        $(".like-btn img").attr("src", `${result ? unlikeSrc : likeSrc}`);
+        if(result === -1) {
+            $("#like-modal").css("display", "block");
+            return;
+        }
+
+        $(".like-btn img").attr("src", `${result === 1 ? unlikeSrc : likeSrc}`);
     });
 }
 
@@ -309,16 +304,61 @@ function showSlideImg() {
 }
 
 /* ==============================================  수정삭제를 위한 모달 ================================= */
+// const $showDelete = $(".delete-btn");
+// const $cancelDelete = $(".cancel-delete");
+// $showDelete.on('click', function (e) {
+//     $(".delete-modal").show();
+//     $('.confirm-delete').on('click', function () {
+//         $(location).attr('href', '../../templates/welfare/dontae-list.html');
+//     });
+// })
+// $cancelDelete.on('click', function (e) {
+//     $(".delete-modal").hide();
+// })
 
-const $showDelete = $(".delete-btn");
+/* ==============================================  구독하기 버튼 눌렀을 때 장바구니로 이동 ================================= */
+
+const $sub = $('.subscribe-btn');
 const $cancelDelete = $(".cancel-delete");
-$showDelete.on('click', function (e) {
-    $(".delete-modal").show();
-    $('.confirm-delete').on('click', function () {
-        $(location).attr('href', '../../templates/welfare/dontae-list.html');
-    });
-})
-$cancelDelete.on('click', function (e) {
-    $(".delete-modal").hide();
+const CHECK_CART_URL = "/welfare/cart/check";
+$sub.on('click', function () {
+    console.log(subscription.id);
+    $doAjax("GET"
+    ,CHECK_CART_URL
+    ,{subscriptionId: subscription.id}
+    ,(result) => {
+        console.log(result)
+        if (result == 1){
+            $('.delete-modal').show();
+            $('.confirm-delete').on('click', function () {
+                $('.delete-modal').hide();
+            });
+        }else if(result == 2) {
+            $('.modal-body').html("구독 하시겠습니까?");
+            $('.delete-modal').show();
+            $('.confirm-delete').on('click', function () {
+                $doAjaxPost("POST",
+                    CART_URL, // 장바구니 URL
+                    {
+                        subscriptionTitle: subscription.subscriptionTitle, // 구독상품 이름 (굳이 ?)
+                        subOption: $("select[name='option']").val()
+                    },
+                    (result) => {  // callback
+                        location.href = "/order/subscription";
+                    }
+                );
+            });
+        }
+        })
+    $('.delete-modal').show();
+
+});
+
+
+
+$cancelDelete.on('click', function () {
+    $('.delete-modal').hide();
 })
 
+console.log($(".quantity-input").val());
+console.log(CART_URL);

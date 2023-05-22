@@ -9,7 +9,6 @@ $radios.on("click", function() {
         if($(radio).hasClass("default")) {
             $(radio).removeClass("default");
             text = $($(this).children()[1]).text();
-            console.log(text);
         }
     });
     
@@ -22,6 +21,8 @@ $radios.on("click", function() {
 const $reset = $(".reset");
 
 $reset.on("click", function() {
+    date = 0;
+
     $radios.each((i, radio) => {
         if($(radio).hasClass("default")) {
             $(radio).removeClass("default");
@@ -44,15 +45,17 @@ function showOrderList(orderList) {
     let total = "";
     let img = "";
 
-    if(orderList.content.length == 0) {
-        text = `
-                <div class="no-data-type1">
-                    <p class="message">기간 내에 주문내역이 없습니다.</p>
-                </div>
-            `;
-        $orderAppend.append(text);
-    }
+    // if(orderList.content.length == 0) {
+    //     text = `
+    //             <div class="no-data-type1">
+    //                 <p class="message">기간 내에 주문내역이 없습니다.</p>
+    //             </div>
+    //         `;
+    //     $orderAppend.append(text);
+    //     return;
+    // }
     orderList.content.forEach(order => {
+        const formattedDate = formatDate(new Date(order.createdDate));
         total = order.productPrice * order.orderStock;
 
         if(order.productFiles.length != 0) {
@@ -82,6 +85,9 @@ function showOrderList(orderList) {
                         <div class="column tit">
                             <p class="tit">
                                 <a href="javascript:void(0)" class="productNm">${order.productName}</a>
+                                <div>
+                                    <a href="javascript:void(0)" class="productNm">${formattedDate}</a>
+                                </div>
                             </p>
                         </div>
                         <div class="column price">
@@ -90,11 +96,6 @@ function showOrderList(orderList) {
                                 <span class="num productCart-price-25415 brand-cd-1042 partner-cd-299 productCart-price-25415" id="productCart-price-20230418000014810723">${total}</span>원
                             </div>
                         </div>
-                        <div class="column btn">
-                            <button type="button" class="btn-x-sm deleteUserCart">
-                                <i class="ico-x-black"></i>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </li>
@@ -102,30 +103,7 @@ function showOrderList(orderList) {
 
     });
     $orderAppend.append(text);
-    displayPaginationOrder(orderList.totalPages);
-}
-
-function displayPaginationOrder(totalPages) {
-    const $pagination = $(".pagination");
-    $pagination.empty();
-
-    if (page > 0) {
-        $pagination.append(`<a href="javascript:void(0)" class="btn-page prev"><span class="blind2">&lt;</span></a>`);
-    }
-
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === page + 1) {
-            // 현재 페이지를 텍스트로 표시
-            $pagination.append(`<a href="javascript:void(0)" id="prev" class="arrow current"><span>${i}</span></a>`);
-        } else {
-            // 다른 페이지는 a 태그로 표시
-            $pagination.append(`<a href="#" class="current"><span>${i}</span></a>`);
-        }
-    }
-
-    if (page < totalPages - 1) {
-        $pagination.append(`<a href="javascript:void(0)" id="next" class="arrow btn-page next"><span class="blind2">&gt;</span></a>`);
-    }
+    showPage(orderList);
 }
 
 $(".pagination").on("click", "a", function(e) {
@@ -136,3 +114,60 @@ $(".pagination").on("click", "a", function(e) {
     myPageService.orderListAjax(page);
 });
 
+/*----------------------------------------------------------------- 기간별 조회*/
+
+
+let date;
+
+function getOrdersByPeriod(date) {
+    let now = new Date();   // 현재 날짜
+    let setDate = new Date(now.getTime() - (date * 24 * 60 * 60 * 1000));    // 사용자가 설정한 날짜 구하기
+
+    if(date == 1) {
+        $orderAppend.empty();
+        myPageService.orderListAjax();
+    }
+
+    let searchDateDTO = {
+        "year": setDate.getFullYear(),
+        "month": setDate.getMonth() + 1,
+        "day": setDate.getDate()
+    }
+    $orderAppend.empty();
+    myPageService.orderListBySearchDate(searchDateDTO);
+}
+
+$(".searchButton").on("click", function() {
+    $(".custom-radio").each((i, v) => {
+        if($(v).hasClass("default")) {
+            date = $($(v).children()[1]).text();
+            switch (text) {
+                case '2주일':
+                    date = 14;
+                    break;
+                case '1개월':
+                    date = 30;
+                    break;
+                case '3개월':
+                    date = 90;
+                    break;
+                case '6개월':
+                    date = 180;
+                    break;
+                case '9개월':
+                    date = 270;
+                    break;
+                case '12개월':
+                    date = 365;
+                    break;
+                case '전체조회':
+                    date = 1;
+                    break;
+                default:
+                    date = null;
+                    break;
+            }
+        }
+    })
+    getOrdersByPeriod(date);
+});

@@ -1,3 +1,7 @@
+
+// 파일 앞 기본경로
+const FILE_DISPLAY_URL = '/image/display?fileName=';
+
 // 복지관 리뷰
 reviews.forEach(review => appendReview(review));
 
@@ -9,7 +13,7 @@ function appendReview(review) {
     if (review.reviewBoardFiles.length > 0) {
         // 대표사진 검사
         let repFile = review.reviewBoardFiles.filter(file => file.fileRepresent === "REPRESENT")[0];
-        filePath = '/images/display/' + repFile.filePath + '/t_' + repFile.fileUuid + '_' + repFile.fileOrgName;
+        filePath = FILE_DISPLAY_URL + repFile.filePath + '/t_' + repFile.fileUuid + '_' + repFile.fileOrgName;
     }
 
     text = `
@@ -66,7 +70,7 @@ topSale.forEach((sub, i) => {
 
     let filePath = "/img/welfare/welfare_img_default.png";
 
-    if (sub.representFood != null) filePath = '/images/display/' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
+    if (sub.representFood != null) filePath = FILE_DISPLAY_URL + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
     text = `
         <li
@@ -114,7 +118,7 @@ recentSub.forEach((sub, i) => {
 
     let filePath = "/img/welfare/welfare_img_default.png";
 
-    if (sub.representFood != null) filePath = '/images/display/' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
+    if (sub.representFood != null) filePath = FILE_DISPLAY_URL + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
     text =
         `
@@ -144,7 +148,7 @@ donation.forEach(board => {
     let filePath = "/img/welfare/welfare_img_default.png";
 
     if (board.donationBoardFiles.length > 0) {
-        filePath = '/images/display/' + board.boardFiles[0].filePath + '/t_' + board.boardFiles[0].fileUuid + '_' + board.boardFiles[0].fileOrgName;
+        filePath = FILE_DISPLAY_URL + board.boardFiles[0].filePath + '/t_' + board.boardFiles[0].fileUuid + '_' + board.boardFiles[0].fileOrgName;
     }
 
     text = `

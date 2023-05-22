@@ -57,7 +57,7 @@
                         </div>
                         <ul class="menus1 menus" style="display: none;">
                             <li class="select-menu">
-                                <a href=""> 
+                                <a th:href="@{/admin/reviewBoard-list}">
                                     <span>리뷰 게시물</span>
                                 </a>
                             </li>
@@ -67,21 +67,11 @@
                                 </a>
                             </li>
                             <li class="select-menu">
-                                <a href=""> 
+                                <a th:href="@{/admin/donationBoard-list}">
                                     <span>기부 게시물</span>
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="menu">
-                        <div class="menu-flex">
-                            <div>
-                                <img src="https://cdn4.iconfinder.com/data/icons/chat-app-icon/36/pinglun2-128.png" class="icon">
-                            </div> 
-                            <a href="">
-                                <span>댓글 관리</span>  
-                            </a>
-                        </div>
                     </li>
                     <li class="menu">
                         <div class="menu-flex">
@@ -100,7 +90,7 @@
                                 </a>
                             </li>
                             <li class="select-menu">
-                                <a href="">
+                                <a th:href="@{/admin/admin-noticeList}">
                                     <span>공지사항 관리</span>
                                 </a>
                             </li>
@@ -111,7 +101,7 @@
                             <div>
                                 <img src="https://cdn2.iconfinder.com/data/icons/e-commerce-line-4-1/1024/product4-128.png" class="icon">
                             </div> 
-                            <a href="">
+                            <a th:href="@{/admin/payment-list}">
                                 <span>결제 관리</span>  
                             </a>
                         </div>

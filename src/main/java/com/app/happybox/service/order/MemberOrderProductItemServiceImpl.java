@@ -1,6 +1,7 @@
 package com.app.happybox.service.order;
 
 import com.app.happybox.domain.MemberOrderProductItemDTO;
+import com.app.happybox.domain.SearchDateDTO;
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import com.app.happybox.repository.order.MemberOrderProductItemRepository;
 import com.app.happybox.repository.order.MemberOrderProductQueryDsl;
@@ -26,8 +27,8 @@ public class MemberOrderProductItemServiceImpl implements MemberOrderProductItem
     private final MemberOrderProductRepository memberOrderProductRepository;
 
     @Override
-    public Page<MemberOrderProductItemDTO> getListByIdAndSearchDate(Pageable pageable, Long memberId/*, LocalDateTime searchStartDate, LocalDateTime searchEndDate*/) {
-        Page<MemberOrderProductItem> list =  memberOrderProductItemRepository.findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(pageable, memberId/*, searchStartDate, searchEndDate*/);
+    public Page<MemberOrderProductItemDTO> getListByIdAndSearchDate(Pageable pageable, Long memberId, SearchDateDTO searchDateDTO) {
+        Page<MemberOrderProductItem> list =  memberOrderProductItemRepository.findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(pageable, memberId, searchDateDTO);
         List<MemberOrderProductItemDTO> listDTO = list.get().map(this::toMemberOrderProductItemDTO).collect(Collectors.toList());
         return new PageImpl<>(listDTO, pageable, list.getTotalElements());
     }

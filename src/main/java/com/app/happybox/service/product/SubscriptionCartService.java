@@ -13,6 +13,9 @@ public interface SubscriptionCartService {
 
     public Long saveCart(SubscriptionCartDTO cartDTO, Long memberId, Long subscriptionId);
 
+    //    subscription으로 subscription cart 조회하기
+    public Long subscriptionCartCheck(Long subscriptionId);
+
     default SubscriptionCartDTO cartToDTO(SubscriptionCart subscriptionCart) {
         return SubscriptionCartDTO.builder()
                 .id(subscriptionCart.getId())

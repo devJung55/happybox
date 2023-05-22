@@ -23,27 +23,27 @@ $(".inquiry__list__append").on("click", ".arrow-0deg", function() {
 
 /* 이미지 모달 이벤트 */
 
-const $inquiryTitle = $(".inquiry__title");
-
-
-$("#frm").on("click", ".thumnail", function() {
-    const $imgModal = $(".layer-wrap");
-    const $closeButton = $(".btn-x-md2");
-    let src = "";
-
-    if($imageModalAppend.css("display") == "none") {
-        console.log($imageModalAppend)
-        $imageModalAppend.css("display", "block");
-        src = $(this).attr("src");
-        showImageModal(src);
-    }
-
-    $closeButton.on("click", function() {
-        if($imgModal.css("display") == "block") {
-            $imgModal.css("display", "none");
-        }
-    });
-});
+// const $inquiryTitle = $(".inquiry__title");
+//
+//
+// $("#frm").on("click", ".thumnail", function() {
+//     const $imgModal = $(".layer-wrap");
+//     const $closeButton = $(".btn-x-md2");
+//     let src = "";
+//
+//     if($imageModalAppend.css("display") == "none") {
+//         console.log($imageModalAppend)
+//         $imageModalAppend.css("display", "block");
+//         src = $(this).attr("src");
+//         showImageModal(src);
+//     }
+//
+//     $closeButton.on("click", function() {
+//         if($imgModal.css("display") == "block") {
+//             $imgModal.css("display", "none");
+//         }
+//     });
+// });
 
 
 
@@ -51,45 +51,46 @@ $("#frm").on("click", ".thumnail", function() {
 
 myPageService.inquiryListAjax();
 const $inquiryAppend = $(".inquiry__list__append");
-const $imageModalAppend = $("#thumDtlPop");
+// const $imageModalAppend = $("#thumDtlPop");
 let page = 0;
 
-function showImageModal(src) {
-    let text = "";
-
-    text = `
-        <div class="layer-wrap" id="popup-sample01" style="display:none">
-            <div class="layer-pop img-view-popup">
-                <div class="layer-inner">
-                    <div class="layer-content">
-                        <div class="img-auto-slide">
-                            <div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-autoheight">
-                                <ul class="swiper-wrapper" style="height: 126px; transform: translate3d(0px, 0px, 0px);">
-                                    <li class="swiper-slide swiper-slide-active" style="width: 510px; margin-right: 1px;">
-                                        <img src="${src}">
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-x-md2 ui-close-pop">
-                        <img class="close__modal" src="/img/mypage/close-button.webp" width="30">
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-    $imageModalAppend.append(text);
-}
+// function showImageModal(src) {
+//     let text = "";
+//
+//     text = `
+//         <div class="layer-wrap" id="popup-sample01" style="display:none">
+//             <div class="layer-pop img-view-popup">
+//                 <div class="layer-inner">
+//                     <div class="layer-content">
+//                         <div class="img-auto-slide">
+//                             <div class="swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-autoheight">
+//                                 <ul class="swiper-wrapper" style="height: 126px; transform: translate3d(0px, 0px, 0px);">
+//                                     <li class="swiper-slide swiper-slide-active" style="width: 510px; margin-right: 1px;">
+//                                         <img src="${src}">
+//                                     </li>
+//                                 </ul>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <button type="button" class="btn-x-md2 ui-close-pop">
+//                         <img class="close__modal" src="/img/mypage/close-button.webp" width="30">
+//                     </button>
+//                 </div>
+//             </div>
+//         </div>
+//     `;
+//     $imageModalAppend.append(text);
+// }
 
 function showInquiryList(inquiries) {
     let text = "";
-    let str = "";
-    let answer = "";
-    let image = "";
-    let answerImage = "";
 
     inquiries.content.forEach(inquiry => {
+        let str = "";
+        let answer = "";
+        let image = "";
+        let answerImage = "";
+
         if(inquiry.inquiryAnswerDTO != null) {
             const formattedDate = formatDate(new Date(inquiry.inquiryAnswerDTO.createdDate));
             answer = `
@@ -180,7 +181,7 @@ function showInquiryList(inquiries) {
                                             </ul>
                                         </div>
                                         <ul class="sep-list type3">
-                                            <li><a href="javascript:void(0)" class="btn_delete">삭제</a></li>
+                                            <li><a href="javascript:void(0)" class="btn_delete"></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -195,11 +196,18 @@ function showInquiryList(inquiries) {
                 `;
     });
     $inquiryAppend.append(text);
-    displayPaginationInquiry(inquiries.totalPages);
+    showPage(inquiries);
 }
 
+$(".paging-div").on("click", "a", function(e) {
+    e.preventDefault();
+    const targetPage = $(this).text();
+    page = parseInt(targetPage);
+    $inquiryAppend.empty();
+    myPageService.inquiryListAjax(page);
+});
 
-function displayPaginationInquiry(totalPages) {
+function mypageRestPaging(totalPages) {
     const $pagination = $(".pagination");
     $pagination.empty();
 
@@ -221,14 +229,4 @@ function displayPaginationInquiry(totalPages) {
         $pagination.append(`<a href="javascript:void(0)" id="next" class="arrow btn-page next"><span class="blind2">&gt;</span></a>`);
     }
 }
-
-$(".pagination").on("click", "a", function(e) {
-    e.preventDefault();
-    const targetPage = $(this).text();
-    page = parseInt(targetPage);
-    $inquiryAppend.empty();
-    myPageService.inquiryListAjax(page);
-});
-
-
 

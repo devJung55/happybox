@@ -7,7 +7,9 @@ import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.domain.SubscriptionDTO;
+import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.entity.subscript.SubscriptionLike;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.product.SubscriptionCartService;
 import com.app.happybox.service.subscript.FoodCalendarService;
 import com.app.happybox.service.subscript.SubscriptionLikeService;
@@ -21,6 +23,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,11 +70,12 @@ public class WelfareController {
         return welfareService.getListBySearch(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareName);
     }
     @GetMapping("detail/{id}")
-    public String goDetail(@PathVariable Long id, Model model) {
+    public String goDetail(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetail userDetail) {
         model.addAttribute("subscription", subscriptionService.findByIdWithDetail(id));
 
         // 좋아요 이미 눌렀는지 검사
-        model.addAttribute("isLike", subscriptionLikeService.checkLike(id, 1L));
+        boolean checkLike = userDetail != null && subscriptionLikeService.checkLike(id, userDetail.getId());
+        model.addAttribute("isLike", checkLike);
         return "welfare/welfareDetail";
     }
 
@@ -85,18 +89,25 @@ public class WelfareController {
     // 좋아요
     @PostMapping("detail/like/{subscriptionId}")
     @ResponseBody
-    public boolean checkLike(@PathVariable Long subscriptionId) {
-        // 임시 회원아이디 1L
-        return subscriptionLikeService.checkOutLike(subscriptionId, 1L);
+    public Integer checkLike(@PathVariable Long subscriptionId, @AuthenticationPrincipal UserDetail userDetail) {
+
+        int result = 0;
+        // 비로그인시
+        if(userDetail == null) {
+            return -1;
+        }
+        boolean check = subscriptionLikeService.checkOutLike(subscriptionId, userDetail.getId());
+        // 좋아요
+        result = check ? 1 : 0;
+        return result;
     }
 
      // 장바구니
     @PostMapping("cart/add/{subscriptionId}")
     @ResponseBody
-    public Long registerCart(@RequestBody SubscriptionCartDTO subscriptionCartDTO, @PathVariable Long subscriptionId) {
+    public Long registerCart(@AuthenticationPrincipal UserDetail userDetail, @RequestBody SubscriptionCartDTO subscriptionCartDTO, @PathVariable Long subscriptionId) {
         log.info(subscriptionCartDTO.toString());
-        // 임시로 회원아이디 1L 넣어둠, 추후 변경
-        return subscriptionCartService.saveCart(subscriptionCartDTO, 1L, subscriptionId);
+        return subscriptionCartService.saveCart(subscriptionCartDTO, userDetail.getId(), subscriptionId);
     }
 
     //    복지관 회원가입 폼
@@ -112,6 +123,22 @@ public class WelfareController {
         log.info("welfareDTO:" + welfareDTO);
         log.info("subscriptionWelFareDTO:" + subscriptionWelFareDTO);
         return new RedirectView("/login");
+    }
+
+//    구독했는지 확인
+    @GetMapping("check")
+    public Boolean checkSubscribe(@RequestParam("welfareId") Long welfareId){
+        return subscriptionService.existsByWelfareId(welfareId);
+    }
+
+//    cart안에 있는지 확인
+    @GetMapping("cart/check")
+    public Long checkCart(@RequestParam Long subscriptionId){
+        log.error("여기에 AJAX 쏴졌냐?>");
+        Long result = subscriptionCartService.subscriptionCartCheck(subscriptionId);
+        log.error("값이 나왔냐",result.toString());
+        return result;
+
     }
 
 }

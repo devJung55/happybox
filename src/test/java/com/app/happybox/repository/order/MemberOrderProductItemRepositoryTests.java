@@ -1,6 +1,7 @@
 package com.app.happybox.repository.order;
 
 import com.app.happybox.domain.MemberOrderProductItemDTO;
+import com.app.happybox.domain.SearchDateDTO;
 import com.app.happybox.entity.order.MemberOrderProductItem;
 import com.app.happybox.service.order.MemberOrderProductItemService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +21,18 @@ public class MemberOrderProductItemRepositoryTests {
     @Autowired private MemberOrderProductItemRepository memberOrderProductItemRepository;
     @Autowired private MemberOrderProductItemService memberOrderProductItemService;
 
-    @Test
-    public void findCancleListByMemberIdDescWithPagingTest() {
-        LocalDateTime startDate = LocalDateTime.of(2023, 2, 8, 0, 0);
-        LocalDateTime endDate = LocalDateTime.now();
 
-        memberOrderProductItemRepository
-                .findCancleListByMemberIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 1L, startDate, endDate)
-                .stream().map(MemberOrderProductItem::toString).forEach(log::info);
+    @Test
+    public void findOrderListTest() {
+        SearchDateDTO searchDateDTO = new SearchDateDTO();
+        searchDateDTO.setSetDate(LocalDateTime.of(2023, 05, 05, 0, 0));
+        memberOrderProductItemRepository.findOrderListByMemberIdAndSearchDateDescWithPaging_QueryDSL(
+                PageRequest.of(0, 5), 1L, searchDateDTO
+        ).stream().forEach(v -> {
+            log.info(v.getOrderAmount() + "");
+            log.info(v.getCreatedDate() + "");
+            log.info(v.getProduct().getProductName() + "");
+        });
     }
 
     @Test
@@ -41,16 +46,6 @@ public class MemberOrderProductItemRepositoryTests {
     }
 
     @Test
-    public void findCancleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL_Test() {
-        LocalDateTime startDate = LocalDateTime.of(2023, 2, 8, 0, 0);
-        LocalDateTime endDate = LocalDateTime.now();
-
-        memberOrderProductItemRepository
-                .findCancleListByDistributorIdAndSearchDateDescWithPaging_QueryDSL(PageRequest.of(0, 5), 42L, startDate, endDate)
-                .stream().map(MemberOrderProductItem::getMemberOrderProduct).forEach(v -> log.info(v.getMember().toString()));
-    }
-
-    @Test
     public void findSaleCountByDistributorAndPurchaseStatus_QueryDSL_Test() {
         log.info("saleCount : " + memberOrderProductItemRepository.findSaleCountByDistributorAndPurchaseStatus_QueryDSL(42L));
     }
@@ -58,11 +53,5 @@ public class MemberOrderProductItemRepositoryTests {
     @Test
     public void findCancleCountByDistributorAndPurchaseStatus_QueryDSL_Test() {
         log.info("cancleCount : " + memberOrderProductItemRepository.findCancleCountByDistributorAndPurchaseStatus_QueryDSL(42L));
-    }
-
-    @Test
-    public void memberOrderServiceTest() {
-        memberOrderProductItemService.getListByIdAndSearchDate(PageRequest.of(0, 5), 1L)
-                .stream().map(MemberOrderProductItemDTO::toString).forEach(log::info);
     }
 }

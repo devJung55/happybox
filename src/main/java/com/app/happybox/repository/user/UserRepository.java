@@ -21,5 +21,7 @@ public interface UserRepository extends JpaRepository<User, Long>, UserQueryDsl 
 //    id로 회원조회(UserDetailService)
     public Optional<User> findByUserId(String userName);
 
+//    이메일로 유저 찾기(Mail Send 용)
+    public Optional<User> findByUserEmail(String userEmail);
 
 }

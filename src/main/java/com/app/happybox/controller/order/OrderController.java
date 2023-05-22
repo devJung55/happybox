@@ -40,7 +40,7 @@ public class OrderController {
     private final ProductFileService productFileService;
 
     @GetMapping("product")
-    public String goProductOrderForm(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+    public String goProductOrderForm(@AuthenticationPrincipal UserDetail userDetail, OrderInfoDTO orderInfoDTO ,Model model) {
         Long id = userDetail.getId();
         log.error(id.toString(),"오류가난다");
         /* 회원의 전체 장바구니를 조회해옴 */
@@ -57,7 +57,7 @@ public class OrderController {
             productCartDTO.setProductFileDTO(productFileDTO);
         });
         log.error(productCartDTOS.toString(),"에러가난다");
-        
+        model.addAttribute("orderInfoDTO", orderInfoDTO);
         model.addAttribute("productCartDTOS",productCartDTOS);
         model.addAttribute("userDetail",userDetail);
         return "market/payment";
@@ -65,17 +65,24 @@ public class OrderController {
 
     @PostMapping("product")
     @ResponseBody
-    public Long orderProduct(@RequestParam("cartId") List<Long> cartIds, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO, @AuthenticationPrincipal UserDetail userDetail) {
+    public Long orderProduct(@RequestBody OrderInfoDTO orderInfoDTO, @AuthenticationPrincipal UserDetail userDetail) {
         Long id = userDetail.getId();
-        return productOrderService.saveProductOrder(cartIds, id, addressDTO, orderInfoDTO);
+        return productOrderService.saveProductOrder(orderInfoDTO);
+    }
+
+
+//    장바구니로 이동
+    @GetMapping("subscription")
+    public String goWelfareOrderForm(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        return "welfare/payment";
     }
 
 
     @PostMapping("subscription")
     @ResponseBody
-    public Integer register(@RequestParam("cartId") List<Long> cartIds, AddressDTO addressDTO, OrderInfoDTO orderInfoDTO, @AuthenticationPrincipal UserDetail userDetail) {
+    public Integer register(@RequestBody OrderInfoDTO orderInfoDTO, @AuthenticationPrincipal UserDetail userDetail) {
         Long id = userDetail.getId();
         // 임시 세션 ID 1L
-        return subscriptionOrderService.saveSubscriptionOrder(cartIds, id, addressDTO, orderInfoDTO);
+        return subscriptionOrderService.saveSubscriptionOrder(orderInfoDTO);
     }
 }

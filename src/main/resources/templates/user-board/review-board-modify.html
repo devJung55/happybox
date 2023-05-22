@@ -15,7 +15,6 @@
 <body>
 <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
 <root style="zoom: 90%">
-    <header></header>
     <section id="contents" class="container">
         <div class="content-wrap">
             <div class="frame-sm">
@@ -51,7 +50,6 @@
         </div>
         <!--// content-wrap -->
     </section>
-    <footer></footer>
 </root>
 <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
@@ -59,13 +57,6 @@
 <script th:inline="javascript">
     let fileDTOS = null;
     let reviewBoardDTO = [[${reviewBoardDTO}]];
-    if (reviewBoardDTO == null || reviewBoardDTO == undefined) {
-    } else {
-        fileDTOS = reviewBoardDTO.fileDTOS;
-    }
-
-
-
     console.log(reviewBoardDTO);
 </script>
 <script src="/js/main/header.js"></script>

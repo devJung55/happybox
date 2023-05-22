@@ -2,8 +2,11 @@ package com.app.happybox.controller.user;
 
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.user.Member;
+import com.app.happybox.entity.user.User;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.user.MemberService;
+import com.app.happybox.service.user.RandomKeyService;
+import com.app.happybox.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +26,8 @@ public class MemberController {
 
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
+    private final RandomKeyService randomKeyService;
 
     //    일반회원 회원가입으로 이동
     @GetMapping("join")
@@ -39,23 +44,19 @@ public class MemberController {
         return new RedirectView("/member/login");
     }
 
-//    logIn폼으로 이동
+    //    logIn폼으로 이동
     @GetMapping("login")
     public String goToLoginForm(){
         return "member/member-login";
     }
 
-
     //    아이디 찾기
     @GetMapping("find-id")
     public void goToFindId(){;}
 
-    //    아이디 찾기 실행
-    @PostMapping("find-id")
-    @ResponseBody
-    public String findId(String memberPhone) {
-        return memberService.findMemberIdByPhoneNumber(memberPhone).get();
-    }
+    //    비밀번호 찾기 페이지
+    @GetMapping("find-pw")
+    public void goToFindPw(){;}
 
     //    인증번호 보내기
     @PostMapping("sendCode")
@@ -73,4 +74,18 @@ public class MemberController {
         return code;
     }
 
+    //    비밀번호 변경 페이지 이동
+    @GetMapping("change-password")
+    public String goToChangePassword(String userEmail, String userRandomKey, Model model){
+        User user = userService.findUser(userEmail).get();
+        String latest = randomKeyService.getLatestRandomKey(user.getId()).getRanKey();
+        if (!userRandomKey.equals(latest)) {
+            return "/";
+        }
+
+        model.addAttribute("userEmail", userEmail);
+//        새로운 랜덤 키값으로 바꿔주기
+        randomKeyService.updateRandomKey(user.getId());
+        return "member/change-password";
+    }
 }
