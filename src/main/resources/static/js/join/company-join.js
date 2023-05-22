@@ -131,17 +131,17 @@ $joinInputs.on('blur', function () {
     $joinHelp.eq(i).text(joinRegexMessages[i]);
     return;
   }
-
+console.log("i의 숫자는?", i);
   // 아이디 중복 검사
   if (i == 0) {
-    '#btn-id-check'.click(function () {
+    $('#btn-id-check').click(function () {
       $.ajax({
-        type: 'POST',
-        url: '/member/checkId',
-        data: { memberIdentification: value },
+        type: 'GET',
+        url: '/checkUserId',
+        data: { userId: value },
         success: function (result) {
           $joinHelp.eq(i).show();
-          if (result != 'success') {
+          if (result) {
             joinCheckAll[i] = false;
             $joinHelp.eq(i).text('중복된 아이디입니다.');
           } else {
@@ -154,39 +154,30 @@ $joinInputs.on('blur', function () {
   } else if (i == 4) {
       $(".join-phone-btn").click(function () {
           $.ajax({
-              type: "POST",
-              url: "/member/checkPhone",
-              data: {memberPhone: value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)},
+              type: "GET",
+              url: "/checkUserPhoneNumber",
+              data: {userPhoneNumber: value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)},
               success: function (result) {
                   let message;
-                  if (result != "success") {
+                  if (result) {
                       message = "중복된 휴대폰 번호입니다.";
                       $joinHelp.eq(i).show();
                       $joinHelp.eq(i).css('color', 'red')
                       $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+                      $joinHelp.eq(i).text(message);
                       phoneNumberCheck = false;
                       joinCheckAll[i] = false;
                   } else {
-                      let modalMessage = "인증번호가 전송되었습니다.";
-                      showWarnModal(modalMessage);
+                      message = "사용가능한 번호입니다.";
                       $joinHelp.eq(i).hide();
                       console.log(i);
                       $joinInputs.eq(i).css('border', '1px solid #05AE68');
+                      $joinHelp.eq(i).text(message);
                       phoneNumberCheck = true;
                       joinCheckAll[i] = true;
                       let phone = $(".join-phone").val().replaceAll("-", "");
                       console.log(phone);
-                      $.ajax({
-                          type: "POST",
-                          url: "/member/checkSms",
-                          data: {memberPhone: phone},
-                          success: function(data) {
-                              console.log(data);
-                              code = data;
-                          }
-                      });
                   }
-                  $joinHelp.eq(i).text(message);
               }
           });
       });
@@ -233,15 +224,17 @@ $joinInputs.on('blur', function () {
   $joinHelp.eq(i).hide();
 });
 
-// function send() {
-//     if (joinCheckAll.filter((check) => check).length != $joinInputs.length) {
-//       alertModal('가입 정보를 확인하세요.');
-//     } else if ($addressInput.val() == '') {
-//       alertModal('주소를 입력하세요.');
-//     } else if($addressDetailInput.val() == ''){
-//       alertModal('상세주소를 입력하세요.')
-//     }
-//   }
+function send() {
+    if (joinCheckAll.filter((check) => check).length != $joinInputs.length) {
+      alertModal('가입 정보를 확인하세요.');
+    } else if ($addressInput.val() == '') {
+      alertModal('주소를 입력하세요.');
+    } else if($addressDetailInput.val() == ''){
+      alertModal('상세주소를 입력하세요.')
+    }else {
+        document.join.submit();
+    }
+  }
 
   function alertModal(errorMsg) {
     $("div#content-wrap").html(errorMsg)

@@ -857,7 +857,7 @@
       </div>
     </div>
     <!-- ============================== 회원가입 쪽 ==================================================-->
-    <form th:action="@{/member/join}" id="join-general-form" name="join-general-form" th:method="post" autocomplete="off" th:object="${memberDTO}">
+    <form th:action="@{/member/join}" id="join-general-form" name="join" th:method="post" autocomplete="off" th:object="${memberDTO}">
       <div class="join-container join-container2" style="display: none">
         <div class="join-area">
           <h2 class="join-title">회원가입</h2>
@@ -1130,7 +1130,7 @@
           </fieldset>
           <div class="btn-bottom-area">
             <button
-                    type="submit"
+                    type="button"
                     id="member-join-general-submit-btn"
                     class="btn-basic-lg2 btn-dim btn-primary"
                     onclick="send()"
@@ -1216,6 +1216,7 @@
                     <div class="btn-area">
                       <button
                               type="button"
+                              id="find-member-pw-certi-phone-btn"
                               class="btn-basic-md btn-navy w-full"
                               onclick="onClickLoginCertiPopSendSms()"
                       >
@@ -1249,7 +1250,7 @@
 
                 <div class="layer-content">
                   <p class="message">
-                    010-1234-1234로 인증번호가 발송되었습니다.<br />인증번호 입력 후 확인버튼을
+                    <p id="phone-num" style="font-weight: bold"></p>로 인증번호가 발송되었습니다.<br />인증번호 입력 후 확인버튼을
                     눌러주세요.
                   </p>
 
