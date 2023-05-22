@@ -75,14 +75,16 @@ public class InquiryServiceImpl implements InquiryService {
     //    문의등록
     @Override
     @Transactional
-    public void inquiryWrite(InquiryDTO inquiryDTO) {
+    public void inquiryWrite(InquiryDTO inquiryDTO, Long id) {
         Inquiry inquiry = toInquiryEntity(inquiryDTO);
 //        임시로 1번으로 할당, 로그인 회원가입 완료되면 세션에서 받아온 id값 전달
-        inquiry.setUser(memberRepository.findById(1L).get());
+        inquiry.setUser(memberRepository.findById(id).get());
         inquiryRepository.save(inquiry);
-        List<InquiryFile> inquiryFiles = toInquiryEntity(inquiryDTO).getInquiryFiles();
-        inquiryFiles.forEach(inquiryFile -> inquiryFile.setInquiry(inquiry));
-        inquiryFileRepository.saveAll(inquiryFiles);
+        if(inquiryDTO.getInquiryFileDTOS() != null) {
+            List<InquiryFile> inquiryFiles = toInquiryEntity(inquiryDTO).getInquiryFiles();
+            inquiryFiles.forEach(inquiryFile -> inquiryFile.setInquiry(inquiry));
+            inquiryFileRepository.saveAll(inquiryFiles);
+        }
     }
 
     @Override

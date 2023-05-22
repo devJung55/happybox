@@ -3,6 +3,7 @@ package com.app.happybox.controller.cs;
 import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.PageDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.customer.NoticeSearch;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.cs.NoticeService;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
@@ -54,9 +57,10 @@ public class CsController {
 
     //    문의 작성
     @PostMapping("write")
-    public RedirectView writeInquiry(InquiryDTO inquiryDTO) {
-        inquiryService.inquiryWrite(inquiryDTO);
-    //    나중에 마이페이지 문의 목록으로 이동해야 함
+    public RedirectView writeInquiry(InquiryDTO inquiryDTO, HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        inquiryService.inquiryWrite(inquiryDTO, memberDTO.getId());
+        //    나중에 마이페이지 문의 목록으로 이동해야 함
         return new RedirectView("/cs/notice");
     }
 
