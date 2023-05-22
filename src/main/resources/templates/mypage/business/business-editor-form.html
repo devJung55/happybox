@@ -5,75 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보수정</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/member/member.css">
-    <link rel="stylesheet" href="../../../static/css/member/join.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/member/member.css">
+    <link rel="stylesheet" href="/css/member/join.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
     <div class="wrap">
-      <section id="contents" class="container">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+      <section class="container">
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-
-                <div class="frame-sm">
-
-
-                    <!-- // side-bar.html -->
-
-
+                <div class="header-stage" th:insert="~{mypage/business/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
+                <div class="frame-sm" style="margin-top: 30px;">
+                    <div class="header-stage" th:insert="~{mypage/business/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area" style="margin-bottom: 6px;">
                                 <h3 class="title-menu">회원정보수정</h3>
                             </div><!--// menu-title-area -->
                             <section id="contents" class="container" style="border-top: 1px solid #666;">
-                                <form id="join-general-form" name="join-general-form">
+                                <form id="join-general-form" name="editForm" th:object="${distributorDTO}" th:method="post">
                                     <div class="join-container join-container2" style="background-color: #fff; padding: 0;">
                                       <div class="join-area" style="margin: 0; padding: 15px 100px 90px;">
                                         <fieldset class="form-group-area">
                                           <legend>회원가입 항목 작성</legend>
-
-
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-join-general-id-text" class="form-label">아이디<i class="es2"></i></label>
                                             </div>
-                                            <!--// form-head -->
                                             <div class="input-group type-lg w-full">
-                                              <input type="text" id="member-join-general-id-text" name="member-join-general-id-text" class="input-text w571 join-input" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능" value="" readonly/>
+                                                <input type="hidden" th:field="*{id}">
+                                              <input type="text" id="member-join-general-id-text" name="member-join-general-id-text" class="input-text w571 join-input" placeholder="4~16자 이상 영문 또는 숫자만 사용 가능" style="background: #F3F6FF;" th:field="*{userId}" readonly/>
                                             </div>
                                             <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                           </div>
-
-
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-join-general-pw-text" class="form-label">비밀번호<i class="es2"></i></label>
                                             </div>
                                             <div class="input-group type-lg w-full">
-                                              <input type="password" id="member-join-general-pw-text" name="member-join-general-pw-text" class="input-text w571 join-input" placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수"/>
+                                              <input type="password" id="member-join-general-pw-text" name="member-join-general-pw-text" class="input-text w571 join-input" placeholder="6 ~ 16자 영문, 숫자, 특수문자 1개 이상씩 혼용 필수" th:field="*{userPassword}"/>
                                             </div>
                                             <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                             <div class="input-group type-lg w-full">
-                                              <input type="password" id="member-join-general-pw-confirm-text" name="member-join-general-pw-confirm-text" class="input-text w571 join-input" placeholder="비밀번호 확인"/>
+                                              <input type="password" id="member-join-general-pw-confirm-text" name="member-join-general-pw-confirm-text" class="input-text w571 join-input" placeholder="비밀번호 확인" th:field="*{userPassword}"/>
                                             </div>
                                             <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                           </div>
-
-
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-general-join-name-text" class="form-label">업체명<i class="es2"></i></label>
                                             </div>
                                             <div class="input-group type-lg w-full">
-                                              <input type="text" id="member-general-join-name-text" name="member-general-join-name-text" class="input-text w571 join-input" placeholder="2자 이상 입력" value=""/>
+                                              <input type="text" id="member-general-join-name-text" name="member-general-join-name-text" class="input-text w571 join-input" placeholder="2자 이상 입력" th:field="*{distributorName}"/>
                                             </div>
                                             <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                           </div>
@@ -84,7 +78,7 @@
                                               <label for="member-general-join-tel-text" class="form-label">전화번호<i class="es2"></i></label>
                                             </div>
                                             <div class="input-group type-lg w-full">
-                                              <input type="text" id="member-general-join-tel-text" name="member-general-join-tel-text" class="input-text w571" placeholder="전화번호" value=""/>
+                                              <input type="text" id="member-general-join-tel-text" name="member-general-join-tel-text" class="input-text w571" placeholder="전화번호" th:field="*{userPhoneNumber}"/>
                                             </div>
                                             <p class="valid error" id="pw-error-text1" style="display: none"></p>
                                           </div>
@@ -95,18 +89,28 @@
                                               <label for="member-general-join-address-text" class="form-label">주소<i class="es2"></i></label>
                                             </div>
                                             <div class="input-group type-lg w-full">
-                                              <input type="text" id="address-kakao" name="member-general-join-address-text" class="input-text w571" placeholder="주소" value="" readonly />
+                                              <input type="text" id="address-kakao" name="member-general-join-address-text" class="input-text w571" placeholder="주소" th:field="*{address.firstAddress}" readonly />
                                             </div>
                                             <p class="valid error" id="pw-error-text1" style="display: none"></p>
                                           </div>
 
+                                            <div class="form-group">
+                                                <div class="form-head">
+                                                    <label for="" class="form-label">우편번호<i class="es2"></i></label>
+                                                </div>
+                                                <!--// form-head -->
+                                                <div class="input-group type-lg w-full">
+                                                    <input type="text" id="zone-code" name="address.zipcode" class="input-text w571" placeholder="우편번호" th:field="*{address.zipcode}" readonly/>
+                                                </div>
+                                                <p class="valid error" id="pw-error-text1" style="display: none"></p>
+                                            </div>
 
                                           <div class="form-group">
                                             <div class="form-head">
                                               <label for="member-general-join-detail-address-text" class="form-label">상세주소</i></label>
                                             </div>
                                             <div class="input-group type-lg w-full">
-                                              <input type="text" id="address-kakao" name="member-general-join-detail-address-text" class="input-text w571" placeholder="상세주소" value=""/>
+                                              <input type="text" id="address-kakao" name="member-general-join-detail-address-text" class="input-text w571" placeholder="상세주소" th:field="*{address.addressDetail}"/>
                                             </div>
                                             <p class="valid error" id="pw-error-text1" style="display: none"></p>
                                           </div>
@@ -117,7 +121,7 @@
                                               <label for="member-join-general-email-text" class="form-label" >이메일<i class="es2"></i></label>
                                             </div>
                                             <div class="input-group type-lg w-full">
-                                              <input type="text" id="member-join-general-email-text" name="member-join-general-email-text" class="input-text w571 join-input" placeholder="이메일 주소" value=""/>
+                                              <input type="text" id="member-join-general-email-text" name="member-join-general-email-text" class="input-text w571 join-input" placeholder="이메일 주소" th:field="*{userEmail}"/>
                                               <p class="valid error help" id="pw-error-text1" style="display: none"></p>
                                             </div>
                                           </div>
@@ -136,13 +140,20 @@
                             </section>
                         </div>
                     </div>
-                </div><!-- // frame-sm -->
-            </div><!-- // content-wrap -->
+                </div>
+            </div>
         </section>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../../../static/js/join/join.js"></script>
-<script src="../../../static/js/join/business-join.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/join/join.js"></script>
+<script src="/js/join/business-join.js"></script>
+<script>
+    $(".btn_update").on("click", function() {
+        $(document.editForm).attr("href", "/mypage/distributor/edit");
+        $(document.editForm).submit();
+    });
+</script>
 </html>

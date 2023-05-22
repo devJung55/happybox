@@ -27,4 +27,8 @@ public class Distributor extends User{
         super(id, userId, userPassword, address, userEmail, userPhoneNumber, userStatus, userRole);
         this.distributorName = distributorName;
     }
+
+    public void setDistributorName(String distributorName) {
+        this.distributorName = distributorName;
+    }
 }

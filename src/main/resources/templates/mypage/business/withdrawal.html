@@ -5,34 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원탈퇴</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/withdrawal.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/withdrawal.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
     <div class="wrap">
         <section id="contents" class="container">
+            <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-
+                <div class="header-stage" th:insert="~{mypage/business/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm">
-
-
-                    <!-- // side-bar.html -->
-
-
+                    <div class="header-stage" th:insert="~{mypage/business/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <div class="menu-title-area">
                                 <h3 class="title-menu">회원 탈퇴</h3>
-                            </div><!--// menu-title-area -->
-
+                            </div>
                             <div class="board-form type3">
                                 <div class="input-guide-box type2">
                                     <div class="inner">
@@ -43,36 +42,39 @@
                                             * 탈퇴하신 후 동일한 이메일, 휴대폰 번호로 재 가입은 탈퇴일로부터 90일 이후 가능합니다.
                                         </div>
                                     </div>
-                                </div><!--// input-guide-box -->
-                                <form id="frm" name="withdrawalForm" action="">
+                                </div>
+                                <form id="frm" name="withdrawalForm" th:action="@{/mypage/distributor/unregister}" th:method="post">
                                     <div class="secess-area">
                                         <fieldset class="form-group-area">
                                             <div class="form-group">
                                                 <div class="form-head">
                                                     <strong class="form-tit type2">탈퇴사유 및 개선점</strong>
-                                                </div><!--// form-head -->
+                                                </div>
                                                 <div class="textarea-box h160">
                                                     <textarea id="withdrawCont" name="withdrawCont" placeholder="HappyBox에게 해주고 싶은 말씀을 자유롭게 입력해 주세요."></textarea>
                                                 </div>
-                                            </div><!--// form-group -->
+                                            </div>
                                         </fieldset>
                     
                                         <div class="btn-bottom-area">
                                             <button type="button" class="btn-basic-lg2 btn-default-ex btn_cancel">
                                                 <span>취소</span>
                                             </button>
-                                            <button type="button" class="btn-basic-lg2 btn-black btn_submit">
+                                            <button type="submit" class="btn-basic-lg2 btn-black btn_submit">
                                                 <span>확인</span>
                                             </button>
-                                        </div><!--// btn-bottom-area -->
+                                        </div>
                                     </div>
                                 </form>
                             </div>
-                        </div><!--// frame-cnt-inner -->
-                    </div><!-- // frame-right -->
-                </div><!-- // frame-sm -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
 </html>

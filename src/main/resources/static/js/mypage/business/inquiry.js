@@ -2,6 +2,9 @@
 
 /* 문의 내역 클릭 이벤트 */
 
+const $arrows = $(".arrow-0deg");
+const $inquiryDetail = $(".ui-accordion-view");
+
 $(".inquiry__list__append").on("click", ".arrow-0deg", function() {
     $(this).each((i, arrow) => {
         $(arrow).on("click", function() {
@@ -22,7 +25,7 @@ $(".inquiry__list__append").on("click", ".arrow-0deg", function() {
 /*------------------------------------------------------------------------------*/
 
 
-myPageService.inquiryListAjax();
+myPageDistributorService.inquiryListAjax();
 const $inquiryAppend = $(".inquiry__list__append");
 let page = 0;
 

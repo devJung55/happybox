@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
 </head>
 <body>
-    <div class="frame-left">
+    <div th:fragment="side-bar" class="frame-left">
         <div class="aside-menu-wrap">
             <nav class="aside-menu">
                 <ul class="menu-list">
@@ -19,14 +19,13 @@
                             <li class=""><a href="javascirpt:void(0)">상품목록</a></li>
                             <li class=""><a href="javascirpt:void(0)">상품등록</a></li>
                             <li class=""><a href="javascirpt:void(0)">판매내역</a></li>
-                            <li class=""><a href="javascirpt:void(0)">취소내역</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascirpt:void(0)" class="menu">문의관리</a>
                         <ul class="depth2">
                             <li>
-                                <a href="javascirpt:void(0)">문의내역</a>
+                                <a th:href="@{/mypage/distributor/inquiry}">문의내역</a>
                             </li>
                         </ul>
                     </li>
@@ -34,16 +33,16 @@
                         <a href="javascirpt:void(0)" class="menu">회원정보관리</a>
                         <ul class="depth2">
                             <li>
-                                <a href="javascirpt:void(0)">정보수정</a>
+                                <a th:href="@{/mypage/distributor/edit}">정보수정</a>
                             </li>
                             <li>
-                                <a href="javascirpt:void(0)">회원탈퇴</a>
+                                <a th:href="@{/mypage/distributor/unregister}">회원탈퇴</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
-            </nav><!--// menu-mypage -->
-        </div><!--// aside-menu-wrap -->
+            </nav>
+        </div>
     </div>
 </body>
 </html>
