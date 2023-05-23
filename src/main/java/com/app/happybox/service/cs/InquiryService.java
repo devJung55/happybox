@@ -38,6 +38,9 @@ public interface InquiryService {
 //    관리자페이지 문의내역 조회
     public Page<InquiryDTO> getInquiries(Pageable pageable);
 
+//    관리자페이지 문의내역 삭제
+    public void deleteInquiries(List<Long> ids);
+
     //    문의사항 상세보기
     public InquiryDTO getInquiryDetailById(Long id);
 

@@ -36,7 +36,7 @@ public class Inquiry extends Period {
     @Enumerated(EnumType.STRING) @ColumnDefault(value = "'STANDBY'")
     private InquiryStatus inquiryStatus;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "inquiry")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "inquiry")
     private List<InquiryFile> inquiryFiles = new ArrayList<>();
 
     public Inquiry(String inquiryTitle, String inquiryContent, InquiryType inquiryType) {

@@ -127,6 +127,13 @@ public class InquiryServiceImpl implements InquiryService {
         return new PageImpl<>(inquiryDTOList, pageable, inquiryPage.getTotalElements());
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteInquiries(List<Long> ids) {
+        log.info("===============" + ids);
+        inquiryRepository.deleteAllById(ids);
+    }
+
 
     // 상세보기
     @Override
