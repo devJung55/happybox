@@ -6,8 +6,6 @@ import com.app.happybox.domain.MemberOrderProductItemDTO;
 import com.app.happybox.domain.SearchDateDTO;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.user.DistributorDTO;
-import com.app.happybox.domain.user.MemberDTO;
-import com.app.happybox.entity.order.MemberOrderProductItem;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
@@ -84,17 +82,16 @@ public class DistributorMypageController {
 //    상품 등록
     @MypageHeaderValues
     @GetMapping("distributor/register")
-    public String registerProduct(@AuthenticationPrincipal UserDetail userDetail, ProductDTO productDTO, Model model) {
-        model.addAttribute("productDTO", productDTO);
+    public String registerProduct(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+        model.addAttribute("productDTO", new ProductDTO());
         return "/mypage/business/product-register";
     }
 
 //    상품 등록
     @PostMapping("distributor/register")
     @ResponseBody
-    public void registerProduct(@AuthenticationPrincipal UserDetail userDetail, ProductDTO productDTO) {
+    public void registerProduct(@AuthenticationPrincipal UserDetail userDetail, @RequestBody ProductDTO productDTO) {
         log.info(productDTO.toString());
-
         productService.saveProduct(userDetail.getId(), productDTO);
     }
 

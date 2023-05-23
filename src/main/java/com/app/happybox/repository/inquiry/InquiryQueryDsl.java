@@ -22,5 +22,6 @@ public interface InquiryQueryDsl {
 //    관리자 문의 목록
     public Page<Inquiry> findInquiryListWithPaging_QueryDSL(Pageable pageable);
 
-//
+//    관리자 문의 삭제
+    public Long deleteByIds_QueryDSL(List<Long> ids);
 }

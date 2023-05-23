@@ -1,17 +1,17 @@
-
 const $NoticeListWrap = $(".info-table table");
 let page = 1;
 const PAGE_AMOUNT = 10;
+const $deleteBtn = $(".delete-button");
 
 function doSearch(pageBtn) {
 
-    if(pageBtn) {
+    if (pageBtn) {
         page = $(pageBtn).data("page");
     }
 
     $.ajax({
         url: `/admin/inquiry/list`,
-        data: {page : page},
+        data: {page: page},
         success: function (data) {
             $NoticeListWrap.empty();
             console.log(data);
@@ -65,21 +65,20 @@ function appendList(inquiry) {
     let isAnswered = inquiry.inquiryStatus !== "STANDBY";
 
     text = `
-        <tr class="table-cel" data-isanswered="${isAnswered}" data-id="${inquiry.id}" onclick="ifStandByRedirect(this)">
+        <tr class="table-cel" data-id="${inquiry.id}">
             <td>
                 <label class="check-label">
-                    <input type="checkbox" name="check">
+                    <input data-isanswered="${isAnswered}" type="checkbox" name="check">
                 </label>
             </td>
             <td>${inquiry.id}</td>
-            <td>${inquiry.inquiryTitle}</td>
-            <td>${inquiry.inquiryContent}</td>
-            <td>${inquiry.userId}</td>
-            <td>${inquiry.createdDate.toString().split("T")[0]}</td>
+            <td data-isanswered="${isAnswered}" data-id="${inquiry.id}" onclick="ifStandByRedirect(this)">${inquiry.inquiryTitle}</td>
+            <td data-isanswered="${isAnswered}" data-id="${inquiry.id}" onclick="ifStandByRedirect(this)">${inquiry.inquiryContent}</td>
+            <td data-isanswered="${isAnswered}" data-id="${inquiry.id}" onclick="ifStandByRedirect(this)">${inquiry.userId}</td>
+            <td data-isanswered="${isAnswered}" data-id="${inquiry.id}" onclick="ifStandByRedirect(this)">${inquiry.createdDate.toString().split("T")[0]}</td>
             <td>${inquiry.inquiryStatus}</td>
         </tr>
     `;
-
 
 
     $NoticeListWrap.append(text);
@@ -92,7 +91,7 @@ function appendTableHead() {
                 <tr>
                     <th>
                         <label class="check-label">
-                            <input type="checkbox" id="allSelect">
+                            <input type="checkbox" id="allSelect" onclick="checkAll(this)">
                         </label>
                     </th>
                     <th>No</th>
@@ -108,7 +107,7 @@ function appendTableHead() {
 }
 
 function ifStandByRedirect(btn) {
-    if($(btn).data("isanswered")) {
+    if ($(btn).data("isanswered")) {
         return;
     }
     location.href = `/admin/inquiry/detail/${$(btn).data("id")}`;
@@ -116,3 +115,25 @@ function ifStandByRedirect(btn) {
 
 /* 로딩시 바로 불러옴 */
 doSearch();
+
+$deleteBtn.on("click", function () {
+    let ids = new Array();
+    $("input[name=check]:checked").each((i, e) => {
+        // 답변 완료했으면 지나감
+        console.log($(e).data("isanswered"));
+        if($(e).data("isanswered")) return;
+        ids.push($(".table-cel").eq(i).data("id"));
+    });
+
+    $.ajax({
+        type: "DELETE",
+        url: "/admin/inquiry/delete",
+        data: JSON.stringify({ids : ids}),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            doSearch();
+        }
+    });
+});

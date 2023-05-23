@@ -11,4 +11,9 @@ $("input[name=check]").click(function() {
     else $("#allSelect").prop("checked", true); 
 });
 
+function checkAll(btn) {
+    let check = $(btn).is(":checked");
+    $("input[name=check]").prop("checked", check);
+}
+
 const pageButton = $(".page-button");

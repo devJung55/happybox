@@ -2,6 +2,7 @@ package com.app.happybox.repository.inquiry;
 
 import com.app.happybox.entity.customer.Inquiry;
 import com.app.happybox.entity.customer.QInquiry;
+import com.app.happybox.entity.customer.QInquiryAnswer;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.customer.QInquiry.inquiry;
+import static com.app.happybox.entity.customer.QInquiryAnswer.inquiryAnswer;
 
 
 @RequiredArgsConstructor
@@ -67,5 +69,16 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
         Long count = query.select(inquiry.id.count()).from(inquiry).fetchOne();
 
         return new PageImpl<>(inquiryList, pageable, count);
+    }
+
+    @Override
+    public Long deleteByIds_QueryDSL(List<Long> ids) {
+        query.delete(inquiryAnswer)
+                .where(inquiryAnswer.inquiry.id.in(ids))
+                .execute();
+
+        return query.delete(inquiry)
+                .where(inquiry.id.in(ids))
+                .execute();
     }
 }
