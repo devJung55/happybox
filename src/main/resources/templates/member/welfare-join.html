@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/global/global.css"/>
     <link rel="stylesheet" href="/css/member/member.css"/>
     <link rel="stylesheet" href="/css/member/join.css"/>
+    <link rel="stylesheet" href="/css/member/modal.css"/>
 </head>
 <body>
 <header></header>
@@ -306,10 +307,200 @@
             </div>
         </form>
     </section>
+    <!-- 복지관 검색 모달창 -->
+    <section class="search-modal-wrap disNone">
+        <div class="layer-pop order-search-pop">
+            <div class="layer-inner">
+                <div class="layer-head">
+                    <h4 class="layer-pop-title">복지관 검색</h4>
+                </div>
+                <div class="welfare-layer-content">
+                    <!-- 검색바 -->
+                    <div class="search-box ui-toggle on">
+                        <div class="input-group w-full">
+                            <input
+                                    type="text"
+                                    name="welfare-selection"
+                                    class="input-text h40"
+                                    placeholder="복지관을 검색하세요"
+                                    value=""
+                            />
+                            <span class="input-group-btn">
+                                    <button type="button" class="btn-form btn-ex-white w150 find-btn">
+                                        <span>복지관 검색</span>
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                    <div id="productPop">
+                        <div class="board-list">
+                            <table class="API-table">
+                                <thead class="thead"></thead>
+                                <tbody class="tbody"></tbody>
+                            </table>
+                            <ul class="select-form-list">
+                                <!-- 데이터 없으면 disNone으로 -->
+                                <li>
+                                    <div class="no-data">
+                                        <p class="find-message">내역이 없습니다.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-area">
+                    <button type="button" class="btn-basic-md btn-grey3 modalClose">
+                        <span>취소</span>
+                    </button>
+                    <button type="button" class="btn-basic-md btn-black welfareSelect">
+                        <span>선택</span>
+                    </button>
+                </div>
+                <!--// layer-content -->
+                <button type="button" class="btn-x-md2 ui-close-pop modalClose" title="닫기">
+                    <i class="ico-x-black">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                id="Layer_1"
+                                style="enable-background: new 0 0 64 64"
+                                version="1.1"
+                                viewBox="0 0 64 64"
+                                xml:space="preserve"
+                        >
+                        <style type="text/css">
+                            .st0 {
+                                fill: #333;
+                            }
+                        </style>
+                            <g>
+                            <g
+                                    id="Icon-Close"
+                                    transform="translate(381.000000, 231.000000)"
+                            >
+                            <polyline
+                                    class="st0"
+                                    id="Fill-16"
+                                    points="-370.7,-174.7 -373,-177 -327,-223 -324.7,-220.7 -370.7,-174.7    "
+                            />
+                                <polyline
+                                        class="st0"
+                                        id="Fill-17"
+                                        points="-327,-174.7 -373,-220.7 -370.7,-223 -324.7,-177 -327,-174.7    "
+                                />
+                            </g>
+                        </g>
+                    </svg>
+                    </i>
+                </button>
+            </div>
+        </div>
+    </section>
 </root>
 <footer></footer>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/join/company-join.js"></script>
+<script>
+    // target에 display: none 부여 or 제거
+    function disNone(target) {
+        let check = target.hasClass("disNone");
+
+        if (check) {
+            target.removeClass("disNone");
+        } else target.addClass("disNone");
+    }
+
+    const $welfareSearchBtn = $('#member-general-join-name-text');
+    const $searchModalWrap = $(".search-modal-wrap");
+
+    // 모달열기
+    $welfareSearchBtn.on("click", () => disNone($searchModalWrap));
+    // 닫기
+    $searchModalWrap.find(".modalClose").on("click", () => disNone($searchModalWrap));
+
+    $('.find-btn').on('click', function () {
+        let url = "http://openapi.seoul.go.kr:8088/63455a5a69646576313363576d774c/json/fcltOpenInfo/1/400/";
+        let search = $('input[name=welfare-selection]').val()
+        let count = 0;
+
+        $.ajax({
+            url: url,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                /* 새로 요청할 때마다 기존에 있는 내역 지워주기 */
+                $('.tbody').empty();
+                let jsonData = data.fcltOpenInfo.row;
+                let table = $('.API-table').addClass('data-table');
+                /* 헤더 생성 */
+                let headerRow = $('<tr>');
+
+                headerRow.append($('<th>').text('시설명'));
+                headerRow.append($('<th>').text('시설주소'));
+                headerRow.append($('<th>').text('전화번호'));
+                headerRow.append($('<th>').text('우편번호'));
+
+                // ... 필요한 만큼 필드 추가
+                $('.thead').html(headerRow);
+
+                // 검색어를 포함한 데이터만 출력
+                if (search) {
+                    jsonData.forEach(function(rowData) {
+                        let flctNm = rowData.FCLT_NM;
+                        if (flctNm.includes(search)) {
+                            count++;
+                            let row = $('<tr class="API-data">');
+                            row.append($('<td>').text(rowData.FCLT_NM));
+                            row.append($('<td>').text(rowData.FCLT_ADDR));
+                            row.append($('<td style="text-align: center">').text(rowData.FCLT_TEL_NO));
+                            row.append($('<td style="text-align: center">').text(rowData.FCLT_ZIPCD));
+
+                            // ... 필요한 만큼 필드 추가
+                            $('.tbody').append(row);
+                        }
+                    });
+                } else {
+                    jsonData.forEach(function(rowData) {
+                        let row = $('<tr class="API-data">');
+                        row.append($('<td>').text(rowData.FCLT_NM));
+                        row.append($('<td>').text(rowData.FCLT_ADDR));
+                        row.append($('<td style="text-align: center">').text(rowData.FCLT_TEL_NO));
+                        row.append($('<td style="text-align: center">').text(rowData.FCLT_ZIPCD));
+                        count++;
+
+                        // ... 필요한 만큼 필드 추가
+                        $('.tbody').append(row);
+                    });
+                }
+                const $dataRows = $('.tbody .API-data');
+
+                $dataRows.each((i, v) => {
+                    $(v).on('click', function () {
+                        let value = $(this).children().first().text();
+                        // 이미 선택된 dataRow인지 확인
+                        const isSelected = $(v).hasClass('selected');
+
+                        // 모든 dataRow에서 selected 클래스 제거
+                        $dataRows.removeClass('selected');
+
+                        if (!isSelected) {
+                            // 선택된 dataRow가 아니라면 selected 클래스 추가
+                            $(v).addClass('selected');
+                        }
+                        //  선택 버튼을 누르면 선택한 값을 가져가기
+                        $('.welfareSelect').on('click', function () {
+                            $('input[name=welfareName]').val(value)
+                            $searchModalWrap.addClass("disNone")
+                        })
+                    })
+                })
+                console.log("조건에 맞는 rowData의 수: " + count);
+            }
+        });
+        $('.select-form-list').hide();
+    })
+</script>
 </html>
