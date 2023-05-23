@@ -1,9 +1,6 @@
 package com.app.happybox.controller.admin;
 
-import com.app.happybox.domain.NoticeDTO;
-import com.app.happybox.domain.OrderSubscriptionDTO;
-import com.app.happybox.domain.PageDTO;
-import com.app.happybox.domain.PaymentDTO;
+import com.app.happybox.domain.*;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.domain.user.UserFileDTO;
@@ -21,6 +18,7 @@ import com.app.happybox.service.board.BoardService;
 import com.app.happybox.service.board.DonationBoardService;
 import com.app.happybox.service.board.RecipeBoardService;
 import com.app.happybox.service.board.ReviewBoardService;
+import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.cs.NoticeService;
 import com.app.happybox.service.order.OrderSubsciptionService;
 import com.app.happybox.service.payment.PaymentService;
@@ -30,9 +28,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -52,8 +54,9 @@ public class AdminController {
     private final ReviewBoardService reviewBoardService;
     private final DonationBoardService donationBoardService;
     private final PaymentService paymentService;
+    private final InquiryService inquiryService;
 
-//    기부 게시물 목록
+    //    기부 게시물 목록
     @GetMapping("donationBoard-list")
     public String getDonationList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<DonationBoardDTO> list = donationBoardService.adminGetList(PageRequest.of(page - 1, 10));
@@ -64,7 +67,7 @@ public class AdminController {
         return "admin/admin-donateBoardList";
     }
 
-//    후기 게시물 목록
+    //    후기 게시물 목록
     @GetMapping("reviewBoard-list")
     public String getReviewBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<ReviewBoardDTO> list = reviewBoardService.getList(PageRequest.of(page - 1, 10));
@@ -73,7 +76,7 @@ public class AdminController {
         return "/admin/admin-reviewBoardList";
     }
 
-//    후기 게시물 조회
+    //    후기 게시물 조회
     @ResponseBody
     @GetMapping("reviewBoard-detail")
     public ReviewBoardDTO getReviewBoardDetail(@RequestParam("reviewBoardId") Long reviewBoardId) {
@@ -81,7 +84,7 @@ public class AdminController {
         return reviewBoardDTO;
     }
 
-//    레시피 게시물 목록
+    //    레시피 게시물 목록
     @GetMapping("recipeBoard-list")
     public String getRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<RecipeBoardDTO> list = recipeBoardService.getList(PageRequest.of(page - 1, 10));
@@ -91,7 +94,7 @@ public class AdminController {
         return "/admin/admin-recipeBoardList";
     }
 
-//    레시피 게시물 조회
+    //    레시피 게시물 조회
     @ResponseBody
     @GetMapping("recipeBoard-detail")
     public RecipeBoardDTO getRecipeBoardDetail(@RequestParam("recipeBoardId") Long recipeBoardId) {
@@ -99,14 +102,14 @@ public class AdminController {
         return recipeBoardDTO;
     }
 
-//    레시피 게시물 삭제
+    //    레시피 게시물 삭제
     @ResponseBody
     @GetMapping("board-remove")
     public void removeBoard(@RequestParam("boardId") Long boardId) {
         boardService.removeByBoardId(boardId);
     }
 
-//    회원 목록
+    //    회원 목록
     @GetMapping("member-list")
     public String getMemberList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<MemberDTO> list = memberService.getList(PageRequest.of(page - 1, 10));
@@ -115,14 +118,14 @@ public class AdminController {
         return "/admin/admin-memberList";
     }
 
-//    회원 삭제
+    //    회원 삭제
     @ResponseBody
     @GetMapping("user-remove")
     public void removeMember(@RequestParam("userId") Long userId) {
         userService.deleteByMemberId(userId);
     }
 
-//    회원 조회
+    //    회원 조회
     @ResponseBody
     @GetMapping("member-detail")
     public String[] getMemberDetail(@RequestParam("memberId") Long memberId, Model model) {
@@ -132,7 +135,7 @@ public class AdminController {
         String fileUuid = "";
         String fileOrgName = "";
 
-        if(userFile == null) {
+        if (userFile == null) {
             filePath = null;
             fileUuid = null;
             fileOrgName = null;
@@ -155,7 +158,7 @@ public class AdminController {
         return member;
     }
 
-//    유통회원 목록
+    //    유통회원 목록
     @GetMapping("distributor-list")
     public String getDistributorList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<Distributor> list = distributorService.getList(PageRequest.of(0, 5));
@@ -164,7 +167,7 @@ public class AdminController {
         return "/admin/admin-distributorList";
     }
 
-//    유통회원 조회
+    //    유통회원 조회
     @GetMapping("distributor-detail/{distributorId}")
     public String getDistributorDetail(@PathVariable Long distributorId, Model model) {
         Page<ProductDTO> list = productService.getListByDistributorId(PageRequest.of(0, 10), distributorId);
@@ -176,7 +179,7 @@ public class AdminController {
         return "/admin/admin-distributorDetail";
     }
 
-//    상품 상세보기
+    //    상품 상세보기
     @ResponseBody
     @GetMapping("product-detail")
     public String[] getProductDetail(@RequestParam("productId") Long productId) {
@@ -185,7 +188,7 @@ public class AdminController {
         String fileUuid = "";
         String fileOrgName = "";
 
-        if(productInfo.getProductFiles() == null || productInfo.getProductFiles().isEmpty()) {
+        if (productInfo.getProductFiles() == null || productInfo.getProductFiles().isEmpty()) {
             filePath = null;
             fileUuid = null;
             fileOrgName = null;
@@ -206,7 +209,7 @@ public class AdminController {
         return product;
     }
 
-//    복지관회원 목록
+    //    복지관회원 목록
     @GetMapping("welfare-list")
     public String getWelfareList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<WelfareDTO> list = welfareService.getList(PageRequest.of(0, 5));
@@ -215,19 +218,19 @@ public class AdminController {
         return "/admin/admin-welfareList";
     }
 
-//    복지관회원 조회
+    //    복지관회원 조회
     @GetMapping("welfare-detail/{welfareId}")
     public String getWelfareDetail(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @PathVariable Long welfareId, Model model) {
         String subsciberName = null;
         Page<OrderSubscriptionDTO> list = orderSubsciptionService.getListByWelfareId(PageRequest.of(0, 5), welfareId, subsciberName);
-        model.addAttribute("welfare",welfareService.getDetail(welfareId));
+        model.addAttribute("welfare", welfareService.getDetail(welfareId));
         model.addAttribute("subscribers", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
         model.addAttribute("userFile", userFileService.getDetail(welfareId));
         return "/admin/admin-welfareDetail";
     }
 
-//    결제 목록
+    //    결제 목록
     @GetMapping("payment-list")
     public String getPaymentList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, Model model) {
         Page<PaymentDTO> list = paymentService.getList(PageRequest.of(page - 1, 10));
@@ -236,7 +239,7 @@ public class AdminController {
         return "/admin/admin-orderList";
     }
 
-//    결제 삭제
+    //    결제 삭제
     @ResponseBody
     @GetMapping("remove-payment")
     public void removePayment(@RequestParam("id") Long id) {
@@ -247,7 +250,9 @@ public class AdminController {
 
     //    공지사항 목록 조회
     @GetMapping("admin-noticeList")
-    public void  goNoticeList() {;}
+    public void goNoticeList() {
+        ;
+    }
 
     //    공지사항 목록 페이징
     @ResponseBody
@@ -268,7 +273,9 @@ public class AdminController {
     //    공지사항 작성
     @ResponseBody
     @PostMapping("notice-write")
-    public void writeNotice(@RequestBody NoticeDTO noticeDTO) { noticeService.noticeWrite(noticeDTO); }
+    public void writeNotice(@RequestBody NoticeDTO noticeDTO) {
+        noticeService.noticeWrite(noticeDTO);
+    }
 
     //    공지사항 수정
     @PatchMapping("notice-update/{noticeId}")
@@ -287,6 +294,28 @@ public class AdminController {
 
     /* ======================================= 문의 사항 ============================================= */
 
+    //    문의사항 이동
     @GetMapping("admin-inquiryList")
-    public void goInquiry() {;}
+    public void goInquiry() {
+        ;
+    }
+
+    //    문의내역 list
+    @GetMapping("inquiry/list")
+    @ResponseBody
+    public Page<InquiryDTO> getInquiries(@PageableDefault(page = 1, size = 10) Pageable pageable) {
+        return inquiryService.getInquiries(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()));
+    }
+
+    @GetMapping("inquiry/detail/{inquiryId}")
+    public String goInquiryDetail(@PathVariable Long inquiryId, Model model) {
+        model.addAttribute("inquiry", inquiryService.getInquiryDetailById(inquiryId));
+        return "admin/admin-inquiryDetail";
+    }
+
+    @PostMapping("inquiry/answer/save/{inquiryId}")
+    @ResponseBody
+    public InquiryAnswerDTO saveInquiryAnswer(@PathVariable Long inquiryId, @RequestBody InquiryAnswerDTO inquiryAnswerDTO) {
+        return inquiryService.saveInquiryAnswer(inquiryId, inquiryAnswerDTO);
+    }
 }

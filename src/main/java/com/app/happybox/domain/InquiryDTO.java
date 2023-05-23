@@ -18,6 +18,7 @@ public class InquiryDTO {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     private User user;
+    private String userId;
     private InquiryType inquiryType;
     private InquiryStatus inquiryStatus;
     private List<InquiryFileDTO> inquiryFileDTOS;

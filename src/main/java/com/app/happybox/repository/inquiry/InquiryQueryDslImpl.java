@@ -37,8 +37,10 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
     @Override
     public Optional<Inquiry> findInquiryByInquiryId_QueryDSL(Long inquiryId) {
         return Optional.ofNullable(
-                        query.select(inquiry)
+                query.select(inquiry)
                         .from(inquiry)
+                        .leftJoin(inquiry.inquiryFiles).fetchJoin()
+                        .join(inquiry.user).fetchJoin()
                         .where(inquiry.id.eq(inquiryId))
                         .fetchOne());
     }
@@ -57,6 +59,7 @@ public class InquiryQueryDslImpl implements InquiryQueryDsl {
     public Page<Inquiry> findInquiryListWithPaging_QueryDSL(Pageable pageable) {
         List<Inquiry> inquiryList = query.select(inquiry)
                 .from(inquiry)
+                .join(inquiry.user).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

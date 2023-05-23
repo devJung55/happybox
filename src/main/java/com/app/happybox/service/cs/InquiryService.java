@@ -15,43 +15,51 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface InquiryService {
-//    문의내역 목록 및 상세?
+    //    문의내역 목록 및 상세?
     public Page<InquiryDTO> getInquiryListById(Pageable pageable, Long id);
 
-//    마이페이지 문의내역 목록
+    //    마이페이지 문의내역 목록
     public Page<InquiryDTO> getListByMemberId(Pageable pageable, Long memberId);
 
-//    문의 답변 목록 및 상세?
+    public InquiryAnswerDTO saveInquiryAnswer(Long inquiryId, InquiryAnswerDTO inquiryAnswerDTO);
+
+    //    문의 답변 목록 및 상세?
     public Page<InquiryAnswerDTO> getInquiryAnswerListById(Pageable pageable, Long id);
 
-//    마이페이지 문의답변
+    //    마이페이지 문의답변
     public List<InquiryAnswerDTO> getInquiryAnswerListByUserId(Long memberId);
 
-//    문의 사항 작성
+    //    문의 사항 작성
     public void inquiryWrite(InquiryDTO inquiryDTO, Long id);
 
-//    마이페이지 문의 건수 조회
+    //    마이페이지 문의 건수 조회
     public Long getInquiryCountByUserId(Long id);
 
-//    문의사항 DTO로 바꾸기
+//    관리자페이지 문의내역 조회
+    public Page<InquiryDTO> getInquiries(Pageable pageable);
+
+    //    문의사항 상세보기
+    public InquiryDTO getInquiryDetailById(Long id);
+
+    //    문의사항 DTO로 바꾸기
     default InquiryDTO toInquiryDTO(Inquiry inquiry) {
         return InquiryDTO.builder().id(inquiry.getId())
                 .inquiryTitle(inquiry.getInquiryTitle())
                 .inquiryContent(inquiry.getInquiryContent())
                 .createdDate(inquiry.getCreatedDate())
                 .updatedDate(inquiry.getUpdatedDate())
-                .user(inquiry.getUser())
+                .userId(inquiry.getUser().getUserId())
                 .inquiryType(inquiry.getInquiryType())
                 .inquiryStatus(inquiry.getInquiryStatus())
                 .inquiryFileDTOS(
                         inquiry.getInquiryFiles().stream()
-                        .map(this::toInquiryFileDTO)
-                        .collect(Collectors.toList())
+                                .map(this::toInquiryFileDTO)
+                                .collect(Collectors.toList())
                 )
                 .build();
     }
 
-//    문의사항 파일 DTO로 바꾸기
+    //    문의사항 파일 DTO로 바꾸기
     default InquiryFileDTO toInquiryFileDTO(InquiryFile inquiryFile) {
         return InquiryFileDTO.builder()
                 .id(inquiryFile.getId())
@@ -61,7 +69,7 @@ public interface InquiryService {
                 .build();
     }
 
-//    문의 답변 사항 DTO로 바꾸기
+    //    문의 답변 사항 DTO로 바꾸기
     default InquiryAnswerDTO toInquiryAnswerDTO(InquiryAnswer inquiryAnswer) {
         return InquiryAnswerDTO.builder()
                 .id(inquiryAnswer.getId())
@@ -70,13 +78,13 @@ public interface InquiryService {
                 .updatedDate(inquiryAnswer.getUpdatedDate())
                 .inquiryAnswerFileDTOS(
                         inquiryAnswer.getInquiryAnswerFiles().stream()
-                        .map(this::toInquiryAnswerFileDTO)
-                        .collect(Collectors.toList())
+                                .map(this::toInquiryAnswerFileDTO)
+                                .collect(Collectors.toList())
                 )
                 .build();
     }
 
-//    문의 답변 파일 DTO로 바꾸기
+    //    문의 답변 파일 DTO로 바꾸기
     default InquiryAnswerFileDTO toInquiryAnswerFileDTO(InquiryAnswerFile inquiryAnswerFile) {
         return InquiryAnswerFileDTO.builder()
                 .id(inquiryAnswerFile.getId())
@@ -135,5 +143,17 @@ public interface InquiryService {
                 .build();
     }
 
+    default InquiryAnswerFile toInquiryAnswerFileEntity(InquiryAnswerFileDTO inquiryAnswerFileDTO) {
+        return InquiryAnswerFile.builder()
+                .filePath(inquiryAnswerFileDTO.getFilePath())
+                .fileUuid(inquiryAnswerFileDTO.getFileUuid())
+                .fileOrgName(inquiryAnswerFileDTO.getFileOrgName())
+                .build();
+    }
 
+    default InquiryAnswer toInquiryAnswerEntity(InquiryAnswerDTO inquiryAnswerDTO) {
+        return InquiryAnswer.builder()
+                .inquiryAnswerContent(inquiryAnswerDTO.getInquiryAnswerContent())
+                .build();
+    }
 }

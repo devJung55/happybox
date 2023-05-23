@@ -17,6 +17,7 @@ public class InquiryAnswerFile extends Files {
     @ManyToOne(fetch = FetchType.LAZY)
     private InquiryAnswer inquiryAnswer;
 
+    @Builder
     public InquiryAnswerFile(String filePath, String fileUuid, String fileOrgName, FileRepresent fileRepresent) {
         super(filePath, fileUuid, fileOrgName);
         this.fileRepresent = fileRepresent;

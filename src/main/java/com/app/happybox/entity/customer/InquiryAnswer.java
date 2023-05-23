@@ -25,6 +25,11 @@ public class InquiryAnswer extends Period {
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "inquiryAnswer")
     private List<InquiryAnswerFile> inquiryAnswerFiles = new ArrayList<>();
 
+    public void setInquiry(Inquiry inquiry) {
+        this.inquiry = inquiry;
+    }
+
+    @Builder
     public InquiryAnswer(String inquiryAnswerContent, Inquiry inquiry) {
         this.inquiryAnswerContent = inquiryAnswerContent;
         this.inquiry = inquiry;
