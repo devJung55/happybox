@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 
 public interface FoodCalendarService {
 
+    public void saveFoodCalendar(FoodCalendarDTO foodCalendarDTO);
+
+
     public List<FoodCalendarDTO> getFoodCalendars(FoodCalendarSearchDTO searchDTO);
 
     default FoodCalendarDTO foodCalendarToDTO(FoodCalendar foodCalendar) {
@@ -33,4 +36,23 @@ public interface FoodCalendarService {
                 .foodName(food.getFoodName())
                 .build();
     }
+
+    default FoodCalendar toFoodCalendarEntity(FoodCalendarDTO foodCalendarDTO){
+        return FoodCalendar.builder()
+                .foodCalendarTitle(foodCalendarDTO.getFoodCalendarTitle())
+                .foodCalendarDescription(foodCalendarDTO.getFoodCalendarDescription())
+                .startDate(foodCalendarDTO.getStartDate())
+                .endDate(foodCalendarDTO.getEndDate())
+                .build();
+    }
+
+    default Food toFoodEntity(FoodDTO foodDTO){
+        return Food.builder()
+                .foodName(foodDTO.getFoodName())
+                .fileOrgName(foodDTO.getFileOrgName())
+                .filePath(foodDTO.getFilePath())
+                .fileUuid(foodDTO.getFileUuid())
+                .build();
+    }
+
 }

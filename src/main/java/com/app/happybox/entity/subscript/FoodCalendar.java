@@ -33,9 +33,10 @@ public class FoodCalendar extends Period {
     @JoinColumn
     private Subscription subscription;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodCalendar")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodCalendar", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private List<Food> foodList = new ArrayList<>();
 
+    @Builder
     public FoodCalendar(String foodCalendarTitle, String foodCalendarDescription, LocalDate startDate, LocalDate endDate) {
         this.foodCalendarTitle = foodCalendarTitle;
         this.foodCalendarDescription = foodCalendarDescription;
@@ -45,5 +46,9 @@ public class FoodCalendar extends Period {
 
     public void setSubscription(Subscription subscription) {
         this.subscription = subscription;
+    }
+
+    public void setFoodList(List<Food> foodList) {
+        this.foodList = foodList;
     }
 }

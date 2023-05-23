@@ -26,12 +26,9 @@ public class Food {
     @JoinColumn
     private FoodCalendar foodCalendar;
 
-    public Food(String foodName, FoodCalendar foodCalendar) {
+    @Builder
+    public Food(String foodName, String filePath, String fileUuid, String fileOrgName) {
         this.foodName = foodName;
-        this.foodCalendar = foodCalendar;
-    }
-
-    public void setFile(String filePath, String fileUuid, String fileOrgName) {
         this.filePath = filePath;
         this.fileUuid = fileUuid;
         this.fileOrgName = fileOrgName;

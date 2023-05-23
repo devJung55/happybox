@@ -2,6 +2,7 @@ package com.app.happybox.controller.mypage;
 
 
 import com.app.happybox.aspect.annotation.MypageHeaderValues;
+import com.app.happybox.domain.FoodCalendarDTO;
 import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.domain.OrderSubscriptionDTO;
 import com.app.happybox.domain.SubscriptionDTO;
@@ -20,6 +21,7 @@ import com.app.happybox.service.board.ReviewBoardService;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
 import com.app.happybox.service.order.OrderSubsciptionService;
+import com.app.happybox.service.subscript.FoodCalendarService;
 import com.app.happybox.service.subscript.RiderService;
 import com.app.happybox.service.subscript.SubscriptionLikeService;
 import com.app.happybox.service.subscript.SubscriptionService;
@@ -60,6 +62,7 @@ public class WelfareMyPageController {
     private final UserFileService userFileService;
     private final ReviewBoardService reviewBoardService;
     private final RiderService riderService;
+    private final FoodCalendarService foodCalendarService;
 
 //  복지관 회원 수정 페이지 이동
     @MypageHeaderValues
@@ -172,6 +175,22 @@ public class WelfareMyPageController {
         return new RedirectView("/login");
     }
 
+//    캘린더 일정 등록 및 음식 등록 폼 이동
+    @GetMapping("/welfare/calendar/write")
+    public String goCalendarWriteForm(@AuthenticationPrincipal UserDetail userDetail, FoodCalendarDTO foodCalendarDTO,Model model){
+        Long welfareId = userDetail.getId();
+        foodCalendarDTO.setWelfareId(welfareId);
+        model.addAttribute("foodCalendareDTO",foodCalendarDTO);
+        model.addAttribute("userDetail",userDetail);
+        return "/mypage/welfare/food-schedule";
+    }
+
+//    캘린더 일정 등록 및 음식 등록
+    @PostMapping("/welfare/calendar/write")
+    public RedirectView calendarWrite(FoodCalendarDTO foodCalendarDTO,@AuthenticationPrincipal UserDetail userDetail){
+        foodCalendarDTO.setWelfareId(userDetail.getId());
+        foodCalendarService.saveFoodCalendar(foodCalendarDTO);
+        return new RedirectView("/mypage/welfare/edit");
 //    구독자 목록
     @MypageHeaderValues
     @GetMapping("/welfare/subscriber")
