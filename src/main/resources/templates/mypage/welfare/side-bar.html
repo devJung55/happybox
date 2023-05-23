@@ -17,14 +17,15 @@
                         <a href="javascirpt:void(0)" class="menu">구독관리</a>
                         <ul class="depth2">
                             <li><a href="">구독자 관리</a></li>
-                            <li><a th:href="@{/mypage/welfare/rider/list}">배달원 관리</a></li>
+                            <li><a th:href="@{/mypage/welfare/rider/list}">배달원 목록</a></li>
+                            <li><a th:href="@{/mypage/welfare/rider/write}">배달원 등록</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascirpt:void(0)" class="menu">복지관관리</a>
                         <ul class="depth2">
                             <li>
-                                <a href="javascirpt:void(0)">소개글수정</a>
+                                <a th:href="@{/mypage/welfare/subscription/edit}">소개글수정</a>
                             </li>
                         </ul>
                     </li>
@@ -40,7 +41,7 @@
                         <a href="javascirpt:void(0)" class="menu">회원정보관리</a>
                         <ul class="depth2">
                             <li>
-                                <a th:href="@{/mypage/welfare/edit}">정보수정</a>
+                                <a th:href="@{/mypage/welfare/edit}">회원정보수정</a>
                             </li>
                             <li>
                                 <a th:href="@{/mypage/welfare/unregister}">회원탈퇴</a>

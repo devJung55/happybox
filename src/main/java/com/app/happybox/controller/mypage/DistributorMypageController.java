@@ -91,10 +91,11 @@ public class DistributorMypageController {
 
 //    상품 등록
     @PostMapping("distributor/register")
+    @ResponseBody
     public void registerProduct(@AuthenticationPrincipal UserDetail userDetail, ProductDTO productDTO) {
         log.info(productDTO.toString());
 
-//        productService.saveProduct(userDetail.getId(), productDTO);
+        productService.saveProduct(userDetail.getId(), productDTO);
     }
 
 //    상품 목록
