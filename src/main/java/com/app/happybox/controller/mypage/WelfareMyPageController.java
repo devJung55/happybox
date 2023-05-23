@@ -1,6 +1,8 @@
 package com.app.happybox.controller.mypage;
 
 
+import com.app.happybox.aspect.annotation.MypageHeaderValues;
+import com.app.happybox.domain.InquiryDTO;
 import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
@@ -57,8 +59,9 @@ public class WelfareMyPageController {
 
 
 //  복지관 회원 수정 페이지 이동
+    @MypageHeaderValues
     @GetMapping("welfare/edit")
-    public String goEditForm( Model model, @AuthenticationPrincipal UserDetail userDetail){
+    public String goEditForm(@AuthenticationPrincipal UserDetail userDetail, Model model){
         WelfareDTO welfareDTO = welfareService.getDetail(userDetail.getId());
         model.addAttribute("welfareDTO",welfareDTO);
         return "/mypage/welfare/welfare-editor-form";
@@ -74,15 +77,10 @@ public class WelfareMyPageController {
         return new RedirectView("/main/welfare");
     }
 
-//    복지관 문의
-    @GetMapping("welfare/inquiry")
-    public String goInquryForm(Model model, @AuthenticationPrincipal UserDetail userDetail){
-        return "/mypage/welfare/inquiry";
-    }
-
 //   복지관 구독 수정
+    @MypageHeaderValues
     @GetMapping("welfare/subscription/edit")
-    public String goSubsedit(Model model, @AuthenticationPrincipal UserDetail userDetail){
+    public String goSubsedit(@AuthenticationPrincipal UserDetail userDetail, Model model){
         log.error("들어왔냐 여기에????????");
         Long id = userDetail.getId();
         Subscription result = subscriptionService.getId(id);
@@ -103,8 +101,9 @@ public class WelfareMyPageController {
         return new RedirectView("/mypage/welfare/subscription/edit");
     }
 
+    @MypageHeaderValues
     @GetMapping("welfare/rider/write")
-    public String riderWriteForm(RiderDTO riderDTO, Model model, @AuthenticationPrincipal UserDetail userDetail){
+    public String riderWriteForm(@AuthenticationPrincipal UserDetail userDetail, RiderDTO riderDTO, Model model){
         model.addAttribute("welfareId",userDetail.getId());
         riderDTO.setWelfareId(userDetail.getId());
         model.addAttribute("riderDTO", riderDTO);
@@ -119,14 +118,16 @@ public class WelfareMyPageController {
         return new RedirectView("/mypage/welfare/rider/list");
     }
 
+    @MypageHeaderValues
     @GetMapping("welfare/rider/list")
-    public String goRiderListForm(Model model, @AuthenticationPrincipal UserDetail userDetail){
+    public String goRiderListForm(@AuthenticationPrincipal UserDetail userDetail, Model model){
         Long welfareId = userDetail.getId();
         WelfareDTO welfareDTO = welfareService.getDetail(welfareId);
         log.info(welfareDTO.toString());
         model.addAttribute("welfareDTO",welfareDTO);
         return "/mypage/welfare/rider";
     }
+
     @GetMapping("/welfare/getList")
     @ResponseBody
     public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 5) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail){
@@ -139,5 +140,32 @@ public class WelfareMyPageController {
         return riderDTOS;
     }
 
+    //    나의 문의내역 목록
+    @MypageHeaderValues
+    @GetMapping("/welfare/inquiry")
+    public String getInquiryList(@AuthenticationPrincipal UserDetail userDetail) {
+        return "/mypage/welfare/inquiry";
+    }
 
+    //    나의 문의내역 목록
+    @ResponseBody
+    @GetMapping("/welfare/inquiry/list")
+    public Page<InquiryDTO> getInquiryList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        Page<InquiryDTO> inquiries = inquiryService.getListByMemberId(PageRequest.of(page - 1, 8), userDetail.getId());
+        return inquiries;
+    }
+
+    //    회원탈퇴
+    @MypageHeaderValues
+    @GetMapping("/welfare/unregister")
+    public String unregister(@AuthenticationPrincipal UserDetail userDetail) {
+        return "/mypage/welfare/withdrawal";
+    }
+
+    //    회원탈퇴
+    @PostMapping("/welfare/unregister")
+    public RedirectView unregisterPost(@AuthenticationPrincipal UserDetail userDetail) {
+        userService.updateUserStatusByUserId(userDetail.getId());
+        return new RedirectView("/login");
+    }
 }

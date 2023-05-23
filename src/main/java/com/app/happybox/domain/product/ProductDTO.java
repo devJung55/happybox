@@ -1,6 +1,7 @@
 package com.app.happybox.domain.product;
 
 import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.domain.user.DistributorDTO;
 import com.app.happybox.entity.file.ProductFileDTO;
 import com.app.happybox.entity.user.Address;
 import com.app.happybox.type.ProductCategory;
@@ -18,6 +19,8 @@ public class ProductDTO {
     /* ===== 상품 기본 정보 ===== */
     private String productName;
 
+    private String productInfo;
+
     private Integer productPrice;
 
     private Long productStock;
@@ -31,6 +34,8 @@ public class ProductDTO {
     private Long productOrderCount;
     /* ======================== */
 
+    private DistributorDTO distributorDTO;
+
     private List<ProductFileDTO> productFileDTOS = new ArrayList<>();
 
 //    유통업자 이름
@@ -40,11 +45,12 @@ public class ProductDTO {
     private AddressDTO address;
 
     @Builder
-    public ProductDTO(Long id, String productName, Integer productPrice, Long productStock,
+    public ProductDTO(Long id, String productName, String productInfo, Integer productPrice, Long productStock,
                       Integer productReplyCount, ProductCategory productCategory, Integer productLikeCount,
-                      Long productOrderCount, List<ProductFileDTO> productFileDTOS, String distributorName, AddressDTO address) {
+                      Long productOrderCount, List<ProductFileDTO> productFileDTOS, DistributorDTO distributorDTO, String distributorName, AddressDTO address) {
         this.id = id;
         this.productName = productName;
+        this.productInfo = productInfo;
         this.productPrice = productPrice;
         this.productStock = productStock;
         this.productReplyCount = productReplyCount;
@@ -52,6 +58,7 @@ public class ProductDTO {
         this.productLikeCount = productLikeCount;
         this.productOrderCount = productOrderCount;
         this.productFileDTOS = productFileDTOS;
+        this.distributorDTO = distributorDTO;
         this.distributorName = distributorName;
         this.address = address;
     }

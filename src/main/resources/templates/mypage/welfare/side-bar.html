@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
 </head>
 <body>
-    <div class="frame-left">
+<div th:fragment="side-bar" class="frame-left">
         <div class="aside-menu-wrap">
             <nav class="aside-menu">
                 <ul class="menu-list">
                     <li>
                         <a href="javascirpt:void(0)" class="menu">구독관리</a>
                         <ul class="depth2">
-                            <li><a href="javascirpt:void(0)">구독자 관리</a></li>
-                            <li><a href="javascirpt:void(0)">배달원 관리</a></li>
+                            <li><a href="">구독자 관리</a></li>
+                            <li><a th:href="@{/mypage/welfare/rider/list}">배달원 관리</a></li>
                         </ul>
                     </li>
                     <li>
@@ -32,7 +32,7 @@
                         <a href="javascirpt:void(0)" class="menu">문의관리</a>
                         <ul class="depth2">
                             <li>
-                                <a href="javascirpt:void(0)">문의내역</a>
+                                <a th:href="@{/mypage/welfare/inquiry}">문의내역</a>
                             </li>
                         </ul>
                     </li>
@@ -40,10 +40,10 @@
                         <a href="javascirpt:void(0)" class="menu">회원정보관리</a>
                         <ul class="depth2">
                             <li>
-                                <a href="javascirpt:void(0)">정보수정</a>
+                                <a th:href="@{/mypage/welfare/edit}">정보수정</a>
                             </li>
                             <li>
-                                <a href="javascirpt:void(0)">회원탈퇴</a>
+                                <a th:href="@{/mypage/welfare/unregister}">회원탈퇴</a>
                             </li>
                         </ul>
                     </li>

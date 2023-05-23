@@ -28,6 +28,9 @@ public interface ProductService {
 //    상품 상세조회
     public ProductDTO findById(Long id);
 
+//    상품 등록
+    public ProductDTO saveProduct(Long distributorId, ProductDTO productDTO);
+
 //    관리자 해당 유통회원의 상품 목록
     public Page<ProductDTO> getListByDistributorId(Pageable pageable, Long distributorId);
 
@@ -36,6 +39,16 @@ public interface ProductService {
 
 //    마이페이지 상품 개수 조회
     public Long getProductCount(Long distributorId);
+
+    default Product productToEntity(ProductDTO productDTO) {
+        return Product.builder()
+                .productName(productDTO.getProductName())
+                .productInfo(productDTO.getProductInfo())
+                .productPrice(productDTO.getProductPrice())
+                .productCategory(productDTO.getProductCategory())
+                .productStock(productDTO.getProductStock())
+                .build();
+    }
 
     default ProductDTO productToDTO(Product product) {
         return ProductDTO.builder()
@@ -64,6 +77,14 @@ public interface ProductService {
                 .fileRepresent(file.getFileRepresent())
                 .fileUuid(file.getFileUuid())
                 .id(file.getId())
+                .build();
+    }
+
+    default ProductFile productFileToEntity(ProductFileDTO productFileDTO) {
+        return ProductFile.builder()
+                .filePath(productFileDTO.getFilePath())
+                .fileUuid(productFileDTO.getFileUuid())
+                .fileOrgName(productFileDTO.getFileOrgName())
                 .build();
     }
 

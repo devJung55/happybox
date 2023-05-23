@@ -70,12 +70,14 @@ public class Product extends Period {
         this.distributor = distributor;
     }
 
-    public Product(String productName, Integer productPrice, String productInfo, List<ProductFile> productFiles, Distributor distributor) {
+    @Builder
+    public Product(String productName, Integer productPrice, Long productStock, String productInfo, ProductCategory productCategory, List<ProductFile> productFiles) {
         this.productName = productName;
         this.productPrice = productPrice;
+        this.productStock = productStock;
         this.productInfo = productInfo;
+        this.productCategory = productCategory;
         this.productFiles = productFiles;
-        this.distributor = distributor;
     }
 
     public void setProductStock(Long productStock) {
@@ -88,5 +90,9 @@ public class Product extends Period {
 
     public void setProductReplyCount(Integer productReplyCount) {
         this.productReplyCount = productReplyCount;
+    }
+
+    public void setDistributor(Distributor distributor) {
+        this.distributor = distributor;
     }
 }

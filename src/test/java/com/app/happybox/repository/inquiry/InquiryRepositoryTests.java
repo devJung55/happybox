@@ -35,7 +35,7 @@ public class InquiryRepositoryTests {
         InquiryType[] inquiryTypes = {InquiryType.ORDER, InquiryType.CANCEL, InquiryType.SITE, InquiryType.USE, InquiryType.ETC};
         for (int i = 0; i < 3; i++) {
             Inquiry inquiry = new Inquiry("문의 제목" + (i + 1), "문의 내용" + (i + 1), inquiryTypes[new Random().nextInt(inquiryTypes.length)]);
-            memberRepository.findById(84L).ifPresent(member -> inquiry.setUser((User)member));
+            memberRepository.findById(3L).ifPresent(member -> inquiry.setUser((User)member));
 
             inquiryRepository.save(inquiry);
         }

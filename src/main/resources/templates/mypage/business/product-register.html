@@ -5,31 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품등록하기</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/member/member.css">
-    <link rel="stylesheet" href="../../../static/css/member/board-insert.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/address-editor-form.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/member/member.css">
+    <link rel="stylesheet" href="/css/member/board-insert.css">
+    <link rel="stylesheet" href="/css/mypage/user/address-editor-form.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+
+    img.select-arrow {
+        position: absolute;
+        right: 4px;
+        top: 8px;
+        z-index: 3;
+        filter: invert(40%) sepia(3%) saturate(11%) hue-rotate(328deg) brightness(97%) contrast(92%);
+    }
+</style>
 <body>
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container" style="padding: 0;">
             <div class="content-wrap">
                 <div class="header-stage" th:insert="~{mypage/business/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm" style="margin-top: 45px;">
                     <div class="header-stage" th:insert="~{mypage/business/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
-                    <form id="counselRegFrm" name="counselRegFrm" action="" style="margin-left: 60px;">
+                    <form id="counselRegFrm" name="productForm" method="post" th:action="@{/mypage/distributor/register}" style="margin-left: 60px;" th:object="${productDTO}">
                         <div class="frame-right">
                             <div class="frame-cnt-inner">
                                 <div class="menu-title-area">
                                     <h3 class="title-menu">상품등록</h3>
                                 </div>
-
-                                <!--// menu-title-area -->
-
                                 <div class="board-form type2">
                                     <table>
                                         <caption>내용 작성</caption>
@@ -41,12 +54,34 @@
                                             <tr>
                                                 <th class="text-left" scope="row">
                                                     <div class="in-tb">
-                                                        제목 <em class="es"><span class="blind"></span></em>
+                                                        상품명 <em class="es"><span class="blind"></span></em>
                                                     </div>
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="input-group w-full">
-                                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="제목을 입력해주세요" value=""/>
+                                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="상품명을 입력해주세요" th:field="*{productName}"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        상품종류 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <select id="foodCategory" class="input-text" th:field="*{productCategory}">
+                                                            <option value="VEGETABLES">야채</option>
+                                                            <option value="FRUITS">과일</option>
+                                                            <option value="SEAFOOD">해산물</option>
+                                                            <option value="MEAT">육류</option>
+                                                            <option value="DAIRY">유제품</option>
+                                                            <option value="SPICES">양념</option>
+                                                            <option value="OTHER">기타</option>
+                                                        </select>
+                                                        <img src="/img/mypage/inquiry-arrow.png" class="select-arrow" width="25">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -59,7 +94,7 @@
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="textarea-box-count h230" style="padding: 15px 14px 40px;">
-                                                        <textarea id="vQuestionCont" placeholder="문의내용을 입력하세요" name="vQuestionCont"></textarea>
+                                                        <textarea id="vQuestionCont" placeholder="문의내용을 입력하세요" name="vQuestionCont" th:field="*{productInfo}"></textarea>
                                                         <div class="txt-count">
                                                             <span id="counter">0</span> / <span class="total">1,000</span>
                                                         </div>
@@ -75,7 +110,7 @@
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="input-group w-full">
-                                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="판매가를 입력해주세요" value=""/>
+                                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="판매가를 입력해주세요" th:field="*{productPrice}"/>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -89,7 +124,7 @@
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="input-group w-full">
-                                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="재고수량을 입력해주세요" value=""/>
+                                                        <input type="text" name="vQuestionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="재고수량을 입력해주세요" th:field="*{productStock}"/>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -98,40 +133,38 @@
                                             <tr class="attach-file-line">
                                                 <th class="text-left" scope="row"></th>
                                                 <td class="text-left">
-                                                    <div class="file-add-boxes" style="display: inline-block;">
-                                                        <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
                                                             <button type="button" class="btn-attach-thumb">
                                                                 <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                             </button>
                                                             <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
                                                             <div class="attach-img" style="display: none;">
-                                                                <img src="" style="width: 68px; height: 68px"/>
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
                                                                 <button type="button" class="btn-x-xs2 btn_del">
                                                                     <i class="ico-x-white"></i><span class="blind">삭제</span>
                                                                 </button>
                                                             </div>
                                                         </div>
-
-                                                        <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
                                                             <button type="button" class="btn-attach-thumb">
                                                                 <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                             </button>
                                                             <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
                                                             <div class="attach-img" style="display: none;">
-                                                                <img src="" style="width: 68px; height: 68px"/>
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
                                                                 <button type="button" class="btn-x-xs2 btn_del">
                                                                     <i class="ico-x-white"></i><span class="blind">삭제</span>
                                                                 </button>
                                                             </div>
                                                         </div>
-
-                                                        <div class="div-attach-thumb" id="US_RV_IMG1_attachThumb">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
                                                             <button type="button" class="btn-attach-thumb">
                                                                 <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
                                                             </button>
                                                             <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
                                                             <div class="attach-img" style="display: none;">
-                                                                <img src="" style="width: 68px; height: 68px"/>
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
                                                                 <button type="button" class="btn-x-xs2 btn_del">
                                                                     <i class="ico-x-white"></i><span class="blind">삭제</span>
                                                                 </button>
@@ -143,16 +176,14 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <!--// 첨부파일 영역 -->
                                         </tbody>
                                     </table>
                                 </div>
-
                                 <div class="btn-bottom-area">
                                     <button type="button" class="btn-basic-lg2 btn-grey3">
                                         <span>취소하기</span>
                                     </button>
-                                    <button type="button" class="btn-basic-lg2 btn-primary">
+                                    <button type="submit" class="btn-basic-lg2 btn-primary">
                                         <span>작성하기</span>
                                     </button>
                                 </div>
@@ -162,16 +193,18 @@
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/mypage/business/product-register.js"></script>
 <script>
     /* 내용 글자수 카운트 이벤트 */
 
     const $counter = $("#counter");
     const $textarea = $("#vQuestionCont");
-    
+
     $textarea.on("keyup", function() {
         let content = $(this).val();
 
@@ -189,4 +222,6 @@
         };
     });
 </script>
+<script src="/js/main/header.js"></script>
+<script src="/js/mypage/business/ajax.js"></script>
 </html>
