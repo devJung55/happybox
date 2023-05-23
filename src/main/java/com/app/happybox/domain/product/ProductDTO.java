@@ -62,4 +62,8 @@ public class ProductDTO {
         this.distributorName = distributorName;
         this.address = address;
     }
+
+    public ProductDTO() {
+        this.productFileDTOS = new ArrayList<>();
+    }
 }
