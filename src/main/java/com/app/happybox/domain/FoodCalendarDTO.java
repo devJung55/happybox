@@ -22,16 +22,22 @@ public class FoodCalendarDTO {
 
     private LocalDate endDate;
     /* ============================ */
+    private Long welfareId;
 
     private List<FoodDTO> foodList;
 
     @Builder
-    public FoodCalendarDTO(Long id, String foodCalendarTitle, String foodCalendarDescription, LocalDate startDate, LocalDate endDate, List<FoodDTO> foodList) {
+    public FoodCalendarDTO(Long id, String foodCalendarTitle, String foodCalendarDescription, LocalDate startDate, LocalDate endDate,Long welfareId ,List<FoodDTO> foodList) {
         this.id = id;
         this.foodCalendarTitle = foodCalendarTitle;
         this.foodCalendarDescription = foodCalendarDescription;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.welfareId = welfareId;
         this.foodList = foodList;
+    }
+
+    public void setWelfareId(Long welfareId) {
+        this.welfareId = welfareId;
     }
 }

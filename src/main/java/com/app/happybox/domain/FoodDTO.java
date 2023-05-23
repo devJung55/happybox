@@ -16,12 +16,15 @@ public class FoodDTO {
 
     private String fileOrgName;
 
+    private Long foodCalendarId;
+
     @Builder
-    public FoodDTO(Long id, String foodName, String filePath, String fileUuid, String fileOrgName) {
+    public FoodDTO(Long id, String foodName, String filePath, String fileUuid, String fileOrgName, Long foodCalendarId) {
         this.id = id;
         this.foodName = foodName;
         this.filePath = filePath;
         this.fileUuid = fileUuid;
         this.fileOrgName = fileOrgName;
+        this.foodCalendarId = foodCalendarId;
     }
 }
