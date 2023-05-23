@@ -473,6 +473,10 @@ figure {
     margin-top: 17px;
 }
 
+.reply-write-wrap * {
+    box-sizing: border-box;
+}
+
 .write-textarea {
     width: 100%;
     height: 107px;
@@ -481,6 +485,10 @@ figure {
     resize: none;
     outline: none;
     font-size: 16px;
+}
+
+.write-textarea::-webkit-scrollbar {
+    display: none;
 }
 
 .write-regist-btn {

@@ -234,8 +234,10 @@ public class AdminController {
     @GetMapping("welfare/subscriber/list/{welfareId}")
     @ResponseBody
     public Page<MemberDTO> getSubscribers(@PageableDefault(page = 1, size = 10) Pageable pageable, @PathVariable Long welfareId) {
+        String subscriberName = null;
+
         return orderSubsciptionService
-                .getListByWelfareId(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId);
+                .getListByWelfareId(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId, subscriberName);
     }
 
     //    결제 목록
@@ -325,5 +327,12 @@ public class AdminController {
     @ResponseBody
     public InquiryAnswerDTO saveInquiryAnswer(@PathVariable Long inquiryId, @RequestBody InquiryAnswerDTO inquiryAnswerDTO) {
         return inquiryService.saveInquiryAnswer(inquiryId, inquiryAnswerDTO);
+    }
+
+    @DeleteMapping("inquiry/delete")
+    @ResponseBody
+    public Boolean deleteInquiries(@RequestBody DeleteIdsDTO deleteIdsDTO) {
+        inquiryService.deleteInquiries(deleteIdsDTO.getIds());
+        return true;
     }
 }

@@ -4,10 +4,14 @@ package com.app.happybox.controller.mypage;
 import com.app.happybox.aspect.annotation.MypageHeaderValues;
 import com.app.happybox.domain.FoodCalendarDTO;
 import com.app.happybox.domain.InquiryDTO;
+import com.app.happybox.domain.OrderSubscriptionDTO;
 import com.app.happybox.domain.SubscriptionDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.domain.welfare.RiderDTO;
+import com.app.happybox.entity.file.UserFile;
+import com.app.happybox.entity.order.OrderSubscription;
 import com.app.happybox.entity.subscript.Rider;
 import com.app.happybox.entity.subscript.Subscription;
 import com.app.happybox.provider.UserDetail;
@@ -59,7 +63,6 @@ public class WelfareMyPageController {
     private final ReviewBoardService reviewBoardService;
     private final RiderService riderService;
     private final FoodCalendarService foodCalendarService;
-
 
 //  복지관 회원 수정 페이지 이동
     @MypageHeaderValues
@@ -188,5 +191,49 @@ public class WelfareMyPageController {
         foodCalendarDTO.setWelfareId(userDetail.getId());
         foodCalendarService.saveFoodCalendar(foodCalendarDTO);
         return new RedirectView("/mypage/welfare/edit");
+//    구독자 목록
+    @MypageHeaderValues
+    @GetMapping("/welfare/subscriber")
+    public String getSubscriberList(@AuthenticationPrincipal UserDetail userDetail) {
+        return "/mypage/welfare/subscriber";
+    }
+
+//    구독자 목록
+    @ResponseBody
+    @GetMapping("/welfare/subscriber/list")
+    public Page<MemberDTO> getSubscriberList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+        String subscriberName = null;
+        Page<MemberDTO> subscribers = orderSubsciptionService.getListByWelfareId(PageRequest.of(page - 1, 8), userDetail.getId(), subscriberName);
+        List<UserFile> userFiles = userFileService.getList();
+
+        for (int i = 0; i < subscribers.getContent().size(); i++) {
+            for (int j = 0; j < userFiles.size(); j++) {
+                if(subscribers.getContent().get(i).getId() == userFiles.get(j).getUser().getId()) {
+                    MemberDTO memberDTO = subscribers.getContent().get(i);
+
+                    memberDTO.setUserFileDTO(userFileService.userFileToDTO(userFiles.get(j)));
+                }
+            }
+        }
+        return subscribers;
+    }
+
+//    구독자 목록
+    @ResponseBody
+    @GetMapping("/welfare/subscriber/list/searchName")
+    public Page<MemberDTO> getSubscriberList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String subscriberName) {
+        Page<MemberDTO> subscribers = orderSubsciptionService.getListByWelfareId(PageRequest.of(page - 1, 8), userDetail.getId(), subscriberName);
+        List<UserFile> userFiles = userFileService.getList();
+
+        for (int i = 0; i < subscribers.getContent().size(); i++) {
+            for (int j = 0; j < userFiles.size(); j++) {
+                if(subscribers.getContent().get(i).getId() == userFiles.get(j).getUser().getId()) {
+                    MemberDTO memberDTO = subscribers.getContent().get(i);
+
+                    memberDTO.setUserFileDTO(userFileService.userFileToDTO(userFiles.get(j)));
+                }
+            }
+        }
+        return subscribers;
     }
 }

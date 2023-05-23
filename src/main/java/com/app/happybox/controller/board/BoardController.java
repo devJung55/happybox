@@ -13,6 +13,7 @@ import com.app.happybox.service.reply.ReplyLikeService;
 import com.app.happybox.service.reply.ReviewBoardReplyService;
 import com.app.happybox.service.subscript.SubscriptionService;
 import com.app.happybox.service.user.MemberService;
+import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -90,6 +91,11 @@ public class BoardController {
 
         // 좋아요 이미 눌렀는지 검사
         model.addAttribute("isLike", reviewBoardLikeService.checkLike(id, userDetail.getId()));
+        if(userDetail != null) {
+            model.addAttribute("userId", userDetail.getUserId());
+            model.addAttribute("userRole", userDetail.getUserRole());
+        }
+
         log.info(userDetail.getId().toString());
         return "user-board/review-board-detail";
     }
@@ -165,8 +171,23 @@ public class BoardController {
     @PostMapping("review-board-detail/reply/write/{reviewBoardId}")
     @ResponseBody
     public ReplyDTO writeReviewReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long reviewBoardId, @AuthenticationPrincipal UserDetail userDetail) {
-        // 임시 session 값 1저장
-        return reviewBoardReplyService.saveReply(replyDTO, reviewBoardId, userDetail.getId());
+        if(userDetail != null) {
+            // 유통업자 제외
+            if(userDetail.getUserRole() == Role.DISTRIBUTOR) {
+                return null;
+            }
+            reviewBoardReplyService.saveReply(replyDTO, reviewBoardId, userDetail.getId());
+        }
+        // 비로그인 제외
+        return null;
+    }
+
+    //    리뷰 댓글 수정
+    @PatchMapping("review-board-detail/reply/modify/{replyId}")
+    @ResponseBody
+    public ReplyDTO modifyReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long replyId) {
+        ReplyDTO updatedReply = reviewBoardReplyService.updateReply(replyId, replyDTO);
+        return updatedReply;
     }
 
     //    리뷰 댓글 삭제
