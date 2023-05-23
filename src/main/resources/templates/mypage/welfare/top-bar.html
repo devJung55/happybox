@@ -1,32 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
 </head>
 <body>
-    <div class="frame-full head-mypage">
+    <div th:fragment="top-bar" class="frame-full head-mypage">
         <div class="user-info-box">
             <div class="inner">
                 <div class="column user-info">
                     <label for="profile__label">
                         <input type="file" id="profile__label" style="display: none;">
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script>
+                            /* 프로필 설정 */
+                            $("#profile__label").on("change", function() {
+                                // 파일 찾아오기
+                                const $files = $(this)[0].files[0];
+                                let formData = new FormData();
+                                let uuid = [];
+                                let path = [];
+                                let orgName = [];
+
+                                formData.append("file", $files);
+
+                                /* fileController 보내기 */
+                                $.ajax({
+                                    url: "/image/upload",
+                                    type: "post",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        let userFile = {
+                                            "fileUuid": data.uuids[0],
+                                            "filePath": data.paths[0],
+                                            "fileOrgName": data.orgNames[0]
+                                        }
+                                        $.ajax({
+                                            url: "/mypage/user/profile-update",
+                                            data: userFile,
+                                            success: function() {
+                                                location.reload();
+                                            }
+                                        })
+                                    }
+                                })
+                            });
+                        </script>
                         <span class="img">
-                            <!-- <i class="ico-cou-level01"></i> -->
-                            <img class="user__profile__img" src="../../../static/img/mypage/user__profile.jpg">
+                            <img class="user__profile__img nomal" th:if="${userFile.filePath == null}" src="/img/mypage/nomalProfile.png">
+                            <img class="user__profile__img imgPath" th:if="${userFile.filePath != null}" src=""/>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script th:inline="javascript">
+                                let $userFile = [[${userFile}]];
+                                let filePath = $userFile.filePath;
+                                let fileUuid = $userFile.fileUuid;
+                                let fileOrgName = $userFile.fileOrgName;
+
+                                $(".imgPath").attr("src", `/image/display?fileName=${filePath}/${fileUuid}_${fileOrgName}`);
+                            </script>
                             <span class="img__editor__wrap">
-                                <img class="img__editor" src="../../../static/img/mypage/img_editor.webp">
+                                <img class="img__editor" src="/img/mypage/img_editor.webp">
                             </span>
                         </span>
                     </label>
                     <div class="top-bar-txt">
-                        <p class="greeting"><strong class="name">이영준</strong>님 반갑습니다.</p>
+                        <p class="greeting"><strong class="name" th:text="${userName}"></strong>님 반갑습니다.</p>
                         <ul class="sep-list user-info-list type3">
-                            <li>복지관회원</li>
+                            <li class="userType"></li>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script th:inline="javascript">
+                                let userType = "";
+                                const $userRole = [[${userRole}]];
+                                const $userType = $(".userType");
+
+                                if($userRole == 'MEMBER') {
+                                    userType = "일반회원";
+                                } else if($userRole == 'DISTRIBUTOR') {
+                                    userType = "유통회원";
+                                } else {
+                                    userType = "복지관회원";
+                                }
+
+                                $userType.text(userType);
+                            </script>
                             <li id="groupPointRateText">1% 적립</li>
                             <li class="orange-entryItem">
                                 <a href="javascript:void(0)">
@@ -35,14 +97,14 @@
                             </li>
                         </ul>
                     </div>
-                </div><!--// user-info -->
+                </div>
 
                 <!--// order -->
                 <dl class="column order">
                     <dt>구독</dt>
                     <dd>
                         <a href="javascript:void(0)">
-                            <strong class="num" id="orderCountText">333</strong>명
+                            <strong class="num" id="orderCountText" th:text="${subscriber}"></strong>명
                         </a>
                     </dd>
                 </dl>
@@ -55,14 +117,14 @@
 
                 <!--// coupon -->
                 <dl class="column coupon">
-                    <dt>게시물</dt>
-                    <dd><a href="javascript:void(0)"><strong class="num" id="couponCountText">199</strong>개</a></dd>
+                    <dt>문의내역</dt>
+                    <dd><a href="javascript:void(0)"><strong class="num" id="couponCountText" th:text="${inquiryCount}"></strong>개</a></dd>
                 </dl>
 
                 <!--// point -->
                 <dl class="column point">
                     <dt>포인트</dt>
-                    <dd class="text-primary"><a href="javascript:void(0)"><strong class="num" id="totalUnusedPointText">1,000</strong>P</a></dd>
+                    <dd class="text-primary"><a href="javascript:void(0)"><strong class="num" id="totalUnusedPointText" th:text="${totalPoint}"></strong>P</a></dd>
                 </dl>
                 
             </div><!--// inner -->

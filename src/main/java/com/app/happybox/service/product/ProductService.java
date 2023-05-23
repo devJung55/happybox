@@ -1,6 +1,8 @@
 package com.app.happybox.service.product;
 
 import com.app.happybox.domain.AddressDTO;
+import com.app.happybox.entity.file.BoardFile;
+import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.domain.product.ProductDTO;
@@ -10,6 +12,7 @@ import com.app.happybox.entity.user.Address;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,6 +31,9 @@ public interface ProductService {
 //    상품 상세조회
     public ProductDTO findById(Long id);
 
+//    상품 등록
+    public void saveProduct(Long distributorId, ProductDTO productDTO);
+
 //    관리자 해당 유통회원의 상품 목록
     public Page<ProductDTO> getListByDistributorId(Pageable pageable, Long distributorId);
 
@@ -36,6 +42,16 @@ public interface ProductService {
 
 //    마이페이지 상품 개수 조회
     public Long getProductCount(Long distributorId);
+
+    default Product productToEntity(ProductDTO productDTO) {
+        return Product.builder()
+                .productName(productDTO.getProductName())
+                .productInfo(productDTO.getProductInfo())
+                .productPrice(productDTO.getProductPrice())
+                .productCategory(productDTO.getProductCategory())
+                .productStock(productDTO.getProductStock())
+                .build();
+    }
 
     default ProductDTO productToDTO(Product product) {
         return ProductDTO.builder()
@@ -48,11 +64,7 @@ public interface ProductService {
                 .productPrice(product.getProductPrice())
                 .productReplyCount(product.getProductReplyCount())
                 .productStock(product.getProductStock())
-                .productFileDTOS(
-                        product.getProductFiles().stream()
-                                .map(this::productFileToDTO)
-                                .collect(Collectors.toList())
-                )
+                .productFileDTOS(productFileListToDTO(product.getProductFiles()))
                 .address(this.addressToDTO(product.getDistributor().getAddress()))
                 .build();
     }
@@ -64,6 +76,30 @@ public interface ProductService {
                 .fileRepresent(file.getFileRepresent())
                 .fileUuid(file.getFileUuid())
                 .id(file.getId())
+                .build();
+    }
+
+    default List<ProductFileDTO> productFileListToDTO(List<ProductFile> productFiles) {
+        List<ProductFileDTO> productFileDTOS = new ArrayList<>();
+        productFiles.forEach(productFile -> {
+            ProductFileDTO productFileDTO = ProductFileDTO.builder()
+                    .id(productFile.getId())
+                    .filePath(productFile.getFilePath())
+                    .fileUuid(productFile.getFileUuid())
+                    .fileOrgName(productFile.getFileOrgName())
+                    .fileRepresent(productFile.getFileRepresent())
+                    .build();
+                productFileDTOS.add(productFileDTO);
+        });
+
+        return productFileDTOS;
+    }
+
+    default ProductFile productFileToEntity(ProductFileDTO productFileDTO) {
+        return ProductFile.builder()
+                .filePath(productFileDTO.getFilePath())
+                .fileUuid(productFileDTO.getFileUuid())
+                .fileOrgName(productFileDTO.getFileOrgName())
                 .build();
     }
 

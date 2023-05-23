@@ -3,9 +3,11 @@
 const optionList = ["음식기부", "봉사활동", "무료배달", "노인복지"];
 
 const insertData = {
+    id: donationBoardDTO.id,
     boardTitle:"",
     boardContent: "",
     donateType: "",
+    boardRegisterDate: donationBoardDTO.updatedDate,
     donateLocation: "",
     donationBoardFiles: new Array(3)
 }
@@ -290,7 +292,7 @@ $imgFile.each((i, e) => {
                 $fileT.eq(i).attr('src', result)
                 // 이미지가 아니라면 no_image.png를 이미지로 설정
             } else {
-                $imgDiv.eq(i).css('dispaly', 'none');
+                $imgDiv.eq(i).css('display', 'none');
             }
         };
     });

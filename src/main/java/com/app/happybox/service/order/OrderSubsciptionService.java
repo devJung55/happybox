@@ -23,6 +23,9 @@ public interface OrderSubsciptionService {
 //    마이페이지 구독취소
     public void cancelSubscribeById(Long id);
 
+//    마이페이지 구독자 수 조회
+    public Long getSubscriberCountByWelfareId(Long welfareId);
+
     default OrderSubscriptionDTO adminToOrderSubscriptionDTO(OrderSubscription orderSubscription) {
         return OrderSubscriptionDTO.builder()
                 .memberId(orderSubscription.getMember().getId())

@@ -81,6 +81,23 @@ public class DistributorMypageController {
         return inquiries;
     }
 
+//    상품 등록
+    @MypageHeaderValues
+    @GetMapping("distributor/register")
+    public String registerProduct(@AuthenticationPrincipal UserDetail userDetail, ProductDTO productDTO, Model model) {
+        model.addAttribute("productDTO", productDTO);
+        return "/mypage/business/product-register";
+    }
+
+//    상품 등록
+    @PostMapping("distributor/register")
+    @ResponseBody
+    public void registerProduct(@AuthenticationPrincipal UserDetail userDetail, ProductDTO productDTO) {
+        log.info(productDTO.toString());
+
+        productService.saveProduct(userDetail.getId(), productDTO);
+    }
+
 //    상품 목록
     @MypageHeaderValues
     @GetMapping("distributor/product")
@@ -109,17 +126,12 @@ public class DistributorMypageController {
     public Page<MemberOrderProductItemDTO> getSaleList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String year, String month, String day) {
         SearchDateDTO searchDateDTO = new SearchDateDTO();
 
-        log.info(page + "::::::page");
         if(year != null) {
             LocalDateTime setDate = LocalDateTime.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0);
             searchDateDTO.setSetDate(setDate);
         }
 
         Page<MemberOrderProductItemDTO> sales = memberOrderProductItemService.getSaleListByDistributorIdAndSearchDate(PageRequest.of(page - 1, 5), userDetail.getId(), searchDateDTO);
-
-        sales.forEach(v -> {
-            log.info(v.getProductName());
-        });
         return sales;
     }
 }

@@ -55,20 +55,6 @@ $('#member-join-general-birthday-text').on('focus', function () {
     $(this).val($(this).val().replaceAll('.', ''));
 });
 
-// coolsms 할때 필요함
-
-/* 인증번호 입력 버튼 */
-$(".join-check-btn").on("click", function () {
-    if ($(".join-check").val() == code) {
-        let modalMessage = "인증이 완료되었습니다.";
-        showWarnModal(modalMessage);
-        console.log(joinCheck);
-        joinCheck = true;
-        return;
-    }
-    joinCheck = false;
-});
-
 $joinInputs.on('blur', function () {
     let i = $joinInputs.index($(this));
     let value = $(this).val();
@@ -338,6 +324,8 @@ function closeMemberJoinInputCertiNoPop() {
     $modal2.css('display', 'none');
 }
 
+
+/* 휴대폰 중복 검사, 인증번호 전송 및 확인 */
 let phoneNo = '';
 
 function onClickLoginCertiPopSendSms() {
@@ -356,11 +344,36 @@ function onClickLoginCertiPopSendSms() {
         );
         return;
     }
-
-    $('#popup-member-join-certi-sms-phone-no-error').html('');
-
     phoneNo = '010' + '-' + phoneMid + '-' + phonePostfix;
-    nextModal();
+
+    /* 입력한 휴대폰 번호로 가입된 정보가 있는지 확인 */
+    $.ajax({
+        type: "get",
+        url: "/checkUserPhoneNumber",
+        data: {userPhoneNumber: phoneNo},
+        success: function (result) {
+            console.log(result);
+            if (result) {
+                $('#popup-member-join-certi-sms-phone-no-error').html(
+                    '<p class="valid error">중복된 휴대폰 번호입니다.</p>'
+                );
+            }else{
+                /* 중복된 휴대폰 번호가 없으면 인증번호 전송 */
+                $.ajax({
+                    type: "POST",
+                    url: "/member/sendCode",
+                    data: { memberPhone: phoneNo },
+                    success: function(data) {
+                        console.log(data);
+                        code = data;
+                    }
+                });
+                /* 다음 모달창으로 넘어감 */
+                $('#popup-member-join-certi-sms-phone-no-error').html();
+                nextModal();
+            }
+        }
+    });
 }
 
 // 인증번호 체크
@@ -403,8 +416,6 @@ function onKeyUpMemberJoinCertiNoText() {
 
 function onClickCertiNoComfirmBtn() {
     const certiNo = $('#member-join-input-certi-no-pop-text').val();
-    // 임시 인증번호
-    const code = 123456;
 
     if (certiNo.length > 6) {
         $('#member-join-input-certi-no-pop-text').val(certiNo.substring(0, 6));
@@ -491,48 +502,48 @@ function alertModal(errorMsg) {
 
 /* ======================================= 휴대폰 중복검사 및 인증 ==================================================   */
 // else if (i == 3) {
-$(".join-phone-btn").click(function () {
-    $.ajax({
-        type: "get",
-        url: "/checkUserPhoneNumber",
-        data: {userPhoneNumber: phoneNo},
-        success: function (result) {
-            let message ="";
-            if (!result) {
-                message = "중복된 휴대폰 번호입니다.";
-                $joinHelp.eq(i).show();
-                $joinHelp.eq(i).css('color', 'red')
-                $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
-                $joinHelp.eq(i).text(message);
-                phoneNumberCheck = false;
-                joinCheckAll[i] = false;
-            } else {
-                message = "사용가능한 휴대폰 번호입니다.";
-                $joinHelp.eq(i).show();
-                $joinHelp.eq(i).css('color', 'blue');
-                $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
-                phoneNumberCheck = true;
-                joinCheckAll[i] = true;
-                let modalMessage = "인증번호가 전송되었습니다.";
-                showWarnModal(modalMessage);
-                $joinHelp.eq(i).hide();
-                console.log(i);
-                $joinInputs.eq(i).css('border', '1px solid #05AE68');
-                phoneNumberCheck = true;
-                joinCheckAll[i] = true;
-                let phone = $(".join-phone").val().replaceAll("-", "");
-                console.log(phone);
-                $.ajax({
-                    type: "POST",
-                    url: "/member/sendCode",
-                    data: {memberPhone: phoneNo},
-                    success: function (data) {
-                        console.log(data);
-                        code = data;
-                    }
-                });
-            }
-        }
-    });
-});
+// $(".join-phone-btn").click(function () {
+//     $.ajax({
+//         type: "get",
+//         url: "/checkUserPhoneNumber",
+//         data: {userPhoneNumber: phoneNo},
+//         success: function (result) {
+//             let message ="";
+//             if (!result) {
+//                 message = "중복된 휴대폰 번호입니다.";
+//                 $joinHelp.eq(i).show();
+//                 $joinHelp.eq(i).css('color', 'red')
+//                 $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+//                 $joinHelp.eq(i).text(message);
+//                 phoneNumberCheck = false;
+//                 joinCheckAll[i] = false;
+//             } else {
+//                 message = "사용가능한 휴대폰 번호입니다.";
+//                 $joinHelp.eq(i).show();
+//                 $joinHelp.eq(i).css('color', 'blue');
+//                 $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+//                 phoneNumberCheck = true;
+//                 joinCheckAll[i] = true;
+//                 let modalMessage = "인증번호가 전송되었습니다.";
+//                 showWarnModal(modalMessage);
+//                 $joinHelp.eq(i).hide();
+//                 console.log(i);
+//                 $joinInputs.eq(i).css('border', '1px solid #05AE68');
+//                 phoneNumberCheck = true;
+//                 joinCheckAll[i] = true;
+//                 let phone = $(".join-phone").val().replaceAll("-", "");
+//                 console.log(phone);
+//                 $.ajax({
+//                     type: "POST",
+//                     url: "/member/sendCode",
+//                     data: {memberPhone: phoneNo},
+//                     success: function (data) {
+//                         console.log(data);
+//                         code = data;
+//                     }
+//                 });
+//             }
+//         }
+//     });
+// });
 // }

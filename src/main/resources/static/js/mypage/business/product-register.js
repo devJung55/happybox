@@ -1,18 +1,16 @@
-/* recipe-board-insert.html */
-
-const insertData = {
-    boardTitle:"",
-    boardContent: "",
-    recipeBoardFiles: new Array()
-}
-
-function send() {
-
-}
-
 /* 파일 등록 */
+const insertData = {
+    productName:"",
+    productCategory: "",
+    productInfo: "",
+    productPrice: "",
+    productStock: "",
+    productFileDTOS: new Array(3)
+}
+
+
 const $fileAttachBtn = $(".btn-attach-thumb");
-const $imgFile = $("input[type='file']");
+const $imgFile = $("input[name='imgFile']");
 const $imgDiv = $('.attach-img');
 const $fileT = $('.attach-img img');
 
@@ -37,7 +35,7 @@ const fileAjax = (data, index) => {
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                insertData.recipeBoardFiles.push(file);
+                insertData.reviewBoardFiles[index] = file;
                 console.log(insertData);
             }
         }
@@ -70,7 +68,7 @@ $imgFile.each((i, e) => {
                 $fileT.eq(i).attr('src', result)
                 // 이미지가 아니라면 no_image.png를 이미지로 설정
             } else {
-                $imgDiv.eq(i).css('display', 'none');
+                $imgDiv.eq(i).css('dispaly', 'none');
             }
         };
     });
@@ -92,20 +90,28 @@ $(document).ready(function() {
 $("form[name='form']").on("submit", function (e) {
     e.preventDefault();
 
-    let boardTitle = $("input[name='boardTitle']").val();
-    let boardContent = $("textarea[name='boardContent']").val();
+    let productName = $("input[name='productName']").val();
+    let productCategory = $("#foodCategory option").val();
+    let productInfo = $("textarea[name='productInfo']").val();
+    let productPrice = $("input[name='productPrice']").val();
+    let productStock = $("input[name='productStock']").val();
 
-    insertData.boardTitle = boardTitle;
-    insertData.boardContent = boardContent;
+    insertData.productName = productName;
+    insertData.productCategory = productCategory;
+    insertData.productInfo = productInfo;
+    insertData.productPrice = productPrice;
+    insertData.productStock = productStock;
+
+    insertData.productFileDTOS = insertData.productFileDTOS.filter(e => e !== undefined && e !== null);
 
     $.ajax({
-        url: '/user-board/recipe-board-insert',
+        url: '/distributor/register',
         data: JSON.stringify(insertData),
         contentType: "application/json; charset=utf-8",
         method: 'post',
         success: function (result) {
             // redirect 경로
-            location.href = "/user-board/recipe-board-list";
+            location.href = "/distributor/product-list";
         }
     })
 });

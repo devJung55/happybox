@@ -1,10 +1,19 @@
 package com.app.happybox.service.product;
 
+import com.app.happybox.entity.file.BoardFile;
+import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.file.ProductFile;
+import com.app.happybox.entity.file.ProductFileDTO;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.product.ProductSearchDTO;
+import com.app.happybox.entity.user.Distributor;
 import com.app.happybox.exception.ProductNotFoundException;
+import com.app.happybox.exception.UserNotFoundException;
+import com.app.happybox.repository.product.ProductFileRepository;
 import com.app.happybox.repository.product.ProductRepository;
+import com.app.happybox.repository.user.DistributorRepository;
+import com.app.happybox.type.FileRepresent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +33,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
+    private final DistributorRepository distributorRepository;
+    private final ProductFileRepository productFileRepository;
 
     @Override
     public List<ProductDTO> findTop8Recent() {
@@ -54,6 +66,42 @@ public class ProductServiceImpl implements ProductService {
         });
 
         return productToDTO(product);
+    }
+
+    @Override @Transactional
+    public void saveProduct(Long distributorId, ProductDTO productDTO) {
+        List<ProductFileDTO> productFileDTOS = productDTO.getProductFileDTOS();
+
+        // 유통업자 찾기
+        Distributor distributor = distributorRepository.findById(distributorId).orElseThrow(UserNotFoundException::new);
+        // 상품 엔티티로 변환
+        Product product = productToEntity(productDTO);
+        product.setDistributor(distributor);
+
+        productRepository.save(product);
+
+        int count = 0;
+
+        for (int i = 0; i < productFileDTOS.size(); i++) {
+            if(productFileDTOS.get(i) == null) continue;
+
+            if (count == 0) {
+                productFileDTOS.get(i).setFileRepresent(FileRepresent.REPRESENT);
+                count++;
+            } else {
+                productFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
+            }
+
+            productFileDTOS.get(i).setProductDTO(productToDTO(product));
+
+            // 엔티티
+            ProductFile productFile = productFileToEntity(productFileDTOS.get(i));
+
+            productFile.setProduct(product);
+
+            productFileRepository.save(productFile);
+        }
+
     }
 
     @Override
