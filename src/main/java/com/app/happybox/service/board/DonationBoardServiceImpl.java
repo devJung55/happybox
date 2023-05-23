@@ -60,7 +60,7 @@ public class DonationBoardServiceImpl implements DonationBoardService {
     }
 
 
-    @Override @Transactional
+    @Override @Transactional(rollbackFor = Exception.class)
     public void update(DonationBoardDTO donationBoardDTO, Long welfareId) {
         List<BoardFileDTO> boardFileDTOS = donationBoardDTO.getDonationBoardFiles();
 

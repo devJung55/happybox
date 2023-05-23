@@ -56,7 +56,7 @@ function showList() {
                                             연락처:
                                             <span class="welfare-phone">${donate.welfarePhone}</span>
                                         </div>
-                                        <button type="button" class="update-btn" style="
+                                        <a href='/user-board/donate-modify/${donate.id}' class="update-btn" style="
                                                 width: 20px;
                                                 height: 20px;
                                                 position: absolute;
@@ -69,7 +69,7 @@ function showList() {
                                             </g>
                                             <g id="Layer_1"></g>
                                           </svg>
-                                        </button>
+                                        </a>
                                         <button type="button" class="delete-btn" data-id="121"
                                                 style="
                                                         width: 20px;
@@ -144,10 +144,8 @@ $(".update-btn").on("click", function () {
         type: 'GET',
         contentType: "application/json; charset=utf-8",
         success: function(result) {
-            console.log(result);
         },
         error: function(error) {
-            console.log(error);
         }
     });
 });

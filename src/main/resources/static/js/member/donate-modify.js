@@ -3,9 +3,11 @@
 const optionList = ["음식기부", "봉사활동", "무료배달", "노인복지"];
 
 const insertData = {
+    id: donationBoardDTO.id,
     boardTitle:"",
     boardContent: "",
     donateType: "",
+    boardRegisterDate: donationBoardDTO.updatedDate,
     donateLocation: "",
     donationBoardFiles: new Array(3)
 }

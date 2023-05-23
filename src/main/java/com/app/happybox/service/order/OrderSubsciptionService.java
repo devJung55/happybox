@@ -1,7 +1,9 @@
 package com.app.happybox.service.order;
 
 import com.app.happybox.domain.OrderSubscriptionDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.order.OrderSubscription;
+import com.app.happybox.entity.user.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -10,7 +12,7 @@ import java.util.Optional;
 
 public interface OrderSubsciptionService {
 //    관리자 복지관 구독자 목록
-    public Page<OrderSubscriptionDTO> getListByWelfareId(Pageable pageable, Long welfare, String subscriberName);
+    public Page<MemberDTO> getListByWelfareId(Pageable pageable, Long welfare);
 
 //    일반 마이페이지 구독한 수 조회
     public Long getMySubscriptionCountByMemberId(Long id);
@@ -39,4 +41,24 @@ public interface OrderSubsciptionService {
                 .orderStartDate(orderSubscription.getCreatedDate())
                 .build();
     }
+
+    default MemberDTO toMemberDTO(Member member){
+        return MemberDTO.builder()
+                .id(member.getId())
+                .userId(member.getUserId())
+                .address(member.getAddress())
+                .memberDeliveryAddress(member.getMemberDeliveryAddress())
+                .memberBirth(member.getMemberBirth())
+                .userEmail(member.getUserEmail())
+                .memberGender(member.getMemberGender())
+                .memberName(member.getMemberName())
+                .userPassword(member.getUserPassword())
+                .userPhoneNumber(member.getUserPhoneNumber())
+                .deliveryName(member.getDeliveryName())
+                .deliveryPhoneNumber(member.getDeliveryPhoneNumber())
+                .userRole(member.getUserRole())
+                .userStatus(member.getUserStatus())
+                .build();
+    }
+
 }
