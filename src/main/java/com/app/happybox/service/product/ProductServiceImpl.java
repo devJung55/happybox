@@ -3,8 +3,12 @@ package com.app.happybox.service.product;
 import com.app.happybox.entity.product.Product;
 import com.app.happybox.domain.product.ProductDTO;
 import com.app.happybox.domain.product.ProductSearchDTO;
+import com.app.happybox.entity.user.Distributor;
 import com.app.happybox.exception.ProductNotFoundException;
+import com.app.happybox.exception.UserNotFoundException;
+import com.app.happybox.repository.product.ProductFileRepository;
 import com.app.happybox.repository.product.ProductRepository;
+import com.app.happybox.repository.user.DistributorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +27,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
+    private final DistributorRepository distributorRepository;
+    private final ProductFileRepository productFileRepository;
 
     @Override
     public List<ProductDTO> findTop8Recent() {
@@ -52,6 +58,27 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findByIdWithDetail_QueryDSL(id).orElseThrow(() -> {
             throw new ProductNotFoundException();
         });
+
+        return productToDTO(product);
+    }
+
+    @Override
+    public ProductDTO saveProduct(Long distributorId, ProductDTO productDTO) {
+        // 유통업자 찾기
+        Distributor distributor = distributorRepository.findById(distributorId).orElseThrow(UserNotFoundException::new);
+        // 상품 엔티티로 변환
+        Product product = productToEntity(productDTO);
+        product.setDistributor(distributor);
+
+        productRepository.save(product);
+
+        productDTO.getProductFileDTOS()
+                .stream()
+                .map(this::productFileToEntity)
+                .forEach(file -> {
+                    file.setProduct(product);
+                    productFileRepository.save(file);
+                });
 
         return productToDTO(product);
     }
