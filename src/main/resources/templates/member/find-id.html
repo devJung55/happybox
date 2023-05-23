@@ -10,11 +10,19 @@
     <link rel="stylesheet" href="/css/member/member.css"/>
     <link rel="stylesheet" href="/css/member/find.css"/>
     <link rel="stylesheet" href="/css/member/confirm-id.css"/>
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
 </head>
 <body>
-<header class="header-stage" th:insert="~{component/header.html :: header}"></header>
 <root style="zoom: 80%">
+    <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
     <section class="join-container" style="min-height: auto">
+        <!-- 모달창 -->
+        <div class="modal">
+            <div class="warn-modal">
+                <div id="content-wrap">인증번호를 확인해주세요</div>
+            </div>
+        </div>
         <div class="join-area type2">
             <div class="find-id-layout">
                 <h2 class="search-title">아이디 찾기</h2>
@@ -167,7 +175,7 @@
             <div class="confirm-id-layout">
                 <div class="result-cnt">
                     <i class="ico-img-info"></i>
-                    <p class="message">
+                    <p class="find-message">
                         고객님의 아이디는
                         <br/>
                         <strong class="text-primary">
@@ -190,8 +198,8 @@
         </div>
         <!--// join-area -->
     </section>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </root>
-<footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/join/find.js"></script>

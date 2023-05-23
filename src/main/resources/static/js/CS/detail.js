@@ -31,36 +31,6 @@ function addDetail() {
                     />
                 `
     }
-    text +=
-        `
-                </div>
-                <div class="board-wrap prev-article">
-                    <div class="text-center arti">
-                        <span class="">이전글</span>
-                    </div>
-                    <div class="text-left flex1">
-                        <a href="javascript:void(0)" class="title-elps">
-                            영양성분 전수조사 결과 입장문
-                        </a>
-                    </div>
-                    <div class="text-center">
-                        <span>2023.02.03</span>
-                    </div>
-                </div>
-                <div class="board-wrap next-article">
-                    <div class="text-center arti">
-                        <span class="">다음글</span>
-                    </div>
-                    <div class="text-left flex1">
-                        <a href="javascript:void(0)" class="title-elps">
-                            다음글 다음글 다음글
-                        </a>
-                    </div>
-                    <div class="text-center">
-                        <span>2023.02.05</span>
-                    </div>
-                </div>
-        `;
     setDetail.append(text);
 }
 addDetail();

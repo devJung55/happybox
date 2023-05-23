@@ -31,6 +31,10 @@ $password.keyup(function () {
     $('.valid').css('display', 'block');
 });
 
+$('input[name=userPassword]').on('blur', function () {
+    console.log($(this).val())
+})
+
 $passwordConfirm.keyup(function(){
     if($passwordConfirm.val() == $password.val()){
         $('#reset-pw-submit-btn').addClass('btn-primary');

@@ -138,8 +138,17 @@ $("#find-member-pw-phone-btn").on("click", function() {
                 goCheck();
             }
         });
-    } else { alert("인증번호를 확인해주세요") }
+    } else { alertModal(); }
 });
+
+/* 모달창 */
+function alertModal() {
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function () {
+        $("div.modal").fadeOut();
+    }, 2000);
+}
+
 
 /* 해당 전화번호로 이메일 조회할 수 있도록 하기, 위에랑 겹처서 따로 뺌 */
 $('.reset-password').on('click', function () {
@@ -153,7 +162,7 @@ $('.reset-password').on('click', function () {
         }, error: function () {
             let text = `
                     <div class="result-cnt">
-                        <p class="message">
+                        <p class="find-message">
                             회원님의 이메일이 존재하지 않습니다.
                             <br/>
                             <strong class="text-primary">[전화번호]</strong>
@@ -215,7 +224,7 @@ $emailBtn.on('click', function(){
         success: function (answer) {
             let text = `
                     <div class="result-cnt">
-                        <p class="message">
+                        <p class="find-message">
                             이메일이 발송되었습니다.
                             <br/>
                             <strong class="text-primary">[링크]</strong>
