@@ -5,206 +5,157 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>유통업자 상세</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-	<link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap"
+          rel="stylesheet">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
     <link rel="stylesheet" href="/css/admin/admin-default.css">
     <link rel="stylesheet" href="/css/admin/admin-modal.css">
     <link rel="stylesheet" href="/css/admin/admin-detail.css">
     <link rel="stylesheet" href="/css/admin/admin-boardList.css">
-	<link rel="stylesheet" href="/css/admin/sidebar.css">
+    <link rel="stylesheet" href="/css/admin/sidebar.css">
 </head>
 <body>
-    <section class="header-section">
-        <div class="info-title-box info-title-box-flex">
-            <div class="logo-box-layout">
-                <div class="logo-title-layout">
-                    <img class="logo-image" src="/img/header/Logo-main.png" alt="">
-                </div>
+<section class="header-section">
+    <div class="info-title-box info-title-box-flex">
+        <div class="logo-box-layout">
+            <div class="logo-title-layout">
+                <img class="logo-image" src="/img/header/Logo-main.png" alt="">
             </div>
-            <div>
-                <div class="select-name">
-                    <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
-                    <span>유통업자 관리</span>	
+        </div>
+        <div>
+            <div class="select-name">
+                <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png"
+                     class="depth1-icon">
+                <span>유통업자 관리</span>
+            </div>
+        </div>
+    </div>
+</section>
+<main class="main-section">
+    <!-- 임시 사이드바 -->
+    <div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
+
+    <!-- 임시 사이드바 끝 -->
+    <section class="content-section">
+        <div class="container">
+            <div class="go-list-box">
+                <!--<span class="go-list">← 리스트로 돌아가기</span>-->
+            </div>
+            <div class="detail-box-wrap" th:object="${distributor}">
+                <div class="detail-box">
+                    <div class="board-info-detail-box">
+                        <span>유통업자 정보</span>
+                    </div>
+                    <div>
+                        <div class="content-img-wrapper">
+                            <div class="content-img one-img">
+                                <img
+                                        th:if="${userFile == null}"
+                                        src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+                                />
+                                <img
+                                        th:if="${userFile != null}"
+                                        src="/image/display?fileName=" +
+                                        th:value="${userFile.getFilePath + '/' + userFile.getFileUuid + '_' + userFile.getFileOrgName}"
+                                />
+                            </div>
+                        </div>
+                        <ul class="content-list-wrap" th:if="${distributor.id} == ${distributorId}">
+                            <li class="content-list">
+                                <span>업체명</span>
+                                <div class="content-input">
+                                    <input type="text" th:value="*{distributorName}" readonly/>
+                                </div>
+                            </li>
+                            <li class="content-list">
+                                <span>대표 번호</span>
+                                <div class="content-input">
+                                    <input type="text" th:value="*{userPhoneNumber}" readonly/>
+                                </div>
+                            </li>
+                            <li class="content-list">
+                                <span>대표 이메일</span>
+                                <div class="content-input">
+                                    <input type="text" th:value="*{userEmail}" readonly/>
+                                </div>
+                            </li>
+                            <li class="content-list">
+                                <span>주소</span>
+                                <div class="content-input">
+                                    <input type="text" th:value="*{address.firstAddress + address.addressDetail}"
+                                           readonly/>
+                                </div>
+                            </li>
+                            <li class="content-list">
+                                <span>등록날짜</span>
+                                <div class="content-input">
+                                    <input type="text" th:value="*{#temporals.format(createdDate, 'yyyy-MM-dd')}"
+                                           readonly/>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="detail-list">
+                    <div class="board-info-detail-box">
+                        <span>게제 목록</span>
+                    </div>
+                    <div class="table-box detail-table">
+                        <div class="info-table">
+                            <table class="table"></table>
+                            <!-- 페이지 버튼 -->
+                            <div class="page-button-box-layout"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <main class="main-section">
-        <!-- 임시 사이드바 -->
-		<div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
-
-        <!-- 임시 사이드바 끝 -->
-        <section class="content-section">
-            <div class="container">
-                <div class="go-list-box">
-                    <!--<span class="go-list">← 리스트로 돌아가기</span>-->
-                </div>
-                <div class="detail-box-wrap" th:object="${distributor}">
-                    <div class="detail-box">
-                        <div class="board-info-detail-box">
-                            <span>유통업자 정보</span>
-                        </div>
-                        <div>
-                            <div class="content-img-wrapper">
-                                <div class="content-img one-img">
-									<img
-										th:if="${userFile == null}"
-										src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-									/>
-									<img
-										th:if="${userFile != null}"
-										src="/image/display?fileName=" + th:value="${userFile.getFilePath + '/' + userFile.getFileUuid + '_' + userFile.getFileOrgName}"
-									/>
-                                </div>
-                            </div>
-                            <ul class="content-list-wrap" th:if="${distributor.id} == ${distributorId}">
-                                <li class="content-list">
-                                    <span>업체명</span>
-                                    <div class="content-input">
-                                        <input type="text" th:value="*{distributorName}" readonly/>
-                                    </div>
-                                </li>
-                                <li class="content-list">
-                                    <span>대표 번호</span>
-                                    <div class="content-input">
-                                        <input type="text" th:value="*{userPhoneNumber}" readonly/>
-                                    </div>
-                                </li>
-                                <li class="content-list">
-                                    <span>대표 이메일</span>
-                                    <div class="content-input">
-                                        <input type="text" th:value="*{userEmail}" readonly/>
-                                    </div>
-                                </li>
-                                <li class="content-list">
-                                    <span>주소</span>
-                                    <div class="content-input">
-                                        <input type="text" th:value="*{address.firstAddress + address.addressDetail}" readonly/>
-                                    </div>
-                                </li>
-                                <li class="content-list">
-                                    <span>등록날짜</span>
-                                    <div class="content-input">
-                                        <input type="text" th:value="*{#temporals.format(createdDate, 'yyyy-MM-dd')}" readonly/>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="detail-list">
-                        <div class="board-info-detail-box">
-                            <span>게제 목록</span>
-                        </div>
-                        <div class="table-box detail-table">
-                            <div class="info-table">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>
-												<input type="checkbox" id="allSelect">
-											</th>
-											<th>No</th>
-											<th>메뉴</th>
-                                            <th>가격</th>
-                                            <th>수량</th>
-										</tr>
-									</thead>
-									<div th:each="product : ${products}" th:object="${product}">
-										<tr class="product__tr">
-											<td>
-												<input type="checkbox" name="check">
-											</td>
-											<td class="show-modal" th:text="*{id}"></td>
-											<td class="show-modal" th:text="*{productName}"></td>
-											<td class="show-modal" th:text="*{productPrice + '원'}"></td>
-											<td class="show-modal" th:text="*{productStock + '개'}"></td>
-										</tr>
-									</div>
-								</table>
-								<!-- 페이지 버튼 -->
-								<div th:if="${pageDTO.total != 0}" class="page-button-box-layout">
-									<div class="page-button-box">
-										<!-- 페이지 번호 -->
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<a th:if="${pageDTO.prev}" th:href="'javascript:setPage(' + ${pageDTO.startPage - 1} + ')'" ><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button"></a>
-												</div>
-											</div>
-										</div>
-										<th:block th:each="page : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-											<div th:if="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button-active page-button">
-												<div class="page-button-margin">
-													<div>
-														<span th:text="${page}"></span>
-													</div>
-												</div>
-											</div>
-											<div th:unless="${pageDTO.pageNum == page}" th:attr="onclick='setPage(' + ${page} + ')'" class="page-button">
-												<div class="page-button-margin">
-													<div>
-														<span th:text="${page}"></span>
-													</div>
-												</div>
-											</div>
-										</th:block>
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<a th:if="${pageDTO.next}" th:href="'javascript:setPage(' + ${pageDTO.endPage + 1} + ')'"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button"></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- 페이지 버튼 끝 -->
-							</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <section class="delete-modal">
-		<div class="delete-modal-shape">
-			<div class="modal-header">
-				<h4>삭제 확인</h4>
-			</div>
-			<div class="modal-body">
-				<p>정말로 삭제하겠습니까?</p>
-			</div>
-			<div class="modal-footer">
-				<span class="confirm-delete">확인</span>
-				<span class="cancel-delete">취소</span>
-			</div>
-		</div>
-	</section>
-	<section class="modal">
-		<div class="modal-shape menu-shape">
-			<div class="modal-header">
-				<h4>메뉴 상세보기</h4>
-				<a class="modal-close">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						data-name="Capa 1"
-						id="Capa_1"
-						viewBox="0 0 20 19.84"
-					>
-						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
-					</svg>
-				</a>
-			</div>
-			<form class="content-info" action>
-				<main class="content-detail product__detail__modal"></main><!--// 상품 상세보기 모달-->
-			</form>
-		</div>
-	</section>
+</main>
+<section class="delete-modal">
+    <div class="delete-modal-shape">
+        <div class="modal-header">
+            <h4>삭제 확인</h4>
+        </div>
+        <div class="modal-body">
+            <p>정말로 삭제하겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+            <span class="confirm-delete">확인</span>
+            <span class="cancel-delete">취소</span>
+        </div>
+    </div>
+</section>
+<section class="modal">
+    <div class="modal-shape menu-shape">
+        <div class="modal-header">
+            <h4>메뉴 상세보기</h4>
+            <a class="modal-close">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        data-name="Capa 1"
+                        id="Capa_1"
+                        viewBox="0 0 20 19.84"
+                >
+                    <path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+                </svg>
+            </a>
+        </div>
+        <form class="content-info" action>
+            <main class="content-detail product__detail__modal"></main><!--// 상품 상세보기 모달-->
+        </form>
+    </div>
+</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/menuLoad.js"></script>
 <script src="/js/admin/event.js"></script>
 <script src="/js/admin/sidebar.js"></script>
 <script src="/js/admin/ajax.js"></script>
+<script th:inline="javascript">
+    const $distributor = [[${distributor}]];
+</script>
+<script src="/js/admin/distributor-detail.js"></script>
 </html>

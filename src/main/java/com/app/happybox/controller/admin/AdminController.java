@@ -170,14 +170,19 @@ public class AdminController {
     //    유통회원 조회
     @GetMapping("distributor-detail/{distributorId}")
     public String getDistributorDetail(@PathVariable Long distributorId, Model model) {
-        Page<ProductDTO> list = productService.getListByDistributorId(PageRequest.of(0, 10), distributorId);
         model.addAttribute("distributor", distributorService.getDetail(distributorId));
         model.addAttribute("distributorId", distributorId);
         model.addAttribute("userFile", userFileService.getDetail(distributorId));
-        model.addAttribute("products", list.getContent());
-        model.addAttribute("pageDTO", new PageDTO(list));
         return "/admin/admin-distributorDetail";
     }
+
+    //  유통회원 상품 조회
+    @GetMapping("distributor/products/list/{distributorId}")
+    @ResponseBody
+    public Page<ProductDTO> getDistributorProducts(@PageableDefault(page = 1, size = 10) Pageable pageable, @PathVariable Long distributorId) {
+        return productService.getListByDistributorId(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), distributorId);
+    }
+
 
     //    상품 상세보기
     @ResponseBody
@@ -220,14 +225,17 @@ public class AdminController {
 
     //    복지관회원 조회
     @GetMapping("welfare-detail/{welfareId}")
-    public String getWelfareDetail(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @PathVariable Long welfareId, Model model) {
-        String subsciberName = null;
-        Page<OrderSubscriptionDTO> list = orderSubsciptionService.getListByWelfareId(PageRequest.of(0, 5), welfareId, subsciberName);
+    public String getWelfareDetail(@PathVariable Long welfareId, Model model) {
         model.addAttribute("welfare", welfareService.getDetail(welfareId));
-        model.addAttribute("subscribers", list.getContent());
-        model.addAttribute("pageDTO", new PageDTO(list));
         model.addAttribute("userFile", userFileService.getDetail(welfareId));
         return "/admin/admin-welfareDetail";
+    }
+
+    @GetMapping("welfare/subscriber/list/{welfareId}")
+    @ResponseBody
+    public Page<MemberDTO> getSubscribers(@PageableDefault(page = 1, size = 10) Pageable pageable, @PathVariable Long welfareId) {
+        return orderSubsciptionService
+                .getListByWelfareId(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId);
     }
 
     //    결제 목록

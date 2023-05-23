@@ -123,14 +123,21 @@ table {
 tbody tr:hover {
 	cursor: pointer;
 	background-color: #F3A5A5;
-	color: white
+	color: white;
 }
 
 .table-cel:hover {
 	cursor: pointer;
 	background-color: #F3A5A5;
-	color: white
+	color: white;
 }
+
+.product__tr:hover {
+	cursor: pointer;
+	background-color: #F3A5A5;
+	color: white;
+}
+
 
 tr {
 	border-bottom: 0.5px solid #c60a164d;
@@ -178,6 +185,7 @@ table td {
 .page-button {
 	width: 20px;
 	cursor: pointer;
+	margin: 0 3px;
 } 
 
 .page-button-active {

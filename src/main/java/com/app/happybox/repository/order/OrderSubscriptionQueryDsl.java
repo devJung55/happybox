@@ -1,6 +1,7 @@
 package com.app.happybox.repository.order;
 
 import com.app.happybox.entity.order.OrderSubscription;
+import com.app.happybox.entity.user.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,4 +19,7 @@ public interface OrderSubscriptionQueryDsl {
 
 //    마이페이지 구독자 수 조회
     public Long findSubscriberCountByWelfareId_QueryDSL(Long welfareId);
+
+//    관리자 페이지 복지관 구독 구독자목록
+    public Page<Member> findAllMembersByWelfareId(Pageable pageable, Long welfareId);
 }
