@@ -5,6 +5,7 @@ import com.app.happybox.domain.NoticeDTO;
 import com.app.happybox.domain.PageDTO;
 import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.customer.NoticeSearch;
+import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.cs.NoticeService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("cs/*")
+@RequestMapping("/cs/*")
 @Slf4j
 public class CsController {
     @Qualifier("notice")
@@ -52,16 +54,20 @@ public class CsController {
     }
 
     //    문의 작성 페이지로 이동
-    @GetMapping("write-inquiry")
-    public void goToInquiry(InquiryDTO inquiryDTO) {;}
+    @GetMapping("inquiry-write")
+    public String goToInquiry(@AuthenticationPrincipal UserDetail userDetail, InquiryDTO inquiryDTO) {
+        if (userDetail == null) {
+            return "redirect:/member/login";
+        }
+        return "CS/write-inquiry";
+    }
 
     //    문의 작성
     @PostMapping("write")
-    public RedirectView writeInquiry(InquiryDTO inquiryDTO, HttpSession session) {
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        inquiryService.inquiryWrite(inquiryDTO, memberDTO.getId());
+    public RedirectView writeInquiry(@AuthenticationPrincipal UserDetail userDetail, InquiryDTO inquiryDTO, HttpSession session) {
+        inquiryService.inquiryWrite(inquiryDTO, userDetail.getId());
         //    나중에 마이페이지 문의 목록으로 이동해야 함
-        return new RedirectView("/cs/notice");
+        return new RedirectView("/mypage/member/inquiry");
     }
 
     //    FAQ로 이동

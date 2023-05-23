@@ -50,6 +50,11 @@
     font-weight: 500;
 }
 
+.result-cnt .find-message {
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .text-primary {
     color: #FF5938 !important;
 }
