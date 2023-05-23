@@ -10,8 +10,34 @@ let myPageWelfareService = (function() {
         })
     }
 
+    function subscriberListAjax(page) {
+        $.ajax({
+            url: "/mypage/welfare/subscriber/list",
+            data: {"page": page},
+            success: function(subscribers) {
+                console.log(subscribers)
+                showSubscriberList(subscribers);
+                pagination(subscribers);
+            }
+        })
+    }
+
+    function subscriberListSearchNameAjax(page, subscriberName) {
+        $.ajax({
+            url: "/mypage/welfare/subscriber/list/searchName",
+            data: {"page": page, "subscriberName": subscriberName},
+            success: function(subscribers) {
+                console.log(subscribers)
+                showSubscriberList(subscribers);
+                pagination(subscribers);
+            }
+        })
+    }
+
     return {
-        inquiryListAjax: inquiryListAjax
+        inquiryListAjax: inquiryListAjax,
+        subscriberListAjax: subscriberListAjax,
+        subscriberListSearchNameAjax: subscriberListSearchNameAjax
     }
 }());
 
@@ -25,6 +51,8 @@ function setPage(page) {
 
     if(url == "/mypage/welfare/inquiry") {
         myPageWelfareService.inquiryListAjax(page);
+    } else if(url == "/mypage/welfare/subscriber") {
+        myPageWelfareService.subscriberListAjax(page);
     }
 }
 
@@ -79,3 +107,14 @@ function pagination(get) {
         $contentWrap.html(paging);
     }
 }
+
+/* 구독자 이름 조회 */
+
+globalThis.subscripberName = "";
+const $searchName = $("input[name=srchProductNm]");
+
+$(".ico-btn-search").on("click", function() {
+    globalThis.subscripberName = $searchName.val();
+
+    myPageWelfareService.subscriberListSearchNameAjax(page, globalThis.subscripberName);
+});

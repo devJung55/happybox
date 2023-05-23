@@ -21,5 +21,5 @@ public interface OrderSubscriptionQueryDsl {
     public Long findSubscriberCountByWelfareId_QueryDSL(Long welfareId);
 
 //    관리자 페이지 복지관 구독 구독자목록
-    public Page<Member> findAllMembersByWelfareId(Pageable pageable, Long welfareId);
+    public Page<Member> findAllMembersByWelfareId(Pageable pageable, Long welfareId, String subscriberName);
 }
