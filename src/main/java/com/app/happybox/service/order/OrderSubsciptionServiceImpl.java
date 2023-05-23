@@ -51,4 +51,9 @@ public class OrderSubsciptionServiceImpl implements OrderSubsciptionService {
     public void cancelSubscribeById(Long id) {
         orderSubscriptionRepository.findById(id).ifPresent(orderSubscription -> orderSubscriptionRepository.deleteById(id));
     }
+
+    @Override
+    public Long getSubscriberCountByWelfareId(Long welfareId) {
+        return orderSubscriptionRepository.findSubscriberCountByWelfareId_QueryDSL(welfareId);
+    }
 }

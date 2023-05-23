@@ -10,6 +10,7 @@ import com.app.happybox.service.order.OrderSubsciptionService;
 import com.app.happybox.service.product.ProductService;
 import com.app.happybox.service.user.UserFileService;
 import com.app.happybox.service.user.UserService;
+import com.app.happybox.service.user.WelfareService;
 import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,7 @@ public class MypageControllerAspect {
     private final UserFileService userFileService;
     private final UserService userService;
     private final ProductService productService;
+    private final WelfareService welfareService;
 
     @Before("@annotation(com.app.happybox.aspect.annotation.MypageHeaderValues)")
     public void setHeaderInfoValue(JoinPoint joinPoint) throws Throwable {
@@ -55,15 +57,19 @@ public class MypageControllerAspect {
         Role userRole = userService.getDetailByUserId(id).getUserRole();
         Long productCount = productService.getProductCount(id);
         Long salesCount = memberOrderProductItemService.getSalesCountByDistributorId(id);
+        Long subscriber = orderSubsciptionService.getSubscriberCountByWelfareId(id);
+//        Integer totalPoint = welfareService.getDetail(id).getWelfarePointTotal();
 
         request.setAttribute("subscribeCount", subscribeCount); // 내가 구독한 구독 수
         request.setAttribute("orderCount", orderCount);         // 주문 건수
         request.setAttribute("boardCount", boardCount);         // 게시물 건수
-        request.setAttribute("inquiryCount", inquiryCount);     // 문의 건수 조회
+        request.setAttribute("inquiryCount", inquiryCount);     // 문의 건수
         request.setAttribute("userName", userName);             // 회원이름
         request.setAttribute("userFile", userFileDTO);          // 회원 프로필사진
         request.setAttribute("userRole", userRole);             // 회원타입
         request.setAttribute("productCount", productCount);     // 상품 개수
         request.setAttribute("salesCount", salesCount);         // 판매 건수
+        request.setAttribute("subscriber", subscriber);         // 구독자 수
+//        request.setAttribute("totalPoint", totalPoint);         // 보유 포인트
    }
 }

@@ -104,7 +104,7 @@
                     <dt>구독</dt>
                     <dd>
                         <a href="javascript:void(0)">
-                            <strong class="num" id="orderCountText">333</strong>명
+                            <strong class="num" id="orderCountText" th:text="${subscriber}"></strong>명
                         </a>
                     </dd>
                 </dl>
@@ -117,14 +117,14 @@
 
                 <!--// coupon -->
                 <dl class="column coupon">
-                    <dt>게시물</dt>
-                    <dd><a href="javascript:void(0)"><strong class="num" id="couponCountText">199</strong>개</a></dd>
+                    <dt>문의내역</dt>
+                    <dd><a href="javascript:void(0)"><strong class="num" id="couponCountText" th:text="${inquiryCount}"></strong>개</a></dd>
                 </dl>
 
                 <!--// point -->
                 <dl class="column point">
                     <dt>포인트</dt>
-                    <dd class="text-primary"><a href="javascript:void(0)"><strong class="num" id="totalUnusedPointText">1,000</strong>P</a></dd>
+                    <dd class="text-primary"><a href="javascript:void(0)"><strong class="num" id="totalUnusedPointText" th:text="${totalPoint}"></strong>P</a></dd>
                 </dl>
                 
             </div><!--// inner -->

@@ -1,4 +1,14 @@
 /* 파일 등록 */
+const insertData = {
+    productName:"",
+    productCategory: "",
+    productInfo: "",
+    productPrice: "",
+    productStock: "",
+    productFileDTOS: new Array(3)
+}
+
+
 const $fileAttachBtn = $(".btn-attach-thumb");
 const $imgFile = $("input[name='imgFile']");
 const $imgDiv = $('.attach-img');
@@ -25,8 +35,8 @@ const fileAjax = (data, index) => {
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                // insertData.reviewBoardFiles[index] = file;
-                // console.log(insertData);
+                insertData.reviewBoardFiles[index] = file;
+                console.log(insertData);
             }
         }
     });
@@ -77,26 +87,31 @@ $(document).ready(function() {
     });
 });
 
-// $("form[name='form']").on("submit", function (e) {
-//     e.preventDefault();
-//
-//     let boardTitle = $("input[name='boardTitle']").val();
-//     let welfareName = $("input[name='welfareName']").val();
-//     let boardContent = $("textarea[name='boardContent']").val();
-//
-//     insertData.boardTitle = boardTitle;
-//     insertData.welfareName = welfareName;
-//     insertData.boardContent = boardContent;
-//     insertData.reviewRating = pullCount;
-//
-//     $.ajax({
-//         url: '/user-board/review-board-insert',
-//         data: JSON.stringify(insertData),
-//         contentType: "application/json; charset=utf-8",
-//         method: 'post',
-//         success: function (result) {
-//             // redirect 경로
-//             location.href = "/user-board/review-board-list";
-//         }
-//     })
-// });
+$("form[name='form']").on("submit", function (e) {
+    e.preventDefault();
+
+    let productName = $("input[name='productName']").val();
+    let productCategory = $("#foodCategory option").val();
+    let productInfo = $("textarea[name='productInfo']").val();
+    let productPrice = $("input[name='productPrice']").val();
+    let productStock = $("input[name='productStock']").val();
+
+    insertData.productName = productName;
+    insertData.productCategory = productCategory;
+    insertData.productInfo = productInfo;
+    insertData.productPrice = productPrice;
+    insertData.productStock = productStock;
+
+    insertData.productFileDTOS = insertData.productFileDTOS.filter(e => e !== undefined && e !== null);
+
+    $.ajax({
+        url: '/distributor/register',
+        data: JSON.stringify(insertData),
+        contentType: "application/json; charset=utf-8",
+        method: 'post',
+        success: function (result) {
+            // redirect 경로
+            location.href = "/distributor/product-list";
+        }
+    })
+});
