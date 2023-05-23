@@ -18,11 +18,11 @@ public class InquiryAnswer extends Period {
     private Long id;
     @NotNull private String inquiryAnswerContent;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn
     private Inquiry inquiry;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "inquiryAnswer")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "inquiryAnswer")
     private List<InquiryAnswerFile> inquiryAnswerFiles = new ArrayList<>();
 
     public void setInquiry(Inquiry inquiry) {

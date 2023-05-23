@@ -326,4 +326,11 @@ public class AdminController {
     public InquiryAnswerDTO saveInquiryAnswer(@PathVariable Long inquiryId, @RequestBody InquiryAnswerDTO inquiryAnswerDTO) {
         return inquiryService.saveInquiryAnswer(inquiryId, inquiryAnswerDTO);
     }
+
+    @DeleteMapping("inquiry/delete")
+    @ResponseBody
+    public Boolean deleteInquiries(@RequestBody DeleteIdsDTO deleteIdsDTO) {
+        inquiryService.deleteInquiries(deleteIdsDTO.getIds());
+        return true;
+    }
 }

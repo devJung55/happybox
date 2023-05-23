@@ -20,7 +20,7 @@ public class PaymentQueryDslImpl implements PaymentQueryDsl {
     public Page<Payment> findAllWithPaging_QueryDSL(Pageable pageable) {
         List<Payment> payments = query.select(payment)
                 .from(payment)
-                .join(payment.order).fetchJoin()
+                .join(payment.order)
                 .join(payment.user).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
