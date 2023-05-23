@@ -1,147 +1,148 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>배달원 등록</title>
-        <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-        <link rel="stylesheet" href="/css/global/global.css">
-        <link rel="stylesheet" href="/css/CS/common.css">
-        <link rel="stylesheet" href="/css/global/mypage.css">
-        <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
-        <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
-        <link rel="stylesheet" href="/css/welfare/donateInsert.css">
-        <link rel="stylesheet" href="/css/CS/write-inquiry.css" />
-        <style>
-            html {
-                zoom: 0%;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배달원 등록</title>
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/CS/common.css">
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/welfare/donateInsert.css">
+    <link rel="stylesheet" href="/css/CS/write-inquiry.css" />
+    <style>
+        html {
+            zoom: 0%;
+        }
 
-            .in-tb {
-                position: absolute;
-            }
+        .in-tb {
+            position: absolute;
+        }
 
-            th.text-left {
-                position: relative;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="wrap">
-            <section id="contents" class="container">
-                <div class="content-wrap">
-    
-    
-                    <!-- // top-bar.html -->
+        th.text-left {
+            position: relative;
+        }
 
-    
-                    <div class="frame-sm">
-    
-    
-                            <!-- // side-bar.html -->
+        .blind {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+        <section id="contents" class="container">
+            <div class="content-wrap">
+                <div class="header-stage" th:insert="~{mypage/welfare/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
+                <div class="frame-sm">
+                    <div class="header-stage" th:insert="~{mypage/welfare/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
+                    <div class="frame-right">
+                        <div class="frame-cnt-inner">
+                            <form action="/mypage/welfare/rider/write" id="riderForm" method="post" name="riderDTO" >
+                                <div class="menu-title-area" style="border-bottom: 1px solid #666666;">
+                                    <div class="title-menu" style="margin-bottom: 5px;">
+                                        <h3 class="title-menu">배달원 등록</h3>
+                                    </div>
+                                </div>
+                                <section class="donate-insert-container">
+                                    <div class="board-form">
+                                        <table>
+                                            <tr>
+                                                <th class="text-left">
+                                                    <div class="in-tb">
+                                                        배달원 이름
+                                                        <em class="es"></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="riderName" class="input-text h40" placeholder="배달원의 이름을 입력해주세요" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left">
+                                                    <div class="in-tb">
+                                                        휴대폰 번호
+                                                        <em class="es"></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" id="rider-phone" name="riderPhoneNumber" class="input-text h40" placeholder="휴대폰 번호를 입력해주세요" value=""/>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
 
-                        <div class="frame-right">
-                            <div class="frame-cnt-inner">
-                                <form action="/mypage/welfare/rider/write" id="riderForm" method="post" name="riderDTO" >
-                                    <div class="menu-title-area" style="border-bottom: 1px solid #666666;">
-                                        <div class="title-menu" style="margin-bottom: 5px;">
-                                            <h3 class="title-menu">배달원 등록</h3>
+                                            <tr class="attach-file-line">
+                                                <th class="text-left"></th>
+                                                <td class="text-left file-box-wrap">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb">
+                                                            <label>
+                                                                <button class="btn-attach-thumb" type="button">
+                                                                    <i class="ico-plus-xlg">
+                                                                        <svg
+                                                                                height="26px"
+                                                                                viewBox="0 0 512 512"
+                                                                                width="26px"
+                                                                        >
+                                                                            <g>
+                                                                                <path
+                                                                                        d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
+                                                                                />
+                                                                            </g>
+                                                                        </svg>
+                                                                    </i>
+                                                                </button>
+                                                                <input
+                                                                        type="file"
+                                                                        name="imgFile"
+                                                                        style="display: none"
+                                                                        accept="image/*"
+                                                                />
+                                                            </label>
+                                                            <span class="x-image">x</span>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-guide-md">
+                                                        - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지
+                                                        첨부 가능합니다.
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="btn-bottom-area" style="text-align: center;">
+                                            <button type="button" class="btn-basic-lg2 btn-grey3" style="margin-right: 0;">
+                                                <span>취소하기</span>
+                                            </button>
+                                            <button type="button" class="btn-basic-lg2 btn-primary">
+                                                <span>등록하기</span>
+                                            </button>
                                         </div>
                                     </div>
-                                    <section class="donate-insert-container">
-                                        <div class="board-form">
-                                            <table>
-                                                <tr>
-                                                    <th class="text-left">
-                                                        <div class="in-tb">
-                                                            배달원 이름
-                                                            <em class="es"></em>
-                                                        </div>
-                                                    </th>
-                                                    <td class="text-left">
-                                                        <div class="input-group w-full">
-                                                            <input type="text" name="riderName" class="input-text h40" placeholder="배달원의 이름을 입력해주세요" value=""/>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-            
-                                                <tr>
-                                                    <th class="text-left">
-                                                        <div class="in-tb">
-                                                            휴대폰 번호
-                                                            <em class="es"></em>
-                                                        </div>
-                                                    </th>
-                                                    <td class="text-left">
-                                                        <div class="input-group w-full">
-                                                            <input type="text" id="rider-phone" name="riderPhoneNumber" class="input-text h40" placeholder="휴대폰 번호를 입력해주세요" value=""/>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-
-                                                <tr class="attach-file-line">
-                                                    <th class="text-left"></th>
-                                                    <td class="text-left file-box-wrap">
-                                                        <div class="file-add-boxes">
-                                                            <div class="div-attach-thumb">
-                                                                <label>
-                                                                    <button class="btn-attach-thumb" type="button">
-                                                                        <i class="ico-plus-xlg">
-                                                                            <svg
-                                                                                    height="26px"
-                                                                                    viewBox="0 0 512 512"
-                                                                                    width="26px"
-                                                                            >
-                                                                                <g>
-                                                                                    <path
-                                                                                            d="M384,265H264v119h-17V265H128v-17h119V128h17v120h120V265z"
-                                                                                    />
-                                                                                </g>
-                                                                            </svg>
-                                                                        </i>
-                                                                    </button>
-                                                                    <input
-                                                                            type="file"
-                                                                            name="imgFile"
-                                                                            style="display: none"
-                                                                            accept="image/*"
-                                                                    />
-                                                                </label>
-                                                                <span class="x-image">x</span>
-                                                            </div>
-                                                        </div>
-                                                        <p class="text-guide-md">
-                                                            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지
-                                                            첨부 가능합니다.
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <div class="btn-bottom-area" style="text-align: center;">
-                                                <button type="button" class="btn-basic-lg2 btn-grey3" style="margin-right: 0;">
-                                                    <span>취소하기</span>
-                                                </button>
-                                                <button type="button" class="btn-basic-lg2 btn-primary">
-                                                    <span>등록하기</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </form>
-                            </div>
+                                </section>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="/js/mypage/welfare/rider-write.js"></script>
-    <script th:inline="javascript">
-        let welfareId = [[${welfareId}]];
-        let riderDTO = [[${riderDTO}]];
-    </script>
+            </div>
+        </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/mypage/welfare/rider-write.js"></script>
+<script th:inline="javascript">
+    let welfareId = [[${welfareId}]];
+    let riderDTO = [[${riderDTO}]];
+</script>
 </html>

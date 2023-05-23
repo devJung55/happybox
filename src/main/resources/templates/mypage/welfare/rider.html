@@ -7,6 +7,8 @@
     <title>라이더 관리</title>
     <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
     <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
     <link rel="stylesheet" href="/css/global/mypage.css">
     <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
     <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
@@ -38,23 +40,20 @@
             border: 1px solid #666666;
             color: #666666;
         }
+
+        .blind {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-
+                <div class="header-stage" th:insert="~{mypage/welfare/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm">
-
-
-                        <!-- // side-bar.html -->
-                        
-
+                    <div class="header-stage" th:insert="~{mypage/welfare/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <form action="" name="myPageOrderForm">
@@ -69,25 +68,21 @@
                                     </div>
                                 </div>
                             </form>
-
                             <div class="no-data-type1" style="display: none;" th:if="${riderDTOS == null}"><!-- 주문 내역이 없을 시 -->
                                 <p class="message">기간 내에 구독내역이 없습니다.</p>
                             </div>
-
-                            <ul class="productCart-list">
-                                    <!--  뿌려지는 곳  -->
-                            </ul>
+                            <ul class="productCart-list"></ul><!--  뿌려지는 곳  -->
                         </div>
-
                         <div class="paging-div"></div>
-
                     </div>
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/header.js"></script>
 <script src="/js/mypage/welfare/rider.js"></script>
 <script th:inline="javascript">
     let riderDTOS = [[${riderDTOS}]];
