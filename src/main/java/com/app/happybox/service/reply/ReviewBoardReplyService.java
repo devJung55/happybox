@@ -2,12 +2,10 @@ package com.app.happybox.service.reply;
 
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.product.Product;
-import com.app.happybox.entity.reply.ProductReply;
-import com.app.happybox.entity.reply.Reply;
-import com.app.happybox.entity.reply.ReplyDTO;
-import com.app.happybox.entity.reply.ReviewBoardReply;
+import com.app.happybox.entity.reply.*;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.exception.ProductNotFoundException;
+import com.app.happybox.exception.ReplyNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.board.ReviewBoardRepository;
 import com.app.happybox.repository.reply.ReviewBoardReplyRepository;
@@ -74,8 +72,12 @@ public class ReviewBoardReplyService implements ReplyService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public ReplyDTO updateReply(Long replyId, ReplyDTO replyDTO) {
-        return null;
+        ReviewBoardReply reviewBoardReply = reviewBoardReplyRepository.findById(replyId).orElseThrow(ReplyNotFoundException::new);
+        reviewBoardReply.setReplyContent(replyDTO.getReplyContent());
+
+        return replyToDTO(reviewBoardReply);
     }
 
     @Override
