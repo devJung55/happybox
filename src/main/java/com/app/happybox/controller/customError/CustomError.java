@@ -16,10 +16,10 @@ public class CustomError implements ErrorController {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         if (status != null){
             if (Integer.valueOf(status.toString()) == HttpStatus.NOT_FOUND.value()){
-                return "/error/404";
+                return "/component/error";
             }
         }
-        return "/error/500";
+        return "/component/error";
 
     }
 }
