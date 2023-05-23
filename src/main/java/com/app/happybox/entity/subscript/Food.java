@@ -33,4 +33,8 @@ public class Food {
         this.fileUuid = fileUuid;
         this.fileOrgName = fileOrgName;
     }
+
+    public void setFoodCalendar(FoodCalendar foodCalendar) {
+        this.foodCalendar = foodCalendar;
+    }
 }

@@ -182,15 +182,18 @@ public class WelfareMyPageController {
         foodCalendarDTO.setWelfareId(welfareId);
         model.addAttribute("foodCalendareDTO", foodCalendarDTO);
         model.addAttribute("userDetail", userDetail);
-        return "/mypage/welfare/food-schedule";
+        return "/mypage/welfare/food-write";
     }
 
     //    캘린더 일정 등록 및 음식 등록
     @PostMapping("/welfare/calendar/write")
-    public RedirectView calendarWrite(FoodCalendarDTO foodCalendarDTO, @AuthenticationPrincipal UserDetail userDetail) {
+    @ResponseBody
+    public void calendarWrite(@RequestBody FoodCalendarDTO foodCalendarDTO, @AuthenticationPrincipal UserDetail userDetail) {
         foodCalendarDTO.setWelfareId(userDetail.getId());
+        Long id = foodCalendarDTO.getId();
+        foodCalendarDTO.getFoodList().forEach(foodDTO -> foodDTO.setFoodCalendarId(id));
         foodCalendarService.saveFoodCalendar(foodCalendarDTO);
-        return new RedirectView("/mypage/welfare/edit");
+//        return new RedirectView("/mypage/welfare/edit");
     }
 
 

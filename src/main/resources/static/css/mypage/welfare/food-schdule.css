@@ -4,15 +4,16 @@
     border: 1px solid #ccc;
     width: 50%;
     padding-left: 15px;
-    color: #ccc;
+    color: #333;
 }
 
 .food-name {
+
     position: relative;
-    border: 1px solid #ccc;
-    width: 50%;
-    padding-left: 15px;
-    color: #ccc;
+    border: 1px solid #ccc !important;;
+    width: 50% !important;;
+    padding-left: 15px !important;;
+    color: #333 !important;;
 }
 
 .food-write-more {

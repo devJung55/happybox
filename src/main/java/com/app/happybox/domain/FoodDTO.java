@@ -27,4 +27,8 @@ public class FoodDTO {
         this.fileOrgName = fileOrgName;
         this.foodCalendarId = foodCalendarId;
     }
+
+    public void setFoodCalendarId(Long foodCalendarId) {
+        this.foodCalendarId = foodCalendarId;
+    }
 }

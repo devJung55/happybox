@@ -354,9 +354,10 @@ function onClickLoginCertiPopSendSms() {
         success: function (result) {
             console.log(result);
             if (result) {
-                $('#popup-member-join-certi-sms-phone-no-error').html(
-                    '<p class="valid error">중복된 휴대폰 번호입니다.</p>'
-                );
+                alertModal('중복된 번호입니다.');
+                $modal.css('display', 'none');
+                $('#popup-member-join-certi-sms-mid-phone-no').val("");
+                $('#popup-member-join-certi-sms-post-phone-no').val("");
             }else{
                 /* 중복된 휴대폰 번호가 없으면 인증번호 전송 */
                 $.ajax({
@@ -369,6 +370,7 @@ function onClickLoginCertiPopSendSms() {
                     }
                 });
                 /* 다음 모달창으로 넘어감 */
+                $("#phone-num").text(phoneNo);
                 $('#popup-member-join-certi-sms-phone-no-error').html();
                 nextModal();
             }
