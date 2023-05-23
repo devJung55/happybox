@@ -27,4 +27,8 @@ public class ProductFile extends Files {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public void setFileRepresent(FileRepresent fileRepresent) {
+        this.fileRepresent = fileRepresent;
+    }
 }

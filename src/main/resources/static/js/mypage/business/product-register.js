@@ -35,7 +35,7 @@ const fileAjax = (data, index) => {
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                insertData.reviewBoardFiles[index] = file;
+                insertData.productFileDTOS[index] = file;
                 console.log(insertData);
             }
         }
@@ -105,13 +105,13 @@ $("form[name='form']").on("submit", function (e) {
     insertData.productFileDTOS = insertData.productFileDTOS.filter(e => e !== undefined && e !== null);
 
     $.ajax({
-        url: '/distributor/register',
+        url: '/mypage/distributor/register',
         data: JSON.stringify(insertData),
         contentType: "application/json; charset=utf-8",
         method: 'post',
         success: function (result) {
             // redirect 경로
-            location.href = "/distributor/product-list";
+            location.href = "/mypage/distributor/product";
         }
     })
 });

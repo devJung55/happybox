@@ -80,26 +80,17 @@ public class ProductServiceImpl implements ProductService {
 
         productRepository.save(product);
 
-        int count = 0;
+        int index = 0;
 
+        // boardFile recipeBoard set 후 영속화
         for (int i = 0; i < productFileDTOS.size(); i++) {
-            if(productFileDTOS.get(i) == null) continue;
-
-            if (count == 0) {
-                productFileDTOS.get(i).setFileRepresent(FileRepresent.REPRESENT);
-                count++;
-            } else {
-                productFileDTOS.get(i).setFileRepresent(FileRepresent.ORDINARY);
-            }
-
-            productFileDTOS.get(i).setProductDTO(productToDTO(product));
-
-            // 엔티티
             ProductFile productFile = productFileToEntity(productFileDTOS.get(i));
+            if(index < 1) productFile.setFileRepresent(FileRepresent.REPRESENT);
 
             productFile.setProduct(product);
-
             productFileRepository.save(productFile);
+
+            index++;
         }
 
     }
