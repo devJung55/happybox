@@ -11,7 +11,8 @@ let adminService = (function() {
         })
     }
 
-    function productDetail(productId) {
+    function productDetail(btn) {
+        let productId = $(btn).data("productid");
         $.ajax({
             url: "/admin/product-detail",
             data: {"productId": productId},
@@ -135,6 +136,7 @@ function showMemberDetail(member) {
 }
 
 function showProductDetail(product) {
+    console.log("show product 들어옴")
     let text = "";
     let src = "";
     let filePath = product[0];
@@ -180,6 +182,8 @@ function showProductDetail(product) {
     `;
     $mainTag.empty();
     $mainTag.append(text);
+
+    $(".modal").show();
 }
 
 function showReviewBoardDetail(reviewBoard) {

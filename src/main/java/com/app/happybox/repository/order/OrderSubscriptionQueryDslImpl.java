@@ -1,6 +1,7 @@
 package com.app.happybox.repository.order;
 
 import com.app.happybox.entity.order.OrderSubscription;
+import com.app.happybox.entity.user.Member;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -82,5 +83,22 @@ public class OrderSubscriptionQueryDslImpl implements OrderSubscriptionQueryDsl 
                 .fetchOne();
 
         return count;
+    }
+
+    @Override
+    public Page<Member> findAllMembersByWelfareId(Pageable pageable, Long welfareId) {
+        List<Member> memberList = query.select(orderSubscription.member)
+                .from(orderSubscription)
+                .where(orderSubscription.subscription.welfare.id.eq(welfareId))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(orderSubscription.member.count())
+                .from(orderSubscription)
+                .where(orderSubscription.subscription.welfare.id.eq(welfareId))
+                .fetchOne();
+
+        return new PageImpl<>(memberList, pageable, count);
     }
 }

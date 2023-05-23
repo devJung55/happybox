@@ -1,7 +1,9 @@
 package com.app.happybox.service.order;
 
 import com.app.happybox.domain.OrderSubscriptionDTO;
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.order.OrderSubscription;
+import com.app.happybox.entity.user.Member;
 import com.app.happybox.repository.order.OrderSubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,11 +26,10 @@ public class OrderSubsciptionServiceImpl implements OrderSubsciptionService {
     private final OrderSubscriptionRepository orderSubscriptionRepository;
 
     @Override
-    public Page<OrderSubscriptionDTO> getListByWelfareId(Pageable pageable, Long welfareId, String subscriberName) {
-        Page<OrderSubscription> orderSubscriptions = orderSubscriptionRepository.findSubscriberListByWelfareIdDescWithPaging_QueryDSL(pageable, welfareId, subscriberName);
-        List<OrderSubscriptionDTO> orderSubscriptionDTOList = orderSubscriptions.get().map(this::adminToOrderSubscriptionDTO).collect(Collectors.toList());
-
-        return new PageImpl<>(orderSubscriptionDTOList, pageable, orderSubscriptions.getTotalElements());
+    public Page<MemberDTO> getListByWelfareId(Pageable pageable, Long welfareId) {
+        Page<Member> memberPage = orderSubscriptionRepository.findAllMembersByWelfareId(pageable, welfareId);
+        List<MemberDTO> memberDTOList = memberPage.get().map(this::toMemberDTO).collect(Collectors.toList());
+        return new PageImpl<>(memberDTOList, pageable, memberPage.getTotalElements());
     }
 
     @Override
