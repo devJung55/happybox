@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface OrderSubsciptionService {
 //    관리자 복지관 구독자 목록
-    public Page<MemberDTO> getListByWelfareId(Pageable pageable, Long welfare);
+    public Page<MemberDTO> getListByWelfareId(Pageable pageable, Long welfare, String subscriberName);
 
 //    일반 마이페이지 구독한 수 조회
     public Long getMySubscriptionCountByMemberId(Long id);

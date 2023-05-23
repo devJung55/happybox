@@ -37,6 +37,7 @@ public class MemberDTO implements Serializable {
     private Address memberDeliveryAddress;
     private String deliveryName;
     private String deliveryPhoneNumber;
+    private UserFileDTO userFileDTO;
 
 //    Member와 Fetch조인하여 사용할 DTO 작성할 곳
 
@@ -63,5 +64,9 @@ public class MemberDTO implements Serializable {
         this.userEmail = member.getUserEmail();
         this.userPhoneNumber = member.getUserPhoneNumber();
         this.memberName = member.getMemberName();
+    }
+
+    public void setUserFileDTO(UserFileDTO userFileDTO) {
+        this.userFileDTO = userFileDTO;
     }
 }

@@ -68,8 +68,13 @@ public class WelfareServiceImpl implements WelfareService {
 
     @Override
     public WelfareDTO getDetail(Long welfareId) {
-        Welfare welfare = welfareRepository.findById(welfareId).orElseThrow(UserNotFoundException::new);
-        return toWelfareDTO(welfare);
+//        Welfare welfare = welfareRepository.findById(welfareId).orElseThrow(UserNotFoundException::new);
+        WelfareDTO welfareDTO = new WelfareDTO();
+        Welfare welfare = welfareRepository.findById(welfareId).orElse(null);
+        if(welfare != null) {
+            welfareDTO = toWelfareDTO(welfare);
+        }
+        return welfareDTO;
     }
 
 //    복지관 회원가입

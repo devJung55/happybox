@@ -41,6 +41,7 @@ public class MypageControllerAspect {
     public void setHeaderInfoValue(JoinPoint joinPoint) throws Throwable {
         Long id = 0L;
         String userName = "";
+        Integer totalPoint = 0;
 
         Object arg = joinPoint.getArgs()[0];
         if(arg instanceof UserDetail) {
@@ -58,7 +59,10 @@ public class MypageControllerAspect {
         Long productCount = productService.getProductCount(id);
         Long salesCount = memberOrderProductItemService.getSalesCountByDistributorId(id);
         Long subscriber = orderSubsciptionService.getSubscriberCountByWelfareId(id);
-//        Integer totalPoint = welfareService.getDetail(id).getWelfarePointTotal();
+
+        if(welfareService.getDetail(id) != null) {
+            totalPoint = welfareService.getDetail(id).getWelfarePointTotal();
+        }
 
         request.setAttribute("subscribeCount", subscribeCount); // 내가 구독한 구독 수
         request.setAttribute("orderCount", orderCount);         // 주문 건수
@@ -70,6 +74,6 @@ public class MypageControllerAspect {
         request.setAttribute("productCount", productCount);     // 상품 개수
         request.setAttribute("salesCount", salesCount);         // 판매 건수
         request.setAttribute("subscriber", subscriber);         // 구독자 수
-//        request.setAttribute("totalPoint", totalPoint);         // 보유 포인트
+        request.setAttribute("totalPoint", totalPoint);         // 보유 포인트
    }
 }
