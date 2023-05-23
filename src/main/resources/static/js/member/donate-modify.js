@@ -292,7 +292,7 @@ $imgFile.each((i, e) => {
                 $fileT.eq(i).attr('src', result)
                 // 이미지가 아니라면 no_image.png를 이미지로 설정
             } else {
-                $imgDiv.eq(i).css('dispaly', 'none');
+                $imgDiv.eq(i).css('display', 'none');
             }
         };
     });
