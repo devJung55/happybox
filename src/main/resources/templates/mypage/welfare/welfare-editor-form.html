@@ -7,6 +7,8 @@
     <title>회원정보수정</title>
     <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
     <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
     <link rel="stylesheet" href="/css/global/mypage.css">
     <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
     <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
@@ -14,24 +16,19 @@
     <link rel="stylesheet" href="/css/member/join.css">
     <link rel="stylesheet" href="/css/mypage/user/modal.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
-<!--모달창-->
-<!--<div id="myModal" class="modal" th:if="${#strings.equals(param.update, 'ok')}">-->
-<!--    <div class="modal-content">-->
-<!--        <span class="close">&times;</span>-->
-<!--        <p>프로필 정보가 성공적으로 수정되었습니다.</p>-->
-<!--        <button id="closeModalBtn">확인</button>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="wrap">
-    <!--        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>-->
+    <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
     <section id="contents" class="container">
         <div class="content-wrap">
-            <!--                <div class="header-stage" th:insert="~{mypage/member/top-bar.html :: top-bar}"></div>-->
-
-
+            <div class="header-stage" th:insert="~{mypage/welfare/top-bar.html :: top-bar}"></div>
             <div class="frame-sm">
-                <!--                    <div class="header-stage" th:insert="~{mypage/member/side-bar.html :: side-bar}"></div>-->
+            <div class="header-stage" th:insert="~{mypage/welfare/side-bar.html :: side-bar}"></div>
                 <div class="frame-right">
                     <div class="frame-cnt-inner">
                         <div class="menu-title-area" style="margin-bottom: 6px;">
@@ -192,13 +189,15 @@
                         </section>
                     </div>
                 </div>
-            </div><!-- // frame-sm -->
-        </div><!-- // content-wrap -->
+            </div>
+        </div>
     </section>
+    <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </div>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/header.js"></script>
 <script th:inline="javascript">
     let welfareDTO = [[${welfareDTO}]]
 </script>
