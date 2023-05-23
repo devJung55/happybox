@@ -64,18 +64,18 @@ public class WelfareMyPageController {
     private final RiderService riderService;
     private final FoodCalendarService foodCalendarService;
 
-//  복지관 회원 수정 페이지 이동
+    //  복지관 회원 수정 페이지 이동
     @MypageHeaderValues
     @GetMapping("welfare/edit")
-    public String goEditForm(@AuthenticationPrincipal UserDetail userDetail, Model model){
+    public String goEditForm(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         WelfareDTO welfareDTO = welfareService.getDetail(userDetail.getId());
-        model.addAttribute("welfareDTO",welfareDTO);
+        model.addAttribute("welfareDTO", welfareDTO);
         return "/mypage/welfare/welfare-editor-form";
     }
 
-//    복지관 회원 수정 완료
+    //    복지관 회원 수정 완료
     @PostMapping("welfare/edit")
-    public RedirectView edit(WelfareDTO welfareDTO, @AuthenticationPrincipal UserDetail userDetail){
+    public RedirectView edit(WelfareDTO welfareDTO, @AuthenticationPrincipal UserDetail userDetail) {
         log.error("===================== 들어왔냐?");
         Long id = userDetail.getId();
         welfareDTO.setId(id);
@@ -83,23 +83,23 @@ public class WelfareMyPageController {
         return new RedirectView("/main/welfare");
     }
 
-//   복지관 구독 수정
+    //   복지관 구독 수정
     @MypageHeaderValues
     @GetMapping("welfare/subscription/edit")
-    public String goSubsedit(@AuthenticationPrincipal UserDetail userDetail, Model model){
+    public String goSubsedit(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         log.error("들어왔냐 여기에????????");
         Long id = userDetail.getId();
         Subscription result = subscriptionService.getId(id);
         SubscriptionWelFareDTO subscriptionWelFareDTO = subscriptionService.getSubscriptionWelfareDTO(result.getId());
-        log.error("들엉왔냐?",subscriptionWelFareDTO.toString());
-        model.addAttribute("subscriptionWelFareDTO",subscriptionWelFareDTO);
+        log.error("들엉왔냐?", subscriptionWelFareDTO.toString());
+        model.addAttribute("subscriptionWelFareDTO", subscriptionWelFareDTO);
         return "/mypage/welfare/welfare-write";
 
     }
 
-//    복지관 구독 수정 완료
+    //    복지관 구독 수정 완료
     @PostMapping("welfare/subscription/edit")
-    public RedirectView subsEdit(SubscriptionWelFareDTO subscriptionWelFareDTO, @AuthenticationPrincipal UserDetail userDetail){
+    public RedirectView subsEdit(SubscriptionWelFareDTO subscriptionWelFareDTO, @AuthenticationPrincipal UserDetail userDetail) {
         Long id = userDetail.getId();
         log.error("Post에 들어왔어?????");
         subscriptionWelFareDTO.setId(id);
@@ -109,15 +109,15 @@ public class WelfareMyPageController {
 
     @MypageHeaderValues
     @GetMapping("welfare/rider/write")
-    public String riderWriteForm(@AuthenticationPrincipal UserDetail userDetail, RiderDTO riderDTO, Model model){
-        model.addAttribute("welfareId",userDetail.getId());
+    public String riderWriteForm(@AuthenticationPrincipal UserDetail userDetail, RiderDTO riderDTO, Model model) {
+        model.addAttribute("welfareId", userDetail.getId());
         riderDTO.setWelfareId(userDetail.getId());
         model.addAttribute("riderDTO", riderDTO);
         return "/mypage/welfare/rider-register";
     }
 
     @PostMapping("welfare/rider/write")
-    public RedirectView riderWrite(RiderDTO riderDTO, @AuthenticationPrincipal UserDetail userDetail){
+    public RedirectView riderWrite(RiderDTO riderDTO, @AuthenticationPrincipal UserDetail userDetail) {
         Long welfareId = userDetail.getId();
         riderDTO.setWelfareId(welfareId);
         riderService.registerRiderByWelfareId(riderDTO);
@@ -126,22 +126,22 @@ public class WelfareMyPageController {
 
     @MypageHeaderValues
     @GetMapping("welfare/rider/list")
-    public String goRiderListForm(@AuthenticationPrincipal UserDetail userDetail, Model model){
+    public String goRiderListForm(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         Long welfareId = userDetail.getId();
         WelfareDTO welfareDTO = welfareService.getDetail(welfareId);
         log.info(welfareDTO.toString());
-        model.addAttribute("welfareDTO",welfareDTO);
+        model.addAttribute("welfareDTO", welfareDTO);
         return "/mypage/welfare/rider";
     }
 
     @GetMapping("/welfare/getList")
     @ResponseBody
-    public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 5) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail){
+    public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 5) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail) {
 
         log.info("======================= 들어옴?");
         Long welfareId = userDetail.getId();
-        Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(pageable.getPageNumber()-1,pageable.getPageSize()), welfareId);
-        log.info("페이지=======",riderDTOS.getPageable().toString());
+        Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId);
+        log.info("페이지=======", riderDTOS.getPageable().toString());
         riderDTOS.stream().map(RiderDTO::toString).forEach(log::info);
         return riderDTOS;
     }
@@ -175,40 +175,45 @@ public class WelfareMyPageController {
         return new RedirectView("/login");
     }
 
-//    캘린더 일정 등록 및 음식 등록 폼 이동
+    //    캘린더 일정 등록 및 음식 등록 폼 이동
     @GetMapping("/welfare/calendar/write")
-    public String goCalendarWriteForm(@AuthenticationPrincipal UserDetail userDetail, FoodCalendarDTO foodCalendarDTO,Model model){
+    public String goCalendarWriteForm(@AuthenticationPrincipal UserDetail userDetail, FoodCalendarDTO foodCalendarDTO, Model model) {
         Long welfareId = userDetail.getId();
         foodCalendarDTO.setWelfareId(welfareId);
-        model.addAttribute("foodCalendareDTO",foodCalendarDTO);
-        model.addAttribute("userDetail",userDetail);
+        model.addAttribute("foodCalendareDTO", foodCalendarDTO);
+        model.addAttribute("userDetail", userDetail);
         return "/mypage/welfare/food-schedule";
     }
 
-//    캘린더 일정 등록 및 음식 등록
+    //    캘린더 일정 등록 및 음식 등록
     @PostMapping("/welfare/calendar/write")
-    public RedirectView calendarWrite(FoodCalendarDTO foodCalendarDTO,@AuthenticationPrincipal UserDetail userDetail){
+    public RedirectView calendarWrite(FoodCalendarDTO foodCalendarDTO, @AuthenticationPrincipal UserDetail userDetail) {
         foodCalendarDTO.setWelfareId(userDetail.getId());
         foodCalendarService.saveFoodCalendar(foodCalendarDTO);
         return new RedirectView("/mypage/welfare/edit");
-//    구독자 목록
+    }
+
+
+    //    구독자 목록
     @MypageHeaderValues
     @GetMapping("/welfare/subscriber")
     public String getSubscriberList(@AuthenticationPrincipal UserDetail userDetail) {
         return "/mypage/welfare/subscriber";
     }
 
-//    구독자 목록
+    //    구독자 목록
     @ResponseBody
     @GetMapping("/welfare/subscriber/list")
-    public Page<MemberDTO> getSubscriberList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
+    public Page<MemberDTO> getSubscriberList(
+            @RequestParam(value = "page", defaultValue = "1", required = false) int page,
+            @AuthenticationPrincipal UserDetail userDetail) {
         String subscriberName = null;
         Page<MemberDTO> subscribers = orderSubsciptionService.getListByWelfareId(PageRequest.of(page - 1, 8), userDetail.getId(), subscriberName);
         List<UserFile> userFiles = userFileService.getList();
 
         for (int i = 0; i < subscribers.getContent().size(); i++) {
             for (int j = 0; j < userFiles.size(); j++) {
-                if(subscribers.getContent().get(i).getId() == userFiles.get(j).getUser().getId()) {
+                if (subscribers.getContent().get(i).getId() == userFiles.get(j).getUser().getId()) {
                     MemberDTO memberDTO = subscribers.getContent().get(i);
 
                     memberDTO.setUserFileDTO(userFileService.userFileToDTO(userFiles.get(j)));
@@ -218,16 +223,18 @@ public class WelfareMyPageController {
         return subscribers;
     }
 
-//    구독자 목록
+    //    구독자 목록
     @ResponseBody
     @GetMapping("/welfare/subscriber/list/searchName")
-    public Page<MemberDTO> getSubscriberList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail, String subscriberName) {
+    public Page<MemberDTO> getSubscriberList(
+            @RequestParam(value = "page", defaultValue = "1", required = false) int page,
+            @AuthenticationPrincipal UserDetail userDetail, String subscriberName) {
         Page<MemberDTO> subscribers = orderSubsciptionService.getListByWelfareId(PageRequest.of(page - 1, 8), userDetail.getId(), subscriberName);
         List<UserFile> userFiles = userFileService.getList();
 
         for (int i = 0; i < subscribers.getContent().size(); i++) {
             for (int j = 0; j < userFiles.size(); j++) {
-                if(subscribers.getContent().get(i).getId() == userFiles.get(j).getUser().getId()) {
+                if (subscribers.getContent().get(i).getId() == userFiles.get(j).getUser().getId()) {
                     MemberDTO memberDTO = subscribers.getContent().get(i);
 
                     memberDTO.setUserFileDTO(userFileService.userFileToDTO(userFiles.get(j)));
@@ -237,3 +244,4 @@ public class WelfareMyPageController {
         return subscribers;
     }
 }
+

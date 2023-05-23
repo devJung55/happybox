@@ -28,13 +28,10 @@ const text =
                                                     <div class="in-tb">
                                                         음식 이름 <em class="es"><span class="blind"></span></em>
                                                     </div>
-                                                    <div class="delete-btn">
-                                                        <img src="/img/welfare/delete-btn.png" alt="">
-                                                    </div>
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="input-group w-full">
-                                                        <input type="text" name="" id="vQuestionTitle" title="" class="food-name" placeholder="음식 이름을 적어주세요" value=""/>
+                                                        <input type="text" name="foodName" id="vQuestionTitle" title="" class="food-name" placeholder="음식 이름을 적어주세요" value=""/>
                                                     </div>
                                                 </td>
                                             </tr>
