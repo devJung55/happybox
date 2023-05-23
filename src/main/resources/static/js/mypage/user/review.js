@@ -54,14 +54,15 @@ function showReviewBoardList(reviewBoards) {
 
             text += rating;
 
+            let boardContent = `${board.boardContent}`.trim();
             text += `
                         </em>
                         <ul class="sep-list type3">
                             <li><span class="name">${board.memberDTO.userId}</span></li>
                             <li class=""><span class="date">${board.boardRegisterDate}</span></li>
                         </ul>
-                        <p class="detail text-elps3">
-                            <span style="white-space:pre-line">${board.boardContent}</span>
+                        <p class="detail text-elps3" style="margin: 22px 0 22px 0;">
+                            <span>${boardContent}</span>
                         </p>
                     </div>
                 </div>

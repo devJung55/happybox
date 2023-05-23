@@ -19,16 +19,6 @@ import static com.app.happybox.entity.order.QOrderSubscription.orderSubscription
 public class OrderSubscriptionQueryDslImpl implements OrderSubscriptionQueryDsl {
     private final JPAQueryFactory query;
 
-//    @Override
-//    public Optional<OrderSubscription> findSubscriptionByMemberId_QueryDSL(Long memberId) {
-//        return Optional.ofNullable(query.select(orderSubscription)
-//                .from(orderSubscription)
-//                .join(orderSubscription.member).fetchJoin()
-//                .join(orderSubscription.subscription).fetchJoin()
-//                .where(orderSubscription.member.id.eq(memberId))
-//                .fetchOne());
-//    }
-
     @Override
     public Optional<OrderSubscription> findSubscriptionByMemberId_QueryDSL(Long memberId) {
         List<OrderSubscription> subscriptions = query.select(orderSubscription)
@@ -86,10 +76,13 @@ public class OrderSubscriptionQueryDslImpl implements OrderSubscriptionQueryDsl 
     }
 
     @Override
-    public Page<Member> findAllMembersByWelfareId(Pageable pageable, Long welfareId) {
+    public Page<Member> findAllMembersByWelfareId(Pageable pageable, Long welfareId, String subscriberName) {
+        BooleanExpression subscriberNameContains = subscriberName == null || subscriberName == "" ? null : orderSubscription.member.memberName.contains(subscriberName);
+
         List<Member> memberList = query.select(orderSubscription.member)
                 .from(orderSubscription)
                 .where(orderSubscription.subscription.welfare.id.eq(welfareId))
+                .where(subscriberNameContains)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

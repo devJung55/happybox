@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>구독자 관리</title>
-    <link rel="icon" href="../../../static/img/main/fabicon.png" type="image/png" sizes="50x50"/>
-    <link rel="stylesheet" href="../../../static/css/global/global.css">
-    <link rel="stylesheet" href="../../../static/css/global/mypage.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/side-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/user/top-bar.css">
-    <link rel="stylesheet" href="../../../static/css/mypage/welfare/subscriber.css">
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/mypage/welfare/subscriber.css">
+    <link rel="stylesheet" href="/css/mypage/user/paging.css">
 </head>
+<style>
+    .blind {
+        display: none !important;
+    }
+</style>
 <body>
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container">
             <div class="content-wrap">
-
-
-                <!-- // top-bar.html -->
-
-
+                <div class="header-stage" th:insert="~{mypage/welfare/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm">
-
-
-                        <!-- // side-bar.html -->
-                        
-
+                    <div class="header-stage" th:insert="~{mypage/welfare/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <form action="" name="myPageOrderForm">
@@ -37,16 +37,16 @@
                                             <div class="input-group-wrap box-type">
                                                 <div class="input-group w200">
                                                     <input type="text" id="item1-1" name="srchProductNm" class="input-text" placeholder="회원명 검색">
-                                                </div><!--// input-group -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <img class="ico-btn-search" src="../../../static/img/mypage/search.png"></img>
+                                    <img class="ico-btn-search" src="/img/mypage/search.png"></img>
                                 </div>
                                 <div class="search-box ui-toggle on">
                                     <div class="input-group-form text-right w-full">
                                         <div class="input-group-btn dis-inb">
-                                            <a href="javascript:void(0)" class="btn-form btn-black"><span>조회하기</span></a>
+                                            <a href="javascript:void(0)" class="btn-form btn-black"><span>전체조회</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -56,99 +56,20 @@
                                 <p class="message">기간 내에 구독내역이 없습니다.</p>
                             </div>
 
-                            <ul class="productCart-list">
-                                <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
-                                    <div class="prd-info-area productCart-info-area">
-                                        <div class="inner">
-                                            <div class="user__img">
-                                                <img src="../../../static/img/mypage/user__profile.jpg">
-                                            </div>
-                                            <div class="user__info">
-                                                <div class="user__name">
-                                                    <span>정지영</span>
-                                                </div>
-                                                <div class="user__address">
-                                                    <span>서울특별시 00구 00로 49 현대아파트 105동 1504호</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="column btn">
-                                            <button type="button" class="btn-x-sm deleteUserCart">
-                                                <i class="ico-x-black"></i>
-                                            </button>
-                                        </div>  
-                                    </div>
-                                </li>
-
-                                <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
-                                    <div class="prd-info-area productCart-info-area">
-                                        <div class="inner">
-                                            <div class="user__img">
-                                                <img src="../../../static/img/mypage/user__profile.jpg">
-                                            </div>
-                                            <div class="user__info">
-                                                <div class="user__name">
-                                                    <span>정지영</span>
-                                                </div>
-                                                <!-- <div class="subscribe__date">
-                                                    <span>2023.04.01</span> ~ <span>2023.04.30</span> 
-                                                </div> -->
-                                                <div class="user__address">
-                                                    <span>서울특별시 00구 00로 49 현대아파트 105동 1504호</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="column btn">
-                                            <button type="button" class="btn-x-sm deleteUserCart">
-                                                <i class="ico-x-black"></i>
-                                            </button>
-                                        </div>  
-                                    </div>
-                                </li>
-
-                                <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
-                                    <div class="prd-info-area productCart-info-area">
-                                        <div class="inner">
-                                            <div class="user__img">
-                                                <img src="../../../static/img/mypage/user__profile.jpg">
-                                            </div>
-                                            <div class="user__info">
-                                                <div class="user__name">
-                                                    <span>정지영</span>
-                                                </div>
-                                                <!-- <div class="subscribe__date">
-                                                    <span>2023.04.01</span> ~ <span>2023.04.30</span> 
-                                                </div> -->
-                                                <div class="user__address">
-                                                    <span>서울특별시 00구 00로 49 현대아파트 105동 1504호</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="column btn">
-                                            <button type="button" class="btn-x-sm deleteUserCart">
-                                                <i class="ico-x-black"></i>
-                                            </button>
-                                        </div>  
-                                    </div>
-                                </li>
-                            </ul>
+                            <ul class="productCart-list subscriber__list"></ul>
                         </div>
-
-                        <div class="page-bottom"><!-- // 페이징 -->
-                            <div class="pagination mt20" style="margin-top: 30px;">
-                                <a href="javascript:void(0)" class="btn-page prev"><span class="blind">&lt;</span></a>
-                                <a href="javascript:void(0)" class="current"><span>1</span></a>
-                                <a href="javascript:void(0)" class="btn-page next"><span class="blind">&gt;</span></a>
-                            </div><!--// pagination -->
-                        </div>
-
-
+                        <div class="pagination"></div>
                     </div>
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
-<script src="../../../static/js/mypage/user/order-list.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/CS/common.js"></script>
+<script src="/js/CS/search.js"></script>
+<script src="/js/mypage/welfare/ajax.js"></script>
+<script src="/js/mypage/welfare/subscriber.js"></script>
 </html>

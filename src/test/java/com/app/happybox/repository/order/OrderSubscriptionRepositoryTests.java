@@ -6,6 +6,8 @@ import com.app.happybox.entity.user.Address;
 import com.app.happybox.entity.user.Member;
 import com.app.happybox.repository.subscript.SubscriptionRepository;
 import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.type.SubOption;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,22 +37,23 @@ class OrderSubscriptionRepositoryTests {
     @Test
     public void saveTest(){
         // given
-        Optional<Member> member = memberRepository.findById(259L);
-        Optional<Subscription> subscription = subscriptionRepository.findById(27L);
+        Optional<Member> member = memberRepository.findById(213L);
+        Optional<Subscription> subscription = subscriptionRepository.findById(4L);
         Address address = new Address("11111", "서울시 역삼동", "코리아IT");
 
         // when
         if (!member.isPresent() || !subscription.isPresent()) fail("member 혹은 subscription 없음.");
 
-//        OrderSubscription orderSubscription = new OrderSubscription(
-//                "정지영",
-//                "01012344321",
-//                address,
-//                subscription.get(),
-//                member.get()
-//        );
+        OrderSubscription orderSubscription = new OrderSubscription(
+                "정지영",
+                "01012344321",
+                address,
+                subscription.get(),
+                member.get(),
+                SubOption.LESS_AMT
+        );
 
-        orderSubscriptionRepository.save(null);
+        orderSubscriptionRepository.save(orderSubscription);
 
         // then
     }

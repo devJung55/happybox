@@ -234,8 +234,10 @@ public class AdminController {
     @GetMapping("welfare/subscriber/list/{welfareId}")
     @ResponseBody
     public Page<MemberDTO> getSubscribers(@PageableDefault(page = 1, size = 10) Pageable pageable, @PathVariable Long welfareId) {
+        String subscriberName = null;
+
         return orderSubsciptionService
-                .getListByWelfareId(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId);
+                .getListByWelfareId(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId, subscriberName);
     }
 
     //    결제 목록
