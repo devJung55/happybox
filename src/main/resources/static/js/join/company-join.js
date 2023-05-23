@@ -29,6 +29,10 @@ const emailRegex = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{2,4}$/;
 const addressDetailRegex = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
 const $addressInput = $('.address-input');
 const $addressDetailInput = $('.address-detail-input');
+const $idInput = $('input[name=userId]');
+const $nameInput = $('input[name=welfareName]');
+const $phoneInput = $('input[name=userPhoneNumber]');
+const $emailInput = $('input[name=userEmail]');
 
 let joinBlurMessages = [
   '아이디를 입력하세요.',
@@ -43,7 +47,7 @@ let joinRegexMessages = [
   '영문 혹은 영문과 숫자를 조합하여 4자~16자로 입력하세요.',
   '공백 제외 영어 및 숫자, 특수문자 모두 포함하여 6~16자로 입력하세요.',
   '위 비밀번호와 일치하지 않습니다. 다시 입력하세요.',
-  '업체명을 확인하세요.',
+  '복지관명을 확인하세요.',
   '전화번호를 확인하세요.',
   '이메일 주소를 확인하세요.',
 ];
@@ -130,6 +134,8 @@ $joinInputs.on('blur', function () {
     $joinHelp.eq(i).show();
     $joinHelp.eq(i).text(joinRegexMessages[i]);
     return;
+  }else {
+      $joinHelp.eq(i).hide();
   }
 console.log("i의 숫자는?", i);
   // 아이디 중복 검사
@@ -152,71 +158,43 @@ console.log("i의 숫자는?", i);
       });
     });
   } else if (i == 4) {
-      $(".join-phone-btn").click(function () {
-          $.ajax({
-              type: "GET",
-              url: "/checkUserPhoneNumber",
-              data: {userPhoneNumber: value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)},
-              success: function (result) {
-                  let message;
-                  if (result) {
-                      message = "중복된 휴대폰 번호입니다.";
-                      $joinHelp.eq(i).show();
-                      $joinHelp.eq(i).css('color', 'red')
-                      $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
-                      $joinHelp.eq(i).text(message);
-                      phoneNumberCheck = false;
-                      joinCheckAll[i] = false;
-                  } else {
-                      message = "사용가능한 번호입니다.";
-                      $joinHelp.eq(i).hide();
-                      console.log(i);
-                      $joinInputs.eq(i).css('border', '1px solid #05AE68');
-                      $joinHelp.eq(i).text(message);
-                      phoneNumberCheck = true;
-                      joinCheckAll[i] = true;
-                      let phone = $(".join-phone").val().replaceAll("-", "");
-                      console.log(phone);
-                  }
-              }
-          });
-      });
-  } else if (i == 6) {
       $.ajax({
-          type: "POST",
-          url: "/member/checkNickname",
-          data: {memberNickname: value},
+          type: "get",
+          url: "/checkUserPhoneNumber",
+          data: {userPhoneNumber: value},
           success: function (result) {
               let message;
-              if (result != "success") {
-                  message = "중복된 닉네임입니다.";
+              if (result) {
+                  message = "중복된 번호입니다.";
                   $joinHelp.eq(i).show();
-                  $joinHelp.eq(i).css('color', 'red')
-                  $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+                  $joinHelp.eq(i).text(message);
                   joinCheckAll[i] = false;
               } else {
+                  message = "사용가능한 번호입니다."
+                  $joinHelp.eq(i).show();
+                  $joinHelp.eq(i).text(message);
                   joinCheckAll[i] = true;
               }
-              $joinHelp.eq(i).text(message);
           }
       });
-  }   else if (i == 7) {
+  } else if (i == 5) {
       $.ajax({
-          type: "POST",
-          url: "/member/checkEmail",
-          data: {memberEmail: value},
+          type: "get",
+          url: "/checkUserEmail",
+          data: {userEmail: value},
           success: function (result) {
               let message;
-              if (result != "success") {
+              if (result) {
                   message = "중복된 이메일입니다.";
                   $joinHelp.eq(i).show();
-                  $joinHelp.eq(i).css('color', 'red')
-                  $joinInputs.eq(i).css('border', '1px solid rgb(255, 64, 62)');
+                  $joinHelp.eq(i).text(message);
                   joinCheckAll[i] = false;
               } else {
+                  message = "사용가능한 이메일입니다."
+                  $joinHelp.eq(i).show();
+                  $joinHelp.eq(i).text(message);
                   joinCheckAll[i] = true;
               }
-              $joinHelp.eq(i).text(message);
           }
       });
   }
@@ -225,15 +203,7 @@ console.log("i의 숫자는?", i);
 });
 
 function send() {
-    if (joinCheckAll.filter((check) => check).length != $joinInputs.length) {
-      alertModal('가입 정보를 확인하세요.');
-    } else if ($addressInput.val() == '') {
-      alertModal('주소를 입력하세요.');
-    } else if($addressDetailInput.val() == ''){
-      alertModal('상세주소를 입력하세요.')
-    }else {
-        document.join.submit();
-    }
+    document.welfareDTO.submit();
   }
 
   function alertModal(errorMsg) {
@@ -241,7 +211,7 @@ function send() {
     $("div.modal").css("display", "flex").hide().fadeIn(500);
     setTimeout(function () {
       $("div.modal").fadeOut();
-  }, 2000);
+  }, 1000);
   }
 
 
@@ -255,12 +225,18 @@ const $subs = $('.subscription-area');
 $nextBtn.on('click', function (e){
   e.preventDefault();
 
-  if (joinCheckAll.filter((check) => check).length !== $joinInputs.length) {
-    alertModal('가입 정보를 확인하세요.');
+  if ($idInput.val() === '') {
+    alertModal('아이디를 입력하세요.');
   } else if ($addressInput.val() === '') {
     alertModal('주소를 입력하세요.');
   } else if ($addressDetailInput.val() === '') {
     alertModal('상세주소를 입력하세요.');
+  }else if ($nameInput.val() === '') {
+      alertModal('복지관명을 입력하세요.');
+  }else if ($phoneInput.val() === '') {
+      alertModal('휴대폰을 입력하세요.');
+  }else if ($emailInput.val() === '') {
+      alertModal('이메일을 입력하세요.');
   } else {
     $area.hide();
     $subs.show();

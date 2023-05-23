@@ -28,18 +28,22 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         log.info("-=======================================");
         if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.ADMIN)){
             log.info("ADMIN_SUCCESS");
+            log.info(authentication.getAuthorities().toString());
             log.info(authentication.getPrincipal().toString());
             response.sendRedirect(REDIRECT_URL_FOR_ADMIN);
         }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.MEMBER)) {
             log.info("MEMBER_SUCCESS");
+            log.info(authentication.getAuthorities().toString());
             log.info(authentication.getPrincipal().toString());
             response.sendRedirect(REDIRECT_URL_FOR_MEMBER);
         }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.WELFARE)){
+            log.info(authentication.getAuthorities().toString());
             log.info("WELFARE_SUCCESS");
             log.info(authentication.getPrincipal().toString());
             response.sendRedirect(REDIRECT_URL_FOR_WELFARE);
         }else if(((UserDetail)authentication.getPrincipal()).getUserRole().equals(Role.DISTRIBUTOR)){
             log.info("DISTRIBUTOR_SUCCESS");
+            log.info(authentication.getAuthorities().toString());
             log.info(authentication.getPrincipal().toString());
             response.sendRedirect(REDIRECT_URL_FOR_DISTRIBUTOR);
         }
