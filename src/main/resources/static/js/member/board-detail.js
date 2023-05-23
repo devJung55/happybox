@@ -1,6 +1,5 @@
 /* review-board-detail.html */
 
-
 /* 텍스트 더보기 */
 $('.info-area__box').on('click', function () {
     $(this).find('.info-area__box-list').css('height', '100%');
@@ -124,6 +123,10 @@ function showDetail() {
 
         <div class="info-area">
           <div class="info-area__btn">
+          `
+    if ($userId == review.userId) {
+        text +=
+            `
             <button type="button" class="update-btn">
               <svg
                 class="write-button-icon"
@@ -151,6 +154,10 @@ function showDetail() {
                 />
               </svg>
             </button>
+            `
+    }
+            text +=
+        `
             <div class="like-btn-wrap">
                 <a href="javascript:checkLike()">
                     <span class="like-btn">
@@ -226,6 +233,11 @@ function deleteBoard() {
 /* 댓글 관련 js */
 const $moreReview = $(".more-review");
 const $reviewListWrap = $(".review-list-wrap");
+const USER_ROLE = {
+    MEMBER: "일반",
+    WELFARE: "복지관",
+    DISTRIBUTOR: "유통"
+}
 
 // 현재 페이지
 let page = 1;
@@ -255,6 +267,15 @@ $moreReview.on("click", function () {
     );
 });
 
+if ($userId) {
+    $(".reply-writer-info").append(
+        `
+        <span class="user-type">${USER_ROLE[$userRole]}</span>
+        <span class="user-id">${$userId}</span>
+    `
+    );
+}
+
 // 최신순
 $(".reivewDate").on("click", function () {
     page = 1;
@@ -283,21 +304,19 @@ $(".orderLikeCount").on("click", function () {
     );
 });
 
-const USER_ROLE = {
-    MEMBER: "일반",
-    WELFARE: "복지관"
-}
-
 window.scroll()
 
 /* 댓글 append */
 function appendReplyList(reply, isPrepend) {
 
+    let text ='';
     let date = reply.updatedDate.split("T")[0];
 
-    let text = `
+    text += `
     <div class="review-list">
-        <span
+    `
+    if ($userId == reply.userId) {
+        text += `<span
             class="xBtn" 
             style="
             cursor: pointer;
@@ -307,6 +326,10 @@ function appendReplyList(reply, isPrepend) {
             onclick="deleteReply(this)"
             data-id="${reply.id}"
         >X</span>
+    `
+    }
+    text +=
+        `
         <div class="user-info-wrap">
             <div class="user-info">
                 <span class="user-type">${USER_ROLE[reply.userRole]}</span>
@@ -328,15 +351,17 @@ function appendReplyList(reply, isPrepend) {
                     <button data-id="${reply.id}" onclick="checkOutLike(this)" class="review-rec-btn">
                         <span>도움돼요</span>
                         <span class="rec-count">${reply.replyLikeCount ? reply.replyLikeCount : 0}</span>
-                    </button>
-                    <button class="review-rec-btn update_review">
-                        <span>수정하기</span>
-                    </button>
+                    </button>`;
+        if ($userId == reply.userId) {
+            text += `<button onclick="showReplyUpdate(this)" data-onmodify="false" data-id="${reply.id}" class="review-rec-btn update_review">
+                            <span>수정하기</span>
+                        </button>`;
+        }
+            `</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    `;
+            `;
 
     // prepend 검사
     if (isPrepend) {
@@ -359,25 +384,33 @@ $reviewOrder.on("click", function () {
 /* 수정버튼은 session에 있는 유저와 댓글 작성자와 비교하여 */
 /* 서로 일치할 때만 표시할 것 */
 /* 수정버튼 클릭시 수정 textarea 등장 */
+
 /* Ajax 콜백함수로 받아서 text에 데이터 꽃기 */
-const $updateReviewBtn = $(".update_review");
+function showReplyUpdate(button) {
 
-$updateReviewBtn.on("click", function () {
-    console.log("들어옴");
-    /* 수정 중임을 의미하는 클래스 */
-    const ON_UPDATE = "review-on-update";
+    let updateBtn = $(button);
 
-    let parent = $(this).parent().parent().parent();
+    // 수정 중이라면 return
+    if (updateBtn.data("onmodify")) return;
 
-    if (parent.hasClass(ON_UPDATE)) return;
+    // 수정창 부모
+    let parent = updateBtn.closest(".review-wrap");
+    let replyContent = updateBtn.closest(".review-footer").prev(".review-content");
+
+    // 댓글 내용
+    let contentText = replyContent.text().trim();
+    console.log(contentText);
+
+    // 댓글 id
+    let id = updateBtn.data("id");
+
+    updateBtn.data("onmodify", true);
 
     let text = `
     <div class="write-content-wrap">
         <form>
             <textarea
-                class="write-textarea"
-                placeholder="댓글 남기기"
-            >${reply.content}</textarea
+                class="write-textarea">${contentText}</textarea
             ><button class="write-regist-btn" type="button">
                 <span class="regist">등록</span>
             </button>
@@ -390,21 +423,36 @@ $updateReviewBtn.on("click", function () {
 
     /* 수정 form append */
     parent.append(text);
-    parent.addClass(ON_UPDATE);
 
-    /* 등록버튼 이벤트 걸기 */
     /* 등록후 ajax 전송 */
     $(".write-regist-btn").on("click", function () {
-        $(this).parent().parent().remove();
-        parent.removeClass(ON_UPDATE);
+        let data = {
+            replyContent: $(this).prev(".write-textarea").val()
+        }
+
+        $.ajax({
+            type: "patch",
+            url: `/user-board/review-board-detail/reply/modify/${id}`,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                replyContent.text(response.replyContent);
+            }
+        });
+
+        // 수정창 닫기
+        updateBtn.data("onmodify", false);
+        $(this).closest(".write-content-wrap").remove();
     });
 
     /* 등록취소 이벤트 걸기 */
     $(".write-cancel-btn").on("click", function () {
-        $(this).parent().parent().remove();
-        parent.removeClass(ON_UPDATE);
-    })
-});
+        // 수정창 닫기
+        $(this).closest(".write-content-wrap").remove();
+        updateBtn.data("onmodify", false);
+    });
+}
 
 /* 댓글 작성 */
 const REPLY_URL = `/user-board/review-board-detail/reply/write/${review.id}`;

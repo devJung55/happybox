@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,10 +34,11 @@
           </div>
         </div>
         <!--  -->
-        <div class="reply-write-wrap">
+        <div class="reply-write-wrap" sec:authorize="isAuthenticated()">
           <div class="reply-writer-info">
-            <span class="user-type">일반</span>
-            <span class="user-id">kjp1234</span>
+
+            <!--  -->
+
           </div>
           <div class="write-content-wrap">
             <form>
@@ -47,6 +49,21 @@
             </form>
           </div>
         </div>
+        <div class="reply-write-wrap" sec:authorize="!isAuthenticated()">
+          <div class="reply-writer-info">
+            <span class="user-id">비회원</span>
+          </div>
+          <div class="write-content-wrap">
+            <form>
+              <textarea class="write-textarea" placeholder="로그인 후 이용해주세요." readonly></textarea
+              ><button class="write-regist-btn" type="button">
+              <span class="regist">등록</span>
+            </button>
+            </form>
+          </div>
+        </div>
+
+
       </section>
       <div class="review-list-wrap">
 
@@ -62,6 +79,8 @@
   <script th:inline="javascript">
     let review = [[${review}]];
     let isLike = [[${isLike}]];
+    const $userId = [[${userId}]];
+    const $userRole = [[${userRole}]];
   </script>
   <script src="/js/main/header.js"></script>
   <script src="/js/member/board-detail.js"></script>
