@@ -142,11 +142,11 @@ const fileAddSVG = `
 // 파일을 담을 배열 선언
 let fileList = [];
 
-let file = "";
+let file = [];
 // 받은 uuid 담을 배열
-let uuid = "";
+let uuid = [];
 // 받은 path를 담을 배열
-let path = "";
+let path = [];
 
 
 /* 파일 넣기 */

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식 일정 등록하기</title>
+    <link rel="icon" href="/img/main/fabicon.png" type="image/png" sizes="50x50"/>
+    <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="/css/global/mypage.css">
+    <link rel="stylesheet" href="/css/component/header.css"/>
+    <link rel="stylesheet" href="/css/component/footer.css"/>
+    <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
+    <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
+    <link rel="stylesheet" href="/css/member/member.css">
+    <link rel="stylesheet" href="/css/member/board-insert.css">
+    <link rel="stylesheet" href="/css/mypage/user/address-editor-form.css">
+    <link rel="stylesheet" href="/css/mypage/welfare/food-schdule.css">
+</head>
+<style>
+    .blind {
+        display: none !important;
+    }
+
+    img.select-arrow {
+        position: absolute;
+        right: 4px;
+        top: 8px;
+        z-index: 3;
+        filter: invert(40%) sepia(3%) saturate(11%) hue-rotate(328deg) brightness(97%) contrast(92%);
+    }
+</style>
+<body>
+    <div class="wrap">
+        <section id="contents" class="container" style="padding: 0;">
+            <div class="content-wrap">
+                <div class="frame-sm" style="margin-top: 45px;">
+                    <form id="counselRegFrm" name="form" method="post"  style="margin-left: 60px;" >
+                        <div class="frame-right">
+                            <div class="frame-cnt-inner">
+                                <div class="menu-title-area">
+                                    <h3 class="title-menu">캘린더 일정 등록</h3>
+                                </div>
+                                <div class="board-form type2">
+                                    <table>
+                                        <caption>내용 작성</caption>
+                                        <colgroup>
+                                            <col style="width: 180px"/>
+                                            <col style="width: auto"/>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        일정 제목 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="foodCalendarTitle" id="vQuestionTitle" title="" class="input-text" placeholder="제목을 입력해주세요"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row" style="position: relative;">
+                                                    <div class="in-tb" style="position: absolute; top: 26px;">
+                                                        일정 소개 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="textarea-box-count h230" style="padding: 15px 14px 40px;">
+                                                        <textarea id="vQuestionCont" placeholder="문의내용을 입력하세요" name="foodCalendarDescription" t></textarea>
+                                                        <div class="txt-count">
+                                                            <span id="counter">0</span> / <span class="total">1,000</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        시작일 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input name="startDate" class="formTime" type="date"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        마감 일 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input name="endDate" class="formTime" type="date"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <section class="food-area">
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        음식명 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="foodName" id="vQuestionTitle" title="" class="input-text food-name" placeholder="재고수량을 입력해주세요" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- 첨부파일 영역 -->
+                                            <tr class="attach-file-line">
+                                                <th class="text-left" scope="row"></th>
+                                                <td class="text-left">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                            <button type="button" class="btn-attach-thumb">
+                                                                <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                            </button>
+                                                            <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
+                                                            <div class="attach-img" style="display: none;">
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
+                                                                <button type="button" class="btn-x-xs2 btn_del">
+                                                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-guide-md">
+                                                            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        음식명 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="foodName" id="vQuestionTitle" title="" class="input-text food-name" placeholder="재고수량을 입력해주세요" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- 첨부파일 영역 -->
+                                            <tr class="attach-file-line">
+                                                <th class="text-left" scope="row"></th>
+                                                <td class="text-left">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                            <button type="button" class="btn-attach-thumb">
+                                                                <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                            </button>
+                                                            <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
+                                                            <div class="attach-img" style="display: none;">
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
+                                                                <button type="button" class="btn-x-xs2 btn_del">
+                                                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-guide-md">
+                                                            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        음식명 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="foodName" id="vQuestionTitle" title="" class="input-text food-name" placeholder="재고수량을 입력해주세요" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- 첨부파일 영역 -->
+                                            <tr class="attach-file-line">
+                                                <th class="text-left" scope="row"></th>
+                                                <td class="text-left">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                            <button type="button" class="btn-attach-thumb">
+                                                                <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                            </button>
+                                                            <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
+                                                            <div class="attach-img" style="display: none;">
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
+                                                                <button type="button" class="btn-x-xs2 btn_del">
+                                                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-guide-md">
+                                                            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        음식명 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="foodName" id="vQuestionTitle" title="" class="input-text food-name" placeholder="재고수량을 입력해주세요" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- 첨부파일 영역 -->
+                                            <tr class="attach-file-line">
+                                                <th class="text-left" scope="row"></th>
+                                                <td class="text-left">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                            <button type="button" class="btn-attach-thumb">
+                                                                <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                            </button>
+                                                            <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
+                                                            <div class="attach-img" style="display: none;">
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
+                                                                <button type="button" class="btn-x-xs2 btn_del">
+                                                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-guide-md">
+                                                            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        음식명 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="foodName" id="vQuestionTitle" title="" class="input-text food-name" placeholder="재고수량을 입력해주세요" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- 첨부파일 영역 -->
+                                            <tr class="attach-file-line">
+                                                <th class="text-left" scope="row"></th>
+                                                <td class="text-left">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                            <button type="button" class="btn-attach-thumb">
+                                                                <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                            </button>
+                                                            <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
+                                                            <div class="attach-img" style="display: none;">
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
+                                                                <button type="button" class="btn-x-xs2 btn_del">
+                                                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-guide-md">
+                                                            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th class="text-left" scope="row">
+                                                    <div class="in-tb">
+                                                        음식명 <em class="es"><span class="blind"></span></em>
+                                                    </div>
+                                                </th>
+                                                <td class="text-left">
+                                                    <div class="input-group w-full">
+                                                        <input type="text" name="foodName" id="vQuestionTitle" title="" class="input-text food-name" placeholder="재고수량을 입력해주세요" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <!-- 첨부파일 영역 -->
+                                            <tr class="attach-file-line">
+                                                <th class="text-left" scope="row"></th>
+                                                <td class="text-left">
+                                                    <div class="file-add-boxes">
+                                                        <div class="div-attach-thumb" id="US_RV_IMG3_attachThumb">
+                                                            <button type="button" class="btn-attach-thumb">
+                                                                <i class="ico-plus-xlg"></i><span class="blind">파일첨부</span>
+                                                            </button>
+                                                            <input class="input_file" name="imgFile" type="file" accept="image/*" style="display: none"/>
+                                                            <div class="attach-img" style="display: none;">
+                                                                <img src="" style="width: 68px; height: 68px" id="image"/>
+                                                                <button type="button" class="btn-x-xs2 btn_del">
+                                                                    <i class="ico-x-white"></i><span class="blind">삭제</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-guide-md">
+                                                            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            </section>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="btn-bottom-area">
+                                    <button type="button" class="btn-basic-lg2 btn-grey3">
+                                        <span>취소하기</span>
+                                    </button>
+                                    <button type="submit" class="btn-basic-lg2 btn-primary">
+                                        <span>작성하기</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/mypage/welfare/food-register.js"></script>
+<script>
+    /* 내용 글자수 카운트 이벤트 */
+
+    const $counter = $("#counter");
+    const $textarea = $("#vQuestionCont");
+
+    $textarea.on("keyup", function() {
+        let content = $(this).val();
+
+        // 글자수 세기
+        if(content.length < 1000) {
+            $counter.text(content.length);
+        }
+
+        // 글자수 제한
+        if (content.length > 1000) {
+            // 1000자 부터는 타이핑 되지 않도록
+            $(this).val($(this).val().substring(0, 1000));
+            // 1000자 넘으면 알림창 뜨도록
+            alert('글자수는 1000자까지 입력 가능합니다.');
+        };
+    });
+</script>
+<script src="/js/main/header.js"></script>
+<script src="/js/mypage/business/ajax.js"></script>
+</html>

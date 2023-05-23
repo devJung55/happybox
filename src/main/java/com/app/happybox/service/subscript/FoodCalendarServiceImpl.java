@@ -46,10 +46,13 @@ public class FoodCalendarServiceImpl implements FoodCalendarService {
         log.info("=====================================================================");
         log.info(foodCalendar.toString());
         Long foodCalendarId = foodCalendar.getId();
-        foodCalendarRepository.findById(foodCalendarId).orElseThrow(()-> new FoodCalendarNotFoundException());
+        FoodCalendar foodCalendar1 = foodCalendarRepository.findById(foodCalendarId).orElseThrow(() -> new FoodCalendarNotFoundException());
         List<FoodDTO> foodDTOS = foodCalendarDTO.getFoodList();
         List<Food> foods = new ArrayList<>();
-        foodDTOS.forEach(foodDTO -> foods.add(toFoodEntity(foodDTO)));
+        foodDTOS.forEach(foodDTO -> {
+            foods.add(toFoodEntity(foodDTO));
+        });
+        foods.forEach(food -> food.setFoodCalendar(foodCalendar1));
         log.info("=====================================================================");
         log.info(foods.toString());
         foodCalendar.setFoodList(foods);
