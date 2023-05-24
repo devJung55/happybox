@@ -34,7 +34,7 @@
           </div>
         </div>
         <!--  -->
-        <div class="reply-write-wrap" sec:authorize="isAuthenticated()">
+        <div class="reply-write-wrap">
           <div class="reply-writer-info">
 
             <!--  -->
@@ -49,26 +49,11 @@
             </form>
           </div>
         </div>
-        <div class="reply-write-wrap" sec:authorize="!isAuthenticated()">
-          <div class="reply-writer-info">
-            <span class="user-id">비회원</span>
-          </div>
-          <div class="write-content-wrap">
-            <form>
-              <textarea class="write-textarea" placeholder="로그인 후 이용해주세요." readonly></textarea
-              ><button class="write-regist-btn" type="button">
-              <span class="regist">등록</span>
-            </button>
-            </form>
-          </div>
-        </div>
-
-
       </section>
       <div class="review-list-wrap">
 
       </div>
-      <div tyle="padding-bottom: 32px;">
+      <div style="padding-bottom: 32px;">
         <button class="more-review">더보기<span>+</span></button>
       </div>
     </section>

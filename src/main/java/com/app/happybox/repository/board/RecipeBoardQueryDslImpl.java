@@ -34,6 +34,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
                 .from(recipeBoard)
                 .join(recipeBoard.member).fetchJoin()
                 .join(recipeBoard.recipeBoardFiles).fetchJoin()
+                .orderBy(recipeBoard.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -47,6 +48,7 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
                 .join(recipeBoard.member).fetchJoin()
                 .join(recipeBoard.recipeBoardFiles).fetchJoin()
                 .orderBy(recipeBoard.recipeLikeCount.desc())
+                .orderBy(recipeBoard.recipeBoardReplyCount.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

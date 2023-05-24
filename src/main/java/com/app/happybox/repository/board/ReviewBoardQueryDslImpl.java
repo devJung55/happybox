@@ -10,6 +10,7 @@ import org.springframework.data.domain.*;
 import java.util.List;
 import java.util.Optional;
 
+import static com.app.happybox.entity.board.QRecipeBoard.recipeBoard;
 import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 
 
@@ -69,6 +70,7 @@ public class ReviewBoardQueryDslImpl implements ReviewBoardQueryDsl {
                 .join(reviewBoard.member).fetchJoin()
                 .join(reviewBoard.reviewBoardFiles).fetchJoin()
                 .orderBy(reviewBoard.reviewLikeCount.desc())
+                .orderBy(reviewBoard.reviewBoardReplyCount.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

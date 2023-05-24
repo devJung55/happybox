@@ -7,6 +7,7 @@ import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.reply.ReviewBoardReply;
 import com.app.happybox.entity.user.User;
 import com.app.happybox.exception.ProductNotFoundException;
+import com.app.happybox.exception.ReplyNotFoundException;
 import com.app.happybox.exception.UserNotFoundException;
 import com.app.happybox.repository.board.RecipeBoardRepository;
 import com.app.happybox.repository.reply.RecipeBoardReplyRepository;
@@ -73,8 +74,12 @@ public class RecipeBoardReplyService implements ReplyService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public ReplyDTO updateReply(Long replyId, ReplyDTO replyDTO) {
-        return null;
+        RecipeBoardReply recipeBoardReply = recipeBoardReplyRepository.findById(replyId).orElseThrow(ReplyNotFoundException::new);
+        recipeBoardReply.setReplyContent(replyDTO.getReplyContent());
+
+        return replyToDTO(recipeBoardReply);
     }
 
     @Override

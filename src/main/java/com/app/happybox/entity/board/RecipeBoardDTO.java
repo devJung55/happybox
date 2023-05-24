@@ -1,5 +1,6 @@
 package com.app.happybox.entity.board;
 
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.file.BoardFileDTO;
 import com.app.happybox.entity.reply.ReplyDTO;
 import com.app.happybox.entity.user.Member;
@@ -19,8 +20,7 @@ public class RecipeBoardDTO {
     private Long id;
 
     /*-- 회원 정보 --*/
-    private String memberName;
-    private Long memberId;
+    private MemberDTO memberDTO;
 
     /*-- 레시피 게시물 정보*/
     private String boardTitle;
@@ -46,10 +46,9 @@ public class RecipeBoardDTO {
     }
 
     @Builder
-    public RecipeBoardDTO(Long id, String memberName, Long memberId, String boardTitle, String boardContent, LocalDate boardRegisterDate, Integer recipeLikeCount, Integer recipeReplyCount, List<BoardFileDTO> recipeBoardFiles, List<ReplyDTO> replies, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public RecipeBoardDTO(Long id, MemberDTO memberDTO, String boardTitle, String boardContent, LocalDate boardRegisterDate, Integer recipeLikeCount, Integer recipeReplyCount, List<BoardFileDTO> recipeBoardFiles, List<ReplyDTO> replies, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
-        this.memberName = memberName;
-        this.memberId = memberId;
+        this.memberDTO = memberDTO;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.boardRegisterDate = boardRegisterDate;
@@ -59,5 +58,9 @@ public class RecipeBoardDTO {
         this.replies = replies;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
+    }
+
+    public void setMemberDTO(MemberDTO memberDTO) {
+        this.memberDTO = memberDTO;
     }
 }
