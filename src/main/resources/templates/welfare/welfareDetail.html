@@ -385,7 +385,7 @@
     $(".welfare-title").text(subscription.subscriptionTitle);
     $(".welfare-name").text(subscription.welfareName);
     $(".total-price").text(subscription.subscriptionPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
-    // $("#sub-order-count").text(subscription.orderCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+    $("#sub-order-count").text(subscription.orderCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
     console.log(subscription);
 </script>
 <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
@@ -394,6 +394,6 @@
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script src="/js/common/ajax.js"></script>
-<script src="/js/welfare/food-calendar.js"></script>
 <script src="/js/welfare/welfareDetail.js"></script>
+<script src="/js/welfare/food-calendar.js"></script>
 </html>
