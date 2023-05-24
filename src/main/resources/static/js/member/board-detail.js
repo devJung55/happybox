@@ -127,10 +127,10 @@ function showDetail() {
     if ($userId == review.memberDTO.userId) {
         text +=
             `
-            <button type="button" class="update-btn">
+            <a href="/user-board/review-board-modify/${review.id}" class="update-btn">
               <svg
                 class="write-button-icon"
-                style="enable-background: new 0 0 1696.162 1696.143"
+                style="enable-background: new 0 0 1696.162 1696.143;margin-top: 6px;margin-left: 6px;"
                 version="1.1"
                 viewBox="0 0 1696.162 1696.143"
                 width="1696.162px"
@@ -145,7 +145,7 @@ function showDetail() {
                 </g>
                 <g id="Layer_1" />
               </svg>
-            </button>
+            </a>
             <button type="button" class="delete-btn" onclick="deleteBoard()"
             data-id="${review.id}">
               <svg viewBox="0 0 448 512" class="delete-button-icon" xmlns="http://www.w3.org/2000/svg">

@@ -4,12 +4,12 @@ const optionList = ["음식기부", "봉사활동", "무료배달", "노인복�
 
 const insertData = {
     id: donationBoardDTO.id,
-    boardTitle:"",
-    boardContent: "",
-    donateType: "",
+    boardTitle: donationBoardDTO.boardTtile,
+    boardContent: donationBoardDTO.boardContent,
+    donateType: donationBoardDTO.donateType,
     boardRegisterDate: donationBoardDTO.updatedDate,
-    donateLocation: "",
-    donationBoardFiles: new Array(3)
+    donateLocation: donationBoardDTO.donateLocation,
+    donationBoardFiles: new Array()
 }
 
 const setList = $(".board-form table");
@@ -260,7 +260,7 @@ const fileAjax = (data, index) => {
                 file.fileUuid = result.uuids[0];
                 file.fileOrgName = result.orgNames[0];
 
-                insertData.reviewBoardFiles[index] = file;
+                insertData.donationBoardFiles[index] = file;
             }
         }
     });
