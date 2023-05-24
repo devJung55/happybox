@@ -9,10 +9,13 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +23,7 @@ import static com.app.happybox.entity.product.QProduct.product;
 
 
 @RequiredArgsConstructor
+@Slf4j
 public class ProductQueryDslImpl implements ProductQueryDsl {
     private final JPAQueryFactory query;
 
@@ -113,6 +117,29 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
                 .limit(8L)
                 .orderBy(product.productReplyCount.desc())
                 .fetch();
+    }
+
+    @Override
+    public List<Product> findRandomProducts_QueryDSL() {
+        List<Product> products = new ArrayList<>();
+
+        Long totalCount = query.select(product.count()).from(product).fetchOne();
+        int idx = (int) (Math.random() * totalCount);
+
+        // page request
+        PageRequest pageRequest = PageRequest.of(idx, 1);
+
+        products.add(getProductJPAQuery()
+                .offset(pageRequest.getOffset())
+                .limit(pageRequest.getPageSize())
+                .fetchOne());
+
+        products.add(getProductJPAQuery()
+                .offset(pageRequest.getOffset())
+                .limit(pageRequest.getPageSize())
+                .fetchOne());
+
+        return products;
     }
 
 

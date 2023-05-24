@@ -2,20 +2,17 @@ package com.app.happybox.repository.product;
 
 import com.app.happybox.entity.file.ProductFile;
 import com.app.happybox.entity.product.Product;
-import com.app.happybox.domain.product.ProductSearchDTO;
 import com.app.happybox.repository.user.DistributorRepository;
 import com.app.happybox.type.FileRepresent;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest
@@ -55,6 +52,13 @@ class ProductRepositoryTests {
         ProductFile productFile = new ProductFile("2023/05/22", UUID.randomUUID().toString(), "상품 이미지", product, FileRepresent.REPRESENT);
 
         productFileRepository.save(productFile);
+    }
+
+    @Test
+    public void find2RandomProducts_QueryDSL_Test(){
+        List<Product> randomProducts = productRepository.findRandomProducts_QueryDSL();
+
+        log.info(randomProducts.toString());
     }
 
 //    @Test

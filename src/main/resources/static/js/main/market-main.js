@@ -16,7 +16,7 @@ function appendList(product, $target) {
         <li
             class="bnr-item-slide swiper-slide swiper-slide-active"
             style="width: 256.25px; margin-right: 25px">
-        <a href="javascript:void(0)">
+        <a href="/product/detail/${product.id}">
             <div class="image-container">
                 <img
                         src="${repFilePath}"
@@ -50,6 +50,7 @@ const recipeTopFilePath = recipeTop5[0].recipeBoardFiles.length == 0 ?
 
 console.log(recipeTop5);
 
+$(".recipie-top-wrap").attr("href", `/user-board/recipe-board-detail/${recipeTop5[0].id}`);
 $recipeTopImg.find("img").attr("src", recipeTopFilePath);
 $(".recipe-top-title-wrap h3").text(recipeTop5[0].boardTitle);
 $(".recipie-top-content").text(recipeTop5[0].boardContent);
@@ -63,7 +64,7 @@ for (let i = 1; i < recipeTop5.length; i++) {
 
     text = `
         <li>
-            <a href="javascript:void(0)">
+            <a href="/user-board/recipe-board-detail/${recipeTop5[i].id}">
                 <div class="recipie-img-container">
                     <img src="${recipeFilePath}">
                 </div>
