@@ -51,6 +51,7 @@ public interface DonationBoardService {
                 .welfareName(donationBoard.getWelfare().getWelfareName())
                 .welfarePhone(donationBoard.getWelfare().getUserPhoneNumber())
                 .welfarePoint(donationBoard.getWelfare().getWelfarePointTotal())
+                .welfareId(donationBoard.getWelfare().getUserId())
                 .donateType(donationBoard.getDonateType())
                 .boardRegisterDate(donationBoard.getUpdatedDate())
                 .donateLocation(donationBoard.getDonateLocation())
