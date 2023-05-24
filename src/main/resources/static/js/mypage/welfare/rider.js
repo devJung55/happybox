@@ -32,7 +32,8 @@ const doSearch = (page) => {
     $doAjax("GET", URL, {page: $page}, (result) => {
         console.log(result);
         // 결과 append
-        result.content.forEach((e) => showList(e));
+        // result.content.forEach((e) => showList(e));
+        showList(result);
 
         // 페이징 버튼 생성
         showPage(result);
@@ -56,67 +57,70 @@ function showPage(result) {
 
     // 페이징 HTML 태그를 추가하는 코드 작성
     let paging = "";
-    paging += `<div class="paging" style="text-align: center">`;
+    paging += `<div class="pagination mt20" style="margin-top: 30px;">`;
 
     if (hasPrev) {
-        paging += `<a class="changePage" data-page="${startPage}" 
+        paging += `<a class="btn-page prev" data-page="${startPage}" 
                         onclick="doSearch(this)"><span><</span></a>`;
     }
 
     for (let i = startPage + 1; i < endPage + 1; i++) {
         let page = i;
         if (pageNumber + 1 != page) {
-            paging += `<a class="changePage" data-page="${page}" onclick="doSearch(this)"><span>${page}</span></a>`;
+            paging += `<a class="change-page" data-page="${page}" onclick="doSearch(this)"><span>${page}</span></a>`;
         } else {
-            paging += `<span id="currentPage">${page}</span>`;
+            paging += `<a class="current">${page}</a>`;
         }
     }
     if (hasNext) {
-        paging += `<a class="changePage" data-page="${endPage + 1}" onclick="doSearch(this)"><span>></span></a>`
+        paging += `<a class="btn-page next" data-page="${endPage + 1}" onclick="doSearch(this)"><span>></span></a>`
     }
 
-    $('.paging-div').html(paging);
+    $('.pagination').html(paging);
 }
 
 
 function showList(riderDTO) {
-
     let text = "";
-    let filePath = riderDTO.filePath;
-    let fileUuid = riderDTO.fileUuid;
-    let fileOrgName = riderDTO.fileOrgName;
-    let repFilePath = "/img/market/no_img_market.png";
-    let status = riderDTO.deliveryStatus;
-    if(status == "COMPLETED"){
-        status = "배달 완료";
-    }else if(status == "INCOMPLETED"){
-        status = "배달 대기";
-    }else {
-        status = "배달중";
-    }
 
-    if(filePath != null) {
-        repFilePath = "/image/display?fileName=" + filePath + '/t_' + fileUuid + '_' + fileOrgName;
-    }
-    text = `
-                    <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY"><!-- // 상품 리스트 -->
-                        <div class="prd-info-area productCart-info-area">
-                            <div class="inner">
-                                <div class="user__img">
-                                    <img src="${repFilePath}">
-                                </div>
-                                <div class="user__info">
-                                    <div class="user__name rider__name">
-                                        <span>${riderDTO.riderName}</span>
-                                        <span class="badge-sm-primary delivery__done">${status}</span>
+    riderDTO.content.forEach(riderDTO => {
+        let filePath = riderDTO.filePath;
+        let fileUuid = riderDTO.fileUuid;
+        let fileOrgName = riderDTO.fileOrgName;
+        let repFilePath = "/img/market/no_img_market.png";
+        let status = riderDTO.deliveryStatus;
+        if(status == "COMPLETED"){
+            status = "배달 완료";
+        }else if(status == "INCOMPLETED"){
+            status = "배달 대기";
+        }else {
+            status = "배달중";
+        }
+
+        if(filePath != null) {
+            repFilePath = "/image/display?fileName=" + filePath + '/t_' + fileUuid + '_' + fileOrgName;
+        }
+        text += `
+                        <li id="delivery-product-2541529900N" class="delivery-product-2541529900NY">
+                            <div class="prd-info-area productCart-info-area">
+                                <div class="inner">
+                                    <div class="user__img">
+                                        <img src="${repFilePath}">
                                     </div>
-                                    <div class="rider__phoneNumber welfare__name">
-                                        <span>${riderDTO.riderPhoneNumber}</span>
+                                    <div class="user__info">
+                                        <div class="user__name rider__name">
+                                            <span>${riderDTO.riderName}</span>
+                                            <span class="badge-sm-primary delivery__done">${status}</span>
+                                        </div>
+                                        <div class="rider__phoneNumber welfare__name">
+                                            <span>${riderDTO.riderPhoneNumber}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </li> 
-                `
+                        </li> 
+                    `;
+    });
+    $list.empty();
     $list.append(text);
 }

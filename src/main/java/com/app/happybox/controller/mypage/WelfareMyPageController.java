@@ -132,7 +132,6 @@ public class WelfareMyPageController {
     public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 5) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail) {
         Long welfareId = userDetail.getId();
         Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId);
-        riderDTOS.stream().map(RiderDTO::toString).forEach(log::info);
         return riderDTOS;
     }
 
