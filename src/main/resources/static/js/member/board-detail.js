@@ -116,7 +116,7 @@ function showDetail() {
           <div class="refrig-bnr">
             <a href="javascript:void(0)">
               <img
-                src="https://www.rankingdak.com/resources/pc/images/img/pc_delivery_banner2.jpg"
+                src="/img/market/free_delivery.jpg"
             /></a>
           </div>
         </div>
