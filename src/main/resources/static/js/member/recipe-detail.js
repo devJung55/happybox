@@ -1,10 +1,4 @@
 /* recipe-board-detail.html */
-const USER_ROLE = {
-    MEMBER: "일반",
-    WELFARE: "복지관",
-    DISTRIBUTOR: "유통"
-}
-
 
 /* 텍스트 더보기 */
 $('.info-area__box').on('click', function () {
@@ -122,7 +116,7 @@ function showDetail() {
           <div class="refrig-bnr">
             <a href="javascript:void(0)">
               <img
-                src="https://www.rankingdak.com/resources/pc/images/img/pc_delivery_banner2.jpg"
+                src="/img/market/free_delivery.jpg"
             /></a>
           </div>
         </div>
@@ -130,13 +124,13 @@ function showDetail() {
         <div class="info-area">
           <div class="info-area__btn">
             `
-    if ($userId == recipe.userId) {
+    if ($userId == recipe.memberDTO.userId) {
         text +=
             `
-            <button type="button" class="update-btn">
+            <a href="/user-board/recipe-board-modify/${recipe.id}" class="update-btn">
               <svg
                 class="write-button-icon"
-                style="enable-background: new 0 0 1696.162 1696.143"
+                style="enable-background: new 0 0 1696.162 1696.143;margin-top: 6px;margin-left: 6px;"
                 version="1.1"
                 viewBox="0 0 1696.162 1696.143"
                 width="1696.162px"
@@ -151,7 +145,7 @@ function showDetail() {
                 </g>
                 <g id="Layer_1" />
               </svg>
-            </button>
+            </a>
             <button type="button" class="delete-btn" onclick="deleteBoard()"
             data-id="${recipe.id}">
               <svg viewBox="0 0 448 512" class="delete-button-icon" xmlns="http://www.w3.org/2000/svg">
@@ -214,7 +208,11 @@ function deleteBoard() {
 /* 댓글 관련 js */
 const $moreReview = $(".more-review");
 const $reviewListWrap = $(".review-list-wrap");
-
+const USER_ROLE = {
+    MEMBER: "일반",
+    WELFARE: "복지관",
+    DISTRIBUTOR: "유통"
+}
 
 // 현재 페이지
 let page = 1;
@@ -281,15 +279,18 @@ $(".orderLikeCount").on("click", function () {
     );
 });
 
-
 /* 댓글 append */
 function appendReplyList(reply, isPrepend) {
+    console.log(reply);
 
+    let text ='';
     let date = reply.updatedDate.split("T")[0];
 
-    let text = `
+    text += `
     <div class="review-list">
-        <span
+    `
+    if ($userId == reply.userId) {
+        text += `<span
             class="xBtn" 
             style="
             cursor: pointer;
@@ -299,6 +300,10 @@ function appendReplyList(reply, isPrepend) {
             onclick="deleteReply(this)"
             data-id="${reply.id}"
         >X</span>
+    `
+    }
+    text +=
+        `
         <div class="user-info-wrap">
             <div class="user-info">
                 <span class="user-type">${USER_ROLE[reply.userRole]}</span>
@@ -311,16 +316,14 @@ function appendReplyList(reply, isPrepend) {
                     ${recipe.boardTitle}
                 </h3>
             </div>
-            <p class="review-content">
-                ${reply.replyContent}
-            </p>
+            <p class="review-content">${reply.replyContent}</p>
             <div class="review-footer">
                 <span class="review-date">${date}</span>
                 <div class="review-btn-wrap">
                     <button data-id="${reply.id}" onclick="checkOutLike(this)" class="review-rec-btn">
                         <span>도움돼요</span>
                         <span class="rec-count">${reply.replyLikeCount ? reply.replyLikeCount : 0}</span>
-                    </button>`
+                    </button>`;
     if ($userId == reply.userId) {
         text += `<button onclick="showReplyUpdate(this)" data-onmodify="false" data-id="${reply.id}" class="review-rec-btn update_review">
                             <span>수정하기</span>
@@ -339,7 +342,6 @@ function appendReplyList(reply, isPrepend) {
     }
     $reviewListWrap.append(text);
 }
-
 
 /* 최신순, 추천순 정렬 */
 const $reviewOrder = $(".review-orders button");
@@ -401,7 +403,7 @@ function showReplyUpdate(button) {
 
         $.ajax({
             type: "patch",
-            url: `/user-board/review-board-detail/reply/modify/${id}`,
+            url: `/user-board/recipe-board-detail/reply/modify/${id}`,
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -438,12 +440,7 @@ $replyWriteBtn.on("click", function () {
         REPLY_URL,
         {replyContent: $('.write-textarea').val()},
         (result) => {
-            let count = Number($(".review-count span").text());
-            // 댓글 맨위에 append
             appendReplyList(result, true);
-            // 댓글수 증가
-            $(".review-count span").text(++count);
-            $(".reply-count").text(count);
             // 댓글 내용 초기화
             $('.write-textarea').val("");
             console.log(result);
@@ -454,8 +451,6 @@ $replyWriteBtn.on("click", function () {
 /* 댓글 삭제 */
 const xBtn = $('.xBtn');
 const deleteUrl = `/user-board/recipe-board-detail/reply/delete/${recipe.id}`;
-// 삭제 버튼 클릭 시 deleteReply 함수 호출
-
 
 function deleteReply(deleteBtn) {
     let id = $(deleteBtn).data("id");
@@ -464,10 +459,6 @@ function deleteReply(deleteBtn) {
         type: 'DELETE',
         dataType: 'JSON',
         success: function(result) {
-            // let count = Number($(".review-count span").text());
-            // 댓글수 감소
-            // $(".review-count span").text(--count);
-            // $(".reply-count").text(count);
             console.log(result);
         },
         error: function(error) {
@@ -476,7 +467,6 @@ function deleteReply(deleteBtn) {
     });
     window.location.reload();
 }
-
 
 
 

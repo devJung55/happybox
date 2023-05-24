@@ -62,9 +62,15 @@ public class AdminController {
         Page<DonationBoardDTO> list = donationBoardService.adminGetList(PageRequest.of(page - 1, 10));
         model.addAttribute("donationBoards", list.getContent());
         model.addAttribute("pageDTO", new PageDTO(list));
-
-        list.forEach(v -> log.info(v.getBoardRegisterDate() + ":;;"));
         return "admin/admin-donateBoardList";
+    }
+
+    //    기부 게시물 조회
+    @ResponseBody
+    @GetMapping("donationBoard-detail")
+    public DonationBoardDTO getDonationBoardDetail(@RequestParam("donationBoardId") Long donationBoardId) {
+        DonationBoardDTO donationBoardDTO = donationBoardService.getDetail(donationBoardId);
+        return donationBoardDTO;
     }
 
     //    후기 게시물 목록

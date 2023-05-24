@@ -2,22 +2,18 @@
 
 /* 문의 내역 클릭 이벤트 */
 
-$(".inquiry__list__append").on("click", ".arrow-0deg", function() {
-    $(this).each((i, arrow) => {
-        $(arrow).on("click", function() {
-            if($(arrow).hasClass("arrow-0deg")) {
-                $(arrow).closest("a").next().css("display", "block");
-                $(arrow).removeClass("arrow-0deg");
-                $(arrow).addClass("arrow-180deg");
-            } else {
-                $(arrow).closest("a").next().css("display", "none");
-                $(arrow).removeClass("arrow-180deg");
-                $(arrow).addClass("arrow-0deg");
-            }
-        })
-    });
-});
+function showInquiryDetail(btn) {
+    let hidden = $(btn).data("hidden");
+    let arrowImg = $(btn).find(".arrow-img");
+    $(btn).next().css("display", `${hidden ? 'block' : 'none'}`);
+    arrowImg.removeClass(`${hidden ? 'arrow-0deg' : 'arrow-180deg'}`);
+    arrowImg.addClass(`${hidden ? 'arrow-180deg' : 'arrow-0deg'}`);
 
+    $(btn).data("hidden", !hidden);
+}
+
+// $(arrow).removeClass("arrow-0deg");
+// $(arrow).addClass("arrow-180deg");
 
 /*------------------------------------------------------------------------------*/
 
@@ -93,7 +89,7 @@ function showInquiryList(inquiries) {
         text += `
                     <input type="hidden" name="inquiryId" value="${inquiry.id}">
                     <li class="border-bottom">
-                        <a href="javascript:void(0)" class="title-div ui-accordion-click">
+                        <a href="javascript:void(0)" data-hidden="true" onclick="showInquiryDetail(this)" class="title-div ui-accordion-click">
                             <div class="subject">
                 `;
 
@@ -105,7 +101,7 @@ function showInquiryList(inquiries) {
                             </div>
                             <div class="right">
                                 <span class="date">${formattedDate}</span>
-                                <img class="arrow-0deg" src="/img/mypage/inquiry-arrow.png" width="18" height="18">
+                                <img class="arrow-img arrow-0deg" src="/img/mypage/inquiry-arrow.png" width="18" height="18">
                             </div>
                 
                         <div class="ui-accordion-view hide" style="display: none;">

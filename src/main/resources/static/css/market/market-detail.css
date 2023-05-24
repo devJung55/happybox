@@ -724,7 +724,11 @@ option {
     justify-content: center;
 }
 
-#modal-yesBtn {
+.replyBtn-wrap {
+    margin-top: 60px !important;
+}
+
+.modal-btn {
     padding: 10px 20px;
     border: none;
     color: white;
@@ -743,6 +747,18 @@ option {
 
 #modal-yesBtn:hover {
     background-color: #45a049;
+}
+
+.reply-delete-modal {
+    width: 235px;
+}
+
+#reply-deleteBtn {
+    background-color: #f84a3b;
+}
+
+#reply-deleteBtn:hover {
+    background-color: #cb372c;
 }
 
 .cart-product-info {

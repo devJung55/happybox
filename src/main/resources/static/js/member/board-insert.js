@@ -117,6 +117,16 @@ $("form[name='form']").on("submit", function (e) {
     insertData.boardContent = boardContent;
     insertData.reviewRating = pullCount;
 
+    if (
+        boardTitle == "" ||
+        welfareName == "" ||
+        boardContent == "" ||
+        insertData.reviewBoardFiles.length == 0
+    ) {
+        alert("모든 정보를 입력해주세요.");
+        return false; // submit 막기
+    }
+
     $.ajax({
         url: '/user-board/review-board-insert',
         data: JSON.stringify(insertData),

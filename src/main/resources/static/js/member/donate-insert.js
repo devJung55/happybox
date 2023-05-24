@@ -196,10 +196,10 @@ $("form[name='form']").on("submit", function (e) {
 
     console.log(insertData.donationBoardFiles.length);
     if (
-        boardTitle == null ||
-        boardContent == null ||
+        boardTitle == "" ||
+        boardContent == "" ||
         donateType == "유형선택" ||
-        donateLocation == null ||
+        donateLocation == "" ||
         insertData.donationBoardFiles.length == 0
     ) {
         alert("모든 정보를 입력해주세요.");
