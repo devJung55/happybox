@@ -71,7 +71,7 @@ public class DonationBoardServiceImpl implements DonationBoardService {
         donationBoard.setDonateType(donationBoardDTO.getDonateType());
 
         // 기존파일 삭제
-        Long deleteCount = boardFileRepository.deleteByRecipeBoardId(donationBoardDTO.getId());
+        Long deleteCount = boardFileRepository.deleteByDonationBoardId(donationBoardDTO.getId());
 
         log.info("============== {} ============", deleteCount);
 
