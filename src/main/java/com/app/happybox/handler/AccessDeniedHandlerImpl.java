@@ -16,7 +16,7 @@ import java.io.IOException;
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 
-    private static final String REDIRECT_URL = "/component/error.html";
+    private static final String REDIRECT_URL = "/error/role-error";
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
@@ -24,5 +24,6 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
         UserDetail userDetail = (UserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info(userDetail.toString());
         response.sendRedirect(REDIRECT_URL);
+
     }
 }

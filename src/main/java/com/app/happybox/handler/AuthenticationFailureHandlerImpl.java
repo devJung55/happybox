@@ -14,7 +14,7 @@ import java.io.IOException;
 @Slf4j
 public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHandler {
 
-    private static final String REDIRECT_URL = "/component/error.html";
+    private static final String REDIRECT_URL = "/error/role-error";
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
