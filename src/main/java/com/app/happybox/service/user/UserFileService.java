@@ -11,7 +11,7 @@ public interface UserFileService {
     public UserFileDTO getDetail(Long userId);
 
 //    회원 프로필 설정
-    public void registerProfile(UserFile userFile);
+    public void registerProfile(Long userId, UserFile userFile);
 
 //    회원 프로필 전체 조회
     public List<UserFile> getList();

@@ -22,4 +22,11 @@ public class UserFileQueryDslImpl implements UserFileQueryDsl {
 
         return Optional.ofNullable(userFileInfo);
     }
+
+    @Override
+    public void deleteByUserId(Long userId) {
+        query.delete(userFile)
+                .where(userFile.user.id.eq(userId))
+                .execute();
+    }
 }

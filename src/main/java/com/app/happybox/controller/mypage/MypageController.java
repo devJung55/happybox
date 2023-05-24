@@ -212,7 +212,7 @@ public class MypageController {
     @GetMapping("user/profile-update")
     public void updateProfile(@AuthenticationPrincipal UserDetail userDetail, String filePath, String fileUuid, String fileOrgName) {
         UserFile userFile = new UserFile(filePath, fileUuid, fileOrgName, userService.getDetailByUserId(userDetail.getId()));
-        userFileService.registerProfile(userFile);
+        userFileService.registerProfile(userDetail.getId(), userFile);
     }
 
     //    회원정보수정
