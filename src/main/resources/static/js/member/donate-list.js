@@ -44,7 +44,7 @@ function showList(donationBoardDTOS){
             <div class="danate-info-area">
                 <div class="inner">
                     <div class="column img">
-                        <a href="">
+                        <a href="/user-board/donate-detail/${donationBoard.id}">
                             <img
                                 src="${filePath}"
                                 alt=""
@@ -54,7 +54,7 @@ function showList(donationBoardDTOS){
                     <div class="column tit">
                         <span class="welfare-name">${donationBoard.welfareName}</span>
                         <p class="title">
-                            <a href="" class="text-elps2"
+                            <a href="/user-board/donate-detail/${donationBoard.id}" class="text-elps2"
                                 >${donationBoard.boardTitle}</a
                             >
                         </p>

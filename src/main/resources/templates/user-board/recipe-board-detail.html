@@ -16,7 +16,7 @@
     <section id="whole-container" style="zoom: 80%">
       <div class="page-title-area">
                   <h2 class="title-page">
-                      <a href=href="/user-board/recipe-board-list">레시피 게시판</a>
+                      <a href="/user-board/recipe-board-list">레시피 게시판</a>
                   </h2>
               </div>
       <div class="detail-container">
@@ -67,6 +67,8 @@
   <script th:inline="javascript">
     let recipe = [[${recipe}]];
     let isLike = [[${isLike}]];
+    const $userId = [[${userId}]];
+    const $userRole = [[${userRole}]];
   </script>
   <script src="/js/main/header.js"></script>
   <script src="/js/member/recipe-detail.js"></script>

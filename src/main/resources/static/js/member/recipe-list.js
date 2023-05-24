@@ -17,6 +17,8 @@ function showList(recipeBoardDTOS){
     let text ="";
     console.log(recipeBoardDTOS);
     recipeBoardDTOS.content.forEach((recipeDetail, i) => {
+        let userFile = recipeDetail.memberDTO;
+        console.log(userFile);
 
         // 기본 이미지 경로
         let filePath = "";
@@ -34,21 +36,37 @@ function showList(recipeBoardDTOS){
                     <a href="javascript:void(0)"
                       ><div class="profile-wrap">
                         <div class="writer-image rw" style="margin-bottom: 0;">
+                          `
+        if(userFile == null) {
+            text +=
+                `
                           <img
-                            src=""
+                            src="/img/mypage/nomalProfile.png"
                             alt=""
                           />
+            `
+        } else{
+            text +=
+                `
+                          <img
+                            src="${userFilePath}"
+                            alt=""
+                          />
+                          `
+        };
+            text +=
+            `
                         </div>
                         <div class="writer-info-wrap">
                           <div class="writer-info">
-                            <div class="writer-name" style="margin-left: 4px; margin-right: 0; width: 50px;">${recipeDetail.memberName}</div>
-                            <span class="write-date" style="width: 40px;">${recipeDetail.boardRegisterDate}</span>
+                            <div class="writer-name" style="margin-left: 5px; margin-right: 0; width: 50px;">${recipeDetail.memberName}</div>
+                            <span class="write-date" style="width: 65px;">${recipeDetail.boardRegisterDate}</span>
                           </div>
                         </div>
                       </div>
                     </a>
                   </div>
-                  <a href="javascript:void(0)"
+                  <a href="/user-board/recipe-board-detail/${recipeDetail.id}"
                     ><h3 class="board-title">${recipeDetail.boardTitle}</h3>
                     <p class="board-content">
                       ${recipeDetail.boardContent}

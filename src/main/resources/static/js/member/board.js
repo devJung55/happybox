@@ -18,9 +18,14 @@ function showList(reviewBoardDTOS){
     console.log(reviewBoardDTOS);
     reviewBoardDTOS.content.forEach((reviewDetail, i) => {
 
+        let userFile = reviewDetail.memberDTO.userFileDTO;
+        console.log(reviewDetail.memberDTO);
+        console.log(reviewDetail.memberDTO.userFileDTO);
+        // let userFilePath = '/image/display?fileName=' + userFile.filePath + "/t_" + userFile.fileUuid + "_" + userFile.fileOrgName;
         // 기본 이미지 경로
         let filePath = "";
         let boardFiles = reviewDetail.reviewBoardFiles;
+
 
         for (let i = 0; i < boardFiles.length; i++) {
             if(boardFiles[i].fileRepresent == "REPRESENT"){
@@ -34,10 +39,26 @@ function showList(reviewBoardDTOS){
                     <a href="javascript:void(0)"
                       ><div class="profile-wrap">
                         <div class="writer-image rw">
+                        `
+        if(userFile == null) {
+            text +=
+                `
                           <img
-                            src=""
+                            src="/img/mypage/nomalProfile.png"
                             alt=""
                           />
+            `
+        } else{
+            text +=
+                `
+                          <img
+                            src="${userFilePath}"
+                            alt=""
+                          />
+                          `
+        };
+            text +=
+            `
                         </div>
                         <div class="writer-info-wrap">
                           <div class="writer-info">
@@ -62,7 +83,7 @@ function showList(reviewBoardDTOS){
                       </div>
                     </a>
                   </div>
-                  <a href="javascript:void(0)"
+                  <a href="/user-board/review-board-detail/${reviewDetail.id}"
                     ><h3 class="board-title">${reviewDetail.boardTitle}</h3>
                     <p class="board-content">${reviewDetail.boardContent}
                     </p>
