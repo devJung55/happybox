@@ -21,6 +21,7 @@ public interface ProductQueryDsl {
     public Long findCountByDistributor_QueryDSL(Long distributorId);
 //    댓글순 8개 조회
     public List<Product> findTop8WithDetailOrderByReplyCount_QueryDSL();
-
+//    랜덤 상품 2개 추출
+    public List<Product> findRandomProducts_QueryDSL();
 
 }
