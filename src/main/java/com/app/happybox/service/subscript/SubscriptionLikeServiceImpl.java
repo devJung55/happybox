@@ -51,7 +51,7 @@ public class SubscriptionLikeServiceImpl implements SubscriptionLikeService {
             subscriptionLikeRepository.save(new SubscriptionLike(member, subscription));
 
             // 구독 좋아요 수 증가
-            Integer subscriptLikeCount = subscription.getSubscriptLikeCount();
+            Integer subscriptLikeCount = subscription.getSubscriptLikeCount() + 1;
             subscription.setSubscriptLikeCount(subscriptLikeCount);
         }
 
