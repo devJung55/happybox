@@ -146,7 +146,7 @@ function showDetail() {
                 <g id="Layer_1" />
               </svg>
             </a>
-            <button type="button" class="delete-btn" onclick="deleteBoard()"
+            <button type="button" class="delete-btn" onclick="deleteModal()"
             data-id="${review.id}">
               <svg viewBox="0 0 448 512" class="delete-button-icon" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -208,23 +208,6 @@ function showDetail() {
 }
 
 showDetail();
-const goDelete = `/user-board/review-board-detail/delete/${review.id}`;
-/* 게시글 삭제 */
-function deleteBoard() {
-    $.ajax({
-        url: goDelete,
-        type: 'DELETE',
-        dataType: 'JSON',
-        success: function(result) {
-            console.log(result);
-            location.href = "/user-board/review-board-list";
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-}
-
 
 console.log($userId);
 
@@ -274,10 +257,17 @@ if ($userId) {
         <span class="user-id">${$userId}</span>
     `
     );
+}else{
+    $(".reply-writer-info").append(
+        `
+        <span class="user-type">비회원</span>
+        <span class="user-id">로그인 후 이용해 주세요.</span>
+    `
+    );
 }
 
 // 최신순
-$(".reivewDate").on("click", function () {
+$(".reviewDate").on("click", function () {
     page = 1;
     isReviewByDate = true
     $reviewListWrap.empty();
@@ -290,8 +280,8 @@ $(".reivewDate").on("click", function () {
     );
 });
 
-// 인기순
-$(".orderLikeCount").on("click", function () {
+// 추천순
+$(".reviewLikeCount").on("click", function () {
     page = 1;
     isReviewByDate = false;
     $reviewListWrap.empty();
@@ -321,10 +311,11 @@ function appendReplyList(reply, isPrepend) {
             cursor: pointer;
             position: absolute;
             right: 17px;
-            top: -15px;"
-            onclick="deleteReply(this)"
+            top: -15px;
+            font-size: 25px;"
+            onclick="showReplyDeleteModal(this)"
             data-id="${reply.id}"
-        >X</span>
+        >&times;</span>
     `
     }
     text +=
@@ -450,6 +441,11 @@ function showReplyUpdate(button) {
     });
 }
 
+/* 게시글 삭제 */
+function deleteModal(){
+    $("#check-modal").css("display", "block");
+}
+
 /* 댓글 작성 */
 const REPLY_URL = `/user-board/review-board-detail/reply/write/${review.id}`;
 
@@ -473,14 +469,19 @@ $replyWriteBtn.on("click", function () {
     );
 });
 
+// 댓글 삭제 모달
+function showReplyDeleteModal(deleteBtn) {
+    replyDeleteId = $(deleteBtn).data("id");
+    $("#reply-modal").css("display", "block");
+}
+
 /* 댓글 삭제 */
 const xBtn = $('.xBtn');
 const deleteUrl = `/user-board/review-board-detail/reply/delete/${review.id}`;
 
 function deleteReply(deleteBtn) {
-    let id = $(deleteBtn).data("id");
     $.ajax({
-        url: deleteUrl + `/${id}`,
+        url: deleteUrl + `/${replyDeleteId}`,
         type: 'DELETE',
         dataType: 'JSON',
         success: function(result) {
@@ -497,7 +498,34 @@ function deleteReply(deleteBtn) {
     window.location.reload();
 }
 
+// 닫기 버튼을 클릭했을 때
+$(".close").on("click", function () {
+    $(this).closest(".modal").css("display", "none");
+});
 
+const goDelete = `/user-board/review-board-detail/delete/${review.id}`;
+// 예 버튼을 클릭했을 때
+function deleteBoard() {
+    $.ajax({
+        url: goDelete,
+        type: 'DELETE',
+        contentType: "application/json; charset=utf-8",
+        success: function() {
+            location.href = "/user-board/review-board-list";
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+
+// 모달창 외부를 클릭했을 때
+$(window).on("click", function (event) {
+    if ($(event.target).is('.modal')) {
+        $("#check-modal").css("display", "none");
+    }
+});
 
 /* 댓글 좋아요 */
 const $replyLikeBtn = $(".review-rec-btn");

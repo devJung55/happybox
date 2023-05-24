@@ -357,16 +357,16 @@ public class BoardController {
     //    댓글 목록
     @GetMapping("recipe-board-detail/reply/{id}")
     @ResponseBody
-    public Slice<ReplyDTO> recipeReplies(@PageableDefault(page = 1, size = 5) Pageable pageable, @PathVariable Long id, Boolean isRecipeByDate) {
+    public Slice<ReplyDTO> recipeReplies(@PageableDefault(page = 1, size = 5) Pageable pageable, @PathVariable Long id, Boolean isReviewByDate) {
         log.info(recipeBoardReplyService.findAllByRefId(
                 PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()),
                 id,
-                isRecipeByDate
+                isReviewByDate
         ).getContent().toString());
         return recipeBoardReplyService.findAllByRefId(
                 PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()),
                 id,
-                isRecipeByDate // 최신순 or 인기순
+                isReviewByDate // 최신순 or 인기순
         );
     }
 
@@ -440,8 +440,12 @@ public class BoardController {
 
 //    기부 게시판 상세보기
     @GetMapping("donate-detail/{id}")
-    public String goDonateDetail(Model model, @PathVariable Long id){
+    public String goDonateDetail(Model model, @PathVariable Long id, @AuthenticationPrincipal UserDetail userDetail){
         model.addAttribute("donate", donationBoardService.getDetail(id));
+
+        if(userDetail != null) {
+            model.addAttribute("welfareId", userDetail.getUserId());
+        }
         return "user-board/donate-detail";
     }
 
