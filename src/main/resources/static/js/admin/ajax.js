@@ -42,6 +42,17 @@ let adminService = (function() {
         })
     }
 
+    function donationBoardDetail(donationBoardId) {
+        $.ajax({
+            url: "/admin/donationBoard-detail",
+            data: {"donationBoardId": donationBoardId},
+            success: function(donationBoard) {
+                showDonationDetail(donationBoard);
+            }
+            }
+        )
+    }
+
     function removeUser(userId) {
         $.ajax({
             url: "/admin/user-remove",
@@ -71,7 +82,7 @@ let adminService = (function() {
             }
         })
     }
-    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, reviewBoardDetail: reviewBoardDetail, removeUser: removeUser, removeBoard: removeBoard, removePayment: removePayment}
+    return {memberDetail: memberDetail, productDetail: productDetail, recipeBoardDetail: recipeBoardDetail, reviewBoardDetail: reviewBoardDetail, removeUser: removeUser, removeBoard: removeBoard, removePayment: removePayment, donationBoardDetail: donationBoardDetail}
 })();
 
 function showMemberDetail(member) {
@@ -198,7 +209,7 @@ function showReviewBoardDetail(reviewBoard) {
         if(i < reviewBoard.reviewBoardFiles.length) {
             img += `
                     <div class="content-img list-img">
-                        <img src=/image/display?fileName=${reviewBoard.reviewBoardFiles[i].filePath}/${reviewBoard.reviewBoardFiles[i].fileUuid}_${reviewBoard.reviewBoardFiles[i].fileOrgName}">
+                        <img src="/image/display?fileName=${reviewBoard.reviewBoardFiles[i].filePath}/${reviewBoard.reviewBoardFiles[i].fileUuid}_${reviewBoard.reviewBoardFiles[i].fileOrgName}">
                     </div>
                 `;
         } else {
@@ -256,16 +267,17 @@ function showRecipeBoardDetail(recipeBoard) {
     let img = "";
     const $recipeDetailAppend = $(".content-detail");
 
+    console.log(recipeBoard)
     text += `
         <div class="content-img-wrapper board-wrapper">
-            <label>
+            <label style="display: flex">
             `;
 
         for (let i = 0; i < 7; i++) {
             if(i < recipeBoard.recipeBoardFiles.length) {
                 img += `
                     <div class="content-img list-img img__width">
-                        <img src=/image/display?fileName=${recipeBoard.recipeBoardFiles[i].filePath}/${recipeBoard.recipeBoardFiles[i].fileUuid}_${recipeBoard.recipeBoardFiles[i].fileOrgName}">
+                        <img src="/image/display?fileName=${recipeBoard.recipeBoardFiles[i].filePath}/${recipeBoard.recipeBoardFiles[i].fileUuid}_${recipeBoard.recipeBoardFiles[i].fileOrgName}">
                     </div>
                 `;
             } else {
@@ -293,7 +305,7 @@ function showRecipeBoardDetail(recipeBoard) {
             <li class="content-list">
                 <span>이름</span>
                 <div class="content-input">
-                    <input type="text" value="${recipeBoard.memberName}" readonly/>
+                    <input type="text" value="${recipeBoard.memberDTO.memberName}" readonly/>
                 </div>
             </li>
             <li class="content-list">
@@ -324,17 +336,17 @@ function showDonationDetail(board) {
     const $donationBoardAppend = $(".donationBoard__append");
     let text = "";
     let img = "";
-    
+
+    let createdDate = board.boardRegisterDate.split("T")[0]
     text = `
         <div class="content-img-wrapper">
             `;
 
 
-    for (let i = 0; i < 3; i++) {
-        if(i < board.donationBoardFiles.length) {
+        if(board.donationBoardFiles.length != 0) {
             img += `
                     <div class="content-img list-img">
-                        <img src=/image/display?fileName=${board.donationBoardFiles[i].filePath}/${board.donationBoardFiles[i].fileUuid}_${board.donationBoardFiles[i].fileOrgName}">
+                        <img src="/image/display?fileName=${board.donationBoardFiles[0].filePath}/${board.donationBoardFiles[0].fileUuid}_${board.donationBoardFiles[0].fileOrgName}">
                     </div>
                 `;
         } else {
@@ -344,7 +356,6 @@ function showDonationDetail(board) {
                     </div>
                 `;
         }
-    }
 
         text += img;
 
@@ -365,7 +376,7 @@ function showDonationDetail(board) {
             <li class="content-list">
                 <span>작성날짜</span>
                 <div class="content-input">
-                    <input type="text" value="${board.boardRegisterDate}" readonly/>
+                    <input type="text" value="${createdDate}" readonly/>
                 </div>
             </li>
             <li class="content-list">
@@ -422,6 +433,14 @@ const $reviewBoardUI = $(".reviewBoard__tr");
 $reviewBoardUI.on("click", function() {
     let reviewBoardId = $($(this).children()[1]).text();
     adminService.reviewBoardDetail(reviewBoardId);
+});
+
+/*-- 기부 게시물 상세보기 모달 --*/
+const $donationBoardUl = $(".donationBoard__Tr");
+
+$donationBoardUl.on("click", function() {
+    let donationBoardId = $($(this).children()[1]).text();
+    adminService.donationBoardDetail(donationBoardId);
 });
 
 /*-- 삭제 --*/

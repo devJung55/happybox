@@ -68,8 +68,6 @@ public class FileRestController {
     //    파일 불러오기
     @GetMapping("display")
     public byte[] Display(String fileName) throws Exception {
-
-        log.info("sex");
         return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 
