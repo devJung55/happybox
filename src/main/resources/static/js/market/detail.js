@@ -3,7 +3,6 @@ const $sectionWrap = $(".section-wrap");
 const $mainCategoryList = $(".main-category-list");
 const mainCategoryTopLoc = $mainCategoryList[0].offsetTop;
 
-
 const $infoImgThumbnail = $(".info-img-thumbnail img");
 
 const $reviewListWrap = $(".review-list-wrap");
@@ -22,6 +21,8 @@ let productFileRep = $product.productFileDTOS[0];
 let productName = $product.productName;
 let info = $product.productInfo;
 let id = $product.id;
+
+let replyDeleteId;
 
 console.log("================================================= 상품설명")
 console.log(info);
@@ -177,7 +178,7 @@ function appendReplyList(reply, isPrepend) {
             </div>`
     if ($userId == reply.userId) {
         text += `<div>
-                <button data-id="${reply.id}" onclick="deleteReply(this)">댓글 삭제</button>
+                <button data-id="${reply.id}" onclick="showReplyDeleteModal(this)">댓글 삭제</button>
             </div>`
     }
     text += `</div>
@@ -214,24 +215,28 @@ function appendReplyList(reply, isPrepend) {
     $reviewListWrap.append(text);
 }
 
+// 댓글 삭제 모달
+function showReplyDeleteModal(deleteBtn) {
+    replyDeleteId = $(deleteBtn).data("id");
+    $("#reply-modal").css("display", "block");
+}
+
 // 댓글 삭제
-function deleteReply(deleteBtn) {
-    let id = $(deleteBtn).data("id");
+function deleteReply() {
     $.ajax({
-        url: `/product/detail/reply/delete/${id}/${$product.id}`,
+        url: `/product/detail/reply/delete/${replyDeleteId}/${$product.id}`,
         type: 'DELETE',
         dataType: 'JSON',
         success: function (result) {
-
-
             let count = Number($(".review-count span").text());
             $(".review-count span").text(--count);
             $(".reply-count").text(count);
+            replyDeleteId = null;
         },
         error: function (error) {
         }
     });
-    window.location.reload();
+    location.reload();
 }
 
 /* 썸네일 이미지 바꾸기 */
@@ -400,7 +405,7 @@ $(".productCart-btn").on("click", function () {
 
 // 닫기 버튼을 클릭했을 때
 $(".close").on("click", function () {
-    $("#cart-modal").css("display", "none");
+    $(this).closest(".modal").css("display", "none");
 });
 console.log("주문 수량은???????", $(".quantity-input").val());
 // 예 버튼을 클릭했을 때
