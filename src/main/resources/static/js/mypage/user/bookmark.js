@@ -59,7 +59,7 @@ function showRecipeBoardBookmarkList(bookmarkList) {
                 <input type="hidden" class="id" value="${board.id}">
                 <div class="prd-item type-sm2">
                     <figure class="img w180">
-                        <a href="javascript:void(0)">
+                        <a href="/user-board/recipe-board-detail/${board.recipeBoardId}">
                 `;
 
         if(board.boardFiles.length != 0) {
@@ -103,9 +103,10 @@ function showSubscriptionBookmarkList(welfareList) {
         text += `
             <li class="ext-li colum">
                 <input type="hidden" class="id" value="${board.id}">
+                <input type="hidden" value="${board.subscriptionId}">
                 <div class="prd-item type-sm2">
                     <figure class="img w180">
-                        <a href="javascript:void(0)">
+                        <a href="/welfare/detail/${board.subscriptionId}">
                 `;
                     if(board.userFileDTO != null) {
                         img = `<img class='lozad' src="/image/display?fileName=${board.userFileDTO.filePath}/${board.userFileDTO.fileUuid}_${board.userFileDTO.fileOrgName}">`;

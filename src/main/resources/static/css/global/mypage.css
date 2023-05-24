@@ -1,3 +1,7 @@
+html {
+    zoom: 90%
+}
+
 .wrap {
     position: relative;
     min-width: 1300px;
