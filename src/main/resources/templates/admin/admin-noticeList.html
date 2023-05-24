@@ -33,12 +33,10 @@
     </div>
 </section>
 <main class="main-section">
-    <!-- 사이드바 -->
-    <div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
+    <section class="side-menu-section" th:replace="~{admin/sidebar.html :: side-bar}"></section>
     <section class="content-section">
         <div class="container">
             <div class="container-margin">
-                <!-- 헤더 -->
                 <section class="board-info-box-layout">
                     <div class="board-info-box">
                         <div class="board-info-title-box">
