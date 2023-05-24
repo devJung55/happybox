@@ -54,7 +54,7 @@ public class CsController {
     }
 
     //    문의 작성 페이지로 이동
-    @GetMapping("inquiry-write")
+    @GetMapping("write")
     public String goToInquiry(@AuthenticationPrincipal UserDetail userDetail, InquiryDTO inquiryDTO) {
         if (userDetail == null) {
             return "redirect:/member/login";
