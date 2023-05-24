@@ -45,6 +45,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductDTO> findRandomProducts() {
+        return productRepository.findRandomProducts_QueryDSL()
+                .stream()
+                .map(this::productToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<ProductDTO> findTop8ReplyCount() {
         return productRepository.findTop8WithDetailOrderByReplyCount_QueryDSL()
                 .stream()
@@ -67,6 +75,8 @@ public class ProductServiceImpl implements ProductService {
 
         return productToDTO(product);
     }
+
+
 
     @Override @Transactional
     public void saveProduct(Long distributorId, ProductDTO productDTO) {
