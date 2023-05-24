@@ -35,6 +35,7 @@ public class Subscription extends Period {
     private Integer subscriptionPrice;
 
     @NotNull
+    @Column(columnDefinition = "CLOB")
     private String subscriptionContent;
 
     /* ----- 반정규화 ----- */

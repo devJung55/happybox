@@ -16,6 +16,7 @@ import java.util.List;
 public class InquiryAnswer extends Period {
     @Id @GeneratedValue @EqualsAndHashCode.Include
     private Long id;
+    @Column(columnDefinition = "CLOB")
     @NotNull private String inquiryAnswerContent;
 
     @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)

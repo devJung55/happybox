@@ -17,6 +17,7 @@ public class Notice extends Period {
     @Id @GeneratedValue @EqualsAndHashCode.Include
     private Long id;
     @NotNull private String noticeTitle;
+    @Column(columnDefinition = "CLOB")
     @NotNull private String noticeContent;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "notice")

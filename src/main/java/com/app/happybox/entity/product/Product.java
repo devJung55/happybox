@@ -31,6 +31,7 @@ public class Product extends Period {
     @ColumnDefault(value = "0")
     private Long productStock;
     @NotNull
+    @Column(columnDefinition = "CLOB")
     private String productInfo;
 
     @Enumerated(EnumType.STRING)

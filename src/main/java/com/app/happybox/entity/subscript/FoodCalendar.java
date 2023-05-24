@@ -20,6 +20,7 @@ public class FoodCalendar extends Period {
     @NotNull
     private String foodCalendarTitle;
 
+    @Column(columnDefinition = "CLOB")
     private String foodCalendarDescription;
 
     @NotNull
