@@ -23,6 +23,7 @@ public class Inquiry extends Period {
     @Id @GeneratedValue @EqualsAndHashCode.Include
     private Long id;
     @NotNull private String inquiryTitle;
+    @Column(columnDefinition = "CLOB")
     @NotNull private String inquiryContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
