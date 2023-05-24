@@ -112,11 +112,11 @@ function showFoodList(foodCalendars) {
 
 function appendFood(food, $target) {
     let text;
-    let filePath = "/img/welfare/welfare_img_default.png";
+    let filePath = "";
 
     /* 추후 주석풀기 */
-    // if(food.filePath == null || food.fileOrgName == null || food.fileUuid == null) filePath = "/img/welfare/welfare_img_default.png";
-    // else filePath = `/image/display?fileName=${food.filePath}/t_${food.fileUuid}_${food.fileOrgName}`;
+    if(food.filePath == null || food.fileOrgName == null || food.fileUuid == null) filePath = "/img/welfare/welfare_img_default.png";
+    else filePath = `/image/display?fileName=${food.filePath}/t_${food.fileUuid}_${food.fileOrgName}`;
 
     text = `
         <li

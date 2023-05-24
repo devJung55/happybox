@@ -62,6 +62,7 @@ public interface ProductService {
                 .productName(product.getProductName())
                 .productOrderCount(product.getProductOrderCount())
                 .productPrice(product.getProductPrice())
+                .productInfo(product.getProductInfo())
                 .productReplyCount(product.getProductReplyCount())
                 .productStock(product.getProductStock())
                 .productFileDTOS(productFileListToDTO(product.getProductFiles()))

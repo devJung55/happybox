@@ -14,11 +14,17 @@ const $imgContainer = $(".info-img-container");
 
 const $supplierInfoList = $(".supplier-info-list");
 
+const $productInfo = $(".context");
+
 let productPrice = $product.productPrice;
 let productFiles = $product.productFileDTOS;
 let productFileRep = $product.productFileDTOS[0];
 let productName = $product.productName;
+let info = $product.productInfo;
 let id = $product.id;
+
+console.log("================================================= 상품설명")
+console.log(info);
 
 const USER_ROLE = {
     MEMBER: "일반",
@@ -92,6 +98,12 @@ productFiles.forEach((file) => {
         `
     $imgContainer.append(text);
 });
+
+
+$productInfo.html(`
+                    <p class="words">${info}</p>
+                `);
+
 
 $infoImgThumbnail.attr("src", `/image/display?fileName=${productFiles[0].filePath}/t_${productFiles[0].fileUuid}_${productFiles[0].fileOrgName}`);
 
