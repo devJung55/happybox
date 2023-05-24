@@ -26,17 +26,21 @@ public class RiderQueryDslImpl implements RiderQueryDsl {
                 .orderBy(rider.id.desc())
                 .fetch();
 
-        log.info("========= riderList =======================");
-        log.info(riderList.toString());
-
         Long count = query
                 .select(rider.id.count())
                 .from(rider)
                 .where(rider.welfare.id.eq(welfareId))
                 .fetchOne();
-        log.info("=========count 세기=======================");
-        log.info(count.toString());
-
         return new PageImpl<>(riderList, pageable, count);
+    }
+
+    @Override
+    public Long findRiderCount_QueryDSL(Long welfareId) {
+        Long count = query
+                .select(rider.id.count())
+                .from(rider)
+                .where(rider.welfare.id.eq(welfareId))
+                .fetchOne();
+        return count;
     }
 }

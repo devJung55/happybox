@@ -29,12 +29,19 @@
         z-index: 3;
         filter: invert(40%) sepia(3%) saturate(11%) hue-rotate(328deg) brightness(97%) contrast(92%);
     }
+
+    .blind {
+        display: none !important;
+    }
 </style>
 <body>
     <div class="wrap">
+        <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
         <section id="contents" class="container" style="padding: 0;">
             <div class="content-wrap">
+                <div class="header-stage" th:insert="~{mypage/welfare/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm" style="margin-top: 45px;">
+                    <div class="header-stage" th:insert="~{mypage/welfare/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
                     <form id="counselRegFrm" name="form" method="post"  style="margin-left: 60px;" >
                         <div class="frame-right">
                             <div class="frame-cnt-inner">
@@ -328,11 +335,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
                                             </section>
-
-
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -350,10 +353,12 @@
                 </div>
             </div>
         </section>
+        <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/main/header.js"></script>
 <script src="/js/mypage/welfare/food-register.js"></script>
 <script>
     /* 내용 글자수 카운트 이벤트 */
