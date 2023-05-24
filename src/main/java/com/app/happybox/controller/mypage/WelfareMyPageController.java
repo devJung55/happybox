@@ -176,6 +176,7 @@ public class WelfareMyPageController {
     }
 
     //    캘린더 일정 등록 및 음식 등록 폼 이동
+    @MypageHeaderValues
     @GetMapping("/welfare/calendar/write")
     public String goCalendarWriteForm(@AuthenticationPrincipal UserDetail userDetail, FoodCalendarDTO foodCalendarDTO, Model model) {
         Long welfareId = userDetail.getId();

@@ -16,6 +16,9 @@ public interface RiderService {
 //    배달상태 변경
     public void updateDeliveryStatusById(Long riderId, DeliveryType deliveryStatus);
 
+//    배달원 수
+    public Long getRiderCountByWelfareId(Long welfareId);
+
     default Rider toRiderEntity(RiderDTO riderDTO){
         return Rider.builder()
                 .riderName(riderDTO.getRiderName())
