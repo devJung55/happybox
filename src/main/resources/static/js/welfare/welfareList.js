@@ -146,7 +146,7 @@ function showList(sub, $target) {
 
     let filePath = "/img/welfare/welfare_img_default.png";
 
-    if (sub.representFood != null) filePath = '/images/display/' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
+    if (sub.representFood != null) filePath = '/image/display?fileName=' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
     let text = `
                 <li class="swiper-slide swiper-slide-active">
@@ -177,7 +177,7 @@ function showBoxList(sub, $target) {
 
     let filePath = "/img/welfare/welfare_img_default.png";
 
-    if (sub.representFood != null) filePath = '/images/display/' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
+    if (sub.representFood != null) filePath = '/image/display?fileName=' + sub.representFood.filePath + '/t_' + sub.representFood.fileUuid + '_' + sub.representFood.fileOrgName;
 
     text = `
         <li class="colum">

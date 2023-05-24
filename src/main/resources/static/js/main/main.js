@@ -148,7 +148,7 @@ donation.forEach(board => {
     let filePath = "/img/welfare/welfare_img_default.png";
 
     if (board.donationBoardFiles.length > 0) {
-        filePath = FILE_DISPLAY_URL + board.boardFiles[0].filePath + '/t_' + board.boardFiles[0].fileUuid + '_' + board.boardFiles[0].fileOrgName;
+        filePath = FILE_DISPLAY_URL + board.donationBoardFiles[0].filePath + '/t_' + board.donationBoardFiles[0].fileUuid + '_' + board.donationBoardFiles[0].fileOrgName;
     }
 
     text = `
