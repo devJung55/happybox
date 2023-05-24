@@ -119,6 +119,31 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+
+    function alertModal(errorMsg) {
+        $("div#content-wrap").html(errorMsg)
+        $("div.modal").css("display", "flex").hide().fadeIn(500);
+        setTimeout(function () {
+            $("div.modal").fadeOut();
+        }, 2000);
+    }
+
+    function getErrorFromURL() {
+        var searchParams = new URLSearchParams(window.location.search);
+       return searchParams.get("error")
+    }
+
+    // 실패 메시지를 모달에 표시하는 함수
+    function displayErrorMessageModal() {
+        if (getErrorFromURL() !=null) {
+            alertModal("로그인에 실패하였습니다 정보를 확인해주세요.");
+        }
+    }
+
+    $(document).ready(function() {
+        displayErrorMessageModal();
+    });
+
 </script>
 <script src="/js/member/login.js"></script>
 </html>
