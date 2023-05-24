@@ -15,7 +15,8 @@ import java.util.List;
 @Entity @Table(name = "TBL_RECIPE_BOARD")
 @DynamicInsert
 @DynamicUpdate
-@Getter @ToString(exclude = {"recipeBoardReplies", "recipeBoardLikes"}, callSuper = true) @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString(exclude = {"recipeBoardReplies", "recipeBoardLikes", "recipeBoardFiles", "member"}, callSuper = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RecipeBoard extends Board {
 
     /* 레시피 게시판 정보 */
@@ -23,7 +24,7 @@ public class RecipeBoard extends Board {
     private Integer recipeLikeCount;
 
     /* 댓글 갯수 */
-    @ColumnDefault(value="0")
+    @ColumnDefault(value = "0")
     private Integer recipeBoardReplyCount;
     /* ============= */
 

@@ -125,6 +125,8 @@
 .welfare-img img {
     max-width: 100%;
     vertical-align: top;
+    width: 100%;
+    height: 100%;
 }
 
 .brand-logo {

@@ -29,7 +29,7 @@
                 <div class="header-stage" th:insert="~{mypage/welfare/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm" style="margin-top: 45px;">
                     <div class="header-stage" th:insert="~{mypage/welfare/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
-                    <form id="counselRegFrm" name="subscriptionWelFareDTO" action="/mypage/welfare/subscription/edit" method="post" th:object="${subscriptionWelFareDTO}" style="margin-left: 60px;">
+                    <form id="counselRegFrm" name="subscriptionWelFareDTO" th:action="@{/mypage/welfare/subscription/edit}" method="post" th:object="${subscriptionWelFareDTO}" style="margin-left: 60px;">
                         <div class="frame-right">
                             <div class="frame-cnt-inner">
                                 <div class="menu-title-area">
@@ -51,7 +51,7 @@
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="input-group w-full">
-                                                        <input type="text" name="subscriptionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="제목을 입력해주세요" th:value="${subscriptionWelFareDTO.subscriptionTitle}"/>
+                                                        <input type="text" name="subscriptionTitle" id="vQuestionTitle" title="" class="input-text" placeholder="제목을 입력해주세요" th:field="*{subscriptionTitle}"/>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -64,7 +64,7 @@
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="textarea-box-count h230">
-                                                        <textarea id="vQuestionCont" placeholder="문의내용을 입력하세요" name="subscriptionContent" th:text="${subscriptionWelFareDTO.subscriptionContent}"></textarea>
+                                                        <textarea id="vQuestionCont" placeholder="문의내용을 입력하세요" name="subscriptionContent" th:field="*{subscriptionContent}"></textarea>
                                                         <div class="txt-count">
                                                             <span id="counter">0</span> / <span class="total">1,000</span>
                                                         </div>
@@ -80,7 +80,7 @@
                                                 </th>
                                                 <td class="text-left">
                                                     <div class="input-group w-full">
-                                                        <input type="text" name="subscriptionPrice" id="vQuestionTitle" title="" class="input-text" th:value="${subscriptionWelFareDTO.subscriptionPrice}" placeholder="가격을 입력해주세요" value=""/>
+                                                        <input type="text" name="subscriptionPrice" id="vQuestionTitle" title="" class="input-text" th:field="*{subscriptionPrice}" placeholder="가격을 입력해주세요" value=""/>
                                                     </div>
                                                 </td>
                                             </tr>

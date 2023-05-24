@@ -322,14 +322,16 @@ calendar.on("clickEvent", function (e) {
     $(".modal-name h3").text(e.event.title);
     $(".modal-name p").text(e.event.body);
 
-    let attendees = e.event.attendees;
+    let food = e.event.attendees;
 
-    for (let i = 0; i < attendees.length; i++) {
-        let filePath = `/image/display/${attendees[i].filePath}/t_${attendees[i].fileUuid}_${attendees[i].fileOrgName}`;
+    for (let i = 0; i < food.length; i++) {
+        let filePath = "";
+        if(food[i].filePath == null || food[i].fileOrgName == null || food[i].fileUuid == null) filePath = "/img/welfare/welfare_img_default.png";
+        else filePath = `/image/display?fileName=${food[i].filePath}/t_${food[i].fileUuid}_${food[i].fileOrgName}`;
         text += `
             <div class="food">
-                <img src="/img/welfare/welfare_img_default.png" alt="">
-                <span>${attendees[i].foodName}</span>
+                <img src="${filePath}" alt="">
+                <span>${food[i].foodName}</span>
             </div>
         `
     }

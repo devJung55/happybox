@@ -52,4 +52,10 @@ public class RiderServiceImpl implements RiderService {
         Rider rider = riderRepository.findById(riderId).get();
         rider.setDeliveryStatus(deliveryStatus);
     }
+
+    @Override
+    public Long getRiderCountByWelfareId(Long welfareId) {
+        Long count = riderRepository.findRiderCount_QueryDSL(welfareId);
+        return count;
+    }
 }

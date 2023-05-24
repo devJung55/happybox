@@ -22,6 +22,9 @@ public interface ProductService {
 //    최신 8개 조회
     public List<ProductDTO> findTop8Recent();
 
+//    랜덤 2개 조회
+    public List<ProductDTO> findRandomProducts();
+
 //    추천으로 조회
     public List<ProductDTO> findTop8ReplyCount();
 
@@ -62,6 +65,7 @@ public interface ProductService {
                 .productName(product.getProductName())
                 .productOrderCount(product.getProductOrderCount())
                 .productPrice(product.getProductPrice())
+                .productInfo(product.getProductInfo())
                 .productReplyCount(product.getProductReplyCount())
                 .productStock(product.getProductStock())
                 .productFileDTOS(productFileListToDTO(product.getProductFiles()))

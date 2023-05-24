@@ -94,6 +94,9 @@ public class MypageController {
     @GetMapping("member/recipe-board")
     public Page<RecipeBoardDTO> getUserRecipeBoardList(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<RecipeBoardDTO> recipeBoards = recipeBoardService.getListByMemberId(PageRequest.of(page - 1, 3), userDetail.getId());
+        recipeBoards.forEach(board -> {
+            board.setUserFileDTO(userFileService.getDetail(userDetail.getId()));
+        });
         return recipeBoards;
     }
 

@@ -143,23 +143,7 @@
                                                     <label for="member-join-general-gender" class="form-label">성별</label>
                                                 </div>
                                                 <!--// form-head -->
-                                                <ul class="form-horiz-list">
-                                                    <li>
-                                                        <div class="custom-radio">
-                                                            <input type="radio" id="member-join-general-gender-N" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-N">선택안함</label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="custom-radio">
-                                                            <input type="radio" id="member-join-general-gender-M" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-M">남자</label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="custom-radio">
-                                                            <input type="radio" id="member-join-general-gender-F" class="radio" name="member-join-general-gender" value="female" readonly/><label for="member-join-general-gender-F">여자</label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                <ul class="form-horiz-list"></ul>
                                             </div>
                                         </fieldset>
                                         <div class="btn-bottom-area">
@@ -193,5 +177,70 @@
     } else {
         $('#welfare-market').css('font-weight', '700');
     }
+</script>
+<script th:inline="javascript">
+    const $memberDTO = [[${memberDTO}]];
+    const $genderAppend = $(".form-horiz-list");
+    let text = "";
+
+    if($memberDTO.memberGender == 'NOT_SELECTED') {
+        text = `
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-N" class="radio" name="member-join-general-gender" value="male" checked readonly/><label for="member-join-general-gender-N">선택안함</label>
+                </div>
+            </li>
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-M" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-M">남자</label>
+                </div>
+            </li>
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-F" class="radio" name="member-join-general-gender" value="female" readonly/><label for="member-join-general-gender-F">여자</label>
+                </div>
+            </li>
+        `;
+
+    } else if($memberDTO.memberGender == 'MALE') {
+        text = `
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-N" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-N">선택안함</label>
+                </div>
+            </li>
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-M" class="radio" name="member-join-general-gender" value="male" checked readonly/><label for="member-join-general-gender-M">남자</label>
+                </div>
+            </li>
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-F" class="radio" name="member-join-general-gender" value="female" readonly/><label for="member-join-general-gender-F">여자</label>
+                </div>
+            </li>
+        `;
+
+    } else if($memberDTO.memberGender == 'FEMALE') {
+        text = `
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-N" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-N">선택안함</label>
+                </div>
+            </li>
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-M" class="radio" name="member-join-general-gender" value="male" readonly/><label for="member-join-general-gender-M">남자</label>
+                </div>
+            </li>
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="member-join-general-gender-F" class="radio" name="member-join-general-gender" value="female" checked readonly/><label for="member-join-general-gender-F">여자</label>
+                </div>
+            </li>
+        `;
+    }
+
+    $genderAppend.append(text);
 </script>
 </html>

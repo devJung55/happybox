@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.happybox.entity.board.QRecipeBoard.recipeBoard;
-import static com.app.happybox.entity.board.QReviewBoard.reviewBoard;
 
 
 @RequiredArgsConstructor
@@ -88,9 +87,8 @@ public class RecipeBoardQueryDslImpl implements RecipeBoardQueryDsl {
     public List<RecipeBoard> findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL() {
         List<RecipeBoard> recipeBoards = query.select(recipeBoard)
                 .from(recipeBoard)
-                .join(recipeBoard.recipeBoardFiles)
+                .leftJoin(recipeBoard.recipeBoardFiles)
                 .fetchJoin()
-                .where(recipeBoard.recipeBoardFiles.any().fileRepresent.eq(FileRepresent.REPRESENT))
                 .orderBy(recipeBoard.recipeLikeCount.desc())
                 .limit(5L)
                 .fetch();

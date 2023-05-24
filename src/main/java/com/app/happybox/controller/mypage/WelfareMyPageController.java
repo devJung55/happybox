@@ -76,22 +76,19 @@ public class WelfareMyPageController {
     //    복지관 회원 수정 완료
     @PostMapping("welfare/edit")
     public RedirectView edit(WelfareDTO welfareDTO, @AuthenticationPrincipal UserDetail userDetail) {
-        log.error("===================== 들어왔냐?");
         Long id = userDetail.getId();
         welfareDTO.setId(id);
         welfareService.updateWelfareInfoById(welfareDTO);
-        return new RedirectView("/main/welfare");
+        return new RedirectView("/mypage/welfare/edit");
     }
 
     //   복지관 구독 수정
     @MypageHeaderValues
     @GetMapping("welfare/subscription/edit")
     public String goSubsedit(@AuthenticationPrincipal UserDetail userDetail, Model model) {
-        log.error("들어왔냐 여기에????????");
         Long id = userDetail.getId();
         Subscription result = subscriptionService.getId(id);
         SubscriptionWelFareDTO subscriptionWelFareDTO = subscriptionService.getSubscriptionWelfareDTO(result.getId());
-        log.error("들엉왔냐?", subscriptionWelFareDTO.toString());
         model.addAttribute("subscriptionWelFareDTO", subscriptionWelFareDTO);
         return "/mypage/welfare/welfare-write";
 
@@ -101,7 +98,6 @@ public class WelfareMyPageController {
     @PostMapping("welfare/subscription/edit")
     public RedirectView subsEdit(SubscriptionWelFareDTO subscriptionWelFareDTO, @AuthenticationPrincipal UserDetail userDetail) {
         Long id = userDetail.getId();
-        log.error("Post에 들어왔어?????");
         subscriptionWelFareDTO.setId(id);
         subscriptionService.updateByDTO(subscriptionWelFareDTO);
         return new RedirectView("/mypage/welfare/subscription/edit");
@@ -137,11 +133,8 @@ public class WelfareMyPageController {
     @GetMapping("/welfare/getList")
     @ResponseBody
     public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 5) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail) {
-
-        log.info("======================= 들어옴?");
         Long welfareId = userDetail.getId();
         Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId);
-        log.info("페이지=======", riderDTOS.getPageable().toString());
         riderDTOS.stream().map(RiderDTO::toString).forEach(log::info);
         return riderDTOS;
     }
@@ -176,6 +169,7 @@ public class WelfareMyPageController {
     }
 
     //    캘린더 일정 등록 및 음식 등록 폼 이동
+    @MypageHeaderValues
     @GetMapping("/welfare/calendar/write")
     public String goCalendarWriteForm(@AuthenticationPrincipal UserDetail userDetail, FoodCalendarDTO foodCalendarDTO, Model model) {
         Long welfareId = userDetail.getId();

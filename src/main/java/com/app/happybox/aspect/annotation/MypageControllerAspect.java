@@ -8,6 +8,7 @@ import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.order.MemberOrderProductItemService;
 import com.app.happybox.service.order.OrderSubsciptionService;
 import com.app.happybox.service.product.ProductService;
+import com.app.happybox.service.subscript.RiderService;
 import com.app.happybox.service.user.UserFileService;
 import com.app.happybox.service.user.UserService;
 import com.app.happybox.service.user.WelfareService;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +38,7 @@ public class MypageControllerAspect {
     private final UserService userService;
     private final ProductService productService;
     private final WelfareService welfareService;
+    private final RiderService riderService;
 
     @Before("@annotation(com.app.happybox.aspect.annotation.MypageHeaderValues)")
     public void setHeaderInfoValue(JoinPoint joinPoint) throws Throwable {
@@ -59,6 +62,7 @@ public class MypageControllerAspect {
         Long productCount = productService.getProductCount(id);
         Long salesCount = memberOrderProductItemService.getSalesCountByDistributorId(id);
         Long subscriber = orderSubsciptionService.getSubscriberCountByWelfareId(id);
+        Long riderCount = riderService.getRiderCountByWelfareId(id);
 
         if(welfareService.getDetail(id) != null) {
             totalPoint = welfareService.getDetail(id).getWelfarePointTotal();
@@ -75,5 +79,6 @@ public class MypageControllerAspect {
         request.setAttribute("salesCount", salesCount);         // 판매 건수
         request.setAttribute("subscriber", subscriber);         // 구독자 수
         request.setAttribute("totalPoint", totalPoint);         // 보유 포인트
+        request.setAttribute("riderCount", riderCount);         // 배달원 수
    }
 }

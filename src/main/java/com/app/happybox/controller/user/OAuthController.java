@@ -1,7 +1,9 @@
 package com.app.happybox.controller.user;
 
 import com.app.happybox.domain.user.MemberDTO;
+import com.app.happybox.provider.UserDetail;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -14,10 +16,9 @@ import javax.servlet.http.HttpSession;
 public class OAuthController {
 
     @GetMapping("/")
-    public RedirectView oAuthLogin(HttpSession session, RedirectAttributes redirectAttributes){
-        log.info(" --------------------- 로그인 후 마지막 컨트롤러  -------------------------- ");
+    public RedirectView oAuthLogin(@AuthenticationPrincipal UserDetail userDetail, HttpSession session, RedirectAttributes redirectAttributes){
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        if (memberDTO.getId() == null) {
+        if (userDetail == null) {
             redirectAttributes.addFlashAttribute("member", memberDTO);
             return new RedirectView("member/join");
         }

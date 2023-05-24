@@ -126,6 +126,11 @@ div.banner div {
     justify-content: center;
 }
 
+.identityContainer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
 .category-btn-item-ico-wrap i {
     display: block;
     width: 48px;
@@ -942,7 +947,6 @@ div.banner div {
     margin: 0 auto;
     padding: 0 24px 120px;
     max-width: 1140px;
-    height: 400px;
 }
 
 .inner .summary {
@@ -967,17 +971,21 @@ div.banner div {
     width: 100%;
     float: left;
     width: 410px;
+    overflow: hidden;
 }
 
-.biImage img {
-    width: 410px;
-    height: 300px;
+.inner .titleWrapper .biImage img:hover {
+    transform: scale(1.1);
+}
+
+.inner .titleWrapper .biImage img {
+    transition: transform 0.3s ease;
 }
 
 .inner .descWrapper {
     padding: 0 24px 0;
     float: right;
-    width: 500px;
+    width: 620px;
 }
 
 .inner .descWrapper .desc {
@@ -1023,7 +1031,7 @@ div.banner div {
     line-height: 18px;
     font-size: 13px;
     font-weight: 400;
-    margin: 10px 0 24px;
+    margin: 10px 0 36px;
     color: #0000008a;
 }
 
@@ -1054,12 +1062,9 @@ div.banner div {
 }
 
 .section .inner {
-    padding: 120px 0;
-    margin: 0 auto;
+    margin: 30px auto 0;
     padding: 60px 24px 60px;
     max-width: 1140px;
-    height: 400px;
-    margin-top: 30px;
 }
 
 .section .inner .summary {
@@ -1073,8 +1078,6 @@ div.banner div {
 }
 
 .section .inner .titleWrapper {
-    float: left;
-    width: 410px;
 }
 
 .section .inner .title {

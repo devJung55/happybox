@@ -175,6 +175,8 @@ let adminNoticeService = (function () {
         noticeDTO.noticeTitle = $('#noticeTitle').val();
         noticeDTO.noticeContent = $('#noticeContent').val();
         noticeDTO.noticeFileDTOS = noticeFiles;
+        let imageThumb = $('.btn-attach-thumb')
+        let image = imageThumb.find("img");
 
         $.ajax({
             url: "/admin/notice-write",
@@ -183,9 +185,15 @@ let adminNoticeService = (function () {
             contentType: "application/json; charset=utf-8",
             success: function () {
                 $('.add-modal').fadeOut(500);
+                $('#noticeTitle').val(null)
+                $('#noticeContent').val(null)
+                $('.ico-plus-xlg').css('display', 'block')
+                $('.cancel-image').css('display', 'none')
+                $('input[name=imgFile]').prop('disabled', false)
+                $('input[name=imgFile]').val(null)
+                image.remove()
+                fileList = [];
                 adminNoticeService.getNoticeList();
-                $('#noticeTitle').val("")
-                $('#noticeContent').val("")
             }
         })
     }
@@ -308,7 +316,7 @@ $writeNoticeButton.on('click', function () {
     let noticeTitle = $('#noticeTitle').val();
     let noticeContent = $('#noticeContent').val();
 
-    if (noticeTitle != null && noticeContent != null) {
+    if (noticeTitle != "" && noticeContent != "") {
         adminNoticeService.noticeWrite();
     }
 });
@@ -319,12 +327,10 @@ const $deleteButton = $('.confirm-delete');
 let checkBoxArr = [];
 
 $deleteButton.on('click', function () {
-    console.log("앙 클릭띠")
     var $checkBoxs = $('.list-content input[type="checkbox"]');
 
     $checkBoxs.each((i, v) => {
         if (v.checked) {
-            console.log(v);
             checkBoxArr.push($('.notice-id').eq(i).text());
         }
     });
