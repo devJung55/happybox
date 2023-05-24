@@ -527,6 +527,8 @@ option {
 
 .review-list .user-info-wrap {
     flex: 0 0 20%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .user-info-wrap .user-info {

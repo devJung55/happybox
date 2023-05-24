@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -60,28 +61,11 @@
                 <h3 class="section-title">상품설명</h3>
                 <div class="tip_box">
                     <div class="context">
-                        <p class="words">
-                            <strong>중량 안내</strong> <b>・</b>1통(33.6g / 800mg X
-                            42캡슐)으로, 총 14일 분량을 보내드려요.
-                        </p>
-                        <p class="words">
-                            <strong>유의사항</strong> <b>・</b>알레르기 체질이신 경우 성분을
-                            확인한 후 섭취하세요.<br/>
-                            <b>・</b>위장 장애가 발생할 수 있습니다.<br/>
-                            <b>・</b>영·유아, 임산부는 섭취를 삼가시기 바랍니다.<br/>
-                            <b>・</b>식사조절, 운동을 병행하는 것이 체지방 감소에
-                            효과적입니다.<br/>
-                            <b>・</b>고칼슘혈증이 있거나 의약품 복용시 전문가와
-                            상담하세요.<br/>
-                            <b>・</b>이상사례 발생 시 섭취를 중단하고 전문가와 상담하세요.
-                            <br/>
-                            <b>・</b>본 제품은 질병의 예방 및 치료를 위한 의약품이 아닌
-                            건강기능식품입니다.
-                        </p>
+                        <p class="words"></p>
                     </div>
                 </div>
             </section>
-            <section class="section-wrap">
+            <section class="section-wrap">reply-writer-info
                 <h3 class="section-title">상품사진</h3>
                 <div class="info-img-thumbnail">
                     <img
@@ -111,8 +95,8 @@
                     </div>
                 </div>
                 <!--  -->
-                <div class="reply-writer-info"></div>
-                <div class="write-content-wrap">
+                <div sec:authorize="isAuthenticated()" class="reply-writer-info"></div>
+                <div sec:authorize="isAuthenticated()" class="write-content-wrap">
                     <form>
                         <textarea
                                 class="write-textarea"
