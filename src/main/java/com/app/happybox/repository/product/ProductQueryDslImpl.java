@@ -121,25 +121,17 @@ public class ProductQueryDslImpl implements ProductQueryDsl {
 
     @Override
     public List<Product> findRandomProducts_QueryDSL() {
-        List<Product> products = new ArrayList<>();
 
         Long totalCount = query.select(product.count()).from(product).fetchOne();
-        int idx = (int) (Math.random() * totalCount);
+        int idx = (int) (Math.random() * totalCount) / 2;
 
         // page request
-        PageRequest pageRequest = PageRequest.of(idx, 1);
+        PageRequest pageRequest = PageRequest.of(idx, 2);
 
-        products.add(getProductJPAQuery()
+        return getProductJPAQuery()
                 .offset(pageRequest.getOffset())
                 .limit(pageRequest.getPageSize())
-                .fetchOne());
-
-        products.add(getProductJPAQuery()
-                .offset(pageRequest.getOffset())
-                .limit(pageRequest.getPageSize())
-                .fetchOne());
-
-        return products;
+                .fetch();
     }
 
 

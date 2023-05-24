@@ -31,6 +31,7 @@ public class ProductMainController {
     public String goMain(Model model) {
         model.addAttribute("recent", productService.findTop8Recent());
         model.addAttribute("likeCount", productService.findTop8ReplyCount());
+        model.addAttribute("randomProducts", productService.findRandomProducts());
         model.addAttribute("recipie", recipeBoardService.findTop5ByLikeCountWithRepresentFileOrderByLikeCount_QueryDSL());
         return "index/supply-market";
     }
