@@ -124,7 +124,7 @@ function showDetail() {
         <div class="info-area">
           <div class="info-area__btn">
           `
-    if ($userId == review.userId) {
+    if ($userId == review.memberDTO.userId) {
         text +=
             `
             <button type="button" class="update-btn">
@@ -226,7 +226,7 @@ function deleteBoard() {
 }
 
 
-
+console.log($userId);
 
 
 
@@ -304,10 +304,9 @@ $(".orderLikeCount").on("click", function () {
     );
 });
 
-window.scroll()
-
 /* 댓글 append */
 function appendReplyList(reply, isPrepend) {
+    console.log(reply);
 
     let text ='';
     let date = reply.updatedDate.split("T")[0];
@@ -342,9 +341,7 @@ function appendReplyList(reply, isPrepend) {
                     ${review.boardTitle}
                 </h3>
             </div>
-            <p class="review-content">
-                ${reply.replyContent}
-            </p>
+            <p class="review-content">${reply.replyContent}</p>
             <div class="review-footer">
                 <span class="review-date">${date}</span>
                 <div class="review-btn-wrap">
@@ -352,12 +349,12 @@ function appendReplyList(reply, isPrepend) {
                         <span>도움돼요</span>
                         <span class="rec-count">${reply.replyLikeCount ? reply.replyLikeCount : 0}</span>
                     </button>`;
-        if ($userId == reply.userId) {
-            text += `<button onclick="showReplyUpdate(this)" data-onmodify="false" data-id="${reply.id}" class="review-rec-btn update_review">
+    if ($userId == reply.userId) {
+        text += `<button onclick="showReplyUpdate(this)" data-onmodify="false" data-id="${reply.id}" class="review-rec-btn update_review">
                             <span>수정하기</span>
                         </button>`;
-        }
-            `</div>
+    }
+    `</div>
                     </div>
                 </div>
             </div>
@@ -370,7 +367,6 @@ function appendReplyList(reply, isPrepend) {
     }
     $reviewListWrap.append(text);
 }
-
 
 /* 최신순, 추천순 정렬 */
 const $reviewOrder = $(".review-orders button");
@@ -411,7 +407,7 @@ function showReplyUpdate(button) {
         <form>
             <textarea
                 class="write-textarea">${contentText}</textarea
-            ><button class="write-regist-btn" type="button">
+            ><button class="write-update-btn" type="button">
                 <span class="regist">등록</span>
             </button>
             <button class="write-cancel-btn" type="button">
@@ -425,7 +421,7 @@ function showReplyUpdate(button) {
     parent.append(text);
 
     /* 등록후 ajax 전송 */
-    $(".write-regist-btn").on("click", function () {
+    $(".write-update-btn").on("click", function () {
         let data = {
             replyContent: $(this).prev(".write-textarea").val()
         }
@@ -460,6 +456,7 @@ const REPLY_URL = `/user-board/review-board-detail/reply/write/${review.id}`;
 const $replyWriteBtn = $(".write-regist-btn");
 
 $replyWriteBtn.on("click", function () {
+    console.log("들어옴");
     if ($('.write-textarea').val() == "") {
         return;
     }
@@ -468,12 +465,7 @@ $replyWriteBtn.on("click", function () {
         REPLY_URL,
         {replyContent: $('.write-textarea').val()},
         (result) => {
-            let count = Number($(".review-count span").text());
-            // 댓글 맨위에 append
             appendReplyList(result, true);
-            // 댓글수 증가
-            $(".review-count span").text(++count);
-            $(".reply-count").text(count);
             // 댓글 내용 초기화
             $('.write-textarea').val("");
             console.log(result);

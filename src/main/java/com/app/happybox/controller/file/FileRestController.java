@@ -2,6 +2,7 @@ package com.app.happybox.controller.file;
 
 import com.app.happybox.service.board.ReviewBoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.FileCopyUtils;
@@ -16,6 +17,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/image/*")
 @RequiredArgsConstructor
+@Slf4j
 public class FileRestController {
 
     private static final String ABSOLUTE_PATH = "C:/upload";
@@ -66,6 +68,7 @@ public class FileRestController {
     //    파일 불러오기
     @GetMapping("display")
     public byte[] Display(String fileName) throws Exception {
+
         return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 

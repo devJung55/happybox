@@ -33,9 +33,7 @@
     </div>
 </section>
 <main class="main-section">
-    <!-- 임시 사이드바 -->
-    <div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
-    <!-- 임시 사이드바 끝 -->
+    <section class="side-menu-section" th:replace="~{admin/sidebar.html :: side-bar}"></section>
     <section class="content-section">
         <div class="container">
             <div class="container-margin">
