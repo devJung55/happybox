@@ -64,6 +64,8 @@ public class InquiryServiceImpl implements InquiryService {
 
     @Override
     public InquiryAnswerDTO saveInquiryAnswer(Long inquiryId, InquiryAnswerDTO inquiryAnswerDTO) {
+        log.info("======================================= 처음확인용");
+        log.info(inquiryAnswerDTO.toString());
         Inquiry inquiry = inquiryRepository.findById(inquiryId).orElseThrow(InquiryNotFoundException::new);
         InquiryAnswer inquiryAnswer = toInquiryAnswerEntity(inquiryAnswerDTO);
 
@@ -72,6 +74,9 @@ public class InquiryServiceImpl implements InquiryService {
 
         inquiry.setInquiryStatus(InquiryStatus.COMPLETE);
 
+        log.info("======================================= 파일 확인 용도");
+        log.info(inquiryAnswerDTO.toString());
+        log.info("여기 들어왔냐???");
         inquiryAnswerDTO.getInquiryAnswerFileDTOS()
                 .stream()
                 .map(this::toInquiryAnswerFileEntity)
