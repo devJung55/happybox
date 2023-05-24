@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +32,9 @@ public class UserFileServiceImpl implements UserFileService {
     }
 
     @Override
-    public void registerProfile(UserFile userFile) {
+    @Transactional(rollbackFor = Exception.class)
+    public void registerProfile(Long userId, UserFile userFile) {
+        userFileRepository.deleteByUserId(userId);
         userFileRepository.save(userFile);
     }
 
