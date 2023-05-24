@@ -116,7 +116,6 @@ public class RecipeBoardServiceImpl implements RecipeBoardService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void delete(Long id, Long memberId) {
         RecipeBoard recipeBoard = recipeBoardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
         recipeBoardRepository.delete(recipeBoard);

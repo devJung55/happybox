@@ -181,13 +181,14 @@
                                 type="text"
                                 name="donateLocation"
                                 class="input-text h40"
-                                placeholder="급식소를 검색해주세요."
-                                value=""
+                                value="급식소를 선택해주세요."
+                                style="cursor: default"
                                 readonly
                         />
                         <span class="input-group-btn">
-                                    <button type="button" class="btn-form btn-ex-white w150 find-btn">
-                                        <span>급식소 검색</span>
+                                    <button type="button" class="btn-form btn-ex-white w150 find-btn"
+                                    style="cursor:default;">
+                                        <span>급식소 목록</span>
                                     </button>
                                 </span>
                     </div>
@@ -270,7 +271,6 @@
     }
 </script>
 <script>
-    $('.find-btn').on('click', function () {
         /* 요청 url */
         let url = "http://openapi.seoul.go.kr:8088/63455a5a69646576313363576d774c/json/GbFreeMealOrgan/1/20/";
 
@@ -322,7 +322,6 @@
             }
         });
         $('.select-form-list').hide();
-    })
 </script>
 <script src="/js/main/header.js"></script>
 <script src="/js/member/donate-insert.js"></script>

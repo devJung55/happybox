@@ -162,6 +162,8 @@ $(document).ready(function() {
     });
 });
 
+
+
 $("form[name='form']").on("submit", function (e) {
     e.preventDefault();
 
@@ -180,8 +182,7 @@ $("form[name='form']").on("submit", function (e) {
             break;
         case "노인복지":
             donateType = "ETC";
-        default:
-            donateType = "FOOD";
+            break;
 
     }
     let donateLocation = $("input[name='donateLocation']").val();
@@ -192,6 +193,18 @@ $("form[name='form']").on("submit", function (e) {
     insertData.donateLocation = donateLocation;
 
     insertData.donationBoardFiles = insertData.donationBoardFiles.filter(e => e !== undefined && e !== null);
+
+    console.log(insertData.donationBoardFiles.length);
+    if (
+        boardTitle == null ||
+        boardContent == null ||
+        donateType == "유형선택" ||
+        donateLocation == null ||
+        insertData.donationBoardFiles.length == 0
+    ) {
+        alert("모든 정보를 입력해주세요.");
+        return false; // submit 막기
+    }
 
     $.ajax({
         url: '/user-board/donate-insert',

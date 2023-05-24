@@ -1,11 +1,13 @@
 package com.app.happybox.service.board;
 
+import com.app.happybox.domain.user.MemberDTO;
 import com.app.happybox.entity.board.RecipeBoard;
 import com.app.happybox.entity.board.RecipeBoardDTO;
 import com.app.happybox.entity.board.ReviewBoard;
 import com.app.happybox.entity.board.ReviewBoardDTO;
 import com.app.happybox.entity.file.BoardFile;
 import com.app.happybox.entity.file.BoardFileDTO;
+import com.app.happybox.entity.user.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -58,7 +60,7 @@ public interface RecipeBoardService {
     default RecipeBoardDTO recipeBoardToDTO(RecipeBoard recipeBoard){
         return RecipeBoardDTO.builder()
                 .id(recipeBoard.getId())
-                .memberName(recipeBoard.getMember().getMemberName())
+                .memberDTO(toMemberDTO(recipeBoard.getMember()))
                 .boardTitle(recipeBoard.getBoardTitle())
                 .boardContent(recipeBoard.getBoardContent())
                 .boardRegisterDate(recipeBoard.getUpdatedDate().toLocalDate())
@@ -81,8 +83,7 @@ public interface RecipeBoardService {
     default RecipeBoardDTO mypageRecipeBoardToDTO(RecipeBoard recipeBoard){
         return RecipeBoardDTO.builder()
                 .id(recipeBoard.getId())
-                .memberId(recipeBoard.getMember().getId())
-                .memberName(recipeBoard.getMember().getMemberName())
+                .memberDTO(toMemberDTO(recipeBoard.getMember()))
                 .boardTitle(recipeBoard.getBoardTitle())
                 .boardContent(recipeBoard.getBoardContent())
                 .boardRegisterDate(recipeBoard.getUpdatedDate().toLocalDate())
@@ -122,4 +123,37 @@ public interface RecipeBoardService {
                 .fileOrgName(boardFileDTO.getFileOrgName())
                 .build();
     }
+
+    default MemberDTO toMemberDTO(Member member) {
+        return MemberDTO.builder()
+                .id(member.getId())
+                .userId(member.getUserId())
+                .userPassword(member.getUserPassword())
+                .userPhoneNumber(member.getUserPhoneNumber())
+                .address(member.getAddress())
+                .userEmail(member.getUserEmail())
+                .userStatus(member.getUserStatus())
+                .userRole(member.getUserRole())
+                .memberName(member.getMemberName())
+                .memberBirth(member.getMemberBirth())
+                .memberDeliveryAddress(member.getMemberDeliveryAddress())
+                .memberGender(member.getMemberGender())
+                .build();
+    }
+
+    default Member toMemberEntity(MemberDTO memberDTO) {
+        return Member.builder()
+                .userId(memberDTO.getUserId())
+                .userPassword(memberDTO.getUserPassword())
+                .userPhoneNumber(memberDTO.getUserPhoneNumber())
+                .userRole(memberDTO.getUserRole())
+                .userRole(memberDTO.getUserRole())
+                .memberName(memberDTO.getMemberName())
+                .memberBirth(memberDTO.getMemberBirth())
+                .memberDeliveryAddress(memberDTO.getMemberDeliveryAddress())
+                .userEmail(memberDTO.getUserEmail())
+                .memberGender(memberDTO.getMemberGender())
+                .build();
+    }
+
 }

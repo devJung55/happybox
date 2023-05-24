@@ -503,6 +503,18 @@ figure {
     border-radius: 6px;
 }
 
+.write-update-btn {
+    width: 70px;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: #FF5938 !important;
+    color: #fff;
+    border-radius: 6px;
+}
+
 .write-cancel-btn {
     width: 70px;
     height: 32px;
