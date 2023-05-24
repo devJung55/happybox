@@ -31,7 +31,7 @@ function showReviewBoardList(reviewBoards) {
 
             text += `
                     <div class="detail__item">
-                        <a href="javascript:void(0)">
+                        <a href="/user-board/review-board-detail/${board.id}">
                             <span class="txt-change">상세보기</span>
                             <img class="arrow-0deg arrow" src="/img/mypage/inquiry-arrow.png" width="15">
                         </a>
@@ -61,7 +61,7 @@ function showReviewBoardList(reviewBoards) {
                             <li><span class="name">${board.memberDTO.userId}</span></li>
                             <li class=""><span class="date">${board.boardRegisterDate}</span></li>
                         </ul>
-                        <p class="detail text-elps3" style="margin: 22px 0 22px 0;">
+                        <p class="detail text-elps3" style="margin: 22px 0 22px 0; width: 713px;">
                             <span>${boardContent}</span>
                         </p>
                     </div>

@@ -11,7 +11,7 @@ function showProductList(products) {
                 <input type="hidden" class="productId" value="${product.id}">
                 <div class="prd-item type-sm2">
                     <figure class="img w180">
-                        <a href="javascript:void(0)">
+                        <a href="/product/detail/${product.id}">
             `;
 
             for (let i = 0; i < 1; i++) {
