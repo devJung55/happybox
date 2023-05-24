@@ -136,7 +136,6 @@ function showMemberDetail(member) {
 }
 
 function showProductDetail(product) {
-    console.log("show product 들어옴")
     let text = "";
     let src = "";
     let filePath = product[0];
