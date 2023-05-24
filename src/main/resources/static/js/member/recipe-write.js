@@ -98,6 +98,15 @@ $("form[name='form']").on("submit", function (e) {
     insertData.boardTitle = boardTitle;
     insertData.boardContent = boardContent;
 
+    if (
+        boardTitle == "" ||
+        boardContent == "" ||
+        insertData.recipeBoardFiles.length == 0
+    ) {
+        alert("모든 정보를 입력해주세요.");
+        return false; // submit 막기
+    }
+
     $.ajax({
         url: '/user-board/recipe-board-insert',
         data: JSON.stringify(insertData),

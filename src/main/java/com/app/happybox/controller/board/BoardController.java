@@ -386,7 +386,7 @@ public class BoardController {
         return null;
     }
 
-    //    리뷰 댓글 수정
+    //    레시피 댓글 수정
     @PatchMapping("recipe-board-detail/reply/modify/{replyId}")
     @ResponseBody
     public ReplyDTO modifyRecipeReply(@RequestBody ReplyDTO replyDTO, @PathVariable Long replyId) {
