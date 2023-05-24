@@ -36,6 +36,9 @@ const category = {
     OTHER: "기타"
 }
 
+// 상품정보
+$(".context .words").text($product.productInfo);
+
 // 판매자
 $(".supplier-name").text($product.distributorName);
 $(".detail-info-category").next().find("p").eq(1).text($product.distributorName);
@@ -159,8 +162,13 @@ function appendReplyList(reply, isPrepend) {
             <div class="user-info">
                 <span class="user-type">${USER_ROLE[reply.userRole]}</span>
                 <span class="user-id">${reply.userId}</span>
-            </div>
-        </div>
+            </div>`
+    if ($userId == reply.userId) {
+        text += `<div>
+                <button data-id="${reply.id}" onclick="deleteReply(this)">댓글 삭제</button>
+            </div>`
+    }
+    text += `</div>
         <div class="review-wrap">
             <div>
                 <h3 class="review-item-name">
@@ -192,6 +200,26 @@ function appendReplyList(reply, isPrepend) {
         return;
     }
     $reviewListWrap.append(text);
+}
+
+// 댓글 삭제
+function deleteReply(deleteBtn) {
+    let id = $(deleteBtn).data("id");
+    $.ajax({
+        url: `/product/detail/reply/delete/${id}/${$product.id}`,
+        type: 'DELETE',
+        dataType: 'JSON',
+        success: function (result) {
+
+
+            let count = Number($(".review-count span").text());
+            $(".review-count span").text(--count);
+            $(".reply-count").text(count);
+        },
+        error: function (error) {
+        }
+    });
+    window.location.reload();
 }
 
 /* 썸네일 이미지 바꾸기 */

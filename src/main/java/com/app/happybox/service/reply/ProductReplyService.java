@@ -61,7 +61,11 @@ public class ProductReplyService implements ReplyService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteReply(Long replyId, Long refId, Long userId) {
+        productReplyRepository.deleteById(replyId);
+        Product product = productRepository.findById(refId).orElseThrow(ProductNotFoundException::new);
 
+        int replyCount = product.getProductReplyCount() - 1;
+        product.setProductReplyCount(replyCount);
     }
 
     @Override

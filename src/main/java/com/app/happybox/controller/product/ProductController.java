@@ -112,4 +112,10 @@ public class ProductController {
         return productCartService.saveCart(productCartDTO, id, productId);
     }
 
+    @DeleteMapping("/detail/reply/delete/{replyId}/{productId}")
+    @ResponseBody
+    public void deleteReply(@PathVariable Long replyId, @PathVariable Long productId) {
+        productReplyService.deleteReply(replyId, productId, null);
+    }
+
 }
