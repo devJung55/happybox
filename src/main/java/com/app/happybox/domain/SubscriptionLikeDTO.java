@@ -13,6 +13,7 @@ import java.util.List;
 public class SubscriptionLikeDTO {
     private Long id;
     private Long welfareId; // PK
+    private Long subscriptionId; // PK
     private String welfareName;
     private Integer subscriptionPrice;
     private UserFileDTO userFileDTO;
