@@ -96,9 +96,7 @@ public class WelfareMyPageController {
 
     //    복지관 구독 수정 완료
     @PostMapping("welfare/subscription/edit")
-    public RedirectView subsEdit(SubscriptionWelFareDTO subscriptionWelFareDTO, @AuthenticationPrincipal UserDetail userDetail) {
-        Long id = userDetail.getId();
-        subscriptionWelFareDTO.setId(id);
+    public RedirectView subsEdit(SubscriptionWelFareDTO subscriptionWelFareDTO) {
         subscriptionService.updateByDTO(subscriptionWelFareDTO);
         return new RedirectView("/mypage/welfare/subscription/edit");
     }
@@ -125,7 +123,6 @@ public class WelfareMyPageController {
     public String goRiderListForm(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         Long welfareId = userDetail.getId();
         WelfareDTO welfareDTO = welfareService.getDetail(welfareId);
-        log.info(welfareDTO.toString());
         model.addAttribute("welfareDTO", welfareDTO);
         return "/mypage/welfare/rider";
     }

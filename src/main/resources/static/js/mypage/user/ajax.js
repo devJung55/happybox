@@ -87,9 +87,6 @@ let myPageService = (function() {
         $.ajax({
             url: "/mypage/member/recipe-bookmark-cancel",
             data: {"id": id},
-            success: function() {
-                location.reload();
-            }
         })
     }
 
@@ -97,9 +94,6 @@ let myPageService = (function() {
         $.ajax({
             url: "/mypage/member/subscription-bookmark-cancel",
             data: {"id": id},
-            success: function() {
-                location.reload();
-            }
         })
     }
 
