@@ -138,6 +138,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin-right: 3px;
   }
 
   .img__width img {
@@ -213,7 +214,7 @@
     font-family: inherit;
     color: #777777;
     font-weight: 600;
-    white-space: pre;
+    white-space: pre-line;
   }
 
   .button-box {
