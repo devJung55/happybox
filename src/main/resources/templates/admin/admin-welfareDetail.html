@@ -34,7 +34,7 @@
     </div>
 </section>
 <main class="main-section">
-    <div id="side-bar" th:insert="~{admin/sidebar.html :: side-bar}"></div>
+    <section class="side-menu-section" th:replace="~{admin/sidebar.html :: side-bar}"></section>
     <section class="content-section">
         <div class="container">
             <div class="go-list-box"></div>
@@ -45,17 +45,7 @@
                     </div>
                     <div>
                         <div class="content-img-wrapper">
-                            <div class="content-img one-img">
-                                <img
-                                        th:if="${userFile == null}"
-                                        src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-                                />
-                                <img
-                                        th:if="${userFile != null}"
-                                        src="/image/display?fileName=" +
-                                        th:value="${userFile.getFilePath + '/' + userFile.getFileUuid + '_' + userFile.getFileOrgName}"
-                                />
-                            </div>
+                            <div class="content-img one-img"></div>
                         </div>
                         <ul class="content-list-wrap" th:object="${welfare}">
                             <li class="content-list">
@@ -140,7 +130,20 @@
 <script src="/js/admin/sidebar.js"></script>
 <script src="/js/admin/ajax.js"></script>
 <script th:inline="javascript">
-    let $welfare = [[${welfare}]];
+    const $welfare = [[${welfare}]];
+    const $userFile = [[${userFile}]];
+</script>
+<script>
+    const $imgAppend = $(".one-img");
+    let welfareProfile = "";
+
+    if($userFile != null) {
+        welfareProfile = `<img src="/image/display?fileName=${$userFile.filePath}/${$userFile.fileUuid}_${$userFile.fileOrgName}">`
+    } else {
+        welfareProfile = `<img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%ec%8d%b8%eb%84%a4%ec%9d%bc-%ec%9d%b4%eb%af%b8%ec%a7%80-%ec%97%86%ec%9d%8c-%ed%8f%ac%eb%9f%bc-%eb%b8%94%eb%a1%9c%ea%b7%b8-%eb%b0%8f-%ec%9b%b9%ec%82%ac%ec%9d%b4%ed%8a%b8%ec%9a%a9-%ec%9e%90%eb%a6%ac-%ed%91%9c%ec%8b%9c%ec%9e%90.jpg?ver=6">`;
+    }
+
+    $imgAppend.append(welfareProfile);
 </script>
 <script src="/js/admin/welfare-detail.js"></script>
 </html>

@@ -80,6 +80,8 @@ a {
 }
 
 .user-info-box .user-info .img {
+    width: 70px !important;
+    height: 90px !important;
     display: inline-block;
     vertical-align: middle;
     margin-right: 12px;
@@ -257,7 +259,8 @@ p {
 }
 
 img.user__profile__img {
-    width: 70px;
+    width: 70px !important;
+    height: 70px !important;
     border-radius: 40%;
 }
 
@@ -277,11 +280,16 @@ img.user__profile__img {
 }
 
 img.img__editor {
-    width: 18px;
+    width: 18px !important;
+    height: 18px !important;
     filter: invert(39%) sepia(1%) saturate(288%) hue-rotate(28deg) brightness(100%);
 }
 
 .font__style {
     color: #FF6001;
     font-size: 28px;
+}
+
+p.greeting {
+    margin: 0 !important;
 }

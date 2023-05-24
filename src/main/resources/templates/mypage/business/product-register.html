@@ -37,7 +37,7 @@
                 <div class="header-stage" th:insert="~{mypage/business/top-bar.html :: top-bar}"></div><!-- // top-bar.html -->
                 <div class="frame-sm" style="margin-top: 45px;">
                     <div class="header-stage" th:insert="~{mypage/business/side-bar.html :: side-bar}"></div><!-- // side-bar.html -->
-                    <form id="counselRegFrm" name="form" method="post" th:action="@{/mypage/distributor/register}" style="margin-left: 60px;" th:object="${productDTO}">
+                    <form id="counselRegFrm" name="form" method="post" th:action="@{/mypage/distributor/register}" th:object="${productDTO}">
                         <div class="frame-right">
                             <div class="frame-cnt-inner">
                                 <div class="menu-title-area">
