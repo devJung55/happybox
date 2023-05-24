@@ -44,20 +44,22 @@ function appendList(product, $target) {
 }
 
 const $recipeTopImg = $(".recipie-top-img-container");
-const recipeTopFile = recipeTop5[0].boardFiles[0];
-const recipeTopFilePath = recipeTop5[0].boardFiles.length == 0 ?
+const recipeTopFile = recipeTop5[0].recipeBoardFiles[0];
+const recipeTopFilePath = recipeTop5[0].recipeBoardFiles.length == 0 ?
     "/img/market/no_img_market.png" : "/image/display?fileName=" + recipeTopFile.filePath + '/t_' + recipeTopFile.fileUuid + '_' + recipeTopFile.fileOrgName;
 
+console.log(recipeTop5);
+
 $recipeTopImg.find("img").attr("src", recipeTopFilePath);
-$(".recipe-top-title-wrap h3").text(recipeTop5[0].recipeBoardTitle);
-$(".recipie-top-content").text(recipeTop5[0].recipeBoardContent);
+$(".recipe-top-title-wrap h3").text(recipeTop5[0].boardTitle);
+$(".recipie-top-content").text(recipeTop5[0].boardContent);
 
 for (let i = 1; i < recipeTop5.length; i++) {
     let text;
 
-    let recipeFile = recipeTop5[i].boardFiles[0];
-    let recipeFilePath = recipeTop5[i].boardFiles.length == 0 ?
-        "/img/market/no_img_market.png" : "/image/display?fileName=" + recipeFile.filePath + '/t_' + recipeFile.fileUuid + '_' + recipeFile.fileOrgName;
+    let recipeFile = recipeTop5[i].recipeBoardFiles[0];
+    let recipeFilePath = recipeTop5[i].recipeBoardFiles.length == 0 ?
+        "/img/market/no_img_market.png" : "/image/display?fileName=" + recipeFile.filePath + '/' + recipeFile.fileUuid + '_' + recipeFile.fileOrgName;
 
     text = `
         <li>
@@ -68,11 +70,11 @@ for (let i = 1; i < recipeTop5.length; i++) {
                 <div class="recipie-content-wrap">
                             <span class="recipe-title-wrap">
                                 <p class="recipe-title">
-                                    ${recipeTop5[i].recipeBoardTitle}
+                                    ${recipeTop5[i].boardTitle}
                                 </p>
                             </span>
                     <p class="recipie-content">
-                         ${recipeTop5[i].recipeBoardContent}
+                         ${recipeTop5[i].boardContent}
                     </p>
                 </div>
                 <button class="recipie-detail-btn">

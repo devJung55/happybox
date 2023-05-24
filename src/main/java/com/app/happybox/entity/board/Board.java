@@ -27,6 +27,7 @@ public abstract class Board extends Period {
     @ColumnDefault(value = "'제목 없음'")
     private String boardTitle;
     @NotNull
+    @Column(columnDefinition = "CLOB")
     private String boardContent;
 
     /* ============= */
