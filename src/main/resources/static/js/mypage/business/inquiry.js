@@ -2,25 +2,15 @@
 
 /* 문의 내역 클릭 이벤트 */
 
-const $arrows = $(".arrow-0deg");
-const $inquiryDetail = $(".ui-accordion-view");
+function showInquiryDetail(btn) {
+    let hidden = $(btn).data("hidden");
+    let arrowImg = $(btn).find(".arrow-img");
+    $(btn).next().css("display", `${hidden ? 'block' : 'none'}`);
+    arrowImg.removeClass(`${hidden ? 'arrow-0deg' : 'arrow-180deg'}`);
+    arrowImg.addClass(`${hidden ? 'arrow-180deg' : 'arrow-0deg'}`);
 
-$(".inquiry__list__append").on("click", ".arrow-0deg", function() {
-    $(this).each((i, arrow) => {
-        $(arrow).on("click", function() {
-            if($(arrow).hasClass("arrow-0deg")) {
-                $(arrow).closest("a").next().css("display", "block");
-                $(arrow).removeClass("arrow-0deg");
-                $(arrow).addClass("arrow-180deg");
-            } else {
-                $(arrow).closest("a").next().css("display", "none");
-                $(arrow).removeClass("arrow-180deg");
-                $(arrow).addClass("arrow-0deg");
-            }
-        })
-    });
-});
-
+    $(btn).data("hidden", !hidden);
+}
 
 /*------------------------------------------------------------------------------*/
 
@@ -95,7 +85,7 @@ function showInquiryList(inquiries) {
         text += `
                     <input type="hidden" name="inquiryId" value="${inquiry.id}">
                     <li class="border-bottom">
-                        <a href="javascript:void(0)" class="title-div ui-accordion-click">
+                        <a href="javascript:void(0)" onclick="showInquiryDetail(this)" class="title-div ui-accordion-click">
                             <div class="subject">
                 `;
 

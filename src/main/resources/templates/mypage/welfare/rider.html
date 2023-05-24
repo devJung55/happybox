@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
     <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
     <link rel="stylesheet" href="/css/mypage/welfare/subscriber.css">
+    <link rel="stylesheet" href="/css/mypage/user/paging.css">
     <style>
         [class^="badge-sm-"] {
         display: inline-block;
@@ -57,23 +58,23 @@
                     <div class="frame-right">
                         <div class="frame-cnt-inner">
                             <form action="" name="myPageOrderForm">
-                                <div class="menu-title-area">
+                                <div class="menu-title-area" style="border-bottom: 1px solid #666; margin-bottom: 10px;">
                                     <div class="title-menu">
                                         <h3 class="title-menu">라이더 관리</h3>
                                     </div>
                                 </div>
-                                <div class="search-box ui-toggle on">
+                                <!--<div class="search-box ui-toggle on">
                                     <div class="welfare__name">
                                         <span th:text="${welfareDTO.welfareName}"></span>
                                     </div>
-                                </div>
+                                </div>-->
                             </form>
                             <div class="no-data-type1" style="display: none;" th:if="${riderDTOS == null}"><!-- 주문 내역이 없을 시 -->
                                 <p class="message">기간 내에 구독내역이 없습니다.</p>
                             </div>
                             <ul class="productCart-list"></ul><!--  뿌려지는 곳  -->
                         </div>
-                        <div class="paging-div"></div>
+                        <div class="pagination"></div>
                     </div>
                 </div>
             </div>
@@ -88,5 +89,4 @@
     let riderDTOS = [[${riderDTOS}]];
     let welfareDTO = [[${welfareDTO}]];
 </script>
-
 </html>
