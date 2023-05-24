@@ -46,6 +46,7 @@ public class OAuthAttributes {
                 .email((String) response.get("email"))
                 .phone((String) response.get("mobile"))
                 .attributes(response)
+                /* 동일인 식별 정보 (고유 해쉬값) */
                 .nameAttributeKey("id")
                 .build();
     }
@@ -57,6 +58,7 @@ public class OAuthAttributes {
 
         return OAuthAttributes.builder()
                 .email((String) kakaoAccount.get("email"))
+                /* 동일인 식별 정보 (고유 해쉬값) */
                 .nameAttributeKey("id")
                 .attributes(attributes)
                 .build();
