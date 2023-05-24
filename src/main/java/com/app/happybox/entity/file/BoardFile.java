@@ -13,7 +13,7 @@ import javax.persistence.*;
 
 @Entity @Table(name = "TBL_BOARD_FILE")
 @DynamicInsert
-@Getter @ToString(exclude = "board") @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BoardFile extends Files {
     @EqualsAndHashCode.Include
     @Id @GeneratedValue
