@@ -31,8 +31,8 @@ public class FoodCalendarQueryDslImpl implements FoodCalendarQueryDsl {
 
         List<FoodCalendar> foodCalendarList = query.select(foodCalendar)
                 .from(foodCalendar)
-                .leftJoin(foodCalendar.foodList)
-                .fetchJoin()
+                .distinct()
+                .leftJoin(foodCalendar.foodList).fetchJoin()
                 .where(idEquals, dateBetween)
                 .orderBy(foodCalendar.startDate.asc())
                 .fetch();

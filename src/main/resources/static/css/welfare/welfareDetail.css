@@ -1339,7 +1339,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .modal-name {
-    margin-top: 21px;
+    margin: 21px 0;
 }
 
 .modal-name h3, .modal-name p {
@@ -1349,6 +1349,7 @@ input[type="checkbox"], input[type="radio"] {
 .food-list {
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
 
 .food-list .food img {
@@ -1364,9 +1365,11 @@ input[type="checkbox"], input[type="radio"] {
 .food span {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 18px;
     font-weight: 700;
     color: #333;
+    width: 120px;
 }
 
 /* 닫기 버튼 스타일 */

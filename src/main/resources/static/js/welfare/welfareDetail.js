@@ -100,8 +100,7 @@ function showFoodList(foodCalendars) {
         if (calendar.foodList.length == 0) return;
 
         // list append
-        appendFood(calendar.foodList[0], $container);
-
+        calendar.foodList.forEach(food => appendFood(food, $container));
         // 카운트 증가
         ++count;
     });
