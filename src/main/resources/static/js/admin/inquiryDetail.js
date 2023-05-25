@@ -84,9 +84,9 @@ function getFilePath(formData, attachBtn, i) {
         processData: false,
         success: function (data) {
             let file = new Object();
-            file.uuid = data.uuids[0];
+            file.fileUuid = data.uuids[0];
             file.filePath = data.paths[0];
-            file.orgName = data.orgNames[0];
+            file.fileOrgName = data.orgNames[0];
 
             answerData.inquiryAnswerFileDTOS[i] = file;
 
@@ -96,7 +96,7 @@ function getFilePath(formData, attachBtn, i) {
 }
 
 function showThumb(attachBtn, file) {
-    attachBtn.append(`<img src='/image/display?fileName=${file.filePath}/t_${file.uuid}_${file.orgName}'></img>`)
+    attachBtn.append(`<img src='/image/display?fileName=${file.filePath}/t_${file.fileUuid}_${file.fileOrgName}'></img>`)
 }
 
 // 답변 달기
@@ -107,7 +107,7 @@ $(".regist-button").on("click", function () {
 
     answerData.inquiryAnswerFileDTOS = answerData.inquiryAnswerFileDTOS.filter(e => e !== undefined && e !== null);
     answerData.inquiryAnswerContent = content;
-
+    console.log(answerData);
     $.ajax({
         type: "POST",
         url: `/admin/inquiry/answer/save/${$inquiry.id}`,
