@@ -1107,6 +1107,7 @@ div.banner div {
 .principleContainer .principleList {
     clear: both;
     padding-top: 60px;
+    margin-bottom: 60px;
 }
 
 .principleContainer .principleItem {
