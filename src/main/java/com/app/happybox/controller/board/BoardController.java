@@ -63,7 +63,10 @@ public class BoardController {
     //    리뷰 게시판 이동
     @GetMapping("review-board-list")
     public String goReviewList(Model model, @AuthenticationPrincipal UserDetail userDetail){
-        model.addAttribute("userId", userDetail.getId());
+        Long userId = userDetail.getId();
+        if(userId != null){
+            model.addAttribute("userId", userDetail.getId());
+        }
         return "user-board/review-board-list";
     }
 
@@ -244,7 +247,10 @@ public class BoardController {
     //    레시피 게시판 이동
     @GetMapping("recipe-board-list")
     public String goRecipeList(Model model, @AuthenticationPrincipal UserDetail userDetail){
-        model.addAttribute("userId", userDetail.getId());
+        Long userId = userDetail.getId();
+        if(userId != null){
+            model.addAttribute("userId", userDetail.getId());
+        }
 
         return "user-board/recipe-board-list";
     }
