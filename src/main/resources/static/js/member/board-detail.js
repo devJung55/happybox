@@ -1,10 +1,5 @@
 /* review-board-detail.html */
 
-/* 텍스트 더보기 */
-$('.info-area__box').on('click', function () {
-    $(this).find('.info-area__box-list').css('height', '100%');
-});
-
 /* 이미지 slide 이벤트 */
 
 $(document).ready(function () {
@@ -208,6 +203,11 @@ function showDetail() {
 }
 
 showDetail();
+
+/* 텍스트 더보기 */
+$('.info-area__box').on('click', function () {
+    $(this).find('.info-area__box-list').css('height', '100%');
+});
 
 console.log($userId);
 

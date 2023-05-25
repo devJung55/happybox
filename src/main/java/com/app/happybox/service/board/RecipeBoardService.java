@@ -121,6 +121,7 @@ public interface RecipeBoardService {
                 .fileUuid(boardFileDTO.getFileUuid())
                 .filePath(boardFileDTO.getFilePath())
                 .fileOrgName(boardFileDTO.getFileOrgName())
+                .fileRepresent(boardFileDTO.getFileRepresent())
                 .build();
     }
 
