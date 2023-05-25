@@ -18,8 +18,6 @@ function showList(recipeBoardDTOS){
     console.log(recipeBoardDTOS);
     recipeBoardDTOS.content.forEach((recipeDetail, i) => {
         let userFile = recipeDetail.memberDTO.userFileDTO;
-        console.log(userFile);
-        console.log(recipeDetail.memberDTO);
         let userFilePath;
 
         if(userFile){
@@ -111,7 +109,7 @@ $('.last-pop-btn a:first-child').click(function(e) {
     page = 1;
     loadRecipeBoardList('/user-board/recipe-board-list/recent', { page: page });
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+        if($(window).scrollTop() + $(window).height() > $(document).height() * 0.7) {
             page++;
             loadRecipeBoardList('/user-board/recipe-board-list/recent', { page: page });
             // 이전에 추가된 항목 수를 업데이트
@@ -133,7 +131,7 @@ $('.last-pop-btn a:last-child').click(function(e) {
     page = 1;
     loadRecipeBoardList('/user-board/recipe-board-list/popular', { page: page });
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+        if($(window).scrollTop() + $(window).height() > $(document).height() * 0.7) {
             page++;
             loadRecipeBoardList('/user-board/recipe-board-list/popular', { page: page });
             // 이전에 추가된 항목 수를 업데이트
@@ -162,7 +160,7 @@ loadRecipeBoardList('/user-board/recipe-board-list/recent', { page: page });
 
 // 스크롤 이벤트 핸들러
 $(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+    if($(window).scrollTop() + $(window).height() > $(document).height() * 0.7) {
         page++;
         if ($('.last-pop-btn a:last-child').text() == "최신순") {
             loadRecipeBoardList('/user-board/recipe-board-list/recent', { page: page });
