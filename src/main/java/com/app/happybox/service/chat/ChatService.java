@@ -41,6 +41,7 @@ public class ChatService {
     }
 
     // 회원의 채팅방 조회
+    @Transactional
     public List<ChatRoom> findAllRoomByUserId(Long userId) {
         List<ChatRoom> chatRooms = new ArrayList<>();
         log.info(userRoomRepository.findAll().toString());
@@ -55,11 +56,17 @@ public class ChatService {
     }
 
     // 이미 채팅하는 복지관이라면 그 채팅방 return
+    @Transactional
     public ChatRoom findRoomByUserIdAndWelfareIdReturnIfPresent(Long userId, Long welfareId) {
         List<ChatRoom> chatRooms = new ArrayList<>();
 
+        log.info("findByUserId : {}", userRoomRepository.findByUserId(userId));
+
         userRoomRepository.findByUserId(userId).forEach(userRoom -> {
             ChatRoom foundChatRoom = chatRoomRepository.findByRoomId(userRoom.getRoomId()).orElseThrow(ChatRoomNotFoundException::new);
+
+            log.info("found chat Room : {}", foundChatRoom);
+
             if(foundChatRoom.getWelfareId().equals(welfareId)) chatRooms.add(foundChatRoom);
         });
 
@@ -74,7 +81,7 @@ public class ChatService {
 
     // roomName 으로 채팅방 만들기
     @Transactional
-    public ChatRoom createChatRoom(String userIdentification, Long welfareId) {
+    public ChatRoom createChatRoom(String userIdentification, Long welfareId, Long userId) {
         Welfare welfare = (Welfare)userRepository.findById(welfareId).orElseThrow(UserNotFoundException::new);
         String roomName = "[ " + userIdentification + " ]" + " 님 과 " + welfare.getWelfareName() + "님 의 채팅방";
 
@@ -82,6 +89,13 @@ public class ChatService {
         ChatRoom chatRoom = new ChatRoom().create(roomName, welfareId);
         //map에 채팅방 아이디와 만들어진 채팅룸을 저장
         chatRoomRepository.save(chatRoom);
+
+//        유저의 채팅방 내역인 userRoom 저장
+//        일반회원 userRoom
+        UserRoom userRoom = UserRoom.builder().userId(userId).roomId(chatRoom.getRoomId()).build();
+//        복지관 저장 userRoom
+        UserRoom welfareUserRoom = UserRoom.builder().userId(welfareId).roomId(chatRoom.getRoomId()).build();
+        userRoomRepository.saveAll(new ArrayList<>(Arrays.asList(userRoom, welfareUserRoom)));
 
         return chatRoom;
     }

@@ -57,7 +57,7 @@ public class ChatRoomController {
         log.info("============== USER_CHAT_ROOM " + userChatRoom);
 
         if (userChatRoom == null) {
-            ChatRoom chatRoom = chatService.createChatRoom(userDetail.getUserId(), welfareId);
+            ChatRoom chatRoom = chatService.createChatRoom(userDetail.getUserId(), welfareId, userDetail.getId());
             log.info("Create ChatRoom : {}", chatRoom);
             return chatRoom;
         }
@@ -80,6 +80,7 @@ public class ChatRoomController {
 
         // 채팅 유저와 복지관 id 저장
         if (userChatRoom == null) {
+            log.info("=================== userChatRoom is null ============");
             chatService.addUser(chat.getRoomId(), userDetail.getId());
             chatService.addUser(chat.getRoomId(), chat.getWelfareId());
             log.info("roomId : {}", chat.getRoomId());
