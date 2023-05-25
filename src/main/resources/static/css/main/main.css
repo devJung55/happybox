@@ -1189,7 +1189,8 @@ div.banner div {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 315px;
+    width: 400px;
+    height: 130px;
 }
 
 .modal-content .modal-title {
