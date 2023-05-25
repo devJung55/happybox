@@ -100,8 +100,7 @@ function showFoodList(foodCalendars) {
         if (calendar.foodList.length == 0) return;
 
         // list append
-        appendFood(calendar.foodList[0], $container);
-
+        calendar.foodList.forEach(food => appendFood(food, $container));
         // 카운트 증가
         ++count;
     });
@@ -360,7 +359,10 @@ console.log("==================================================");
 console.log(subscription.subscriptionContent);
 $('.welfare-content').text(subscription.subscriptionContent);
 
-if(file !=null){
-    let src = `/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}`;
-    $('#profile-img').attr('src',src);
+let src = "/img/welfare/welfare_detail_default.png";
+
+if(file.filePath != null && file.fileUuid != null && file.fileOrgName != null){
+    src = `/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}`;
 }
+
+$('#profile-img').attr('src', src);

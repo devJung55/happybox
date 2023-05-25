@@ -154,6 +154,7 @@ function doSearch() {
 
         /* success 시 반복문 돌면서 event 생성 */
         foodCalendars.forEach((calendar, i) => {
+            console.log(calendar);
             let event = {
                 id: i,
                 calendarId: `${Math.ceil(Math.random() * 3)}`,
