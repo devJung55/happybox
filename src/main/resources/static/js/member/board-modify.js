@@ -303,13 +303,12 @@ $("form[name='form']").on("submit", function (e) {
     insertData.boardTitle = boardTitle;
     insertData.welfareName = welfareName;
     insertData.boardContent = boardContent;
-    insertData.reviewRating = pullCount;
 
     insertData.reviewBoardFiles = insertData.reviewBoardFiles.filter(e => e !== undefined && e !== null);
     console.log(insertData.reviewBoardFiles);
 
     $.ajax({
-        url: '/user-board/review-board-modify',
+        url: `/user-board/review-board-modify`,
         data: JSON.stringify(insertData),
         contentType: "application/json; charset=utf-8",
         method: 'post',

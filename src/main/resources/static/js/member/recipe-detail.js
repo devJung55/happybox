@@ -1,13 +1,5 @@
 /* recipe-board-detail.html */
 
-/* 텍스트 더보기 */
-// $('.info-area__box').on('click', function () {
-//     $(this).find('.info-area__box-list').css('height', '100%');
-// });
-function showMoreText(){
-    $(this).find('.info-area__box-list').css('height', '100%');
-};
-
 /* 이미지 slide 이벤트 */
 
 $(document).ready(function () {
@@ -190,6 +182,12 @@ function showDetail() {
 }
 
 showDetail();
+
+/* 텍스트 더보기 */
+$('.info-area__box').on('click', function () {
+    $(this).find('.info-area__box-list').css('height', '100%');
+});
+
 const goDelete = `/user-board/recipe-board-detail/delete/${recipe.id}`;
 
 /* 게시글 삭제 */
