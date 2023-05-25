@@ -5,6 +5,7 @@ import com.app.happybox.domain.FoodCalendarSearchDTO;
 import com.app.happybox.domain.SubscriptionCartDTO;
 import com.app.happybox.domain.SubscriptionSearchDTO;
 import com.app.happybox.domain.user.SubscriptionWelFareDTO;
+import com.app.happybox.domain.user.UserFileDTO;
 import com.app.happybox.domain.user.WelfareDTO;
 import com.app.happybox.domain.SubscriptionDTO;
 import com.app.happybox.provider.UserDetail;
@@ -12,6 +13,7 @@ import com.app.happybox.service.product.SubscriptionCartService;
 import com.app.happybox.service.subscript.FoodCalendarService;
 import com.app.happybox.service.subscript.SubscriptionLikeService;
 import com.app.happybox.service.subscript.SubscriptionService;
+import com.app.happybox.service.user.UserFileService;
 import com.app.happybox.service.user.WelfareService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +44,9 @@ public class WelfareController {
     private final SubscriptionLikeService subscriptionLikeService;
     @Qualifier("subscriptionCartService")
     private final SubscriptionCartService subscriptionCartService;
+
+    private final UserFileService userFileService;
+
     @Qualifier("foodCalendar")
     private final FoodCalendarService foodCalendarService;
     private final WelfareService welfareService;
@@ -69,7 +74,15 @@ public class WelfareController {
     }
     @GetMapping("detail/{id}")
     public String goDetail(@PathVariable Long id, Model model, @AuthenticationPrincipal UserDetail userDetail) {
-        model.addAttribute("subscription", subscriptionService.findByIdWithDetail(id));
+        SubscriptionDTO subscriptionDTO = subscriptionService.findByIdWithDetail(id);
+
+        Long userId = subscriptionDTO.getWelfareId();
+        if (userId != null){
+        UserFileDTO file = userFileService.getDetail(userId);
+        model.addAttribute("file",file);
+        }
+        log.info(subscriptionDTO.toString());
+        model.addAttribute("subscription", subscriptionDTO);
         model.addAttribute("userId",userDetail.getId());
 
         // 좋아요 이미 눌렀는지 검사

@@ -33,7 +33,7 @@ const WELFARE_ADDRESS = subscription.address;
 var geocoder = new kakao.maps.services.Geocoder();
 
 /* db에 있는 location이 들어갈 곳 */
-geocoder.addressSearch(`${WELFARE_ADDRESS.firstAddress} ${WELFARE_ADDRESS.addressDetail}`, function (result, status) {
+geocoder.addressSearch(`${WELFARE_ADDRESS.firstAddress}`, function (result, status) {
     // 정상적으로 검색이 완료됐으면
     if (status === kakao.maps.services.Status.OK) {
         /* 좌표 알아내는 코드 */
@@ -353,3 +353,14 @@ $confirm.on('click', function () {
 
 console.log($(".quantity-input").val());
 console.log(CART_URL);
+
+
+/*=======================================================================================================*/
+console.log("==================================================");
+console.log(subscription.subscriptionContent);
+$('.welfare-content').text(subscription.subscriptionContent);
+
+if(file !=null){
+    let src = `/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}`;
+    $('#profile-img').attr('src',src);
+}

@@ -195,16 +195,9 @@
                         <div class="welfare-intro-area">
                             <h3 class="review-tit">복지관 소개</h3>
                             <div class="welfare-info-list">
+                                <span class="welfare-content"></span>
                                 <img
-                                        src="https://file.rankingdak.com/store/store/notice/notice_ice_banner.jpg"
-                                        alt=""
-                                />
-                                <img
-                                        src="https://file.rankingdak.com/store/msd/item/msd040/msd040_01.jpg"
-                                        alt=""
-                                />
-                                <img
-                                        src="https://file.rankingdak.com/store/msd/item/msd040/msd040_02.jpg"
+                                        src="/img/welfare/default-img.png"
                                         alt=""
                                 />
                             </div>
@@ -221,6 +214,7 @@
                             <h2 class="welfare-title">복지관 맛집 No.1</h2>
                             <div class="welfare-info-img">
                                 <img
+                                        id="profile-img"
                                         src="https://www.sgwon.or.kr/img/introduce/02_3_img02.jpg"
                                         alt=""
                                 />
@@ -376,10 +370,12 @@
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
     let subscription = [[${subscription}]];
+    let file = [[${file}]];
     let isLike = [[${isLike}]];
     let userId = [[${userId}]];
     console.log("===========================  유저 아이디는??===============================");
     console.log(userId);
+    console.log(file);
 
     $(".welfare-location").text(subscription.address.firstAddress);
     $(".welfare-title").text(subscription.subscriptionTitle);

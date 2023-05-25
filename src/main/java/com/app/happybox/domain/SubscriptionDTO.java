@@ -15,7 +15,11 @@ public class SubscriptionDTO {
 
     private String subscriptionTitle;
 
+    private String subscriptionContent;
+
     private Integer subscriptionPrice;
+
+    private Long welfareId;
 
     /* ----- 반정규화 ----- */
 
@@ -46,11 +50,12 @@ public class SubscriptionDTO {
     private FoodDTO representFood;
 
     @Builder
-    public SubscriptionDTO(Long id, String subscriptionTitle, Integer subscriptionPrice,
+    public SubscriptionDTO(Long id, String subscriptionTitle, String subscriptionContent, Integer subscriptionPrice,
                            Integer subscriptLikeCount, Long reviewCount, Double reviewAvgRating,
-                           Long orderCount, String welfareName, AddressDTO welfareAddress) {
+                           Long orderCount, String welfareName, AddressDTO welfareAddress, Long welfareId) {
         this.id = id;
         this.subscriptionTitle = subscriptionTitle;
+        this.subscriptionContent = subscriptionContent;
         this.subscriptionPrice = subscriptionPrice;
         this.subscriptLikeCount = subscriptLikeCount;
         this.reviewCount = reviewCount;
@@ -58,6 +63,7 @@ public class SubscriptionDTO {
         this.orderCount = orderCount;
         this.welfareName = welfareName;
         this.address = welfareAddress;
+        this.welfareId = welfareId;
     }
 
     public void setFoodList(List<FoodDTO> foodList) {

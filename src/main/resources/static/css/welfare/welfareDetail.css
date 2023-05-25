@@ -1444,3 +1444,9 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 /* ============================================== ================================= */
+
+.welfare-content {
+    white-space: pre-line;
+    font-size: 18px;
+    font-weight: 500;
+}
