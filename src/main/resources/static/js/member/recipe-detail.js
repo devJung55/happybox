@@ -1,9 +1,12 @@
 /* recipe-board-detail.html */
 
 /* 텍스트 더보기 */
-$('.info-area__box').on('click', function () {
+// $('.info-area__box').on('click', function () {
+//     $(this).find('.info-area__box-list').css('height', '100%');
+// });
+function showMoreText(){
     $(this).find('.info-area__box-list').css('height', '100%');
-});
+};
 
 /* 이미지 slide 이벤트 */
 
@@ -172,7 +175,7 @@ function showDetail() {
           <h3 class="info-area__name">
             <span class="strong">${recipe.boardTitle}</span>
           </h3>
-          <div class="info-area__box">
+          <div class="info-area__box" onclick="showMoreText()";>
             <div class="info-area__box-list">
               <div class="info-area__box-cont">
                 <div class="detail-content">
@@ -480,9 +483,8 @@ $replyWriteBtn.on("click", function () {
 const deleteUrl = `/user-board/recipe-board-detail/reply/delete/${recipe.id}`;
 
 function deleteReply(deleteBtn) {
-    let id = $(deleteBtn).data("id");
     $.ajax({
-        url: deleteUrl + `/${id}`,
+        url: deleteUrl + `/${replyDeleteId}`,
         type: 'DELETE',
         dataType: 'JSON',
         success: function(result) {
