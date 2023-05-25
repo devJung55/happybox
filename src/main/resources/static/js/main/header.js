@@ -392,12 +392,10 @@ function onConnected(roomId) {
 // 메시지를 받을 때도 마찬가지로 JSON 타입으로 받으며,
 // 넘어온 JSON 형식의 메시지를 parse 해서 사용한다.
 function onMessageReceived(payload) {
-    //console.log("payload 들어오냐? :"+payload);
+    console.log("payload 들어오냐? :"+payload);
     let message = JSON.parse(payload.body);
 
-    if(message.sender == null) return;
-
-    prependChatMessage(message);
+    appendInputChatMessage(message);
 }
 
 // 채팅 form submit 시 message 발송

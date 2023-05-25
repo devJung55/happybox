@@ -64,6 +64,7 @@ public class ChatController {
         Long userId = ((UserDetail) authentication.getPrincipal()).getId();
 
         ChatMessageDTO savedChat = chatMessageService.save(chat, userId);
+        savedChat.setSenderId(userId);
 
         template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), savedChat);
     }
