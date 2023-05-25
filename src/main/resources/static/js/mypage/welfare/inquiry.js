@@ -99,7 +99,7 @@ function showInquiryList(inquiries) {
                             </div>
                             <div class="right">
                                 <span class="date">${formattedDate}</span>
-                                <img class="arrow-0deg" src="/img/mypage/inquiry-arrow.png" width="18" height="18">
+                                <img class="arrow-img arrow-0deg" src="/img/mypage/inquiry-arrow.png" width="18" height="18">
                             </div>
                 
                         <div class="ui-accordion-view hide" style="display: none;">
