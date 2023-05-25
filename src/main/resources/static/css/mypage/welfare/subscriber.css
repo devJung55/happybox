@@ -312,6 +312,7 @@
 .user__img img {
     border-radius: 50%;
     width: 45px;
+    height: 45px;
 }
 
 .btn-x-sm {
