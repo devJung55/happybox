@@ -129,7 +129,7 @@ public class WelfareMyPageController {
 
     @GetMapping("/welfare/getList")
     @ResponseBody
-    public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 5) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail) {
+    public Page<RiderDTO> getList(@PageableDefault(page = 1, size = 7) Pageable pageable, @AuthenticationPrincipal UserDetail userDetail) {
         Long welfareId = userDetail.getId();
         Page<RiderDTO> riderDTOS = riderService.getRiderListByWelfareIdWithPaging(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize()), welfareId);
         return riderDTOS;
