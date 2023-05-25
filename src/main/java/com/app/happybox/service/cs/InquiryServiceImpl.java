@@ -11,6 +11,8 @@ import com.app.happybox.repository.inquiry.InquiryAnswerRepository;
 import com.app.happybox.repository.inquiry.InquiryFileRepository;
 import com.app.happybox.repository.inquiry.InquiryRepository;
 import com.app.happybox.repository.user.MemberRepository;
+import com.app.happybox.repository.user.UserRepository;
+import com.app.happybox.service.user.UserService;
 import com.app.happybox.type.InquiryStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +36,7 @@ public class InquiryServiceImpl implements InquiryService {
     private final InquiryAnswerFileRepository inquiryAnswerFileRepository;
     private final MemberRepository memberRepository;
     private final InquiryFileRepository inquiryFileRepository;
+    private final UserRepository userRepository;
 
     //    문의 목록
     @Override
@@ -109,7 +112,7 @@ public class InquiryServiceImpl implements InquiryService {
     public void inquiryWrite(InquiryDTO inquiryDTO, Long id) {
         Inquiry inquiry = toInquiryEntity(inquiryDTO);
 //        임시로 1번으로 할당, 로그인 회원가입 완료되면 세션에서 받아온 id값 전달
-        inquiry.setUser(memberRepository.findById(id).get());
+        inquiry.setUser(userRepository.findById(id).get());
         inquiry.setInquiryStatus(InquiryStatus.STANDBY);
         inquiryRepository.save(inquiry);
         if(inquiryDTO.getInquiryFileDTOS() != null) {
