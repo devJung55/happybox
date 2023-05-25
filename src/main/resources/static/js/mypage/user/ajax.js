@@ -1,6 +1,6 @@
 
 // 페이지 버튼 개수
-// const PAGE_AMOUNT = 7;
+const PAGE_AMOUNT = 7;
 
 let myPageService = (function() {
     function recipeBoardListAjax(page) {
