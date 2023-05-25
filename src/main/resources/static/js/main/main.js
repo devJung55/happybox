@@ -154,7 +154,7 @@ donation.forEach(board => {
     text = `
         <li class="swiper-slide" style="width: 340px">
             <div class="best-list-item">
-                <a href="/display/brand/view?brandCd=1042">
+                <a href="/user-board/donate-detail/${board.id}">
                     <img src="${filePath}"/>
                 </a>
                 <div class="txt-area">
