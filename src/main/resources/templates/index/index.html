@@ -13,6 +13,20 @@
 </head>
 <body>
 <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
+<div id="check-modal" class="modal">
+    <div class="modal-content">
+        <p class="modal-title">
+            본 사이트는 학습용 사이트이므로 회원가입 및 서비스 이용을 금지합니다.
+            <br>
+            위 내용을 무시하고 서비스 이용 중 손해 발생 시 저희 HappyBox측은 책임 지지 않습니다.
+        </p>
+        <div class="cart-product-info">
+            <div class="modal-btn-wrap">
+                <button class="modal-btn" id="modal-yesBtn" onclick="deleteModal()">확인</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="wrap main">
     <section class="content">
         <section class="container">
@@ -217,6 +231,7 @@
 <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/main/modal.js"></script>
 <script th:inline="javascript">
     let recentSub = [[${recent}]];
     console.log(recentSub);
