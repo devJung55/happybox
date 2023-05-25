@@ -1,43 +1,39 @@
-/* 모달 */
-/* 스타일 설정 */
+/* 모달창 기본 스타일 */
 .modal {
-    display: flex;
+    display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    margin: 0;
-    align-items: center;
-    font-family: 'Noto Sans KR';
-    font-size: 17px;
-    font-weight: 600;
 }
 
+/* 모달창 내용 스타일 */
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 30px;
-    /* padding-bottom: 20px; */
+    padding: 20px;
     border: 1px solid #888;
-    width: 400px;
-    height: 130px;
-    text-align: center;
-    border-radius: 10px;
-    position: relative;
-    bottom: 45px;
+    width: 315px;
 }
 
+.modal-content .modal-title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 닫기 버튼 스타일 */
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
-    display: none;
 }
 
 .close:hover,
@@ -47,29 +43,41 @@
     cursor: pointer;
 }
 
-#closeModalBtn{
-    background-color: #FF5938;
-    border-radius: 5px;
-    padding: 8px 30px;
-    margin: 0;
-    /*margin-top: 15px;*/
-    color: #FFF;
-    position: relative;
-     top: 1px;
+.modal-btn-wrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-/* 애니메이션 효과 */
-.modal-content {
-    animation: modalzoom 0.3s;
+.replyBtn-wrap {
+    margin-top: 20px !important;
 }
 
-@keyframes modalzoom {
-    from {
-        transform: scale(0);
-    }
-    to {
-        transform: scale(1);
-    }
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
 }
 
-/* 모달 */
+#modal-yesBtn {
+    background-color: #f84a3b;
+}
+
+#modal-yesBtn:hover {
+    background-color: #cb372c;
+}
+
+#reply-deleteBtn {
+    background-color: #f84a3b;
+}
+
+#reply-deleteBtn:hover {
+    background-color: #cb372c;
+}
