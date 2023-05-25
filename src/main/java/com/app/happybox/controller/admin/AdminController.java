@@ -274,7 +274,7 @@ public class AdminController {
     @ResponseBody
     @GetMapping("admin-noticeList/{page}")
     public Page<NoticeDTO> showNoticeList(@PathVariable("page") Integer page) {
-        PageRequest pages = PageRequest.of(page - 1, 1);
+        PageRequest pages = PageRequest.of(page - 1, 10);
         Page<NoticeDTO> lists = noticeService.getAdminNoticeList(pages);
         return lists;
     }
