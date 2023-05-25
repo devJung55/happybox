@@ -12,11 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
 public class InquiryAnswerDTO {
     private Long id;
     private String inquiryAnswerContent;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-    private List<InquiryAnswerFileDTO> inquiryAnswerFileDTOS = new ArrayList<>();
+    private List<InquiryAnswerFileDTO> inquiryAnswerFileDTOS;
+
+    @Builder
+    public InquiryAnswerDTO(Long id, String inquiryAnswerContent, LocalDateTime createdDate, LocalDateTime updatedDate, List<InquiryAnswerFileDTO> inquiryAnswerFileDTOS) {
+        this.id = id;
+        this.inquiryAnswerContent = inquiryAnswerContent;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+        this.inquiryAnswerFileDTOS = inquiryAnswerFileDTOS;
+    }
 }
