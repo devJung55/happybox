@@ -359,7 +359,10 @@ console.log("==================================================");
 console.log(subscription.subscriptionContent);
 $('.welfare-content').text(subscription.subscriptionContent);
 
-if(file !=null){
-    let src = `/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}`;
-    $('#profile-img').attr('src',src);
+let src = "/img/welfare/welfare_detail_default.png";
+
+if(file.filePath != null && file.fileUuid != null && file.fileOrgName != null){
+    src = `/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}`;
 }
+
+$('#profile-img').attr('src', src);
