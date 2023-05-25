@@ -467,6 +467,7 @@ $replyWriteBtn.on("click", function () {
             console.log(result);
         }
     );
+    window.location.reload();
 });
 
 // 댓글 삭제 모달
