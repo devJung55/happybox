@@ -3,6 +3,7 @@ const $append = $(".article__wrap");
 myPageService.recipeBoardListAjax();
 
 function showRecipeBoardList(recipeBoards) {
+    console.log(recipeBoards)
     let text = "";
     let image = "";
     let profile = "";
@@ -41,7 +42,7 @@ function showRecipeBoardList(recipeBoards) {
                                 </div>
                                 <div class="writer-info-wrap">
                                     <div class="writer-info">
-                                        <div class="writer-name">${recipeBoard.memberName}</div>
+                                        <div class="writer-name">${recipeBoard.memberDTO.memberName}</div>
                                     </div>
                                     <span class="write-date" style="width: 61px;">${formattedDate}</span>
                                 </div>

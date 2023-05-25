@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/mypage/user/side-bar.css">
     <link rel="stylesheet" href="/css/mypage/user/top-bar.css">
     <link rel="stylesheet" href="/css/mypage/user/withdrawal.css">
+    <link rel="stylesheet" href="/css/mypage/user/modal.css">
 </head>
 <style>
     .blind {
@@ -67,11 +68,23 @@
                                     </div>
                                 </form>
                             </div>
-                        </div><!--// frame-cnt-inner -->
-                    </div><!-- // frame-right -->
-                </div><!-- // frame-sm -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!--모달-->
+<!--        <div id="reply-modal" class="modal">-->
+<!--            <div class="modal-content reply-delete-modal">-->
+<!--                <p class="modal-title">회원탈퇴 하시겠습니까?<span class="close">&times;</span></p>-->
+<!--                <div class="modal-btn-wrap replyBtn-wrap">-->
+<!--                    <button class="modal-btn" id="reply-deleteBtn" onclick="deleteReply()">댓글 삭제하기</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!--모달-->
+
         <footer class="footer-stage" th:insert="~{component/footer.html :: footer}"></footer>
     </div>
 </body>
