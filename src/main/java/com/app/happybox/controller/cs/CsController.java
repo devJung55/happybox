@@ -8,6 +8,7 @@ import com.app.happybox.entity.customer.NoticeSearch;
 import com.app.happybox.provider.UserDetail;
 import com.app.happybox.service.cs.InquiryService;
 import com.app.happybox.service.cs.NoticeService;
+import com.app.happybox.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -67,7 +68,17 @@ public class CsController {
     public RedirectView writeInquiry(@AuthenticationPrincipal UserDetail userDetail, InquiryDTO inquiryDTO, HttpSession session) {
         inquiryService.inquiryWrite(inquiryDTO, userDetail.getId());
         //    나중에 마이페이지 문의 목록으로 이동해야 함
-        return new RedirectView("/mypage/member/inquiry");
+        String url = "";
+
+        if(userDetail.getUserRole() == Role.WELFARE) {
+            url = "/mypage/welfare/inquiry";
+        } else if(userDetail.getUserRole() == Role.DISTRIBUTOR) {
+            url = "/mypage/distributor/inquiry";
+        } else if(userDetail.getUserRole() == Role.MEMBER) {
+            url = "/mypage/member/inquiry";
+        }
+
+        return new RedirectView(url);
     }
 
     //    FAQ로 이동

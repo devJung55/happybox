@@ -102,21 +102,22 @@ function showOrderList(orderList) {
                 `;
 
     });
+    $orderAppend.empty();
     $orderAppend.append(text);
-    showPage(orderList);
 }
 
-$(".pagination").on("click", "a", function(e) {
+/*$(".pagination").on("click", "a", function(e) {
     e.preventDefault();
     const targetPage = $(this).text();
     page = parseInt(targetPage);
     $orderAppend.empty();
     myPageService.orderListAjax(page);
-});
+});*/
 
 /*----------------------------------------------------------------- 기간별 조회*/
 
 
+/*
 let date;
 
 function getOrdersByPeriod(date) {
@@ -171,3 +172,4 @@ $(".searchButton").on("click", function() {
     })
     getOrdersByPeriod(date);
 });
+*/
