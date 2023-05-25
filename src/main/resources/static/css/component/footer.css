@@ -507,6 +507,7 @@ input[name='send-msg'] {
     float: right;
     margin-right: 6px;
     background-color: #fcca34 !important;
+    margin-bottom: 10px;
 }
 
 .chat-close {
