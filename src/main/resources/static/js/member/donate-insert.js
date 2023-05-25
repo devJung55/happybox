@@ -202,7 +202,7 @@ $("form[name='form']").on("submit", function (e) {
         donateLocation == "" ||
         insertData.donationBoardFiles.length == 0
     ) {
-        alert("모든 정보를 입력해주세요.");
+        alertModal("모든 정보를 입력해주세요.");
         return false; // submit 막기
     }
 
@@ -239,3 +239,13 @@ $textarea.on('keyup', function () {
         alert('글자수는 1000자까지 입력 가능합니다.');
     }
 });
+
+/* 모달창 */
+
+function alertModal(errorMsg) {
+    $("div#content-wrap").html(errorMsg)
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function () {
+        $("div.modal").fadeOut();
+    }, 2000);
+}

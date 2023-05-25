@@ -123,7 +123,7 @@ $("form[name='form']").on("submit", function (e) {
         boardContent == "" ||
         insertData.reviewBoardFiles.length == 0
     ) {
-        alert("모든 정보를 입력해주세요.");
+        alertModal("모든 정보를 입력해주세요.");
         return false; // submit 막기
     }
 
@@ -138,3 +138,13 @@ $("form[name='form']").on("submit", function (e) {
         }
     })
 });
+
+/* 모달창 */
+
+function alertModal(errorMsg) {
+    $("div#content-wrap").html(errorMsg)
+    $("div.modal").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function () {
+        $("div.modal").fadeOut();
+    }, 2000);
+}

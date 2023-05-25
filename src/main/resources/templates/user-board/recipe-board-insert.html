@@ -11,11 +11,17 @@
     <link rel="stylesheet" href="/css/component/footer.css" />
     <link rel="stylesheet" href="/css/member/member.css" />
     <link rel="stylesheet" href="/css/member/board-insert.css" />
+    <link rel="stylesheet" href="/css/member/modal.css"/>
   </head>
   <body>
   <header class="header-stage" th:insert="~{component/header.html :: header}"></header>
   <root style="zoom: 90%">
       <section id="contents" class="container">
+        <div class="modal">
+          <div class="warn-modal">
+            <div id="content-wrap"></div>
+          </div>
+        </div>
         <div class="content-wrap">
           <div class="frame-sm">
             <form id="counselRegFrm" name="form" method="post">
