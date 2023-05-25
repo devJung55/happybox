@@ -30,7 +30,7 @@ function appendReview(review) {
                 </div>
                 <div class="timer time-desc">
                     <span class="timer-title">
-                        ${review.boardContent}
+                        ${review.boardTitle}
                     </span>
                 </div>
                 <div class="desc-bottom">
