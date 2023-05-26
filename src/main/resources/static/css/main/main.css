@@ -51,7 +51,7 @@ div.banner div {
     height: 26px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 60px;
-    z-index: 11;
+    z-index: 10;
     top: 347px;
     left: 1610px;
 }
@@ -387,7 +387,7 @@ div.banner div {
 
 .main-article .time-sales-content-area .img {
     width: 320px;
-    height: 169px;
+    height: 230px;
 }
 
 .prd-item .img a img {
