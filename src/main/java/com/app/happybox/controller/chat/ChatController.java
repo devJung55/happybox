@@ -40,15 +40,14 @@ public class ChatController {
     private final SimpMessageSendingOperations template;
     private final ChatService chatService;
     private final ChatMessageService chatMessageService;
-    private final HttpSession session;
 
     // MessageMapping 을 통해 websocket 으로 들어오는 메시지를 발신 처리합니다.
     // 이 때 클라이언트에서는 /pub/chat/message 로 요청을 하게 되고 이것을 controller 가 받아서 처리합니다.
     // 처리가 완료되면 /sub/chat/room/roomId 로 메시지가 전송됩니다.
     @MessageMapping("/chat/enterUser")
-    public void enterUser(@Payload ChatMessageDTO chat, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
+    public void enterUser(@Payload ChatMessageDTO chat, SimpMessageHeaderAccessor headerAccessor, Authentication authentication) {
 
-        headerAccessor.getSessionAttributes().put("user", principal.getName());
+        Long userId = ((UserDetail) authentication.getPrincipal()).getId();
         headerAccessor.getSessionAttributes().put("roomId", chat.getRoomId());
 
         template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), chat);
@@ -59,8 +58,6 @@ public class ChatController {
     public void sendMessage(@Payload ChatMessageDTO chat, Authentication authentication) {
 
         log.info("chat : {}", chat);
-        chat.setMessage(chat.getMessage());
-
         Long userId = ((UserDetail) authentication.getPrincipal()).getId();
 
         ChatMessageDTO savedChat = chatMessageService.save(chat, userId);
@@ -112,15 +109,15 @@ public class ChatController {
     // 해당 방의 채팅내역 조회
     @GetMapping("/chat/history/{roomId}")
     @ResponseBody
-    public List<ChatMessageDTO> chatHistory(@PathVariable String roomId, @AuthenticationPrincipal UserDetail userDetail) {
-        log.info("=============== HISTORY " + userDetail);
+    public List<ChatMessageDTO> chatHistory(@PathVariable String roomId, @AuthenticationPrincipal UserDetail userDetail,
+                                            HttpServletRequest request) {
         if (userDetail == null) {
             return new ArrayList<>();
         }
 
-        List<ChatMessageDTO> messages = chatMessageService.findAllChatMessagesByRoomId(roomId);
-        log.info("=============== HISTORY "  + messages.toString());
+        request.getSession().setAttribute("userId", userDetail.getId());
 
+        List<ChatMessageDTO> messages = chatMessageService.findAllChatMessagesByRoomId(roomId);
         messages.forEach(message -> {
             if(message.getSenderId().equals(userDetail.getId())) {
                 message.setMyMessage(true);

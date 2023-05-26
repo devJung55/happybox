@@ -479,7 +479,7 @@ input[name='send-msg'] {
     display: flex;
     flex-direction: column;
     margin-top: 8px;
-    height: 90%;
+    height: 83%;
     gap: 5px;
     overflow-y: scroll;
 }
@@ -507,7 +507,6 @@ input[name='send-msg'] {
     float: right;
     margin-right: 6px;
     background-color: #fcca34 !important;
-    margin-bottom: 10px;
 }
 
 .chat-close {

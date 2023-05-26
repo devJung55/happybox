@@ -329,6 +329,7 @@ function showChatting(aTag) {
 
     // 연결
     connect(roomId);
+    console.log(window.sessionStorage.getItem("userId"));
 
     // 입장 roomId 에 값 저장
     enterRoomId = roomId;
@@ -379,8 +380,6 @@ function onConnected(roomId) {
         })
     );
 
-    console.log(roomId);
-
     // 메시지 표시 공간 비우기
     $messageArea.empty();
 
@@ -424,7 +423,6 @@ function sendMessage(event) {
 
 // 채팅 메시지 표시
 function prependChatMessage(message) {
-    console.log(message);
     let isMyMessage = message.myMessage;
 
     if(isMyMessage == null) {
@@ -443,7 +441,6 @@ function prependChatMessage(message) {
 }
 
 function appendInputChatMessage(message) {
-    console.log(message);
 
     let isMyMessage = message.myMessage;
 

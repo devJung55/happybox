@@ -77,7 +77,7 @@ public class SubscriptionQueryDslImpl implements SubscriptionQueryDsl {
         log.info(searchDTO.toString());
         //    해당 지역 주소를 포함하고 있는가? ex) 강남 in 서울시 '강남구' ...
         BooleanExpression hasAddress = searchDTO.getSearchFirstAddress() == null ? null : subscription.welfare.address.firstAddress.contains(searchDTO.getSearchFirstAddress());
-        BooleanExpression hasSearchText = searchDTO.getSearchText() == null ? null : subscription.subscriptionTitle.contains(searchDTO.getSearchText());
+        BooleanExpression hasSearchText = searchDTO.getSearchText() == null ? null : subscription.welfare.welfareName.contains(searchDTO.getSearchText());
 
         List<Subscription> subscriptionList = getSubscriptionJPAQuery()
                 .from(subscription)
