@@ -250,7 +250,7 @@
             console.log(orderInfoDTO);
 
             BootPay.request({
-                price: 100, //실제 결제되는 가격
+                price: $total, //실제 결제되는 가격
 
                 // 관리자로그인 -> 결제설치 -> 인증키 및 보안 -> WEB Application ID
                 application_id: APIKEY,
@@ -301,7 +301,7 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (result) {
-                        location.href = "/product/list";
+                        location.href = "/mypage/member/order";
                     },
                     error: function (error) {
                         console.log("결제가 취소 되었습니다.");
