@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 @Controller
@@ -38,10 +39,13 @@ public class WelfareMainController {
     private final DonationBoardService donationBoardService;
 
     @GetMapping("")
-    public String goMain(Model model, @AuthenticationPrincipal UserDetail userDetail) {
-//        UserDetail이 있다는 것은 일반 로그인으로 진행한 거기 때문에 세션에 값이 안 담겨있으므로
-//        userDetail의 id값으로 memberDTO를 찾아서 세션에 담아주기
-//        userDetail이 null이라면 oauth로 로그인 했기 때문에 이미 세션에 값이 있음
+    public String goMain(Model model, @AuthenticationPrincipal UserDetail userDetail, HttpServletRequest request) {
+
+        if(userDetail != null) {
+            request.getSession().setAttribute("userId", userDetail.getId());
+        }
+
+        log.info("user Id : {}", request.getSession().getAttribute("userId"));
 
         /*log.info(userDetail.toString());*/
         model.addAttribute("recent", subscriptionService.findRecentTop8());
