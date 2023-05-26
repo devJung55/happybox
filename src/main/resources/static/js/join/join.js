@@ -133,9 +133,11 @@ $joinInputs.on('blur', function () {
                     $joinHelp.eq(i).show();
                     if (result) {
                         joinCheckAll[i] = false;
+                        $joinHelp.eq(i).css('color','red');
                         $joinHelp.eq(i).text('중복된 아이디입니다.');
                     } else {
                         joinCheckAll[i] = true;
+                        $joinHelp.eq(i).css('color','blue');
                         $joinHelp.eq(i).text('사용가능한 아이디입니다.');
                     }
                 },
@@ -151,13 +153,15 @@ $joinInputs.on('blur', function () {
                 let message;
                 if (result) {
                     message = "중복된 이메일입니다.";
+                    $joinHelp.eq(i).css('color','red');
                     $joinHelp.eq(i).show();
                     $joinHelp.eq(i).text(message);
                     joinCheckAll[i] = false;
                 } else {
                     message = "사용가능한 이메일입니다.";
-                    $joinHelp.eq(i).show();
+                    $joinHelp.eq(i).css('color','blue');
                     $joinHelp.eq(i).text(message);
+                    $joinHelp.eq(i).show();
                     joinCheckAll[i] = true;
                 }
             }
@@ -405,7 +409,7 @@ function onKeyUpMemberJoinCertiNoText() {
 
     if (certiNo.search(/^\d{6}$/) === -1) {
         $('#popup-member-join-input-certi-no-pop-error').html(
-            '<p class="valid error">6자리 숫자만 사용 가능합니다.</p>'
+            '<p class="valid error" >6자리 숫자만 사용 가능합니다.</p>'
         );
         setDimMemberJoinCertiNoBtn(true);
         return;
