@@ -141,7 +141,7 @@ function showFiles() {
     text +=
         `
         <p class="text-guide-md">
-            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 3장까지 첨부 가능합니다.
+            - 최대 15MB 이하의 JPG, PNG, GIF, BMP 파일 8장까지 첨부 가능합니다.
         </p>
         `
     setFile.append(text);
