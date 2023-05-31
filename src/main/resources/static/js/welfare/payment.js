@@ -174,7 +174,7 @@ function showCarts() {
                             <div class="column img">
                                 <a href="javascript:void(0);">
                                     <img
-                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg"
+                                            src="/img/welfare/subs-img.png"
                                             alt=""
                                     />
                                 </a>
