@@ -70,7 +70,7 @@ public class UserRestController {
         mail.setAddress(userEmail);
         mail.setTitle("[해피박스] 새 비밀번호 설정 링크 입니다.");
 
-        String message = "비밀 번호 변경 링크 입니다.\n\n" + "링크: http://localhost:10000/member/change-password?userEmail=" + userEmail + "&userRandomKey=" + randomKeyString;
+        String message = "비밀 번호 변경 링크 입니다.\n\n" + "링크: http://happybox.site/member/change-password?userEmail=" + userEmail + "&userRandomKey=" + randomKeyString;
         mail.setMessage(message);
 
         userService.sendMail(mail);

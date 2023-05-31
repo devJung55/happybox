@@ -67,7 +67,7 @@ spring:
             client-name: Naver
             client-id: studRFKgw1vmCmfBnAMM
             client-secret: kaZiVGKsZj
-            redirect-uri: http://localhost:10000/login/oauth2/code/naver
+            redirect-uri: http://happybox.site/login/oauth2/code/naver
             authorization-grant-type: authorization_code
             scope: name,email,mobile
 
@@ -75,7 +75,7 @@ spring:
           kakao:
             client-id: 00e7d9a870a6d913b60d3ec64246794a
             client-secret: cgpvjCsfe8DWZx6PcUi1uTw2gZHy5uBD
-            redirect-uri: http://localhost:10000/login/oauth2/code/kakao
+            redirect-uri: http://happybox.site/login/oauth2/code/kakao
             client-authentication-method: POST
             authorization-grant-type: authorization_code
             scope: account_email
