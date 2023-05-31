@@ -143,9 +143,13 @@ $.ajax({
 const $carts = carts;
 const $cartArea = $('.productCart-list');
 
+console.log(carts);
+
 function showCarts() {
     let text = "";
     $carts.forEach((cart) => {
+    let filePath = "";
+    filePath = cart.productFileDTO.filePath + '/t_' + cart.productFileDTO.fileUuid + '_' + cart.productFileDTO.fileOrgName;
         text = `
                 <li>
                     <div class="prd-info-area">
@@ -153,8 +157,7 @@ function showCarts() {
                             <div class="column img">
                                 <a href="javascript:void(0);">
                                     <img
-                                            src="https://file.rankingdak.com/image/RANK/PRODUCT/PRD001/20220930/IMG1664KYw524724256_600_600.jpg"
-                                            alt=""
+                                            src="/image/display?fileName=${filePath}"
                                     />
                                 </a>
                             </div>
