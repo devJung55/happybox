@@ -88,5 +88,7 @@ JavaScript에서 console 출력을 통해 어느 부분이 문제인지 확인�
 <h4>🌟개발은 꼼꼼히 해야 더 빨리 개발할 수 있다.</h4>
 
 
-<h2>ERD</h2>
-<img width="100%" alt="erd" src="">
+
+
+## ERD
+![HappyBox_ERD](https://github.com/dev-kmg2331/happybox/assets/115636546/6564b7c5-66ec-4a32-ab38-c382e69892a6)
